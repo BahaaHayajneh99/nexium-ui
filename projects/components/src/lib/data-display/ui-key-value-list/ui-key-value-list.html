@@ -1,0 +1,8 @@
+<dl class="nx-key-value-list" [class.stacked]="layout === 'stacked'" [class.bordered]="bordered">
+    @for (item of items; track item.key) {
+        <div class="nx-key-value-row">
+            <dt class="nx-key-value-key">{{ item.key }}</dt>
+            <dd class="nx-key-value-value">{{ item.value }}</dd>
+        </div>
+    }
+</dl>

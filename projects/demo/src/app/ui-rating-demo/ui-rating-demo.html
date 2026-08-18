@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Rating"
+                description="Click a star to set the rating; clicking the currently-selected star clears it back to zero."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-rating [(value)]="rating"></nx-rating>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Read-only"
+                description="Set readonly to true to display a rating without allowing interaction."
+                [code]="readonlyCode"
+                [hasSampleClass]="false">
+                <nx-rating [value]="4" [readonly]="true"></nx-rating>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Max"
+                description="Set max for a scale other than 5 stars."
+                [code]="maxCode"
+                [hasSampleClass]="false">
+                <nx-rating [(value)]="rating" [max]="10"></nx-rating>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

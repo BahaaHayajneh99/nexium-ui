@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <div class="template-stats-grid">
+                    @for (stat of stats; track stat.label) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <nx-statistic [label]="stat.label" [value]="stat.value" [delta]="stat.delta"></nx-statistic>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+            </section>
+
+            <app-demo-section
+                header="Sessions Over Time"
+                description="An nx-line-chart tracking a single metric over time."
+                [code]="sessionsCode"
+                [hasSampleClass]="false">
+
+                <nx-line-chart [categories]="months" [series]="sessionsSeries"></nx-line-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Sessions by Channel"
+                description="An nx-bar-chart comparing two acquisition channels."
+                [code]="channelCode"
+                [hasSampleClass]="false">
+
+                <nx-bar-chart [categories]="months" [series]="channelSeries"></nx-bar-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Traffic Sources"
+                description="An nx-pie-chart as a donut, with the total implied by its parts."
+                [code]="sourcesCode"
+                [hasSampleClass]="false">
+
+                <nx-pie-chart [data]="trafficSources" [innerRadius]="0.6"></nx-pie-chart>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

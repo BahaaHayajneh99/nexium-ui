@@ -1,0 +1,54 @@
+<div class="nx-chart">
+
+    <div class="nx-chart-canvas nx-gauge-canvas">
+        <svg
+            [attr.viewBox]="viewBox"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            [attr.aria-label]="(label || 'Gauge') + ': ' + formatValue(value) + ' of ' + formatValue(min) + '-' + formatValue(max)">
+
+            @for (band of bandArcs; track band.to) {
+                <path
+                    class="nx-chart-gauge-band"
+                    [attr.d]="band.path"
+                    [attr.stroke]="band.color"
+                    [attr.stroke-width]="trackStrokeWidth"
+                    fill="none">
+                </path>
+            }
+
+            <text class="nx-chart-axis-label" text-anchor="start" [attr.x]="minLabelPoint.x" [attr.y]="minLabelPoint.y">
+                {{ formatValue(min) }}
+            </text>
+            <text class="nx-chart-axis-label" text-anchor="end" [attr.x]="maxLabelPoint.x" [attr.y]="maxLabelPoint.y">
+                {{ formatValue(max) }}
+            </text>
+
+            <path class="nx-chart-gauge-needle" [attr.d]="needlePath"></path>
+            <circle class="nx-chart-gauge-hub" cx="150" cy="150" r="7"></circle>
+
+            <text class="nx-chart-gauge-value" text-anchor="middle" x="150" y="128">
+                {{ formatValue(value) }}
+            </text>
+
+            @if (label) {
+                <text class="nx-chart-gauge-caption" text-anchor="middle" x="150" y="148">
+                    {{ label }}
+                </text>
+            }
+
+        </svg>
+    </div>
+
+    @if (hasBandLegend) {
+        <div class="nx-chart-legend">
+            @for (band of bandArcs; track band.to) {
+                <div class="nx-chart-legend-item">
+                    <span class="nx-chart-legend-swatch" [style.background]="band.color"></span>
+                    {{ band.label }} ({{ bandRangeLabel(band) }})
+                </div>
+            }
+        </div>
+    }
+
+</div>

@@ -1,0 +1,200 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Tabs"
+                description="Basic tab navigation with multiple content panels."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs>
+                    <nx-tab label="Profile">
+                        <p>Profile information content.</p>
+                    </nx-tab>
+                    <nx-tab label="Settings">
+                        <p>Settings content.</p>
+                    </nx-tab>
+                    <nx-tab label="Security">
+                        <p>Security settings content.</p>
+                    </nx-tab>
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Active Tab"
+                description="Set the active tab programmatically."
+                [code]="activeCode"
+                [tsCode]="activeTs"
+                [hasSampleClass]="false">
+
+                <nx-tabs [(activeIndex)]="activeTab">
+                    <nx-tab label="Overview">Overview content.</nx-tab>
+                    <nx-tab label="Analytics">Analytics content.</nx-tab>
+                    <nx-tab label="Reports">Reports content.</nx-tab>
+                </nx-tabs>
+
+                <p>
+                    Selected Tab: {{ activeTab }}
+                </p>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Disabled Tab"
+                description="Disable specific tabs when needed."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs>
+                    <nx-tab label="Active">Active content.</nx-tab>
+                    <nx-tab label="Disabled" [disabled]="true">Disabled content.</nx-tab>
+                    <nx-tab label="Available">Available content.</nx-tab>
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Tabs With Icons"
+                description="Attach an icon alongside each tab label."
+                [code]="iconCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs>
+                    <nx-tab label="Home" icon="nx-home">Home content.</nx-tab>
+                    <nx-tab label="Users" icon="nx-users">Users content.</nx-tab>
+                    <nx-tab label="Settings" icon="nx-settings">Settings content.</nx-tab>
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Full Width Tabs"
+                description="Tabs expand to fill the available container width."
+                [code]="fullWidthCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs [fullWidth]="true">
+                    <nx-tab label="Day">Daily view.</nx-tab>
+                    <nx-tab label="Week">Weekly view.</nx-tab>
+                    <nx-tab label="Month">Monthly view.</nx-tab>
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Line Tabs"
+                description="Line variant tabs use an underline indicator for the active tab."
+                [code]="lineCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs variant="line">
+                    <nx-tab label="First">First content.</nx-tab>
+                    <nx-tab label="Second">Second content.</nx-tab>
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Filled Tabs"
+                description="Filled variant tabs highlight the active tab with a solid background."
+                [code]="filledCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs variant="filled">
+                    <nx-tab label="Dashboard">Dashboard content.</nx-tab>
+                    <nx-tab label="Activity">Activity content.</nx-tab>
+                    <nx-tab label="Messages">Messages content.</nx-tab>
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Pill Tabs"
+                description="Pill variant tabs use a rounded, pill-shaped indicator."
+                [code]="pillCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs variant="pill">
+                    <nx-tab label="All">All items.</nx-tab>
+                    <nx-tab label="Active">Active items.</nx-tab>
+                    <nx-tab label="Archived">Archived items.</nx-tab>
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Boxed Tabs"
+                description="Boxed variant tabs render each tab inside a bordered box."
+                [code]="boxedCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs variant="boxed">
+                    <nx-tab label="Details">Details content.</nx-tab>
+                    <nx-tab label="History">History content.</nx-tab>
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Vertical Tabs"
+                description="Vertical orientation stacks tab labels along the side of the content."
+                [code]="verticalCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs orientation="vertical">
+                    <nx-tab label="General">General settings.</nx-tab>
+                    <nx-tab label="Account">Account settings.</nx-tab>
+                    <nx-tab label="Notifications">Notification settings.</nx-tab>
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Custom Tab Template"
+                description="Use a custom label template for full control over the tab header content."
+                [code]="customTemplateCode"
+                [hasSampleClass]="false">
+
+                <nx-tabs>
+
+                    <nx-tab>
+                        <ng-template nxTabLabel>
+                            <nx-icon icon="nx-star" variant="svg" [size]="16"></nx-icon>
+                             Favorites
+                        </ng-template>
+                        Favorite content.
+                    </nx-tab>
+
+                    <nx-tab>
+                        <ng-template nxTabLabel>
+                            <nx-icon icon="nx-fire" variant="svg" [size]="16"></nx-icon>
+                            Popular
+                        </ng-template>
+                        Popular content.
+                    </nx-tab>
+
+                </nx-tabs>
+
+            </app-demo-section>
+
+
+        </div>
+
+    </div>
+
+</div>

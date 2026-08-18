@@ -1,0 +1,75 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Settings"
+                description="A preferences screen built from nx-switch and nx-select grouped inside nx-card sections."
+                [code]="notificationsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <nx-card class="template-card-wide" variant="elevated">
+                        <nx-card-header>
+                            <nx-card-title>Notifications</nx-card-title>
+                            <nx-card-subtitle>Choose what you want to be notified about</nx-card-subtitle>
+                        </nx-card-header>
+
+                        <nx-card-content>
+                            <div class="template-setting-row">
+                                <div>
+                                    <div class="template-setting-title">Email notifications</div>
+                                    <div class="template-setting-desc">Order updates and account alerts</div>
+                                </div>
+                                <nx-switch [(checked)]="emailNotifications"></nx-switch>
+                            </div>
+
+                            <div class="template-setting-row">
+                                <div>
+                                    <div class="template-setting-title">Push notifications</div>
+                                    <div class="template-setting-desc">Real-time alerts on this device</div>
+                                </div>
+                                <nx-switch [(checked)]="pushNotifications"></nx-switch>
+                            </div>
+
+                            <div class="template-setting-row">
+                                <div>
+                                    <div class="template-setting-title">Two-factor authentication</div>
+                                    <div class="template-setting-desc">Require a code at sign-in</div>
+                                </div>
+                                <nx-switch [(checked)]="twoFactorAuth"></nx-switch>
+                            </div>
+                        </nx-card-content>
+                    </nx-card>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Language"
+                description="A single-field settings card ending in a save action."
+                [code]="languageCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <nx-card class="template-card-wide" variant="elevated">
+                        <nx-card-header>
+                            <nx-card-title>Language</nx-card-title>
+                        </nx-card-header>
+                        <nx-card-content>
+                            <nx-select label="Display language" [options]="languageOptions" [(value)]="language"></nx-select>
+                        </nx-card-content>
+                        <nx-card-footer>
+                            <nx-button variant="primary" (click)="onSave()">Save Preferences</nx-button>
+                            @if (saved) {
+                                <span class="template-form-note ml-3">Preview only - preferences weren't saved.</span>
+                            }
+                        </nx-card-footer>
+                    </nx-card>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

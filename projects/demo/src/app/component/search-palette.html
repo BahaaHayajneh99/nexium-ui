@@ -1,0 +1,52 @@
+@if (open) {
+    <div class="search-palette-backdrop" (click)="close()">
+
+        <div
+            class="search-palette"
+            (click)="$event.stopPropagation()"
+            (keydown.escape)="close()"
+            (keydown.arrowDown)="moveActive(1); $event.preventDefault()"
+            (keydown.arrowUp)="moveActive(-1); $event.preventDefault()"
+            (keydown.enter)="selectActive()">
+
+            <div class="search-palette-input">
+                <nx-icon icon="nx-search" variant="svg" [size]="16"></nx-icon>
+                <input
+                    #searchInput
+                    type="text"
+                    placeholder="Search components, guides..."
+                    [value]="query"
+                    (input)="onQueryChange($any($event.target).value)" />
+                <button type="button" class="search-palette-close" (click)="close()" aria-label="Close search">
+                    <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+                </button>
+            </div>
+
+            <div class="search-palette-results">
+
+                @if (flatResults.length === 0) {
+                    <div class="search-palette-empty">No results for "{{ query }}"</div>
+                }
+
+                @for (group of groupedResults; track group.group) {
+                    <div class="search-palette-group">
+                        <h5>{{ group.group }}</h5>
+                        @for (item of group.items; track item.path) {
+                            <button
+                                type="button"
+                                class="search-palette-item"
+                                [class.active]="flatResults[activeIndex] === item"
+                                (mouseenter)="setActive(item)"
+                                (click)="go(item)">
+                                {{ item.label }}
+                            </button>
+                        }
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+}

@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Growing Spacer"
+                description="With no size set, the spacer grows to fill all remaining space in its flex container - the classic 'push these apart' pattern for a header bar."
+                [code]="growCode"
+                [hasSampleClass]="false">
+
+                <nx-flex align="center">
+                    <div class="layout-demo-box">Logo</div>
+                    <nx-spacer></nx-spacer>
+                    <div class="layout-demo-box layout-demo-box-alt">Sign In</div>
+                </nx-flex>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Fixed Spacer"
+                description="Set size for a fixed-width (or height, in a column flex) gap instead of a growing one."
+                [code]="fixedCode"
+                [hasSampleClass]="false">
+
+                <nx-flex align="center">
+                    <div class="layout-demo-box">Icon</div>
+                    <nx-spacer [size]="24"></nx-spacer>
+                    <div class="layout-demo-box">Label</div>
+                </nx-flex>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

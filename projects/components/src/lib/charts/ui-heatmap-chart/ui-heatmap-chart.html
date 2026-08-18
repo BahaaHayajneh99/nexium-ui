@@ -1,0 +1,84 @@
+<div class="nx-chart">
+
+    <button type="button" class="nx-chart-table-toggle" (click)="toggleTable()">
+        {{ showTable ? 'View as chart' : 'View as table' }}
+    </button>
+
+    @if (!showTable) {
+        <div class="nx-chart-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (column of columns; track column; let i = $index) {
+                    <text class="nx-chart-axis-label" text-anchor="middle" [attr.x]="columnLabelX(i)" y="16">
+                        {{ column }}
+                    </text>
+                }
+
+                @for (row of rows; track row; let i = $index) {
+                    <text class="nx-chart-axis-label" text-anchor="end" x="88" [attr.y]="rowLabelY(i)">
+                        {{ row }}
+                    </text>
+                }
+
+                @for (cell of cells; track cell.rowIndex + '-' + cell.columnIndex) {
+                    <rect
+                        class="nx-chart-heatmap-cell"
+                        [class.nx-chart-heatmap-cell-hovered]="hovered === cell"
+                        [attr.x]="cell.x"
+                        [attr.y]="cell.y"
+                        [attr.width]="cell.width"
+                        [attr.height]="cell.height"
+                        [attr.fill]="cell.color"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="rows[cell.rowIndex] + ', ' + columns[cell.columnIndex] + ': ' + formatValue(cell.value)"
+                        (pointerenter)="onCellEnter(cell)"
+                        (pointerleave)="onCellLeave()"
+                        (focus)="onCellEnter(cell)"
+                        (blur)="onCellLeave()">
+                    </rect>
+                }
+
+            </svg>
+
+            @if (hovered) {
+                <div class="nx-chart-tooltip" [style]="tooltipStyle">
+                    <div class="nx-chart-tooltip-category">{{ rows[hovered.rowIndex] }} · {{ columns[hovered.columnIndex] }}</div>
+                    <div class="nx-chart-tooltip-row">
+                        <strong class="nx-chart-tooltip-value">{{ formatValue(hovered.value) }}</strong>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="nx-chart-heatmap-scale">
+            <span>{{ formatValue(minValue) }}</span>
+            <span class="nx-chart-heatmap-scale-bar"></span>
+            <span>{{ formatValue(maxValue) }}</span>
+        </div>
+    } @else {
+        <div class="nx-chart-table-wrap">
+            <table class="nx-chart-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        @for (column of columns; track column) {
+                            <th>{{ column }}</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (row of rows; track row; let rowIndex = $index) {
+                        <tr>
+                            <th scope="row">{{ row }}</th>
+                            @for (column of columns; track column; let columnIndex = $index) {
+                                <td>{{ formatValue(data[rowIndex]?.[columnIndex] ?? 0) }}</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>

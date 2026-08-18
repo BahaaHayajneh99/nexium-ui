@@ -1,0 +1,74 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic DatePicker"
+                description="A hand-built calendar dropdown - click the field to open a month grid with Today/Clear shortcuts, no native browser date input involved."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-datepicker label="Date of birth" [(value)]="birthDate"></nx-datepicker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="No Icon"
+                description="showIcon defaults to true; set it to false to hide the calendar icon in the field."
+                [code]="iconCode"
+                [hasSampleClass]="false">
+                <nx-datepicker label="Appointment date" [showIcon]="false" [(value)]="iconDate"></nx-datepicker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Min / Max"
+                description="Restrict the selectable range with the min and max properties."
+                [code]="minMaxCode"
+                [hasSampleClass]="false">
+                <nx-datepicker
+                    label="Booking date"
+                    min="2026-01-01"
+                    max="2026-12-31"
+                    [(value)]="minMaxDate">
+                </nx-datepicker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Range"
+                description="Set range to true - the field shows both dates, and the calendar highlights the span between the first and second click."
+                [code]="rangeCode"
+                [hasSampleClass]="false">
+                <nx-datepicker
+                    label="Stay duration"
+                    [range]="true"
+                    [(value)]="rangeStart"
+                    [(endValue)]="rangeEnd">
+                </nx-datepicker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Time"
+                description="Set showTime to true to include a time selector alongside the date."
+                [code]="timeCode"
+                [hasSampleClass]="false">
+                <nx-datepicker label="Meeting time" [showTime]="true" [(value)]="meetingTime"></nx-datepicker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Invalid"
+                description="Set invalid to true to highlight the field with an error state."
+                [code]="invalidCode"
+                [hasSampleClass]="false">
+                <nx-datepicker label="Required date" [invalid]="true"></nx-datepicker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Disabled date pickers cannot be interacted with."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-datepicker label="Disabled date" [disabled]="true"></nx-datepicker>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

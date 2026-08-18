@@ -1,0 +1,34 @@
+@use '../variables.scss' as *;
+
+.radius-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: $spacing-xl;
+    margin-bottom: $spacing-lg;
+}
+
+.radius-card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
+    text-align: center;
+}
+
+.radius-card {
+    width: 72px;
+    height: 72px;
+    background: var(--shell-primary);
+}
+
+.radius-class {
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-sm;
+    color: var(--shell-text);
+}
+
+.radius-value {
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-xs;
+    color: var(--shell-text-muted);
+}

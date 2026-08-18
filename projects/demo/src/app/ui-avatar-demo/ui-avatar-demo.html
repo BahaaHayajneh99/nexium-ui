@@ -1,0 +1,97 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Avatar"
+                description="The basic {{ commonService.appName }} Avatar displays a user image inside a circular container."
+                [code]="basicCode">
+
+                <nx-avatar src="../assets/images/logo.png" alt="User avatar">
+                </nx-avatar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Initials Avatar"
+                description="When no image is available, the avatar automatically falls back to the user's initials."
+                [code]="initialsCode">
+
+                <nx-avatar name="John Doe">
+                </nx-avatar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Avatar Variants"
+                description="{{ commonService.appName }} provides multiple avatar background variants for the initials fallback."
+                [code]="variantsCode">
+
+                <nx-avatar name="Primary" variant="primary"></nx-avatar>
+                <nx-avatar name="Secondary" variant="secondary"></nx-avatar>
+                <nx-avatar name="Success" variant="success"></nx-avatar>
+                <nx-avatar name="Danger" variant="danger"></nx-avatar>
+                <nx-avatar name="Warning" variant="warning"></nx-avatar>
+                <nx-avatar name="Info" variant="info"></nx-avatar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Avatar Sizes"
+                description="Avatars support small, medium, large, and extra large sizes."
+                [code]="sizesCode">
+
+                <nx-avatar name="SM" size="small"></nx-avatar>
+                <nx-avatar name="MD" size="medium"></nx-avatar>
+                <nx-avatar name="LG" size="large"></nx-avatar>
+                <nx-avatar name="XL" size="xlarge"></nx-avatar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Avatar Shapes"
+                description="Avatars can be rendered as circles, rounded squares, or squares."
+                [code]="shapesCode">
+
+                <nx-avatar name="AB" shape="circle"></nx-avatar>
+                <nx-avatar name="AB" shape="rounded"></nx-avatar>
+                <nx-avatar name="AB" shape="square"></nx-avatar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Avatar Status"
+                description="A status indicator can be attached to show presence information."
+                [code]="statusCode">
+
+                <nx-avatar name="Jane" status="online"></nx-avatar>
+                <nx-avatar name="Jane" status="away"></nx-avatar>
+                <nx-avatar name="Jane" status="busy"></nx-avatar>
+                <nx-avatar name="Jane" status="offline"></nx-avatar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Bordered Avatar"
+                description="Bordered avatars add a subtle ring, useful for stacked avatar groups."
+                [code]="borderedCode">
+
+                <nx-avatar name="AB" bordered></nx-avatar>
+
+            </app-demo-section>
+
+
+        </div>
+
+    </div>
+
+</div>

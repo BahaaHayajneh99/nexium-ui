@@ -1,0 +1,59 @@
+<div class="nx-chart">
+
+    <button type="button" class="nx-chart-table-toggle" (click)="toggleTable()">
+        {{ showTable ? 'View as chart' : 'View as table' }}
+    </button>
+
+    @if (!showTable) {
+        <div class="nx-chart-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (bar of bars; track bar.stage.label) {
+                    <path
+                        class="nx-chart-funnel-bar"
+                        [class.nx-chart-funnel-bar-hovered]="hoveredIndex === bar.index"
+                        [attr.d]="bar.path"
+                        [attr.fill]="bar.color"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="bar.stage.label + ': ' + formatValue(bar.stage.value) + ' (' + formatPercent(bar.percentOfFirst) + ' of first stage)'"
+                        (pointerenter)="onBarEnter(bar.index)"
+                        (pointerleave)="onBarLeave()"
+                        (focus)="onBarEnter(bar.index)"
+                        (blur)="onBarLeave()">
+                    </path>
+
+                    <text class="nx-chart-funnel-label" [attr.x]="labelX" [attr.y]="bar.labelY - 4">
+                        {{ bar.stage.label }}
+                    </text>
+                    <text class="nx-chart-funnel-value" [attr.x]="labelX" [attr.y]="bar.labelY + 12">
+                        {{ formatValue(bar.stage.value) }} · {{ formatPercent(bar.percentOfFirst) }}
+                    </text>
+                }
+
+            </svg>
+        </div>
+    } @else {
+        <div class="nx-chart-table-wrap">
+            <table class="nx-chart-table">
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>Value</th>
+                        <th>% of first</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (bar of bars; track bar.stage.label) {
+                        <tr>
+                            <th scope="row">{{ bar.stage.label }}</th>
+                            <td>{{ formatValue(bar.stage.value) }}</td>
+                            <td>{{ formatPercent(bar.percentOfFirst) }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>

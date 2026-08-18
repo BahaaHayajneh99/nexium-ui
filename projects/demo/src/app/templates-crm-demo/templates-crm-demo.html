@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Sales Pipeline"
+                description="An nx-funnel-chart tracking leads through each deal stage."
+                [code]="pipelineCode"
+                [hasSampleClass]="false">
+
+                <nx-funnel-chart [stages]="pipeline"></nx-funnel-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Open Deals"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="dealsCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="deals" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Recent Contacts"
+                description="nx-avatar generates initials from a name - no image upload required."
+                [code]="contactsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview" style="display: flex; gap: 1.5rem;">
+                    @for (contact of recentContacts; track contact.name) {
+                        <div style="text-align: center;">
+                            <nx-avatar [name]="contact.name" size="medium"></nx-avatar>
+                            <div class="template-profile-name mt-2">{{ contact.name }}</div>
+                            <div class="template-stat-label">{{ contact.company }}</div>
+                        </div>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

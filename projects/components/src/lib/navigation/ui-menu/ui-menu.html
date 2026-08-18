@@ -1,0 +1,20 @@
+<div class="nx-menu" role="menu">
+    @for (item of items; track item.id) {
+        @if (item.divider) {
+            <div class="nx-menu-divider"></div>
+        } @else {
+            <button
+                type="button"
+                class="nx-menu-item"
+                [class.danger]="item.danger"
+                [disabled]="item.disabled"
+                role="menuitem"
+                (click)="onSelect(item)">
+                @if (item.icon) {
+                    <nx-icon class="nx-menu-item-icon" [icon]="item.icon" variant="svg" [size]="16"></nx-icon>
+                }
+                <span>{{ item.label }}</span>
+            </button>
+        }
+    }
+</div>

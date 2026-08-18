@@ -1,0 +1,24 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Radio Group"
+                description="The {{ commonService.appName }} Radio Group renders a set of mutually exclusive options."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-radio-group name="plan" [options]="options" [(value)]="plan"></nx-radio-group>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Inline"
+                description="Set inline to true to lay out the options in a row instead of stacked (block)."
+                [code]="inlineCode"
+                [hasSampleClass]="false">
+                <nx-radio-group name="inline-plan" [options]="options" [inline]="true" [(value)]="inlinePlan"></nx-radio-group>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

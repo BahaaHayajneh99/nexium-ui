@@ -1,0 +1,26 @@
+<div class="nx-file-upload">
+    <label
+        class="nx-file-upload-zone"
+        [class.dragging]="isDragging"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave()"
+        (drop)="onDrop($event)">
+
+        <input type="file" hidden [accept]="accept" [multiple]="multiple" (change)="onFileInputChange($event)" />
+
+        <span class="nx-file-upload-icon">⬆</span>
+        <span class="nx-file-upload-text">{{ label }}</span>
+
+    </label>
+
+    @if (files.length) {
+        <ul class="nx-file-upload-list">
+            @for (file of files; track file.name; let i = $index) {
+                <li class="nx-file-upload-item">
+                    <span>{{ file.name }}</span>
+                    <button type="button" (click)="removeFile(i)">×</button>
+                </li>
+            }
+        </ul>
+    }
+</div>

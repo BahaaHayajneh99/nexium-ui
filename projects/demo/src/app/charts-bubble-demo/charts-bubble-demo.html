@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Bubble Chart</h4>
+                <p class="main-section-description">
+                    A scatter plot with a third dimension mapped to bubble size (by area, not radius, so
+                    perceived magnitude stays accurate). Hover or focus a bubble for its exact values.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Basic"
+                description="A single series needs no legend - the chart's own title already says what's plotted."
+                [code]="basicCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-bubble-chart [series]="products" xLabel="Price ($)" yLabel="Rating" sizeLabel="Revenue"></nx-bubble-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Grouped"
+                description="Two or more series always get a legend, so identity never rides on color alone."
+                [code]="regionCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-bubble-chart [series]="regions" xLabel="Price ($)" yLabel="Rating" sizeLabel="Revenue"></nx-bubble-chart>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+@use '../variables.scss' as *;
+
+.roadmap-list {
+    list-style: none;
+}
+
+.roadmap-item {
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-sm;
+    padding: $spacing-sm 0;
+    border-bottom: 1px solid var(--shell-border);
+    color: var(--shell-text-secondary);
+    font-size: $font-size-sm;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.roadmap-status {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: $radius-round;
+    transform: translateY(3px);
+}
+
+.roadmap-status-shipped {
+    background: $success-color;
+}
+
+.roadmap-status-in-progress {
+    background: $warning-color;
+}
+
+.roadmap-status-planned {
+    background: $gray-400;
+}

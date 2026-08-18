@@ -1,0 +1,178 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+
+.nx-progress-bar {
+
+    display: flex;
+
+    width: 100%;
+
+    height: 8px;
+
+    overflow: hidden;
+
+    background: var(--shell-surface-hover);
+
+    border-radius: $radius-sm;
+
+    transition: $transition-normal;
+
+
+
+    // Sizes
+    &.small {
+        height: 14px;
+    }
+
+
+    &.medium {
+        height: 18px;
+    }
+
+
+    &.large {
+        height: 24px;
+    }
+
+
+
+    // Rounded
+    &.rounded {
+        border-radius: $radius-round;
+    }
+
+
+
+    // Progress Value
+    .nx-progress-value {
+
+        height: 100%;
+
+        width: 0;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: $text-white;
+
+        font-size: $font-size-xs;
+
+        font-weight: $font-weight-semibold;
+
+        transition: width $transition-normal;
+
+
+
+        // Variants
+        &.primary {
+            background: var(--shell-primary);
+        }
+
+
+        &.secondary {
+            background: $secondary-color;
+        }
+
+
+        &.success {
+            background: $success-color;
+        }
+
+
+        &.danger {
+            background: $danger-color;
+        }
+
+
+        &.warning {
+            background: $warning-color;
+        }
+
+
+        &.info {
+            background: $info-color;
+        }
+
+
+        &.dark {
+            background: $gray-800;
+        }
+
+
+        &.light {
+            background: var(--shell-surface-hover);
+            color: var(--shell-text);
+        }
+
+
+
+        // Striped
+        &.striped {
+
+            background-image: linear-gradient(45deg,
+                    rgba($white-color, .15) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba($white-color, .15) 50%,
+                    rgba($white-color, .15) 75%,
+                    transparent 75%);
+
+            background-size: 1rem 1rem;
+
+        }
+
+
+
+        // Animated
+        &.animated {
+
+            animation: nx-progress-animation 1s linear infinite;
+
+        }
+
+    }
+
+}
+
+
+
+.nx-progress-container {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: $spacing-sm;
+
+
+    .nx-progress-label {
+
+        color: $white-color;
+
+        font-size: $font-size-sm;
+
+        font-weight: $font-weight-medium;
+
+        white-space: nowrap;
+
+    }
+
+}
+
+
+
+@keyframes nx-progress-animation {
+
+    from {
+        background-position: 1rem 0;
+    }
+
+
+    to {
+        background-position: 0 0;
+    }
+
+}

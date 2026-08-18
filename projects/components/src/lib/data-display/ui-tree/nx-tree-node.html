@@ -1,0 +1,18 @@
+<div class="nx-tree-node">
+    <div class="nx-tree-node-label" (click)="toggle()">
+        @if (hasChildren) {
+            <span class="nx-tree-toggle" [class.open]="node.expanded">▸</span>
+        } @else {
+            <span class="nx-tree-toggle-placeholder"></span>
+        }
+        <span>{{ node.label }}</span>
+    </div>
+
+    @if (hasChildren && node.expanded) {
+        <div class="nx-tree-children">
+            @for (child of node.children; track child.label) {
+                <nx-tree-node [node]="child"></nx-tree-node>
+            }
+        </div>
+    }
+</div>

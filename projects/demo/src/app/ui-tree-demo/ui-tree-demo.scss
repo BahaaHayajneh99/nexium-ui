@@ -1,0 +1,21 @@
+@use '../variables.scss' as *;
+
+.custom-tree-actions {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+
+    button {
+        border: 1px solid var(--shell-primary);
+        border-radius: $radius-sm;
+        background-color: transparent;
+        color: var(--shell-primary);
+        padding: $spacing-xs $spacing-sm;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--shell-primary);
+            color: $white-color;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+@if (visible) {
+    <div class="nx-alert" [ngClass]="variant">
+
+        @if (icon) {
+            <nx-icon class="nx-alert-icon" [icon]="iconName" variant="svg" [size]="18"></nx-icon>
+        }
+
+        <div class="nx-alert-content">
+            @if (title) {
+                <div class="nx-alert-title">{{ title }}</div>
+            }
+            <div class="nx-alert-message">
+                <ng-content></ng-content>
+            </div>
+        </div>
+
+        @if (dismissible) {
+            <button type="button" class="nx-alert-close" (click)="dismiss()" aria-label="Dismiss">
+                <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+            </button>
+        }
+
+    </div>
+}

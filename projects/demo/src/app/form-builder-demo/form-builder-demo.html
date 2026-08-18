@@ -1,0 +1,28 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Form Builder"
+                description="Compose {{ commonService.appName }} form components together to build a simple registration form."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div class="demo-form">
+                    <nx-input label="Full Name" [(value)]="name"></nx-input>
+                    <nx-input label="Email" [(value)]="email"></nx-input>
+                    <nx-select label="Country" [options]="countries" [(value)]="country"></nx-select>
+                    <nx-checkbox label="I agree to the terms" [(checked)]="agree"></nx-checkbox>
+                    <button class="demo-btn demo-btn-primary" (click)="submit()">Submit</button>
+
+                    @if (submitted) {
+                        <p class="demo-summary">
+                            Submitted: {{ name }}, {{ email }}, {{ country }}, agreed: {{ agree }}
+                        </p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

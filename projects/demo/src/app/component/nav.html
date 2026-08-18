@@ -1,0 +1,1076 @@
+<div class="nav">
+    <div class="nav-header">
+        <!-- <div class="nav-logo"> -->
+        <!-- <a class="nav-link" routerLink="/"> -->
+        <!-- <img src="../../assets/images/logo.png" alt="Logo" /> -->
+        <div class="nav-brand" routerLink="/">
+            <span *ngFor="let char of commonService.appName.split('')" class="brand-letter"
+                [class.brand-highlight]="char.toLowerCase() === 'n' || char.toLowerCase() === 'x'">
+                {{ char }}
+            </span>
+
+            <span class="brand-ui">UI</span>
+        </div>
+        <!-- </a> -->
+
+        <!-- </div> -->
+
+        <div class="nav-toolbar">
+
+            <button type="button" class="nav-search-trigger" (click)="openPalette()">
+                <nx-icon icon="nx-search" variant="svg" [size]="15"></nx-icon>
+                <span>Search</span>
+                <kbd>Ctrl K</kbd>
+            </button>
+
+            <button type="button" class="nav-action-btn" (click)="theme.toggle()"
+                [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'">
+                <nx-icon [icon]="theme.theme() === 'dark' ? 'nx-sun' : 'nx-moon'" variant="svg" [size]="16"></nx-icon>
+            </button>
+
+        </div>
+    </div>
+    <div class="nav-body">
+        <!-- placeholder hrefs - swap in the project's real profile URLs -->
+        <!-- <div class="nav-socials">
+
+        <a class="nav-social-link" routerLink="/" title="Home">
+            <nx-icon icon="nx-home" variant="svg" [size]="16"></nx-icon>
+        </a>
+
+        <a class="nav-social-link" href="#" target="_blank" rel="noopener noreferrer" title="GitHub">
+            <nx-icon icon="nx-github" variant="svg" [size]="16"></nx-icon>
+        </a>
+
+        <a class="nav-social-link" href="#" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+            <nx-icon icon="nx-x-twitter" variant="svg" [size]="14"></nx-icon>
+        </a>
+
+        <a class="nav-social-link" href="#" target="_blank" rel="noopener noreferrer" title="Facebook">
+            <nx-icon icon="nx-facebook" variant="svg" [size]="14"></nx-icon>
+        </a>
+
+        <a class="nav-social-link" href="#" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+            <nx-icon icon="nx-linkedin" variant="svg" [size]="14"></nx-icon>
+        </a>
+
+    </div> -->
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a class="nav-link" routerLink="/getting-started" routerLinkActive="active">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-rocket" variant="svg" [size]="18"></nx-icon>
+                    Getting Started
+                </span>
+            </a>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a (click)="toggleExpandItem('Installation')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-download" variant="svg" [size]="18"></nx-icon>
+                    Installation
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('Installation')" icon="nx-chevron-right"
+                    variant="svg" [size]="14"></nx-icon>
+            </a>
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('Installation')">
+
+                <div class="sub-nav-child">
+
+                    <a class="nav-link" routerLink="/installation/requirements" routerLinkActive="active">
+                        Requirements
+                    </a>
+
+                    <a class="nav-link" routerLink="/installation/install" routerLinkActive="active">
+                        Install
+                    </a>
+
+                    <a class="nav-link" routerLink="/installation/configure" routerLinkActive="active">
+                        Configure
+                    </a>
+
+                    <a class="nav-link" routerLink="/installation/import-components" routerLinkActive="active">
+                        Import Components
+                    </a>
+
+                    <a class="nav-link" routerLink="/installation/theme-setup" routerLinkActive="active">
+                        Theme Setup
+                    </a>
+
+                    <a class="nav-link" routerLink="/installation/icons-setup" routerLinkActive="active">
+                        Icons Setup
+                    </a>
+
+                    <a class="nav-link" routerLink="/installation/verify" routerLinkActive="active">
+                        Verify Installation
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a (click)="toggleExpandItem('Guide')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-compass" variant="svg" [size]="18"></nx-icon>
+                    Guide
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('Guide')" icon="nx-chevron-right"
+                    variant="svg" [size]="14"></nx-icon>
+            </a>
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('Guide')">
+
+                <div class="sub-nav-child">
+
+                    <a class="nav-link" routerLink="/guide/introduction" routerLinkActive="active">
+                        Introduction
+                    </a>
+
+                    <a class="nav-link" routerLink="/guide/installation" routerLinkActive="active">
+                        Installation
+                    </a>
+
+                    <a class="nav-link" routerLink="/guide/theming" routerLinkActive="active">
+                        Theming
+                    </a>
+
+                    <a class="nav-link" routerLink="/guide/colors" routerLinkActive="active">
+                        Colors
+                    </a>
+
+                    <a class="nav-link" routerLink="/guide/typography" routerLinkActive="active">
+                        Typography
+                    </a>
+
+                    <a class="nav-link" routerLink="/guide/spacing" routerLinkActive="active">
+                        Spacing
+                    </a>
+
+                    <a class="nav-link" routerLink="/guide/responsive-design" routerLinkActive="active">
+                        Responsive Design
+                    </a>
+
+                    <a class="nav-link" routerLink="/guide/accessibility" routerLinkActive="active">
+                        Accessibility
+                    </a>
+
+                    <a class="nav-link" routerLink="/guide/rtl-support" routerLinkActive="active">
+                        RTL Support
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+
+
+            <a (click)="toggleExpandItem('Components')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-grid" variant="svg" [size]="18"></nx-icon>
+                    Components
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('Components')" icon="nx-chevron-right"
+                    variant="svg" [size]="14"></nx-icon>
+            </a>
+
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('Components')">
+
+
+                <!-- Forms -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Forms
+                    </h4>
+
+                    <a class="nav-link" routerLink="/input" routerLinkActive="active">
+                        Input
+                    </a>
+
+                    <a class="nav-link" routerLink="/textarea" routerLinkActive="active">
+                        Textarea
+                    </a>
+
+                    <a class="nav-link" routerLink="/select" routerLinkActive="active">
+                        Select
+                    </a>
+
+                    <a class="nav-link" routerLink="/autocomplete" routerLinkActive="active">
+                        AutoComplete
+                    </a>
+
+                    <a class="nav-link" routerLink="/checkbox" routerLinkActive="active">
+                        Checkbox
+                    </a>
+
+                    <a class="nav-link" routerLink="/radio" routerLinkActive="active">
+                        Radio
+                    </a>
+
+                    <a class="nav-link" routerLink="/switch" routerLinkActive="active">
+                        Switch
+                    </a>
+
+                    <a class="nav-link" routerLink="/toggle" routerLinkActive="active">
+                        Toggle
+                    </a>
+
+                    <a class="nav-link" routerLink="/slider" routerLinkActive="active">
+                        Slider
+                    </a>
+
+                    <a class="nav-link" routerLink="/form-builder" routerLinkActive="active">
+                        Form Builder
+                    </a>
+
+                    <a class="nav-link" routerLink="/form-builder-advanced" routerLinkActive="active">
+                        Advanced Form Builder
+                    </a>
+
+                    <a class="nav-link" routerLink="/color-picker" routerLinkActive="active">
+                        Color Picker
+                    </a>
+
+                    <a class="nav-link" routerLink="/rating" routerLinkActive="active">
+                        Rating
+                    </a>
+
+                    <a class="nav-link" routerLink="/otp-input" routerLinkActive="active">
+                        OTP Input
+                    </a>
+
+                    <a class="nav-link" routerLink="/mention" routerLinkActive="active">
+                        Mention
+                    </a>
+
+                    <a class="nav-link" routerLink="/rich-text-editor" routerLinkActive="active">
+                        Rich Text Editor
+                    </a>
+
+                </div>
+
+
+
+
+                <!-- Data Display -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Data Display
+                    </h4>
+
+                    <a class="nav-link" routerLink="/table" routerLinkActive="active">
+                        Table
+                    </a>
+
+                    <a class="nav-link" routerLink="/list" routerLinkActive="active">
+                        List
+                    </a>
+
+                    <a class="nav-link" routerLink="/chip" routerLinkActive="active">
+                        Chip
+                    </a>
+
+                    <a class="nav-link" routerLink="/badge" routerLinkActive="active">
+                        Badge
+                    </a>
+
+                    <a class="nav-link" routerLink="/tag" routerLinkActive="active">
+                        Tag
+                    </a>
+
+                    <a class="nav-link" routerLink="/avatar" routerLinkActive="active">
+                        Avatar
+                    </a>
+
+                    <a class="nav-link" routerLink="/icon" routerLinkActive="active">
+                        Icon
+                    </a>
+
+                    <a class="nav-link" routerLink="/timeline" routerLinkActive="active">
+                        Timeline
+                    </a>
+
+                    <a class="nav-link" routerLink="/tree" routerLinkActive="active">
+                        Tree
+                    </a>
+
+                    <a class="nav-link" routerLink="/progress-bar" routerLinkActive="active">
+                        Progress Bar
+                    </a>
+
+                    <a class="nav-link" routerLink="/spinner" routerLinkActive="active">
+                        Spinner
+                    </a>
+
+                    <a class="nav-link" routerLink="/skeleton" routerLinkActive="active">
+                        Skeleton
+                    </a>
+
+                    <a class="nav-link" routerLink="/statistic" routerLinkActive="active">
+                        Statistic
+                    </a>
+
+                    <a class="nav-link" routerLink="/key-value-list" routerLinkActive="active">
+                        Key-Value List
+                    </a>
+
+                </div>
+
+
+
+
+
+                <!-- Feedback -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Feedback
+                    </h4>
+
+
+                    <a class="nav-link" routerLink="/alert" routerLinkActive="active">
+                        Alert
+                    </a>
+
+                    <a class="nav-link" routerLink="/tooltip" routerLinkActive="active">
+                        Tooltip
+                    </a>
+
+                    <a class="nav-link" routerLink="/popover" routerLinkActive="active">
+                        Popover
+                    </a>
+
+                    <a class="nav-link" routerLink="/modal" routerLinkActive="active">
+                        Modal
+                    </a>
+
+                    <a class="nav-link" routerLink="/toast" routerLinkActive="active">
+                        Toast
+                    </a>
+
+                    <a class="nav-link" routerLink="/dialog" routerLinkActive="active">
+                        Dialog
+                    </a>
+
+                    <a class="nav-link" routerLink="/notification-center" routerLinkActive="active">
+                        Notification Center
+                    </a>
+
+                    <a class="nav-link" routerLink="/drawer" routerLinkActive="active">
+                        Drawer
+                    </a>
+
+                    <a class="nav-link" routerLink="/command-palette" routerLinkActive="active">
+                        Command Palette
+                    </a>
+
+                </div>
+
+
+
+
+
+
+                <!-- Panels -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Panels
+                    </h4>
+
+
+                    <a class="nav-link" routerLink="/accordion" routerLinkActive="active">
+                        Accordion
+                    </a>
+
+                    <a class="nav-link" routerLink="/tabs" routerLinkActive="active">
+                        Tabs
+                    </a>
+
+                    <a class="nav-link" routerLink="/collapse" routerLinkActive="active">
+                        Collapse
+                    </a>
+
+                    <a class="nav-link" routerLink="/panel" routerLinkActive="active">
+                        Panel
+                    </a>
+
+                    <a class="nav-link" routerLink="/card" routerLinkActive="active">
+                        Card
+                    </a>
+
+                </div>
+
+
+
+
+
+
+                <!-- Navigation -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Navigation
+                    </h4>
+
+
+                    <a class="nav-link" routerLink="/breadcrumb" routerLinkActive="active">
+                        Breadcrumb
+                    </a>
+
+                    <a class="nav-link" routerLink="/pagination" routerLinkActive="active">
+                        Pagination
+                    </a>
+
+                    <a class="nav-link" routerLink="/stepper" routerLinkActive="active">
+                        Stepper
+                    </a>
+
+                    <a class="nav-link" routerLink="/sidebar" routerLinkActive="active">
+                        Sidebar
+                    </a>
+
+                    <a class="nav-link" routerLink="/menu" routerLinkActive="active">
+                        Menu
+                    </a>
+
+                    <a class="nav-link" routerLink="/dropdown-menu" routerLinkActive="active">
+                        Dropdown Menu
+                    </a>
+
+                    <a class="nav-link" routerLink="/context-menu" routerLinkActive="active">
+                        Context Menu
+                    </a>
+
+                    <a class="nav-link" routerLink="/menubar" routerLinkActive="active">
+                        Menubar
+                    </a>
+
+                    <a class="nav-link" routerLink="/mega-menu" routerLinkActive="active">
+                        Mega Menu
+                    </a>
+
+                    <a class="nav-link" routerLink="/navbar" routerLinkActive="active">
+                        Navbar
+                    </a>
+
+                    <a class="nav-link" routerLink="/bottom-navigation" routerLinkActive="active">
+                        Bottom Navigation
+                    </a>
+
+                </div>
+
+
+
+
+
+
+                <!-- Uploads -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Uploads
+                    </h4>
+
+
+                    <a class="nav-link" routerLink="/file-upload" routerLinkActive="active">
+                        File Upload
+                    </a>
+
+                    <a class="nav-link" routerLink="/image-upload" routerLinkActive="active">
+                        Image Upload
+                    </a>
+
+                    <a class="nav-link" routerLink="/video-upload" routerLinkActive="active">
+                        Video Upload
+                    </a>
+
+                    <a class="nav-link" routerLink="/audio-upload" routerLinkActive="active">
+                        Audio Upload
+                    </a>
+
+                    <a class="nav-link" routerLink="/document-upload" routerLinkActive="active">
+                        Document Upload
+                    </a>
+
+                </div>
+
+
+
+
+
+
+                <!-- Media -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Media
+                    </h4>
+
+
+                    <a class="nav-link" routerLink="/gallery" routerLinkActive="active">
+                        Gallery
+                    </a>
+
+                    <a class="nav-link" routerLink="/preview" routerLinkActive="active">
+                        Preview
+                    </a>
+
+                    <a class="nav-link" routerLink="/carousel" routerLinkActive="active">
+                        Carousel
+                    </a>
+
+                </div>
+
+
+
+
+
+
+                <!-- Layout -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Layout
+                    </h4>
+
+                    <a class="nav-link" routerLink="/layout/container" routerLinkActive="active">
+                        Container
+                    </a>
+
+                    <a class="nav-link" routerLink="/layout/grid" routerLinkActive="active">
+                        Grid
+                    </a>
+
+                    <a class="nav-link" routerLink="/layout/flex" routerLinkActive="active">
+                        Flex
+                    </a>
+
+                    <a class="nav-link" routerLink="/layout/stack" routerLinkActive="active">
+                        Stack
+                    </a>
+
+                    <a class="nav-link" routerLink="/layout/divider" routerLinkActive="active">
+                        Divider
+                    </a>
+
+                    <a class="nav-link" routerLink="/layout/spacer" routerLinkActive="active">
+                        Spacer
+                    </a>
+
+                    <a class="nav-link" routerLink="/layout/splitter" routerLinkActive="active">
+                        Splitter
+                    </a>
+
+                    <a class="nav-link" routerLink="/layout/aspect-ratio" routerLinkActive="active">
+                        Aspect Ratio
+                    </a>
+
+                    <a class="nav-link" routerLink="/layout/masonry" routerLinkActive="active">
+                        Masonry
+                    </a>
+
+                </div>
+
+
+
+
+
+
+                <!-- Date & Time -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Date &amp; Time
+                    </h4>
+
+                    <a class="nav-link" routerLink="/datepicker" routerLinkActive="active">
+                        DatePicker
+                    </a>
+
+                </div>
+
+
+
+
+
+
+                <!-- Miscellaneous -->
+                <div class="sub-nav-child">
+
+                    <h4>
+                        Miscellaneous
+                    </h4>
+
+                    <a class="nav-link" routerLink="/button" routerLinkActive="active">
+                        Button
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a (click)="toggleExpandItem('Charts')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-chart-bar" variant="svg" [size]="18"></nx-icon>
+                    Charts
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('Charts')" icon="nx-chevron-right"
+                    variant="svg" [size]="14"></nx-icon>
+            </a>
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('Charts')">
+
+                <div class="sub-nav-child">
+
+                    <a class="nav-link" routerLink="/charts/bar" routerLinkActive="active">
+                        Bar Chart
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/line" routerLinkActive="active">
+                        Line Chart
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/area" routerLinkActive="active">
+                        Area Chart
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/pie" routerLinkActive="active">
+                        Pie Chart
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/doughnut" routerLinkActive="active">
+                        Doughnut
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/radar" routerLinkActive="active">
+                        Radar
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/scatter" routerLinkActive="active">
+                        Scatter
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/bubble" routerLinkActive="active">
+                        Bubble
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/gauge" routerLinkActive="active">
+                        Gauge
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/heatmap" routerLinkActive="active">
+                        Heatmap
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/funnel" routerLinkActive="active">
+                        Funnel
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/stacked-bar" routerLinkActive="active">
+                        Stacked Bar
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/mixed" routerLinkActive="active">
+                        Mixed Chart
+                    </a>
+
+                    <a class="nav-link" routerLink="/charts/sparkline" routerLinkActive="active">
+                        Sparkline
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a (click)="toggleExpandItem('Templates')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-file" variant="svg" [size]="18"></nx-icon>
+                    Templates
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('Templates')" icon="nx-chevron-right"
+                    variant="svg" [size]="14"></nx-icon>
+            </a>
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('Templates')">
+
+                <div class="sub-nav-child">
+
+                    <a class="nav-link" routerLink="/templates/login" routerLinkActive="active">
+                        Login
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/register" routerLinkActive="active">
+                        Register
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/forgot-password" routerLinkActive="active">
+                        Forgot Password
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/dashboard" routerLinkActive="active">
+                        Dashboard
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/profile" routerLinkActive="active">
+                        Profile
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/settings" routerLinkActive="active">
+                        Settings
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/error-pages" routerLinkActive="active">
+                        Error Pages
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/empty-states" routerLinkActive="active">
+                        Empty States
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/admin-dashboard" routerLinkActive="active">
+                        Admin Dashboard
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/crm" routerLinkActive="active">
+                        CRM
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/hr-portal" routerLinkActive="active">
+                        HR Portal
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/ecommerce" routerLinkActive="active">
+                        E-commerce
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/project-management" routerLinkActive="active">
+                        Project Management
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/analytics-dashboard" routerLinkActive="active">
+                        Analytics Dashboard
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/risk-management" routerLinkActive="active">
+                        Risk Management Dashboard
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/document-management" routerLinkActive="active">
+                        Document Management
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/user-management" routerLinkActive="active">
+                        User Management
+                    </a>
+
+                    <a class="nav-link" routerLink="/templates/notifications" routerLinkActive="active">
+                        Notifications
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a (click)="toggleExpandItem('Blocks')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-copy" variant="svg" [size]="18"></nx-icon>
+                    Blocks
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('Blocks')" icon="nx-chevron-right"
+                    variant="svg" [size]="14"></nx-icon>
+            </a>
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('Blocks')">
+
+                <div class="sub-nav-child">
+
+                    <a class="nav-link" routerLink="/blocks/hero-sections" routerLinkActive="active">
+                        Hero Sections
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/headers" routerLinkActive="active">
+                        Headers
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/footers" routerLinkActive="active">
+                        Footers
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/pricing" routerLinkActive="active">
+                        Pricing
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/feature-sections" routerLinkActive="active">
+                        Feature Sections
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/testimonials" routerLinkActive="active">
+                        Testimonials
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/cta-sections" routerLinkActive="active">
+                        CTA Sections
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/login" routerLinkActive="active">
+                        Login
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/register" routerLinkActive="active">
+                        Register
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/contact" routerLinkActive="active">
+                        Contact
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/faq" routerLinkActive="active">
+                        FAQ
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/about" routerLinkActive="active">
+                        About
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/team" routerLinkActive="active">
+                        Team
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/newsletter" routerLinkActive="active">
+                        Newsletter
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/blog" routerLinkActive="active">
+                        Blog
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/dashboard" routerLinkActive="active">
+                        Dashboard
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/statistics" routerLinkActive="active">
+                        Statistics
+                    </a>
+
+                    <a class="nav-link" routerLink="/blocks/landing-pages" routerLinkActive="active">
+                        Landing Pages
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a class="nav-link" routerLink="/icons" routerLinkActive="active">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-star" variant="svg" [size]="18"></nx-icon>
+                    Icons
+                </span>
+            </a>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a (click)="toggleExpandItem('Utilities')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-settings" variant="svg" [size]="18"></nx-icon>
+                    Utilities
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('Utilities')" icon="nx-chevron-right"
+                    variant="svg" [size]="14"></nx-icon>
+            </a>
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('Utilities')">
+
+                <div class="sub-nav-child">
+
+                    <a class="nav-link" routerLink="/utilities/colors" routerLinkActive="active">
+                        Colors
+                    </a>
+
+                    <a class="nav-link" routerLink="/utilities/typography" routerLinkActive="active">
+                        Typography
+                    </a>
+
+                    <a class="nav-link" routerLink="/utilities/spacing" routerLinkActive="active">
+                        Spacing
+                    </a>
+
+                    <a class="nav-link" routerLink="/utilities/shadows" routerLinkActive="active">
+                        Shadows
+                    </a>
+
+                    <a class="nav-link" routerLink="/utilities/border-radius" routerLinkActive="active">
+                        Border Radius
+                    </a>
+
+                    <a class="nav-link" routerLink="/utilities/breakpoints" routerLinkActive="active">
+                        Breakpoints
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a (click)="toggleExpandItem('Accessibility')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-accessibility" variant="svg" [size]="18"></nx-icon>
+                    Accessibility
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('Accessibility')"
+                    icon="nx-chevron-right" variant="svg" [size]="14"></nx-icon>
+            </a>
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('Accessibility')">
+
+                <div class="sub-nav-child">
+
+                    <a class="nav-link" routerLink="/accessibility/wcag" routerLinkActive="active">
+                        WCAG
+                    </a>
+
+                    <a class="nav-link" routerLink="/accessibility/keyboard-navigation" routerLinkActive="active">
+                        Keyboard Navigation
+                    </a>
+
+                    <a class="nav-link" routerLink="/accessibility/screen-readers" routerLinkActive="active">
+                        Screen Readers
+                    </a>
+
+                    <a class="nav-link" routerLink="/accessibility/focus-management" routerLinkActive="active">
+                        Focus Management
+                    </a>
+
+                    <a class="nav-link" routerLink="/accessibility/aria" routerLinkActive="active">
+                        ARIA
+                    </a>
+
+                    <a class="nav-link" routerLink="/accessibility/color-contrast" routerLinkActive="active">
+                        Color Contrast
+                    </a>
+
+                    <a class="nav-link" routerLink="/accessibility/accessibility-testing" routerLinkActive="active">
+                        Accessibility Testing
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a class="nav-link" routerLink="/playground" routerLinkActive="active">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-fire" variant="svg" [size]="18"></nx-icon>
+                    Playground
+                </span>
+            </a>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a class="nav-link" routerLink="/translate" routerLinkActive="active">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-globe" variant="svg" [size]="18"></nx-icon>
+                    Translate
+                </span>
+            </a>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a (click)="toggleExpandItem('About')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-info-circle" variant="svg" [size]="18"></nx-icon>
+                    About
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('About')" icon="nx-chevron-right"
+                    variant="svg" [size]="14"></nx-icon>
+            </a>
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('About')">
+
+                <div class="sub-nav-child">
+
+                    <a class="nav-link" routerLink="/about/who-we-are" routerLinkActive="active">
+                        Who We Are
+                    </a>
+
+                    <a class="nav-link" routerLink="/about/changelog" routerLinkActive="active">
+                        Changelog
+                    </a>
+
+                    <a class="nav-link" routerLink="/about/roadmap" routerLinkActive="active">
+                        Roadmap
+                    </a>
+
+                    <a class="nav-link" routerLink="/about/contributing" routerLinkActive="active">
+                        Contributing
+                    </a>
+
+                    <a class="nav-link" routerLink="/about/license" routerLinkActive="active">
+                        License
+                    </a>
+
+                    <!-- placeholder href - swap in the project's real GitHub repo URL -->
+                    <a class="nav-link" href="#" target="_blank" rel="noopener noreferrer">
+                        GitHub
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="nav-footer">
+        <p class="nav-footer-text">
+            &copy; {{ currentYaer }} {{ commonService.appName }}. All rights reserved.
+        </p>
+    </div>
+
+</div>
+
+<app-search-palette [open]="paletteOpen" (closed)="closePalette()"></app-search-palette>

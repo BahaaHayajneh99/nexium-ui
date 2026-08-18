@@ -1,0 +1,130 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-avatar {
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    //overflow: hidden;
+
+    background: var(--shell-primary);
+    color: $text-white;
+
+    font-family: $font-family;
+    font-weight: $font-weight-semibold;
+
+    user-select: none;
+
+    // =========================
+    // Sizes
+    // =========================
+
+    &.small {
+        width: 28px;
+        height: 28px;
+        font-size: $font-size-xs;
+    }
+
+    &.medium {
+        width: 40px;
+        height: 40px;
+        font-size: $font-size-sm;
+    }
+
+    &.large {
+        width: 56px;
+        height: 56px;
+        font-size: $font-size-md;
+    }
+
+    &.xlarge {
+        width: 80px;
+        height: 80px;
+        font-size: $h2-font-size;
+    }
+
+    // =========================
+    // Shapes
+    // =========================
+
+    &.circle {
+        border-radius: $radius-round;
+    }
+
+    &.square {
+        border-radius: 0;
+    }
+
+    &.rounded {
+        border-radius: $radius-md;
+    }
+
+    // =========================
+    // Border
+    // =========================
+
+    &.bordered {
+        box-shadow: 0 0 0 2px var(--shell-surface), 0 0 0 4px var(--shell-border);
+    }
+
+    // =========================
+    // Variants (initials background)
+    // =========================
+
+    &.primary { background: var(--shell-primary); }
+    &.secondary { background: $secondary-color; }
+    &.success { background: $success-color; }
+    &.danger { background: $danger-color; }
+    &.warning { background: $warning-color; }
+    &.info { background: $info-color; }
+    &.dark { background: $gray-900; }
+
+    &.light {
+        background: var(--shell-surface-hover);
+        color: var(--shell-text);
+    }
+
+}
+
+.nx-avatar-image {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+.nx-avatar-initials {
+
+    line-height: 1;
+    text-transform: uppercase;
+
+}
+
+.nx-avatar-status {
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 25%;
+    height: 25%;
+    min-width: 8px;
+    min-height: 8px;
+
+    border: 2px solid var(--shell-surface);
+    border-radius: $radius-round;
+
+    &.online { background: $success-color; }
+    &.away { background: $warning-color; }
+    &.busy { background: $danger-color; }
+    &.offline { background: $gray-500; }
+
+}

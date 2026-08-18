@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">RTL Support</h4>
+                <p class="main-section-description">
+                    Components avoid hard-coding <code>left</code>/<code>right</code> where a logical
+                    property will do, so setting <code>dir="rtl"</code> on a container mirrors padding,
+                    borders and text alignment without any extra configuration.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Try It</h4>
+                <p class="main-section-description">
+                    Toggle direction on the preview below to see the same markup rendered mirrored.
+                </p>
+
+                <button type="button" class="demo-btn demo-btn-primary mb-3" (click)="toggle()">
+                    Switch to {{ rtl ? 'LTR' : 'RTL' }}
+                </button>
+
+                <div class="rtl-preview" [attr.dir]="rtl ? 'rtl' : 'ltr'">
+                    <div class="rtl-preview-row">
+                        <span class="rtl-preview-icon">&#9679;</span>
+                        <span>Notification title</span>
+                        <span class="rtl-preview-badge">3</span>
+                    </div>
+                    <p class="rtl-preview-text">
+                        This paragraph, the icon before it, and the badge after it all flip position
+                        automatically based on the surrounding <code>dir</code> attribute.
+                    </p>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Setting Direction App-Wide</h4>
+                <p class="main-section-description">
+                    For a fully RTL application, set <code>dir="rtl"</code> on <code>&lt;html&gt;</code>
+                    or <code>&lt;body&gt;</code> once - there's no per-component RTL flag to remember.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</div>

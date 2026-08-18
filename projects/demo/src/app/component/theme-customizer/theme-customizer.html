@@ -1,0 +1,28 @@
+<button
+    type="button"
+    class="theme-customizer-trigger"
+    [class.open]="open"
+    (click)="toggle()"
+    aria-label="Customize theme color">
+    <nx-icon icon="nx-settings" variant="svg" [size]="20"></nx-icon>
+</button>
+
+@if (open) {
+    <div class="theme-customizer-panel">
+
+        <div class="theme-customizer-header">
+            <span class="theme-customizer-title">Theme Color</span>
+            <button type="button" class="theme-customizer-close" (click)="toggle()" aria-label="Close">&times;</button>
+        </div>
+
+        <p class="theme-customizer-description">
+            Changes <code>--shell-primary</code> live across the docs shell (nav, this panel, and any
+            component already wired to it).
+        </p>
+
+        <nx-color-picker [value]="theme.primaryColor()" [presets]="presets" (valueChange)="onColorChange($event)"></nx-color-picker>
+
+        <button type="button" class="theme-customizer-reset" (click)="reset()">Reset to default</button>
+
+    </div>
+}

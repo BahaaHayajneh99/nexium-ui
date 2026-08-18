@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Headers</h4>
+                <p class="main-section-description">
+                    Site navigation bars - a logo, primary links, and an optional call-to-action button.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Simple"
+                description="A logo and a row of primary links - nothing else competing for attention."
+                [code]="simpleCode"
+                [hasSampleClass]="false">
+
+                <div class="block-preview">
+                    <div class="block-header">
+                        <span class="block-header-logo">{{ commonService.appName }}</span>
+                        <nav class="block-header-nav">
+                            <a class="block-header-link" href="#">Product</a>
+                            <a class="block-header-link" href="#">Docs</a>
+                            <a class="block-header-link" href="#">Pricing</a>
+                            <a class="block-header-link" href="#">Blog</a>
+                        </nav>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="With Call to Action"
+                description="Same layout, with a primary button pushed to the end for conversion-focused pages."
+                [code]="ctaCode"
+                [hasSampleClass]="false">
+
+                <div class="block-preview">
+                    <div class="block-header">
+                        <span class="block-header-logo">{{ commonService.appName }}</span>
+                        <nav class="block-header-nav">
+                            <a class="block-header-link" href="#">Product</a>
+                            <a class="block-header-link" href="#">Docs</a>
+                            <a class="block-header-link" href="#">Pricing</a>
+                        </nav>
+                        <nx-button variant="primary" size="small">Sign Up Free</nx-button>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

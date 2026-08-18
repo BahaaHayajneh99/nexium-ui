@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Upload"
+                description="An nx-file-upload drop zone with drag-and-drop support."
+                [code]="uploadCode"
+                [hasSampleClass]="false">
+
+                <nx-file-upload accept=".pdf,.docx,.xlsx" [multiple]="true" (filesSelected)="onFilesSelected($event)"></nx-file-upload>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Documents"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="tableCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="documents" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

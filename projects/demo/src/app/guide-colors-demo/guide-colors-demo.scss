@@ -1,0 +1,34 @@
+@use '../variables.scss' as *;
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+}
+
+.color-swatch {
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-md;
+    overflow: hidden;
+}
+
+.color-swatch-fill {
+    height: 64px;
+}
+
+.color-swatch-meta {
+    padding: $spacing-sm $spacing-md;
+}
+
+.color-swatch-name {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.color-swatch-value {
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-xs;
+    color: var(--shell-text-muted);
+}

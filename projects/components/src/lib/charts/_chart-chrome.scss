@@ -1,0 +1,171 @@
+// Shared chart chrome - axis, grid, legend, tooltip, table-view toggle.
+// A Sass partial (not a component), @use'd from each nx-*-chart's own
+// stylesheet so the visual language stays identical without one component
+// depending on another's encapsulated styles.
+
+.nx-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+.nx-chart-table-toggle {
+    align-self: flex-end;
+    background: transparent;
+    border: 1px solid var(--shell-border);
+    color: var(--shell-text-secondary);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s ease;
+
+    &:hover {
+        border-color: var(--shell-primary, #3498db);
+        color: var(--shell-text);
+    }
+}
+
+.nx-chart-canvas {
+    position: relative;
+    width: 100%;
+}
+
+.nx-chart-canvas svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.nx-chart-grid {
+    stroke: var(--shell-border);
+    stroke-width: 1;
+}
+
+.nx-chart-axis-label {
+    fill: var(--shell-text-muted);
+    font-size: 11px;
+}
+
+.nx-chart-baseline {
+    stroke: var(--shell-text-muted);
+    stroke-width: 1;
+}
+
+// Tooltip - positioned in % of the SVG viewBox by the host component.
+.nx-chart-tooltip {
+    position: absolute;
+    transform: translate(-50%, -100%) translateY(-8px);
+    pointer-events: none;
+
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+    padding: 8px 10px;
+    min-width: 120px;
+    z-index: 5;
+}
+
+.nx-chart-tooltip-category {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--shell-text);
+    margin-bottom: 4px;
+}
+
+.nx-chart-tooltip-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+
+    &+.nx-chart-tooltip-row {
+        margin-top: 3px;
+    }
+}
+
+.nx-chart-tooltip-key {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.nx-chart-tooltip-name {
+    flex: 1;
+    white-space: nowrap;
+}
+
+.nx-chart-tooltip-value {
+    color: var(--shell-text);
+    font-weight: 700;
+}
+
+// Legend - always present for 2+ series, never the sole identity channel.
+.nx-chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.nx-chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-chart-legend-swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.nx-chart-legend-key {
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    border-radius: 1px;
+    flex-shrink: 0;
+}
+
+// Accessible table view - the WCAG-clean twin of the chart.
+.nx-chart-table-wrap {
+    overflow-x: auto;
+}
+
+.nx-chart-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    th,
+    td {
+        padding: 8px 12px;
+        text-align: right;
+        border-bottom: 1px solid var(--shell-border);
+        color: var(--shell-text-secondary);
+    }
+
+    th:first-child,
+    td:first-child {
+        text-align: left;
+        color: var(--shell-text);
+        font-weight: 600;
+    }
+
+    thead th {
+        color: var(--shell-text);
+        font-weight: 700;
+    }
+}

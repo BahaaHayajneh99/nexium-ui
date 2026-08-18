@@ -1,0 +1,70 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Dashboard</h4>
+                <p class="main-section-description">
+                    A stat-row + usage panel + activity table layout, composed entirely from existing data-display components.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Stat cards"
+                description="A stat-row built from nx-card and nx-statistic."
+                [code]="statsCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-stats-grid">
+                    @for (stat of stats; track stat.label) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <nx-statistic
+                                    [label]="stat.label"
+                                    [value]="stat.value"
+                                    [delta]="stat.delta"
+                                    [upIsGood]="stat.upIsGood ?? true"
+                                ></nx-statistic>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Resource Usage"
+                description="Labeled progress bars for each usage metric."
+                [code]="usageCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="outlined">
+                    <nx-card-content>
+                        @for (item of usage; track item.label) {
+                            <nx-progress-bar
+                                [value]="item.value"
+                                [variant]="item.variant"
+                                [label]="item.label"
+                                [showLabel]="true"
+                                class="mb-3"
+                            ></nx-progress-bar>
+                        }
+                    </nx-card-content>
+                </nx-card>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Recent Projects"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="tableCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="rows"></nx-table>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

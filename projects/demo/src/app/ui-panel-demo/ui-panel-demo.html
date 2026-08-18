@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Panel"
+                description="The {{ commonService.appName }} Panel groups related content within a bordered container with an optional header."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-panel header="Panel Title">
+                    Panel body content goes here.
+                </nx-panel>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Outlined Panel"
+                description="Outlined panels use a colored border to stand out."
+                [code]="outlinedCode"
+                [hasSampleClass]="false">
+                <nx-panel header="Outlined Panel" variant="outlined">
+                    This panel uses the outlined variant.
+                </nx-panel>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Panel with Footer"
+                description="Project a footer element using the nx-panel-footer attribute selector."
+                [code]="footerCode"
+                [hasSampleClass]="false">
+                <nx-panel header="Panel with Footer">
+                    Panel body content goes here.
+                    <div nx-panel-footer>Footer content</div>
+                </nx-panel>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

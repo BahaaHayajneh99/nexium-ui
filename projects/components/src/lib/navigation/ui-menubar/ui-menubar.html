@@ -1,0 +1,17 @@
+<div class="nx-menubar">
+    @for (menu of menus; track menu.label; let i = $index) {
+        <div class="nx-menubar-item-wrapper">
+            <button
+                type="button"
+                class="nx-menubar-label"
+                [class.active]="openIndex === i"
+                (click)="toggle(i)">
+                {{ menu.label }}
+            </button>
+
+            @if (openIndex === i) {
+                <nx-menu class="nx-menubar-panel" [items]="menu.items" (itemSelect)="onSelect($event)"></nx-menu>
+            }
+        </div>
+    }
+</div>

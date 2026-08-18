@@ -1,0 +1,85 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Colors</h4>
+                <p class="main-section-description">
+                    Every color in {{ commonService.appName }} starts life as a SCSS variable in <code>variables.scss</code>
+                    and is mirrored as a CSS custom property in <code>styles.scss</code>, so the same
+                    palette is available at build time and at runtime.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Brand</h4>
+                <p class="main-section-description">
+                    The primary brand color and its light/dark variants, used for links, focus states
+                    and primary actions.
+                </p>
+                <div class="color-grid">
+                    @for (c of brand; track c.name) {
+                        <div class="color-swatch">
+                            <div class="color-swatch-fill" [style.background]="c.hex"></div>
+                            <div class="color-swatch-meta">
+                                <div class="color-swatch-name">{{ c.name }}</div>
+                                <div class="color-swatch-value">{{ c.hex }}</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Status Colors</h4>
+                <p class="main-section-description">
+                    Semantic colors used consistently across alerts, badges, buttons and form validation
+                    states.
+                </p>
+                <div class="color-grid">
+                    @for (c of status; track c.name) {
+                        <div class="color-swatch">
+                            <div class="color-swatch-fill" [style.background]="c.hex"></div>
+                            <div class="color-swatch-meta">
+                                <div class="color-swatch-name">{{ c.name }}</div>
+                                <div class="color-swatch-value">{{ c.hex }}</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Neutral Scale</h4>
+                <p class="main-section-description">
+                    A 10-step gray scale (<code>$gray-50</code> through <code>$gray-900</code>) used for
+                    text, borders and surfaces.
+                </p>
+                <div class="color-grid">
+                    @for (c of grays; track c.name) {
+                        <div class="color-swatch">
+                            <div class="color-swatch-fill" [style.background]="c.hex"></div>
+                            <div class="color-swatch-meta">
+                                <div class="color-swatch-name">{{ c.name }}</div>
+                                <div class="color-swatch-value">{{ c.hex }}</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Using Color Tokens</h4>
+                <p class="main-section-description">
+                    Reach for the SCSS variable inside a component's own stylesheet, and the CSS custom
+                    property anywhere else - inline styles, dynamically generated styles, or a
+                    stylesheet that doesn't import <code>variables.scss</code>.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ usageCode }}</pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

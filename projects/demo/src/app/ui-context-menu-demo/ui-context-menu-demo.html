@@ -1,0 +1,21 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Context Menu"
+                description="Wrap any content - right-clicking inside it opens a menu at the cursor instead of the browser's native context menu."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-context-menu [items]="items" (itemSelect)="onSelect($event)">
+                    <div class="layout-demo-box">Right-click anywhere in this box</div>
+                </nx-context-menu>
+                @if (lastSelected) {
+                    <p class="template-form-note mt-2">Selected: {{ lastSelected }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

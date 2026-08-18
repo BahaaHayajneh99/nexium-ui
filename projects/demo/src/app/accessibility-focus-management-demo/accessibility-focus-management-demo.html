@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Focus Management</h4>
+                <p class="main-section-description">
+                    When an overlay opens, focus should move into it; while it's open, Tab shouldn't be
+                    able to leave it; when it closes, focus should return to whatever opened it.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Try It</h4>
+                <p class="main-section-description">
+                    Open the modal below, then press Tab repeatedly - focus cycles between the modal's
+                    own close button and content instead of leaking out to the rest of the page. Close
+                    it and notice focus lands back on the button that opened it.
+                </p>
+                <div class="demo-preview p-4">
+                    <nx-button variant="primary" (click)="modalOpen = true">Open Modal</nx-button>
+                </div>
+
+                <nx-modal [(open)]="modalOpen" header="Focus stays in here">
+                    <div nx-modal-body>
+                        <p>Tab through this modal - focus can't escape to the page behind it.</p>
+                        <input type="text" placeholder="Try tabbing to me" style="margin-top: 12px; padding: 8px; width: 100%;" />
+                    </div>
+                    <div nx-modal-footer>
+                        <nx-button variant="secondary" (click)="modalOpen = false">Close</nx-button>
+                    </div>
+                </nx-modal>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Current Coverage</h4>
+                <p class="main-section-description">
+                    <code>nx-modal</code> implements the full pattern: focus moves to its first focusable
+                    element on open, Tab/Shift+Tab cycle within it, Escape closes it, and focus is
+                    restored to the triggering element on close. <code>nx-dialog</code>,
+                    <code>nx-drawer</code> and <code>nx-command-palette</code> don't have the Tab-cycling
+                    or focus-restore parts yet - that's a tracked gap, not a hidden one.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</div>

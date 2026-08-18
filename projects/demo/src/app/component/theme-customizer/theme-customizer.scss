@@ -1,0 +1,110 @@
+@use '../../variables.scss' as *;
+
+:host {
+    position: fixed;
+    right: $spacing-lg;
+    bottom: $spacing-lg;
+    z-index: $z-popover;
+}
+
+.theme-customizer-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-round;
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+        color: var(--shell-primary);
+        border-color: var(--shell-primary);
+    }
+
+    &.open {
+        color: var(--shell-primary);
+        border-color: var(--shell-primary);
+        transform: rotate(45deg);
+    }
+}
+
+.theme-customizer-panel {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 12px);
+    width: 260px;
+    padding: $spacing-md;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-lg;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+}
+
+.theme-customizer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-sm;
+}
+
+.theme-customizer-title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.theme-customizer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: transparent;
+    color: var(--shell-text-muted);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.theme-customizer-close:hover {
+    color: var(--shell-text);
+}
+
+.theme-customizer-description {
+    font-size: $font-size-xs;
+    color: var(--shell-text-secondary);
+    margin-bottom: $spacing-md;
+
+    code {
+        font-family: 'Courier New', monospace;
+        background: var(--shell-surface-hover);
+        padding: 1px 4px;
+        border-radius: $radius-xs;
+    }
+}
+
+.theme-customizer-reset {
+    display: block;
+    width: 100%;
+    margin-top: $spacing-md;
+    padding: 6px;
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-md;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+        border-color: var(--shell-primary);
+        color: var(--shell-primary);
+    }
+}

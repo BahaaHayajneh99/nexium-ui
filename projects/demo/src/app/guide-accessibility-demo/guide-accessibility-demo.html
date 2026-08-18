@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Accessibility</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} components are built on native HTML elements wherever possible (native
+                    <code>&lt;input&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;label&gt;</code>)
+                    so they inherit the browser's built-in accessibility behaviour for free.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Form Controls</h4>
+                <p class="main-section-description">
+                    Inputs, checkboxes, radios, selects and the autocomplete all bind
+                    <code>aria-invalid</code> when their <code>invalid</code> input is set, and forward
+                    <code>disabled</code> to the underlying native control so assistive technology
+                    reports the correct state.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Keyboard & Focus</h4>
+                <p class="main-section-description">
+                    Interactive elements use <code>:focus-visible</code> outlines instead of suppressing
+                    focus styles, and components that project custom content (modal, dialog, popover)
+                    keep focusable elements in the natural tab order rather than trapping or hiding them.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Labels</h4>
+                <p class="main-section-description">
+                    Always pass a <code>label</code> input (or project one) for form controls - it's
+                    rendered as a real <code>&lt;label&gt;</code> associated with the control, not just
+                    placeholder text.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</div>

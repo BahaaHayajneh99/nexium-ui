@@ -1,0 +1,33 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Input"
+                description="The {{ commonService.appName }} Input supports two-way binding through the value input/output pair."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-input label="Full Name" placeholder="Enter your name" [(value)]="name"></nx-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Input with Error"
+                description="Pass an error message to display validation feedback."
+                [code]="errorCode"
+                [tsCode]="errorTs"
+                [hasSampleClass]="false">
+                <nx-input label="Email" [(value)]="email" error="Please enter a valid email address"></nx-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled Input"
+                description="Disabled inputs cannot be edited."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-input label="Disabled" value="Can't edit this" [disabled]="true"></nx-input>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

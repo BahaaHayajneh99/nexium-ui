@@ -1,0 +1,40 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Advanced Form Builder"
+                description="Adds validation messages and dynamic add/remove array fields to the form builder pattern."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div class="demo-form">
+                    <nx-input label="Project Name" [(value)]="projectName" [error]="projectNameError"></nx-input>
+
+                    <div class="demo-members">
+                        @for (member of members; track $index) {
+                            <div class="demo-member-row">
+                                <nx-input label="Member Name" [(value)]="member.name"></nx-input>
+                                <nx-input label="Member Email" [(value)]="member.email"></nx-input>
+                                <button class="demo-btn demo-btn-remove" (click)="removeMember($index)">Remove</button>
+                            </div>
+                        }
+                    </div>
+                    <button class="demo-btn" (click)="addMember()">Add Member</button>
+
+                    <nx-checkbox label="I agree to the terms" [(checked)]="agree"></nx-checkbox>
+                    @if (agreeError) {
+                        <p class="demo-error">{{ agreeError }}</p>
+                    }
+
+                    <button class="demo-btn demo-btn-primary" (click)="submit()">Submit</button>
+
+                    @if (submitted && projectName && agree) {
+                        <p class="demo-summary">Project "{{ projectName }}" submitted with {{ members.length }} member(s).</p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

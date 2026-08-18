@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Tags"
+                description="Tags take any CSS color - not a fixed variant palette - and automatically pick black or white text for contrast."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-tag color="#2a78d6">JavaScript</nx-tag>
+                <nx-tag color="#eb6834">CSS</nx-tag>
+                <nx-tag color="#1baf7a">Design</nx-tag>
+                <nx-tag color="#e34948">Urgent</nx-tag>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Outline"
+                description="Set variant to outline for a lighter-weight tag that uses the color for text and border only."
+                [code]="outlineCode"
+                [hasSampleClass]="false">
+                <nx-tag variant="outline" color="#2a78d6">JavaScript</nx-tag>
+                <nx-tag variant="outline" color="#eb6834">CSS</nx-tag>
+                <nx-tag variant="outline" color="#1baf7a">Design</nx-tag>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Closable"
+                description="Set closable to true and listen for closed to remove a tag from its source list."
+                [code]="closableCode"
+                [tsCode]="closableTs"
+                [hasSampleClass]="false">
+                @for (skill of skills; track skill.label) {
+                    <nx-tag [color]="skill.color" [closable]="true" (closed)="removeSkill(skill)">
+                        {{ skill.label }}
+                    </nx-tag>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Disabled tags are dimmed and their close button (if any) stops responding."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-tag color="#6c757d" [disabled]="true">Archived</nx-tag>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

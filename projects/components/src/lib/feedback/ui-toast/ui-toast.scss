@@ -1,0 +1,70 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-toast-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    z-index: 2000;
+
+    &.top-left {
+        top: $spacing-lg;
+        left: $spacing-lg;
+    }
+
+    &.top-center {
+        top: $spacing-lg;
+        left: 50%;
+        align-items: center;
+        transform: translateX(-50%);
+    }
+
+    &.top-right {
+        top: $spacing-lg;
+        right: $spacing-lg;
+    }
+
+    &.bottom-left {
+        bottom: $spacing-lg;
+        left: $spacing-lg;
+    }
+
+    &.bottom-center {
+        bottom: $spacing-lg;
+        left: 50%;
+        align-items: center;
+        transform: translateX(-50%);
+    }
+
+    &.bottom-right {
+        bottom: $spacing-lg;
+        right: $spacing-lg;
+    }
+}
+
+.nx-toast {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-md;
+    min-width: 260px;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-sm;
+    border-left: 4px solid $info-color;
+    background-color: var(--shell-surface);
+    box-shadow: $shadow-md;
+    color: var(--shell-text);
+
+    &.success { border-left-color: $success-color; }
+    &.danger { border-left-color: $danger-color; }
+    &.warning { border-left-color: $warning-color; }
+    &.info { border-left-color: $info-color; }
+}
+
+.nx-toast-close {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: $font-size-md;
+    color: var(--shell-text-secondary);
+}

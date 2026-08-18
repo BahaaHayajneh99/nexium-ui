@@ -1,0 +1,88 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    border-radius: $radius-md;
+    border-left: 4px solid transparent;
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    color: var(--shell-text);
+
+    &.success {
+        border-left-color: $success-color;
+        background: color-mix(in srgb, $success-color 10%, var(--shell-surface));
+
+        .nx-alert-icon {
+            color: $success-color;
+        }
+    }
+
+    &.danger {
+        border-left-color: $danger-color;
+        background: color-mix(in srgb, $danger-color 10%, var(--shell-surface));
+
+        .nx-alert-icon {
+            color: $danger-color;
+        }
+    }
+
+    &.warning {
+        border-left-color: $warning-color;
+        background: color-mix(in srgb, $warning-color 10%, var(--shell-surface));
+
+        .nx-alert-icon {
+            color: $warning-color;
+        }
+    }
+
+    &.info {
+        border-left-color: $info-color;
+        background: color-mix(in srgb, $info-color 10%, var(--shell-surface));
+
+        .nx-alert-icon {
+            color: $info-color;
+        }
+    }
+}
+
+.nx-alert-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.nx-alert-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.nx-alert-title {
+    font-weight: $font-weight-semibold;
+    margin-bottom: 2px;
+}
+
+.nx-alert-message {
+    color: var(--shell-text-secondary);
+    line-height: $line-height;
+}
+
+.nx-alert-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 2px;
+    border: none;
+    border-radius: $radius-sm;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    transition: background-color $transition-fast, color $transition-fast;
+
+    &:hover {
+        background-color: var(--shell-surface-hover);
+        color: var(--shell-text);
+    }
+}

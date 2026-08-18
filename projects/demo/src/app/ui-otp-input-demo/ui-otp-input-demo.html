@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic OTP Input"
+                description="Six auto-advancing digit boxes - typing moves focus forward, backspace on an empty box moves back, and pasting a full code fills every box at once."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-otp-input [(value)]="code" [length]="6"></nx-otp-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Completed Event"
+                description="completed fires once with the full code as soon as every box is filled."
+                [code]="completedTemplate"
+                [tsCode]="completedTs"
+                [hasSampleClass]="false">
+                <nx-otp-input [length]="4" (completed)="onCompleted($event)"></nx-otp-input>
+                @if (completedCode) {
+                    <p class="template-form-note mt-2">Completed: {{ completedCode }}</p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Invalid"
+                description="Set invalid to true to highlight the boxes with an error state."
+                [code]="invalidCode"
+                [hasSampleClass]="false">
+                <nx-otp-input [length]="6" [invalid]="true"></nx-otp-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Disabled OTP inputs cannot be interacted with."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-otp-input [length]="6" [disabled]="true" value="123"></nx-otp-input>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

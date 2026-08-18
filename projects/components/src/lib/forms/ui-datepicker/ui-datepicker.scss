@@ -1,0 +1,224 @@
+.nx-datepicker-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: inherit;
+}
+
+.nx-datepicker-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-datepicker-field {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background-color: var(--shell-surface);
+    cursor: pointer;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.nx-datepicker-field:hover {
+    border-color: var(--shell-text-muted);
+}
+
+.nx-datepicker-field.open {
+    border-color: var(--shell-primary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, .15);
+}
+
+.nx-datepicker-field.invalid {
+    border-color: #e74c3c;
+}
+
+.nx-datepicker-field.disabled {
+    background-color: var(--shell-surface-hover);
+    cursor: not-allowed;
+    opacity: .7;
+}
+
+.nx-datepicker-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--shell-text-secondary);
+    flex-shrink: 0;
+}
+
+.nx-datepicker-value {
+    font-size: 14px;
+    color: var(--shell-text);
+    white-space: nowrap;
+}
+
+.nx-datepicker-value.placeholder {
+    color: var(--shell-text-muted);
+}
+
+// Calendar popover
+.nx-datepicker-panel {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 280px;
+    padding: 12px;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+}
+
+.nx-datepicker-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.nx-datepicker-nav-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-datepicker-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+.nx-datepicker-nav-btn:hover {
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-primary);
+}
+
+.nx-datepicker-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 4px;
+
+    span {
+        text-align: center;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--shell-text-muted);
+    }
+}
+
+.nx-datepicker-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.nx-datepicker-day {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border: none;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+.nx-datepicker-day:hover:not(:disabled) {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-datepicker-day.outside {
+    color: var(--shell-text-muted);
+}
+
+.nx-datepicker-day.today {
+    box-shadow: inset 0 0 0 1px var(--shell-primary);
+}
+
+.nx-datepicker-day.in-range {
+    background-color: rgba(52, 152, 219, .12);
+    border-radius: 0;
+}
+
+.nx-datepicker-day.selected {
+    background-color: var(--shell-primary);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.nx-datepicker-day.range-start {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.nx-datepicker-day.range-end {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.nx-datepicker-day:disabled {
+    color: var(--shell-text-muted);
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.nx-datepicker-time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--shell-border);
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+
+    input {
+        border: 1px solid var(--shell-border);
+        border-radius: 6px;
+        padding: 4px 8px;
+        font-size: 13px;
+        background: var(--shell-bg);
+        color: var(--shell-text);
+    }
+}
+
+.nx-datepicker-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--shell-border);
+}
+
+.nx-datepicker-footer-btn {
+    border: none;
+    background: transparent;
+    color: var(--shell-primary);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.nx-datepicker-footer-btn:hover {
+    background-color: var(--shell-surface-hover);
+}

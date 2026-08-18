@@ -1,0 +1,24 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Mention"
+                description="Type @ inside the textarea to open a filtered suggestion list - arrow keys to move, Enter or Tab to insert, Escape to dismiss."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-mention
+                    [(value)]="comment"
+                    [suggestions]="teammates"
+                    placeholder="Leave a comment - type @ to mention someone"
+                    (mentioned)="onMentioned($event)">
+                </nx-mention>
+                @if (lastMentioned) {
+                    <p class="template-form-note mt-2">Last mentioned: &#64;{{ lastMentioned }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

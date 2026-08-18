@@ -1,0 +1,12 @@
+<div class="nx-mega-menu-wrapper">
+    <button type="button" class="nx-mega-menu-trigger" [class.open]="open" (click)="toggle()">
+        {{ label }}
+        <span class="nx-mega-menu-chevron" [class.open]="open">&#8250;</span>
+    </button>
+
+    @if (open) {
+        <div class="nx-mega-menu-panel" (click)="close()">
+            <ng-content></ng-content>
+        </div>
+    }
+</div>

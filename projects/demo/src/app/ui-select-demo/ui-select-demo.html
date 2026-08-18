@@ -1,0 +1,21 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Select"
+                description="The {{ commonService.appName }} Select renders a native dropdown from an options array."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-select
+                    label="Country"
+                    placeholder="Select a country"
+                    [options]="options"
+                    [(value)]="country">
+                </nx-select>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

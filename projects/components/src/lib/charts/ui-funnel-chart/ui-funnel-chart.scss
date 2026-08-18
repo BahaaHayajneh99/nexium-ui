@@ -1,0 +1,26 @@
+@use '../chart-chrome' as *;
+
+.nx-chart-funnel-bar {
+    transition: opacity .15s ease;
+    cursor: pointer;
+
+    &:focus-visible {
+        outline: 2px solid var(--shell-primary, #3498db);
+        outline-offset: 2px;
+    }
+}
+
+.nx-chart-funnel-bar-hovered {
+    opacity: .85;
+}
+
+.nx-chart-funnel-label {
+    font-size: 13px;
+    font-weight: 600;
+    fill: var(--shell-text);
+}
+
+.nx-chart-funnel-value {
+    font-size: 12px;
+    fill: var(--shell-text-secondary);
+}

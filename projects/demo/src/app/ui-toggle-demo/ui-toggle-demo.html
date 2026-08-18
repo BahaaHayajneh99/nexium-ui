@@ -1,0 +1,16 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Toggle"
+                description="The {{ commonService.appName }} Toggle is a two-state button, useful for formatting toolbars."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-toggle [(pressed)]="bold">Bold</nx-toggle>
+                <nx-toggle [(pressed)]="italic">Italic</nx-toggle>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

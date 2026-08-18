@@ -1,0 +1,42 @@
+.nx-menubar {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background-color: var(--shell-surface);
+    width: fit-content;
+}
+
+.nx-menubar-item-wrapper {
+    position: relative;
+}
+
+.nx-menubar-label {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color .15s ease;
+}
+
+.nx-menubar-label:hover,
+.nx-menubar-label.active {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-menubar-panel {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 4px);
+    left: 0;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+}

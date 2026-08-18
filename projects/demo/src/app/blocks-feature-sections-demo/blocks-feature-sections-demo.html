@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Feature Sections"
+                description="A grid of short feature callouts, each with an icon, a title and one supporting line."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <div class="block-preview">
+                    <div class="block-section">
+                        <div class="block-grid-3">
+                            @for (feature of features; track feature.title) {
+                                <div>
+                                    <div class="block-feature-icon">
+                                        <nx-icon [icon]="feature.icon" variant="svg" [size]="20"></nx-icon>
+                                    </div>
+                                    <div class="block-feature-title">{{ feature.title }}</div>
+                                    <p class="block-feature-text">{{ feature.text }}</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

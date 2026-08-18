@@ -1,0 +1,64 @@
+<div class="nx-datepicker-wrapper">
+    @if (label) {
+        <label class="nx-datepicker-label">{{ label }}</label>
+    }
+
+    <div class="nx-datepicker-field" [class.invalid]="invalid" [class.disabled]="disabled" [class.open]="open" (click)="toggle()">
+        @if (showIcon) {
+            <span class="nx-datepicker-icon" [innerHTML]="calendarIcon"></span>
+        }
+        <span class="nx-datepicker-value" [class.placeholder]="!displayText">
+            {{ displayText || placeholder }}
+        </span>
+    </div>
+
+    @if (open) {
+        <div class="nx-datepicker-panel">
+
+            <div class="nx-datepicker-nav">
+                <button type="button" class="nx-datepicker-nav-btn" (click)="prevMonth()" aria-label="Previous month">&#8249;</button>
+                <span class="nx-datepicker-nav-label">{{ viewLabel }}</span>
+                <button type="button" class="nx-datepicker-nav-btn" (click)="nextMonth()" aria-label="Next month">&#8250;</button>
+            </div>
+
+            <div class="nx-datepicker-weekdays">
+                @for (day of weekdayLabels; track day) {
+                    <span>{{ day }}</span>
+                }
+            </div>
+
+            @for (week of weeks; track $index) {
+                <div class="nx-datepicker-week">
+                    @for (cell of week; track cell.iso) {
+                        <button
+                            type="button"
+                            class="nx-datepicker-day"
+                            [class.outside]="!cell.inCurrentMonth"
+                            [class.today]="cell.isToday"
+                            [class.selected]="cell.isSelected"
+                            [class.range-start]="cell.isRangeStart"
+                            [class.range-end]="cell.isRangeEnd"
+                            [class.in-range]="cell.isInRange"
+                            [disabled]="cell.isDisabled"
+                            (click)="selectDay(cell)">
+                            {{ cell.label }}
+                        </button>
+                    }
+                </div>
+            }
+
+            @if (showTime) {
+                <div class="nx-datepicker-time">
+                    <label>Time</label>
+                    <input type="time" [value]="timeValue" (change)="onTimeChange($event)" />
+                </div>
+            }
+
+            <div class="nx-datepicker-footer">
+                <button type="button" class="nx-datepicker-footer-btn" (click)="selectToday()">Today</button>
+                <button type="button" class="nx-datepicker-footer-btn" (click)="clear()">Clear</button>
+            </div>
+
+        </div>
+    }
+</div>

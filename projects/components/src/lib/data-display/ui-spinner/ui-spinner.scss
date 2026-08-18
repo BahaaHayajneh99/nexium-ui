@@ -1,0 +1,156 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-spinner-container {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+    &.center {
+
+        width: 100%;
+
+        height: 100%;
+
+    }
+
+
+    &.overlay {
+
+        position: absolute;
+
+        inset: 0;
+
+        background: var(--shell-overlay);
+
+        z-index: $z-overlay;
+
+    }
+
+}
+
+
+
+.nx-spinner {
+
+    display: inline-block;
+
+    border-style: solid;
+
+    border-radius: $radius-round;
+
+    border-color: var(--shell-surface-hover);
+
+    border-top-color: currentColor;
+
+    animation: nx-spinner-animation .8s linear infinite;
+
+
+
+    &.small {
+
+        width: 16px;
+
+        height: 16px;
+
+        border-width: 2px;
+
+    }
+
+
+
+    &.medium {
+
+        width: 32px;
+
+        height: 32px;
+
+        border-width: 3px;
+
+    }
+
+
+
+    &.large {
+
+        width: 48px;
+
+        height: 48px;
+
+        border-width: 4px;
+
+    }
+
+
+
+    &.primary {
+
+        color: var(--shell-primary);
+
+    }
+
+
+    &.secondary {
+
+        color: $secondary-color;
+
+    }
+
+
+    &.success {
+
+        color: $success-color;
+
+    }
+
+
+    &.danger {
+
+        color: $danger-color;
+
+    }
+
+
+    &.warning {
+
+        color: $warning-color;
+
+    }
+
+
+    &.info {
+
+        color: $info-color;
+
+    }
+
+
+    &.dark {
+
+        color: $gray-800;
+
+    }
+
+
+    &.light {
+
+        color: $gray-400;
+
+    }
+
+}
+
+
+
+@keyframes nx-spinner-animation {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}

@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Spacing Utilities</h4>
+                <p class="main-section-description">
+                    Every margin, padding and gap prefix below is available for each of the five
+                    steps on the spacing scale, as a <code>&#123;prefix&#125;-&#123;step&#125;</code>
+                    class - for example <code>.mt-3</code> or <code>.px-4</code>.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Steps</h4>
+                <div class="utility-list">
+                    @for (s of steps; track s.step) {
+                        <div class="utility-row">
+                            <code class="utility-class">-{{ s.step }}</code>
+                            <span class="utility-desc">{{ s.value }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Prefixes</h4>
+                <div class="utility-list">
+                    @for (g of groups; track g.prefix) {
+                        <div class="utility-row">
+                            <code class="utility-class">.{{ g.prefix }}-*</code>
+                            <span class="utility-desc">{{ g.property }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Usage</h4>
+                <div class="gs-code">
+                    <pre>&lt;div class="mt-4 px-3 gap-2"&gt;...&lt;/div&gt;
+&lt;!-- margin-top: $spacing-lg; padding-inline: $spacing-md; gap: $spacing-sm --&gt;</pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Gauge Chart</h4>
+                <p class="main-section-description">
+                    A single value against a min/max range - useful for a dashboard tile reading like
+                    "CPU at 78%". Status bands use the reserved success/warning/danger palette, never
+                    plain categorical color, and always ship with a text label.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Basic"
+                description="With no bands, the full range renders as one neutral track."
+                [code]="basicCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-gauge-chart [value]="42" [min]="0" [max]="100" label="CPU Usage" valueSuffix="%"></nx-gauge-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="With status bands"
+                description="Bands divide the track into labeled ranges - identity never rides on color alone."
+                [code]="bandsCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-gauge-chart
+                    [value]="78"
+                    [min]="0"
+                    [max]="100"
+                    [bands]="cpuBands"
+                    label="CPU Usage"
+                    valueSuffix="%">
+                </nx-gauge-chart>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,227 @@
+@import '../../../../../demo/src/app/variables.scss';
+
+.nx-card {
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--shell-surface);
+
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-lg;
+
+    padding: $spacing-lg;
+
+    color: var(--shell-text);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+
+
+    // ==========================
+    // Variants
+    // ==========================
+
+    &.outlined {
+
+        border: 2px solid var(--shell-primary);
+
+    }
+
+
+    &.elevated {
+
+        border-color: transparent;
+
+        box-shadow: $shadow-md;
+
+    }
+
+
+    &.flat {
+
+        border-color: transparent;
+
+        box-shadow: none;
+
+        background: var(--shell-surface-hover);
+
+    }
+
+
+    // ==========================
+    // Hover
+    // ==========================
+
+    &.hoverable {
+
+        cursor: pointer;
+
+
+        &:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow: $shadow-lg;
+
+            border-color: $border-hover-color;
+
+        }
+
+    }
+
+
+    // ==========================
+    // Card Sizes
+    // ==========================
+
+    &.small {
+
+        padding: $spacing-md;
+
+    }
+
+
+    &.large {
+
+        padding: $spacing-xl;
+
+    }
+
+}
+
+
+
+// ==========================
+// Card Header
+// ==========================
+
+.nx-card-header { 
+    margin-bottom: $spacing-md;
+
+}
+
+
+//=========================
+// Card Image
+//=========================
+.nx-card-image {
+    margin-bottom: $spacing-md;
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: $radius-md;
+    }
+}
+
+
+// ==========================
+// Card Title
+// ==========================
+
+.nx-card-title {
+
+    margin: 0;
+
+    font-size: $h5-font-size;
+
+    font-weight: 600;
+
+    color: var(--shell-text);
+
+}
+
+
+
+// ==========================
+// Card Subtitle
+// ==========================
+
+.nx-card-subtitle {
+
+    margin-top: $spacing-xs;
+
+    margin-bottom: 0;
+
+    color: var(--shell-text-secondary);
+
+    font-size: 14px;
+
+}
+
+
+
+// ==========================
+// Card Content
+// ==========================
+
+.nx-card-content {
+
+    flex: 1;
+
+    line-height: $line-height;
+
+    color: var(--shell-text);
+
+}
+
+
+
+// ==========================
+// Card Actions
+// ==========================
+
+.nx-card-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: $spacing-sm;
+
+    margin-top: $spacing-lg;
+
+
+    &.start {
+
+        justify-content: flex-start;
+
+    }
+
+
+    &.center {
+
+        justify-content: center;
+
+    }
+
+
+    &.between {
+
+        justify-content: space-between;
+
+    }
+
+}
+
+
+
+// ==========================
+// Card Footer
+// ==========================
+
+.nx-card-footer {
+
+    margin-top: $spacing-lg;
+
+    padding-top: $spacing-md;
+
+    border-top: 1px solid var(--shell-border);
+
+    color: var(--shell-text-secondary);
+
+}

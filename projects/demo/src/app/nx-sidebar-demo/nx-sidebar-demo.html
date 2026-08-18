@@ -1,0 +1,64 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Sidebar"
+                description="Pass a flat list of items with a label, link, and optional icon."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+
+                <div class="sidebar-demo-frame">
+                    <nx-sidebar [items]="basicItems"></nx-sidebar>
+                </div>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Nested Groups"
+                description="Items without a link but with children render as expandable groups."
+                [code]="nestedCode"
+                [tsCode]="nestedTs">
+
+                <div class="sidebar-demo-frame">
+                    <nx-sidebar [items]="nestedItems"></nx-sidebar>
+                </div>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Header & Footer"
+                description="Project any content into the header or footer using the nx-sidebar-header / nx-sidebar-footer attribute selectors."
+                [code]="headerFooterCode">
+
+                <div class="sidebar-demo-frame">
+                    <nx-sidebar [items]="basicItems">
+                        <span nx-sidebar-header>{{ commonService.appName }}</span>
+                        <span nx-sidebar-footer>v1.0.0</span>
+                    </nx-sidebar>
+                </div>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Collapsible"
+                description="Bind [(collapsed)] to shrink the sidebar to icons only; hover a collapsed group icon to reveal its children as a flyout."
+                [code]="collapseCode">
+
+                <div class="sidebar-demo-frame allow-overflow">
+                    <nx-sidebar [items]="nestedItems" [(collapsed)]="collapsed"></nx-sidebar>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+
+    </div>
+
+</div>

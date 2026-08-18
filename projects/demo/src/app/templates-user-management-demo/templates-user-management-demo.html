@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Members"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="tableCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="users" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Invite a Member"
+                description="A form built from nx-input, nx-select, nx-card and nx-button."
+                [code]="inviteCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="elevated">
+                    <nx-card-header>
+                        <nx-card-title>Invite a Member</nx-card-title>
+                    </nx-card-header>
+                    <nx-card-content>
+                        <nx-input label="Email" type="email" [(value)]="inviteEmail"></nx-input>
+                        <nx-select label="Role" [options]="roleOptions" [(value)]="inviteRole"></nx-select>
+                    </nx-card-content>
+                    <nx-card-footer>
+                        <nx-button variant="primary" (click)="onInvite()">Send Invite</nx-button>
+                    </nx-card-footer>
+                </nx-card>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

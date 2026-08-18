@@ -1,0 +1,26 @@
+<div class="nx-mention-wrapper">
+    <textarea
+        #textareaRef
+        class="nx-mention-textarea"
+        [rows]="rows"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [value]="value"
+        (input)="onInput($event)"
+        (keydown)="onKeydown($event)">
+    </textarea>
+
+    @if (open) {
+        <div class="nx-mention-panel">
+            @for (suggestion of filteredSuggestions; track suggestion.id; let i = $index) {
+                <button
+                    type="button"
+                    class="nx-mention-option"
+                    [class.active]="i === activeIndex"
+                    (mousedown)="$event.preventDefault(); selectSuggestion(suggestion)">
+                    {{ trigger }}{{ suggestion.label }}
+                </button>
+            }
+        </div>
+    }
+</div>

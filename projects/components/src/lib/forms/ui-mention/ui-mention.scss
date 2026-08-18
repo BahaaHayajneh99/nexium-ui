@@ -1,0 +1,65 @@
+.nx-mention-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.nx-mention-textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+    box-sizing: border-box;
+}
+
+.nx-mention-textarea:focus {
+    border-color: var(--shell-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--shell-primary) 15%, transparent);
+}
+
+.nx-mention-textarea:disabled {
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text-muted);
+    cursor: not-allowed;
+}
+
+.nx-mention-panel {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 180px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 4px;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+}
+
+.nx-mention-option {
+    display: block;
+    width: 100%;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.nx-mention-option.active,
+.nx-mention-option:hover {
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-primary);
+}

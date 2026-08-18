@@ -1,0 +1,22 @@
+<nav class="nx-navbar" [class.sticky]="sticky">
+
+    <div class="nx-navbar-brand">
+        <ng-content select="[nx-navbar-brand]"></ng-content>
+    </div>
+
+    <button type="button" class="nx-navbar-toggle" (click)="toggleMobile()" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="nx-navbar-content" [class.open]="mobileOpen">
+        <div class="nx-navbar-links">
+            <ng-content select="[nx-navbar-links]"></ng-content>
+        </div>
+        <div class="nx-navbar-actions">
+            <ng-content select="[nx-navbar-actions]"></ng-content>
+        </div>
+    </div>
+
+</nav>

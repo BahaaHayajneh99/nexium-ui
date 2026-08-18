@@ -1,0 +1,157 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Accordion"
+                description="The basic {{ commonService.appName }} Accordion provides a simple way to organize and display collapsible content sections."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+
+                <nx-accordion>
+                    <nx-accordion-item>
+                        <nx-accordion-header>
+                            Personal Information
+                        </nx-accordion-header>
+                        <nx-accordion-content>
+                            User profile details and information.
+                        </nx-accordion-content>
+                    </nx-accordion-item>
+                </nx-accordion>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Accordion Variants"
+                description="{{ commonService.appName }} provides multiple accordion variants for different layout styles."
+                [code]="variantsCode"
+                [hasSampleClass]="false">
+
+                <nx-accordion variant="default">
+                    <nx-accordion-item>
+                        <nx-accordion-header>
+                            Default Accordion
+                        </nx-accordion-header>
+                        <nx-accordion-content>
+                            Default style content.
+                        </nx-accordion-content>
+                    </nx-accordion-item>
+                </nx-accordion>
+
+                <br>
+
+                <nx-accordion variant="flat">
+                    <nx-accordion-item>
+                        <nx-accordion-header>
+                            Flat Accordion
+                        </nx-accordion-header>
+                        <nx-accordion-content>
+                            Flat style content.
+                        </nx-accordion-content>
+                    </nx-accordion-item>
+                </nx-accordion>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Multiple Accordion"
+                description="Allow multiple accordion items to stay expanded at the same time."
+                [code]="multipleCode"
+                [hasSampleClass]="false">
+
+                <nx-accordion multiple>
+
+                    <nx-accordion-item>
+                        <nx-accordion-header>
+                            Section One
+                        </nx-accordion-header>
+                        <nx-accordion-content>
+                            Content One
+                        </nx-accordion-content>
+                    </nx-accordion-item>
+
+                    <nx-accordion-item>
+                        <nx-accordion-header>
+                            Section Two
+                        </nx-accordion-header>
+                        <nx-accordion-content>
+                            Content Two
+                        </nx-accordion-content>
+                    </nx-accordion-item>
+
+                </nx-accordion>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Default Expanded Item"
+                description="Accordion items can be expanded by default."
+                [code]="expandedCode"
+                [hasSampleClass]="false">
+
+                <nx-accordion>
+                    <nx-accordion-item expanded>
+                        <nx-accordion-header>
+                            Expanded Section
+                        </nx-accordion-header>
+                        <nx-accordion-content>
+                            This section is opened by default.
+                        </nx-accordion-content>
+                    </nx-accordion-item>
+                </nx-accordion>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Disabled Accordion Item"
+                description="Disabled items prevent user interaction."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+
+                <nx-accordion>
+                    <nx-accordion-item disabled>
+                        <nx-accordion-header>
+                            Disabled Section
+                        </nx-accordion-header>
+                        <nx-accordion-content>
+                            Disabled content.
+                        </nx-accordion-content>
+                    </nx-accordion-item>
+                </nx-accordion>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Accordion With Icon"
+                description="Accordion headers can include icons for better visual indication."
+                [code]="iconCode"
+                [hasSampleClass]="false">
+
+                <nx-accordion>
+                    <nx-accordion-item>
+                        <nx-accordion-header>
+                            <nx-icon icon="nx-settings" variant="svg" [size]="16"></nx-icon>
+                            Settings
+                        </nx-accordion-header>
+                        <nx-accordion-content>
+                            Application settings content.
+                        </nx-accordion-content>
+                    </nx-accordion-item>
+                </nx-accordion>
+
+            </app-demo-section>
+
+
+        </div>
+
+    </div>
+
+</div>

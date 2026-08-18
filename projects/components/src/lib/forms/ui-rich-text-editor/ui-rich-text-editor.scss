@@ -1,0 +1,97 @@
+.nx-rte {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background-color: var(--shell-surface);
+    overflow: hidden;
+}
+
+.nx-rte.disabled {
+    opacity: .7;
+}
+
+.nx-rte-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 6px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-rte-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 6px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all .15s ease;
+}
+
+.nx-rte-btn:hover:not(:disabled) {
+    background-color: var(--shell-surface);
+    color: var(--shell-primary);
+}
+
+.nx-rte-btn:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+.nx-rte-btn-bold {
+    font-weight: 700;
+}
+
+.nx-rte-btn-italic {
+    font-style: italic;
+}
+
+.nx-rte-editor {
+    min-height: 160px;
+    padding: 12px 14px;
+    color: var(--shell-text);
+    font-size: 14px;
+    line-height: 1.6;
+    outline: none;
+    overflow-y: auto;
+
+    &:empty::before {
+        content: attr(data-placeholder);
+        color: var(--shell-text-muted);
+        pointer-events: none;
+    }
+
+    p {
+        margin: 0 0 8px;
+    }
+
+    h1, h2, h3 {
+        margin: 0 0 8px;
+        font-weight: 700;
+    }
+
+    blockquote {
+        margin: 0 0 8px;
+        padding-left: 12px;
+        border-left: 3px solid var(--shell-border);
+        color: var(--shell-text-secondary);
+    }
+
+    ul, ol {
+        margin: 0 0 8px;
+        padding-left: 24px;
+    }
+
+    a {
+        color: var(--shell-primary);
+    }
+}

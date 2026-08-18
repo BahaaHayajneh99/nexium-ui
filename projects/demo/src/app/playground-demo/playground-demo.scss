@@ -1,0 +1,28 @@
+@use '../variables.scss' as *;
+
+.playground {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-lg;
+
+    @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.playground-controls {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+}
+
+.playground-preview {
+    //display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-md;
+    padding: $spacing-lg;
+}

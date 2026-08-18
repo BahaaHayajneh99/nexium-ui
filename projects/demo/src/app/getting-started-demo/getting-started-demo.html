@@ -1,0 +1,76 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Getting Started</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} is a workspace of standalone Angular UI libraries. This page walks through
+                    installing the workspace locally and configuring your app to consume the components.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Installation</h4>
+                <p class="main-section-description">
+                    Clone the repository and install its dependencies.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ cloneCode }}</pre>
+                </div>
+
+                <p class="main-section-description">
+                    Build the component libraries so they can be resolved locally through the
+                    TypeScript path mappings used during development.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ buildLibsCode }}</pre>
+                </div>
+
+                <p class="main-section-description">
+                    Start the demo application.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ serveCode }}</pre>
+                </div>
+
+                <p class="main-section-description">
+                    Once published, consumers install the packages from npm just like any other
+                    Angular UI library.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ publishedInstallCode }}</pre>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Configuration</h4>
+                <p class="main-section-description">
+                    While developing locally, the root <code>tsconfig.json</code> maps each library
+                    package name to its built output in <code>dist/</code>.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ tsconfigPathsCode }}</pre>
+                </div>
+
+                <p class="main-section-description">
+                    Every component is standalone, so no <code>NgModule</code> or app-wide provider
+                    setup is required. Import the components you need directly into your own
+                    component's <code>imports</code> array.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ standaloneUsageCode }}</pre>
+                </div>
+
+                <p class="main-section-description">
+                    When writing custom styles for your own components, reuse the shared design
+                    tokens from <code>variables.scss</code>.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ scssTokensCode }}</pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="nx-accordion-item" [ngClass]="itemClasses">
+
+
+    <div type="button" class="nx-accordion-header" (click)="toggle()">
+
+
+        <span>
+
+            <ng-content select="nx-accordion-header">
+            </ng-content>
+
+        </span>
+
+
+
+        <span class="nx-accordion-icon">
+
+            <i class="arrow" [class.open]="expanded">
+            </i> 
+
+        </span>
+
+
+    </div>
+
+
+
+
+    <div class="nx-accordion-body" *ngIf="expanded">
+
+
+        <ng-content select="nx-accordion-content">
+        </ng-content>
+
+
+    </div>
+
+
+</div>

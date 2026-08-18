@@ -1,0 +1,21 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Masonry"
+                description="A Pinterest-style column layout for variable-height items, built on CSS multi-column (no JS layout measuring)."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+
+                <nx-masonry [cols]="4" [gap]="16">
+                    @for (height of items; track $index) {
+                        <div class="layout-demo-box" [style.height.px]="height">{{ height }}px</div>
+                    }
+                </nx-masonry>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Pagination"
+                description="The {{ commonService.appName }} Pagination lets users navigate between pages of content."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-pagination [totalPages]="10" [(currentPage)]="currentPage"></nx-pagination>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Events"
+                description="Listen to currentPageChange to react whenever the active page changes."
+                [code]="eventsCode"
+                [tsCode]="eventsTs"
+                [hasSampleClass]="false">
+                <nx-pagination
+                    [totalPages]="10"
+                    [currentPage]="eventsPage"
+                    (currentPageChange)="onPageChange($event)">
+                </nx-pagination>
+                @if (lastChangedPage !== null) {
+                    <p class="mt-5">Last changed page: {{ lastChangedPage }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

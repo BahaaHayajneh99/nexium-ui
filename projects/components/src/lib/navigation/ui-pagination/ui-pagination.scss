@@ -1,0 +1,35 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-pagination {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+}
+
+.nx-pagination-btn {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 $spacing-xs;
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-sm;
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+
+    &:hover:not(:disabled) {
+        background-color: var(--shell-surface-hover);
+    }
+
+    &.active {
+        background-color: var(--shell-primary);
+        border-color: var(--shell-primary);
+        color: $text-white;
+    }
+
+    &:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+}

@@ -1,0 +1,38 @@
+@use '../chart-chrome' as *;
+
+.nx-chart-heatmap-cell {
+    stroke: var(--shell-surface);
+    stroke-width: 2;
+    cursor: pointer;
+    transition: opacity .1s ease;
+
+    &:focus-visible {
+        outline: 2px solid var(--shell-primary, #3498db);
+        outline-offset: -2px;
+    }
+}
+
+.nx-chart-heatmap-cell-hovered {
+    opacity: .8;
+}
+
+.nx-chart-heatmap-scale {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--shell-text-muted);
+}
+
+.nx-chart-heatmap-scale-bar {
+    display: inline-block;
+    width: 120px;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--shell-primary) 12%, var(--shell-surface)),
+        var(--shell-primary)
+    );
+}

@@ -1,0 +1,20 @@
+@if (open) {
+    <div class="nx-drawer-backdrop" (click)="onBackdropClick()"></div>
+
+    <div
+        class="nx-drawer-panel"
+        [class.left]="side === 'left'"
+        [class.right]="side === 'right'"
+        [class.top]="side === 'top'"
+        [class.bottom]="side === 'bottom'"
+        [style.width]="isHorizontal ? size : null"
+        [style.height]="!isHorizontal ? size : null">
+
+        <button type="button" class="nx-drawer-close" (click)="close()" aria-label="Close">&times;</button>
+
+        <div class="nx-drawer-content">
+            <ng-content></ng-content>
+        </div>
+
+    </div>
+}

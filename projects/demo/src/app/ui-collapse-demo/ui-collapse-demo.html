@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Collapse"
+                description="The {{ commonService.appName }} Collapse toggles the visibility of its content when the header is clicked."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-collapse header="Click to expand">
+                    This is the collapsible content area.
+                </nx-collapse>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Expanded by Default"
+                description="Collapse can start in an expanded state."
+                [code]="expandedCode"
+                [hasSampleClass]="false">
+                <nx-collapse header="Expanded by default" [expanded]="true">
+                    This content is visible by default.
+                </nx-collapse>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled Collapse"
+                description="Disabled collapses cannot be toggled."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-collapse header="Disabled" [disabled]="true">
+                    This content cannot be toggled.
+                </nx-collapse>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

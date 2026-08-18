@@ -1,0 +1,21 @@
+<span class="nx-avatar" [ngClass]="avatarClasses">
+
+    @if (showImage) {
+        <img
+            class="nx-avatar-image"
+            [src]="src"
+            [alt]="alt || name"
+            (error)="onImageError()">
+    } @else if (initials) {
+        <span class="nx-avatar-initials">
+            {{ initials }}
+        </span>
+    } @else {
+        <ng-content></ng-content>
+    }
+
+    @if (status) {
+        <span class="nx-avatar-status" [ngClass]="status"></span>
+    }
+
+</span>

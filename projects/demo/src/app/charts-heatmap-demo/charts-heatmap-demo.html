@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Heatmap Chart</h4>
+                <p class="main-section-description">
+                    A row/column matrix where magnitude is encoded as a single-hue, light-to-dark color
+                    scale - never a rainbow. Hover or focus a cell for its exact value, or switch to the
+                    accessible table view, which is the data's natural shape anyway.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Activity by day and time"
+                description="rows and columns are plain string arrays; data[rowIndex][columnIndex] holds the matrix."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-heatmap-chart [rows]="days" [columns]="slots" [data]="activity"></nx-heatmap-chart>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

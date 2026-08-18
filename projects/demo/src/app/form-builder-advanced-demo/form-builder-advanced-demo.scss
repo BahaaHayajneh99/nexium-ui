@@ -1,0 +1,34 @@
+.demo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 480px;
+}
+
+.demo-members {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.demo-member-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+
+
+.demo-error {
+    color: #e74c3c;
+    font-size: 13px;
+    margin: -8px 0 0;
+}
+
+.demo-summary {
+    font-size: 14px;
+    color: #6c757d;
+}

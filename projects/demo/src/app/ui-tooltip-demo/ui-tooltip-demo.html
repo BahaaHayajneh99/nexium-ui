@@ -1,0 +1,24 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Tooltip"
+                description="Attach the nxTooltip directive to any element to show a tooltip on hover."
+                [code]="basicCode">
+                <button class="demo-btn" nxTooltip="This is a tooltip">Hover me</button>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Tooltip Positions"
+                description="Control where the tooltip appears using nxTooltipPosition."
+                [code]="positionsCode">
+                <button class="demo-btn" nxTooltip="Top tooltip" nxTooltipPosition="top">Top</button>
+                <button class="demo-btn" nxTooltip="Bottom tooltip" nxTooltipPosition="bottom">Bottom</button>
+                <button class="demo-btn" nxTooltip="Left tooltip" nxTooltipPosition="left">Left</button>
+                <button class="demo-btn" nxTooltip="Right tooltip" nxTooltipPosition="right">Right</button>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Key-Value List"
+                description="A label/value definition list for order summaries, profile details, or any other set of facts."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-key-value-list [items]="orderDetails"></nx-key-value-list>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Stacked"
+                description="Set layout to stacked to put the value on its own line below the key - useful for longer values."
+                [code]="stackedCode"
+                [hasSampleClass]="false">
+                <nx-key-value-list [items]="orderDetails" layout="stacked"></nx-key-value-list>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Breadcrumb"
+                description="The {{ commonService.appName }} Breadcrumb shows the current page's location within a navigational hierarchy."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-breadcrumb [items]="items"></nx-breadcrumb>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Separator"
+                description="Override the default separator character."
+                [code]="separatorCode"
+                [tsCode]="separatorTs">
+                <nx-breadcrumb [items]="items" separator=">"></nx-breadcrumb>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

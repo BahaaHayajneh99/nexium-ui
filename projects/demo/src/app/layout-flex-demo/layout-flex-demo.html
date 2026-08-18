@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Row"
+                description="The full flexbox API - direction, align, justify, wrap and gap - for one-off layout needs beyond nx-stack's simpler defaults."
+                [code]="rowCode"
+                [hasSampleClass]="false">
+
+                <nx-flex justify="between" align="center" [gap]="12">
+                    <div class="layout-demo-box">Left</div>
+                    <div class="layout-demo-box layout-demo-box-alt">Right</div>
+                </nx-flex>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Column"
+                description="Set direction to column for a vertical flex layout."
+                [code]="columnCode"
+                [hasSampleClass]="false">
+
+                <nx-flex direction="column" [gap]="8">
+                    <div class="layout-demo-box">First</div>
+                    <div class="layout-demo-box">Second</div>
+                    <div class="layout-demo-box">Third</div>
+                </nx-flex>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

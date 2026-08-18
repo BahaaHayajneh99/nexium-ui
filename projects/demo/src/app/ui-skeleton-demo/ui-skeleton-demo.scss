@@ -1,0 +1,38 @@
+.shapes-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card-skeleton {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.card-skeleton-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-demo-frame {
+    margin-top: 12px;
+    width: 260px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.nx-sidebar-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.nx-sidebar-skeleton-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

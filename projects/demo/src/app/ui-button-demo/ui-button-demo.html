@@ -1,0 +1,161 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Button"
+                description="The basic {{ commonService.appName }} Button provides a simple and consistent way to trigger actions, submit forms, and handle user interactions."
+                [code]="basicCode">
+
+                <nx-button variant="primary">
+                    Primary Button
+                </nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Button Variants"
+                description="{{ commonService.appName }} provides multiple button variants for different actions and UI scenarios."
+                [code]="variantsCode">
+
+                <nx-button variant="primary">Primary</nx-button>
+                <nx-button variant="secondary">Secondary</nx-button>
+                <nx-button variant="success">Success</nx-button>
+                <nx-button variant="danger">Danger</nx-button>
+                <nx-button variant="warning">Warning</nx-button>
+                <nx-button variant="info">Info</nx-button>
+                <nx-button variant="dark">Dark</nx-button>
+                <nx-button variant="light">Light</nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Outline Button"
+                description="Outline buttons use a transparent background with a border style."
+                [code]="outlineCode">
+
+                <nx-button variant="outline">
+                    Outline Button
+                </nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Flat Button"
+                description="Flat buttons provide a lightweight style without background elevation."
+                [code]="flatCode">
+
+                <nx-button variant="flat">
+                    Flat Button
+                </nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Ghost Button"
+                description="Ghost buttons have transparent backgrounds and highlight on interaction."
+                [code]="ghostCode">
+
+                <nx-button variant="ghost">
+                    Ghost Button
+                </nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Disabled Button"
+                description="Disabled buttons prevent user interaction when an action is unavailable."
+                [code]="disabledCode">
+
+                <nx-button variant="primary" [disabled]="true">
+                    Disabled Button
+                </nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Raised Button"
+                description="Raised buttons add elevation to highlight important actions."
+                [code]="raisedCode">
+
+                <nx-button variant="primary" [raised]="true">
+                    Raised Button
+                </nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Icon Button"
+                description="Icon buttons are compact buttons designed for icon-based actions."
+                [code]="iconCode">
+
+                <nx-button variant="ghost" [icon]="true">
+                    <nx-icon icon="nx-settings" variant="svg"></nx-icon>
+                </nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Floating Action Button"
+                description="FAB buttons are circular buttons commonly used for primary actions."
+                [code]="fabCode">
+
+                <nx-button variant="primary" [fab]="true"> 
+                    <nx-icon icon="nx-plus" variant="svg"></nx-icon> 
+                </nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Button Sizes"
+                description="{{ commonService.appName }} buttons support small, medium, and large sizes."
+                [code]="sizesCode">
+
+                <nx-button size="small">Small</nx-button>
+                <nx-button size="medium">Medium</nx-button>
+                <nx-button size="large">Large</nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Full Width Button"
+                description="Full width buttons expand to fill the available container width."
+                [code]="fullWidthCode">
+
+                <nx-button variant="primary" [fullWidth]="true">
+                    Full Width Button
+                </nx-button>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Rounded Button"
+                description="Rounded buttons have a circular shape for a modern look."
+                [code]="roundedCode">
+
+                <nx-button variant="primary" rounded>
+                    Rounded Button
+                </nx-button>
+
+            </app-demo-section>
+
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+<div class="nx-dropdown-wrapper">
+    <div class="nx-dropdown-trigger" [class.disabled]="disabled" (click)="toggle()">
+        <ng-content select="[nx-dropdown-trigger]"></ng-content>
+    </div>
+
+    @if (open) {
+        <nx-menu class="nx-dropdown-panel" [class.right]="position === 'right'" [items]="items" (itemSelect)="onSelect($event)"></nx-menu>
+    }
+</div>

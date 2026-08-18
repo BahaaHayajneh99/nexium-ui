@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Doughnut Chart</h4>
+                <p class="main-section-description">
+                    A part-to-whole chart with a hollow center reserved for the total. It's the same
+                    <code>nx-pie-chart</code> component from the Pie Chart page with <code>innerRadius</code> set
+                    wider - kept as its own page here since a doughnut is what most people reach for by name.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Wide ring"
+                description="A larger innerRadius leaves more room for the centered total - good when the aggregate number matters most."
+                [code]="wideCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-pie-chart [data]="planUsage" [innerRadius]="0.75"></nx-pie-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Narrow ring"
+                description="A smaller innerRadius gives each slice more visual weight while still keeping the total legible."
+                [code]="narrowCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-pie-chart [data]="planUsage" [innerRadius]="0.45"></nx-pie-chart>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

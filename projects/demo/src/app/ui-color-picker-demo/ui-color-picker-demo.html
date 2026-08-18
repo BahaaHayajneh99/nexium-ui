@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Color Picker"
+                description="A swatch + hex field trigger opens a panel with quick presets, a native color input for precise picking, and a hex text field."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-color-picker label="Brand color" [(value)]="brandColor"></nx-color-picker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Presets"
+                description="Pass your own preset swatches - useful for constraining choices to a brand or chart palette."
+                [code]="customPresetsCode"
+                [tsCode]="customPresetsTs"
+                [hasSampleClass]="false">
+                <nx-color-picker label="Chart series color" [presets]="customPresets" [(value)]="customPresetColor"></nx-color-picker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Invalid"
+                description="Set invalid to true to highlight the field with an error state."
+                [code]="invalidCode"
+                [hasSampleClass]="false">
+                <nx-color-picker label="Required color" [invalid]="true" [(value)]="invalidColor"></nx-color-picker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Disabled color pickers cannot be interacted with."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-color-picker label="Disabled color" [disabled]="true" value="#adb5bd"></nx-color-picker>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="nx-chart">
+
+    <button type="button" class="nx-chart-table-toggle" (click)="toggleTable()">
+        {{ showTable ? 'View as chart' : 'View as table' }}
+    </button>
+
+    @if (!showTable) {
+        <div class="nx-chart-canvas nx-radar-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (level of ringLevels; track level) {
+                    <path class="nx-chart-radar-ring" [attr.d]="ringPath(level)"></path>
+                }
+
+                @for (category of categories; track category; let i = $index) {
+                    <line
+                        class="nx-chart-radar-spoke"
+                        x1="150" y1="150"
+                        [attr.x2]="spokePoint(i).x"
+                        [attr.y2]="spokePoint(i).y">
+                    </line>
+                    <text
+                        class="nx-chart-axis-label"
+                        [attr.text-anchor]="labelAnchor(i)"
+                        [attr.x]="labelPoint(i).x"
+                        [attr.y]="labelPoint(i).y">
+                        {{ category }}
+                    </text>
+                }
+
+                @for (s of series; track s.name; let seriesIndex = $index) {
+                    <path
+                        class="nx-chart-radar-area"
+                        [attr.d]="seriesPath(s)"
+                        [attr.fill]="seriesColorAt(s, seriesIndex)"
+                        [attr.stroke]="seriesColorAt(s, seriesIndex)">
+                    </path>
+
+                    @for (point of points(s, seriesIndex); track point.axisIndex) {
+                        <circle
+                            class="nx-chart-radar-point"
+                            [class.nx-chart-radar-point-hovered]="hovered === point"
+                            [attr.cx]="point.x"
+                            [attr.cy]="point.y"
+                            r="3"
+                            [attr.fill]="point.color"
+                            tabindex="0"
+                            role="img"
+                            [attr.aria-label]="categories[point.axisIndex] + ', ' + seriesNameAt(seriesIndex) + ': ' + formatValue(point.value)"
+                            (pointerenter)="onPointEnter(point)"
+                            (pointerleave)="onPointLeave()"
+                            (focus)="onPointEnter(point)"
+                            (blur)="onPointLeave()">
+                        </circle>
+                    }
+                }
+
+            </svg>
+
+            @if (hovered) {
+                <div class="nx-chart-tooltip" [style]="tooltipStyle">
+                    <div class="nx-chart-tooltip-category">{{ categories[hovered.axisIndex] }}</div>
+                    <div class="nx-chart-tooltip-row">
+                        <span class="nx-chart-tooltip-key" [style.background]="hovered.color"></span>
+                        <span class="nx-chart-tooltip-name">{{ seriesNameAt(hovered.seriesIndex) }}</span>
+                        <strong class="nx-chart-tooltip-value">{{ formatValue(hovered.value) }}</strong>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (hasLegend) {
+            <div class="nx-chart-legend">
+                @for (s of series; track s.name; let i = $index) {
+                    <div class="nx-chart-legend-item">
+                        <span class="nx-chart-legend-swatch" [style.background]="seriesColorAt(s, i)"></span>
+                        {{ s.name }}
+                    </div>
+                }
+            </div>
+        }
+    } @else {
+        <div class="nx-chart-table-wrap">
+            <table class="nx-chart-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        @for (s of series; track s.name) {
+                            <th>{{ s.name }}</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (category of categories; track category; let i = $index) {
+                        <tr>
+                            <th scope="row">{{ category }}</th>
+                            @for (s of series; track s.name) {
+                                <td>{{ formatTick(s.data[i] ?? 0) }}</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>

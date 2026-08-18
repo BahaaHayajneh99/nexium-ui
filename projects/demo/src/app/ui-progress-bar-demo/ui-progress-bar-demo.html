@@ -1,0 +1,117 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Progress Bar"
+                description="The basic {{ commonService.appName }} Progress Bar displays the completion progress of tasks, uploads, loading states, and processes."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+
+                <nx-progress-bar [value]="60">
+                </nx-progress-bar>
+
+            </app-demo-section>
+
+            <!-- Progress Bar Variants -->
+            <app-demo-section
+                header="Progress Bar Variants"
+                description="{{ commonService.appName }} provides multiple progress bar variants for different statuses and semantic meanings."
+                [code]="variantsCode"
+                [hasSampleClass]="false">
+
+                <nx-progress-bar variant="primary" [value]="70"></nx-progress-bar>
+                <br>
+                <nx-progress-bar variant="secondary" [value]="80"></nx-progress-bar>
+                <br>
+                <nx-progress-bar variant="success" [value]="90"></nx-progress-bar>
+                <br>
+                <nx-progress-bar variant="danger" [value]="40"></nx-progress-bar>
+                <br>
+                <nx-progress-bar variant="warning" [value]="60"></nx-progress-bar>
+                <br>
+                <nx-progress-bar variant="info" [value]="70"></nx-progress-bar>
+                <br>
+                <nx-progress-bar variant="dark" [value]="50"></nx-progress-bar>
+                <br>
+                <nx-progress-bar variant="light" [value]="30"></nx-progress-bar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Rounded Progress Bar"
+                description="Rounded progress bars use a pill-shaped design for modern loading indicators."
+                [code]="roundedCode"
+                [hasSampleClass]="false">
+
+                <nx-progress-bar rounded [value]="75"></nx-progress-bar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Progress Bar Sizes"
+                description="Progress bars support small, medium, and large sizes."
+                [code]="sizesCode"
+                [hasSampleClass]="false">
+
+                <nx-progress-bar size="small" [value]="40"></nx-progress-bar>
+                <br>
+                <nx-progress-bar size="medium" [value]="60"></nx-progress-bar>
+                <br>
+                <nx-progress-bar size="large" [value]="80"></nx-progress-bar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Progress With Label"
+                description="Progress labels display the current completion percentage."
+                [code]="labelCode"
+                [hasSampleClass]="false">
+
+                <nx-progress-bar showLabel [value]="65"></nx-progress-bar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Striped Progress Bar"
+                description="Striped progress bars provide a visual pattern for active processes."
+                [code]="stripedCode"
+                [hasSampleClass]="false">
+
+                <nx-progress-bar striped [value]="70"></nx-progress-bar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Animated Progress Bar"
+                description="Animated progress bars indicate ongoing operations and loading states."
+                [code]="animatedCode"
+                [hasSampleClass]="false">
+
+                <nx-progress-bar striped animated [value]="80"></nx-progress-bar>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Indeterminate Progress Bar"
+                description="Indeterminate mode is used when the progress amount is unknown."
+                [code]="indeterminateCode"
+                [hasSampleClass]="false">
+
+                <nx-progress-bar indeterminate></nx-progress-bar>
+
+            </app-demo-section>
+
+        </div>
+
+    </div>
+
+</div>

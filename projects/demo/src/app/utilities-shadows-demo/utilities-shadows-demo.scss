@@ -1,0 +1,35 @@
+@use '../variables.scss' as *;
+
+.shadow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: $spacing-xl;
+    margin-bottom: $spacing-lg;
+}
+
+.shadow-card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
+    text-align: center;
+}
+
+.shadow-card {
+    width: 100%;
+    height: 80px;
+    background: var(--shell-surface);
+    border-radius: $radius-md;
+}
+
+.shadow-class {
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-sm;
+    color: var(--shell-text);
+}
+
+.shadow-value {
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-xs;
+    color: var(--shell-text-muted);
+}

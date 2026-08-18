@@ -1,0 +1,71 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+            <app-demo-section header="Basic Carousel"
+                description="The basic {{ commonService.appName }} Carousel cycles through a list of slides with arrow and indicator navigation."
+                [code]="basicCode" [tsCode]="basicTs" [hasSampleClass]="false">
+
+                <nx-carousel [slides]="slides"></nx-carousel>
+
+            </app-demo-section>
+
+            <app-demo-section header="Captioned Slides"
+                description="Give a slide a caption to overlay a short label at the bottom of the image."
+                [code]="captionCode" [tsCode]="captionTs" [hasSampleClass]="false">
+
+                <nx-carousel [slides]="captionedSlides"></nx-carousel>
+
+            </app-demo-section>
+
+            <app-demo-section header="Autoplay"
+                description="Set autoplay with an [interval] (ms) to advance the carousel automatically; hovering pauses it."
+                [code]="autoplayCode" [hasSampleClass]="false">
+
+                <nx-carousel [slides]="slides" autoplay [interval]="3000"></nx-carousel>
+
+            </app-demo-section>
+
+            <app-demo-section header="Without Controls"
+                description="Hide the arrows and/or indicators for a minimal, autoplay-only presentation."
+                [code]="noControlsCode" [hasSampleClass]="false">
+
+                <nx-carousel [slides]="slides" [showArrows]="false" [showIndicators]="false" autoplay></nx-carousel>
+
+            </app-demo-section>
+
+            <app-demo-section header="Arbitrary Content"
+                description="Mark any projected element with *nxCarouselSlide to slide cards, video, or other custom content alongside (or instead of) image slides."
+                [code]="contentCode" [hasSampleClass]="false">
+
+                <nx-carousel [showIndicators]="true">
+                    <nx-card *nxCarouselSlide variant="elevated">
+                        <nx-card-header>
+                            <nx-card-title>Feature Highlight</nx-card-title>
+                        </nx-card-header>
+                        <nx-card-content>
+                            Any component can live inside a slide, not just images.
+                        </nx-card-content>
+                    </nx-card>
+                    <video *nxCarouselSlide controls muted>
+                        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+                    </video>
+                    <nx-card *nxCarouselSlide variant="outlined">
+                        <nx-card-header>
+                            <nx-card-title>Custom Markup</nx-card-title>
+                        </nx-card-header>
+                        <nx-card-content>
+                            Mix and match cards, video, or any other content type.
+                        </nx-card-content>
+                    </nx-card>
+                </nx-carousel>
+
+            </app-demo-section>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Grid"
+                description="A CSS grid wrapper with an even column count and consistent gap."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+
+                <nx-grid [cols]="4" [gap]="16">
+                    <div class="layout-demo-box">1</div>
+                    <div class="layout-demo-box">2</div>
+                    <div class="layout-demo-box">3</div>
+                    <div class="layout-demo-box">4</div>
+                </nx-grid>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Column Span"
+                description="Wrap a child in nx-grid-item to span multiple columns or rows."
+                [code]="spanCode"
+                [hasSampleClass]="false">
+
+                <nx-grid [cols]="4" [gap]="16">
+                    <nx-grid-item [colSpan]="2">
+                        <div class="layout-demo-box layout-demo-box-alt">Spans 2 columns</div>
+                    </nx-grid-item>
+                    <nx-grid-item>
+                        <div class="layout-demo-box">1</div>
+                    </nx-grid-item>
+                    <nx-grid-item>
+                        <div class="layout-demo-box">1</div>
+                    </nx-grid-item>
+                </nx-grid>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

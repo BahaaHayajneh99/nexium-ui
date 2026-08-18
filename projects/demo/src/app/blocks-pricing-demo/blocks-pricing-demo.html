@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Pricing"
+                description="A three-tier pricing table with one plan highlighted, built from nx-card, nx-badge and nx-button."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <div class="block-grid-3">
+                    @for (tier of tiers; track tier.name) {
+                        <nx-card
+                            variant="outlined"
+                            [hoverable]="true"
+                            [class.block-pricing-card-highlighted]="tier.highlighted">
+                            <nx-card-header>
+                                <div class="block-header" style="border-bottom: none; padding: 0;">
+                                    <nx-card-title>{{ tier.name }}</nx-card-title>
+                                    @if (tier.highlighted) {
+                                        <nx-badge variant="primary" size="small">Most Popular</nx-badge>
+                                    }
+                                </div>
+                                <nx-card-subtitle>{{ tier.description }}</nx-card-subtitle>
+                            </nx-card-header>
+
+                            <nx-card-content>
+                                <div class="block-price">
+                                    <span class="block-price-value">{{ tier.price }}</span>
+                                    <span class="block-price-period">{{ tier.period }}</span>
+                                </div>
+
+                                <ul class="block-feature-list">
+                                    @for (feature of tier.features; track feature) {
+                                        <li class="block-feature-item">
+                                            <nx-icon class="block-feature-check" icon="nx-check-circle" variant="svg" [size]="16"></nx-icon>
+                                            {{ feature }}
+                                        </li>
+                                    }
+                                </ul>
+                            </nx-card-content>
+
+                            <nx-card-footer>
+                                <nx-button [variant]="tier.variant" [fullWidth]="true">Choose {{ tier.name }}</nx-button>
+                            </nx-card-footer>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

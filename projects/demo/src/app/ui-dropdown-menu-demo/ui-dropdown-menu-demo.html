@@ -1,0 +1,21 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Dropdown Menu"
+                description="Any element marked nx-dropdown-trigger opens the menu on click; clicking outside or selecting an item closes it."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-dropdown-menu [items]="items" (itemSelect)="onSelect($event)">
+                    <nx-button nx-dropdown-trigger variant="secondary">Account</nx-button>
+                </nx-dropdown-menu>
+                @if (lastSelected) {
+                    <p class="template-form-note mt-2">Selected: {{ lastSelected }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

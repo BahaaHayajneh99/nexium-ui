@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Area Chart</h4>
+                <p class="main-section-description">
+                    Same anatomy as the line chart, with each series filled to the baseline as a soft
+                    10% wash so overlapping series stay readable.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Basic"
+                description="A single filled series - useful for emphasizing volume under a trend."
+                [code]="basicCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-area-chart [categories]="months" [series]="signups"></nx-area-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Multi-Series"
+                description="Overlaid (not stacked) fills - each wash stays legible where they overlap."
+                [code]="multiCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-area-chart [categories]="months" [series]="signupsByPlan"></nx-area-chart>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

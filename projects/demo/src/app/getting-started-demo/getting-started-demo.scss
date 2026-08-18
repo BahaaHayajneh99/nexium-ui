@@ -1,0 +1,17 @@
+@use '../variables.scss' as *;
+
+.gs-code {
+    background-color: $language-code-bg-color;
+    padding: 16px;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+
+    pre {
+        margin: 0;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        color: $text-white;
+        white-space: pre;
+    }
+}

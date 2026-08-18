@@ -1,0 +1,103 @@
+.nx-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, .45);
+    animation: nx-drawer-fade .2s ease;
+}
+
+.nx-drawer-panel {
+    position: fixed;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--shell-surface);
+    box-shadow: 0 0 32px rgba(0, 0, 0, .25);
+    animation-duration: .25s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+}
+
+.nx-drawer-panel.left {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    animation-name: nx-drawer-in-left;
+}
+
+.nx-drawer-panel.right {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    animation-name: nx-drawer-in-right;
+}
+
+.nx-drawer-panel.top {
+    top: 0;
+    left: 0;
+    right: 0;
+    animation-name: nx-drawer-in-top;
+}
+
+.nx-drawer-panel.bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    animation-name: nx-drawer-in-bottom;
+}
+
+.nx-drawer-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.nx-drawer-close:hover {
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text);
+}
+
+.nx-drawer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+@keyframes nx-drawer-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes nx-drawer-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes nx-drawer-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes nx-drawer-in-top {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes nx-drawer-in-bottom {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}

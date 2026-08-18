@@ -1,0 +1,61 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Dashboard"
+                description="A stats overview built from nx-card, nx-badge, nx-table and nx-progress-bar - the data below is static sample data."
+                [code]="statsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <div class="template-stats-grid">
+                        @for (stat of stats; track stat.label) {
+                            <nx-card variant="outlined">
+                                <nx-card-content>
+                                    <div class="template-stat-card">
+                                        <div>
+                                            <div class="template-stat-label">{{ stat.label }}</div>
+                                            <div class="template-stat-value">{{ stat.value }}</div>
+                                            <nx-badge [variant]="stat.trendVariant" size="small">{{ stat.trend }}</nx-badge>
+                                        </div>
+                                        <nx-icon class="template-stat-icon" [icon]="stat.icon" variant="svg" [size]="22"></nx-icon>
+                                    </div>
+                                </nx-card-content>
+                            </nx-card>
+                        }
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Recent Orders"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="tableCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="orders" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Storage"
+                description="A labeled progress bar for a single usage metric."
+                [code]="progressCode"
+                [hasSampleClass]="false">
+
+                <div class="p-4">
+                    <nx-progress-bar
+                        [value]="storageUsedPercent"
+                        variant="info"
+                        [showLabel]="true"
+                        label="{{ storageUsedPercent }}% of 100 GB used">
+                    </nx-progress-bar>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Menu</h4>
+                <p class="main-section-description">
+                    A plain vertical list of actionable items - the building block behind
+                    <code>nx-dropdown-menu</code>, <code>nx-context-menu</code> and <code>nx-menubar</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Basic"
+                description="Items support an icon, a disabled state, a danger (destructive) style, and dividers."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-menu [items]="items" (itemSelect)="onSelect($event)"></nx-menu>
+                @if (lastSelected) {
+                    <p class="template-form-note mt-2">Selected: {{ lastSelected }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

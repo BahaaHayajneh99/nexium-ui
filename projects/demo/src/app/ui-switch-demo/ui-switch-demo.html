@@ -1,0 +1,24 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Switch"
+                description="The {{ commonService.appName }} Switch toggles a boolean value on and off."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-switch label="Enable notifications" [(checked)]="notifications"></nx-switch>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled Switch"
+                description="Disabled switches cannot be toggled."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-switch label="Disabled switch" [disabled]="true"></nx-switch>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

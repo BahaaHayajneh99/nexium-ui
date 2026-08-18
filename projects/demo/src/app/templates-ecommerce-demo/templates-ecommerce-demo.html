@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Product Grid"
+                description="Product cards built from nx-card, nx-badge and nx-button."
+                [code]="productCode"
+                [hasSampleClass]="false">
+
+                <div class="block-grid-3">
+                    @for (product of products; track product.name) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <div class="block-hero-media" style="height: 140px; margin-bottom: 1rem;">Image placeholder</div>
+                                <div class="template-profile-name">{{ product.name }}</div>
+                                <strong>{{ product.price }}</strong>
+                                <div class="mt-2">
+                                    <nx-badge [variant]="product.stockVariant" size="small">{{ product.stockLabel }}</nx-badge>
+                                </div>
+                            </nx-card-content>
+                            <nx-card-footer>
+                                <nx-button variant="primary">Add to Cart</nx-button>
+                            </nx-card-footer>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Recent Orders"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="ordersCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="orders" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

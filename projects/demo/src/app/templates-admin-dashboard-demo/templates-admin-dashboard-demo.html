@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Admin Dashboard"
+                description="System-level stats built from nx-card, nx-badge and nx-icon - the data below is static sample data."
+                [code]="statsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <div class="template-stats-grid">
+                        @for (stat of stats; track stat.label) {
+                            <nx-card variant="outlined">
+                                <nx-card-content>
+                                    <div class="template-stat-card">
+                                        <div>
+                                            <div class="template-stat-label">{{ stat.label }}</div>
+                                            <div class="template-stat-value">{{ stat.value }}</div>
+                                            <nx-badge [variant]="stat.trendVariant" size="small">{{ stat.trend }}</nx-badge>
+                                        </div>
+                                        <nx-icon class="template-stat-icon" [icon]="stat.icon" variant="svg" [size]="22"></nx-icon>
+                                    </div>
+                                </nx-card-content>
+                            </nx-card>
+                        }
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Active Users"
+                description="An nx-line-chart tracking a single metric over time."
+                [code]="trafficCode"
+                [hasSampleClass]="false">
+
+                <nx-line-chart [categories]="months" [series]="trafficSeries"></nx-line-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Audit Log"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="tableCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="auditLog" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Hero Sections</h4>
+                <p class="main-section-description">
+                    The first thing a visitor sees - a headline, a supporting line and one or two calls
+                    to action. Two common layouts below.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Centered"
+                description="A headline, a supporting line and two calls to action, all centered on the page."
+                [code]="centeredCode"
+                [hasSampleClass]="false">
+
+                <div class="block-preview">
+                    <div class="block-hero">
+                        <span class="block-eyebrow">Introducing {{ commonService.appName }}</span>
+                        <h2 class="block-heading">Build interfaces without fighting your UI library</h2>
+                        <p class="block-subheading">
+                            A standalone Angular component set with no CDK dependency, built on tokens you
+                            can actually read and override.
+                        </p>
+                        <div class="block-actions">
+                            <nx-button variant="primary" size="large">Get Started</nx-button>
+                            <nx-button variant="secondary" size="large">View on GitHub</nx-button>
+                        </div>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Split"
+                description="Copy on one side, an image or illustration on the other - reflows to a single column on small screens."
+                [code]="splitCode"
+                [hasSampleClass]="false">
+
+                <div class="block-preview">
+                    <div class="block-hero-split">
+                        <div>
+                            <span class="block-eyebrow">For Angular teams</span>
+                            <h2 class="block-heading">Ship consistent UI without a design team</h2>
+                            <p class="block-subheading">
+                                Every component reads from the same color, spacing and typography tokens,
+                                so your app looks intentional by default.
+                            </p>
+                            <div class="block-actions">
+                                <nx-button variant="primary">Get Started</nx-button>
+                                <nx-button variant="text">Learn more</nx-button>
+                            </div>
+                        </div>
+                        <div class="block-hero-media">Image placeholder</div>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

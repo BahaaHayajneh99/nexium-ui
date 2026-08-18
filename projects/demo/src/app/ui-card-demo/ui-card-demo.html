@@ -1,0 +1,172 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Card"
+                description="The basic {{ commonService.appName }} Card provides a flexible container for grouping related content, information, and actions in a structured layout."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+
+                <nx-card>
+                    <nx-card-content>
+                        Basic Card Content
+                    </nx-card-content>
+                </nx-card>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Card Header"
+                description="Card header provides a dedicated area for displaying titles and additional information."
+                [code]="headerCode"
+                [hasSampleClass]="false">
+
+                <nx-card>
+                    <nx-card-header>
+                        <nx-card-title>
+                            Card Title
+                        </nx-card-title>
+                    </nx-card-header>
+                </nx-card>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Card Image"
+                description="Card image provides a visual representation or illustration related to the card content."
+                [code]="imageCode"
+                [hasSampleClass]="false">
+
+                <nx-card [ngStyle]="{'width':'350px'}">
+                    <nx-card-image>
+                        <img src="../assets/images/logo.png" alt="logo">
+                    </nx-card-image>
+                    <nx-card-header>
+                        <nx-card-title>
+                            {{ commonService.appName }} Card
+                        </nx-card-title>
+                    </nx-card-header>
+                    <nx-card-content>
+                        Build reusable Angular components
+                        with {{ commonService.appName }}.
+                    </nx-card-content>
+                </nx-card>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Card Subtitle"
+                description="Card subtitle provides secondary information below the main title."
+                [code]="subtitleCode"
+                [hasSampleClass]="false">
+
+                <nx-card>
+                    <nx-card-header>
+                        <nx-card-title>
+                            {{ commonService.appName }} Card
+                        </nx-card-title>
+                        <nx-card-subtitle>
+                            Angular Component Library
+                        </nx-card-subtitle>
+                    </nx-card-header>
+                </nx-card>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Complete Card"
+                description="A complete card combines header, title, subtitle, content, actions, and footer to create a complete information component."
+                [code]="completeCode"
+                [hasSampleClass]="false">
+
+                <nx-card [ngStyle]="{'width':'350px'}">
+                    <nx-card-image>
+                        <img src="../assets/images/logo.png" alt="logo">
+                    </nx-card-image>
+                    <nx-card-header>
+                        <nx-card-title>
+                            {{ commonService.appName }} Card
+                        </nx-card-title>
+                        <nx-card-subtitle>
+                            Enterprise Angular UI Library
+                        </nx-card-subtitle>
+                    </nx-card-header>
+
+                    <nx-card-content>
+                        Build reusable Angular components
+                        with {{ commonService.appName }}.
+                    </nx-card-content>
+
+                    <nx-card-actions>
+                        <nx-button>Save</nx-button>
+                        <nx-button variant="secondary">Cancel</nx-button>
+                    </nx-card-actions>
+
+                    <nx-card-footer>
+                        {{ commonService.appName }} v1.0
+                    </nx-card-footer>
+                </nx-card>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Card Variants"
+                description="{{ commonService.appName }} Card supports different visual styles including flat, outlined, and elevated variants."
+                [code]="variantsCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="flat">
+                    Flat Card
+                </nx-card>
+
+                <nx-card variant="outlined">
+                    Outlined Card
+                </nx-card>
+
+                <nx-card variant="elevated">
+                    Elevated Card
+                </nx-card>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Hoverable Card"
+                description="Hoverable cards add an interaction effect when the user moves over the card."
+                [code]="hoverableCode"
+                [hasSampleClass]="false">
+
+                <nx-card [hoverable]="true">
+                    Hoverable Card
+                </nx-card>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Card Sizes"
+                description="{{ commonService.appName }} Card supports different sizes including small, medium, and large."
+                [code]="sizesCode"
+                [hasSampleClass]="false">
+
+                <nx-card size="small">Small Card</nx-card>
+                <nx-card size="medium">Medium Card</nx-card>
+                <nx-card size="large">Large Card</nx-card>
+
+            </app-demo-section>
+
+
+        </div>
+
+    </div>
+
+</div>

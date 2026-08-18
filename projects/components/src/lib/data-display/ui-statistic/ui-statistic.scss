@@ -1,0 +1,49 @@
+.nx-statistic {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-statistic-label {
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-statistic-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--shell-text);
+    line-height: 1.2;
+}
+
+.nx-statistic-affix {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-statistic-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    width: fit-content;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nx-statistic-delta.good {
+    color: #0ca30c;
+}
+
+.nx-statistic-delta.bad {
+    color: #d03b3b;
+}
+
+.nx-statistic-delta.neutral {
+    color: var(--shell-text-muted);
+}
+
+.nx-statistic-arrow {
+    font-size: 14px;
+    line-height: 1;
+}

@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic List"
+                description="The basic {{ commonService.appName }} List renders a set of items from a data array."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-list [items]="items"></nx-list>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Bordered List"
+                description="Bordered lists add an outline and dividers between items."
+                [code]="borderedCode"
+                [tsCode]="borderedTs">
+                <nx-list [items]="items" bordered></nx-list>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Hoverable List"
+                description="Hoverable lists highlight items on hover and emit an event when clicked."
+                [code]="hoverableCode"
+                [tsCode]="hoverableTs">
+                <nx-list [items]="items" bordered hoverable (itemClick)="onItemClick($event)"></nx-list>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+@for (position of positions; track position) {
+    @if (toastsFor(position).length) {
+        <div class="nx-toast-container" [ngClass]="position" role="status" aria-live="polite" aria-atomic="false">
+            @for (toast of toastsFor(position); track toast.id) {
+                <div class="nx-toast" [ngClass]="toast.variant">
+                    <span>{{ toast.message }}</span>
+                    <button type="button" class="nx-toast-close" (click)="dismiss(toast.id)">×</button>
+                </div>
+            }
+        </div>
+    }
+}

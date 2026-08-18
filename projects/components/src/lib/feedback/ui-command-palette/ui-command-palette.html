@@ -1,0 +1,35 @@
+@if (open) {
+    <div class="nx-command-backdrop" (click)="onBackdropClick()"></div>
+
+    <div class="nx-command-panel" (click)="$event.stopPropagation()">
+        <input
+            #searchInput
+            type="text"
+            class="nx-command-input"
+            [placeholder]="placeholder"
+            [value]="query"
+            (input)="onQueryChange($event)"
+            autofocus />
+
+        <div class="nx-command-list">
+            @for (item of filtered; track item.id; let i = $index) {
+                @if (item.group && isFirstInGroup(i)) {
+                    <div class="nx-command-group">{{ item.group }}</div>
+                }
+                <button
+                    type="button"
+                    class="nx-command-item"
+                    [class.active]="i === activeIndex"
+                    (mouseenter)="activeIndex = i"
+                    (click)="select(item)">
+                    <span>{{ item.label }}</span>
+                    @if (item.shortcut) {
+                        <kbd class="nx-command-shortcut">{{ item.shortcut }}</kbd>
+                    }
+                </button>
+            } @empty {
+                <div class="nx-command-empty">No matching commands.</div>
+            }
+        </div>
+    </div>
+}

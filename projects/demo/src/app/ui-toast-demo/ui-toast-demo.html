@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Toast"
+                description="Inject NxToastService and call show() to display toast notifications."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <button class="demo-btn" (click)="showSuccess()">Success</button>
+                <button class="demo-btn" (click)="showDanger()">Danger</button>
+                <button class="demo-btn" (click)="showWarning()">Warning</button>
+                <button class="demo-btn" (click)="showInfo()">Info</button>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Toast Position"
+                description="Pass a position as the 4th argument to show() to control where the toast appears."
+                [code]="positionCode">
+                <button class="demo-btn" (click)="showAt('top-left')">Top Left</button>
+                <button class="demo-btn" (click)="showAt('top-center')">Top Center</button>
+                <button class="demo-btn" (click)="showAt('top-right')">Top Right</button>
+                <button class="demo-btn" (click)="showAt('bottom-left')">Bottom Left</button>
+                <button class="demo-btn" (click)="showAt('bottom-center')">Bottom Center</button>
+                <button class="demo-btn" (click)="showAt('bottom-right')">Bottom Right</button>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>
+
+<nx-toast-container></nx-toast-container>

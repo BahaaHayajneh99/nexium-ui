@@ -1,0 +1,74 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.nx-timeline-item {
+    position: relative;
+    display: flex;
+    gap: $spacing-md;
+    padding-bottom: $spacing-lg;
+
+    &:last-child {
+        padding-bottom: 0;
+
+        .nx-timeline-marker::after {
+            display: none;
+        }
+    }
+}
+
+.nx-timeline-marker {
+    position: relative;
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    margin-top: 4px;
+    border-radius: $radius-round;
+    background-color: var(--shell-primary);
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 16px;
+        left: 50%;
+        width: 2px;
+        height: calc(100% + #{$spacing-lg} - 12px);
+        transform: translateX(-50%);
+        background-color: $border-color;
+    }
+
+    &.secondary { background-color: $secondary-color; }
+    &.success { background-color: $success-color; }
+    &.danger { background-color: $danger-color; }
+    &.warning { background-color: $warning-color; }
+    &.info { background-color: $info-color; }
+}
+
+.nx-timeline-content {
+    flex: 1;
+}
+
+.nx-timeline-header {
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-sm;
+}
+
+.nx-timeline-title {
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.nx-timeline-time {
+    font-size: $font-size-xs;
+    color: var(--shell-text-secondary);
+}
+
+.nx-timeline-description {
+    margin-top: $spacing-xs;
+    color: var(--shell-text-secondary);
+    font-size: $font-size-sm;
+}

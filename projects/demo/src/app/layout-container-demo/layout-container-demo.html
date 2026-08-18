@@ -1,0 +1,29 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Container"
+                description="A centered, max-width wrapper with responsive inline padding - the outermost primitive most page layouts start from."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+
+                <nx-container maxWidth="md">
+                    <div class="layout-demo-box">Centered content, max-width 768px</div>
+                </nx-container>
+
+            </app-demo-section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Max Width Scale</h4>
+                <p class="main-section-description">
+                    <code>sm</code> 640px &middot; <code>md</code> 768px &middot; <code>lg</code> 1024px
+                    (default) &middot; <code>xl</code> 1280px &middot; <code>xxl</code> 1536px &middot;
+                    <code>full</code> no limit. Set <code>padded</code> to <code>false</code> to remove
+                    the inline padding.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</div>

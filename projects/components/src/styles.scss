@@ -1,0 +1,1490 @@
+@use './variables.scss' as *;
+
+// ===============================
+// Theme Colors as CSS Custom Properties
+// (kept in sync with variables.scss so TS/JS can read them via var(--...))
+// ===============================
+:root {
+    --primary-color: #{$primary-color};
+    --primary-color-dark: #{$primary-color-dark};
+    --primary-color-light: #{$primary-color-light};
+
+    --secondary-color: #{$secondary-color};
+    --secondary-color-dark: #{$secondary-color-dark};
+    --secondary-color-light: #{$secondary-color-light};
+
+    --success-color: #{$success-color};
+    --success-color-dark: #{$success-color-dark};
+
+    --danger-color: #{$danger-color};
+    --danger-color-dark: #{$danger-color-dark};
+
+    --warning-color: #{$warning-color};
+    --warning-color-dark: #{$warning-color-dark};
+
+    --info-color: #{$info-color};
+    --info-color-dark: #{$info-color-dark};
+
+    --white-color: #{$white-color};
+    --black-color: #{$black-color};
+
+    --gray-50: #{$gray-50};
+    --gray-100: #{$gray-100};
+    --gray-200: #{$gray-200};
+    --gray-300: #{$gray-300};
+    --gray-400: #{$gray-400};
+    --gray-500: #{$gray-500};
+    --gray-600: #{$gray-600};
+    --gray-700: #{$gray-700};
+    --gray-800: #{$gray-800};
+    --gray-900: #{$gray-900};
+
+    --text-primary: #{$text-primary};
+    --text-secondary: #{$text-secondary};
+    --text-disabled: #{$text-disabled};
+    --text-white: #{$text-white};
+
+    --border-color: #{$border-color};
+    --border-hover-color: #{$border-hover-color};
+}
+
+// ===============================
+// Shell Theme
+// Drives the docs app chrome (nav, page background/headings) and is being
+// adopted incrementally by individual components — a component only responds
+// to the dark toggle once its own styles are converted to these variables.
+// ===============================
+:root {
+    --shell-bg: #{$white-color};
+    --shell-surface: #{$white-color};
+    --shell-surface-hover: #{$gray-100};
+    --shell-border: #{$gray-200};
+    --shell-text: #{$gray-900};
+    --shell-text-secondary: #{$gray-700};
+    --shell-text-muted: #{$gray-500};
+    --shell-scrollbar-thumb: #{$gray-400};
+    --shell-primary: #{$primary-color};
+    // Full rgba() value (not a bare color) for callers that need to control
+    // alpha themselves, e.g. a loading spinner's translucent backdrop —
+    // rgba(var(--shell-surface), .7) doesn't work since rgba() needs numeric
+    // R/G/B components, not a hex custom property.
+    --shell-overlay: rgba(255, 255, 255, .7);
+}
+
+:root[data-theme='dark'] {
+    --shell-bg: #17191c;
+    --shell-surface: #1e2126;
+    --shell-surface-hover: #282c33;
+    --shell-border: #33383f;
+    --shell-text: #e8eaed;
+    --shell-text-secondary: #b8bcc2;
+    --shell-text-muted: #82878f;
+    --shell-scrollbar-thumb: #454b54;
+    --shell-overlay: rgba(0, 0, 0, .7);
+}
+
+// ===============================
+// Chart Theme
+// Categorical series + status colors for the nx-*-chart components. These are
+// a validated palette in their own right (see the dataviz skill) - NOT the
+// same values as the brand/status tokens above, which fail CVD-safety checks
+// when used as an adjacent categorical sequence. Order is the safety
+// mechanism: keep the slot order when picking colors for a chart's series,
+// never re-sort or cycle it.
+// Status colors (good/warning/serious/critical) are fixed - same in both
+// themes - and are reserved for state, never reused as a series color.
+// ===============================
+:root {
+    --chart-series-1: var(--shell-primary);
+    --chart-series-2: #eb6834;
+    --chart-series-3: #1baf7a;
+    --chart-series-4: #eda100;
+    --chart-series-5: #e87ba4;
+    --chart-series-6: #008300;
+    --chart-series-7: #4a3aa7;
+    --chart-series-8: #e34948;
+
+    --chart-good: #0ca30c;
+    --chart-warning: #fab219;
+    --chart-serious: #ec835a;
+    --chart-critical: #d03b3b;
+}
+
+:root[data-theme='dark'] { 
+    --chart-series-1: var(--shell-primary);
+    --chart-series-2: #d95926;
+    --chart-series-3: #199e70;
+    --chart-series-4: #c98500;
+    --chart-series-5: #d55181;
+    --chart-series-6: #008300;
+    --chart-series-7: #9085e9;
+    --chart-series-8: #e66767;
+}
+
+body {
+    background-color: var(--shell-bg);
+    color: var(--shell-text);
+    transition: background-color $transition-normal, color $transition-normal;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: $font-family;
+}
+
+// ===============================
+// Margin Top
+// ===============================
+.mt-1 {
+    margin-top: $spacing-xs;
+}
+
+.mt-2 {
+    margin-top: $spacing-sm;
+}
+
+.mt-3 {
+    margin-top: $spacing-md;
+}
+
+.mt-4 {
+    margin-top: $spacing-lg;
+}
+
+.mt-5 {
+    margin-top: $spacing-xl;
+}
+
+
+// ===============================
+// Margin Bottom
+// ===============================
+.mb-1 {
+    margin-bottom: $spacing-xs;
+}
+
+.mb-2 {
+    margin-bottom: $spacing-sm;
+}
+
+.mb-3 {
+    margin-bottom: $spacing-md;
+}
+
+.mb-4 {
+    margin-bottom: $spacing-lg;
+}
+
+.mb-5 {
+    margin-bottom: $spacing-xl;
+}
+
+
+// ===============================
+// Margin Right
+// ===============================
+.mr-1 {
+    margin-right: $spacing-xs;
+}
+
+.mr-2 {
+    margin-right: $spacing-sm;
+}
+
+.mr-3 {
+    margin-right: $spacing-md;
+}
+
+.mr-4 {
+    margin-right: $spacing-lg;
+}
+
+.mr-5 {
+    margin-right: $spacing-xl;
+}
+
+
+// ===============================
+// Margin Left
+// ===============================
+.ml-1 {
+    margin-left: $spacing-xs;
+}
+
+.ml-2 {
+    margin-left: $spacing-sm;
+}
+
+.ml-3 {
+    margin-left: $spacing-md;
+}
+
+.ml-4 {
+    margin-left: $spacing-lg;
+}
+
+.ml-5 {
+    margin-left: $spacing-xl;
+}
+
+
+// ===============================
+// Margin X (Left + Right)
+// ===============================
+.mx-1 {
+    margin-left: $spacing-xs;
+    margin-right: $spacing-xs;
+}
+
+.mx-2 {
+    margin-left: $spacing-sm;
+    margin-right: $spacing-sm;
+}
+
+.mx-3 {
+    margin-left: $spacing-md;
+    margin-right: $spacing-md;
+}
+
+.mx-4 {
+    margin-left: $spacing-lg;
+    margin-right: $spacing-lg;
+}
+
+.mx-5 {
+    margin-left: $spacing-xl;
+    margin-right: $spacing-xl;
+}
+
+
+// ===============================
+// Margin Y (Top + Bottom)
+// ===============================
+.my-1 {
+    margin-top: $spacing-xs;
+    margin-bottom: $spacing-xs;
+}
+
+.my-2 {
+    margin-top: $spacing-sm;
+    margin-bottom: $spacing-sm;
+}
+
+.my-3 {
+    margin-top: $spacing-md;
+    margin-bottom: $spacing-md;
+}
+
+.my-4 {
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-lg;
+}
+
+.my-5 {
+    margin-top: $spacing-xl;
+    margin-bottom: $spacing-xl;
+}
+
+
+// ===============================
+// Margin All
+// ===============================
+.m-1 {
+    margin: $spacing-xs;
+}
+
+.m-2 {
+    margin: $spacing-sm;
+}
+
+.m-3 {
+    margin: $spacing-md;
+}
+
+.m-4 {
+    margin: $spacing-lg;
+}
+
+.m-5 {
+    margin: $spacing-xl;
+}
+
+
+
+// ===============================
+// Padding Top
+// ===============================
+.pt-1 {
+    padding-top: $spacing-xs;
+}
+
+.pt-2 {
+    padding-top: $spacing-sm;
+}
+
+.pt-3 {
+    padding-top: $spacing-md;
+}
+
+.pt-4 {
+    padding-top: $spacing-lg;
+}
+
+.pt-5 {
+    padding-top: $spacing-xl;
+}
+
+
+// ===============================
+// Padding Bottom
+// ===============================
+.pb-1 {
+    padding-bottom: $spacing-xs;
+}
+
+.pb-2 {
+    padding-bottom: $spacing-sm;
+}
+
+.pb-3 {
+    padding-bottom: $spacing-md;
+}
+
+.pb-4 {
+    padding-bottom: $spacing-lg;
+}
+
+.pb-5 {
+    padding-bottom: $spacing-xl;
+}
+
+
+// ===============================
+// Padding Right
+// ===============================
+.pr-1 {
+    padding-right: $spacing-xs;
+}
+
+.pr-2 {
+    padding-right: $spacing-sm;
+}
+
+.pr-3 {
+    padding-right: $spacing-md;
+}
+
+.pr-4 {
+    padding-right: $spacing-lg;
+}
+
+.pr-5 {
+    padding-right: $spacing-xl;
+}
+
+
+// ===============================
+// Padding Left
+// ===============================
+.pl-1 {
+    padding-left: $spacing-xs;
+}
+
+.pl-2 {
+    padding-left: $spacing-sm;
+}
+
+.pl-3 {
+    padding-left: $spacing-md;
+}
+
+.pl-4 {
+    padding-left: $spacing-lg;
+}
+
+.pl-5 {
+    padding-left: $spacing-xl;
+}
+
+
+// ===============================
+// Padding X
+// ===============================
+.px-1 {
+    padding-left: $spacing-xs;
+    padding-right: $spacing-xs;
+}
+
+.px-2 {
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
+}
+
+.px-3 {
+    padding-left: $spacing-md;
+    padding-right: $spacing-md;
+}
+
+.px-4 {
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+}
+
+.px-5 {
+    padding-left: $spacing-xl;
+    padding-right: $spacing-xl;
+}
+
+
+// ===============================
+// Padding Y
+// ===============================
+.py-1 {
+    padding-top: $spacing-xs;
+    padding-bottom: $spacing-xs;
+}
+
+.py-2 {
+    padding-top: $spacing-sm;
+    padding-bottom: $spacing-sm;
+}
+
+.py-3 {
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+}
+
+.py-4 {
+    padding-top: $spacing-lg;
+    padding-bottom: $spacing-lg;
+}
+
+.py-5 {
+    padding-top: $spacing-xl;
+    padding-bottom: $spacing-xl;
+}
+
+
+// ===============================
+// Padding All
+// ===============================
+.p-1 {
+    padding: $spacing-xs;
+}
+
+.p-2 {
+    padding: $spacing-sm;
+}
+
+.p-3 {
+    padding: $spacing-md;
+}
+
+.p-4 {
+    padding: $spacing-lg;
+}
+
+.p-5 {
+    padding: $spacing-xl;
+}
+
+
+
+// ===============================
+// Gap
+// ===============================
+.gap-1 {
+    gap: $spacing-xs;
+}
+
+.gap-2 {
+    gap: $spacing-sm;
+}
+
+.gap-3 {
+    gap: $spacing-md;
+}
+
+.gap-4 {
+    gap: $spacing-lg;
+}
+
+.gap-5 {
+    gap: $spacing-xl;
+}
+
+
+// ===============================
+// Row Gap
+// ===============================
+.row-gap-1 {
+    row-gap: $spacing-xs;
+}
+
+.row-gap-2 {
+    row-gap: $spacing-sm;
+}
+
+.row-gap-3 {
+    row-gap: $spacing-md;
+}
+
+.row-gap-4 {
+    row-gap: $spacing-lg;
+}
+
+.row-gap-5 {
+    row-gap: $spacing-xl;
+}
+
+
+// ===============================
+// Column Gap
+// ===============================
+.column-gap-1 {
+    column-gap: $spacing-xs;
+}
+
+.column-gap-2 {
+    column-gap: $spacing-sm;
+}
+
+.column-gap-3 {
+    column-gap: $spacing-md;
+}
+
+.column-gap-4 {
+    column-gap: $spacing-lg;
+}
+
+.column-gap-5 {
+    column-gap: $spacing-xl;
+}
+
+// Horizontal spacing
+.gx-1 {
+    column-gap: $spacing-xs;
+}
+
+.gx-2 {
+    column-gap: $spacing-sm;
+}
+
+.gx-3 {
+    column-gap: $spacing-md;
+}
+
+.gx-4 {
+    column-gap: $spacing-lg;
+}
+
+.gx-5 {
+    column-gap: $spacing-xl;
+}
+
+
+// Vertical spacing
+.gy-1 {
+    row-gap: $spacing-xs;
+}
+
+.gy-2 {
+    row-gap: $spacing-sm;
+}
+
+.gy-3 {
+    row-gap: $spacing-md;
+}
+
+.gy-4 {
+    row-gap: $spacing-lg;
+}
+
+.gy-5 {
+    row-gap: $spacing-xl;
+}
+
+// ===============================
+// Text Color
+// ===============================
+.text-primary {
+    color: $primary-color;
+}
+
+.text-secondary {
+    color: $secondary-color;
+}
+
+.text-success {
+    color: $success-color;
+}
+
+.text-danger {
+    color: $danger-color;
+}
+
+.text-warning {
+    color: $warning-color;
+}
+
+.text-info {
+    color: $info-color;
+}
+
+.text-white {
+    color: $white-color;
+}
+
+.text-muted {
+    color: var(--shell-text-muted);
+}
+
+
+// ===============================
+// Background Color
+// ===============================
+.bg-primary {
+    background-color: $primary-color;
+}
+
+.bg-secondary {
+    background-color: $secondary-color;
+}
+
+.bg-success {
+    background-color: $success-color;
+}
+
+.bg-danger {
+    background-color: $danger-color;
+}
+
+.bg-warning {
+    background-color: $warning-color;
+}
+
+.bg-info {
+    background-color: $info-color;
+}
+
+.bg-white {
+    background-color: $white-color;
+}
+
+
+// ===============================
+// Font Size
+// ===============================
+.fs-xs {
+    font-size: $font-size-xs;
+}
+
+.fs-sm {
+    font-size: $font-size-sm;
+}
+
+.fs-md {
+    font-size: $font-size-md;
+}
+
+.fs-lg {
+    font-size: $font-size-lg;
+}
+
+.fs-xl {
+    font-size: $font-size-xl;
+}
+
+.fs-2xl {
+    font-size: $font-size-2xl;
+}
+
+.fs-3xl {
+    font-size: $font-size-3xl;
+}
+
+
+// ===============================
+// Font Weight
+// ===============================
+.fw-light {
+    font-weight: $font-weight-light;
+}
+
+.fw-normal {
+    font-weight: $font-weight-normal;
+}
+
+.fw-medium {
+    font-weight: $font-weight-medium;
+}
+
+.fw-semibold {
+    font-weight: $font-weight-semibold;
+}
+
+.fw-bold {
+    font-weight: $font-weight-bold;
+}
+
+
+// ===============================
+// Border Radius
+// ===============================
+.radius-xs {
+    border-radius: $radius-xs;
+}
+
+.radius-sm {
+    border-radius: $radius-sm;
+}
+
+.radius-md {
+    border-radius: $radius-md;
+}
+
+.radius-lg {
+    border-radius: $radius-lg;
+}
+
+.radius-xl {
+    border-radius: $radius-xl;
+}
+
+.radius-round {
+    border-radius: $radius-round;
+}
+
+
+// ===============================
+// Shadow
+// ===============================
+.shadow-xs {
+    box-shadow: $shadow-xs;
+}
+
+.shadow-sm {
+    box-shadow: $shadow-sm;
+}
+
+.shadow-md {
+    box-shadow: $shadow-md;
+}
+
+.shadow-lg {
+    box-shadow: $shadow-lg;
+}
+
+.shadow-xl {
+    box-shadow: $shadow-xl;
+}
+
+.main-content {
+    margin-top: 24px;
+}
+
+.main-container {
+    // max-width: 1200px;
+    // margin: 0 auto;
+    padding: 0 16px;
+}
+
+.main-section {
+    margin-bottom: 48px;
+}
+
+
+.main-section-header {
+    font-size: $h2-font-size;
+    color: var(--shell-primary);
+    margin-bottom: 1rem;
+}
+
+.main-section-description {
+    font-size: $font-size;
+    color: var(--shell-text-secondary);
+    margin-bottom: 2rem;
+}
+
+
+.main-section-code {
+    background-color: $language-code-bg-color;
+    border: 1px solid var(--shell-border);
+    padding: 16px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    overflow-x: auto;
+    letter-spacing: 2px;
+    white-space: pre;
+}
+
+// Shared plain-code block for content-only pages (Getting Started, Guide, About).
+.gs-code {
+    background-color: $language-code-bg-color;
+    border: 1px solid var(--shell-border);
+    padding: 16px;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+
+    pre {
+        margin: 0;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        color: $text-white;
+        white-space: pre;
+    }
+}
+
+.main-section-code-tabs {
+    display: flex;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-sm;
+    letter-spacing: normal;
+}
+
+.main-section-code-toolbar {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    letter-spacing: normal;
+}
+
+.main-section-code-copy {
+    background: transparent;
+    border: 1px solid $gray-600;
+    color: $gray-400;
+    border-radius: $radius-sm;
+    padding: 4px 12px;
+    margin-bottom: $spacing-sm;
+    margin-left: auto;
+    font-family: $font-family;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $transition-fast;
+    white-space: nowrap;
+
+    &:hover {
+        color: $white-color;
+        border-color: $gray-400;
+    }
+}
+
+
+.main-section-code-tab {
+    background: transparent;
+    border: 1px solid $gray-600;
+    color: $gray-400;
+    border-radius: $radius-sm;
+    padding: 4px 12px;
+    font-family: $font-family;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+        color: $white-color;
+        border-color: $gray-400;
+    }
+
+    &.active {
+        background: var(--shell-primary);
+        border-color: var(--shell-primary);
+        color: $white-color;
+    }
+}
+
+.language-html-selector {
+    color: $language-code-selector-color;
+}
+
+.language-html-prop {
+    color: $language-code-prop-color;
+}
+
+.language-html-prop-value {
+    color: $language-code-prop-value-color;
+}
+
+.language-html-text {
+    color: $language-code-text-color;
+}
+
+.language-html-comment {
+    color: $language-code-comment-color;
+}
+
+.language-ts-selector {
+    color: $language-code-ts-color;
+}
+
+.language-ts-keyword {
+    color: $language-ts-keyword-color;
+}
+
+.language-ts-string {
+    color: $language-ts-string-color;
+}
+
+.language-ts-import-path {
+    color: $language-ts-import-path-color;
+}
+
+.language-ts-decorator {
+    color: $language-ts-decorator-color;
+}
+
+.language-ts-class-name {
+    color: $language-ts-class-name-color;
+}
+
+.language-ts-prop {
+    color: $language-ts-prop-color;
+}
+
+.language-ts-comment {
+    color: $language-code-comment-color;
+}
+
+// Component previews are intentionally light-only (see Shell Theme above) —
+// many components render with a transparent background and assume a light
+// page behind them, which broke down once the shell itself could go dark.
+.demo-preview {
+    background-color: var(--shell-bg);
+}
+
+.main-section-code-sample {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-sm;
+    margin-top: $spacing-sm;
+}
+
+.gap-prop {
+    margin-right: 8px;
+}
+
+.demo-btn {
+    padding: 8px 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #ffffff;
+    cursor: pointer;
+    font-size: 14px;
+    align-self: flex-start;
+}
+
+.demo-btn-primary {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.demo-btn-remove {
+    background-color: #ffffff;
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+
+// ===============================
+// Templates & Blocks preview shell
+// Shared layout primitives for the Templates and Blocks gallery pages, so
+// individual page/section components don't each need their own stylesheet.
+// ===============================
+.template-preview,
+.block-preview {
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-md;
+    overflow: hidden;
+}
+
+.template-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-xl $spacing-md;
+}
+
+.template-card {
+    width: 100%;
+    max-width: 420px;
+}
+
+.template-card-wide {
+    width: 100%;
+    max-width: 720px;
+}
+
+.template-form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+}
+
+.template-form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+}
+
+.template-form-note {
+    font-size: $font-size-sm;
+    color: var(--shell-text-muted);
+}
+
+.template-footnote {
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+    text-align: center;
+}
+
+.template-link {
+    color: var(--shell-primary);
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.template-illustration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
+    text-align: center;
+    max-width: 360px;
+}
+
+.template-illustration-icon {
+    color: var(--shell-text-muted);
+    margin-bottom: $spacing-sm;
+}
+
+.template-illustration-title {
+    font-size: $h4-font-size;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.template-illustration-text {
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+}
+
+.template-illustration-code {
+    font-size: $h1-font-size;
+    font-weight: $font-weight-bold;
+    color: var(--shell-text-muted);
+}
+
+.block-section {
+    padding: $spacing-xl $spacing-lg;
+}
+
+.block-eyebrow {
+    display: inline-block;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--shell-primary);
+    margin-bottom: $spacing-sm;
+}
+
+.block-heading {
+    font-size: $h2-font-size;
+    font-weight: $font-weight-bold;
+    color: var(--shell-text);
+    margin-bottom: $spacing-sm;
+}
+
+.block-subheading {
+    font-size: $font-size-lg;
+    color: var(--shell-text-secondary);
+    max-width: 560px;
+}
+
+.block-actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+    flex-wrap: wrap;
+}
+
+.block-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-xl;
+
+    @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+// ===============================
+// Layout primitives demos - a generic placeholder box to visualize
+// container/grid/flex/stack behaviour without real content.
+// ===============================
+.layout-demo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-md;
+    min-height: 56px;
+    border-radius: $radius-md;
+    background: color-mix(in srgb, var(--shell-primary) 10%, transparent);
+    color: var(--shell-primary);
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-align: center;
+}
+
+.layout-demo-box-alt {
+    background: rgba($success-color, .1);
+    color: $success-color;
+}
+
+.block-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.template-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-lg;
+    width: 100%;
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 500px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.template-stat-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.template-stat-icon {
+    color: var(--shell-primary);
+}
+
+.template-stat-value {
+    font-size: $h3-font-size;
+    font-weight: $font-weight-bold;
+    color: var(--shell-text);
+    margin: $spacing-xs 0;
+}
+
+.template-stat-label {
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+}
+
+.template-profile-header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+}
+
+.template-profile-name {
+    font-size: $h4-font-size;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.template-setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-md;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid var(--shell-border);
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.template-setting-title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.template-setting-desc {
+    font-size: $font-size-xs;
+    color: var(--shell-text-secondary);
+}
+
+
+// ===============================
+// Blocks gallery - headers, footers, pricing, features, testimonials
+// ===============================
+.block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-lg;
+    padding: $spacing-md $spacing-lg;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.block-header-logo {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: var(--shell-text);
+}
+
+.block-header-nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+}
+
+.block-header-link {
+    color: var(--shell-text-secondary);
+    text-decoration: none;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+
+    &:hover {
+        color: var(--shell-primary);
+    }
+}
+
+.block-footer {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: $spacing-xl;
+    padding: $spacing-xl $spacing-lg;
+
+    @media (max-width: 700px) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.block-footer-col-title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+    margin-bottom: $spacing-sm;
+}
+
+.block-footer-link {
+    display: block;
+    color: var(--shell-text-secondary);
+    text-decoration: none;
+    font-size: $font-size-sm;
+    padding: $spacing-xs 0;
+
+    &:hover {
+        color: var(--shell-primary);
+    }
+}
+
+.block-footer-bottom {
+    padding: $spacing-md $spacing-lg;
+    border-top: 1px solid var(--shell-border);
+    text-align: center;
+    font-size: $font-size-xs;
+    color: var(--shell-text-muted);
+}
+
+.block-pricing-card-highlighted {
+    border: 2px solid var(--shell-primary) !important;
+}
+
+.block-price {
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-xs;
+    margin: $spacing-md 0;
+}
+
+.block-price-value {
+    font-size: $h2-font-size;
+    font-weight: $font-weight-bold;
+    color: var(--shell-text);
+}
+
+.block-price-period {
+    font-size: $font-size-sm;
+    color: var(--shell-text-muted);
+}
+
+.block-feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    margin: $spacing-md 0;
+}
+
+.block-feature-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+}
+
+.block-feature-check {
+    color: $success-color;
+    flex-shrink: 0;
+}
+
+.block-feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    background: color-mix(in srgb, var(--shell-primary) 10%, transparent);
+    color: var(--shell-primary);
+    margin-bottom: $spacing-md;
+}
+
+.block-feature-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+    margin-bottom: $spacing-xs;
+}
+
+.block-feature-text {
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+}
+
+.block-testimonial-quote {
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+    margin-bottom: $spacing-md;
+}
+
+.block-testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+}
+
+.block-testimonial-name {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.block-testimonial-role {
+    font-size: $font-size-xs;
+    color: var(--shell-text-muted);
+}
+
+.block-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: $spacing-xl * 1.5 $spacing-lg;
+}
+
+.block-hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $spacing-xl * 1.5 $spacing-lg;
+}
+
+.block-hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: $spacing-xl;
+    padding: $spacing-xl $spacing-lg;
+    text-align: left;
+
+    @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+.block-hero-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    border-radius: $radius-md;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--shell-primary) 15%, transparent), color-mix(in srgb, var(--shell-primary) 4%, transparent));
+    color: var(--shell-text-muted);
+    font-size: $font-size-sm;
+}
+
+.block-cta-colored {
+    background: linear-gradient(135deg, var(--shell-primary), $primary-color-dark); 
+    padding: $spacing-md;
+    .block-heading,
+    .block-subheading {
+        color: $white-color;
+    }
+}
+
+
+// ===============================
+// Shared reference-list rows - a label + description pair, used across
+// Guide/Utilities/Installation/Accessibility content pages for anything
+// tabular that doesn't warrant a full <table>.
+// ===============================
+.utility-list {
+    margin-bottom: $spacing-lg;
+}
+
+.utility-row {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-sm 0;
+    border-bottom: 1px solid var(--shell-border);
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.utility-class {
+    flex: 0 0 200px;
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.utility-desc {
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+} 

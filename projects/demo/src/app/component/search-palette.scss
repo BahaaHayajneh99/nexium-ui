@@ -1,0 +1,110 @@
+@use '../variables.scss' as *;
+
+.search-palette-backdrop {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 12vh;
+    background: rgba(0, 0, 0, .5);
+    z-index: $z-overlay;
+}
+
+.search-palette {
+    width: 100%;
+    max-width: 560px;
+    max-height: 60vh;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-lg;
+    box-shadow: $shadow-xl;
+    overflow: hidden;
+}
+
+.search-palette-input {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    border-bottom: 1px solid var(--shell-border);
+    color: var(--shell-text-muted);
+
+    input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: var(--shell-text);
+        font-size: $font-size-md;
+        font-family: inherit;
+
+        &::placeholder {
+            color: var(--shell-text-muted);
+        }
+    }
+}
+
+.search-palette-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: $radius-sm;
+    background: transparent;
+    color: var(--shell-text-muted);
+    cursor: pointer;
+
+    &:hover {
+        background: var(--shell-surface-hover);
+        color: var(--shell-text);
+    }
+}
+
+.search-palette-results {
+    overflow-y: auto;
+    padding: $spacing-sm;
+}
+
+.search-palette-empty {
+    padding: $spacing-md;
+    text-align: center;
+    color: var(--shell-text-muted);
+    font-size: $font-size-sm;
+}
+
+.search-palette-group {
+    margin-bottom: $spacing-sm;
+
+    h5 {
+        padding: $spacing-xs $spacing-sm;
+        font-size: $font-size-xs;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        font-weight: $font-weight-bold;
+        color: var(--shell-text-muted);
+    }
+}
+
+.search-palette-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: $spacing-sm;
+    border: none;
+    border-radius: $radius-md;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: $font-size-sm;
+    font-family: inherit;
+    cursor: pointer;
+
+    &.active {
+        background: var(--shell-surface-hover);
+        color: var(--shell-primary);
+    }
+}

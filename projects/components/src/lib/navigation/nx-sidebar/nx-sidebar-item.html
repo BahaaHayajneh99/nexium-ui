@@ -1,0 +1,37 @@
+<div class="nx-sidebar-item" [class.collapsed]="collapsed">
+
+    @if (item.link && !hasChildren) {
+        <a class="nx-sidebar-link"
+           [routerLink]="item.link"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: !!item.exact }">
+            @if (item.icon) {
+                <nx-icon class="nx-sidebar-icon" [icon]="item.icon" variant="svg" [size]="18"></nx-icon>
+            }
+            @if (!collapsed) {
+                <span class="nx-sidebar-label">{{ item.label }}</span>
+            }
+        </a>
+    } @else {
+        <button type="button" class="nx-sidebar-link nx-sidebar-toggle" (click)="toggle()">
+            @if (item.icon) {
+                <nx-icon class="nx-sidebar-icon" [icon]="item.icon" variant="svg" [size]="18"></nx-icon>
+            }
+            @if (!collapsed) {
+                <span class="nx-sidebar-label">{{ item.label }}</span>
+            }
+            @if (hasChildren && !collapsed) {
+                <nx-icon class="nx-sidebar-chevron" [class.expanded]="expanded" icon="nx-chevron-right" variant="svg" [size]="14"></nx-icon>
+            }
+        </button>
+    }
+
+    @if (hasChildren && (expanded || collapsed)) {
+        <div class="nx-sidebar-children">
+            @for (child of item.children; track child.label) {
+                <nx-sidebar-item [item]="child"></nx-sidebar-item>
+            }
+        </div>
+    }
+
+</div>

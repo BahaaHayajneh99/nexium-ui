@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Navbar"
+                description="Brand, links and actions slots in a responsive header - below 768px it collapses to a hamburger toggle. Resize the window (or view on mobile) to see it."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-navbar>
+                    <span nx-navbar-brand>{{ commonService.appName }}</span>
+                    <ng-container nx-navbar-links>
+                        <a href="#">Product</a>
+                        <a href="#">Docs</a>
+                        <a href="#">Pricing</a>
+                    </ng-container>
+                    <nx-button nx-navbar-actions variant="primary" size="small">Sign Up</nx-button>
+                </nx-navbar>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

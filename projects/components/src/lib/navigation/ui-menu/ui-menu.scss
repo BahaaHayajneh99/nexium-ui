@@ -1,0 +1,51 @@
+.nx-menu {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    padding: 6px;
+}
+
+.nx-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color .15s ease;
+}
+
+.nx-menu-item:hover:not(:disabled) {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-menu-item:disabled {
+    color: var(--shell-text-muted);
+    cursor: not-allowed;
+}
+
+.nx-menu-item.danger {
+    color: #e74c3c;
+}
+
+.nx-menu-item-icon {
+    flex-shrink: 0;
+    color: var(--shell-text-secondary);
+}
+
+.nx-menu-item.danger .nx-menu-item-icon {
+    color: #e74c3c;
+}
+
+.nx-menu-divider {
+    height: 1px;
+    margin: 6px 4px;
+    background-color: var(--shell-border);
+}

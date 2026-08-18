@@ -1,0 +1,82 @@
+<div class="nx-chart">
+
+    <button type="button" class="nx-chart-table-toggle" (click)="toggleTable()">
+        {{ showTable ? 'View as chart' : 'View as table' }}
+    </button>
+
+    @if (!showTable) {
+        <div class="nx-chart-canvas nx-pie-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (slice of slices; track slice.datum.label) {
+                    <path
+                        class="nx-chart-slice"
+                        [class.nx-chart-slice-hovered]="hoveredIndex === slice.index"
+                        [attr.d]="slice.path"
+                        [attr.fill]="slice.color"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="slice.datum.label + ': ' + slice.datum.value + ' (' + formatPercent(slice.percent) + ')'"
+                        (pointerenter)="onSliceEnter(slice.index)"
+                        (pointerleave)="onSliceLeave()"
+                        (focus)="onSliceEnter(slice.index)"
+                        (blur)="onSliceLeave()">
+                    </path>
+                }
+
+                @if (isDonut) {
+                    <text class="nx-chart-donut-total" text-anchor="middle" x="150" y="146">
+                        {{ formatValue(total) }}
+                    </text>
+                    <text class="nx-chart-donut-caption" text-anchor="middle" x="150" y="164">
+                        Total
+                    </text>
+                }
+            </svg>
+
+            @if (hoveredSlice) {
+                <div class="nx-chart-tooltip" [style]="tooltipStyle">
+                    <div class="nx-chart-tooltip-row">
+                        <span class="nx-chart-tooltip-key" [style.background]="hoveredSlice.color"></span>
+                        <span class="nx-chart-tooltip-name">{{ hoveredSlice.datum.label }}</span>
+                        <strong class="nx-chart-tooltip-value">{{ formatValue(hoveredSlice.datum.value) }}</strong>
+                    </div>
+                    <div class="nx-chart-tooltip-percent">{{ formatPercent(hoveredSlice.percent) }} of total</div>
+                </div>
+            }
+        </div>
+
+        @if (hasLegend) {
+            <div class="nx-chart-legend">
+                @for (slice of slices; track slice.datum.label) {
+                    <div class="nx-chart-legend-item">
+                        <span class="nx-chart-legend-swatch" [style.background]="slice.color"></span>
+                        {{ slice.datum.label }}
+                    </div>
+                }
+            </div>
+        }
+    } @else {
+        <div class="nx-chart-table-wrap">
+            <table class="nx-chart-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Value</th>
+                        <th>Share</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (slice of slices; track slice.datum.label) {
+                        <tr>
+                            <th scope="row">{{ slice.datum.label }}</th>
+                            <td>{{ formatValue(slice.datum.value) }}</td>
+                            <td>{{ formatPercent(slice.percent) }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>

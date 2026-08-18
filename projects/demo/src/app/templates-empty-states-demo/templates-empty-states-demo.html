@@ -1,0 +1,28 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Empty States"
+                description="A friendly placeholder for the moment before there's any data - a search with no matches, an empty inbox, an empty cart."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <div class="block-grid-2">
+                    @for (state of states; track state.title) {
+                        <div class="template-preview">
+                            <div class="template-illustration">
+                                <nx-icon class="template-illustration-icon" [icon]="state.icon" variant="svg" [size]="40"></nx-icon>
+                                <div class="template-illustration-title">{{ state.title }}</div>
+                                <p class="template-illustration-text">{{ state.text }}</p>
+                                <nx-button variant="secondary">{{ state.actionLabel }}</nx-button>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

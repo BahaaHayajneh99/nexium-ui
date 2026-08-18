@@ -1,0 +1,63 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-stepper {
+    display: flex;
+    align-items: center;
+}
+
+.nx-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xs;
+    cursor: pointer;
+}
+
+.nx-step-circle {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $radius-round;
+    border: 2px solid var(--shell-border);
+    color: var(--shell-text-secondary);
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    background-color: var(--shell-surface);
+    transition: background-color $transition-fast, border-color $transition-fast, color $transition-fast;
+}
+
+.nx-step-label {
+    font-size: $font-size-xs;
+    color: var(--shell-text-secondary);
+    white-space: nowrap;
+}
+
+.nx-step.active .nx-step-circle {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-step.active .nx-step-label {
+    color: var(--shell-text);
+    font-weight: $font-weight-medium;
+}
+
+.nx-step.completed .nx-step-circle {
+    background-color: $success-color;
+    border-color: $success-color;
+    color: $text-white;
+}
+
+.nx-step-connector {
+    flex: 1;
+    height: 2px;
+    min-width: 24px;
+    background-color: var(--shell-border);
+    margin: 0 $spacing-xs;
+
+    &.completed {
+        background-color: $success-color;
+    }
+}

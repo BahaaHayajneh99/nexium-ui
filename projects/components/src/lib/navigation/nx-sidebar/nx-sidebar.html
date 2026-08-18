@@ -1,0 +1,32 @@
+<aside class="nx-sidebar" [class.collapsed]="collapsed">
+
+    <div class="nx-sidebar-header" [class.collapsed]="collapsed">
+        @if (!collapsed) {
+            <ng-content select="[nx-sidebar-header]"></ng-content>
+        }
+        <button
+            type="button"
+            class="nx-sidebar-collapse-toggle"
+            (click)="toggleCollapsed()"
+            [attr.aria-label]="collapsed ? 'Expand sidebar' : 'Collapse sidebar'">
+            <nx-icon
+                class="nx-sidebar-collapse-icon"
+                [class.rotated]="collapsed"
+                icon="nx-chevron-right"
+                variant="svg"
+                [size]="16">
+            </nx-icon>
+        </button>
+    </div>
+
+    <nav class="nx-sidebar-nav" [class.collapsed]="collapsed">
+        @for (item of items; track item.label) {
+            <nx-sidebar-item [item]="item" [collapsed]="collapsed"></nx-sidebar-item>
+        }
+    </nav>
+
+    <div class="nx-sidebar-footer">
+        <ng-content select="[nx-sidebar-footer]"></ng-content>
+    </div>
+
+</aside>

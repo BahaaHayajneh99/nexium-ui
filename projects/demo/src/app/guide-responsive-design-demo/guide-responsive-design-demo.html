@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Responsive Design</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} doesn't ship a grid system - components are built to sit inside whatever
+                    layout you already have, using relative units (<code>%</code>, <code>rem</code>,
+                    <code>flex</code>) so they resize naturally with their container.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Mobile-First Media Queries</h4>
+                <p class="main-section-description">
+                    Write base styles for the smallest screen first, then layer on
+                    <code>min-width</code> overrides as the viewport grows. See
+                    <code>Utilities &gt; Breakpoints</code> for the recommended cutoffs.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ mediaQueryCode }}</pre>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Flexible Components</h4>
+                <p class="main-section-description">
+                    Layout components like <code>nx-card</code>, <code>nx-tabs</code> and
+                    <code>nx-accordion</code> default to <code>width: 100%</code> of their parent, so
+                    reflow across breakpoints is handled by your grid/flex container rather than the
+                    component itself.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Testing Across Sizes</h4>
+                <p class="main-section-description">
+                    Use the browser's device toolbar (or resize the window) while the dark/light toggle
+                    in the top nav is on - most layout regressions show up as soon as a sidebar or table
+                    runs out of horizontal room.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</div>

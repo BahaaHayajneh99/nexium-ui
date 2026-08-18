@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Project Phase"
+                description="An nx-stepper showing where the active project sits in its lifecycle."
+                [code]="phasesCode"
+                [hasSampleClass]="false">
+
+                <nx-stepper [steps]="phases" [activeIndex]="activePhase"></nx-stepper>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Active Projects"
+                description="Each row pairs a labeled progress bar with a status badge - built from nx-card, nx-progress-bar and nx-badge."
+                [code]="projectsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    @for (project of projects; track project.name) {
+                        <nx-card variant="outlined" class="mb-3">
+                            <nx-card-content>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <div>
+                                        <div class="template-profile-name">{{ project.name }}</div>
+                                        <div class="template-stat-label">{{ project.owner }}</div>
+                                    </div>
+                                    <nx-badge [variant]="project.statusVariant" size="small">{{ project.statusLabel }}</nx-badge>
+                                </div>
+                                <nx-progress-bar
+                                    [value]="project.progress"
+                                    [variant]="project.statusVariant"
+                                    [showLabel]="true"
+                                    label="{{ project.progress }}%">
+                                </nx-progress-bar>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Verify Installation</h4>
+                <p class="main-section-description">
+                    Step 7 of 7. Drop this into any standalone component and confirm it renders styled -
+                    if the button below looks like a real button (not plain text), you're set up
+                    correctly.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ smokeTestCode }}</pre>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Live Check</h4>
+                <p class="main-section-description">
+                    This is the same markup, rendered live on this page right now.
+                </p>
+                <div class="demo-preview p-4">
+                    <nx-button variant="primary">It works</nx-button>
+                    <nx-badge variant="success" class="ml-3">Installed</nx-badge>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Checklist</h4>
+                <ul class="main-section-description">
+                    @for (item of checklist; track item) {
+                        <li>{{ item }}</li>
+                    }
+                </ul>
+            </section>
+
+        </div>
+    </div>
+</div>

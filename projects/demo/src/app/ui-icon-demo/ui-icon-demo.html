@@ -1,0 +1,57 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Icon"
+                description="Use nx-icon with any registered icon name. The 'svg' variant renders just the glyph, while the default 'icon' variant also shows the icon name as a label."
+                [code]="basicSvgCode">
+
+                <nx-icon icon="nx-facebook" variant="svg"></nx-icon>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Icon with Label"
+                description="The default 'icon' variant renders the icon alongside its name."
+                [code]="basicIconCode">
+
+                <nx-icon icon="nx-facebook"></nx-icon>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Icon Size"
+                description="Control the rendered dimensions with the size input (accepts a number in pixels or any CSS size string)."
+                [code]="sizeCode">
+
+                <nx-icon icon="nx-star" variant="svg" [size]="16"></nx-icon>
+                <nx-icon icon="nx-star" variant="svg" [size]="24"></nx-icon>
+                <nx-icon icon="nx-star" variant="svg" [size]="32"></nx-icon>
+                <nx-icon icon="nx-star" variant="svg" [size]="48"></nx-icon>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Icon Color"
+                description="Icons inherit currentColor, so the color input tints the glyph directly."
+                [code]="colorCode">
+
+                <nx-icon icon="nx-heart" variant="svg" color="#3498db"></nx-icon>
+                <nx-icon icon="nx-heart" variant="svg" color="#2ecc71"></nx-icon>
+                <nx-icon icon="nx-heart" variant="svg" color="#e67e22"></nx-icon>
+                <nx-icon icon="nx-heart" variant="svg" color="#e74c3c"></nx-icon>
+
+            </app-demo-section>
+
+        </div>
+
+    </div>
+
+</div>

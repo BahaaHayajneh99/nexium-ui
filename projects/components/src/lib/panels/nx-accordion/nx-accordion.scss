@@ -1,0 +1,185 @@
+@import '../../../../../demo/src/app/variables.scss';
+
+.nx-accordion {
+
+
+    background: var(--shell-surface);
+
+    border: 1px solid var(--shell-border);
+
+    border-radius: $radius-lg;
+
+    padding: $spacing-lg;
+
+    width: 100%;
+
+
+    // ======================================
+    // Default Accordion
+    // ======================================
+
+    &.nx-accordion-default {
+
+
+        background: var(--shell-surface);
+
+        border: 1px solid var(--shell-border);
+
+        border-radius: $radius-lg;
+
+        padding: $spacing-md;
+
+
+
+        .nx-accordion-item {
+
+            border-bottom: 1px solid var(--shell-border);
+
+
+            &:last-child {
+
+                border-bottom: none;
+
+            }
+
+        }
+
+    }
+
+
+
+
+
+    // ======================================
+    // Flat Accordion
+    // ======================================
+
+    &.nx-accordion-flat {
+
+
+        background: transparent;
+
+
+        border: none;
+
+
+
+        .nx-accordion-item {
+
+
+            background: var(--shell-surface-hover);
+
+
+            border-radius: $radius-sm;
+
+
+            margin-bottom: $spacing-xs; 
+
+            border: none; 
+        }
+
+    }
+
+}
+
+
+
+.nx-accordion-item {
+
+
+    border-bottom: 1px solid var(--shell-border);
+
+
+    &:last-child {
+
+        border-bottom: none;
+
+    }
+
+
+
+    .nx-accordion-header {
+
+
+        width: 100%;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+
+        padding: $spacing-md;
+
+
+        background: transparent;
+
+        border: none;
+
+
+        color: var(--shell-text);
+
+        font-size: $font-size-md;
+
+        font-weight: $font-weight-semibold;
+
+
+        cursor: pointer; 
+
+    }
+
+
+
+    .nx-accordion-body {
+
+
+        padding: 0 $spacing-md $spacing-md;
+
+
+        color: var(--shell-text-secondary);
+
+        font-size: $font-size-md;
+
+        line-height: $line-height;
+
+
+    }
+
+
+    .nx-accordion-icon {
+
+
+        .arrow {
+
+            display: inline-block;
+
+            width: 8px;
+
+            height: 8px;
+
+
+            border-right: 2px solid var(--shell-text-secondary);
+
+            border-bottom: 2px solid var(--shell-text-secondary);
+
+
+            transform: rotate(45deg);
+
+            transition: $transition-normal;
+
+
+        }
+
+
+
+        .arrow.open {
+
+            transform: rotate(225deg);
+
+        }
+
+
+    }
+
+}

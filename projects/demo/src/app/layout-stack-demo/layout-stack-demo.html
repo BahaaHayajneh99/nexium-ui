@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Vertical (default)"
+                description="A simple one-directional list with consistent spacing - the common case Stack optimizes for over the more general nx-flex."
+                [code]="verticalCode"
+                [hasSampleClass]="false">
+
+                <nx-stack [gap]="12">
+                    <div class="layout-demo-box">First</div>
+                    <div class="layout-demo-box">Second</div>
+                    <div class="layout-demo-box">Third</div>
+                </nx-stack>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Horizontal"
+                description="Set direction to horizontal for a row of evenly-spaced items."
+                [code]="horizontalCode"
+                [hasSampleClass]="false">
+
+                <nx-stack direction="horizontal" [gap]="12" align="center">
+                    <div class="layout-demo-box">First</div>
+                    <div class="layout-demo-box">Second</div>
+                    <div class="layout-demo-box">Third</div>
+                </nx-stack>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

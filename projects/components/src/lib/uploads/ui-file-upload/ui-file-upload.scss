@@ -1,0 +1,63 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-file-upload {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+}
+
+.nx-file-upload-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+    padding: $spacing-xl;
+    border: 2px dashed var(--shell-border);
+    border-radius: $radius-md;
+    cursor: pointer;
+    text-align: center;
+    transition: border-color $transition-fast, background-color $transition-fast;
+
+    &:hover,
+    &.dragging {
+        border-color: var(--shell-primary);
+        background-color: var(--shell-surface-hover);
+    }
+}
+
+.nx-file-upload-icon {
+    font-size: $h2-font-size;
+    color: var(--shell-primary);
+}
+
+.nx-file-upload-text {
+    color: var(--shell-text-secondary);
+    font-size: $font-size-sm;
+}
+
+.nx-file-upload-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+}
+
+.nx-file-upload-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-xs $spacing-sm;
+    background-color: var(--shell-surface-hover);
+    border-radius: $radius-sm;
+    font-size: $font-size-sm;
+    color: var(--shell-text);
+
+    button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: var(--shell-text-secondary);
+        font-size: $font-size-md;
+    }
+}

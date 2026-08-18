@@ -1,0 +1,36 @@
+@use '../variables.scss' as *;
+
+.type-scale {
+    margin-bottom: $spacing-lg;
+}
+
+.type-scale-row {
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-md;
+    padding: $spacing-sm 0;
+    border-bottom: 1px solid var(--shell-border);
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.type-scale-sample {
+    flex-shrink: 0;
+    width: 64px;
+    color: var(--shell-text);
+}
+
+.type-scale-name {
+    flex: 1;
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+}
+
+.type-scale-value {
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-sm;
+    color: var(--shell-text-muted);
+}

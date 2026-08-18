@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">FAQ</h4>
+                <p class="main-section-description">
+                    A frequently-asked-questions block built on <code>nx-accordion</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="FAQ accordion"
+                description="A frequently-asked-questions block built on nx-accordion."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-card-wide" style="margin: 0 auto;">
+                    <nx-accordion>
+                        @for (item of faqs; track item.q) {
+                            <nx-accordion-item>
+                                <nx-accordion-header>{{ item.q }}</nx-accordion-header>
+                                <nx-accordion-content>{{ item.a }}</nx-accordion-content>
+                            </nx-accordion-item>
+                        }
+                    </nx-accordion>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

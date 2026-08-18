@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Rich Text Editor</h4>
+                <p class="main-section-description">
+                    A hand-rolled WYSIWYG editor built on <code>contenteditable</code> - covers bold,
+                    italic, underline, strikethrough, headings, quotes, lists, links and undo/redo. It's
+                    not a structured-document editor with a custom schema or collaborative editing; for
+                    that, reach for a dedicated library.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Basic"
+                description="value is the editor's HTML content."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-rich-text-editor [(value)]="content"></nx-rich-text-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Disabled editors cannot be edited or formatted."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-rich-text-editor [value]="content" [disabled]="true"></nx-rich-text-editor>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

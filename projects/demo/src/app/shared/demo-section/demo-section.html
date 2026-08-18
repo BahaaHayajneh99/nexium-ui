@@ -1,0 +1,53 @@
+<section class="main-section">
+
+    <h4 class="main-section-header">
+        {{ header }}
+    </h4>
+
+    @if (description) {
+        <p class="main-section-description">
+            {{ description }}
+        </p>
+    }
+
+    <div class="main-section-code">
+        <div class="main-section-code-toolbar">
+            @if (tsCode) {
+                <div class="main-section-code-tabs">
+                    <button
+                        type="button"
+                        class="main-section-code-tab"
+                        [class.active]="activeTab === 'html'"
+                        (click)="selectTab('html')">
+                        HTML
+                    </button>
+                    <button
+                        type="button"
+                        class="main-section-code-tab"
+                        [class.active]="activeTab === 'ts'"
+                        (click)="selectTab('ts')">
+                        TS
+                    </button>
+                </div>
+            }
+
+            <button
+                type="button"
+                class="main-section-code-copy"
+                (click)="copyCode()">
+                {{ copied ? 'Copied!' : 'Copy' }}
+            </button>
+        </div>
+
+        @if (activeTab === 'html' || !tsCode) {
+            <code class="language-html-selector" [innerHTML]="highlightedCode"></code>
+        } @else {
+            <code class="language-ts-selector" [innerHTML]="highlightedTsCode"></code>
+        }
+    </div>
+
+    <div class="demo-preview" [ngClass]="{'main-section-code-sample': hasSampleClass,'mt-5': !hasSampleClass}">
+        <ng-content></ng-content>
+    </div>
+
+</section>

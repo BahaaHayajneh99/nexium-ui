@@ -1,0 +1,39 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Newsletter</h4>
+                <p class="main-section-description">
+                    An email capture block for signups or updates.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Email capture"
+                description="An email capture block for signups or updates."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="block-cta-colored block-preview">
+                    <h2 class="block-heading">Stay in the loop</h2>
+                    <p class="block-subheading">
+                        Get product updates and release notes delivered to your inbox. No spam, unsubscribe anytime.
+                    </p>
+                    <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+                        <nx-input
+                            placeholder="you@example.com"
+                            type="email"
+                            [(value)]="email"
+                            style="min-width: 260px;"
+                        ></nx-input>
+                        <nx-button variant="primary">Subscribe</nx-button>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

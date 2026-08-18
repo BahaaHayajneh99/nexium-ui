@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Overall Risk Score"
+                description="An nx-gauge-chart with status bands, so severity never rides on color alone."
+                [code]="gaugeCode"
+                [hasSampleClass]="false">
+
+                <nx-gauge-chart [value]="58" [min]="0" [max]="100" [bands]="riskBands" label="Overall Risk Score"></nx-gauge-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Risk Matrix"
+                description="A classic likelihood x impact heatmap - an nx-heatmap-chart with each axis a risk dimension."
+                [code]="matrixCode"
+                [hasSampleClass]="false">
+
+                <nx-heatmap-chart [rows]="likelihoodLevels" [columns]="impactLevels" [data]="riskMatrix"></nx-heatmap-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Risk Register"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="registerCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="register" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

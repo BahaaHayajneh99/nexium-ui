@@ -1,0 +1,39 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Breakpoints</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} doesn't generate breakpoint utility classes (there's no <code>.d-md-flex</code>
+                    equivalent) - components stay layout-agnostic and leave breakpoints to your app. The
+                    values below are the recommended cutoffs to stay consistent across a {{ commonService.appName }} project.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <div class="utility-list">
+                    @for (b of breakpoints; track b.name) {
+                        <div class="utility-row">
+                            <code class="utility-class">{{ b.name }}</code>
+                            <span class="utility-min">min-width: {{ b.minWidth }}</span>
+                            <span class="utility-desc">{{ b.target }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Usage</h4>
+                <p class="main-section-description">
+                    Write plain <code>min-width</code> media queries in your own stylesheets, mobile-first
+                    - see <code>Guide &gt; Responsive Design</code> for the reasoning.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ mediaQueryCode }}</pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

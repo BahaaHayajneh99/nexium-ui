@@ -1,0 +1,17 @@
+$main-nav-width: 300px;
+$main-content-width: calc(100% - #{$main-nav-width});
+$main-nav-content-gap: 16px;
+$padding-right-content: 100px;
+.main {
+    display: flex;
+    gap: $main-nav-content-gap;
+}
+
+.main-content-container {
+    width: $main-content-width;
+    padding-right: $padding-right-content;
+}
+
+.main-nav {
+    width: $main-nav-width;
+}

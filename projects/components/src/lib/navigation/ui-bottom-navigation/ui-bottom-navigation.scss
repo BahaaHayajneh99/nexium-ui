@@ -1,0 +1,32 @@
+.nx-bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 6px 4px;
+    background-color: var(--shell-surface);
+    border-top: 1px solid var(--shell-border);
+}
+
+.nx-bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+    padding: 6px 4px;
+    border: none;
+    background: transparent;
+    color: var(--shell-text-muted);
+    font-size: 11px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: color .15s ease;
+}
+
+.nx-bottom-nav-item:hover {
+    color: var(--shell-text-secondary);
+}
+
+.nx-bottom-nav-item.active {
+    color: var(--shell-primary);
+}

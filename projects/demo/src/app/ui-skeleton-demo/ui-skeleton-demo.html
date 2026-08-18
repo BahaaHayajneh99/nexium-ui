@@ -1,0 +1,98 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Skeleton"
+                description="The basic {{ commonService.appName }} Skeleton renders a single placeholder line while content is loading."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+
+                <nx-skeleton></nx-skeleton>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Multiple Lines"
+                description="Use [count] to repeat placeholder lines, useful for paragraphs of loading text."
+                [code]="linesCode"
+                [hasSampleClass]="false">
+
+                <nx-skeleton [count]="3"></nx-skeleton>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Shapes"
+                description="Skeletons support text, circle, and rect variants to mirror the shape of the content they replace."
+                [code]="variantsCode"
+                [hasSampleClass]="false">
+
+                <div class="shapes-row">
+                    <nx-skeleton variant="text" width="200px"></nx-skeleton>
+                    <nx-skeleton variant="circle" width="48px"></nx-skeleton>
+                    <nx-skeleton variant="rect" width="100%" height="120px"></nx-skeleton>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Card Placeholder"
+                description="Combine variants to mirror a real layout, like an avatar next to a couple of text lines."
+                [code]="cardCode"
+                [hasSampleClass]="false">
+
+                <div class="card-skeleton">
+                    <nx-skeleton variant="circle" width="40px"></nx-skeleton>
+                    <div class="card-skeleton-lines">
+                        <nx-skeleton variant="text" width="60%"></nx-skeleton>
+                        <nx-skeleton variant="text" width="90%"></nx-skeleton>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Static Skeleton"
+                description="Set [animated]=&quot;false&quot; to disable the shimmer, e.g. for reduced-motion preferences."
+                [code]="staticCode"
+                [hasSampleClass]="false">
+
+                <nx-skeleton [animated]="false"></nx-skeleton>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Skeleton For The Nav"
+                description="Mirror nx-sidebar's rows with circle + text skeletons while the nav data loads, then swap in the real sidebar once it's ready."
+                [code]="navCode"
+                [hasSampleClass]="false">
+
+                <button type="button" class="demo-btn demo-btn-primary" (click)="toggleNavLoading()">
+                    {{ navLoading ? 'Show Loaded Nav' : 'Simulate Loading' }}
+                </button>
+
+                <div class="sidebar-demo-frame">
+                    @if (navLoading) {
+                        <div class="nx-sidebar-skeleton">
+                            @for (row of [1, 2, 3]; track row) {
+                                <div class="nx-sidebar-skeleton-row">
+                                    <nx-skeleton variant="circle" width="20px"></nx-skeleton>
+                                    <nx-skeleton variant="text" width="70%"></nx-skeleton>
+                                </div>
+                            }
+                        </div>
+                    } @else {
+                        <nx-sidebar [items]="navItems"></nx-sidebar>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+
+    </div>
+
+</div>

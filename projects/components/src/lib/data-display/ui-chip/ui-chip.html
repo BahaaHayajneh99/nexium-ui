@@ -1,0 +1,13 @@
+<div class="nx-chip" [ngClass]="chipClasses">
+
+    <span class="nx-chip-label">
+        <ng-content></ng-content>
+    </span>
+
+    <button *ngIf="removable" class="nx-chip-remove" type="button" (click)="removeChip($event)">
+
+        ×
+
+    </button>
+
+</div>

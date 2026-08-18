@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Requirements</h4>
+                <p class="main-section-description">
+                    What you need before installing {{ commonService.appName }} - step 1 of 7 in getting a new project running.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Toolchain</h4>
+                <div class="utility-list">
+                    @for (r of requirements; track r.name) {
+                        <div class="utility-row">
+                            <code class="utility-class">{{ r.name }}</code>
+                            <span class="utility-desc">{{ r.value }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Browser Support</h4>
+                <div class="utility-list">
+                    @for (b of browsers; track b.name) {
+                        <div class="utility-row">
+                            <code class="utility-class">{{ b.name }}</code>
+                            <span class="utility-desc">{{ b.value }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

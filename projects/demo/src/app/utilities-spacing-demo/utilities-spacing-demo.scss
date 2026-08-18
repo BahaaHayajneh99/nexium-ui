@@ -1,0 +1,29 @@
+@use '../variables.scss' as *;
+
+.utility-list {
+    margin-bottom: $spacing-lg;
+}
+
+.utility-row {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-sm 0;
+    border-bottom: 1px solid var(--shell-border);
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.utility-class {
+    flex: 0 0 140px;
+    font-family: 'Courier New', monospace;
+    font-size: $font-size-sm;
+    color: var(--shell-text);
+}
+
+.utility-desc {
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+}

@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Team</h4>
+                <p class="main-section-description">
+                    A grid of team member cards.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Team grid"
+                description="A grid of team member cards."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="block-grid-3">
+                    @for (member of team; track member.name) {
+                        <nx-card variant="outlined">
+                            <nx-card-content style="text-align: center;">
+                                <nx-avatar [name]="member.name" size="large"></nx-avatar>
+                                <div class="template-profile-name mt-2">{{ member.name }}</div>
+                                <div class="template-stat-label">{{ member.role }}</div>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

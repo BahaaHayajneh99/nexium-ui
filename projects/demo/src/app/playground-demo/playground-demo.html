@@ -1,0 +1,94 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Playground</h4>
+                <p class="main-section-description">
+                    Pick a component and adjust its inputs to see it update live, then copy the markup
+                    below.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <div class="playground">
+
+                    <div class="playground-controls">
+                        <nx-select
+                            label="Component"
+                            [options]="componentOptions"
+                            [value]="selectedComponent"
+                            (valueChange)="onComponentChange($event)">
+                        </nx-select>
+
+                        @if (hasVariant) {
+                            <nx-select
+                                label="Variant"
+                                [options]="variantOptions"
+                                [(value)]="variant">
+                            </nx-select>
+                        }
+
+                        @if (hasSize) {
+                            <nx-select
+                                label="Size"
+                                [options]="sizeOptions"
+                                [(value)]="size">
+                            </nx-select>
+                        }
+                    </div>
+
+                    <div [ngClass]="{'d-flex': selectedComponent !== 'progress-bar'}" class="playground-preview demo-preview">
+                        @switch (selectedComponent) {
+                            @case ('button') {
+                                <nx-button [variant]="$any(variant)" [size]="$any(size)">Click me</nx-button>
+                            }
+                            @case ('badge') {
+                                <nx-badge [variant]="$any(variant)" [size]="$any(size)">New</nx-badge>
+                            }
+                            @case ('avatar') {
+                                <nx-avatar name="Ada Lovelace" [variant]="$any(variant)" [size]="$any(size)"></nx-avatar>
+                            }
+                            @case ('alert') {
+                                <nx-alert [variant]="$any(variant)" title="Heads up">
+                                    This is a {{ variant }} alert.
+                                </nx-alert>
+                            }
+                            @case ('chip') {
+                                <nx-chip [variant]="$any(variant)">New</nx-chip>
+                            }
+                            @case ('progress-bar') {
+                                <nx-progress-bar [value]="60" [variant]="$any(variant)" [size]="$any(size)"></nx-progress-bar>
+                            }
+                            @case ('spinner') {
+                                <nx-spinner [variant]="$any(variant)" [size]="$any(size)"></nx-spinner>
+                            }
+                            @case ('table') {
+                                <nx-table [columns]="tableColumns" [data]="tableData" striped hoverable></nx-table>
+                            }
+                            @case ('accordion') {
+                                <nx-accordion>
+                                    <nx-accordion-item>
+                                        <nx-accordion-header>Personal Information</nx-accordion-header>
+                                        <nx-accordion-content>User profile details and information.</nx-accordion-content>
+                                    </nx-accordion-item>
+                                </nx-accordion>
+                            }
+                        }
+                    </div>
+
+                </div>
+
+                <div class="gs-code">
+                    <div class="main-section-code-toolbar">
+                        <button type="button" class="main-section-code-copy" (click)="copyCode()">
+                            {{ copied ? 'Copied!' : 'Copy' }}
+                        </button>
+                    </div>
+                    <pre>{{ code }}</pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

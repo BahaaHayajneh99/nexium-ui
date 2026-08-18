@@ -1,0 +1,28 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Notification Center"
+                description="A bell trigger with an unread-count badge, opening a panel of notifications - mark all as read, or dismiss one at a time."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-notification-center
+                    [notifications]="notifications"
+                    (markAllRead)="onMarkAllRead()"
+                    (dismiss)="onDismiss($event)">
+                </nx-notification-center>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Empty State"
+                description="With no notifications, the panel shows a friendly empty message instead of a blank list - customize it with emptyMessage."
+                [code]="emptyCode"
+                [hasSampleClass]="false">
+                <nx-notification-center [notifications]="[]" emptyMessage="No notifications yet - check back later."></nx-notification-center>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

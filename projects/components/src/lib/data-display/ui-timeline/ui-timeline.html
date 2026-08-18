@@ -1,0 +1,18 @@
+<div class="nx-timeline">
+    @for (item of items; track $index) {
+        <div class="nx-timeline-item">
+            <div class="nx-timeline-marker" [ngClass]="item.variant || 'primary'"></div>
+            <div class="nx-timeline-content">
+                <div class="nx-timeline-header">
+                    <span class="nx-timeline-title">{{ item.title }}</span>
+                    @if (item.time) {
+                        <span class="nx-timeline-time">{{ item.time }}</span>
+                    }
+                </div>
+                @if (item.description) {
+                    <p class="nx-timeline-description">{{ item.description }}</p>
+                }
+            </div>
+        </div>
+    }
+</div>

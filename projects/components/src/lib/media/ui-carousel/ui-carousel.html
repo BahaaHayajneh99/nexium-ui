@@ -1,0 +1,42 @@
+<div class="nx-carousel" (mouseenter)="pause()" (mouseleave)="resume()">
+
+    <div class="nx-carousel-track" [style.transform]="'translateX(-' + (activeIndex * 100) + '%)'">
+        @for (slide of slides; track $index) {
+            <div class="nx-carousel-slide">
+                <img [src]="slide.src" [alt]="slide.alt || ''" />
+                @if (slide.caption) {
+                    <div class="nx-carousel-caption">{{ slide.caption }}</div>
+                }
+            </div>
+        }
+        @for (slide of contentSlides; track $index) {
+            <div class="nx-carousel-slide nx-carousel-slide-content">
+                <ng-container *ngTemplateOutlet="slide.templateRef"></ng-container>
+            </div>
+        }
+    </div>
+
+    @if (showArrows && slideCount > 1) {
+        <button type="button" class="nx-carousel-arrow nx-carousel-arrow-prev" (click)="prev()" aria-label="Previous slide">
+            <nx-icon icon="nx-chevron-left" variant="svg" [size]="18"></nx-icon>
+        </button>
+        <button type="button" class="nx-carousel-arrow nx-carousel-arrow-next" (click)="next()" aria-label="Next slide">
+            <nx-icon icon="nx-chevron-right" variant="svg" [size]="18"></nx-icon>
+        </button>
+    }
+
+    @if (showIndicators && slideCount > 1) {
+        <div class="nx-carousel-indicators">
+            @for (i of indicatorIndexes; track i) {
+                <button
+                    type="button"
+                    class="nx-carousel-dot"
+                    [class.active]="i === activeIndex"
+                    (click)="goTo(i)"
+                    [attr.aria-label]="'Go to slide ' + (i + 1)">
+                </button>
+            }
+        </div>
+    }
+
+</div>

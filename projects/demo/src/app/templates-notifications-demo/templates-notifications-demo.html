@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Notification Bell"
+                description="The full nx-notification-center dropdown - click the bell to open it."
+                [code]="bellCode"
+                [hasSampleClass]="false">
+
+                <nx-notification-center [notifications]="notifications"></nx-notification-center>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Email Preferences"
+                description="A settings panel built from nx-card and nx-switch."
+                [code]="prefsCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="elevated">
+                    <nx-card-header>
+                        <nx-card-title>Email Notifications</nx-card-title>
+                    </nx-card-header>
+                    <nx-card-content>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0;">
+                            <div>Comments on my work</div>
+                            <nx-switch [(checked)]="emailOnComment"></nx-switch>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0;">
+                            <div>Mentions</div>
+                            <nx-switch [(checked)]="emailOnMention"></nx-switch>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0;">
+                            <div>Weekly digest</div>
+                            <nx-switch [(checked)]="emailOnDigest"></nx-switch>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0;">
+                            <div>Push on deploy</div>
+                            <nx-switch [(checked)]="pushOnDeploy"></nx-switch>
+                        </div>
+                    </nx-card-content>
+                </nx-card>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

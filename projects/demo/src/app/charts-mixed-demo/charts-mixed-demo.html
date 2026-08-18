@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Mixed Chart</h4>
+                <p class="main-section-description">
+                    Bars and a line sharing one axis - never two y-scales. Each series carries its own
+                    <code>type</code> so magnitude (bar) and trend (line) can sit side by side without a
+                    dual-axis chart. Hover anywhere for both values at that category.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Revenue vs. growth rate"
+                description="Bar and line series get matching legend marks - a block swatch for bars, a short dash for lines."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-mixed-chart [categories]="months" [series]="revenueAndGrowth"></nx-mixed-chart>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+.nx-sparkline {
+    display: block;
+    overflow: visible;
+}
+
+.nx-sparkline-line {
+    fill: none;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.nx-sparkline-area {
+    opacity: .15;
+    stroke: none;
+}
+
+.nx-sparkline-dot {
+    stroke: var(--shell-surface);
+    stroke-width: 1;
+}

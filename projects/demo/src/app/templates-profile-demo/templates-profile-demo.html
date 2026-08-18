@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Profile"
+                description="An editable profile card combining nx-avatar, nx-badge and a small form. Saving here doesn't persist anything."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <nx-card class="template-card-wide" variant="elevated">
+                        <nx-card-header>
+                            <div class="template-profile-header">
+                                <nx-avatar [name]="name" size="large"></nx-avatar>
+                                <div>
+                                    <div class="template-profile-name">{{ name }}</div>
+                                    <nx-badge variant="secondary" size="small">Admin</nx-badge>
+                                </div>
+                            </div>
+                        </nx-card-header>
+
+                        <nx-card-content>
+                            <form class="template-form" (submit)="onSave()">
+                                <nx-input label="Full Name" [(value)]="name"></nx-input>
+                                <nx-input label="Email" type="email" [(value)]="email"></nx-input>
+                                <nx-textarea label="Bio" [rows]="3" [(value)]="bio"></nx-textarea>
+                            </form>
+                        </nx-card-content>
+
+                        <nx-card-footer>
+                            <nx-button variant="primary" (click)="onSave()">Save Changes</nx-button>
+                            @if (saved) {
+                                <span class="template-form-note ml-3">Preview only - changes weren't saved.</span>
+                            }
+                        </nx-card-footer>
+                    </nx-card>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

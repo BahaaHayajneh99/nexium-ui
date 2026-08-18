@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Tree"
+                description="The {{ commonService.appName }} Tree renders nested, expandable/collapsible data structures."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-tree [nodes]="nodes"></nx-tree>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Expand All / Collapse All"
+                description="Set showExpandCollapseAll to render built-in expand/collapse all buttons."
+                [code]="expandCollapseCode">
+                <nx-tree [nodes]="nodes" [showExpandCollapseAll]="true"></nx-tree>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Actions"
+                description="Project your own toolbar via nx-tree-actions and drive it with the exported nxTree instance."
+                [code]="customActionsCode">
+                <nx-tree #tree="nxTree" [nodes]="nodes">
+                    <div nx-tree-actions class="custom-tree-actions">
+                        <button type="button" (click)="tree.expandAll()">Open all</button>
+                        <button type="button" (click)="tree.collapseAll()">Close all</button>
+                    </div>
+                </nx-tree>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

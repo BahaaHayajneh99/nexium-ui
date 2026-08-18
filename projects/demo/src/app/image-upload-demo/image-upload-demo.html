@@ -1,0 +1,19 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Image Upload"
+                description="Restrict the accepted files to images and preview the selected image using nx-preview."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-file-upload accept="image/*" label="Drop an image here or click to browse" (filesSelected)="onFilesSelected($event)"></nx-file-upload>
+
+                @if (previewSrc) {
+                    <nx-preview [src]="previewSrc" [fileName]="fileName" type="image"></nx-preview>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

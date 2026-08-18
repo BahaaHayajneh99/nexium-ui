@@ -1,0 +1,310 @@
+@import '../../../../../demo/src/app/variables.scss';
+
+.nx-tabs {
+
+    width: 100%;
+
+    font-family: $font-family;
+
+
+    // ==========================
+    // Tabs Header
+    // ==========================
+
+    &-header {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: $tabs-gap;
+
+        min-height: $tabs-height;
+
+        border-bottom: 1px solid var(--shell-border);
+
+    }
+
+
+    // ==========================
+    // Tab Button
+    // ==========================
+
+    .nx-tab-button {
+
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: $spacing-xs;
+
+        height: $tabs-height;
+
+        padding: $tabs-padding;
+
+        background: transparent;
+
+        border: none;
+
+        color: var(--shell-text-secondary);
+
+        font-size: $font-size-sm;
+
+        font-weight: $font-weight-medium;
+
+        cursor: pointer;
+
+        transition:
+            color $transition-normal,
+            background-color $transition-normal;
+
+
+        &:hover {
+
+            color: var(--shell-primary);
+
+            background-color: var(--shell-surface-hover);
+
+        }
+
+
+        // Active Tab
+
+        &.active {
+
+            color: var(--shell-primary);
+
+            font-weight: $font-weight-semibold;
+
+
+            &::after {
+
+                content: '';
+
+                position: absolute;
+
+                bottom: 0;
+
+                left: 0;
+
+                width: 100%;
+
+                height: $tabs-active-indicator-height;
+
+                background-color: var(--shell-primary);
+
+                border-radius: $radius-round;
+
+            }
+
+        }
+
+
+        // Disabled
+
+        &:disabled {
+
+            cursor: not-allowed;
+
+            color: var(--shell-text-muted);
+
+            opacity: .7;
+
+        }
+
+    }
+
+
+
+    // ==========================
+    // Tabs Content
+    // ==========================
+
+    &-body {
+
+        padding-top: $spacing-lg;
+
+    }
+
+
+    .nx-tab-content {
+
+        color: var(--shell-text);
+
+        font-size: $font-size-md;
+
+    }
+
+
+    .nx-tab-icon {
+
+        flex-shrink: 0;
+
+    }
+
+
+
+    // ==========================
+    // Variants
+    // ==========================
+
+
+    &.filled {
+
+        .nx-tabs-header {
+
+            background-color: var(--shell-surface-hover);
+
+            padding: $spacing-xs;
+
+            border-radius: $radius-md;
+
+        }
+
+
+        .nx-tab-button {
+
+            border-radius: $radius-sm;
+
+
+            &.active {
+
+                background-color: var(--shell-surface);
+
+                box-shadow: $shadow-sm;
+
+            }
+
+        }
+
+    }
+
+
+
+    &.boxed {
+
+        .nx-tab-button {
+
+            border: 1px solid transparent;
+
+
+            &.active {
+
+                border-color: var(--shell-border);
+
+                background-color: var(--shell-surface);
+
+                border-bottom-color: transparent;
+
+                border-radius: $radius-md $radius-md 0 0;
+
+            }
+
+        }
+
+    }
+
+
+
+    &.pill {
+
+        .nx-tabs-header {
+
+            background-color: var(--shell-surface-hover);
+
+            padding: $spacing-xs;
+
+            border-radius: $radius-round;
+
+        }
+
+
+        .nx-tab-button {
+
+            border-radius: $radius-round;
+
+
+            &.active {
+
+                background-color: var(--shell-primary);
+
+                color: $white-color;
+
+            }
+
+        }
+
+    }
+
+
+
+    // ==========================
+    // Full Width
+    // ==========================
+
+    &.full-width {
+
+        .nx-tab-button {
+
+            flex: 1;
+
+        }
+
+    }
+
+
+
+    // ==========================
+    // Vertical Tabs
+    // ==========================
+
+    &.vertical {
+
+        display: flex;
+
+
+        .nx-tabs-header {
+
+            flex-direction: column;
+
+            align-items: stretch;
+
+            min-width: $tabs-height * 3;
+
+            border-bottom: none;
+
+            border-right: 1px solid var(--shell-border);
+
+        }
+
+
+        .nx-tab-button {
+
+            justify-content: flex-start;
+
+
+            &.active::after {
+
+                top: 0;
+
+                right: -1px;
+
+                bottom: auto;
+
+                left: auto;
+
+                width: $tabs-active-indicator-height;
+
+                height: 100%;
+
+            }
+
+        }
+
+    }
+
+}

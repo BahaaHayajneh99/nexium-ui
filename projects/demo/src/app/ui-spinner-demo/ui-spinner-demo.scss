@@ -1,0 +1,29 @@
+@import '../../../src/app/variables.scss';
+
+.spinner-demo-container {
+
+    position: relative;
+
+    height: 120px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid $border-color;
+
+    border-radius: $radius-md;
+
+
+}
+
+
+.spinner-demo-content {
+
+    color: $text-secondary;
+
+    font-size: $font-size-md;
+
+}

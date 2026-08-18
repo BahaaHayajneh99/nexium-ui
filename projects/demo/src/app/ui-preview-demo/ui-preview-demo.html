@@ -1,0 +1,21 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Image Preview"
+                description="The {{ commonService.appName }} Preview renders the correct viewer based on the file type."
+                [code]="imageCode">
+                <nx-preview src="https://picsum.photos/seed/nexium-preview/600/400" fileName="photo.jpg" type="image"></nx-preview>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Document Preview"
+                description="Non-media file types fall back to a file icon with the file name."
+                [code]="documentCode">
+                <nx-preview src="report.pdf" fileName="report.pdf" type="document"></nx-preview>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Popover"
+                description="The {{ commonService.appName }} Popover shows a floating panel next to a trigger element when clicked."
+                [code]="basicCode">
+                <nx-popover>
+                    <button class="demo-btn" nx-popover-trigger>Click me</button>
+                    <div>Popover content goes here.</div>
+                </nx-popover>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Right Aligned Popover"
+                description="Use the position input to align the panel to the right of the trigger."
+                [code]="positionCode">
+                <nx-popover position="right">
+                    <button class="demo-btn" nx-popover-trigger>Right aligned</button>
+                    <div>This popover opens to the right.</div>
+                </nx-popover>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+.sidebar-demo-frame {
+    height: 360px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+// Collapsed sidebars show child items as a hover flyout that extends past the
+// sidebar's own edge, so this frame can't clip overflow like the others do.
+.sidebar-demo-frame.allow-overflow {
+    overflow: visible;
+}

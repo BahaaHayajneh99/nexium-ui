@@ -1,0 +1,22 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Command Palette"
+                description="A Cmd/Ctrl+K-style overlay: type to filter, arrow keys to move, Enter to run, Escape to dismiss. Commands can be grouped."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-button (click)="open = true">Open Command Palette</nx-button>
+
+                <nx-command-palette [(open)]="open" [commands]="commands" (execute)="onExecute($event)"></nx-command-palette>
+
+                @if (lastExecuted) {
+                    <p class="template-form-note mt-2">Last executed: {{ lastExecuted }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

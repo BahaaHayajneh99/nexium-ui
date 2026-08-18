@@ -1,0 +1,155 @@
+.nx-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: 100%;
+    border-right: 1px solid var(--shell-border);
+    transition: width 0.2s ease;
+    overflow: hidden;
+}
+
+.nx-sidebar.collapsed {
+    width: 72px;
+    // Collapsed groups reveal their children as a flyout that extends past
+    // this element's own right edge (see .nx-sidebar-item.collapsed >
+    // .nx-sidebar-children below) — overflow can't stay hidden here or the
+    // flyout gets clipped before it's visible.
+    overflow: visible;
+}
+
+.nx-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-sidebar-header.collapsed {
+    justify-content: center;
+}
+
+.nx-sidebar-collapse-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-sidebar-collapse-toggle:hover {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-sidebar-collapse-icon {
+    transition: transform 0.2s ease;
+}
+
+.nx-sidebar-collapse-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.nx-sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.nx-sidebar-nav.collapsed {
+    // overflow-y: auto implicitly makes overflow-x auto too, which would
+    // clip the collapsed group flyout the same way .nx-sidebar's overflow
+    // did above.
+    overflow: visible;
+}
+
+.nx-sidebar-footer {
+    padding: 12px 16px;
+    border-top: 1px solid var(--shell-border);
+}
+
+.nx-sidebar-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.nx-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nx-sidebar-link:hover {
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text);
+}
+
+.nx-sidebar-link.active {
+    background-color: rgba(52, 152, 219, .08);
+    color: var(--shell-primary);
+    font-weight: 600;
+}
+
+.nx-sidebar-icon {
+    flex-shrink: 0;
+}
+
+.nx-sidebar-label {
+    flex: 1;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nx-sidebar-chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.nx-sidebar-chevron.expanded {
+    transform: rotate(90deg);
+}
+
+.nx-sidebar-children {
+    padding-left: 20px;
+}
+
+.nx-sidebar-item.collapsed > .nx-sidebar-children {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 4px;
+    min-width: 200px;
+    padding: 8px;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+    z-index: 30;
+}
+
+.nx-sidebar-item.collapsed:hover > .nx-sidebar-children {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}

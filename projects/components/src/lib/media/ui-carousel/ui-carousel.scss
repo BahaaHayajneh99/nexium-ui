@@ -1,0 +1,108 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius-md;
+}
+
+.nx-carousel-track {
+    display: flex;
+    transition: transform $transition-fast;
+}
+
+.nx-carousel-slide {
+    position: relative;
+    flex: 0 0 100%;
+    // Without this, unconstrained projected content (e.g. a <video> at its
+    // native resolution) forces the flex item wider than its 100% flex-basis,
+    // pushing every other slide out of alignment.
+    min-width: 0;
+
+    img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+    }
+}
+
+.nx-carousel-slide-content {
+    // Projected content carries the consumer's view-encapsulation attribute,
+    // not this component's, so plain `img`/`video` selectors above can't reach
+    // it — ::ng-deep is required to size media tags projected into a slide.
+    ::ng-deep video,
+    ::ng-deep img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+    }
+}
+
+.nx-carousel-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: $spacing-md;
+    background: linear-gradient(to top, rgba(0, 0, 0, .65), transparent);
+    color: $white-color;
+    font-size: $font-size-sm;
+}
+
+.nx-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: $radius-round;
+    background: rgba(0, 0, 0, .45);
+    color: $white-color;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+
+    &:hover {
+        background: rgba(0, 0, 0, .65);
+    }
+}
+
+.nx-carousel-arrow-prev {
+    left: $spacing-sm;
+}
+
+.nx-carousel-arrow-next {
+    right: $spacing-sm;
+}
+
+.nx-carousel-indicators {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: $spacing-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+}
+
+.nx-carousel-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: $radius-round;
+    background: rgba(255, 255, 255, .5);
+    cursor: pointer;
+    transition: background-color $transition-fast, width $transition-fast;
+
+    &.active {
+        width: 20px;
+        background: $white-color;
+    }
+}

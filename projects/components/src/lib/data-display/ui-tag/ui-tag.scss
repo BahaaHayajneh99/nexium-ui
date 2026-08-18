@@ -1,0 +1,46 @@
+.nx-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+    white-space: nowrap;
+}
+
+.nx-tag.outline {
+    border-width: 1px;
+    border-style: solid;
+}
+
+.nx-tag.disabled {
+    opacity: .5;
+}
+
+.nx-tag-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: .7;
+    transition: opacity .15s ease;
+}
+
+.nx-tag-close:hover {
+    opacity: 1;
+}
+
+.nx-tag-close:disabled {
+    cursor: not-allowed;
+}

@@ -1,0 +1,15 @@
+<div class="nx-splitter" [class.vertical]="orientation === 'vertical'" [class.dragging]="dragging">
+
+    <div class="nx-splitter-pane" [style.flex-basis.%]="ratio * 100">
+        <ng-content select="[nx-splitter-start]"></ng-content>
+    </div>
+
+    <div class="nx-splitter-gutter" (pointerdown)="onGutterPointerDown($event)">
+        <span class="nx-splitter-handle"></span>
+    </div>
+
+    <div class="nx-splitter-pane" [style.flex-basis.%]="(1 - ratio) * 100">
+        <ng-content select="[nx-splitter-end]"></ng-content>
+    </div>
+
+</div>

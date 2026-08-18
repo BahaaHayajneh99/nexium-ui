@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Login</h4>
+                <p class="main-section-description">
+                    A standalone login card, ready to drop into any page - the full-page version with
+                    footer links lives under Templates &gt; Authentication.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Sign in card"
+                description="A standalone login card, ready to drop into any page."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview demo-preview">
+                    <nx-card class="template-card" variant="elevated">
+                        <nx-card-header>
+                            <nx-card-title>Sign in</nx-card-title>
+                            <nx-card-subtitle>Welcome back</nx-card-subtitle>
+                        </nx-card-header>
+                        <nx-card-content>
+                            <form class="template-form">
+                                <nx-input label="Email" type="email" [(value)]="email"></nx-input>
+                                <nx-input label="Password" type="password" [(value)]="password"></nx-input>
+                                <nx-checkbox label="Remember me" [(checked)]="remember"></nx-checkbox>
+                                <nx-button variant="primary" [fullWidth]="true">Sign In</nx-button>
+                            </form>
+                        </nx-card-content>
+                    </nx-card>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

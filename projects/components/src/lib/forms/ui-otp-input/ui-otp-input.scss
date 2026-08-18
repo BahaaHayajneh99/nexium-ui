@@ -1,0 +1,33 @@
+.nx-otp-input {
+    display: inline-flex;
+    gap: 8px;
+}
+
+.nx-otp-cell {
+    width: 40px;
+    height: 48px;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.nx-otp-cell:focus {
+    border-color: var(--shell-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--shell-primary) 15%, transparent);
+}
+
+.nx-otp-input.invalid .nx-otp-cell {
+    border-color: #e74c3c;
+}
+
+.nx-otp-input.disabled .nx-otp-cell {
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text-muted);
+    cursor: not-allowed;
+}

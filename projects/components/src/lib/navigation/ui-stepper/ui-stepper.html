@@ -1,0 +1,17 @@
+<div class="nx-stepper">
+    @for (step of steps; track step.label; let i = $index; let last = $last) {
+        <div class="nx-step" [ngClass]="{ active: i === activeIndex, completed: i < activeIndex }" (click)="goToStep(i)">
+            <div class="nx-step-circle">
+                @if (i < activeIndex) {
+                    <span>✓</span>
+                } @else {
+                    <span>{{ i + 1 }}</span>
+                }
+            </div>
+            <span class="nx-step-label">{{ step.label }}</span>
+        </div>
+        @if (!last) {
+            <div class="nx-step-connector" [ngClass]="{ completed: i < activeIndex }"></div>
+        }
+    }
+</div>

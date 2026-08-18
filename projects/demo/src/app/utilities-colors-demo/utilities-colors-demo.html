@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Color Utilities</h4>
+                <p class="main-section-description">
+                    Ready-made classes for the most common text and background colors, generated from
+                    the same tokens covered in <code>Guide &gt; Colors</code>.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Text Color</h4>
+                <div class="utility-list">
+                    @for (u of textUtilities; track u.className) {
+                        <div class="utility-row">
+                            <span class="utility-sample" [class]="u.swatchClass">Aa</span>
+                            <code class="utility-class">{{ u.className }}</code>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Background Color</h4>
+                <div class="utility-list">
+                    @for (u of bgUtilities; track u.className) {
+                        <div class="utility-row">
+                            <span class="utility-sample utility-sample-bg" [class]="u.swatchClass"></span>
+                            <code class="utility-class">{{ u.className }}</code>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Usage</h4>
+                <div class="gs-code">
+                    <pre>&lt;p class="text-danger"&gt;Something went wrong&lt;/p&gt;
+&lt;div class="bg-info text-white"&gt;Heads up&lt;/div&gt;</pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

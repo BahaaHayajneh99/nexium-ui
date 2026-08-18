@@ -1,0 +1,15 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Stepper"
+                description="The {{ commonService.appName }} Stepper guides users through a sequence of steps."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-stepper [steps]="steps" [(activeIndex)]="activeIndex"></nx-stepper>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

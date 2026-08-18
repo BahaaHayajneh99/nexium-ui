@@ -1,0 +1,146 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-chip {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+
+    padding: calc($spacing-xs + 2px) $spacing-md;
+
+    border: 1px solid transparent;
+
+    border-radius: $radius-md;
+
+    font-family: $font-family;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    line-height: $line-height;
+
+    cursor: default;
+    user-select: none;
+
+    transition: $transition-normal;
+
+    // =========================
+    // States
+    // =========================
+
+    &.rounded {
+
+        border-radius: $radius-round;
+
+    }
+
+    &.outlined {
+
+        background: transparent;
+        border-color: currentColor;
+
+    }
+
+    &.selected {
+
+        box-shadow: inset 0 0 0 2px rgba($black, .15);
+
+    }
+
+    &.disabled {
+
+        background: var(--shell-surface-hover);
+        color: var(--shell-text-muted);
+
+        opacity: .6;
+
+        pointer-events: none;
+
+    }
+
+    // =========================
+    // Variants
+    // =========================
+
+    &.primary {
+
+        background: color-mix(in srgb, var(--shell-primary) 12%, transparent);;
+        color: var(--shell-primary);
+
+    }
+
+    &.secondary {
+
+        background: color-mix(in srgb, $secondary-color 12%, transparent);;
+        color: $secondary-color;
+
+    }
+
+    &.success {
+
+        background: color-mix(in srgb, $success-color 12%, transparent);;
+        color: $success-color;
+
+    }
+
+    &.danger {
+
+        background: color-mix(in srgb, $danger-color 12%, transparent);;
+        color: $danger-color;
+
+    }
+
+    &.warning {
+
+        background: color-mix(in srgb, $warning-color 12%, transparent);;
+        color: $warning-color;
+
+    }
+
+    &.info {
+
+        background: color-mix(in srgb, $info-color 12%, transparent);;
+        color: $info-color;
+
+    }
+
+    // =========================
+    // Hover
+    // =========================
+
+    &:not(.disabled):hover {
+
+        box-shadow: $shadow-sm;
+
+    }
+
+}
+
+.nx-chip-remove {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: inherit;
+
+    cursor: pointer;
+
+    font-size: $font-size-md;
+
+    line-height: 1;
+
+    transition: $transition-fast;
+
+    &:hover {
+
+        opacity: .7;
+
+    }
+
+}

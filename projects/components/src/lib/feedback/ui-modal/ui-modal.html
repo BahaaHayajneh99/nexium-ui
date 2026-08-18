@@ -1,0 +1,16 @@
+@if (open) {
+    <div class="nx-modal-backdrop" (click)="onBackdropClick()">
+        <div #panel class="nx-modal" role="dialog" aria-modal="true" [attr.aria-label]="header" tabindex="-1" (click)="$event.stopPropagation()">
+            <div class="nx-modal-header">
+                <span class="nx-modal-title">{{ header }}</span>
+                <button type="button" class="nx-modal-close" (click)="close()">×</button>
+            </div>
+            <div class="nx-modal-body">
+                <ng-content select="[nx-modal-body]"></ng-content>
+            </div>
+            <div class="nx-modal-footer">
+                <ng-content select="[nx-modal-footer]"></ng-content>
+            </div>
+        </div>
+    </div>
+}

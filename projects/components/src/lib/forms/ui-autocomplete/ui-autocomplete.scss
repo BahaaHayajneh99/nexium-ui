@@ -1,0 +1,187 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-autocomplete {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    font-family: $font-family;
+}
+
+.nx-autocomplete-label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.nx-autocomplete-input-wrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: 4px $spacing-sm;
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-sm;
+    background-color: var(--shell-surface);
+    transition: border-color $transition-fast;
+
+    &:focus-within {
+        border-color: var(--shell-primary);
+    }
+}
+
+.nx-autocomplete.filled .nx-autocomplete-input-wrapper {
+    background-color: var(--shell-surface-hover);
+    border-color: transparent;
+    border-radius: $radius-sm $radius-sm 0 0;
+    border-bottom: 1px solid var(--shell-border);
+
+    &:focus-within {
+        border-bottom-color: var(--shell-primary);
+    }
+}
+
+.nx-autocomplete.invalid .nx-autocomplete-input-wrapper {
+    border-color: $danger-color;
+
+    &:focus-within {
+        border-color: $danger-color;
+    }
+}
+
+.nx-autocomplete.disabled .nx-autocomplete-input-wrapper {
+    background-color: var(--shell-surface-hover);
+    cursor: not-allowed;
+}
+
+.nx-autocomplete-input {
+    flex: 1 1 80px;
+    min-width: 80px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: $font-size-sm;
+    color: var(--shell-text);
+    padding: $spacing-xs 0;
+
+    &:disabled {
+        color: var(--shell-text-muted);
+        cursor: not-allowed;
+    }
+}
+
+.nx-autocomplete-float-label {
+    position: absolute;
+    left: $spacing-sm;
+    top: 50%;
+    padding: 0 4px;
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: $font-size-sm;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all $transition-fast;
+
+    &.active {
+        top: 0;
+        color: var(--shell-primary);
+        transform: translateY(-50%) scale(.85);
+    }
+}
+
+.nx-autocomplete.filled .nx-autocomplete-float-label {
+    background-color: transparent;
+}
+
+.nx-autocomplete-clear {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: $font-size-md;
+    line-height: 1;
+    color: var(--shell-text-secondary);
+    padding: 0 $spacing-xs;
+
+    &:hover {
+        color: var(--shell-text);
+    }
+}
+
+.nx-autocomplete-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nx-autocomplete-chip {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px $spacing-xs;
+    border-radius: $radius-sm;
+    background-color: $primary-color-light;
+    color: $text-white;
+    font-size: $font-size-xs;
+}
+
+.nx-autocomplete-chip-remove {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+    font-size: $font-size-sm;
+    line-height: 1;
+}
+
+.nx-autocomplete-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: $z-dropdown;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 4px 0 0;
+    padding: $spacing-xs 0;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-sm;
+    box-shadow: $shadow-md;
+    list-style: none;
+}
+
+.nx-autocomplete-group-header {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text-secondary);
+    text-transform: uppercase;
+}
+
+.nx-autocomplete-item {
+    padding: $spacing-xs $spacing-sm;
+    cursor: pointer;
+    font-size: $font-size-sm;
+    color: var(--shell-text);
+
+    &:hover {
+        background-color: var(--shell-surface-hover);
+    }
+}
+
+.nx-autocomplete-empty {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-sm;
+    color: var(--shell-text-muted);
+    cursor: default;
+}
+
+.nx-autocomplete-spacer {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

@@ -1,0 +1,44 @@
+.nx-key-value-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.nx-key-value-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+}
+
+.nx-key-value-list.bordered .nx-key-value-row {
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-key-value-list.bordered .nx-key-value-row:last-child {
+    border-bottom: none;
+}
+
+.nx-key-value-list.stacked .nx-key-value-row {
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nx-key-value-key {
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-key-value-value {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shell-text);
+    text-align: right;
+}
+
+.nx-key-value-list.stacked .nx-key-value-value {
+    text-align: left;
+}

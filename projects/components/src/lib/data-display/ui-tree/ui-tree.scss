@@ -1,0 +1,55 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-tree-actions {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+}
+
+.nx-tree-action-btn {
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-sm;
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-xs;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+        background-color: var(--shell-surface-hover);
+        border-color: var(--shell-primary);
+        color: var(--shell-primary);
+    }
+}
+
+.nx-tree-node-label {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    color: var(--shell-text);
+
+    &:hover {
+        background-color: var(--shell-surface-hover);
+    }
+}
+
+.nx-tree-toggle,
+.nx-tree-toggle-placeholder {
+    display: inline-block;
+    width: 12px;
+    font-size: $font-size-xs;
+    color: var(--shell-text-secondary);
+    transition: transform $transition-fast;
+}
+
+.nx-tree-toggle.open {
+    transform: rotate(90deg);
+}
+
+.nx-tree-children {
+    padding-left: $spacing-lg;
+}

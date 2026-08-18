@@ -1,0 +1,57 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Sparkline</h4>
+                <p class="main-section-description">
+                    A minimal inline trend line with no axes, legend, or tooltip - meant to sit beside a
+                    number in a stat card or table row rather than stand alone as a full chart.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Line"
+                description="Scales to its own min/max, not a shared zero baseline - it's a trend indicator, not an axis chart."
+                [code]="basicCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-sparkline [data]="revenueTrend"></nx-sparkline>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="With area fill"
+                description="showArea adds a soft fill under the line for a touch more visual weight."
+                [code]="areaCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-sparkline [data]="revenueTrend" [showArea]="true"></nx-sparkline>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Inside a stat card"
+                description="The most common placement - a label, a number, and a sparkline for at-a-glance trend."
+                [code]="rowCode"
+                [hasSampleClass]="false">
+
+                <div class="block-grid-3">
+                    @for (metric of metrics; track metric.label) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <div class="template-stat-label">{{ metric.label }}</div>
+                                <div class="template-stat-value">{{ metric.value }}</div>
+                                <nx-sparkline [data]="metric.trend" [showArea]="true" [width]="140" [height]="36"></nx-sparkline>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

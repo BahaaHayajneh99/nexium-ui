@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Icons</h4>
+                <p class="main-section-description">
+                    The icon set used throughout the {{ commonService.appName }} demo - plain inline SVGs, styled with
+                    <code>currentColor</code> so they inherit their surrounding text/hover color.
+                    Click an icon to copy its markup.
+                </p>
+
+                <div class="icons-search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M20 20L15.8 15.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <input
+                        type="text"
+                        placeholder="Search icons ({{ icons.length }} total)..."
+                        [value]="searchQuery"
+                        (input)="onSearch($event)"
+                    />
+                </div>
+            </section>
+
+            <div class="icons-grid">
+                @for (icon of filteredIcons; track icon.name) {
+                    <button type="button" class="icon-card" (click)="copyIcon(icon)">
+                        <span class="icon-card-preview" [innerHTML]="icon.svg"></span>
+                        <span class="icon-card-name">{{ copiedName === icon.name ? 'Copied!' : icon.name }}</span>
+                        <nx-icon [icon]="icon.name" variant="svg" [size]="32" [color]="primary"></nx-icon>
+                    </button>
+                } @empty {
+                    <p class="icons-empty">No icons match "{{ searchQuery }}".</p>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

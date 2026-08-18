@@ -1,0 +1,53 @@
+<div class="nx-color-picker-wrapper">
+    @if (label) {
+        <label class="nx-color-picker-label">{{ label }}</label>
+    }
+
+    <button
+        type="button"
+        class="nx-color-picker-field"
+        [class.invalid]="invalid"
+        [class.disabled]="disabled"
+        [class.open]="open"
+        [disabled]="disabled"
+        (click)="toggle()">
+        <span class="nx-color-picker-swatch" [style.background]="isValidHex ? value : 'transparent'"></span>
+        <span class="nx-color-picker-value">{{ value }}</span>
+    </button>
+
+    @if (open) {
+        <div class="nx-color-picker-panel">
+
+            <div class="nx-color-picker-presets">
+                @for (preset of presets; track preset) {
+                    <button
+                        type="button"
+                        class="nx-color-picker-preset"
+                        [class.selected]="preset === value"
+                        [style.background]="preset"
+                        [attr.aria-label]="preset"
+                        (click)="selectPreset(preset)">
+                    </button>
+                }
+            </div>
+
+            <div class="nx-color-picker-custom">
+                <input
+                    type="color"
+                    class="nx-color-picker-native"
+                    [value]="isValidHex ? value : '#3498db'"
+                    (input)="onNativeInput($event)" />
+
+                <input
+                    type="text"
+                    class="nx-color-picker-hex"
+                    [value]="hexDraft"
+                    (input)="onHexDraftChange($event)"
+                    (blur)="commitHexDraft()"
+                    (keydown.enter)="commitHexDraft()"
+                    spellcheck="false" />
+            </div>
+
+        </div>
+    }
+</div>

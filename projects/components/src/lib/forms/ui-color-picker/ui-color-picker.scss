@@ -1,0 +1,143 @@
+.nx-color-picker-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: fit-content;
+    font-family: inherit;
+}
+
+.nx-color-picker-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-color-picker-field {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background-color: var(--shell-surface);
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.nx-color-picker-field:hover {
+    border-color: var(--shell-text-muted);
+}
+
+.nx-color-picker-field.open {
+    border-color: var(--shell-primary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, .15);
+}
+
+.nx-color-picker-field.invalid {
+    border-color: #e74c3c;
+}
+
+.nx-color-picker-field.disabled {
+    background-color: var(--shell-surface-hover);
+    cursor: not-allowed;
+    opacity: .7;
+}
+
+.nx-color-picker-swatch {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    flex-shrink: 0;
+}
+
+.nx-color-picker-value {
+    font-size: 13px;
+    color: var(--shell-text);
+    font-family: 'Courier New', monospace;
+}
+
+.nx-color-picker-panel {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 220px;
+    padding: 12px;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+}
+
+.nx-color-picker-presets {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.nx-color-picker-preset {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    cursor: pointer;
+    transition: transform .1s ease;
+}
+
+.nx-color-picker-preset:hover {
+    transform: scale(1.1);
+}
+
+.nx-color-picker-preset.selected {
+    box-shadow: 0 0 0 2px var(--shell-surface), 0 0 0 4px var(--shell-primary);
+}
+
+.nx-color-picker-custom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--shell-border);
+}
+
+.nx-color-picker-native {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--shell-border);
+    border-radius: 6px;
+    cursor: pointer;
+    background: none;
+    flex-shrink: 0;
+}
+
+.nx-color-picker-native::-webkit-color-swatch-wrapper {
+    padding: 2px;
+}
+
+.nx-color-picker-native::-webkit-color-swatch {
+    border: none;
+    border-radius: 4px;
+}
+
+.nx-color-picker-hex {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: 6px;
+    background: var(--shell-bg);
+    color: var(--shell-text);
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    outline: none;
+}
+
+.nx-color-picker-hex:focus {
+    border-color: var(--shell-primary);
+}

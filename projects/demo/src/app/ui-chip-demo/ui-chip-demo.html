@@ -1,0 +1,112 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Chip"
+                description="The basic {{ commonService.appName }} Chip provides a compact way to display labels, tags, categories, and small pieces of information."
+                [code]="basicCode">
+
+                <nx-chip>
+                    Angular
+                </nx-chip>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Chip Variants"
+                description="{{ commonService.appName }} provides multiple chip variants for different states and semantic meanings."
+                [code]="variantsCode">
+
+                <nx-chip variant="primary">Primary</nx-chip>
+                <nx-chip variant="secondary">Secondary</nx-chip>
+                <nx-chip variant="success">Success</nx-chip>
+                <nx-chip variant="danger">Danger</nx-chip>
+                <nx-chip variant="warning">Warning</nx-chip>
+                <nx-chip variant="info">Info</nx-chip>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Rounded Chip"
+                description="Rounded chips use a pill-shaped design for modern tags and labels."
+                [code]="roundedCode">
+
+                <nx-chip rounded>
+                    Rounded Chip
+                </nx-chip>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Outlined Chip"
+                description="Outlined chips display a transparent background with a colored border."
+                [code]="outlinedCode">
+
+                <nx-chip variant="primary" outlined>
+                    Outlined Chip
+                </nx-chip>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Removable Chip"
+                description="Removable chips allow users to remove tags or selected items."
+                [code]="removableCode">
+
+                <nx-chip removable>
+                    Angular
+                </nx-chip>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Selected Chip"
+                description="Selected chips indicate an active state for filtering or selection scenarios."
+                [code]="selectedCode">
+
+                <nx-chip selected>
+                    Selected
+                </nx-chip>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Disabled Chip"
+                description="Disabled chips indicate unavailable or inactive items."
+                [code]="disabledCode">
+
+                <nx-chip disabled>
+                    Disabled
+                </nx-chip>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Tag Examples"
+                description="Chips can be used to display categories, technologies, filters, and metadata."
+                [code]="iconCode">
+
+                <nx-chip variant="primary" rounded>Angular</nx-chip>
+                <nx-chip variant="success" rounded>TypeScript</nx-chip>
+                <nx-chip variant="info" rounded>RxJS</nx-chip>
+                <nx-chip variant="warning" rounded>JavaScript</nx-chip>
+
+            </app-demo-section>
+
+
+        </div>
+
+    </div>
+
+</div>

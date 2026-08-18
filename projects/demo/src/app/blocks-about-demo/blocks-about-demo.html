@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">About</h4>
+                <p class="main-section-description">
+                    A copy-and-image split block for an "About us" section.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Story split"
+                description="Copy on one side, an image or illustration on the other."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <div class="block-hero-split block-preview">
+                    <div>
+                        <span class="block-eyebrow">Our Story</span>
+                        <h2 class="block-heading">Built by developers who were tired of fighting their UI library</h2>
+                        <p class="block-subheading">
+                            {{ commonService.appName }} started as an internal toolkit for teams who wanted full control over
+                            markup and styling without inheriting a CDK dependency tree they didn't ask for.
+                        </p>
+                    </div>
+                    <div class="block-hero-media">Image placeholder</div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

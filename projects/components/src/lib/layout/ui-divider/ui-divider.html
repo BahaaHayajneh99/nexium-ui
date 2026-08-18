@@ -1,0 +1,11 @@
+@if (orientation === 'vertical') {
+    <span class="nx-divider nx-divider-vertical"></span>
+} @else if (label) {
+    <div class="nx-divider-labeled">
+        <span class="nx-divider nx-divider-line"></span>
+        <span class="nx-divider-label">{{ label }}</span>
+        <span class="nx-divider nx-divider-line"></span>
+    </div>
+} @else {
+    <span class="nx-divider nx-divider-horizontal"></span>
+}

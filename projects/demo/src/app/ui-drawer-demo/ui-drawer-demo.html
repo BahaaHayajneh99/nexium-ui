@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Drawer</h4>
+                <p class="main-section-description">
+                    A slide-in panel from any edge, with a backdrop and Escape-to-close. There's no
+                    separate "Sheet" component - a bottom-anchored drawer with a height-based size
+                    <em>is</em> the mobile sheet pattern.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Left / Right"
+                description="side controls which edge it slides in from; size sets its width."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <div class="block-actions">
+                    <nx-button (click)="leftOpen = true">Open Left</nx-button>
+                    <nx-button (click)="rightOpen = true">Open Right</nx-button>
+                </div>
+
+                <nx-drawer [(open)]="leftOpen" side="left" size="300px">
+                    <h4>Navigation</h4>
+                    <p>Drawer content goes here.</p>
+                </nx-drawer>
+
+                <nx-drawer [(open)]="rightOpen" side="right" size="360px">
+                    <h4>Filters</h4>
+                    <p>Drawer content goes here.</p>
+                </nx-drawer>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Bottom Sheet"
+                description="side=&quot;bottom&quot; with a height-based size reads as a mobile action sheet."
+                [code]="sheetCode"
+                [hasSampleClass]="false">
+                <nx-button (click)="sheetOpen = true">Open Sheet</nx-button>
+
+                <nx-drawer [(open)]="sheetOpen" side="bottom" size="40vh">
+                    <h4>Share</h4>
+                    <p>A bottom-anchored drawer reads as a mobile "sheet" - same component, just side="bottom".</p>
+                </nx-drawer>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

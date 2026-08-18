@@ -1,0 +1,80 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Alert"
+                description="The basic {{ commonService.appName }} Alert highlights an inline message with a colored accent and icon."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+
+                <nx-alert>
+                    A new version is available.
+                </nx-alert>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Alert Variants"
+                description="{{ commonService.appName }} provides success, danger, warning, and info variants for different message types."
+                [code]="variantsCode"
+                [hasSampleClass]="false">
+
+                <div class="alert-stack">
+                    <nx-alert variant="success">Your changes have been saved.</nx-alert>
+                    <nx-alert variant="danger">Something went wrong. Please try again.</nx-alert>
+                    <nx-alert variant="warning">Your subscription is about to expire.</nx-alert>
+                    <nx-alert variant="info">A new version is available.</nx-alert>
+                </div>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Alert with Title"
+                description="Pass a title for a two-line alert with a bold heading above the message."
+                [code]="titleCode"
+                [hasSampleClass]="false">
+
+                <nx-alert variant="success" title="Payment successful">
+                    Your order #1029 has been confirmed.
+                </nx-alert>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Dismissible Alert"
+                description="Set dismissible to show a close button; listen to (dismissed) to react when it's closed."
+                [code]="dismissibleCode"
+                [hasSampleClass]="false">
+
+                <nx-alert variant="warning" dismissible (dismissed)="onDismissed()">
+                    This workspace will be archived in 7 days.
+                </nx-alert>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Without Icon"
+                description="Set icon to false to hide the leading variant icon."
+                [code]="noIconCode"
+                [hasSampleClass]="false">
+
+                <nx-alert variant="info" [icon]="false">
+                    Plain alert without a leading icon.
+                </nx-alert>
+
+            </app-demo-section>
+
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Horizontal"
+                description="A hairline rule separating two sections."
+                [code]="horizontalCode"
+                [hasSampleClass]="false">
+
+                <div class="layout-demo-box">Section one</div>
+                <nx-divider class="my-3"></nx-divider>
+                <div class="layout-demo-box">Section two</div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Labeled"
+                description="Pass a label to center text in the rule - common for an 'OR' divider between two sign-in options."
+                [code]="labeledCode"
+                [hasSampleClass]="false">
+
+                <nx-divider label="OR"></nx-divider>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Vertical"
+                description="Set orientation to vertical to separate items in a row - it stretches to fill the height of its flex container."
+                [code]="verticalCode"
+                [hasSampleClass]="false">
+
+                <nx-stack direction="horizontal" [gap]="12" align="stretch">
+                    <div class="layout-demo-box">Left</div>
+                    <nx-divider orientation="vertical"></nx-divider>
+                    <div class="layout-demo-box">Right</div>
+                </nx-stack>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

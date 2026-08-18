@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Register"
+                description="An account creation form. Like the other templates, this is a static preview - no account is actually created."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <nx-card class="template-card" variant="elevated">
+                        <nx-card-header>
+                            <nx-card-title>Create an account</nx-card-title>
+                            <nx-card-subtitle>Start building with {{ commonService.appName }}</nx-card-subtitle>
+                        </nx-card-header>
+
+                        <nx-card-content>
+                            <form class="template-form" (submit)="onSubmit()">
+                                <nx-input label="Full Name" placeholder="Ada Lovelace" [(value)]="name"></nx-input>
+                                <nx-input label="Email" type="email" placeholder="you@company.com" [(value)]="email"></nx-input>
+                                <nx-input label="Password" type="password" placeholder="••••••••" [(value)]="password"></nx-input>
+                                <nx-input label="Confirm Password" type="password" placeholder="••••••••" [(value)]="confirmPassword"></nx-input>
+
+                                <nx-checkbox label="I agree to the Terms of Service" [(checked)]="agree"></nx-checkbox>
+
+                                <nx-button variant="primary" [fullWidth]="true">Create Account</nx-button>
+
+                                @if (submitted) {
+                                    <p class="template-form-note">
+                                        Preview only - no account was created for {{ email || 'you@company.com' }}.
+                                    </p>
+                                }
+                            </form>
+                        </nx-card-content>
+                    </nx-card>
+
+                    <p class="template-footnote">
+                        Already have an account?
+                        <a class="template-link" routerLink="/templates/login">Sign in</a>
+                    </p>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

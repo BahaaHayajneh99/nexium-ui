@@ -1,0 +1,14 @@
+<div class="nx-gallery">
+    @for (image of images; track image.src; let i = $index) {
+        <div class="nx-gallery-thumb" (click)="open(i)">
+            <img [src]="image.src" [alt]="image.alt || ''" />
+        </div>
+    }
+</div>
+
+@if (selectedIndex !== null) {
+    <div class="nx-gallery-lightbox" (click)="close()">
+        <img [src]="images[selectedIndex].src" [alt]="images[selectedIndex].alt || ''" />
+        <button type="button" class="nx-gallery-close" (click)="close()">×</button>
+    </div>
+}

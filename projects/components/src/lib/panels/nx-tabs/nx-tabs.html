@@ -1,0 +1,42 @@
+<div class="nx-tabs"
+    [class.filled]="variant === 'filled'"
+    [class.boxed]="variant === 'boxed'"
+    [class.pill]="variant === 'pill'"
+    [class.full-width]="fullWidth"
+    [class.vertical]="orientation === 'vertical'">
+
+    <div class="nx-tabs-header">
+
+        <button *ngFor="let tab of tabs; let i=index" class="nx-tab-button" [class.active]="activeIndex === i"
+            [disabled]="tab.disabled" (click)="selectTab(i)">
+
+            @if (tab.labelTemplate) {
+                <ng-container *ngTemplateOutlet="tab.labelTemplate.templateRef"></ng-container>
+            } @else {
+                @if (tab.icon) {
+                    <nx-icon class="nx-tab-icon" [icon]="tab.icon" variant="svg" [size]="16"></nx-icon>
+                }
+                {{tab.label}}
+            }
+
+        </button>
+
+    </div>
+
+
+    <div class="nx-tabs-body">
+
+        <ng-container *ngFor="let tab of tabs; let i=index">
+
+            <div *ngIf="activeIndex === i" class="nx-tab-content">
+
+                <ng-container *ngTemplateOutlet="tab.template">
+                </ng-container>
+
+            </div>
+
+        </ng-container>
+
+    </div>
+
+</div>

@@ -1,0 +1,25 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Textarea"
+                description="The {{ commonService.appName }} Textarea supports multi-line text entry with two-way binding."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-textarea label="Message" placeholder="Write your message" [(value)]="message"></nx-textarea>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Rows"
+                description="Control the visible number of text rows."
+                [code]="rowsCode"
+                [tsCode]="rowsTs"
+                [hasSampleClass]="false">
+                <nx-textarea label="Description" [rows]="6" [(value)]="message"></nx-textarea>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

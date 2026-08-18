@@ -1,0 +1,29 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Error Pages"
+                description="Full-page states for the errors an app runs into most often - swap the icon, code and copy per case and reuse the same layout."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <div class="block-grid-3">
+                    @for (page of pages; track page.code) {
+                        <div class="template-preview">
+                            <div class="template-illustration">
+                                <nx-icon class="template-illustration-icon" [icon]="page.icon" variant="svg" [size]="40"></nx-icon>
+                                <div class="template-illustration-code">{{ page.code }}</div>
+                                <div class="template-illustration-title">{{ page.title }}</div>
+                                <p class="template-illustration-text">{{ page.text }}</p>
+                                <nx-button variant="primary" routerLink="/getting-started">Go Home</nx-button>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

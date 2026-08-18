@@ -1,0 +1,39 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Footers"
+                description="A multi-column footer with a brand blurb, grouped links and a copyright line."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <div class="block-preview">
+                    <div class="block-footer">
+                        <div>
+                            <div class="block-header-logo">{{ commonService.appName }}</div>
+                            <p class="template-illustration-text mt-2">
+                                Standalone Angular components with no external UI or CDK dependency.
+                            </p>
+                        </div>
+
+                        @for (col of columns; track col.title) {
+                            <div>
+                                <div class="block-footer-col-title">{{ col.title }}</div>
+                                @for (link of col.links; track link) {
+                                    <a class="block-footer-link" href="#">{{ link }}</a>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="block-footer-bottom">
+                        &copy; 2026 {{ commonService.appName }}. All rights reserved.
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

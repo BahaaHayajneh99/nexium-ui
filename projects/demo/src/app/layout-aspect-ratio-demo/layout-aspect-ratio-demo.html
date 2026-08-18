@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Widescreen (16 / 9)"
+                description="Keeps a fixed aspect ratio regardless of container width - useful for video/image placeholders before the real media loads. Size projected media to 100%/100% with object-fit: cover."
+                [code]="wideCode"
+                [hasSampleClass]="false">
+
+                <div style="max-width: 360px;">
+                    <nx-aspect-ratio ratio="16 / 9">
+                        <div class="layout-demo-box" style="width: 100%; height: 100%;">16:9</div>
+                    </nx-aspect-ratio>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Square (1 / 1)"
+                description="Any CSS aspect-ratio value works - 1 / 1, 4 / 3, 21 / 9, etc."
+                [code]="squareCode"
+                [hasSampleClass]="false">
+
+                <div style="max-width: 200px;">
+                    <nx-aspect-ratio ratio="1 / 1">
+                        <div class="layout-demo-box layout-demo-box-alt" style="width: 100%; height: 100%;">1:1</div>
+                    </nx-aspect-ratio>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

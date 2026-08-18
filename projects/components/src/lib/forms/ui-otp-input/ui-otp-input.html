@@ -1,0 +1,16 @@
+<div class="nx-otp-input" [class.invalid]="invalid" [class.disabled]="disabled">
+    @for (index of indexes; track index) {
+        <input
+            #cell
+            class="nx-otp-cell"
+            [type]="type === 'number' ? 'text' : 'text'"
+            [attr.inputmode]="type === 'number' ? 'numeric' : 'text'"
+            maxlength="1"
+            autocomplete="one-time-code"
+            [value]="digitAt(index)"
+            [disabled]="disabled"
+            (input)="onInput(index, $event)"
+            (keydown)="onKeydown(index, $event)"
+            (paste)="onPaste($event)" />
+    }
+</div>

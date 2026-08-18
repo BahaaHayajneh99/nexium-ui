@@ -1,0 +1,87 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Basic Badge"
+                description="The basic {{ commonService.appName }} Badge highlights counts, statuses, or short labels next to other content."
+                [code]="basicCode">
+
+                <nx-badge>
+                    New
+                </nx-badge>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Badge Variants"
+                description="{{ commonService.appName }} provides multiple badge variants for different statuses and semantic meanings."
+                [code]="variantsCode">
+
+                <nx-badge variant="primary">Primary</nx-badge>
+                <nx-badge variant="secondary">Secondary</nx-badge>
+                <nx-badge variant="success">Success</nx-badge>
+                <nx-badge variant="danger">Danger</nx-badge>
+                <nx-badge variant="warning">Warning</nx-badge>
+                <nx-badge variant="info">Info</nx-badge>
+                <nx-badge variant="dark">Dark</nx-badge>
+                <nx-badge variant="light">Light</nx-badge>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Outlined Badge"
+                description="Outlined badges use a transparent background with a colored border."
+                [code]="outlinedCode">
+
+                <nx-badge variant="primary" outlined>
+                    Outlined
+                </nx-badge>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Rounded Badge"
+                description="Rounded badges use a pill-shaped design, ideal for numeric counters."
+                [code]="roundedCode">
+
+                <nx-badge variant="danger" rounded>
+                    8
+                </nx-badge>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Badge Sizes"
+                description="Badges support small, medium, and large sizes."
+                [code]="sizesCode">
+
+                <nx-badge size="small">Small</nx-badge>
+                <nx-badge size="medium">Medium</nx-badge>
+                <nx-badge size="large">Large</nx-badge>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Dot Badge"
+                description="Dot badges render as a small indicator without content, useful for status markers."
+                [code]="dotCode">
+
+                <nx-badge variant="success" dot></nx-badge>
+
+            </app-demo-section>
+
+
+        </div>
+
+    </div>
+
+</div>

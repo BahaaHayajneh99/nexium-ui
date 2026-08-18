@@ -1,0 +1,25 @@
+@use '../variables.scss' as *;
+
+.nx-checkbox-layout-controls {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+
+    .demo-btn.active {
+        background-color: var(--shell-primary);
+        color: $white-color;
+        border-color: var(--shell-primary);
+    }
+}
+
+.nx-checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    &.nx-checkbox-list-inline {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: $spacing-md;
+    }
+}

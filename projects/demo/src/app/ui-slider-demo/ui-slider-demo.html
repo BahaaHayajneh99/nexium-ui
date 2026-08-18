@@ -1,0 +1,25 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Slider"
+                description="The {{ commonService.appName }} Slider selects a numeric value within a range."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-slider label="Volume" [(value)]="volume"></nx-slider>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Range"
+                description="Control the min, max, and step values."
+                [code]="rangeCode"
+                [tsCode]="rangeTs"
+                [hasSampleClass]="false">
+                <nx-slider label="Custom Range" [min]="0" [max]="10" [step]="1" [(value)]="rangeVolume"></nx-slider>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

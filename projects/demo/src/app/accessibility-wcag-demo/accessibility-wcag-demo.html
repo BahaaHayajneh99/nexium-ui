@@ -1,0 +1,40 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">WCAG</h4>
+                <p class="main-section-description">
+                    The Web Content Accessibility Guidelines are the standard {{ commonService.appName }}'s own accessibility
+                    work is measured against - <strong>AA</strong> is the target for every component in
+                    this library.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Conformance Levels</h4>
+                <div class="utility-list">
+                    @for (l of levels; track l.name) {
+                        <div class="utility-row">
+                            <code class="utility-class">Level {{ l.name }}</code>
+                            <span class="utility-desc">{{ l.desc }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">The Four Principles (POUR)</h4>
+                <div class="utility-list">
+                    @for (p of principles; track p.name) {
+                        <div class="utility-row">
+                            <code class="utility-class">{{ p.name }}</code>
+                            <span class="utility-desc">{{ p.desc }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

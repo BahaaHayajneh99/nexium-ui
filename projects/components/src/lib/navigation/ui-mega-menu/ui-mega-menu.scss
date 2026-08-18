@@ -1,0 +1,49 @@
+.nx-mega-menu-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.nx-mega-menu-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: color .15s ease;
+}
+
+.nx-mega-menu-trigger:hover,
+.nx-mega-menu-trigger.open {
+    color: var(--shell-primary);
+}
+
+.nx-mega-menu-chevron {
+    display: inline-block;
+    font-size: 12px;
+    transform: rotate(90deg);
+    transition: transform .15s ease;
+}
+
+.nx-mega-menu-chevron.open {
+    transform: rotate(270deg);
+}
+
+.nx-mega-menu-panel {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 480px;
+    padding: 20px;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .18);
+}

@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Employee Directory"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="directoryCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview" style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    @for (employee of employees; track employee['name']) {
+                        <nx-avatar [name]="$any(employee['name'])" size="medium"></nx-avatar>
+                    }
+                </div>
+
+                <nx-table [columns]="columns" [data]="employees" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Leave Balances"
+                description="Labeled progress bars for each leave category."
+                [code]="leaveCode"
+                [hasSampleClass]="false">
+
+                <nx-card class="d-block" variant="outlined">
+                    <nx-card-content>
+                        @for (balance of leaveBalances; track balance.name) {
+                            <nx-progress-bar
+                                [value]="balance.usedPercent"
+                                variant="info"
+                                [showLabel]="true"
+                                label="{{ balance.name }} - {{ balance.label }}"
+                                class="mb-3">
+                            </nx-progress-bar>
+                        }
+                    </nx-card-content>
+                </nx-card>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

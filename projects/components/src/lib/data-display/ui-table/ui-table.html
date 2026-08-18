@@ -1,0 +1,192 @@
+<div class="nx-table-root">
+    @if (showGlobalFilter || showExport) {
+        <div class="nx-table-toolbar">
+            @if (showGlobalFilter) {
+                <input
+                    type="text"
+                    class="nx-table-global-filter"
+                    placeholder="Search..."
+                    [value]="globalFilter"
+                    (input)="onGlobalFilterInput($event)" />
+            }
+            @if (showExport) {
+                <button type="button" class="nx-table-export-btn" (click)="exportCSV()">Export CSV</button>
+            }
+        </div>
+    }
+
+    <div
+        class="nx-table-wrapper"
+        [class.scrollable]="scrollable || virtualScroll"
+        [style.max-height]="scrollable || virtualScroll ? scrollHeight : null"
+        (scroll)="onScroll($event)"
+        #scrollContainer>
+        <table class="nx-table" [ngClass]="tableClasses">
+            <colgroup>
+                @if (selectionMode) {
+                    <col style="width: 40px" />
+                }
+                @for (col of columns; track col.field) {
+                    <col [style.width]="colWidth(col)" />
+                }
+            </colgroup>
+            <thead>
+                @if (columnGroups.length) {
+                    <tr class="nx-table-group-row">
+                        @if (selectionMode) {
+                            <th [attr.rowspan]="2"></th>
+                        }
+                        @for (group of columnGroups; track $index) {
+                            <th [attr.colspan]="group.colspan">{{ group.header }}</th>
+                        }
+                    </tr>
+                }
+                <tr>
+                    @if (selectionMode === 'multiple') {
+                        <th class="nx-table-select-col">
+                            <input type="checkbox" [checked]="allSelected" (change)="toggleSelectAll($any($event.target).checked)" />
+                        </th>
+                    } @else if (selectionMode === 'single') {
+                        <th class="nx-table-select-col"></th>
+                    }
+                    @for (col of columns; track col.field) {
+                        <th
+                            [class.frozen-left]="col.frozen === 'left'"
+                            [class.frozen-right]="col.frozen === 'right'"
+                            [style.left]="frozenLeftOffset(col)"
+                            [style.right]="frozenRightOffset(col)"
+                            [class.sortable]="col.sortable"
+                            [style.text-align]="col.align"
+                            (click)="onSort(col, $event)">
+                            <span class="nx-table-th-content">
+                                {{ col.header }}
+                                @if (col.sortable) {
+                                    <span
+                                        class="nx-table-sort-icon"
+                                        [class.asc]="sortOrderFor(col.field) === 1"
+                                        [class.desc]="sortOrderFor(col.field) === -1"></span>
+                                    @if (multiSortIndex(col.field) !== null) {
+                                        <span class="nx-table-sort-badge">{{ multiSortIndex(col.field) }}</span>
+                                    }
+                                }
+                            </span>
+                            @if (col.resizable) {
+                                <span class="nx-table-resize-handle" (mousedown)="onResizeStart(col, $event)"></span>
+                            }
+                        </th>
+                    }
+                </tr>
+                @if (hasFilterRow) {
+                    <tr class="nx-table-filter-row">
+                        @if (selectionMode) {
+                            <th></th>
+                        }
+                        @for (col of columns; track col.field) {
+                            <th>
+                                @if (col.filterable) {
+                                    <input
+                                        type="text"
+                                        class="nx-table-filter-input"
+                                        [placeholder]="col.header"
+                                        [value]="filters[col.field] || ''"
+                                        (input)="onFilterInput(col.field, $event)"
+                                        (click)="$event.stopPropagation()" />
+                                }
+                            </th>
+                        }
+                    </tr>
+                }
+            </thead>
+            <tbody>
+                @if (virtualScroll && topSpacerHeight > 0) {
+                    <tr class="nx-virtual-spacer" [style.height.px]="topSpacerHeight">
+                        <td [attr.colspan]="totalColSpan"></td>
+                    </tr>
+                }
+                @for (row of visibleRows; track trackByRow($index, row)) {
+                    <tr [class.selected]="isSelected(row)" (click)="onRowClick(row)">
+                        @if (selectionMode === 'multiple') {
+                            <td class="nx-table-select-col">
+                                <input
+                                    type="checkbox"
+                                    [checked]="isSelected(row)"
+                                    (click)="$event.stopPropagation()"
+                                    (change)="toggleRowSelection(row)" />
+                            </td>
+                        } @else if (selectionMode === 'single') {
+                            <td class="nx-table-select-col">
+                                <input
+                                    type="radio"
+                                    name="nx-table-row-select"
+                                    [checked]="isSelected(row)"
+                                    (click)="$event.stopPropagation(); selectSingle(row)" />
+                            </td>
+                        }
+                        @for (col of columns; track col.field) {
+                            <td
+                                [class.frozen-left]="col.frozen === 'left'"
+                                [class.frozen-right]="col.frozen === 'right'"
+                                [style.left]="frozenLeftOffset(col)"
+                                [style.right]="frozenRightOffset(col)"
+                                [style.text-align]="col.align"
+                                (dblclick)="startEdit(row, col)">
+                                @if (isEditing(row, col)) {
+                                    <input
+                                        #editInputRef
+                                        autofocus
+                                        class="nx-table-edit-input"
+                                        type="text"
+                                        [value]="editValue"
+                                        (click)="$event.stopPropagation()"
+                                        (input)="onEditInput($event)"
+                                        (blur)="commitEdit(row, col)"
+                                        (keydown.enter)="commitEdit(row, col)"
+                                        (keydown.escape)="cancelEdit()" />
+                                } @else {
+                                    {{ row?.[col.field] }}
+                                }
+                            </td>
+                        }
+                    </tr>
+                } @empty {
+                    <tr>
+                        <td [attr.colspan]="totalColSpan" class="nx-table-empty">No data available</td>
+                    </tr>
+                }
+                @if (virtualScroll && bottomSpacerHeight > 0) {
+                    <tr class="nx-virtual-spacer" [style.height.px]="bottomSpacerHeight">
+                        <td [attr.colspan]="totalColSpan"></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (paginator) {
+        <div class="nx-table-paginator">
+            <div class="nx-table-paginator-info">
+                {{ totalRecordsCount === 0 ? 0 : pageStart + 1 }}-{{ pageEnd }} of {{ totalRecordsCount }}
+            </div>
+            @if (rowsPerPageOptions.length) {
+                <select class="nx-table-rows-select" (change)="onRowsChange($event)">
+                    @for (opt of rowsPerPageOptions; track opt) {
+                        <option [value]="opt" [selected]="opt === rows">{{ opt }} / page</option>
+                    }
+                </select>
+            }
+            <div class="nx-pagination">
+                <button type="button" class="nx-pagination-btn" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">‹</button>
+                @for (pageNum of pageNumbers; track pageNum) {
+                    <button
+                        type="button"
+                        class="nx-pagination-btn"
+                        [class.active]="pageNum === currentPage"
+                        (click)="goToPage(pageNum)">
+                        {{ pageNum }}
+                    </button>
+                }
+                <button type="button" class="nx-pagination-btn" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">›</button>
+            </div>
+        </div>
+    }
+</div>

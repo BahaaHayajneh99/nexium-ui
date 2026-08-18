@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Scatter Chart</h4>
+                <p class="main-section-description">
+                    Plots x/y coordinates to reveal correlation between two measures. Hover or focus a
+                    point for its exact values, or switch to the accessible table view.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Basic"
+                description="A single series needs no legend - the chart's own title already says what's plotted."
+                [code]="basicCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-scatter-chart [series]="loadTimes" xLabel="Page weight (MB)" yLabel="Load time (ms)"></nx-scatter-chart>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Cohorts"
+                description="Two or more series always get a legend, so identity never rides on color alone."
+                [code]="cohortCode"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-scatter-chart [series]="cohorts" xLabel="Page weight (MB)" yLabel="Load time (ms)"></nx-scatter-chart>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.nx-modal {
+    width: 420px;
+    max-width: calc(100vw - #{$spacing-lg} * 2);
+    max-height: calc(100vh - #{$spacing-lg} * 2);
+    overflow-y: auto;
+    background-color: var(--shell-surface);
+    border-radius: $radius-md;
+    box-shadow: $shadow-lg;
+}
+
+.nx-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-md $spacing-lg;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-modal-title {
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+}
+
+.nx-modal-close {
+    border: none;
+    background: none;
+    font-size: $h2-font-size;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--shell-text-secondary);
+}
+
+.nx-modal-body {
+    padding: $spacing-lg;
+    color: var(--shell-text);
+
+    &:empty {
+        display: none;
+    }
+}
+
+.nx-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-sm;
+    padding: $spacing-md $spacing-lg;
+    border-top: 1px solid var(--shell-border);
+
+    &:empty {
+        display: none;
+    }
+}

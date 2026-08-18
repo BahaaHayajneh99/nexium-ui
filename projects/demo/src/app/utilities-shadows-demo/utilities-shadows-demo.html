@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Shadow Utilities</h4>
+                <p class="main-section-description">
+                    Five elevation levels, from a barely-visible <code>xs</code> to a heavy
+                    <code>xl</code> used behind modals and popovers.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <div class="shadow-grid">
+                    @for (s of shadows; track s.className) {
+                        <div class="shadow-card-wrap">
+                            <div class="shadow-card" [class]="s.className"></div>
+                            <code class="shadow-class">.{{ s.className }}</code>
+                            <span class="shadow-value">{{ s.value }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Usage</h4>
+                <div class="gs-code">
+                    <pre>&lt;div class="shadow-md radius-md p-4"&gt;Elevated panel&lt;/div&gt;</pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

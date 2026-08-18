@@ -1,0 +1,23 @@
+<span
+    #swatch
+    class="nx-tag"
+    [class.outline]="variant === 'outline'"
+    [class.disabled]="disabled"
+    [style.background]="variant === 'outline' ? 'transparent' : color"
+    [style.border-color]="color"
+    [style.color]="variant === 'outline' ? color : computedTextColor">
+
+    <ng-content></ng-content>
+
+    @if (closable) {
+        <button
+            type="button"
+            class="nx-tag-close"
+            [disabled]="disabled"
+            aria-label="Remove tag"
+            (click)="onClose($event)">
+            &times;
+        </button>
+    }
+
+</span>

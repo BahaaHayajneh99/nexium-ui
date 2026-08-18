@@ -1,0 +1,298 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-table-root {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+}
+
+.nx-table-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-sm;
+}
+
+.nx-table-global-filter {
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid var(--shell-border); 
+    background-color: var(--shell-bg);
+    border-radius: $radius-sm;
+    font-size: $font-size-sm;
+    outline: none;
+    min-width: 220px;
+
+    &:focus {
+        border-color: var(--shell-primary);
+    }
+}
+
+.nx-table-export-btn {
+    padding: $spacing-xs $spacing-md;
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-sm;
+    background-color: $surface-color;
+    color: $text-primary;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+
+    &:hover {
+        background-color: $surface-hover-color;
+    }
+}
+
+.nx-table-wrapper {
+    overflow-x: auto;
+
+    &.scrollable {
+        overflow-y: auto;
+
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+    }
+}
+
+.nx-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size-sm;
+    color: var(--shell-text);
+    background-color: var(--shell-bg);
+
+    th,
+    td {
+        padding: $spacing-sm $spacing-md;
+        text-align: left;
+        border-bottom: 1px solid var(--shell-border);
+        position: relative;
+    }
+
+    &.nx-table-fixed {
+        table-layout: fixed;
+
+        th,
+        td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    thead th {
+        background-color: var(--shell-bg);
+        font-weight: $font-weight-semibold;
+        color: var(--shell-text);
+    }
+
+    &.nx-table-sm th,
+    &.nx-table-sm td {
+        padding: $spacing-xs $spacing-sm;
+        font-size: $font-size-xs;
+    }
+
+    &.nx-table-lg th,
+    &.nx-table-lg td {
+        padding: $spacing-md $spacing-lg;
+        font-size: $font-size-md;
+    }
+
+    &.bordered {
+        border: 1px solid var(--shell-border);
+
+        th,
+        td {
+            border: 1px solid var(--shell-border);
+        }
+    }
+
+    &.striped tbody tr:nth-child(even) {
+        background-color: var(--shell-surface-hover);
+    }
+
+    &.hoverable tbody tr:hover {
+        background-color: var(--shell-surface-hover);
+    }
+
+    tbody tr.selected {
+        background-color: rgba(var(--shell-primary-color-rgb), .1);
+    }
+
+    .nx-table-empty {
+        text-align: center;
+        color: $text-secondary;
+        padding: $spacing-lg;
+    }
+
+    .nx-table-select-col {
+        width: 40px;
+        text-align: center;
+    }
+
+    th.sortable {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .nx-table-th-content {
+        display: inline-flex;
+        align-items: center;
+        gap: $spacing-xs;
+    }
+
+    .nx-table-sort-icon {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 5px solid $gray-400;
+        opacity: .6;
+
+        &.asc {
+            border-bottom: 5px solid var(--shell-primary);
+            border-top: none;
+            opacity: 1;
+        }
+
+        &.desc {
+            border-bottom: none;
+            border-top: 5px solid var(--shell-primary);
+            opacity: 1;
+        }
+    }
+
+    .nx-table-sort-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 14px;
+        height: 14px;
+        padding: 0 3px;
+        border-radius: $radius-round;
+        background-color: var(--shell-primary);
+        color: $text-white;
+        font-size: 10px;
+        line-height: 14px;
+    }
+
+    .nx-table-resize-handle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 5px;
+        height: 100%;
+        cursor: col-resize;
+        user-select: none;
+
+        &:hover {
+            background-color: $primary-color-light;
+        }
+    }
+
+    .nx-table-filter-row th {
+        background-color: var(--shell-surface);
+        padding: $spacing-xs $spacing-sm;
+    }
+
+    .nx-table-filter-input {
+        width: 100%;
+        padding: $spacing-xs $spacing-sm;
+        border: 1px solid var(--shell-border);
+        border-radius: $radius-sm;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-normal;
+        outline: none;
+        box-sizing: border-box;
+        background-color: var(--shell-bg);
+
+        &:focus {
+            border-color: var(--shell-primary);
+        }
+    }
+
+    .nx-table-edit-input {
+        width: 100%;
+        padding: $spacing-xs;
+        border: 1px solid var(--shell-primary-color);
+        border-radius: $radius-sm;
+        font-size: inherit;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    .frozen-left,
+    .frozen-right {
+        position: sticky;
+        z-index: 1;
+        background-color: var(--shell-surface);
+    }
+
+    thead .frozen-left,
+    thead .frozen-right {
+        z-index: 3;
+        background-color: var(--shell-surface);
+    }
+
+    .nx-virtual-spacer td {
+        padding: 0;
+        border: none;
+    }
+}
+
+.nx-table-paginator {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+    background-color: var(--shell-bg);
+}
+
+.nx-table-rows-select {
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-sm;
+    font-size: $font-size-sm;
+    background-color: var(--shell-bg);
+    color: var(--shell-text);
+}
+
+.nx-pagination {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+}
+
+.nx-pagination-btn {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 $spacing-xs;
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-sm;
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+
+    &:hover:not(:disabled) {
+        background-color: var(--shell-surface-hover);
+    }
+
+    &.active {
+        background-color: var(--shell-primary);
+        border-color: var(--shell-primary);
+        color: $text-white;
+    }
+
+    &:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+}

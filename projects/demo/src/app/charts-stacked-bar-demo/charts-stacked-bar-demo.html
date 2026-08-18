@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Stacked Bar Chart</h4>
+                <p class="main-section-description">
+                    The same <code>nx-bar-chart</code> component with <code>stacked</code> set - series
+                    accumulate within each category band instead of grouping side by side, so the total
+                    per category is as readable as each part.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Revenue by plan"
+                description="Two or more series always get a legend, so identity never rides on color alone."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-bar-chart [categories]="months" [series]="revenueByPlan" [stacked]="true"></nx-bar-chart>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

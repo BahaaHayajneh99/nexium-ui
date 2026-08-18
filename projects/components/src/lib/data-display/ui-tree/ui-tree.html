@@ -1,0 +1,14 @@
+<ng-content select="[nx-tree-actions]">
+    @if (showExpandCollapseAll) {
+        <div class="nx-tree-actions">
+            <button type="button" class="nx-tree-action-btn" (click)="expandAll()">{{ expandAllLabel }}</button>
+            <button type="button" class="nx-tree-action-btn" (click)="collapseAll()">{{ collapseAllLabel }}</button>
+        </div>
+    }
+</ng-content>
+
+<div class="nx-tree">
+    @for (node of nodes; track node.label) {
+        <nx-tree-node [node]="node"></nx-tree-node>
+    }
+</div>

@@ -1,0 +1,22 @@
+<div class="nx-statistic">
+    <div class="nx-statistic-label">{{ label }}</div>
+    <div class="nx-statistic-value">
+        @if (prefix) {
+            <span class="nx-statistic-affix">{{ prefix }}</span>
+        }
+        {{ value }}
+        @if (suffix) {
+            <span class="nx-statistic-affix">{{ suffix }}</span>
+        }
+    </div>
+    @if (delta) {
+        <div class="nx-statistic-delta" [class]="deltaClass">
+            @if (resolvedDirection === 'up') {
+                <span class="nx-statistic-arrow">&#8593;</span>
+            } @else if (resolvedDirection === 'down') {
+                <span class="nx-statistic-arrow">&#8595;</span>
+            }
+            {{ delta }}
+        </div>
+    }
+</div>

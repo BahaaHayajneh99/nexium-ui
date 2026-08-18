@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Border Radius Utilities</h4>
+                <p class="main-section-description">
+                    From a subtle <code>xs</code> corner to <code>round</code>, which is large enough to
+                    make any square element fully circular.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <div class="radius-grid">
+                    @for (r of radii; track r.className) {
+                        <div class="radius-card-wrap">
+                            <div class="radius-card" [class]="r.className"></div>
+                            <code class="radius-class">.{{ r.className }}</code>
+                            <span class="radius-value">{{ r.value }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Usage</h4>
+                <div class="gs-code">
+                    <pre>&lt;img class="radius-round" src="avatar.png" /&gt;
+&lt;div class="radius-lg shadow-sm p-4"&gt;Rounded panel&lt;/div&gt;</pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

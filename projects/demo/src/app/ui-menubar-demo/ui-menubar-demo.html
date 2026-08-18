@@ -1,0 +1,19 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Menubar"
+                description="A desktop-app-style menu bar - each top-level label opens its own dropdown, and opening one closes any other that was open."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-menubar [menus]="menus" (itemSelect)="onSelect($event)"></nx-menubar>
+                @if (lastSelected) {
+                    <p class="template-form-note mt-2">Selected: {{ lastSelected }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

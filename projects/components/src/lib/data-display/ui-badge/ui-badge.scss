@@ -1,0 +1,132 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-badge {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 20px;
+    height: 20px;
+    padding: 0 $spacing-xs;
+
+    border: 1px solid transparent;
+    border-radius: $radius-sm;
+
+    background: var(--shell-primary);
+    color: $text-white;
+
+    font-family: $font-family;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    line-height: 1;
+
+    white-space: nowrap;
+
+    // =========================
+    // Sizes
+    // =========================
+
+    &.small {
+        min-width: 16px;
+        height: 16px;
+        font-size: 10px;
+    }
+
+    &.large {
+        min-width: 26px;
+        height: 26px;
+        padding: 0 $spacing-sm;
+        font-size: $font-size-sm;
+    }
+
+    // =========================
+    // Shape
+    // =========================
+
+    &.rounded {
+        border-radius: $radius-round;
+    }
+
+    // =========================
+    // Dot Mode
+    // =========================
+
+    &.dot {
+        min-width: 10px;
+        width: 10px;
+        height: 10px;
+        padding: 0;
+        border-radius: $radius-round;
+    }
+
+    // =========================
+    // Outlined
+    // =========================
+
+    &.outlined {
+        background: transparent;
+        border-color: currentColor;
+    }
+
+    // =========================
+    // Variants
+    // =========================
+
+    &.primary {
+        background: var(--shell-primary);
+        &.outlined { color: var(--shell-primary); 
+        background: color-mix(in srgb, var(--shell-primary) 12%, transparent);; }
+    }
+
+    &.secondary {
+        background: $secondary-color;
+        &.outlined { color: $secondary-color; 
+        background: color-mix(in srgb, $secondary-color 12%, transparent);;
+        }
+    }
+
+    &.success {
+        background: $success-color;
+        &.outlined { color: $success-color; 
+        background: color-mix(in srgb, $success-color 12%, transparent);;
+        }
+    }
+
+    &.danger {
+        background: $danger-color;
+        &.outlined { color: $danger-color; 
+        background: color-mix(in srgb, $danger-color 12%, transparent);;
+        }
+    }
+
+    &.warning {
+        background: $warning-color;
+        &.outlined { color: $warning-color; 
+        background: color-mix(in srgb, $warning-color 12%, transparent);;
+        }
+    }
+
+    &.info {
+        background: $info-color;
+        &.outlined { color: $info-color; 
+        background: color-mix(in srgb, $info-color 12%, transparent);;
+        }
+    }
+
+    &.dark {
+        background: $gray-900;
+        &.outlined { color: $gray-900; 
+        background: color-mix(in srgb, $gray-900 12%, transparent);;
+        }
+    }
+
+    &.light {
+        background: var(--shell-surface-hover);
+        color: var(--shell-text);
+        &.outlined { color: var(--shell-text-secondary);
+        background: color-mix(in srgb, var(--shell-surface-hover) 12%, transparent);;
+        }
+    }
+
+}

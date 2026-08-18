@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Login"
+                description="A minimal sign-in screen built entirely from nx-input, nx-checkbox, nx-button and nx-card. This is a static preview - submitting doesn't make a network request."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <nx-card class="template-card" variant="elevated">
+                        <nx-card-header>
+                            <nx-card-title>Welcome back</nx-card-title>
+                            <nx-card-subtitle>Sign in to your account</nx-card-subtitle>
+                        </nx-card-header>
+
+                        <nx-card-content>
+                            <form class="template-form" (submit)="onSubmit()">
+                                <nx-input label="Email" type="email" placeholder="you@company.com" [(value)]="email"></nx-input>
+                                <nx-input label="Password" type="password" placeholder="••••••••" [(value)]="password"></nx-input>
+
+                                <div class="template-form-row">
+                                    <nx-checkbox label="Remember me" [(checked)]="remember"></nx-checkbox>
+                                    <a class="template-link" routerLink="/templates/forgot-password">Forgot password?</a>
+                                </div>
+
+                                <nx-button variant="primary" [fullWidth]="true">Sign In</nx-button>
+
+                                @if (submitted) {
+                                    <p class="template-form-note">
+                                        Preview only - {{ email || 'you@company.com' }} wasn't actually signed in.
+                                    </p>
+                                }
+                            </form>
+                        </nx-card-content>
+                    </nx-card>
+
+                    <p class="template-footnote">
+                        Don't have an account?
+                        <a class="template-link" routerLink="/templates/register">Create one</a>
+                    </p>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

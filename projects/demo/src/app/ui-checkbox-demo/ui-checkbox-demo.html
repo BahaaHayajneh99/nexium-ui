@@ -1,0 +1,61 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Checkbox"
+                description="The {{ commonService.appName }} Checkbox supports two-way binding of the checked state."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-checkbox label="I agree to the terms and conditions" [(checked)]="agreed"></nx-checkbox>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Dynamic"
+                description="Render checkboxes from an array and control whether items lay out inline or block."
+                [code]="dynamicCode"
+                [tsCode]="dynamicTs"
+                [hasSampleClass]="false">
+                <div class="nx-checkbox-layout-controls">
+                    <button type="button" class="demo-btn" [class.active]="dynamicLayout === 'inline'" (click)="setDynamicLayout('inline')">Inline</button>
+                    <button type="button" class="demo-btn" [class.active]="dynamicLayout === 'block'" (click)="setDynamicLayout('block')">Block</button>
+                </div>
+                <div class="nx-checkbox-list" [class.nx-checkbox-list-inline]="dynamicLayout === 'inline'">
+                    @for (category of categories; track category.key) {
+                        <nx-checkbox
+                            [label]="category.label"
+                            [checked]="selectedCategories.includes(category.key)"
+                            (checkedChange)="toggleCategory(category.key)">
+                        </nx-checkbox>
+                    }
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Filled"
+                description="Specify the variant property as filled to display the checkbox with a higher visual emphasis than the default outlined style."
+                [code]="filledCode"
+                [hasSampleClass]="false">
+                <nx-checkbox label="Filled checkbox" variant="filled" [(checked)]="agreed"></nx-checkbox>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Disabled checkboxes cannot be toggled."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-checkbox label="Disabled option" [disabled]="true"></nx-checkbox>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Invalid"
+                description="Set invalid to true to highlight the checkbox with an error state."
+                [code]="invalidCode"
+                [hasSampleClass]="false">
+                <nx-checkbox label="This field is required" [invalid]="true"></nx-checkbox>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

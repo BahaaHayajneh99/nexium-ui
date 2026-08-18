@@ -1,0 +1,53 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Contributing</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} is a monorepo of a few publishable libraries plus this demo app. Contributions
+                    to components, docs or the demo site are all welcome.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Local Setup</h4>
+                <div class="gs-code">
+                    <pre>{{ setupCode }}</pre>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Before You Open a PR</h4>
+                <p class="main-section-description">
+                    Run the unit tests and linter for any library you touched.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ testCode }}</pre>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Branching &amp; Commits</h4>
+                <p class="main-section-description">
+                    Branch off <code>main</code>, keep commits scoped to one change, and prefix messages
+                    with <code>feat:</code>, <code>fix:</code>, <code>docs:</code> or
+                    <code>refactor:</code>.
+                </p>
+                <div class="gs-code">
+                    <pre>{{ branchCode }}</pre>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Component Guidelines</h4>
+                <p class="main-section-description">
+                    New components should be standalone (no <code>NgModule</code>), read colors/spacing
+                    from <code>variables.scss</code> rather than hard-coded values, and add a matching
+                    demo page under <code>projects/demo/src/app</code> with copyable usage snippets.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</div>

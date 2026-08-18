@@ -1,0 +1,20 @@
+<svg
+    class="nx-sparkline"
+    [attr.viewBox]="viewBox"
+    [attr.width]="width"
+    [attr.height]="height"
+    preserveAspectRatio="none"
+    role="img"
+    [attr.aria-label]="ariaLabel">
+
+    @if (showArea) {
+        <path class="nx-sparkline-area" [attr.d]="areaPath" [attr.fill]="color"></path>
+    }
+
+    <path class="nx-sparkline-line" [attr.d]="linePath" [attr.stroke]="color"></path>
+
+    @if (lastPoint) {
+        <circle class="nx-sparkline-dot" [attr.cx]="lastPoint.x" [attr.cy]="lastPoint.y" r="2.5" [attr.fill]="color"></circle>
+    }
+
+</svg>

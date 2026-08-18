@@ -1,0 +1,96 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Setup"
+                description="Register languages and dictionaries once with provideNxTranslate in app.config.ts."
+                [code]="setupCode"
+                codeLang="ts"
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Add Your Own Language"
+                description="Create a new locale-xx.json file next to the existing ones, using the same flat keys (hello, welcome, home, settings...)."
+                [code]="newLocaleFileCode"
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Register the New Locale"
+                description="Import the JSON file and add it to the translations map — no changes to the service or pipe are needed."
+                [code]="registerLocaleCode"
+                codeLang="ts"
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Basic Usage"
+                description="Use the nxTranslate pipe with a translation key to render the active language's text."
+                [code]="pipeCode">
+
+                <p>{{ 'hello' | nxTranslate }}</p>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Interpolation"
+                description="Pass a params object to fill in {{ '{{placeholders}}' }} inside the translated string."
+                [code]="paramsCode">
+
+                <p>{{ 'welcome' | nxTranslate: { name: 'Sara' } }}</p>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Switching Language"
+                description="Call NxTranslateService.use(lang) to switch languages; every nxTranslate pipe updates automatically."
+                [tsCode]="switchLangCode"
+                code="<button (click)=&quot;setLang('en')&quot;>English</button>
+<button (click)=&quot;setLang('ar')&quot;>العربية</button> 
+<button (click)=&quot;setLang('es')&quot;>Español</button>
+<button (click)=&quot;setLang('fr')&quot;>Français</button>">
+
+                <div class="translate-lang-switcher">
+                    @for (lang of translateService.availableLangs; track lang) {
+                        <button
+                            type="button"
+                            class="demo-btn"
+                            [class.demo-btn-primary]="translateService.currentLang === lang"
+                            (click)="setLang(lang)">
+                            {{ lang.toUpperCase() }}
+                        </button>
+                    }
+                </div>
+
+                <p class="translate-preview">{{ 'hello' | nxTranslate }}</p>
+                <p class="translate-preview">{{ 'welcome' | nxTranslate: { name: 'Sara' } }}</p>
+                <p class="translate-preview">{{ 'home' | nxTranslate }} · {{ 'settings' | nxTranslate }}</p>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Using the Service Directly"
+                description="Inject NxTranslateService to read translations imperatively with instant() or reactively with get()."
+                [code]="serviceCode"
+                codeLang="ts">
+
+                <p>{{ translateService.instant('home') }} · {{ translateService.instant('settings') }}</p>
+
+            </app-demo-section>
+
+        </div>
+
+    </div>
+
+</div>

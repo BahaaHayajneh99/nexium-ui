@@ -1,0 +1,39 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Screen Readers</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} favors native semantic HTML (native <code>&lt;button&gt;</code>,
+                    <code>&lt;input&gt;</code>, <code>&lt;label&gt;</code>) over custom widgets wherever
+                    possible, since screen readers understand native elements' roles and states for
+                    free - no ARIA required to announce them correctly.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Recommended Screen Readers for Manual Testing</h4>
+                <div class="utility-list">
+                    @for (sr of tested; track sr.name) {
+                        <div class="utility-row">
+                            <code class="utility-class">{{ sr.name }}</code>
+                            <span class="utility-desc">{{ sr.platform }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Live Regions</h4>
+                <p class="main-section-description">
+                    <code>nx-toast</code> announces new toasts via an <code>aria-live</code> region, and
+                    <code>nx-notification-center</code>'s unread badge count updates are exposed the same
+                    way, so a screen reader user hears about new notifications without needing to poll
+                    the bell icon.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</div>

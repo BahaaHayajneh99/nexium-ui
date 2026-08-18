@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Typography Utilities</h4>
+                <p class="main-section-description">
+                    Font-size and font-weight classes for the scale covered in
+                    <code>Guide &gt; Typography</code>.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Font Size</h4>
+                <div class="utility-list">
+                    @for (u of sizeUtilities; track u) {
+                        <div class="utility-row">
+                            <span class="utility-sample" [class]="u">Aa</span>
+                            <code class="utility-class">.{{ u }}</code>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Font Weight</h4>
+                <div class="utility-list">
+                    @for (u of weightUtilities; track u) {
+                        <div class="utility-row">
+                            <span class="utility-sample" [class]="u">Aa</span>
+                            <code class="utility-class">.{{ u }}</code>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Usage</h4>
+                <div class="gs-code">
+                    <pre>&lt;h1 class="fs-3xl fw-bold"&gt;Big and bold&lt;/h1&gt;
+&lt;span class="fs-xs fw-light"&gt;Fine print&lt;/span&gt;</pre>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

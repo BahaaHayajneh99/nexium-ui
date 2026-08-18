@@ -1,0 +1,46 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Accessibility Testing</h4>
+                <p class="main-section-description">
+                    Automated tools catch maybe a third of real accessibility issues - contrast, missing
+                    labels, invalid ARIA. The rest (does this actually make sense with a keyboard or a
+                    screen reader?) only shows up when you drive the page that way yourself.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Manual Checklist</h4>
+                <ul class="main-section-description">
+                    @for (item of manualChecklist; track item) {
+                        <li>{{ item }}</li>
+                    }
+                </ul>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Automated Tools</h4>
+                <div class="utility-list">
+                    @for (tool of automatedTools; track tool.name) {
+                        <div class="utility-row">
+                            <code class="utility-class">{{ tool.name }}</code>
+                            <span class="utility-desc">{{ tool.desc }}</span>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Try the Other Tools on This Page</h4>
+                <p class="main-section-description">
+                    <code>Color Contrast</code> has a live ratio checker, and <code>Focus Management</code>
+                    has a real modal you can Tab through to feel a working focus trap - both are quicker
+                    to internalize by using them than by reading about them.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</div>

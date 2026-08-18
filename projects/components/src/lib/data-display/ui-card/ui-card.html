@@ -1,0 +1,8 @@
+<div class="nx-card" [class.outlined]="variant === 'outlined'" [class.elevated]="variant === 'elevated'"
+    [class.hoverable]="hoverable" [class.small]="size === 'small'" [class.medium]="size === 'medium'" [class.large]="size === 'large'">
+        <ng-content select="[nx-card-image]"></ng-content>
+
+    <ng-content></ng-content>
+
+
+</div>

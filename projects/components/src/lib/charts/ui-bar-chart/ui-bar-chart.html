@@ -1,0 +1,95 @@
+<div class="nx-chart">
+
+    <button type="button" class="nx-chart-table-toggle" (click)="toggleTable()">
+        {{ showTable ? 'View as chart' : 'View as table' }}
+    </button>
+
+    @if (!showTable) {
+        <div class="nx-chart-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (tick of yTicks; track tick) {
+                    <line
+                        class="nx-chart-grid"
+                        [attr.x1]="44"
+                        [attr.x2]="600 - 16"
+                        [attr.y1]="tickY(tick)"
+                        [attr.y2]="tickY(tick)">
+                    </line>
+                    <text class="nx-chart-axis-label" text-anchor="end" [attr.x]="38" [attr.y]="tickY(tick) + 4">
+                        {{ formatTick(tick) }}
+                    </text>
+                }
+
+                @for (bar of bars; track bar.categoryIndex + '-' + bar.seriesIndex) {
+                    <path
+                        class="nx-chart-bar"
+                        [class.nx-chart-bar-hovered]="hovered === bar"
+                        [attr.d]="bar.path"
+                        [attr.fill]="bar.color"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="categories[bar.categoryIndex] + ', ' + (series[bar.seriesIndex]?.name ?? '') + ': ' + bar.value"
+                        (pointerenter)="onBarEnter(bar)"
+                        (pointerleave)="onBarLeave()"
+                        (focus)="onBarEnter(bar)"
+                        (blur)="onBarLeave()">
+                    </path>
+                }
+
+                @for (category of categories; track category; let i = $index) {
+                    <text class="nx-chart-axis-label" text-anchor="middle" [attr.x]="categoryLabelX(i)" [attr.y]="height - 12">
+                        {{ category }}
+                    </text>
+                }
+
+            </svg>
+
+            @if (hovered) {
+                <div class="nx-chart-tooltip" [style]="hoveredTooltipStyle">
+                    <div class="nx-chart-tooltip-category">{{ categories[hovered.categoryIndex] }}</div>
+                    <div class="nx-chart-tooltip-row">
+                        <span class="nx-chart-tooltip-key" [style.background]="hovered.color"></span>
+                        <span class="nx-chart-tooltip-name">{{ series[hovered.seriesIndex]?.name }}</span>
+                        <strong class="nx-chart-tooltip-value">{{ formatTick(hovered.value) }}</strong>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (hasLegend) {
+            <div class="nx-chart-legend">
+                @for (s of series; track s.name; let i = $index) {
+                    <div class="nx-chart-legend-item">
+                        <span class="nx-chart-legend-swatch" [style.background]="swatchColor(s, i)"></span>
+                        {{ s.name }}
+                    </div>
+                }
+            </div>
+        }
+    } @else {
+        <div class="nx-chart-table-wrap">
+            <table class="nx-chart-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        @for (s of series; track s.name) {
+                            <th>{{ s.name }}</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (category of categories; track category; let i = $index) {
+                        <tr>
+                            <th scope="row">{{ category }}</th>
+                            @for (s of series; track s.name) {
+                                <td>{{ formatTick(s.data[i] ?? 0) }}</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>

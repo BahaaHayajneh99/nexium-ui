@@ -1,0 +1,31 @@
+:host {
+    display: block;
+}
+
+.nx-skeleton-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-skeleton {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-skeleton.animated::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0) 100%);
+    animation: nx-skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes nx-skeleton-shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}

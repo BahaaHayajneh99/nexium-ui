@@ -1,0 +1,65 @@
+<div
+    class="nx-autocomplete"
+    [ngClass]="[variant, multiple ? 'multiple' : '', invalid ? 'invalid' : '', disabled ? 'disabled' : '']">
+
+    @if (label && !floatLabel) {
+        <label class="nx-autocomplete-label">{{ label }}</label>
+    }
+
+    <div class="nx-autocomplete-input-wrapper" (click)="focusInput()">
+
+        @if (multiple && values.length) {
+            <ul class="nx-autocomplete-chips">
+                @for (val of values; track val) {
+                    <li class="nx-autocomplete-chip">
+                        {{ val }}
+                        <button type="button" class="nx-autocomplete-chip-remove" (mousedown)="removeChip(val, $event)">×</button>
+                    </li>
+                }
+            </ul>
+        }
+
+        <input
+            #input
+            class="nx-autocomplete-input"
+            [placeholder]="floatLabel ? '' : placeholder"
+            [disabled]="disabled"
+            [value]="multiple ? query : value"
+            [attr.aria-invalid]="invalid ? true : null"
+            (input)="onInput($event)"
+            (focus)="onFocus()"
+            (blur)="onBlur()" />
+
+        @if (floatLabel && label) {
+            <label class="nx-autocomplete-float-label" [class.active]="focused || hasValue">{{ label }}</label>
+        }
+
+        @if (showClear && hasValue && !disabled) {
+            <button type="button" class="nx-autocomplete-clear" (mousedown)="clear($event)">×</button>
+        }
+
+    </div>
+
+    @if (showList) {
+        <ul class="nx-autocomplete-list" [style.max-height.px]="virtualScroll ? scrollHeight : null" (scroll)="onListScroll($event)">
+            @if (rows.length) {
+                @if (virtualScroll) {
+                    <li class="nx-autocomplete-spacer" [style.height.px]="topSpacerHeight"></li>
+                }
+                @for (row of visibleRows; track row.option?.value || row.group) {
+                    @if (row.type === 'group') {
+                        <li class="nx-autocomplete-group-header">{{ row.group }}</li>
+                    } @else {
+                        <li class="nx-autocomplete-item" (mousedown)="selectOption(row.option!)">{{ row.option!.label }}</li>
+                    }
+                }
+                @if (virtualScroll) {
+                    <li class="nx-autocomplete-spacer" [style.height.px]="bottomSpacerHeight"></li>
+                }
+            } @else {
+                <li class="nx-autocomplete-empty">No results found</li>
+            }
+        </ul>
+    }
+
+</div>

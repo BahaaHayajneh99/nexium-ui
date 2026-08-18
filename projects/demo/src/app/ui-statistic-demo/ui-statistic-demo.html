@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Statistic"
+                description="A label, a value, and an optional signed delta - the delta's color follows the direction of change automatically."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-statistic label="Revenue" prefix="$" [value]="48290" delta="+12.4%"></nx-statistic>
+            </app-demo-section>
+
+            <app-demo-section
+                header="upIsGood"
+                description="For a metric like churn where up is bad, set upIsGood to false so the delta colors correctly even though it's positive."
+                [code]="rowCode"
+                [hasSampleClass]="false">
+                <div class="block-grid-3">
+                    <nx-statistic label="Revenue" prefix="$" [value]="48290" delta="+12.4%"></nx-statistic>
+                    <nx-statistic label="Active Users" [value]="2431" delta="+3.1%"></nx-statistic>
+                    <nx-statistic label="Churn Rate" [value]="2.6" suffix="%" delta="+0.4%" [upIsGood]="false"></nx-statistic>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

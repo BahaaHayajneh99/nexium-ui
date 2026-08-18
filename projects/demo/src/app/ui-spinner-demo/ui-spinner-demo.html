@@ -1,0 +1,104 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Basic Spinner"
+                description="The basic {{ commonService.appName }} Spinner provides a loading indicator for async operations and background processes."
+                [code]="basicCode">
+
+                <nx-spinner></nx-spinner>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Spinner Variants"
+                description="{{ commonService.appName }} provides multiple spinner variants for different statuses and semantic meanings."
+                [code]="variantsCode">
+
+                <nx-spinner variant="primary"></nx-spinner>
+                <nx-spinner variant="secondary"></nx-spinner>
+                <nx-spinner variant="success"></nx-spinner>
+                <nx-spinner variant="danger"></nx-spinner>
+                <nx-spinner variant="warning"></nx-spinner>
+                <nx-spinner variant="info"></nx-spinner>
+                <nx-spinner variant="dark"></nx-spinner>
+                <nx-spinner variant="light"></nx-spinner>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Spinner Sizes"
+                description="{{ commonService.appName }} Spinner supports small, medium, and large sizes for different loading scenarios."
+                [code]="sizesCode">
+
+                <nx-spinner size="small"></nx-spinner>
+                <nx-spinner size="medium"></nx-spinner>
+                <nx-spinner size="large"></nx-spinner>
+
+            </app-demo-section>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Overlay Spinner -->
+<section class="main-section">
+
+
+    <h4 class="main-section-header">
+        Overlay Spinner
+    </h4>
+
+
+    <p class="main-section-description">
+        Overlay spinner displays a loading indicator above content
+        while preventing user interaction during loading states.
+    </p>
+
+
+
+    <div class="main-section-code">
+        <code class="language-html-selector">&lt;div&gt;
+<br/>    &lt;div&gt;
+        <span class="language-html-text">Content Loading...</span>
+    &lt;/div&gt;
+<br/>    &lt;nx-spinner
+        <span class="language-html-prop">overlay</span>&gt;
+    &lt;/nx-spinner&gt;
+<br/>&lt;/div&gt;</code>
+    </div>
+
+
+
+    <div class="main-section-code-sample">
+
+
+        <div class="spinner-demo-container">
+
+
+            <div class="spinner-demo-content">
+
+                Loading Content...
+
+            </div>
+
+
+            <nx-spinner overlay>
+            </nx-spinner>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>

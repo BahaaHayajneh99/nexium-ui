@@ -1,0 +1,12 @@
+<nav class="nx-bottom-nav">
+    @for (item of items; track item.id) {
+        <button
+            type="button"
+            class="nx-bottom-nav-item"
+            [class.active]="item.id === active"
+            (click)="select(item)">
+            <nx-icon [icon]="item.icon" variant="svg" [size]="20"></nx-icon>
+            <span>{{ item.label }}</span>
+        </button>
+    }
+</nav>

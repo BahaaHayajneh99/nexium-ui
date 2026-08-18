@@ -1,0 +1,111 @@
+nx-navbar {
+    display: block;
+    width: 100%;
+}
+
+.nx-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 20px;
+    background-color: var(--shell-surface);
+    border-bottom: 1px solid var(--shell-border);
+    position: relative;
+}
+
+.nx-navbar.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.nx-navbar-brand {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    color: var(--shell-text);
+    flex-shrink: 0;
+}
+
+.nx-navbar-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    span {
+        display: block;
+        height: 2px;
+        border-radius: 2px;
+        background-color: var(--shell-text);
+    }
+}
+
+.nx-navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    gap: 16px;
+}
+
+.nx-navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    a {
+        color: var(--shell-text-secondary);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color .15s ease;
+    }
+
+    a:hover {
+        color: var(--shell-primary);
+    }
+}
+
+.nx-navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+@media (max-width: 768px) {
+    .nx-navbar-toggle {
+        display: flex;
+    }
+
+    .nx-navbar-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 20px;
+        background-color: var(--shell-surface);
+        border-bottom: 1px solid var(--shell-border);
+    }
+
+    .nx-navbar-content.open {
+        display: flex;
+    }
+
+    .nx-navbar-links,
+    .nx-navbar-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+}

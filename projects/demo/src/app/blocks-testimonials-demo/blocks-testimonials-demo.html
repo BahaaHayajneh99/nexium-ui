@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Testimonials"
+                description="Social proof cards pairing a short quote with an avatar, name and role."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <div class="block-grid-3">
+                    @for (t of testimonials; track t.name) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <p class="block-testimonial-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+                                <div class="block-testimonial-author">
+                                    <nx-avatar [name]="t.name" size="small"></nx-avatar>
+                                    <div>
+                                        <div class="block-testimonial-name">{{ t.name }}</div>
+                                        <div class="block-testimonial-role">{{ t.role }}</div>
+                                    </div>
+                                </div>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

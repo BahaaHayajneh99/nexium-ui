@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Color Contrast Checker</h4>
+                <p class="main-section-description">
+                    A real tool, not just a table of numbers - pick a text color and a background color
+                    and see the WCAG contrast ratio computed live, with pass/fail against each threshold.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <div class="block-grid-2">
+                    <div>
+                        <nx-color-picker label="Text color" [(value)]="foreground"></nx-color-picker>
+                        <div class="mt-3">
+                            <nx-color-picker label="Background color" [(value)]="background"></nx-color-picker>
+                        </div>
+                    </div>
+
+                    <div class="demo-preview p-4" style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+                        <div [style.background]="background" [style.color]="foreground" style="padding: 16px; border-radius: 8px;">
+                            <div style="font-size: 24px; font-weight: 700;">Large text sample</div>
+                            <div style="font-size: 14px; margin-top: 4px;">Normal-size body text sample, the way it'll actually read.</div>
+                        </div>
+
+                        <div class="utility-list" style="margin-bottom: 0;">
+                            <div class="utility-row">
+                                <code class="utility-class">Ratio</code>
+                                <span class="utility-desc"><strong>{{ ratioLabel }}</strong></span>
+                            </div>
+                            <div class="utility-row">
+                                <code class="utility-class">AA - normal text (4.5:1)</code>
+                                <span class="utility-desc" [style.color]="passes(4.5) ? '#0ca30c' : '#d03b3b'">
+                                    {{ passes(4.5) ? 'Pass' : 'Fail' }}
+                                </span>
+                            </div>
+                            <div class="utility-row">
+                                <code class="utility-class">AA - large text (3:1)</code>
+                                <span class="utility-desc" [style.color]="passes(3) ? '#0ca30c' : '#d03b3b'">
+                                    {{ passes(3) ? 'Pass' : 'Fail' }}
+                                </span>
+                            </div>
+                            <div class="utility-row">
+                                <code class="utility-class">AAA - normal text (7:1)</code>
+                                <span class="utility-desc" [style.color]="passes(7) ? '#0ca30c' : '#d03b3b'">
+                                    {{ passes(7) ? 'Pass' : 'Fail' }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

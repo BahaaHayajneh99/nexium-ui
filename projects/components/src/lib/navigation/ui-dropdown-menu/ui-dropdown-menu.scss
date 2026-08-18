@@ -1,0 +1,31 @@
+.nx-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.nx-dropdown-trigger {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.nx-dropdown-trigger.disabled {
+    cursor: not-allowed;
+    opacity: .6;
+    pointer-events: none;
+}
+
+.nx-dropdown-panel {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 6px);
+    left: 0;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+}
+
+.nx-dropdown-panel.right {
+    left: auto;
+    right: 0;
+}

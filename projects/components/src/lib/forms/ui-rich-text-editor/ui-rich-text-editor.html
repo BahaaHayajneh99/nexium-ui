@@ -1,0 +1,37 @@
+<div class="nx-rte" [class.disabled]="disabled">
+
+    <div class="nx-rte-toolbar">
+        @for (button of toolbar; track button.command + (button.arg ?? '')) {
+            <button
+                type="button"
+                class="nx-rte-btn"
+                [class.nx-rte-btn-bold]="button.command === 'bold'"
+                [class.nx-rte-btn-italic]="button.command === 'italic'"
+                [disabled]="disabled"
+                [attr.aria-label]="button.label"
+                [title]="button.label"
+                (mousedown)="$event.preventDefault()"
+                (click)="runCommand(button)">
+                {{ button.icon }}
+            </button>
+        }
+        <button
+            type="button"
+            class="nx-rte-btn"
+            [disabled]="disabled"
+            title="Link"
+            (mousedown)="$event.preventDefault()"
+            (click)="insertLink()">
+            🔗
+        </button>
+    </div>
+
+    <div
+        #editorRef
+        class="nx-rte-editor"
+        [attr.contenteditable]="!disabled"
+        [attr.data-placeholder]="placeholder"
+        (input)="onInput()">
+    </div>
+
+</div>
