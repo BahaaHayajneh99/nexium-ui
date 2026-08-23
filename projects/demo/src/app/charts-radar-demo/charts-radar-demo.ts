@@ -1,14 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiRadarChart, NxChartSeries } from 'components';
+import { NxRadarChart, NxChartSeries } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-radar-demo',
-  imports: [UiRadarChart, DemoSection],
+  imports: [NxRadarChart, DemoSection],
   templateUrl: './charts-radar-demo.html',
 })
 export class ChartsRadarDemo {
+  importCode = `import { NxRadarChart, NxChartSeries } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   skills = ['Speed', 'Reliability', 'Accessibility', 'Docs', 'DX', 'Bundle Size'];
 

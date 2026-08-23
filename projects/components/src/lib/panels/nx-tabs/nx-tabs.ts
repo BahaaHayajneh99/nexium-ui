@@ -10,7 +10,7 @@ import {
 
 import { NxTabComponent } from './nx-tab/nx-tab';
 import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
-import { UiIcon } from '../../data-display/ui-icon';
+import { NxIcon } from '../../data-display/ui-icon';
 
 
 @Component({
@@ -19,7 +19,7 @@ import { UiIcon } from '../../data-display/ui-icon';
     NgFor,
     NgIf,
     NgTemplateOutlet,
-    UiIcon
+    NxIcon
   ],
   templateUrl: './nx-tabs.html',
   styleUrls: ['./nx-tabs.scss']

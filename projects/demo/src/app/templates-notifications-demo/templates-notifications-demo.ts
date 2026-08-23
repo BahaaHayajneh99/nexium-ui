@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiNotificationCenter, NxNotificationItem, UiCard, UiCardHeader, UiCardTitle, UiCardContent, UiSwitch } from 'components';
+import { NxNotificationCenter, NxNotificationItem, NxCard, NxCardHeader, NxCardTitle, NxCardContent, NxSwitch } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-notifications-demo',
-  imports: [UiNotificationCenter, UiCard, UiCardHeader, UiCardTitle, UiCardContent, UiSwitch, DemoSection],
+  imports: [NxNotificationCenter, NxCard, NxCardHeader, NxCardTitle, NxCardContent, NxSwitch, DemoSection],
   templateUrl: './templates-notifications-demo.html',
 })
 export class TemplatesNotificationsDemo {

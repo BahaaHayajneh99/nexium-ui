@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { UiMegaMenu } from 'components';
+import { NxMegaMenu } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-mega-menu-demo',
-  imports: [UiMegaMenu, DemoSection],
+  imports: [NxMegaMenu, DemoSection],
   templateUrl: './ui-mega-menu-demo.html',
   styleUrl: './ui-mega-menu-demo.scss',
 })
 export class UiMegaMenuDemo {
+  importCode = `import { NxMegaMenu } from 'nexium-ui';`;
+
   basicCode = `<nx-mega-menu label="Products">
     <div class="mega-menu-columns">
         <div>

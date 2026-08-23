@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiOtpInput } from 'components';
+import { NxOtpInput } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-otp-input-demo',
-  imports: [UiOtpInput, DemoSection],
+  imports: [NxOtpInput, DemoSection],
   templateUrl: './ui-otp-input-demo.html',
 })
 export class UiOtpInputDemo {
+  importCode = `import { NxOtpInput } from 'nexium-ui';`;
+
   code = '';
   completedCode = '';
 

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { UiInput, UiCheckbox, UiCard, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCardContent, UiButton } from 'components';
+import { NxInput, NxCheckbox, NxCard, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCardContent, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-login-demo',
-  imports: [RouterLink, UiInput, UiCheckbox, UiButton, UiCard, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCardContent, DemoSection],
+  imports: [RouterLink, NxInput, NxCheckbox, NxButton, NxCard, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCardContent, DemoSection],
   templateUrl: './templates-login-demo.html',
 })
 export class TemplatesLoginDemo {

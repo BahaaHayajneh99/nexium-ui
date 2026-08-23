@@ -44,7 +44,7 @@ import { Component, Input } from '@angular/core';
     .nx-preview-name { font-size: 12px; color: var(--shell-text-secondary); }
   `,
 })
-export class UiPreview {
+export class NxPreview {
   @Input() src = '';
   @Input() fileName = '';
   @Input() type: 'image' | 'video' | 'audio' | 'document' = 'document';

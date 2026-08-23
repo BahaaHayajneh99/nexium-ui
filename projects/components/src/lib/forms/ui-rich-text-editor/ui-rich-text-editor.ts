@@ -47,7 +47,7 @@ const TOOLBAR: ToolbarButton[] = [
   templateUrl: './ui-rich-text-editor.html',
   styleUrl: './ui-rich-text-editor.scss',
 })
-export class UiRichTextEditor implements AfterViewInit, OnChanges {
+export class NxRichTextEditor implements AfterViewInit, OnChanges {
   @Input() value = '';
   @Input() placeholder = 'Write something...';
   @Input({ transform: booleanAttribute }) disabled = false;

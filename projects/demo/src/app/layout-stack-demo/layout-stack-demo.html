@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Vertical (default)"
                 description="A simple one-directional list with consistent spacing - the common case Stack optimizes for over the more general nx-flex."
                 [code]="verticalCode"

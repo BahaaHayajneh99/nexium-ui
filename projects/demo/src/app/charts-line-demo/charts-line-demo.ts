@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiLineChart, NxChartSeries } from 'components';
+import { NxLineChart, NxChartSeries } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-line-demo',
-  imports: [UiLineChart, DemoSection],
+  imports: [NxLineChart, DemoSection],
   templateUrl: './charts-line-demo.html',
 })
 export class ChartsLineDemo {
+  importCode = `import { NxLineChart, NxChartSeries } from 'nexium-ui';`;
+
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
 
   activeUsers: NxChartSeries[] = [

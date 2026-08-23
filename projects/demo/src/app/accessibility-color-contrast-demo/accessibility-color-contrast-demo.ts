@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UiColorPicker } from 'components';
+import { NxColorPicker } from 'components';
 
 function hexToRgb(hex: string): [number, number, number] | null {
   const match = /^#?([0-9a-f]{6}|[0-9a-f]{3})$/i.exec(hex.trim());
@@ -26,7 +26,7 @@ function relativeLuminance([r, g, b]: [number, number, number]): number {
 
 @Component({
   selector: 'app-accessibility-color-contrast-demo',
-  imports: [UiColorPicker],
+  imports: [NxColorPicker],
   templateUrl: './accessibility-color-contrast-demo.html',
 })
 export class AccessibilityColorContrastDemo {

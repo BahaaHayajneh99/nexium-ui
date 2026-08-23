@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { UiIcon } from '../../data-display/ui-icon';
+import { NxIcon } from '../../data-display/ui-icon';
 
 @Component({
   selector: 'nx-collapse',
   standalone: true,
-  imports: [NgClass, UiIcon],
+  imports: [NgClass, NxIcon],
   template: `
     <div class="nx-collapse" [ngClass]="{ disabled: disabled }">
       <div class="nx-collapse-header" (click)="toggle()">
@@ -50,7 +50,7 @@ import { UiIcon } from '../../data-display/ui-icon';
     }
   `,
 })
-export class UiCollapse {
+export class NxCollapse {
   @Input() header = '';
   @Input({ transform: booleanAttribute }) expanded = false;
   @Input({ transform: booleanAttribute }) disabled = false;

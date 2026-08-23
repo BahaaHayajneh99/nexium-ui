@@ -1,10 +1,10 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
-import { UiColorPicker, UiIcon } from 'components';
+import { NxColorPicker, NxIcon } from 'components';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-theme-customizer',
-  imports: [UiColorPicker, UiIcon],
+  imports: [NxColorPicker, NxIcon],
   templateUrl: './theme-customizer.html',
   styleUrl: './theme-customizer.scss',
 })

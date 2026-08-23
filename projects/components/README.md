@@ -5,6 +5,11 @@ navigation, panels, media, uploads, layout, and charts. Every component is a sta
 Angular component or directive; the library also ships `NexiumUiModule`, which aggregates
 all of them into a single `@NgModule` for apps that prefer that style.
 
+## Demo
+
+Browse every component live, with usage examples and copy-paste code snippets, at
+**[nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started)**.
+
 ## Installation
 
 While this workspace is in development, build the library locally and consume it through the
@@ -215,8 +220,9 @@ your production bundle smaller.
 | Scatter Chart | `nx-scatter-chart` |
 | Sparkline | `nx-sparkline` |
 
-For full input/output reference and live examples, see the demo app (`ng serve demo`), which has a
-dedicated page per component.
+For full input/output reference and live examples, see the hosted demo at
+[nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started), or run it locally with
+`ng serve demo` — either way it has a dedicated page per component.
 
 ## Detailed examples
 

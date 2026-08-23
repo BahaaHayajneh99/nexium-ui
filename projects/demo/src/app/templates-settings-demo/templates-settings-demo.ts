@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 import {
-  UiSwitch,
-  UiSelect,
+  NxSwitch,
+  NxSelect,
   NxSelectOption,
-  UiCard,
-  UiCardHeader,
-  UiCardTitle,
-  UiCardSubtitle,
-  UiCardContent,
-  UiCardFooter,
-  UiButton,
+  NxCard,
+  NxCardHeader,
+  NxCardTitle,
+  NxCardSubtitle,
+  NxCardContent,
+  NxCardFooter,
+  NxButton,
 } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-settings-demo',
-  imports: [UiSwitch, UiSelect, UiButton, UiCard, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCardContent, UiCardFooter, DemoSection],
+  imports: [NxSwitch, NxSelect, NxButton, NxCard, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCardContent, NxCardFooter, DemoSection],
   templateUrl: './templates-settings-demo.html',
 })
 export class TemplatesSettingsDemo {

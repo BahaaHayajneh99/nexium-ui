@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Navbar"
                 description="Brand, links and actions slots in a responsive header - below 768px it collapses to a hamburger toggle. Resize the window (or view on mobile) to see it."
                 [code]="basicCode"

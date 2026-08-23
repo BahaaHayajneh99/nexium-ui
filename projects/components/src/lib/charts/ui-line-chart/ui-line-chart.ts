@@ -9,7 +9,7 @@ import { NxChartSeries } from '../chart-types';
   templateUrl: './ui-line-chart.html',
   styleUrl: './ui-line-chart.scss',
 })
-export class UiLineChart {
+export class NxLineChart {
   @Input() categories: string[] = [];
   @Input() series: NxChartSeries[] = [];
   @Input() height = 320;

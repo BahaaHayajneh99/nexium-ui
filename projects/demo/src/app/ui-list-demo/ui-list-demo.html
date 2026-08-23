@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic List"
                 description="The basic {{ commonService.appName }} List renders a set of items from a data array."
                 [code]="basicCode"

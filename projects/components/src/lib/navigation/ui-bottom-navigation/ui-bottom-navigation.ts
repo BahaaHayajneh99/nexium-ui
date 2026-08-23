@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UiIcon } from '../../data-display/ui-icon';
+import { NxIcon } from '../../data-display/ui-icon';
 
 export interface NxBottomNavItem {
   id: string | number;
@@ -10,11 +10,11 @@ export interface NxBottomNavItem {
 @Component({
   selector: 'nx-bottom-navigation',
   standalone: true,
-  imports: [UiIcon],
+  imports: [NxIcon],
   templateUrl: './ui-bottom-navigation.html',
   styleUrl: './ui-bottom-navigation.scss',
 })
-export class UiBottomNavigation {
+export class NxBottomNavigation {
   @Input() items: NxBottomNavItem[] = [];
   @Input() active: string | number = '';
 

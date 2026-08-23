@@ -31,7 +31,7 @@ const MAX_WIDTHS: Record<NxContainerMaxWidth, string> = {
     }
   `,
 })
-export class UiContainer {
+export class NxContainer {
   @Input() maxWidth: NxContainerMaxWidth = 'lg';
   @Input({ transform: booleanAttribute }) padded = true;
 

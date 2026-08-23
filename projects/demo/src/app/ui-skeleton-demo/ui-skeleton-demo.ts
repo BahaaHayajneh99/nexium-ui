@@ -10,6 +10,8 @@ import { DemoSection } from '../shared/demo-section/demo-section';
   styleUrl: './ui-skeleton-demo.scss',
 })
 export class UiSkeletonDemo {
+  importCode = `import { NxSkeleton, NxSidebar, NxSidebarItem } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   navItems: NxSidebarItem[] = [
     { label: 'Dashboard', link: '/sidebar', icon: 'nx-grid', exact: true },

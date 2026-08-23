@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiColorPicker } from 'components';
+import { NxColorPicker } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-color-picker-demo',
-  imports: [UiColorPicker, DemoSection],
+  imports: [NxColorPicker, DemoSection],
   templateUrl: './ui-color-picker-demo.html',
 })
 export class UiColorPickerDemo {
+  importCode = `import { NxColorPicker } from 'nexium-ui';`;
+
   brandColor = '#3498db';
 
   basicCode = `<nx-color-picker label="Brand color" [(value)]="brandColor"></nx-color-picker>`;

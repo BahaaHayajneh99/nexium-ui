@@ -1,14 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { NxToastService, UiToastContainer } from '../../../../../dist/components';
+import { NxToastService, NxToastContainer } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-toast-demo',
-  imports: [UiToastContainer, DemoSection],
+  imports: [NxToastContainer, DemoSection],
   templateUrl: './ui-toast-demo.html',
   styleUrl: './ui-toast-demo.scss',
 })
 export class UiToastDemo {
+  importCode = `import { NxToastService, NxToastContainer } from 'nexium-ui';`;
+
   private toastService = inject(NxToastService);
 
   basicCode = `constructor(private toastService: NxToastService) {}

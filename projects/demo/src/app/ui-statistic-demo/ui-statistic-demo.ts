@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiStatistic } from 'components';
+import { NxStatistic } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-statistic-demo',
-  imports: [UiStatistic, DemoSection],
+  imports: [NxStatistic, DemoSection],
   templateUrl: './ui-statistic-demo.html',
 })
 export class UiStatisticDemo {
+  importCode = `import { NxStatistic } from 'nexium-ui';`;
+
   basicCode = `<nx-statistic label="Revenue" prefix="$" [value]="48290" delta="+12.4%"></nx-statistic>`;
 
   rowCode = `<nx-statistic label="Revenue" prefix="$" [value]="48290" delta="+12.4%"></nx-statistic>

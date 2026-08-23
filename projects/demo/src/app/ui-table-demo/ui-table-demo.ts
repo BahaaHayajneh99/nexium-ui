@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import {
-  UiTable,
+  NxTable,
   NxTableColumn,
   NxTableColumnGroup,
   NxSortMeta,
@@ -13,11 +13,21 @@ import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-table-demo',
-  imports: [UiTable, DemoSection],
+  imports: [NxTable, DemoSection],
   templateUrl: './ui-table-demo.html',
   styleUrl: './ui-table-demo.scss',
 })
 export class UiTableDemo {
+  importCode = `import {
+  NxTable,
+  NxTableColumn,
+  NxTableColumnGroup,
+  NxSortMeta,
+  NxTableFilterEvent,
+  NxTableLazyLoadEvent,
+  NxCellEditEvent,
+} from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   columns: NxTableColumn[] = [
     { field: 'name', header: 'Name' },

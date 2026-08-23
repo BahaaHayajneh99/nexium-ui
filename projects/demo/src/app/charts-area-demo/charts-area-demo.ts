@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiAreaChart, NxChartSeries } from 'components';
+import { NxAreaChart, NxChartSeries } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-area-demo',
-  imports: [UiAreaChart, DemoSection],
+  imports: [NxAreaChart, DemoSection],
   templateUrl: './charts-area-demo.html',
 })
 export class ChartsAreaDemo {
+  importCode = `import { NxAreaChart, NxChartSeries } from 'nexium-ui';`;
+
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
 
   signups: NxChartSeries[] = [

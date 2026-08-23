@@ -21,7 +21,7 @@ interface MixedBarGeometry {
   templateUrl: './ui-mixed-chart.html',
   styleUrl: './ui-mixed-chart.scss',
 })
-export class UiMixedChart {
+export class NxMixedChart {
   @Input() categories: string[] = [];
   @Input() series: NxMixedSeries[] = [];
   @Input() height = 320;

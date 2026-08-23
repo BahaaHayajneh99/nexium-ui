@@ -45,7 +45,7 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
     .nx-switch input:checked + .nx-switch-track .nx-switch-thumb { transform: translateX(18px); }
   `,
 })
-export class UiSwitch {
+export class NxSwitch {
   @Input({ transform: booleanAttribute }) checked = false;
   @Input({ transform: booleanAttribute }) disabled = false;
   @Input() label = '';

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiCard, UiCardContent, UiProgressBarComponent, UiStatistic, UiTable, NxTableColumn } from 'components';
+import { NxCard, NxCardContent, NxProgressBarComponent, NxStatistic, NxTable, NxTableColumn } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-blocks-dashboard-demo',
-  imports: [UiCard, UiCardContent, UiProgressBarComponent, UiStatistic, UiTable, DemoSection],
+  imports: [NxCard, NxCardContent, NxProgressBarComponent, NxStatistic, NxTable, DemoSection],
   templateUrl: './blocks-dashboard-demo.html',
 })
 export class BlocksDashboardDemo {

@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Dropdown Menu"
                 description="Any element marked nx-dropdown-trigger opens the menu on click; clicking outside or selecting an item closes it."
                 [code]="basicCode"
@@ -13,6 +20,49 @@
                 </nx-dropdown-menu>
                 @if (lastSelected) {
                     <p class="template-form-note mt-2">Selected: {{ lastSelected }}</p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom content"
+                description="items is for simple label/icon rows. For anything richer - conditional actions, custom markup, your own directives - project it into the nx-dropdown-content slot instead; clicking anywhere inside it closes the menu automatically."
+                [code]="customContentCode"
+                [hasSampleClass]="false">
+
+                <div style="display: flex; gap: 1rem;">
+                    @for (row of rows; track row.name) {
+                        <nx-dropdown-menu>
+                            <nx-button nx-dropdown-trigger variant="secondary" [icon]="true">
+                                <nx-icon icon="nx-more-vertical" variant="svg"></nx-icon>
+                            </nx-button>
+
+                            <div nx-dropdown-content class="nx-menu">
+                                <button class="nx-menu-item" (click)="goToDetails(row)">
+                                    <nx-icon class="nx-menu-item-icon" icon="nx-eye" variant="svg" [size]="16"></nx-icon>
+                                    <span>Details</span>
+                                </button>
+
+                                @if (row.canEdit) {
+                                    <button class="nx-menu-item" (click)="goToEdit(row)">
+                                        <nx-icon class="nx-menu-item-icon" icon="nx-edit" variant="svg" [size]="16"></nx-icon>
+                                        <span>Edit</span>
+                                    </button>
+                                }
+
+                                @if (!row.archived) {
+                                    <button class="nx-menu-item danger" (click)="confirmArchive(row)">
+                                        <nx-icon class="nx-menu-item-icon" icon="nx-folder" variant="svg" [size]="16"></nx-icon>
+                                        <span>Archive</span>
+                                    </button>
+                                }
+                            </div>
+                        </nx-dropdown-menu>
+                        <span class="template-stat-label">{{ row.name }}</span>
+                    }
+                </div>
+
+                @if (lastAction) {
+                    <p class="template-form-note mt-2">Last action: {{ lastAction }}</p>
                 }
             </app-demo-section>
 

@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { UiFileUpload, UiPreview } from '../../../../../dist/components';
+import { NxFileUpload, NxPreview } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-image-upload-demo',
-  imports: [UiFileUpload, UiPreview, DemoSection],
+  imports: [NxFileUpload, NxPreview, DemoSection],
   templateUrl: './image-upload-demo.html',
   styleUrl: './image-upload-demo.scss',
 })
 export class ImageUploadDemo {
+  importCode = `import { NxFileUpload, NxPreview } from 'nexium-ui';`;
+
   previewSrc = '';
   fileName = '';
 

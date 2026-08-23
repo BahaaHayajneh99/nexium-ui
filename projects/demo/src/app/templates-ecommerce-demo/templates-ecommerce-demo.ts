@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UiCard, UiCardContent, UiCardFooter, UiBadge, UiTable, NxTableColumn, UiButton } from 'components';
+import { NxCard, NxCardContent, NxCardFooter, NxBadge, NxTable, NxTableColumn, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface Product {
@@ -11,7 +11,7 @@ interface Product {
 
 @Component({
   selector: 'app-templates-ecommerce-demo',
-  imports: [UiCard, UiCardContent, UiCardFooter, UiBadge, UiButton, UiTable, DemoSection],
+  imports: [NxCard, NxCardContent, NxCardFooter, NxBadge, NxButton, NxTable, DemoSection],
   templateUrl: './templates-ecommerce-demo.html',
 })
 export class TemplatesEcommerceDemo {

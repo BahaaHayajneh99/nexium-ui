@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiSlider } from '../../../../../dist/components';
+import { NxSlider } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-slider-demo',
-  imports: [UiSlider, DemoSection],
+  imports: [NxSlider, DemoSection],
   templateUrl: './ui-slider-demo.html',
   styleUrl: './ui-slider-demo.scss',
 })
 export class UiSliderDemo {
+  importCode = `import { NxSlider } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   volume = 50;
   rangeVolume = 10;

@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiPagination } from '../../../../../dist/components';
+import { NxPagination } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-pagination-demo',
-  imports: [UiPagination, DemoSection],
+  imports: [NxPagination, DemoSection],
   templateUrl: './ui-pagination-demo.html',
   styleUrl: './ui-pagination-demo.scss',
 })
 export class UiPaginationDemo {
+  importCode = `import { NxPagination } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   currentPage = 1;
 

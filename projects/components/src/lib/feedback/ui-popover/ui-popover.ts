@@ -47,7 +47,7 @@ import { NgClass } from '@angular/common';
     '(document:click)': 'onDocumentClick($event)',
   },
 })
-export class UiPopover {
+export class NxPopover {
   @Input() position: 'left' | 'right' = 'left';
   open = false;
 

@@ -32,7 +32,7 @@ export interface NxBreadcrumbItem {
     .nx-breadcrumb-separator { color: var(--shell-text-muted); }
   `,
 })
-export class UiBreadcrumb {
+export class NxBreadcrumb {
   @Input() items: NxBreadcrumbItem[] = [];
   @Input() separator = '/';
 }

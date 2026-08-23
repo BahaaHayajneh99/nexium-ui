@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { UiInput, UiCard, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCardContent, UiButton } from 'components';
+import { NxInput, NxCard, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCardContent, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-forgot-password-demo',
-  imports: [RouterLink, UiInput, UiButton, UiCard, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCardContent, DemoSection],
+  imports: [RouterLink, NxInput, NxButton, NxCard, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCardContent, DemoSection],
   templateUrl: './templates-forgot-password-demo.html',
 })
 export class TemplatesForgotPasswordDemo {

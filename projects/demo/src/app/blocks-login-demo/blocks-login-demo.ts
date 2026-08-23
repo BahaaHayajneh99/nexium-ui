@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiInput, UiCheckbox, UiCard, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCardContent, UiButton } from 'components';
+import { NxInput, NxCheckbox, NxCard, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCardContent, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-blocks-login-demo',
-  imports: [UiInput, UiCheckbox, UiButton, UiCard, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCardContent, DemoSection],
+  imports: [NxInput, NxCheckbox, NxButton, NxCard, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCardContent, DemoSection],
   templateUrl: './blocks-login-demo.html',
 })
 export class BlocksLoginDemo {

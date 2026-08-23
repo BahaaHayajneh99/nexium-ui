@@ -9,7 +9,7 @@ export type NxSplitterOrientation = 'horizontal' | 'vertical';
   templateUrl: './ui-splitter.html',
   styleUrl: './ui-splitter.scss',
 })
-export class UiSplitter {
+export class NxSplitter {
   @Input() orientation: NxSplitterOrientation = 'horizontal';
   @Input({ transform: numberAttribute }) initialRatio = 0.5;
   @Input({ transform: numberAttribute }) minRatio = 0.15;

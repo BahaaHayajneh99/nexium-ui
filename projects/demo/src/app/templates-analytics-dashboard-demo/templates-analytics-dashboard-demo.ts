@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import {
-  UiCard,
-  UiCardContent,
-  UiStatistic,
-  UiLineChart,
-  UiBarChart,
-  UiPieChart,
+  NxCard,
+  NxCardContent,
+  NxStatistic,
+  NxLineChart,
+  NxBarChart,
+  NxPieChart,
   NxChartSeries,
   NxPieDatum,
 } from 'components';
@@ -13,7 +13,7 @@ import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-analytics-dashboard-demo',
-  imports: [UiCard, UiCardContent, UiStatistic, UiLineChart, UiBarChart, UiPieChart, DemoSection],
+  imports: [NxCard, NxCardContent, NxStatistic, NxLineChart, NxBarChart, NxPieChart, DemoSection],
   templateUrl: './templates-analytics-dashboard-demo.html',
 })
 export class TemplatesAnalyticsDashboardDemo {

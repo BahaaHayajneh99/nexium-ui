@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiButton, UiCard, UiCardContent, UiIcon } from 'components';
+import { NxButton, NxCard, NxCardContent, NxIcon } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-blocks-landing-pages-demo',
-  imports: [UiButton, UiCard, UiCardContent, UiIcon, DemoSection],
+  imports: [NxButton, NxCard, NxCardContent, NxIcon, DemoSection],
   templateUrl: './blocks-landing-pages-demo.html',
 })
 export class BlocksLandingPagesDemo {

@@ -38,7 +38,7 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
     .nx-textarea:disabled { background-color: var(--shell-surface-hover); color: var(--shell-text-muted); cursor: not-allowed; }
   `,
 })
-export class UiTextarea {
+export class NxTextarea {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() value = '';

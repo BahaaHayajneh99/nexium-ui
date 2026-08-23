@@ -7,7 +7,7 @@ import { Component, Input, booleanAttribute } from '@angular/core';
   templateUrl: './ui-progress-bar.html',
   styleUrl: './ui-progress-bar.scss',
 })
-export class UiProgressBarComponent {
+export class NxProgressBarComponent {
 
 
   @Input()

@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Widescreen (16 / 9)"
                 description="Keeps a fixed aspect ratio regardless of container width - useful for video/image placeholders before the real media loads. Size projected media to 100%/100% with object-fit: cover."
                 [code]="wideCode"

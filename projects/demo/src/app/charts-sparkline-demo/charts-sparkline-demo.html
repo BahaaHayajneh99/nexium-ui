@@ -11,6 +11,13 @@
             </section>
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Line"
                 description="Scales to its own min/max, not a shared zero baseline - it's a trend indicator, not an axis chart."
                 [code]="basicCode"

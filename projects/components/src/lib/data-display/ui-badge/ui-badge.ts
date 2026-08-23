@@ -20,7 +20,7 @@ export type NxBadgeSize = 'small' | 'medium' | 'large';
   templateUrl: './ui-badge.html',
   styleUrl: './ui-badge.scss',
 })
-export class UiBadge {
+export class NxBadge {
   @Input()
   variant: NxBadgeVariant = 'primary';
 

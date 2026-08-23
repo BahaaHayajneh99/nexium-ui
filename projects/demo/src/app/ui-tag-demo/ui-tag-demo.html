@@ -3,13 +3,20 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic Tags"
                 description="Tags take any CSS color - not a fixed variant palette - and automatically pick black or white text for contrast."
                 [code]="basicCode"
                 [hasSampleClass]="false">
                 <nx-tag color="#2a78d6">JavaScript</nx-tag>
-                <nx-tag color="#eb6834">CSS</nx-tag>
-                <nx-tag color="#1baf7a">Design</nx-tag>
+                <nx-tag class="mx-2" color="#eb6834">CSS</nx-tag>
+                <nx-tag class="mx-2" color="#1baf7a">Design</nx-tag>
                 <nx-tag color="#e34948">Urgent</nx-tag>
             </app-demo-section>
 
@@ -19,7 +26,7 @@
                 [code]="outlineCode"
                 [hasSampleClass]="false">
                 <nx-tag variant="outline" color="#2a78d6">JavaScript</nx-tag>
-                <nx-tag variant="outline" color="#eb6834">CSS</nx-tag>
+                <nx-tag variant="outline" class="mx-2" color="#eb6834">CSS</nx-tag>
                 <nx-tag variant="outline" color="#1baf7a">Design</nx-tag>
             </app-demo-section>
 
@@ -29,11 +36,32 @@
                 [code]="closableCode"
                 [tsCode]="closableTs"
                 [hasSampleClass]="false">
-                @for (skill of skills; track skill.label) {
-                    <nx-tag [color]="skill.color" [closable]="true" (closed)="removeSkill(skill)">
+                @for (skill of skills; let i = $index; track skill.label) {
+                    <nx-tag [ngClass]="{'mx-2': i > 0}" [color]="skill.color" [closable]="true" (closed)="removeSkill(skill)">
                         {{ skill.label }}
                     </nx-tag>
                 }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Editable (add tags by typing)"
+                description="Set editable to true to render a text input instead of a label - type a name and press Enter to add it. The field clears itself, ready for the next tag."
+                [code]="editableCode"
+                [tsCode]="editableTs"
+                [hasSampleClass]="false">
+                @for (tag of editableTags; let i = $index; track tag) {
+                    <nx-tag [ngClass]="{'mx-2': i > 0}" color="var(--shell-primary)" [closable]="true" (closed)="removeTag(tag)">
+                        {{ tag }}
+                    </nx-tag>
+                }
+                <nx-tag
+                    class="mx-2"
+                    color="var(--shell-primary)"
+                    variant="outline"
+                    [editable]="true"
+                    [(value)]="newTagValue"
+                    (added)="addTag($event)">
+                </nx-tag>
             </app-demo-section>
 
             <app-demo-section

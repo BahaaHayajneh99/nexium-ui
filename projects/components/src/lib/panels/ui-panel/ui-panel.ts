@@ -41,7 +41,7 @@ import { NgClass } from '@angular/common';
     }
   `,
 })
-export class UiPanel {
+export class NxPanel {
   @Input() header = '';
   @Input() variant: 'default' | 'outlined' = 'default';
 }

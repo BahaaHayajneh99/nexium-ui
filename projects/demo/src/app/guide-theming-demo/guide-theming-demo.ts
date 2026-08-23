@@ -1,38 +1,41 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
+import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-guide-theming-demo',
+  imports: [DemoSection],
   templateUrl: './guide-theming-demo.html',
 })
 export class GuideThemingDemo {
   public commonService = inject(CommonService);
-  tokensCode = `// Colors
-$primary-color, $danger-color, $success-color, $warning-color
-$gray-100 ... $gray-900
+  tokensCode = `/* Brand */
+--primary-color, --primary-color-dark, --primary-color-light
+--secondary-color, --secondary-color-dark, --secondary-color-light
 
-// Spacing
-$spacing-xs, $spacing-sm, $spacing-md, $spacing-lg, $spacing-xl
+/* Status */
+--success-color, --success-color-dark
+--danger-color, --danger-color-dark
+--warning-color, --warning-color-dark
+--info-color, --info-color-dark
 
-// Radius
-$radius-xs, $radius-sm, $radius-md, $radius-lg, $radius-xl, $radius-round
+/* Neutrals */
+--white-color, --black-color
+--gray-50 ... --gray-900
 
-// Typography
-$font-size-xs, $font-size-sm, $font-size-md, $font-size-lg, $font-size-xl
+/* Text & borders */
+--text-primary, --text-secondary, --text-disabled, --text-white
+--border-color, --border-hover-color`;
 
-// Motion
-$transition-fast, $transition-normal, $transition-slow`;
-
-  usageCode = `@use '../../../../../demo/src/app/variables.scss' as *;
-
-.my-panel {
-  border: 1px solid $gray-300;
-  border-radius: $radius-md;
-  padding: $spacing-md;
-  transition: border-color $transition-fast;
+  usageCode = `.my-panel {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  color: var(--text-primary);
 }`;
 
-  overrideCode = `// Override a token before importing ${this.commonService.appName}'s variables to re-theme every
-// component that reads from it.
-$primary-color: #7c3aed;`;
+  overrideCode = `/* your own global stylesheet, after the ${this.commonService.appName} stylesheet import */
+:root {
+  --primary-color: #7c3aed;
+}`;
 }

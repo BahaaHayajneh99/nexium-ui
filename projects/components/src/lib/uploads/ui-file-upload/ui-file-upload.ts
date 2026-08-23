@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
   templateUrl: './ui-file-upload.html',
   styleUrl: './ui-file-upload.scss',
 })
-export class UiFileUpload {
+export class NxFileUpload {
   @Input() accept = '*';
   @Input({ transform: booleanAttribute }) multiple = false;
   @Input() label = 'Drag & drop files here, or click to browse';

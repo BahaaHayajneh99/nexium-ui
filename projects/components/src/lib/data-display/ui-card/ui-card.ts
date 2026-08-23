@@ -7,7 +7,7 @@ import { Component, Input, booleanAttribute } from '@angular/core';
   templateUrl: './ui-card.html',
   styleUrl: './ui-card.scss',
 })
-export class UiCard {
+export class NxCard {
 
 
   @Input() variant: 'outlined' | 'elevated' | 'flat' = 'flat';

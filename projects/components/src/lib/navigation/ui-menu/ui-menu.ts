@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UiIcon } from '../../data-display/ui-icon';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { NxIcon } from '../../data-display/ui-icon';
 
 export interface NxMenuItem {
   id: string | number;
@@ -14,11 +14,15 @@ export interface NxMenuItem {
 @Component({
   selector: 'nx-menu',
   standalone: true,
-  imports: [UiIcon],
+  imports: [NxIcon],
   templateUrl: './ui-menu.html',
   styleUrl: './ui-menu.scss',
+  // Unencapsulated so consumers can reuse .nx-menu/.nx-menu-item/.nx-menu-item-icon
+  // on their own markup projected into nx-dropdown-menu's [nx-dropdown-content] slot -
+  // emulated encapsulation can't reach content that isn't rendered by this component.
+  encapsulation: ViewEncapsulation.None,
 })
-export class UiMenu {
+export class NxMenu {
   @Input() items: NxMenuItem[] = [];
 
   @Output() itemSelect = new EventEmitter<NxMenuItem>();

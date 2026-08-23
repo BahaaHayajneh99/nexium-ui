@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiBarChart, NxChartSeries } from 'components';
+import { NxBarChart, NxChartSeries } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-bar-demo',
-  imports: [UiBarChart, DemoSection],
+  imports: [NxBarChart, DemoSection],
   templateUrl: './charts-bar-demo.html',
 })
 export class ChartsBarDemo {
+  importCode = `import { NxBarChart, NxChartSeries } from 'nexium-ui';`;
+
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
 
   revenue: NxChartSeries[] = [

@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiModal } from '../../../../../dist/components';
+import { NxModal } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-modal-demo',
-  imports: [UiModal, DemoSection],
+  imports: [NxModal, DemoSection],
   templateUrl: './ui-modal-demo.html',
   styleUrl: './ui-modal-demo.scss',
 })
 export class UiModalDemo {
+  importCode = `import { NxModal } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicOpen = false;
   footerOpen = false;

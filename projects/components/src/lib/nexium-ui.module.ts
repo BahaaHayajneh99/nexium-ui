@@ -1,74 +1,74 @@
 import { NgModule } from '@angular/core';
 
-import { UiAvatar } from './data-display/ui-avatar';
-import { UiBadge } from './data-display/ui-badge';
+import { NxAvatar } from './data-display/ui-avatar';
+import { NxBadge } from './data-display/ui-badge';
 import {
-  UiCard,
-  UiCardImage,
-  UiCardHeader,
-  UiCardTitle,
-  UiCardSubtitle,
-  UiCardContent,
-  UiCardActions,
-  UiCardFooter,
+  NxCard,
+  NxCardImage,
+  NxCardHeader,
+  NxCardTitle,
+  NxCardSubtitle,
+  NxCardContent,
+  NxCardActions,
+  NxCardFooter,
 } from './data-display/ui-card';
-import { UiChip } from './data-display/ui-chip';
-import { UiIcon } from './data-display/ui-icon';
-import { UiKeyValueList } from './data-display/ui-key-value-list';
-import { UiList } from './data-display/ui-list';
-import { UiProgressBarComponent } from './data-display/ui-progress-bar';
+import { NxChip } from './data-display/ui-chip';
+import { NxIcon } from './data-display/ui-icon';
+import { NxKeyValueList } from './data-display/ui-key-value-list';
+import { NxList } from './data-display/ui-list';
+import { NxProgressBarComponent } from './data-display/ui-progress-bar';
 import { NxSkeleton } from './data-display/ui-skeleton';
 import { NxSpinnerComponent } from './data-display/ui-spinner';
-import { UiStatistic } from './data-display/ui-statistic';
-import { UiTable } from './data-display/ui-table';
-import { UiTag } from './data-display/ui-tag';
-import { UiTimeline } from './data-display/ui-timeline';
-import { NxTreeNode, UiTree } from './data-display/ui-tree';
+import { NxStatistic } from './data-display/ui-statistic';
+import { NxTable } from './data-display/ui-table';
+import { NxTag } from './data-display/ui-tag';
+import { NxTimeline } from './data-display/ui-timeline';
+import { NxTreeNode, NxTree } from './data-display/ui-tree';
 
-import { UiAlert } from './feedback/ui-alert';
-import { UiCommandPalette } from './feedback/ui-command-palette';
-import { UiDialog } from './feedback/ui-dialog';
-import { UiDrawer } from './feedback/ui-drawer';
-import { UiModal } from './feedback/ui-modal';
-import { UiNotificationCenter } from './feedback/ui-notification-center';
-import { UiPopover } from './feedback/ui-popover';
-import { UiToastContainer } from './feedback/ui-toast';
+import { NxAlert } from './feedback/ui-alert';
+import { NxCommandPalette } from './feedback/ui-command-palette';
+import { NxDialog } from './feedback/ui-dialog';
+import { NxDrawer } from './feedback/ui-drawer';
+import { NxModal } from './feedback/ui-modal';
+import { NxNotificationCenter } from './feedback/ui-notification-center';
+import { NxPopover } from './feedback/ui-popover';
+import { NxToastContainer } from './feedback/ui-toast';
 import { NxTooltip } from './feedback/ui-tooltip';
 
-import { UiAutocomplete } from './forms/ui-autocomplete';
-import { UiButton } from './forms/ui-button';
-import { UiCheckbox } from './forms/ui-checkbox';
-import { UiColorPicker } from './forms/ui-color-picker';
-import { UiDatepicker } from './forms/ui-datepicker';
-import { UiInput } from './forms/ui-input';
-import { UiMention } from './forms/ui-mention';
-import { UiOtpInput } from './forms/ui-otp-input';
-import { UiRadioGroup } from './forms/ui-radio-group';
-import { UiRating } from './forms/ui-rating';
-import { UiRichTextEditor } from './forms/ui-rich-text-editor';
-import { UiSelect } from './forms/ui-select';
-import { UiSlider } from './forms/ui-slider';
-import { UiSwitch } from './forms/ui-switch';
-import { UiTextarea } from './forms/ui-textarea';
-import { UiToggle } from './forms/ui-toggle';
+import { NxAutocomplete } from './forms/ui-autocomplete';
+import { NxButton } from './forms/ui-button';
+import { NxCheckbox } from './forms/ui-checkbox';
+import { NxColorPicker } from './forms/ui-color-picker';
+import { NxDatepicker } from './forms/ui-datepicker';
+import { NxInput } from './forms/ui-input';
+import { NxMention } from './forms/ui-mention';
+import { NxOtpInput } from './forms/ui-otp-input';
+import { NxRadioGroup } from './forms/ui-radio-group';
+import { NxRating } from './forms/ui-rating';
+import { NxRichTextEditor } from './forms/ui-rich-text-editor';
+import { NxSelect } from './forms/ui-select';
+import { NxSlider } from './forms/ui-slider';
+import { NxSwitch } from './forms/ui-switch';
+import { NxTextarea } from './forms/ui-textarea';
+import { NxToggle } from './forms/ui-toggle';
 
-import { UiFileUpload } from './uploads/ui-file-upload';
+import { NxFileUpload } from './uploads/ui-file-upload';
 
-import { UiCarousel, NxCarouselSlideDirective } from './media/ui-carousel';
-import { UiGallery } from './media/ui-gallery';
-import { UiPreview } from './media/ui-preview';
+import { NxCarousel, NxCarouselSlideDirective } from './media/ui-carousel';
+import { NxGallery } from './media/ui-gallery';
+import { NxPreview } from './media/ui-preview';
 
 import { NxSidebar, NxSidebarItemComponent } from './navigation/nx-sidebar';
-import { UiBottomNavigation } from './navigation/ui-bottom-navigation';
-import { UiBreadcrumb } from './navigation/ui-breadcrumb';
-import { UiContextMenu } from './navigation/ui-context-menu';
-import { UiDropdownMenu } from './navigation/ui-dropdown-menu';
-import { UiMegaMenu } from './navigation/ui-mega-menu';
-import { UiMenu } from './navigation/ui-menu';
-import { UiMenubar } from './navigation/ui-menubar';
-import { UiNavbar } from './navigation/ui-navbar';
-import { UiPagination } from './navigation/ui-pagination';
-import { UiStepper } from './navigation/ui-stepper';
+import { NxBottomNavigation } from './navigation/ui-bottom-navigation';
+import { NxBreadcrumb } from './navigation/ui-breadcrumb';
+import { NxContextMenu } from './navigation/ui-context-menu';
+import { NxDropdownMenu } from './navigation/ui-dropdown-menu';
+import { NxMegaMenu } from './navigation/ui-mega-menu';
+import { NxMenu } from './navigation/ui-menu';
+import { NxMenubar } from './navigation/ui-menubar';
+import { NxNavbar } from './navigation/ui-navbar';
+import { NxPagination } from './navigation/ui-pagination';
+import { NxStepper } from './navigation/ui-stepper';
 
 import {
   NxAccordionComponent,
@@ -77,112 +77,112 @@ import {
   NxAccordionItemComponent,
 } from './panels/nx-accordion';
 import { NxTabsComponent, NxTabComponent, NxTabLabelDirective } from './panels/nx-tabs';
-import { UiCollapse } from './panels/ui-collapse';
-import { UiPanel } from './panels/ui-panel';
+import { NxCollapse } from './panels/ui-collapse';
+import { NxPanel } from './panels/ui-panel';
 
-import { UiAspectRatio } from './layout/ui-aspect-ratio';
-import { UiContainer } from './layout/ui-container';
-import { UiDivider } from './layout/ui-divider';
-import { UiFlex } from './layout/ui-flex';
-import { UiGrid, UiGridItem } from './layout/ui-grid';
-import { UiMasonry } from './layout/ui-masonry';
-import { UiSpacer } from './layout/ui-spacer';
-import { UiSplitter } from './layout/ui-splitter';
-import { UiStack } from './layout/ui-stack';
+import { NxAspectRatio } from './layout/ui-aspect-ratio';
+import { NxContainer } from './layout/ui-container';
+import { NxDivider } from './layout/ui-divider';
+import { NxFlex } from './layout/ui-flex';
+import { NxGrid, NxGridItem } from './layout/ui-grid';
+import { NxMasonry } from './layout/ui-masonry';
+import { NxSpacer } from './layout/ui-spacer';
+import { NxSplitter } from './layout/ui-splitter';
+import { NxStack } from './layout/ui-stack';
 
-import { UiAreaChart } from './charts/ui-area-chart';
-import { UiBarChart } from './charts/ui-bar-chart';
-import { UiBubbleChart } from './charts/ui-bubble-chart';
-import { UiFunnelChart } from './charts/ui-funnel-chart';
-import { UiGaugeChart } from './charts/ui-gauge-chart';
-import { UiHeatmapChart } from './charts/ui-heatmap-chart';
-import { UiLineChart } from './charts/ui-line-chart';
-import { UiMixedChart } from './charts/ui-mixed-chart';
-import { UiPieChart } from './charts/ui-pie-chart';
-import { UiRadarChart } from './charts/ui-radar-chart';
-import { UiScatterChart } from './charts/ui-scatter-chart';
-import { UiSparkline } from './charts/ui-sparkline';
+import { NxAreaChart } from './charts/ui-area-chart';
+import { NxBarChart } from './charts/ui-bar-chart';
+import { NxBubbleChart } from './charts/ui-bubble-chart';
+import { NxFunnelChart } from './charts/ui-funnel-chart';
+import { NxGaugeChart } from './charts/ui-gauge-chart';
+import { NxHeatmapChart } from './charts/ui-heatmap-chart';
+import { NxLineChart } from './charts/ui-line-chart';
+import { NxMixedChart } from './charts/ui-mixed-chart';
+import { NxPieChart } from './charts/ui-pie-chart';
+import { NxRadarChart } from './charts/ui-radar-chart';
+import { NxScatterChart } from './charts/ui-scatter-chart';
+import { NxSparkline } from './charts/ui-sparkline';
 
 // Every standalone component/directive the library ships, gathered in one
 // place so NexiumUiModule (below) and anyone hand-rolling a similar aggregate
 // stay in sync with a single source of truth.
 const NEXIUM_UI_DECLARATIONS = [
   // Data display
-  UiAvatar,
-  UiBadge,
-  UiCard,
-  UiCardImage,
-  UiCardHeader,
-  UiCardTitle,
-  UiCardSubtitle,
-  UiCardContent,
-  UiCardActions,
-  UiCardFooter,
-  UiChip,
-  UiIcon,
-  UiKeyValueList,
-  UiList,
-  UiProgressBarComponent,
+  NxAvatar,
+  NxBadge,
+  NxCard,
+  NxCardImage,
+  NxCardHeader,
+  NxCardTitle,
+  NxCardSubtitle,
+  NxCardContent,
+  NxCardActions,
+  NxCardFooter,
+  NxChip,
+  NxIcon,
+  NxKeyValueList,
+  NxList,
+  NxProgressBarComponent,
   NxSkeleton,
   NxSpinnerComponent,
-  UiStatistic,
-  UiTable,
-  UiTag,
-  UiTimeline,
+  NxStatistic,
+  NxTable,
+  NxTag,
+  NxTimeline,
   NxTreeNode,
-  UiTree,
+  NxTree,
 
   // Feedback
-  UiAlert,
-  UiCommandPalette,
-  UiDialog,
-  UiDrawer,
-  UiModal,
-  UiNotificationCenter,
-  UiPopover,
-  UiToastContainer,
+  NxAlert,
+  NxCommandPalette,
+  NxDialog,
+  NxDrawer,
+  NxModal,
+  NxNotificationCenter,
+  NxPopover,
+  NxToastContainer,
   NxTooltip,
 
   // Forms
-  UiAutocomplete,
-  UiButton,
-  UiCheckbox,
-  UiColorPicker,
-  UiDatepicker,
-  UiInput,
-  UiMention,
-  UiOtpInput,
-  UiRadioGroup,
-  UiRating,
-  UiRichTextEditor,
-  UiSelect,
-  UiSlider,
-  UiSwitch,
-  UiTextarea,
-  UiToggle,
+  NxAutocomplete,
+  NxButton,
+  NxCheckbox,
+  NxColorPicker,
+  NxDatepicker,
+  NxInput,
+  NxMention,
+  NxOtpInput,
+  NxRadioGroup,
+  NxRating,
+  NxRichTextEditor,
+  NxSelect,
+  NxSlider,
+  NxSwitch,
+  NxTextarea,
+  NxToggle,
 
   // Uploads
-  UiFileUpload,
+  NxFileUpload,
 
   // Media
-  UiCarousel,
+  NxCarousel,
   NxCarouselSlideDirective,
-  UiGallery,
-  UiPreview,
+  NxGallery,
+  NxPreview,
 
   // Navigation
   NxSidebar,
   NxSidebarItemComponent,
-  UiBottomNavigation,
-  UiBreadcrumb,
-  UiContextMenu,
-  UiDropdownMenu,
-  UiMegaMenu,
-  UiMenu,
-  UiMenubar,
-  UiNavbar,
-  UiPagination,
-  UiStepper,
+  NxBottomNavigation,
+  NxBreadcrumb,
+  NxContextMenu,
+  NxDropdownMenu,
+  NxMegaMenu,
+  NxMenu,
+  NxMenubar,
+  NxNavbar,
+  NxPagination,
+  NxStepper,
 
   // Panels
   NxAccordionComponent,
@@ -192,34 +192,34 @@ const NEXIUM_UI_DECLARATIONS = [
   NxTabsComponent,
   NxTabComponent,
   NxTabLabelDirective,
-  UiCollapse,
-  UiPanel,
+  NxCollapse,
+  NxPanel,
 
   // Layout
-  UiAspectRatio,
-  UiContainer,
-  UiDivider,
-  UiFlex,
-  UiGrid,
-  UiGridItem,
-  UiMasonry,
-  UiSpacer,
-  UiSplitter,
-  UiStack,
+  NxAspectRatio,
+  NxContainer,
+  NxDivider,
+  NxFlex,
+  NxGrid,
+  NxGridItem,
+  NxMasonry,
+  NxSpacer,
+  NxSplitter,
+  NxStack,
 
   // Charts
-  UiAreaChart,
-  UiBarChart,
-  UiBubbleChart,
-  UiFunnelChart,
-  UiGaugeChart,
-  UiHeatmapChart,
-  UiLineChart,
-  UiMixedChart,
-  UiPieChart,
-  UiRadarChart,
-  UiScatterChart,
-  UiSparkline,
+  NxAreaChart,
+  NxBarChart,
+  NxBubbleChart,
+  NxFunnelChart,
+  NxGaugeChart,
+  NxHeatmapChart,
+  NxLineChart,
+  NxMixedChart,
+  NxPieChart,
+  NxRadarChart,
+  NxScatterChart,
+  NxSparkline,
 ] as const;
 
 /**
@@ -236,7 +236,7 @@ const NEXIUM_UI_DECLARATIONS = [
  * ```
  *
  * Standalone components/directives can be used directly instead — import
- * only `UiChip`, `UiButton`, etc. from 'nexium-ui' into your own standalone
+ * only `NxChip`, `NxButton`, etc. from 'nexium-ui' into your own standalone
  * component's `imports` array — which keeps bundles smaller since unused
  * components get tree-shaken. Reach for NexiumUiModule when you want the
  * whole library available at once, or your app hasn't migrated off

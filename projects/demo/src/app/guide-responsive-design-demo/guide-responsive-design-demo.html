@@ -11,17 +11,13 @@
                 </p>
             </section>
 
-            <section class="main-section">
-                <h4 class="main-section-header">Mobile-First Media Queries</h4>
-                <p class="main-section-description">
-                    Write base styles for the smallest screen first, then layer on
-                    <code>min-width</code> overrides as the viewport grows. See
-                    <code>Utilities &gt; Breakpoints</code> for the recommended cutoffs.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ mediaQueryCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Mobile-First Media Queries"
+                description="Write base styles for the smallest screen first, then layer on min-width overrides as the viewport grows. See Utilities &gt; Breakpoints for the recommended cutoffs."
+                [code]="mediaQueryCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
             <section class="main-section">
                 <h4 class="main-section-header">Flexible Components</h4>

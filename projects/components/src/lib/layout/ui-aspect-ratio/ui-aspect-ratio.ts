@@ -19,7 +19,7 @@ import { Component, Input } from '@angular/core';
     }
   `,
 })
-export class UiAspectRatio {
+export class NxAspectRatio {
   /** Any valid CSS aspect-ratio value, e.g. '16 / 9', '1 / 1', '4 / 3'. */
   @Input() ratio = '16 / 9';
 }

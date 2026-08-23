@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { NxAutocompleteOption, UiAutocomplete } from '../../../../../dist/components';
+import { NxAutocompleteOption, NxAutocomplete } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-autocomplete-demo',
-  imports: [UiAutocomplete, DemoSection],
+  imports: [NxAutocomplete, DemoSection],
   templateUrl: './ui-autocomplete-demo.html',
   styleUrl: './ui-autocomplete-demo.scss',
 })
 export class UiAutocompleteDemo {
+  importCode = `import { NxAutocompleteOption, NxAutocomplete } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   city = '';
 

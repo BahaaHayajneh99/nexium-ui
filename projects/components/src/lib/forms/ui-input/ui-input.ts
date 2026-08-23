@@ -42,7 +42,7 @@ import { NgClass } from '@angular/common';
     .nx-input-error { font-size: 12px; color: #e74c3c; }
   `,
 })
-export class UiInput {
+export class NxInput {
   @Input() label = '';
   @Input() type: 'text' | 'email' | 'password' | 'number' = 'text';
   @Input() placeholder = '';

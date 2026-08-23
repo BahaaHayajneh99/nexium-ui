@@ -1,18 +1,31 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiCardActions, UiCardContent, UiCardFooter, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCard, UiCardImage } from '../../../../../dist/components';
-import { UiButton } from 'components';
+import { NxCardActions, NxCardContent, NxCardFooter, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCard, NxCardImage } from '../../../../../dist/components';
+import { NxButton } from 'components';
 import { NgStyle } from '@angular/common';
 import { DemoSection } from '../shared/demo-section/demo-section';
+import { NxLogo } from '../shared/nx-logo/nx-logo';
 
 @Component({
   selector: 'app-ui-card-demo',
   standalone: true,
-  imports: [UiCard, UiButton, UiCardImage, UiCardActions, UiCardContent, UiCardFooter, UiCardHeader, UiCardTitle, UiCardSubtitle, NgStyle, DemoSection],
+  imports: [NxCard, NxButton, NxCardImage, NxCardActions, NxCardContent, NxCardFooter, NxCardHeader, NxCardTitle, NxCardSubtitle, NgStyle, DemoSection, NxLogo],
   templateUrl: './ui-card-demo.html',
   styleUrl: './ui-card-demo.scss',
 })
 export class UiCardDemo {
+  importCode = `import {
+  NxCard,
+  NxCardImage,
+  NxCardHeader,
+  NxCardTitle,
+  NxCardSubtitle,
+  NxCardContent,
+  NxCardActions,
+  NxCardFooter,
+  NxButton,
+} from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-card>
     <nx-card-content>Card Content</nx-card-content>

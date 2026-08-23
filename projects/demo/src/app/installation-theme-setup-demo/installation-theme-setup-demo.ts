@@ -1,19 +1,23 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
+import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-installation-theme-setup-demo',
+  imports: [DemoSection],
   templateUrl: './installation-theme-setup-demo.html',
 })
 export class InstallationThemeSetupDemo {
   public commonService = inject(CommonService);
-  overrideCode = `// styles.scss - override before anything reads the defaults
-$primary-color: #7c3aed;
-$radius-md: 6px;
 
-@use '@nexium/components/variables' as *;`;
+  overrideCode = `/* your own global stylesheet, after the nexium-ui stylesheet import */
+:root {
+  --shell-primary: #7c3aed;
+  --shell-border: #e2e2e2;
+}`;
 
   darkModeCode = `// Toggle dark mode by stamping this attribute on <html> - every component
-// that reads --shell-* custom properties (see Theming) responds immediately.
+// that reads the --shell-* custom properties responds immediately, no
+// theme provider or rebuild required.
 document.documentElement.setAttribute('data-theme', 'dark');`;
 }

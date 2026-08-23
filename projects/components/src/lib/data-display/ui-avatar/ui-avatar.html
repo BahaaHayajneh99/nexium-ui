@@ -11,7 +11,9 @@
             {{ initials }}
         </span>
     } @else {
-        <ng-content></ng-content>
+        <span class="nx-avatar-content" role="img" [attr.aria-label]="alt || name || 'Avatar'">
+            <ng-content></ng-content>
+        </span>
     }
 
     @if (status) {

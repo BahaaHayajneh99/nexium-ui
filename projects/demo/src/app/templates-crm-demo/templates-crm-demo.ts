@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiTable, NxTableColumn, UiFunnelChart, NxFunnelStage, UiAvatar } from 'components';
+import { NxTable, NxTableColumn, NxFunnelChart, NxFunnelStage, NxAvatar } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-crm-demo',
-  imports: [UiTable, UiFunnelChart, UiAvatar, DemoSection],
+  imports: [NxTable, NxFunnelChart, NxAvatar, DemoSection],
   templateUrl: './templates-crm-demo.html',
 })
 export class TemplatesCrmDemo {

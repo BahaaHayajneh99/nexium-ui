@@ -4,6 +4,11 @@
     </div>
 
     @if (open) {
-        <nx-menu class="nx-dropdown-panel" [class.right]="position === 'right'" [items]="items" (itemSelect)="onSelect($event)"></nx-menu>
+        <div class="nx-dropdown-panel" [class.right]="position === 'right'" (click)="onContentClick()">
+            @if (items.length) {
+                <nx-menu [items]="items" (itemSelect)="onSelect($event)"></nx-menu>
+            }
+            <ng-content select="[nx-dropdown-content]"></ng-content>
+        </div>
     }
 </div>

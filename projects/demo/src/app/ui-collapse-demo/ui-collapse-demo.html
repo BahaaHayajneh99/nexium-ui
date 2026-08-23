@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic Collapse"
                 description="The {{ commonService.appName }} Collapse toggles the visibility of its content when the header is clicked."
                 [code]="basicCode"

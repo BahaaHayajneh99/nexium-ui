@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiCard, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCardContent, UiCardFooter, UiIcon, UiBadge, UiButton } from 'components';
+import { NxCard, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCardContent, NxCardFooter, NxIcon, NxBadge, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface PricingTier {
@@ -15,7 +15,7 @@ interface PricingTier {
 
 @Component({
   selector: 'app-blocks-pricing-demo',
-  imports: [UiCard, UiCardHeader, UiCardTitle, UiCardSubtitle, UiCardContent, UiCardFooter, UiIcon, UiBadge, UiButton, DemoSection],
+  imports: [NxCard, NxCardHeader, NxCardTitle, NxCardSubtitle, NxCardContent, NxCardFooter, NxIcon, NxBadge, NxButton, DemoSection],
   templateUrl: './blocks-pricing-demo.html',
 })
 export class BlocksPricingDemo {

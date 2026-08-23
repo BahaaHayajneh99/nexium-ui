@@ -9,7 +9,7 @@ export type NxStatisticDeltaDirection = 'up' | 'down' | 'neutral';
   templateUrl: './ui-statistic.html',
   styleUrl: './ui-statistic.scss',
 })
-export class UiStatistic {
+export class NxStatistic {
   @Input() label = '';
   @Input() value: string | number = '';
   @Input() prefix = '';

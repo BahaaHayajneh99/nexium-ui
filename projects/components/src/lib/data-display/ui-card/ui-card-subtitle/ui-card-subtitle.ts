@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './ui-card-subtitle.html',
   styleUrls: ['./ui-card-subtitle.scss','../ui-card.scss'],
 })
-export class UiCardSubtitle {
+export class NxCardSubtitle {
 
 }

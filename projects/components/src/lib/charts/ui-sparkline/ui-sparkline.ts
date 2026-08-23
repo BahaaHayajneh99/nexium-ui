@@ -8,7 +8,7 @@ import { formatNumber } from '../chart-utils';
   templateUrl: './ui-sparkline.html',
   styleUrl: './ui-sparkline.scss',
 })
-export class UiSparkline {
+export class NxSparkline {
   @Input() data: number[] = [];
   @Input() color = 'var(--shell-primary)';
   @Input({ transform: booleanAttribute }) showArea = false;

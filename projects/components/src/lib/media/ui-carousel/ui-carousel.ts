@@ -1,6 +1,6 @@
 import { AfterContentInit, booleanAttribute, Component, ContentChildren, Input, numberAttribute, OnDestroy, QueryList } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { UiIcon } from '../../data-display/ui-icon';
+import { NxIcon } from '../../data-display/ui-icon';
 import { NxCarouselSlideDirective } from './nx-carousel-slide';
 
 export interface NxCarouselSlide {
@@ -12,11 +12,11 @@ export interface NxCarouselSlide {
 @Component({
   selector: 'nx-carousel',
   standalone: true,
-  imports: [UiIcon, NgTemplateOutlet],
+  imports: [NxIcon, NgTemplateOutlet],
   templateUrl: './ui-carousel.html',
   styleUrl: './ui-carousel.scss',
 })
-export class UiCarousel implements AfterContentInit, OnDestroy {
+export class NxCarousel implements AfterContentInit, OnDestroy {
   @Input() slides: NxCarouselSlide[] = [];
   @Input({ transform: booleanAttribute }) autoplay = false;
   @Input({ transform: numberAttribute }) interval = 4000;

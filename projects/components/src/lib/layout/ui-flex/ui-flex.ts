@@ -47,7 +47,7 @@ const JUSTIFY_MAP: Record<NxFlexJustify, string> = {
     }
   `,
 })
-export class UiFlex {
+export class NxFlex {
   @Input() direction: NxFlexDirection = 'row';
   @Input() align: NxFlexAlign = 'stretch';
   @Input() justify: NxFlexJustify = 'start';

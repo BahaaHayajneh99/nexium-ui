@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output, booleanAttribute, numberAttribu
   templateUrl: './ui-rating.html',
   styleUrl: './ui-rating.scss',
 })
-export class UiRating {
+export class NxRating {
   @Input({ transform: numberAttribute }) value = 0;
   @Input({ transform: numberAttribute }) max = 5;
   @Input({ transform: booleanAttribute }) readonly = false;

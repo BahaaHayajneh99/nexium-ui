@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiPieChart, NxPieDatum } from 'components';
+import { NxPieChart, NxPieDatum } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-doughnut-demo',
-  imports: [UiPieChart, DemoSection],
+  imports: [NxPieChart, DemoSection],
   templateUrl: './charts-doughnut-demo.html',
 })
 export class ChartsDoughnutDemo {
+  importCode = `import { NxPieChart, NxPieDatum } from 'nexium-ui';`;
+
   planUsage: NxPieDatum[] = [
     { label: 'Storage', value: 42 },
     { label: 'Bandwidth', value: 28 },

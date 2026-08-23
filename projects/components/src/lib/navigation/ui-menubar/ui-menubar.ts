@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-import { UiMenu, NxMenuItem } from '../ui-menu';
+import { NxMenu, NxMenuItem } from '../ui-menu';
 
 export interface NxMenubarItem {
   label: string;
@@ -9,14 +9,14 @@ export interface NxMenubarItem {
 @Component({
   selector: 'nx-menubar',
   standalone: true,
-  imports: [UiMenu],
+  imports: [NxMenu],
   templateUrl: './ui-menubar.html',
   styleUrl: './ui-menubar.scss',
   host: {
     '(document:click)': 'onDocumentClick($event)',
   },
 })
-export class UiMenubar {
+export class NxMenubar {
   @Input() menus: NxMenubarItem[] = [];
 
   @Output() itemSelect = new EventEmitter<NxMenuItem>();

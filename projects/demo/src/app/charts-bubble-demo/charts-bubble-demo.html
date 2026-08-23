@@ -11,6 +11,13 @@
             </section>
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic"
                 description="A single series needs no legend - the chart's own title already says what's plotted."
                 [code]="basicCode"

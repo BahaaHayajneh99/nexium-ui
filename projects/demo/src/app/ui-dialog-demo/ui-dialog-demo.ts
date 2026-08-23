@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiDialog } from '../../../../../dist/components';
+import { NxDialog } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-dialog-demo',
-  imports: [UiDialog, DemoSection],
+  imports: [NxDialog, DemoSection],
   templateUrl: './ui-dialog-demo.html',
   styleUrl: './ui-dialog-demo.scss',
 })
 export class UiDialogDemo {
+  importCode = `import { NxDialog } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   open = false;
 

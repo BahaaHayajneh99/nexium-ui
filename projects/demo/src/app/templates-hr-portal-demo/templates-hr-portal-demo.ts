@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UiCard, UiCardContent, UiTable, NxTableColumn, UiProgressBarComponent, UiAvatar } from 'components';
+import { NxCard, NxCardContent, NxTable, NxTableColumn, NxProgressBarComponent, NxAvatar } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface LeaveBalance {
@@ -10,7 +10,7 @@ interface LeaveBalance {
 
 @Component({
   selector: 'app-templates-hr-portal-demo',
-  imports: [UiCard, UiCardContent, UiTable, UiProgressBarComponent, UiAvatar, DemoSection],
+  imports: [NxCard, NxCardContent, NxTable, NxProgressBarComponent, NxAvatar, DemoSection],
   templateUrl: './templates-hr-portal-demo.html',
 })
 export class TemplatesHrPortalDemo {

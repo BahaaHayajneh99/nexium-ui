@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiInput, UiSelect, UiCheckbox, NxSelectOption } from '../../../../../dist/components';
+import { NxInput, NxSelect, NxCheckbox, NxSelectOption } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-form-builder-demo',
-  imports: [UiInput, UiSelect, UiCheckbox, DemoSection],
+  imports: [NxInput, NxSelect, NxCheckbox, DemoSection],
   templateUrl: './form-builder-demo.html',
   styleUrl: './form-builder-demo.scss',
 })

@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiMenu, NxMenuItem } from 'components';
+import { NxMenu, NxMenuItem } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-menu-demo',
-  imports: [UiMenu, DemoSection],
+  imports: [NxMenu, DemoSection],
   templateUrl: './ui-menu-demo.html',
 })
 export class UiMenuDemo {
+  importCode = `import { NxMenu, NxMenuItem } from 'nexium-ui';`;
+
   lastSelected = '';
 
   items: NxMenuItem[] = [

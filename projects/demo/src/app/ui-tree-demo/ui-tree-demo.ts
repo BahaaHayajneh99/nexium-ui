@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiTree, NxTreeNodeData } from '../../../../../dist/components';
+import { NxTree, NxTreeNodeData } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-tree-demo',
-  imports: [UiTree, DemoSection],
+  imports: [NxTree, DemoSection],
   templateUrl: './ui-tree-demo.html',
   styleUrl: './ui-tree-demo.scss',
 })
 export class UiTreeDemo {
+  importCode = `import { NxTree, NxTreeNodeData } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   nodes: NxTreeNodeData[] = [
     {

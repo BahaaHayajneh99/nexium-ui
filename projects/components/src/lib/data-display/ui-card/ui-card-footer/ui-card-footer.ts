@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './ui-card-footer.html',
   styleUrls: ['./ui-card-footer.scss','../ui-card.scss'],
 })
-export class UiCardFooter {
+export class NxCardFooter {
 
 }

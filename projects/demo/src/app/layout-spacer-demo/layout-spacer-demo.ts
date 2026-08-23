@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiFlex, UiSpacer } from 'components';
+import { NxFlex, NxSpacer } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-layout-spacer-demo',
-  imports: [UiFlex, UiSpacer, DemoSection],
+  imports: [NxFlex, NxSpacer, DemoSection],
   templateUrl: './layout-spacer-demo.html',
 })
 export class LayoutSpacerDemo {
+  importCode = `import { NxFlex, NxSpacer } from 'nexium-ui';`;
+
   growCode = `<nx-flex align="center">
     <div>Logo</div>
     <nx-spacer></nx-spacer>

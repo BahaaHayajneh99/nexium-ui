@@ -33,7 +33,7 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
     .nx-slider:disabled { cursor: not-allowed; opacity: .6; }
   `,
 })
-export class UiSlider {
+export class NxSlider {
   @Input() label = '';
   @Input() min = 0;
   @Input() max = 100;

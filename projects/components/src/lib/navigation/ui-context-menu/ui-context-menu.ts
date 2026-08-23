@@ -1,14 +1,14 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { UiMenu, NxMenuItem } from '../ui-menu';
+import { NxMenu, NxMenuItem } from '../ui-menu';
 
 @Component({
   selector: 'nx-context-menu',
   standalone: true,
-  imports: [UiMenu],
+  imports: [NxMenu],
   templateUrl: './ui-context-menu.html',
   styleUrl: './ui-context-menu.scss',
 })
-export class UiContextMenu {
+export class NxContextMenu {
   @Input() items: NxMenuItem[] = [];
   @Input() disabled = false;
 

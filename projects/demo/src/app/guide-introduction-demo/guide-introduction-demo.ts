@@ -7,8 +7,4 @@ import { CommonService } from '../services/common.service';
 })
 export class GuideIntroductionDemo {
   public commonService = inject(CommonService);
-  layoutCode = `projects/
-  components/   # most nx-* components (data-display, forms, feedback, ...)
-  core/         # shared low-level utilities
-  demo/         # this showcase application`;
 }

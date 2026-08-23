@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
 import {
-  UiTable,
+  NxTable,
   NxTableColumn,
-  UiInput,
-  UiSelect,
+  NxInput,
+  NxSelect,
   NxSelectOption,
-  UiCard,
-  UiCardHeader,
-  UiCardTitle,
-  UiCardContent,
-  UiCardFooter,
-  UiButton,
+  NxCard,
+  NxCardHeader,
+  NxCardTitle,
+  NxCardContent,
+  NxCardFooter,
+  NxButton,
 } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-user-management-demo',
-  imports: [UiTable, UiInput, UiSelect, UiButton, UiCard, UiCardHeader, UiCardTitle, UiCardContent, UiCardFooter, DemoSection],
+  imports: [NxTable, NxInput, NxSelect, NxButton, NxCard, NxCardHeader, NxCardTitle, NxCardContent, NxCardFooter, DemoSection],
   templateUrl: './templates-user-management-demo.html',
 })
 export class TemplatesUserManagementDemo {

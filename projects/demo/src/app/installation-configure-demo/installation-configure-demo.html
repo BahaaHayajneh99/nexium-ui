@@ -2,26 +2,21 @@
     <div class="main-container">
         <div class="main-sections">
 
-            <section class="main-section">
-                <h4 class="main-section-header">Configure</h4>
-                <p class="main-section-description">
-                    Step 3 of 7. Map each package to a short path alias in <code>tsconfig.json</code> so
-                    imports read <code>from 'components'</code> instead of a long node_modules path.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ tsconfigCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Configure"
+                description="Step 3 of 7. {{ commonService.appName }} ships a pre-compiled stylesheet with every component's styles and design tokens. Register it in your app's global styles through angular.json&hellip;"
+                [code]="angularJsonCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
-            <section class="main-section">
-                <h4 class="main-section-header">Working From This Monorepo</h4>
-                <p class="main-section-description">
-                    Point the aliases at the built <code>dist/</code> output instead.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ monorepoTsconfigCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="&hellip;or Import It Directly"
+                description="Alternatively, import the stylesheet directly into your own global stylesheet."
+                [code]="globalImportCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
         </div>
     </div>

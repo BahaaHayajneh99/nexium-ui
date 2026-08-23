@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Mega Menu"
                 description="Unlike nx-dropdown-menu's fixed item list, the panel content is fully custom - useful for a large, multi-column site navigation menu."
                 [code]="basicCode"

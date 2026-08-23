@@ -18,7 +18,7 @@ interface RadarPoint {
   templateUrl: './ui-radar-chart.html',
   styleUrl: './ui-radar-chart.scss',
 })
-export class UiRadarChart {
+export class NxRadarChart {
   @Input() categories: string[] = [];
   @Input() series: NxChartSeries[] = [];
 

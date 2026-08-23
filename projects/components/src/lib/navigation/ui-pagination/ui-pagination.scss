@@ -26,6 +26,10 @@
         background-color: var(--shell-primary);
         border-color: var(--shell-primary);
         color: $text-white;
+
+    &:hover:not(:disabled) {
+            color: var(--shell-text);
+        }
     }
 
     &:disabled {

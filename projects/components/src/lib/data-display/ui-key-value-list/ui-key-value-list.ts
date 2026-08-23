@@ -14,7 +14,7 @@ export type NxKeyValueLayout = 'inline' | 'stacked';
   templateUrl: './ui-key-value-list.html',
   styleUrl: './ui-key-value-list.scss',
 })
-export class UiKeyValueList {
+export class NxKeyValueList {
   @Input() items: NxKeyValueItem[] = [];
   @Input() layout: NxKeyValueLayout = 'inline';
   @Input({ transform: booleanAttribute }) bordered = true;

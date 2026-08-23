@@ -1,21 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import {
-  UiInput,
-  UiTextarea,
-  UiAvatar,
-  UiBadge,
-  UiCard,
-  UiCardHeader,
-  UiCardContent,
-  UiCardFooter,
-  UiButton,
+  NxInput,
+  NxTextarea,
+  NxAvatar,
+  NxBadge,
+  NxCard,
+  NxCardHeader,
+  NxCardContent,
+  NxCardFooter,
+  NxButton,
 } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-profile-demo',
-  imports: [UiInput, UiTextarea, UiAvatar, UiBadge, UiButton, UiCard, UiCardHeader, UiCardContent, UiCardFooter, DemoSection],
+  imports: [NxInput, NxTextarea, NxAvatar, NxBadge, NxButton, NxCard, NxCardHeader, NxCardContent, NxCardFooter, DemoSection],
   templateUrl: './templates-profile-demo.html',
 })
 export class TemplatesProfileDemo {

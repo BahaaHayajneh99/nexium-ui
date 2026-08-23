@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiInput, UiTextarea, UiCard, UiCardHeader, UiCardTitle, UiCardContent, UiButton } from 'components';
+import { NxInput, NxTextarea, NxCard, NxCardHeader, NxCardTitle, NxCardContent, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-blocks-contact-demo',
-  imports: [UiInput, UiTextarea, UiButton, UiCard, UiCardHeader, UiCardTitle, UiCardContent, DemoSection],
+  imports: [NxInput, NxTextarea, NxButton, NxCard, NxCardHeader, NxCardTitle, NxCardContent, DemoSection],
   templateUrl: './blocks-contact-demo.html',
 })
 export class BlocksContactDemo {

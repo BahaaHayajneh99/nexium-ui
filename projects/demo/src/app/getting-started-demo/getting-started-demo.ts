@@ -1,40 +1,38 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
+import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-getting-started-demo',
+  imports: [DemoSection],
   templateUrl: './getting-started-demo.html',
   styleUrl: './getting-started-demo.scss',
 })
 export class GettingStartedDemo {
   public commonService = inject(CommonService);
-  cloneCode = `git clone <this-repo>
-cd ${this.commonService.appName}
-npm install`;
 
-  buildLibsCode = `ng build components
-ng build core`;
+  installCode = `npm install nexium-ui`;
 
-  serveCode = `ng serve`;
-
-  publishedInstallCode = `npm install @nexiumui/components`;
-
-  tsconfigPathsCode = `{
-  "compilerOptions": {
-    "paths": {
-      "components": ["./dist/components"],
-      "core": ["./dist/core"]
+  angularJsonStylesCode = `"architect": {
+  "build": {
+    "options": {
+      "styles": [
+        "node_modules/nexium-ui/styles.css",
+        "src/styles.scss"
+      ]
     }
   }
 }`;
 
+  globalImportStylesCode = `@import 'nexium-ui/styles.css';`;
+
   standaloneUsageCode = `import { Component } from '@angular/core';
-import { UiButton, UiBadge } from '@nexiumui/components';
+import { NxButton, NxBadge } from 'nexium-ui';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [UiButton, UiBadge],
+  imports: [NxButton, NxBadge],
   template: \`
     <nx-button variant="primary">Save</nx-button>
     <nx-badge variant="success">New</nx-badge>
@@ -42,11 +40,19 @@ import { UiButton, UiBadge } from '@nexiumui/components';
 })
 export class Example {}`;
 
-  scssTokensCode = `@use '../../../../../demo/src/app/variables.scss' as *;
+  moduleUsageCode = `import { NgModule } from '@angular/core';
+import { NexiumUiModule } from 'nexium-ui';
 
-.my-panel {
-  border: 1px solid $border-color;
-  border-radius: $radius-md;
-  padding: $spacing-md;
+@NgModule({
+  imports: [NexiumUiModule],
+})
+export class SharedModule {}`;
+
+  designTokensCode = `.my-panel {
+  background: var(--shell-surface);
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  color: var(--shell-text);
+  padding: 16px;
 }`;
 }

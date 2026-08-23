@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { UiIcon } from 'components';
+import { NxIcon } from '../../../../../dist/components';
+import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-installation-icons-setup-demo',
-  imports: [UiIcon],
+  imports: [NxIcon, DemoSection],
   templateUrl: './installation-icons-setup-demo.html',
 })
 export class InstallationIconsSetupDemo {

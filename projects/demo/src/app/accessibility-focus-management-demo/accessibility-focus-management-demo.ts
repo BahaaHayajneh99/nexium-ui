@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { UiModal, UiButton } from 'components';
+import { NxModal, NxButton } from 'components';
 
 @Component({
   selector: 'app-accessibility-focus-management-demo',
-  imports: [UiModal, UiButton],
+  imports: [NxModal, NxButton],
   templateUrl: './accessibility-focus-management-demo.html',
 })
 export class AccessibilityFocusManagementDemo {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UiCard, UiCardContent, UiStepper, NxStep, UiProgressBarComponent, UiBadge } from 'components';
+import { NxCard, NxCardContent, NxStepper, NxStep, NxProgressBarComponent, NxBadge } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface ProjectRow {
@@ -12,7 +12,7 @@ interface ProjectRow {
 
 @Component({
   selector: 'app-templates-project-management-demo',
-  imports: [UiCard, UiCardContent, UiStepper, UiProgressBarComponent, UiBadge, DemoSection],
+  imports: [NxCard, NxCardContent, NxStepper, NxProgressBarComponent, NxBadge, DemoSection],
   templateUrl: './templates-project-management-demo.html',
 })
 export class TemplatesProjectManagementDemo {

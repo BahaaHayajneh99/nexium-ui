@@ -15,6 +15,6 @@ export interface NxTimelineItem {
   templateUrl: './ui-timeline.html',
   styleUrl: './ui-timeline.scss',
 })
-export class UiTimeline {
+export class NxTimeline {
   @Input() items: NxTimelineItem[] = [];
 }

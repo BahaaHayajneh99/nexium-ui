@@ -31,7 +31,7 @@ interface NxAutocompleteRow {
   templateUrl: './ui-autocomplete.html',
   styleUrl: './ui-autocomplete.scss',
 })
-export class UiAutocomplete {
+export class NxAutocomplete {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() options: NxAutocompleteOptionInput[] = [];

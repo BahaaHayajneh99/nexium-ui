@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiMixedChart, NxMixedSeries } from 'components';
+import { NxMixedChart, NxMixedSeries } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-mixed-demo',
-  imports: [UiMixedChart, DemoSection],
+  imports: [NxMixedChart, DemoSection],
   templateUrl: './charts-mixed-demo.html',
 })
 export class ChartsMixedDemo {
+  importCode = `import { NxMixedChart, NxMixedSeries } from 'nexium-ui';`;
+
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
 
   revenueAndGrowth: NxMixedSeries[] = [

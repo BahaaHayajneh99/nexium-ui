@@ -10,7 +10,7 @@ export type NxIconVariant = 'svg' | 'icon';
   templateUrl: './ui-icon.html',
   styleUrl: './ui-icon.scss',
 })
-export class UiIcon {
+export class NxIcon {
   @Input({ required: true })
   icon = '';
 

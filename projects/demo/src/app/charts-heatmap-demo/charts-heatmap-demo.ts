@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiHeatmapChart } from 'components';
+import { NxHeatmapChart } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-heatmap-demo',
-  imports: [UiHeatmapChart, DemoSection],
+  imports: [NxHeatmapChart, DemoSection],
   templateUrl: './charts-heatmap-demo.html',
 })
 export class ChartsHeatmapDemo {
+  importCode = `import { NxHeatmapChart } from 'nexium-ui';`;
+
   days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   slots = ['Morning', 'Afternoon', 'Evening', 'Night'];
 

@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiFunnelChart, NxFunnelStage } from 'components';
+import { NxFunnelChart, NxFunnelStage } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-funnel-demo',
-  imports: [UiFunnelChart, DemoSection],
+  imports: [NxFunnelChart, DemoSection],
   templateUrl: './charts-funnel-demo.html',
 })
 export class ChartsFunnelDemo {
+  importCode = `import { NxFunnelChart, NxFunnelStage } from 'nexium-ui';`;
+
   signupFunnel: NxFunnelStage[] = [
     { label: 'Visited pricing page', value: 12400 },
     { label: 'Started signup', value: 5200 },

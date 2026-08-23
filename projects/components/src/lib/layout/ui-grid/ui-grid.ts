@@ -16,7 +16,7 @@ import { Component, Input, numberAttribute } from '@angular/core';
     }
   `,
 })
-export class UiGrid {
+export class NxGrid {
   @Input({ transform: numberAttribute }) cols = 12;
   @Input({ transform: numberAttribute }) gap = 16;
 }

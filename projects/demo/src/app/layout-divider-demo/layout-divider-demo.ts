@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiDivider, UiStack } from 'components';
+import { NxDivider, NxStack } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-layout-divider-demo',
-  imports: [UiDivider, UiStack, DemoSection],
+  imports: [NxDivider, NxStack, DemoSection],
   templateUrl: './layout-divider-demo.html',
 })
 export class LayoutDividerDemo {
+  importCode = `import { NxDivider, NxStack } from 'nexium-ui';`;
+
   horizontalCode = `<div>Section one</div>
 <nx-divider></nx-divider>
 <div>Section two</div>`;

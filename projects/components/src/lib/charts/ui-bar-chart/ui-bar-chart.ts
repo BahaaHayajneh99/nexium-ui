@@ -21,7 +21,7 @@ interface BarGeometry {
   templateUrl: './ui-bar-chart.html',
   styleUrl: './ui-bar-chart.scss',
 })
-export class UiBarChart {
+export class NxBarChart {
   @Input() categories: string[] = [];
   @Input() series: NxChartSeries[] = [];
   @Input() height = 320;

@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiProgressBarComponent } from '../../../../../dist/components';
+import { NxProgressBarComponent } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-progress-bar-demo',
-  imports: [UiProgressBarComponent, DemoSection],
+  imports: [NxProgressBarComponent, DemoSection],
   templateUrl: './ui-progress-bar-demo.html',
   styleUrl: './ui-progress-bar-demo.scss',
 })
 export class UiProgressBarDemo {
+  importCode = `import { NxProgressBarComponent } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-progress-bar [value]="60">
 </nx-progress-bar>`;

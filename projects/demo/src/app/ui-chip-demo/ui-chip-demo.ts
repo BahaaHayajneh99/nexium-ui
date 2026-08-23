@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiChip } from '../../../../../dist/components';
+import { NxChip } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-chip-demo',
-  imports: [UiChip, DemoSection],
+  imports: [NxChip, DemoSection],
   templateUrl: './ui-chip-demo.html',
   styleUrl: './ui-chip-demo.scss',
 })
 export class UiChipDemo {
+  importCode = `import { NxChip } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-chip>
     Angular

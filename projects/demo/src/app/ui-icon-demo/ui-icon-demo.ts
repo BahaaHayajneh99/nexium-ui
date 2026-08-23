@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { UiIcon } from '../../../../../dist/components';
+import { NxIcon } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-icon-demo',
-  imports: [UiIcon, DemoSection],
+  imports: [NxIcon, DemoSection],
   templateUrl: './ui-icon-demo.html',
   styleUrl: './ui-icon-demo.scss',
 })
 export class UiIconDemo {
+  importCode = `import { NxIcon } from 'nexium-ui';`;
+
   basicSvgCode = `<nx-icon icon="nx-facebook" variant="svg"></nx-icon>`;
 
   basicIconCode = `<nx-icon icon="nx-facebook"></nx-icon>`;

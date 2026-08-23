@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiCommandPalette, NxCommandItem, UiButton } from 'components';
+import { NxCommandPalette, NxCommandItem, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-command-palette-demo',
-  imports: [UiCommandPalette, UiButton, DemoSection],
+  imports: [NxCommandPalette, NxButton, DemoSection],
   templateUrl: './ui-command-palette-demo.html',
 })
 export class UiCommandPaletteDemo {
+  importCode = `import { NxCommandPalette, NxCommandItem, NxButton } from 'nexium-ui';`;
+
   open = false;
   lastExecuted = '';
 

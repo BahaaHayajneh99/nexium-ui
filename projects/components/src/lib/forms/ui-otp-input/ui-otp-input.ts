@@ -19,7 +19,7 @@ export type NxOtpInputType = 'number' | 'text';
   templateUrl: './ui-otp-input.html',
   styleUrl: './ui-otp-input.scss',
 })
-export class UiOtpInput {
+export class NxOtpInput {
   @Input({ transform: numberAttribute }) length = 6;
   @Input() value = '';
   @Input() type: NxOtpInputType = 'number';

@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiRadioGroup, NxRadioOption } from '../../../../../dist/components';
+import { NxRadioGroup, NxRadioOption } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-radio-demo',
-  imports: [UiRadioGroup, DemoSection],
+  imports: [NxRadioGroup, DemoSection],
   templateUrl: './ui-radio-demo.html',
   styleUrl: './ui-radio-demo.scss',
 })
 export class UiRadioDemo {
+  importCode = `import { NxRadioGroup, NxRadioOption } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   plan = 'basic';
 

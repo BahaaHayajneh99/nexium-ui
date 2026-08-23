@@ -2,39 +2,29 @@
     <div class="main-container">
         <div class="main-sections">
 
-            <section class="main-section">
-                <h4 class="main-section-header">Design Tokens</h4>
-                <p class="main-section-description">
-                    Every component reads its colors, spacing, radii and typography from a single
-                    shared <code>variables.scss</code> file, so restyling the whole library means
-                    changing values in one place.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ tokensCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Design Tokens"
+                description="Every component reads its colors from a shared set of CSS custom properties, exposed once you've included the library's stylesheet - restyling the whole library means overriding a property in one place."
+                [code]="tokensCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
-            <section class="main-section">
-                <h4 class="main-section-header">Using Tokens In Your Own Styles</h4>
-                <p class="main-section-description">
-                    Reuse the same tokens in your own components so custom UI stays visually
-                    consistent with {{ commonService.appName }}.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ usageCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Using Tokens In Your Own Styles"
+                description="Reuse the same custom properties in your own styles so custom UI stays visually consistent with {{ commonService.appName }}."
+                [code]="usageCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
-            <section class="main-section">
-                <h4 class="main-section-header">Re-theming</h4>
-                <p class="main-section-description">
-                    Since every component consumes the same token file, overriding a token before
-                    it's imported re-themes every component that relies on it.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ overrideCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Re-theming"
+                description="Since every component reads from the same custom properties, overriding one in your own :root - after importing the library's stylesheet - re-themes every component that relies on it."
+                [code]="overrideCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
         </div>
     </div>

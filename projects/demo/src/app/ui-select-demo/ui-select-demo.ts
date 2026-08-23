@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiSelect, NxSelectOption } from '../../../../../dist/components';
+import { NxSelect, NxSelectOption } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-select-demo',
-  imports: [UiSelect, DemoSection],
+  imports: [NxSelect, DemoSection],
   templateUrl: './ui-select-demo.html',
   styleUrl: './ui-select-demo.scss',
 })
 export class UiSelectDemo {
+  importCode = `import { NxSelect, NxSelectOption } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   country = '';
 

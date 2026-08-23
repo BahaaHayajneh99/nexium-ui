@@ -12,7 +12,7 @@ export interface NxStep {
   templateUrl: './ui-stepper.html',
   styleUrl: './ui-stepper.scss',
 })
-export class UiStepper {
+export class NxStepper {
   @Input() steps: NxStep[] = [];
   @Input() activeIndex = 0;
 

@@ -12,7 +12,7 @@ import { Component, HostBinding, Input, numberAttribute } from '@angular/core';
     }
   `,
 })
-export class UiSpacer {
+export class NxSpacer {
   /** 0 (default) grows to fill the remaining space in a flex container; a positive value renders a fixed-size gap instead. */
   @Input({ transform: numberAttribute }) size = 0;
 

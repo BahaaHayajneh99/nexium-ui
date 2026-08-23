@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UiCardFooter } from './ui-card-footer';
+import { NxCardFooter } from './ui-card-footer';
 
-describe('UiCardFooter', () => {
-  let component: UiCardFooter;
-  let fixture: ComponentFixture<UiCardFooter>;
+describe('NxCardFooter', () => {
+  let component: NxCardFooter;
+  let fixture: ComponentFixture<NxCardFooter>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UiCardFooter],
+      imports: [NxCardFooter],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UiCardFooter);
+    fixture = TestBed.createComponent(NxCardFooter);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

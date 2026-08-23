@@ -6,6 +6,13 @@
 
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic Card"
                 description="The basic {{ commonService.appName }} Card provides a flexible container for grouping related content, information, and actions in a structured layout."
                 [code]="basicCode"
@@ -45,7 +52,7 @@
 
                 <nx-card [ngStyle]="{'width':'350px'}">
                     <nx-card-image>
-                        <img src="../assets/images/logo.png" alt="logo">
+                        <app-nx-logo></app-nx-logo>
                     </nx-card-image>
                     <nx-card-header>
                         <nx-card-title>
@@ -89,7 +96,7 @@
 
                 <nx-card [ngStyle]="{'width':'350px'}">
                     <nx-card-image>
-                        <img src="../assets/images/logo.png" alt="logo">
+                        <app-nx-logo></app-nx-logo>
                     </nx-card-image>
                     <nx-card-header>
                         <nx-card-title>

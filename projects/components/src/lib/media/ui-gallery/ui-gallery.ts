@@ -12,7 +12,7 @@ export interface NxGalleryImage {
   templateUrl: './ui-gallery.html',
   styleUrl: './ui-gallery.scss',
 })
-export class UiGallery {
+export class NxGallery {
   @Input() images: NxGalleryImage[] = [];
 
   selectedIndex: number | null = null;

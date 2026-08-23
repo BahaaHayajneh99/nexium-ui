@@ -17,7 +17,7 @@ const DEFAULT_PRESETS = [
     '(document:click)': 'onDocumentClick($event)',
   },
 })
-export class UiColorPicker {
+export class NxColorPicker {
   @Input() label = '';
   @Input() value = '#3498db';
   @Input() presets: string[] = DEFAULT_PRESETS;

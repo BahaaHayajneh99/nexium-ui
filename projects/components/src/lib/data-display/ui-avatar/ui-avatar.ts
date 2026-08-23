@@ -21,7 +21,7 @@ export type NxAvatarStatus = 'online' | 'offline' | 'busy' | 'away';
   templateUrl: './ui-avatar.html',
   styleUrl: './ui-avatar.scss',
 })
-export class UiAvatar {
+export class NxAvatar {
   @Input()
   src?: string;
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UiIcon, UiButton } from 'components';
+import { NxIcon, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface EmptyState {
@@ -11,7 +11,7 @@ interface EmptyState {
 
 @Component({
   selector: 'app-templates-empty-states-demo',
-  imports: [UiIcon, UiButton, DemoSection],
+  imports: [NxIcon, NxButton, DemoSection],
   templateUrl: './templates-empty-states-demo.html',
 })
 export class TemplatesEmptyStatesDemo {

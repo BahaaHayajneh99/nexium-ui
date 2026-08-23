@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiInput, UiButton } from 'components';
+import { NxInput, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-blocks-newsletter-demo',
-  imports: [UiInput, UiButton, DemoSection],
+  imports: [NxInput, NxButton, DemoSection],
   templateUrl: './blocks-newsletter-demo.html',
 })
 export class BlocksNewsletterDemo {

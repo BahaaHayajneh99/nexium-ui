@@ -1,14 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiNavbar, UiButton } from 'components';
+import { NxNavbar, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-navbar-demo',
-  imports: [UiNavbar, UiButton, DemoSection],
+  imports: [NxNavbar, NxButton, DemoSection],
   templateUrl: './ui-navbar-demo.html',
 })
 export class UiNavbarDemo {
+  importCode = `import { NxNavbar, NxButton } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-navbar>
     <span nx-navbar-brand>${this.commonService.appName}</span>

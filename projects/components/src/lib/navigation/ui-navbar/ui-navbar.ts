@@ -11,7 +11,7 @@ import { Component, Input, ViewEncapsulation, booleanAttribute } from '@angular/
   // default - emulated encapsulation can't reach projected content.
   encapsulation: ViewEncapsulation.None,
 })
-export class UiNavbar {
+export class NxNavbar {
   @Input({ transform: booleanAttribute }) sticky = false;
 
   mobileOpen = false;

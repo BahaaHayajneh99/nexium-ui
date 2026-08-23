@@ -14,7 +14,7 @@ export interface NxCommandItem {
   templateUrl: './ui-command-palette.html',
   styleUrl: './ui-command-palette.scss',
 })
-export class UiCommandPalette {
+export class NxCommandPalette {
   @Input({ transform: booleanAttribute }) open = false;
   @Input() commands: NxCommandItem[] = [];
   @Input() placeholder = 'Type a command or search...';

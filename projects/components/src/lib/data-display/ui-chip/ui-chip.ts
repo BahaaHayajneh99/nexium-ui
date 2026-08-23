@@ -16,7 +16,7 @@ export type NxChipVariant =
   templateUrl: './ui-chip.html',
   styleUrl: './ui-chip.scss'
 })
-export class UiChip {
+export class NxChip {
 
   @Input()
  variant: NxChipVariant = 'primary';

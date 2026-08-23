@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { NxTabsComponent, NxTabComponent, NxTabLabelDirective, UiIcon } from '../../../../../dist/components';
+import { NxTabsComponent, NxTabComponent, NxTabLabelDirective, NxIcon } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-tabs-demo',
-  imports: [NxTabsComponent, NxTabComponent, NxTabLabelDirective,UiIcon, DemoSection],
+  imports: [NxTabsComponent, NxTabComponent, NxTabLabelDirective,NxIcon, DemoSection],
   templateUrl: './ui-tabs-demo.html',
   styleUrl: './ui-tabs-demo.scss',
 })
 export class UiTabsDemo {
+  importCode = `import { NxTabsComponent, NxTabComponent, NxTabLabelDirective, NxIcon } from 'nexium-ui';`;
+
   activeTab = 0;
 
   basicCode = `<nx-tabs>

@@ -72,7 +72,7 @@ function compareYmd(a: YMD, b: YMD): number {
     '(document:click)': 'onDocumentClick($event)',
   },
 })
-export class UiDatepicker {
+export class NxDatepicker {
   @Input() label = '';
   @Input() placeholder = 'Select date';
   @Input() value = '';

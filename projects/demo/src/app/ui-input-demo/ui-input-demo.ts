@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiInput } from '../../../../../dist/components';
+import { NxInput } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-input-demo',
-  imports: [UiInput, DemoSection],
+  imports: [NxInput, DemoSection],
   templateUrl: './ui-input-demo.html',
   styleUrl: './ui-input-demo.scss',
 })
 export class UiInputDemo {
+  importCode = `import { NxInput } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   name = '';
   email = '';

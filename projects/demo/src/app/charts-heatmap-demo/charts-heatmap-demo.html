@@ -12,6 +12,13 @@
             </section>
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Activity by day and time"
                 description="rows and columns are plain string arrays; data[rowIndex][columnIndex] holds the matrix."
                 [code]="code"

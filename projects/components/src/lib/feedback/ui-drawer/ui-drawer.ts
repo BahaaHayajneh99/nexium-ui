@@ -14,7 +14,7 @@ export type NxDrawerSide = 'left' | 'right' | 'top' | 'bottom';
   templateUrl: './ui-drawer.html',
   styleUrl: './ui-drawer.scss',
 })
-export class UiDrawer {
+export class NxDrawer {
   @Input({ transform: booleanAttribute }) open = false;
   @Input() side: NxDrawerSide = 'right';
   @Input() size = '320px';

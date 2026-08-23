@@ -21,7 +21,7 @@ const FOCUSABLE_SELECTOR =
   templateUrl: './ui-modal.html',
   styleUrl: './ui-modal.scss',
 })
-export class UiModal implements OnChanges {
+export class NxModal implements OnChanges {
   @Input({ transform: booleanAttribute }) open = false;
   @Input() header = '';
   @Input({ transform: booleanAttribute }) closeOnBackdropClick = true;

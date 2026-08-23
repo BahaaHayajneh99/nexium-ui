@@ -1,21 +1,21 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-  UiSelect,
-  UiBadge,
-  UiAvatar,
-  UiAlert,
-  UiChip,
-  UiTable,
+  NxSelect,
+  NxBadge,
+  NxAvatar,
+  NxAlert,
+  NxChip,
+  NxTable,
   NxTableColumn,
-  UiProgressBarComponent,
+  NxProgressBarComponent,
   NxSpinnerComponent,
   NxAccordionComponent,
   NxAccordionItemComponent,
   NxAccordionHeaderComponent,
   NxAccordionContentComponent,
   NxSelectOption,
-  UiButton,
+  NxButton,
 } from 'components';
 
 type PreviewComponent =
@@ -48,14 +48,14 @@ const ALERT_VARIANTS: NxSelectOption[] = [
 @Component({
   selector: 'app-playground-demo',
   imports: [
-    UiSelect,
-    UiButton,
-    UiBadge,
-    UiAvatar,
-    UiAlert,
-    UiChip,
-    UiTable,
-    UiProgressBarComponent,
+    NxSelect,
+    NxButton,
+    NxBadge,
+    NxAvatar,
+    NxAlert,
+    NxChip,
+    NxTable,
+    NxProgressBarComponent,
     NxSpinnerComponent,
     NxAccordionComponent,
     NxAccordionItemComponent,

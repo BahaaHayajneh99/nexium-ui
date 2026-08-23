@@ -8,4 +8,4 @@ import { ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 
 })
-export class UiCardImage {}
+export class NxCardImage {}

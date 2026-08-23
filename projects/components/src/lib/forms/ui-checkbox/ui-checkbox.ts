@@ -74,7 +74,7 @@ import { NgClass } from '@angular/common';
     .nx-checkbox.invalid .nx-checkbox-label { color: #e74c3c; }
   `,
 })
-export class UiCheckbox {
+export class NxCheckbox {
   @Input({ transform: booleanAttribute }) checked = false;
   @Input({ transform: booleanAttribute }) disabled = false;
   @Input({ transform: booleanAttribute }) invalid = false;

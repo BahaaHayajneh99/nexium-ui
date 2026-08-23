@@ -72,7 +72,7 @@ export interface NxListItem {
     }
   `,
 })
-export class UiList {
+export class NxList {
   @Input() items: NxListItem[] = [];
   @Input({ transform: booleanAttribute }) bordered = false;
   @Input({ transform: booleanAttribute }) hoverable = false;

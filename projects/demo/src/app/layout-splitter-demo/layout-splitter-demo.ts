@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiSplitter } from 'components';
+import { NxSplitter } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-layout-splitter-demo',
-  imports: [UiSplitter, DemoSection],
+  imports: [NxSplitter, DemoSection],
   templateUrl: './layout-splitter-demo.html',
 })
 export class LayoutSplitterDemo {
+  importCode = `import { NxSplitter } from 'nexium-ui';`;
+
   horizontalCode = `<nx-splitter>
     <div nx-splitter-start>Left pane</div>
     <div nx-splitter-end>Right pane</div>

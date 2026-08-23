@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiBottomNavigation, NxBottomNavItem } from 'components';
+import { NxBottomNavigation, NxBottomNavItem } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-bottom-navigation-demo',
-  imports: [UiBottomNavigation, DemoSection],
+  imports: [NxBottomNavigation, DemoSection],
   templateUrl: './ui-bottom-navigation-demo.html',
 })
 export class UiBottomNavigationDemo {
+  importCode = `import { NxBottomNavigation, NxBottomNavItem } from 'nexium-ui';`;
+
   active: string | number = 'home';
 
   items: NxBottomNavItem[] = [

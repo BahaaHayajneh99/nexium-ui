@@ -20,14 +20,22 @@ export type NxTagVariant = 'solid' | 'outline';
   templateUrl: './ui-tag.html',
   styleUrl: './ui-tag.scss',
 })
-export class UiTag implements OnChanges, AfterViewInit {
+export class NxTag implements OnChanges, AfterViewInit {
   /** Any valid CSS color (hex, rgb(), a named color, or a CSS custom property) - not limited to a fixed variant palette. */
   @Input() color = 'var(--shell-text-muted)';
   @Input() variant: NxTagVariant = 'solid';
   @Input({ transform: booleanAttribute }) closable = false;
   @Input({ transform: booleanAttribute }) disabled = false;
 
+  /** Renders an editable text input instead of the projected label - type a tag name and press Enter to add it. */
+  @Input({ transform: booleanAttribute }) editable = false;
+  @Input() value = '';
+  @Input() placeholder = 'Add tag';
+
   @Output() closed = new EventEmitter<void>();
+  @Output() valueChange = new EventEmitter<string>();
+  /** Emits the trimmed value on Enter (when non-empty), then clears the field so another tag can be typed. */
+  @Output() added = new EventEmitter<string>();
 
   @ViewChild('swatch', { static: true }) private swatchRef!: ElementRef<HTMLElement>;
 
@@ -49,6 +57,23 @@ export class UiTag implements OnChanges, AfterViewInit {
     if (!this.disabled) {
       this.closed.emit();
     }
+  }
+
+  onInput(event: Event): void {
+    this.value = (event.target as HTMLInputElement).value;
+    this.valueChange.emit(this.value);
+  }
+
+  onEnter(event: Event): void {
+    event.preventDefault();
+    const trimmed = this.value.trim();
+    if (!trimmed || this.disabled) {
+      return;
+    }
+
+    this.added.emit(trimmed);
+    this.value = '';
+    this.valueChange.emit('');
   }
 
   private updateContrastColor(): void {

@@ -31,7 +31,7 @@ export type NxButtonSize = 'small' | 'medium' | 'large';
   imports: [NgClass], 
   styleUrl: './ui-button.scss',
 })
-export class UiButton {
+export class NxButton {
   @Input()
   variant: NxButtonVariant = 'primary';
 

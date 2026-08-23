@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiTextarea } from '../../../../../dist/components';
+import { NxTextarea } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-textarea-demo',
-  imports: [UiTextarea, DemoSection],
+  imports: [NxTextarea, DemoSection],
   templateUrl: './ui-textarea-demo.html',
   styleUrl: './ui-textarea-demo.scss',
 })
 export class UiTextareaDemo {
+  importCode = `import { NxTextarea } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   message = '';
 

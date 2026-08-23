@@ -9,6 +9,8 @@ import { DemoSection } from '../shared/demo-section/demo-section';
   styleUrl: './ui-tooltip-demo.scss',
 })
 export class UiTooltipDemo {
+  importCode = `import { NxTooltip } from 'nexium-ui';`;
+
   basicCode = `<button nxTooltip="This is a tooltip">Hover me</button>`;
 
   positionsCode = `<button nxTooltip="Top tooltip" nxTooltipPosition="top">Top</button>

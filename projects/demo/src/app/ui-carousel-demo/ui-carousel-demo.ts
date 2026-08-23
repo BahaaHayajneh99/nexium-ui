@@ -1,16 +1,26 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiCarousel, NxCarouselSlide, NxCarouselSlideDirective } from '../../../../../dist/components';
-import { UiCard, UiCardHeader, UiCardTitle, UiCardContent } from '../../../../../dist/components';
+import { NxCarousel, NxCarouselSlide, NxCarouselSlideDirective } from '../../../../../dist/components';
+import { NxCard, NxCardHeader, NxCardTitle, NxCardContent } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-carousel-demo',
-  imports: [UiCarousel, NxCarouselSlideDirective, UiCard, UiCardHeader, UiCardTitle, UiCardContent, DemoSection],
+  imports: [NxCarousel, NxCarouselSlideDirective, NxCard, NxCardHeader, NxCardTitle, NxCardContent, DemoSection],
   templateUrl: './ui-carousel-demo.html',
   styleUrl: './ui-carousel-demo.scss',
 })
 export class UiCarouselDemo {
+  importCode = `import {
+  NxCarousel,
+  NxCarouselSlide,
+  NxCarouselSlideDirective,
+  NxCard,
+  NxCardHeader,
+  NxCardTitle,
+  NxCardContent,
+} from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   slides: NxCarouselSlide[] = [
     { src: 'https://picsum.photos/seed/nexium-carousel-1/900/500', alt: 'Slide 1' },

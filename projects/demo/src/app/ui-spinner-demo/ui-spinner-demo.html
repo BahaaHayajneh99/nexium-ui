@@ -5,6 +5,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic Spinner"
                 description="The basic {{ commonService.appName }} Spinner provides a loading indicator for async operations and background processes."
                 [code]="basicCode">

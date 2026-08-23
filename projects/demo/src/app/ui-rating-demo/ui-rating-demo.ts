@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiRating } from 'components';
+import { NxRating } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-rating-demo',
-  imports: [UiRating, DemoSection],
+  imports: [NxRating, DemoSection],
   templateUrl: './ui-rating-demo.html',
 })
 export class UiRatingDemo {
+  importCode = `import { NxRating } from 'nexium-ui';`;
+
   rating = 3;
 
   basicCode = `<nx-rating [(value)]="rating"></nx-rating>`;

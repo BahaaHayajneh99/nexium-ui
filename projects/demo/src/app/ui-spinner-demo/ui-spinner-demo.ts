@@ -10,6 +10,8 @@ import { DemoSection } from '../shared/demo-section/demo-section';
   styleUrl: './ui-spinner-demo.scss',
 })
 export class UiSpinnerDemo {
+  importCode = `import { NxSpinnerComponent } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-spinner>
 </nx-spinner>`;

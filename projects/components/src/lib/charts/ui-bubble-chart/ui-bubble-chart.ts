@@ -25,7 +25,7 @@ const MAX_RADIUS = 32;
   templateUrl: './ui-bubble-chart.html',
   styleUrl: './ui-bubble-chart.scss',
 })
-export class UiBubbleChart {
+export class NxBubbleChart {
   @Input() series: NxBubbleSeries[] = [];
   @Input() xLabel = '';
   @Input() yLabel = '';

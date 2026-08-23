@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiGrid, UiGridItem } from 'components';
+import { NxGrid, NxGridItem } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-layout-grid-demo',
-  imports: [UiGrid, UiGridItem, DemoSection],
+  imports: [NxGrid, NxGridItem, DemoSection],
   templateUrl: './layout-grid-demo.html',
 })
 export class LayoutGridDemo {
+  importCode = `import { NxGrid, NxGridItem } from 'nexium-ui';`;
+
   basicCode = `<nx-grid [cols]="4" [gap]="16">
     <div>1</div>
     <div>2</div>

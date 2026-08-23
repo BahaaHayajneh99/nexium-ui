@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiScatterChart, NxScatterSeries } from 'components';
+import { NxScatterChart, NxScatterSeries } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-scatter-demo',
-  imports: [UiScatterChart, DemoSection],
+  imports: [NxScatterChart, DemoSection],
   templateUrl: './charts-scatter-demo.html',
 })
 export class ChartsScatterDemo {
+  importCode = `import { NxScatterChart, NxScatterSeries } from 'nexium-ui';`;
+
   loadTimes: NxScatterSeries[] = [
     {
       name: 'Sessions',

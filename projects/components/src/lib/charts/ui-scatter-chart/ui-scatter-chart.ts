@@ -20,7 +20,7 @@ interface ScatterPoint {
   templateUrl: './ui-scatter-chart.html',
   styleUrl: './ui-scatter-chart.scss',
 })
-export class UiScatterChart {
+export class NxScatterChart {
   @Input() series: NxScatterSeries[] = [];
   @Input() xLabel = '';
   @Input() yLabel = '';

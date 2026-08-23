@@ -9,7 +9,7 @@ import { NxChartSeries } from '../chart-types';
   templateUrl: './ui-area-chart.html',
   styleUrl: './ui-area-chart.scss',
 })
-export class UiAreaChart {
+export class NxAreaChart {
   @Input() categories: string[] = [];
   @Input() series: NxChartSeries[] = [];
   @Input() height = 320;

@@ -36,7 +36,7 @@ import { Component, Input, ViewEncapsulation, numberAttribute } from '@angular/c
     }
   `,
 })
-export class UiMasonry {
+export class NxMasonry {
   @Input({ transform: numberAttribute }) cols = 3;
   @Input({ transform: numberAttribute }) gap = 16;
 }

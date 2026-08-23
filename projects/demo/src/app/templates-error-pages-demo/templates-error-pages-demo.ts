@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { UiIcon, UiButton } from 'components';
+import { NxIcon, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface ErrorPage {
@@ -12,7 +12,7 @@ interface ErrorPage {
 
 @Component({
   selector: 'app-templates-error-pages-demo',
-  imports: [RouterLink, UiIcon, UiButton, DemoSection],
+  imports: [RouterLink, NxIcon, NxButton, DemoSection],
   templateUrl: './templates-error-pages-demo.html',
 })
 export class TemplatesErrorPagesDemo {

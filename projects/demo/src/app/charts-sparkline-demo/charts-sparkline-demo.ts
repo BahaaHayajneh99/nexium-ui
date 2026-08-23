@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UiSparkline, UiCard, UiCardContent } from 'components';
+import { NxSparkline, NxCard, NxCardContent } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface Metric {
@@ -10,10 +10,12 @@ interface Metric {
 
 @Component({
   selector: 'app-charts-sparkline-demo',
-  imports: [UiSparkline, UiCard, UiCardContent, DemoSection],
+  imports: [NxSparkline, NxCard, NxCardContent, DemoSection],
   templateUrl: './charts-sparkline-demo.html',
 })
 export class ChartsSparklineDemo {
+  importCode = `import { NxSparkline, NxCard, NxCardContent } from 'nexium-ui';`;
+
   revenueTrend = [12, 15, 14, 18, 22, 20, 26, 30, 28, 34];
 
   metrics: Metric[] = [

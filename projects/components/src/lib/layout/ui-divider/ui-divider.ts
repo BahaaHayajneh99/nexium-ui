@@ -9,7 +9,7 @@ export type NxDividerOrientation = 'horizontal' | 'vertical';
   templateUrl: './ui-divider.html',
   styleUrl: './ui-divider.scss',
 })
-export class UiDivider {
+export class NxDivider {
   @Input() orientation: NxDividerOrientation = 'horizontal';
   @Input() label = '';
 

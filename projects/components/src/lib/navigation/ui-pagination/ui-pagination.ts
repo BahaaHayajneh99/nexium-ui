@@ -8,7 +8,7 @@ import { NgClass } from '@angular/common';
   templateUrl: './ui-pagination.html',
   styleUrl: './ui-pagination.scss',
 })
-export class UiPagination {
+export class NxPagination {
   @Input() totalPages = 1;
   @Input() currentPage = 1;
 

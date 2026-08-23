@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UiCarousel } from './ui-carousel';
+import { NxCarousel } from './ui-carousel';
 import { NxCarouselSlideDirective } from './nx-carousel-slide';
 
-describe('UiCarousel', () => {
-  let component: UiCarousel;
-  let fixture: ComponentFixture<UiCarousel>;
+describe('NxCarousel', () => {
+  let component: NxCarousel;
+  let fixture: ComponentFixture<NxCarousel>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UiCarousel],
+      imports: [NxCarousel],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UiCarousel);
+    fixture = TestBed.createComponent(NxCarousel);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
@@ -25,7 +25,7 @@ describe('UiCarousel', () => {
 
 @Component({
   standalone: true,
-  imports: [UiCarousel, NxCarouselSlideDirective],
+  imports: [NxCarousel, NxCarouselSlideDirective],
   template: `
     <nx-carousel [slides]="[{ src: 'image.png' }]">
       <div *nxCarouselSlide class="video-slide">custom content</div>
@@ -34,7 +34,7 @@ describe('UiCarousel', () => {
 })
 class ContentSlideHost {}
 
-describe('UiCarousel with projected content slides', () => {
+describe('NxCarousel with projected content slides', () => {
   let fixture: ComponentFixture<ContentSlideHost>;
 
   beforeEach(async () => {
@@ -47,7 +47,7 @@ describe('UiCarousel with projected content slides', () => {
   });
 
   it('counts image slides and projected content slides together', () => {
-    const carousel = fixture.debugElement.children[0].componentInstance as UiCarousel;
+    const carousel = fixture.debugElement.children[0].componentInstance as NxCarousel;
     expect(carousel.slideCount).toBe(2);
   });
 

@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiMention, NxMentionSuggestion } from 'components';
+import { NxMention, NxMentionSuggestion } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-mention-demo',
-  imports: [UiMention, DemoSection],
+  imports: [NxMention, DemoSection],
   templateUrl: './ui-mention-demo.html',
 })
 export class UiMentionDemo {
+  importCode = `import { NxMention, NxMentionSuggestion } from 'nexium-ui';`;
+
   comment = '';
   lastMentioned = '';
 

@@ -70,7 +70,7 @@ export type NxVirtualScrollMode = 'preload' | 'lazy';
   templateUrl: './ui-table.html',
   styleUrl: './ui-table.scss',
 })
-export class UiTable implements OnChanges, AfterViewInit, OnDestroy {
+export class NxTable implements OnChanges, AfterViewInit, OnDestroy {
   @Input() columns: NxTableColumn[] = [];
   @Input() data: Record<string, unknown>[] = [];
   @Input() columnGroups: NxTableColumnGroup[] = [];

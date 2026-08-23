@@ -30,7 +30,7 @@ const BAND_COLORS: Record<NxGaugeBand['variant'], string> = {
   templateUrl: './ui-gauge-chart.html',
   styleUrl: './ui-gauge-chart.scss',
 })
-export class UiGaugeChart {
+export class NxGaugeChart {
   @Input() value = 0;
   @Input() min = 0;
   @Input() max = 100;

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiFileUpload, UiTable, NxTableColumn } from 'components';
+import { NxFileUpload, NxTable, NxTableColumn } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-document-management-demo',
-  imports: [UiFileUpload, UiTable, DemoSection],
+  imports: [NxFileUpload, NxTable, DemoSection],
   templateUrl: './templates-document-management-demo.html',
 })
 export class TemplatesDocumentManagementDemo {

@@ -65,7 +65,7 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
     }
   `,
 })
-export class UiDialog {
+export class NxDialog {
   @Input({ transform: booleanAttribute }) open = false;
   @Input() title = 'Confirm';
   @Input() message = 'Are you sure?';

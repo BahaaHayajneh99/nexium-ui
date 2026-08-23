@@ -1,16 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiButton } from 'components';
+import { NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
-import { UiIcon } from '../../../../../dist/components';
+import { NxIcon } from '../../../../../dist/components';
 
 @Component({
   selector: 'app-ui-button-demo',
-  imports: [UiIcon,UiButton, DemoSection],
+  imports: [NxIcon,NxButton, DemoSection],
   templateUrl: './ui-button-demo.html',
   styleUrl: './ui-button-demo.scss',
 })
 export class UiButtonDemo {
+  importCode = `import { NxButton, NxIcon } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-button variant="primary">
     Primary Button

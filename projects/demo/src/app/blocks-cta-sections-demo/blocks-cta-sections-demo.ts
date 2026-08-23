@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiButton } from 'components';
+import { NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-blocks-cta-sections-demo',
-  imports: [UiButton, DemoSection],
+  imports: [NxButton, DemoSection],
   templateUrl: './blocks-cta-sections-demo.html',
 })
 export class BlocksCtaSectionsDemo {

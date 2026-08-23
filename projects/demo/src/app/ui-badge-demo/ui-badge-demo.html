@@ -6,6 +6,13 @@
 
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic Badge"
                 description="The basic {{ commonService.appName }} Badge highlights counts, statuses, or short labels next to other content."
                 [code]="basicCode">

@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiBadge, UiCard, UiCardContent } from 'components';
+import { NxBadge, NxCard, NxCardContent } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-blocks-blog-demo',
-  imports: [UiBadge, UiCard, UiCardContent, DemoSection],
+  imports: [NxBadge, NxCard, NxCardContent, DemoSection],
   templateUrl: './blocks-blog-demo.html',
 })
 export class BlocksBlogDemo {

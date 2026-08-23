@@ -23,7 +23,7 @@ interface FunnelBar {
   templateUrl: './ui-funnel-chart.html',
   styleUrl: './ui-funnel-chart.scss',
 })
-export class UiFunnelChart {
+export class NxFunnelChart {
   @Input() stages: NxFunnelStage[] = [];
   @Input() height = 320;
 

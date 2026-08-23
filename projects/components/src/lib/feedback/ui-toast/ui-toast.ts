@@ -9,7 +9,7 @@ import { NxToastMessage, NxToastPosition, NxToastService } from './toast.service
   templateUrl: './ui-toast.html',
   styleUrl: './ui-toast.scss',
 })
-export class UiToastContainer {
+export class NxToastContainer {
   private toastService = inject(NxToastService);
   toasts = this.toastService.toasts;
 

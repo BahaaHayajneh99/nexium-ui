@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UiCardImage } from './ui-card-image';
+import { NxCardImage } from './ui-card-image';
 
-describe('UiCardImage', () => {
-  let component: UiCardImage;
-  let fixture: ComponentFixture<UiCardImage>;
+describe('NxCardImage', () => {
+  let component: NxCardImage;
+  let fixture: ComponentFixture<NxCardImage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UiCardImage],
+      imports: [NxCardImage],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UiCardImage);
+    fixture = TestBed.createComponent(NxCardImage);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

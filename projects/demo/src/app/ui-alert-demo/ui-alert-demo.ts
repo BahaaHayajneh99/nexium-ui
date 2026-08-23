@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiAlert } from '../../../../../dist/components';
+import { NxAlert } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-alert-demo',
-  imports: [UiAlert, DemoSection],
+  imports: [NxAlert, DemoSection],
   templateUrl: './ui-alert-demo.html',
   styleUrl: './ui-alert-demo.scss',
 })
 export class UiAlertDemo {
+  importCode = `import { NxAlert } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-alert>
     A new version is available.

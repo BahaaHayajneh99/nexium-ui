@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { UiIcon } from '../../../../../dist/components';
+import { NxIcon } from '../../../../../dist/components';
 import { NxSearchItem, SEARCH_INDEX } from './search-index';
 
 interface NxSearchGroup {
@@ -11,7 +11,7 @@ interface NxSearchGroup {
 @Component({
   selector: 'app-search-palette',
   standalone: true,
-  imports: [UiIcon],
+  imports: [NxIcon],
   templateUrl: './search-palette.html',
   styleUrl: './search-palette.scss',
 })

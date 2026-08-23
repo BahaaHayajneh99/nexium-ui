@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UiInput, UiCheckbox } from '../../../../../dist/components';
+import { NxInput, NxCheckbox } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface TeamMember {
@@ -9,7 +9,7 @@ interface TeamMember {
 
 @Component({
   selector: 'app-form-builder-advanced-demo',
-  imports: [UiInput, UiCheckbox, DemoSection],
+  imports: [NxInput, NxCheckbox, DemoSection],
   templateUrl: './form-builder-advanced-demo.html',
   styleUrl: './form-builder-advanced-demo.scss',
 })

@@ -1,5 +1,5 @@
 import { Component, inject, Inject } from '@angular/core';
-import { UiIcon } from '../../../../../dist/components';
+import { NxIcon } from '../../../../../dist/components';
 import { CommonService } from '../services/common.service';
 
 interface IconEntry {
@@ -11,7 +11,7 @@ interface IconEntry {
   selector: 'app-icons-demo',
   templateUrl: './icons-demo.html',
   styleUrl: './icons-demo.scss',
-  imports: [UiIcon],
+  imports: [NxIcon],
 })
 export class IconsDemo {
     public commonService = inject(CommonService);

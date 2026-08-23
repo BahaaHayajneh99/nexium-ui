@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiStack } from 'components';
+import { NxStack } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-layout-stack-demo',
-  imports: [UiStack, DemoSection],
+  imports: [NxStack, DemoSection],
   templateUrl: './layout-stack-demo.html',
 })
 export class LayoutStackDemo {
+  importCode = `import { NxStack } from 'nexium-ui';`;
+
   verticalCode = `<nx-stack [gap]="12">
     <div>First</div>
     <div>Second</div>

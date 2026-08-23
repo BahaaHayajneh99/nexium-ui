@@ -6,6 +6,13 @@
 
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic Button"
                 description="The basic {{ commonService.appName }} Button provides a simple and consistent way to trigger actions, submit forms, and handle user interactions."
                 [code]="basicCode">

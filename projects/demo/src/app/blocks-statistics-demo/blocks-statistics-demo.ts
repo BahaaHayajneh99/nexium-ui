@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiCard, UiCardContent, UiStatistic } from 'components';
+import { NxCard, NxCardContent, NxStatistic } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-blocks-statistics-demo',
-  imports: [UiCard, UiCardContent, UiStatistic, DemoSection],
+  imports: [NxCard, NxCardContent, NxStatistic, DemoSection],
   templateUrl: './blocks-statistics-demo.html',
 })
 export class BlocksStatisticsDemo {

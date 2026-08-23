@@ -1,15 +1,23 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { NxAccordionComponent, NxAccordionContentComponent, NxAccordionHeaderComponent, NxAccordionItemComponent, UiIcon } from '../../../../../dist/components';
+import { NxAccordionComponent, NxAccordionContentComponent, NxAccordionHeaderComponent, NxAccordionItemComponent, NxIcon } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-accordion-demo',
-  imports: [NxAccordionComponent, NxAccordionItemComponent, NxAccordionContentComponent, NxAccordionHeaderComponent, UiIcon, DemoSection],
+  imports: [NxAccordionComponent, NxAccordionItemComponent, NxAccordionContentComponent, NxAccordionHeaderComponent, NxIcon, DemoSection],
   templateUrl: './ui-accordion-demo.html',
   styleUrl: './ui-accordion-demo.scss',
 })
 export class UiAccordionDemo {
+  importCode = `import {
+  NxAccordionComponent,
+  NxAccordionContentComponent,
+  NxAccordionHeaderComponent,
+  NxAccordionItemComponent,
+  NxIcon,
+} from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-accordion>
     <nx-accordion-item>

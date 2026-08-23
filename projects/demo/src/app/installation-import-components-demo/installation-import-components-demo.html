@@ -2,23 +2,21 @@
     <div class="main-container">
         <div class="main-sections">
 
-            <section class="main-section">
-                <h4 class="main-section-header">Import Components</h4>
-                <p class="main-section-description">
-                    Step 4 of 7. Import each component class directly and add it to your own standalone
-                    component's <code>imports</code> array.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ usageCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Import Components"
+                description="Step 4 of 7. Every component is standalone &mdash; import each class directly and add it to your own component's imports array. No NgModule or app-wide provider setup is required."
+                [code]="usageCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
-            <section class="main-section">
-                <h4 class="main-section-header">No NgModule</h4>
-                <div class="gs-code">
-                    <pre>{{ noModuleCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Or Use NexiumUiModule"
+                description="If your app still assembles feature modules the @NgModule way, import NexiumUiModule once instead to get every component and directive available in that module's templates."
+                [code]="moduleCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
         </div>
     </div>

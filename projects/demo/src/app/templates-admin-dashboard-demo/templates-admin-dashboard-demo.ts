@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import {
-  UiCard,
-  UiCardContent,
-  UiIcon,
-  UiBadge,
-  UiTable,
+  NxCard,
+  NxCardContent,
+  NxIcon,
+  NxBadge,
+  NxTable,
   NxTableColumn,
-  UiLineChart,
+  NxLineChart,
   NxChartSeries,
 } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
@@ -21,7 +21,7 @@ interface Stat {
 
 @Component({
   selector: 'app-templates-admin-dashboard-demo',
-  imports: [UiCard, UiCardContent, UiIcon, UiBadge, UiTable, UiLineChart, DemoSection],
+  imports: [NxCard, NxCardContent, NxIcon, NxBadge, NxTable, NxLineChart, DemoSection],
   templateUrl: './templates-admin-dashboard-demo.html',
 })
 export class TemplatesAdminDashboardDemo {

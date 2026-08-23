@@ -5,71 +5,59 @@
             <section class="main-section">
                 <h4 class="main-section-header">Getting Started</h4>
                 <p class="main-section-description">
-                    {{ commonService.appName }} is a workspace of standalone Angular UI libraries. This page walks through
-                    installing the workspace locally and configuring your app to consume the components.
+                    {{ commonService.appName }} is a library of standalone Angular UI components,
+                    published to npm as <code>nexium-ui</code>. This page walks through installing
+                    it and using it in your own application.
                 </p>
             </section>
 
-            <section class="main-section">
-                <h4 class="main-section-header">Installation</h4>
-                <p class="main-section-description">
-                    Clone the repository and install its dependencies.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ cloneCode }}</pre>
-                </div>
+            <app-demo-section
+                header="Installation"
+                description="Install the package from npm."
+                [code]="installCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
-                <p class="main-section-description">
-                    Build the component libraries so they can be resolved locally through the
-                    TypeScript path mappings used during development.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ buildLibsCode }}</pre>
-                </div>
+            <app-demo-section
+                header="Styles &amp; Theming"
+                description="{{ commonService.appName }} ships a pre-compiled stylesheet with every component's styles and design tokens. Add it to your app's global styles through angular.json&hellip;"
+                [code]="angularJsonStylesCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
-                <p class="main-section-description">
-                    Start the demo application.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ serveCode }}</pre>
-                </div>
+            <app-demo-section
+                header="&hellip;or Import It Directly"
+                description="Alternatively, import the stylesheet directly into your own global stylesheet."
+                [code]="globalImportStylesCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
-                <p class="main-section-description">
-                    Once published, consumers install the packages from npm just like any other
-                    Angular UI library.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ publishedInstallCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Usage"
+                description="Every component is standalone, so no NgModule or app-wide provider setup is required &mdash; import the components you need directly into your own component's imports array."
+                [code]="standaloneUsageCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
-            <section class="main-section">
-                <h4 class="main-section-header">Configuration</h4>
-                <p class="main-section-description">
-                    While developing locally, the root <code>tsconfig.json</code> maps each library
-                    package name to its built output in <code>dist/</code>.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ tsconfigPathsCode }}</pre>
-                </div>
+            <app-demo-section
+                header="NexiumUiModule"
+                description="If your app still assembles feature modules the @NgModule way, import NexiumUiModule once instead to get every {{ commonService.appName }} component and directive available in that module's templates."
+                [code]="moduleUsageCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
-                <p class="main-section-description">
-                    Every component is standalone, so no <code>NgModule</code> or app-wide provider
-                    setup is required. Import the components you need directly into your own
-                    component's <code>imports</code> array.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ standaloneUsageCode }}</pre>
-                </div>
-
-                <p class="main-section-description">
-                    When writing custom styles for your own components, reuse the shared design
-                    tokens from <code>variables.scss</code>.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ scssTokensCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Design Tokens"
+                description="Component colors are driven by CSS custom properties, exposed once you've included the stylesheet above &mdash; reuse them in your own styles to stay consistent with the library's theme, including dark mode."
+                [code]="designTokensCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
 
         </div>
     </div>

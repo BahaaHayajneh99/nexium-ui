@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiAvatar, UiCard, UiCardContent } from 'components';
+import { NxAvatar, NxCard, NxCardContent } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface Testimonial {
@@ -11,7 +11,7 @@ interface Testimonial {
 
 @Component({
   selector: 'app-blocks-testimonials-demo',
-  imports: [UiAvatar, UiCard, UiCardContent, DemoSection],
+  imports: [NxAvatar, NxCard, NxCardContent, DemoSection],
   templateUrl: './blocks-testimonials-demo.html',
 })
 export class BlocksTestimonialsDemo {

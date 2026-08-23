@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiCheckbox } from '../../../../../dist/components';
+import { NxCheckbox } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface Category {
@@ -10,11 +10,13 @@ interface Category {
 
 @Component({
   selector: 'app-ui-checkbox-demo',
-  imports: [UiCheckbox, DemoSection],
+  imports: [NxCheckbox, DemoSection],
   templateUrl: './ui-checkbox-demo.html',
   styleUrl: './ui-checkbox-demo.scss',
 })
 export class UiCheckboxDemo {
+  importCode = `import { NxCheckbox } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   agreed = false;
 

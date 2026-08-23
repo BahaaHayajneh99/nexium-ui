@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiNotificationCenter, NxNotificationItem } from 'components';
+import { NxNotificationCenter, NxNotificationItem } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-notification-center-demo',
-  imports: [UiNotificationCenter, DemoSection],
+  imports: [NxNotificationCenter, DemoSection],
   templateUrl: './ui-notification-center-demo.html',
 })
 export class UiNotificationCenterDemo {
+  importCode = `import { NxNotificationCenter, NxNotificationItem } from 'nexium-ui';`;
+
   notifications: NxNotificationItem[] = [
     { id: 1, title: 'New comment', message: 'Ada Lovelace commented on your PR.', time: '2m ago', read: false },
     { id: 2, title: 'Deploy succeeded', message: 'nexium-demo deployed to production.', time: '1h ago', read: false },

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import {
-  UiCard,
-  UiCardContent,
-  UiIcon,
-  UiBadge,
-  UiTable,
+  NxCard,
+  NxCardContent,
+  NxIcon,
+  NxBadge,
+  NxTable,
   NxTableColumn,
-  UiProgressBarComponent,
+  NxProgressBarComponent,
 } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
@@ -20,7 +20,7 @@ interface Stat {
 
 @Component({
   selector: 'app-templates-dashboard-demo',
-  imports: [UiCard, UiCardContent, UiIcon, UiBadge, UiTable, UiProgressBarComponent, DemoSection],
+  imports: [NxCard, NxCardContent, NxIcon, NxBadge, NxTable, NxProgressBarComponent, DemoSection],
   templateUrl: './templates-dashboard-demo.html',
 })
 export class TemplatesDashboardDemo {

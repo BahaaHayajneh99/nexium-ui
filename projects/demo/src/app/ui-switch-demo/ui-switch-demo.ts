@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiSwitch } from '../../../../../dist/components';
+import { NxSwitch } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-switch-demo',
-  imports: [UiSwitch, DemoSection],
+  imports: [NxSwitch, DemoSection],
   templateUrl: './ui-switch-demo.html',
   styleUrl: './ui-switch-demo.scss',
 })
 export class UiSwitchDemo {
+  importCode = `import { NxSwitch } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   notifications = true;
 

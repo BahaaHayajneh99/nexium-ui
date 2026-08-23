@@ -1,11 +1,11 @@
 import { booleanAttribute, Component, EventEmitter, Input, Output } from '@angular/core';
-import { UiIcon } from '../../data-display/ui-icon';
+import { NxIcon } from '../../data-display/ui-icon';
 import { NxSidebarItem, NxSidebarItemComponent } from './nx-sidebar-item';
 
 @Component({
   selector: 'nx-sidebar',
   standalone: true,
-  imports: [UiIcon, NxSidebarItemComponent],
+  imports: [NxIcon, NxSidebarItemComponent],
   templateUrl: './nx-sidebar.html',
   styleUrl: './nx-sidebar.scss',
 })

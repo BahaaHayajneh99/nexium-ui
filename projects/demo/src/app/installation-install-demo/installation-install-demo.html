@@ -2,38 +2,14 @@
     <div class="main-container">
         <div class="main-sections">
 
-            <section class="main-section">
-                <h4 class="main-section-header">Install</h4>
-                <p class="main-section-description">
-                    Step 2 of 7. {{ commonService.appName }} ships as a few focused packages instead of one large bundle, so
-                    you only install what you use.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ npmCode }}</pre>
-                </div>
-            </section>
-
-            <section class="main-section">
-                <h4 class="main-section-header">Install Only What You Need</h4>
-                <p class="main-section-description">
-                    <code>@nexium/components</code> covers data display, forms, feedback, panels,
-                    navigation, uploads, media and buttons. <code>@nexium/core</code> is optional.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ onlyWhatYouNeedCode }}</pre>
-                </div>
-            </section>
-
-            <section class="main-section">
-                <h4 class="main-section-header">Working From This Monorepo</h4>
-                <p class="main-section-description">
-                    Contributing to {{ commonService.appName }} itself, or trying it before the packages are published? Build
-                    the libraries locally instead.
-                </p>
-                <div class="gs-code">
-                    <pre>{{ monorepoCode }}</pre>
-                </div>
-            </section>
+            <app-demo-section
+                header="Install"
+                description="Step 2 of 7. {{ commonService.appName }} is published to npm as a single package."
+                [code]="npmCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+                <span>That's it &mdash; no other packages required.</span>
+            </app-demo-section>
 
         </div>
     </div>

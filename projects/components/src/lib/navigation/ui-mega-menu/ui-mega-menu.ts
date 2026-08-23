@@ -10,7 +10,7 @@ import { Component, ElementRef, Input } from '@angular/core';
     '(document:click)': 'onDocumentClick($event)',
   },
 })
-export class UiMegaMenu {
+export class NxMegaMenu {
   @Input() label = '';
 
   open = false;

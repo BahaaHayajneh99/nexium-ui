@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiAvatar, UiCard, UiCardContent } from 'components';
+import { NxAvatar, NxCard, NxCardContent } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-blocks-team-demo',
-  imports: [UiAvatar, UiCard, UiCardContent, DemoSection],
+  imports: [NxAvatar, NxCard, NxCardContent, DemoSection],
   templateUrl: './blocks-team-demo.html',
 })
 export class BlocksTeamDemo {

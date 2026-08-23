@@ -18,7 +18,7 @@ export interface NxNotificationItem {
     '(document:click)': 'onDocumentClick($event)',
   },
 })
-export class UiNotificationCenter {
+export class NxNotificationCenter {
   @Input() notifications: NxNotificationItem[] = [];
   @Input() emptyMessage = "You're all caught up.";
 

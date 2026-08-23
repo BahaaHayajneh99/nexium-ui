@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiDrawer, UiButton } from 'components';
+import { NxDrawer, NxButton } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-drawer-demo',
-  imports: [UiDrawer, UiButton, DemoSection],
+  imports: [NxDrawer, NxButton, DemoSection],
   templateUrl: './ui-drawer-demo.html',
 })
 export class UiDrawerDemo {
+  importCode = `import { NxDrawer, NxButton } from 'nexium-ui';`;
+
   rightOpen = false;
   leftOpen = false;
   sheetOpen = false;

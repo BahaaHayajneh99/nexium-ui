@@ -1,15 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiAvatar } from '../../../../../dist/components';
+import { NxAvatar } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
+import { NxLogo } from '../shared/nx-logo/nx-logo';
 
 @Component({
   selector: 'app-ui-avatar-demo',
-  imports: [UiAvatar, DemoSection],
+  imports: [NxAvatar, DemoSection, NxLogo],
   templateUrl: './ui-avatar-demo.html',
   styleUrl: './ui-avatar-demo.scss',
 })
 export class UiAvatarDemo {
+  importCode = `import { NxAvatar } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-avatar src="user.jpg" alt="User avatar">
 </nx-avatar>`;

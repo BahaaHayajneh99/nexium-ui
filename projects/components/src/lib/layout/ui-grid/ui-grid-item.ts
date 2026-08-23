@@ -11,7 +11,7 @@ import { Component, Input, numberAttribute } from '@angular/core';
     }
   `,
 })
-export class UiGridItem {
+export class NxGridItem {
   @Input({ transform: numberAttribute }) colSpan = 1;
   @Input({ transform: numberAttribute }) rowSpan = 1;
 }

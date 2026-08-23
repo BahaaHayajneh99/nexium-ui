@@ -7,9 +7,21 @@
     [style.border-color]="color"
     [style.color]="variant === 'outline' ? color : computedTextColor">
 
-    <ng-content></ng-content>
+    @if (editable) {
+        <input
+            type="text"
+            class="nx-tag-input"
+            [style.color]="variant === 'outline' ? color : computedTextColor"
+            [value]="value"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            (input)="onInput($event)"
+            (keydown.enter)="onEnter($event)">
+    } @else {
+        <ng-content></ng-content>
+    }
 
-    @if (closable) {
+    @if (closable && !editable) {
         <button
             type="button"
             class="nx-tag-close"

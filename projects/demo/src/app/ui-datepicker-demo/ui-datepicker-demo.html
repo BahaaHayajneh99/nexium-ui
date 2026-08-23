@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic DatePicker"
                 description="A hand-built calendar dropdown - click the field to open a month grid with Today/Clear shortcuts, no native browser date input involved."
                 [code]="basicCode"

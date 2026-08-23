@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { UiDatepicker } from '../../../../../dist/components';
+import { NxDatepicker } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-datepicker-demo',
-  imports: [UiDatepicker, DemoSection],
+  imports: [NxDatepicker, DemoSection],
   templateUrl: './ui-datepicker-demo.html',
   styleUrl: './ui-datepicker-demo.scss',
 })
 export class UiDatepickerDemo {
+  importCode = `import { NxDatepicker } from 'nexium-ui';`;
+
   birthDate = '';
 
   basicCode = `<nx-datepicker label="Date of birth" [(value)]="birthDate">

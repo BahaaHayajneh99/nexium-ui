@@ -35,7 +35,7 @@ export class NxTreeNode {
   templateUrl: './ui-tree.html',
   styleUrl: './ui-tree.scss',
 })
-export class UiTree {
+export class NxTree {
   @Input() nodes: NxTreeNodeData[] = [];
   @Input({ transform: booleanAttribute }) showExpandCollapseAll = false;
   @Input() expandAllLabel = 'Expand All';

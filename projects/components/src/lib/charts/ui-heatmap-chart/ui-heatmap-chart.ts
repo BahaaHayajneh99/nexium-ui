@@ -19,7 +19,7 @@ interface HeatmapCell {
   templateUrl: './ui-heatmap-chart.html',
   styleUrl: './ui-heatmap-chart.scss',
 })
-export class UiHeatmapChart {
+export class NxHeatmapChart {
   @Input() rows: string[] = [];
   @Input() columns: string[] = [];
   /** data[rowIndex][columnIndex] */

@@ -44,3 +44,24 @@
 .nx-tag-close:disabled {
     cursor: not-allowed;
 }
+
+.nx-tag-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 0;
+    min-width: 60px;
+    max-width: 160px;
+    font: inherit;
+    font-family: inherit;
+    color: inherit;
+
+    &::placeholder {
+        color: currentColor;
+        opacity: .6;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}

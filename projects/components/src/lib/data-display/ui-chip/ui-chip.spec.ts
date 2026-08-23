@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UiChip } from './ui-chip';
+import { NxChip } from './ui-chip';
 
-describe('UiChip', () => {
-  let component: UiChip;
-  let fixture: ComponentFixture<UiChip>;
+describe('NxChip', () => {
+  let component: NxChip;
+  let fixture: ComponentFixture<NxChip>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UiChip],
+      imports: [NxChip],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UiChip);
+    fixture = TestBed.createComponent(NxChip);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

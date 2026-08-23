@@ -1,19 +1,19 @@
 import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-import { UiMenu, NxMenuItem } from '../ui-menu';
+import { NxMenu, NxMenuItem } from '../ui-menu';
 
 export type NxDropdownPosition = 'left' | 'right';
 
 @Component({
   selector: 'nx-dropdown-menu',
   standalone: true,
-  imports: [UiMenu],
+  imports: [NxMenu],
   templateUrl: './ui-dropdown-menu.html',
   styleUrl: './ui-dropdown-menu.scss',
   host: {
     '(document:click)': 'onDocumentClick($event)',
   },
 })
-export class UiDropdownMenu {
+export class NxDropdownMenu {
   @Input() items: NxMenuItem[] = [];
   @Input() position: NxDropdownPosition = 'left';
   @Input() disabled = false;
@@ -30,9 +30,18 @@ export class UiDropdownMenu {
     }
   }
 
+  close(): void {
+    this.open = false;
+  }
+
   onSelect(item: NxMenuItem): void {
     this.itemSelect.emit(item);
-    this.open = false;
+    this.close();
+  }
+
+  /** Closes the panel when a projected custom item (see the `[nx-dropdown-content]` slot) is clicked. */
+  onContentClick(): void {
+    this.close();
   }
 
   onDocumentClick(event: MouseEvent): void {

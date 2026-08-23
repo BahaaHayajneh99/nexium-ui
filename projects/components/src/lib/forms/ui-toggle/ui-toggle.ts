@@ -34,7 +34,7 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
     .nx-toggle:disabled { opacity: .6; cursor: not-allowed; }
   `,
 })
-export class UiToggle {
+export class NxToggle {
   @Input({ transform: booleanAttribute }) pressed = false;
   @Input({ transform: booleanAttribute }) disabled = false;
 

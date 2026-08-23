@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiKeyValueList, NxKeyValueItem } from 'components';
+import { NxKeyValueList, NxKeyValueItem } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-key-value-list-demo',
-  imports: [UiKeyValueList, DemoSection],
+  imports: [NxKeyValueList, DemoSection],
   templateUrl: './ui-key-value-list-demo.html',
 })
 export class UiKeyValueListDemo {
+  importCode = `import { NxKeyValueList, NxKeyValueItem } from 'nexium-ui';`;
+
   orderDetails: NxKeyValueItem[] = [
     { key: 'Order ID', value: '#38291' },
     { key: 'Status', value: 'Shipped' },

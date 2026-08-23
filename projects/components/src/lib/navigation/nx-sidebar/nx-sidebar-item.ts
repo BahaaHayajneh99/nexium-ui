@@ -1,6 +1,6 @@
 import { booleanAttribute, Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { UiIcon } from '../../data-display/ui-icon';
+import { NxIcon } from '../../data-display/ui-icon';
 
 export interface NxSidebarItem {
   label: string;
@@ -13,7 +13,7 @@ export interface NxSidebarItem {
 @Component({
   selector: 'nx-sidebar-item',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, UiIcon, NxSidebarItemComponent],
+  imports: [RouterLink, RouterLinkActive, NxIcon, NxSidebarItemComponent],
   templateUrl: './nx-sidebar-item.html',
   styleUrl: './nx-sidebar.scss',
 })

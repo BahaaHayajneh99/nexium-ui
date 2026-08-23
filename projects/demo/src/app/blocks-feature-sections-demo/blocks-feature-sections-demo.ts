@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UiIcon } from 'components';
+import { NxIcon } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface Feature {
@@ -10,7 +10,7 @@ interface Feature {
 
 @Component({
   selector: 'app-blocks-feature-sections-demo',
-  imports: [UiIcon, DemoSection],
+  imports: [NxIcon, DemoSection],
   templateUrl: './blocks-feature-sections-demo.html',
 })
 export class BlocksFeatureSectionsDemo {

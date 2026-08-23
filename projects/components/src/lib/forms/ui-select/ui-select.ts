@@ -45,7 +45,7 @@ export interface NxSelectOption {
     .nx-select option:disabled { color: var(--shell-text-muted); }
   `,
 })
-export class UiSelect {
+export class NxSelect {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() options: NxSelectOption[] = [];

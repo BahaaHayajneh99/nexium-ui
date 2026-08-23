@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiList, NxListItem } from '../../../../../dist/components';
+import { NxList, NxListItem } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-list-demo',
-  imports: [UiList, DemoSection],
+  imports: [NxList, DemoSection],
   templateUrl: './ui-list-demo.html',
   styleUrl: './ui-list-demo.scss',
 })
 export class UiListDemo {
+  importCode = `import { NxList, NxListItem } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   items: NxListItem[] = [
     { label: 'Dashboard' },

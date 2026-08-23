@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiGallery, NxGalleryImage } from '../../../../../dist/components';
+import { NxGallery, NxGalleryImage } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-gallery-demo',
-  imports: [UiGallery, DemoSection],
+  imports: [NxGallery, DemoSection],
   templateUrl: './ui-gallery-demo.html',
   styleUrl: './ui-gallery-demo.scss',
 })
 export class UiGalleryDemo {
+  importCode = `import { NxGallery, NxGalleryImage } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   images: NxGalleryImage[] = [
     { src: 'https://picsum.photos/seed/nexium-1/600/400', alt: 'Landscape 1' },

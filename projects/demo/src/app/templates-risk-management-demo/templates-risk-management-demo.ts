@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UiTable, NxTableColumn, UiGaugeChart, NxGaugeBand, UiHeatmapChart } from 'components';
+import { NxTable, NxTableColumn, NxGaugeChart, NxGaugeBand, NxHeatmapChart } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-templates-risk-management-demo',
-  imports: [UiTable, UiGaugeChart, UiHeatmapChart, DemoSection],
+  imports: [NxTable, NxGaugeChart, NxHeatmapChart, DemoSection],
   templateUrl: './templates-risk-management-demo.html',
 })
 export class TemplatesRiskManagementDemo {

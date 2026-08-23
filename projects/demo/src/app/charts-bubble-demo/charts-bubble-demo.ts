@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiBubbleChart, NxBubbleSeries } from 'components';
+import { NxBubbleChart, NxBubbleSeries } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-bubble-demo',
-  imports: [UiBubbleChart, DemoSection],
+  imports: [NxBubbleChart, DemoSection],
   templateUrl: './charts-bubble-demo.html',
 })
 export class ChartsBubbleDemo {
+  importCode = `import { NxBubbleChart, NxBubbleSeries } from 'nexium-ui';`;
+
   products: NxBubbleSeries[] = [
     {
       name: 'Products',

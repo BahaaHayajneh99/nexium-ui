@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiBadge } from '../../../../../dist/components';
+import { NxBadge } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-badge-demo',
-  imports: [UiBadge, DemoSection],
+  imports: [NxBadge, DemoSection],
   templateUrl: './ui-badge-demo.html',
   styleUrl: './ui-badge-demo.scss',
 })
 export class UiBadgeDemo {
+  importCode = `import { NxBadge } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   basicCode = `<nx-badge>
     New

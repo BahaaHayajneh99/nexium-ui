@@ -2,13 +2,13 @@ import { Component, HostListener, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { UiIcon } from '../../../../../dist/components';
+import { NxIcon } from '../../../../../dist/components';
 import { ThemeService } from '../services/theme.service';
 import { SearchPalette } from './search-palette';
 
 @Component({
   selector: 'app-nav',
-  imports: [NgIf,NgFor, RouterLink, RouterLinkActive, UiIcon, SearchPalette],
+  imports: [NgIf,NgFor, RouterLink, RouterLinkActive, NxIcon, SearchPalette],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
 })

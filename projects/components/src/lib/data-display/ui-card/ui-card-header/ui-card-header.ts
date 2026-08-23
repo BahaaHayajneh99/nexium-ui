@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './ui-card-header.html',
   styleUrls: ['./ui-card-header.scss','../ui-card.scss'],
 })
-export class UiCardHeader {
+export class NxCardHeader {
 
 }

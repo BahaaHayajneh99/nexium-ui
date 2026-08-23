@@ -1,25 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonService } from '../services/common.service';
+import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-installation-configure-demo',
+  imports: [DemoSection],
   templateUrl: './installation-configure-demo.html',
 })
 export class InstallationConfigureDemo {
-  tsconfigCode = `{
-  "compilerOptions": {
-    "paths": {
-      "components": ["./node_modules/@nexium/components"],
-      "core": ["./node_modules/@nexium/core"]
+  public commonService = inject(CommonService);
+
+  angularJsonCode = `"architect": {
+  "build": {
+    "options": {
+      "styles": [
+        "node_modules/nexium-ui/styles.css",
+        "src/styles.scss"
+      ]
     }
   }
 }`;
 
-  monorepoTsconfigCode = `{
-  "compilerOptions": {
-    "paths": {
-      "components": ["./dist/components"],
-      "core": ["./dist/core"]
-    }
-  }
-}`;
+  globalImportCode = `@import 'nexium-ui/styles.css';`;
 }

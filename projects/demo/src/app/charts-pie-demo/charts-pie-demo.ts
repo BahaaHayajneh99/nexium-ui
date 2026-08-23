@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { UiPieChart, NxPieDatum } from 'components';
+import { NxPieChart, NxPieDatum } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-charts-pie-demo',
-  imports: [UiPieChart, DemoSection],
+  imports: [NxPieChart, DemoSection],
   templateUrl: './charts-pie-demo.html',
 })
 export class ChartsPieDemo {
+  importCode = `import { NxPieChart, NxPieDatum } from 'nexium-ui';`;
+
   browserShare: NxPieDatum[] = [
     { label: 'Chrome', value: 64 },
     { label: 'Safari', value: 19 },

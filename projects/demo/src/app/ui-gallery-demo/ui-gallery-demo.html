@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic Gallery"
                 description="The {{ commonService.appName }} Gallery displays a grid of thumbnails that expand into a fullscreen lightbox on click."
                 [code]="basicCode"

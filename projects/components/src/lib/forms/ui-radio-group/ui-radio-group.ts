@@ -40,7 +40,7 @@ export interface NxRadioOption {
     .nx-radio input { width: 16px; height: 16px; accent-color: var(--shell-primary); cursor: inherit; }
   `,
 })
-export class UiRadioGroup {
+export class NxRadioGroup {
   @Input() name = 'nx-radio-group';
   @Input() options: NxRadioOption[] = [];
   @Input() value = '';

@@ -3,6 +3,13 @@
         <div class="main-sections">
 
             <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic OTP Input"
                 description="Six auto-advancing digit boxes - typing moves focus forward, backspace on an empty box moves back, and pasting a full code fills every box at once."
                 [code]="basicCode"

@@ -15,7 +15,7 @@ export interface NxMentionSuggestion {
     '(document:click)': 'onDocumentClick($event)',
   },
 })
-export class UiMention {
+export class NxMention {
   @Input() value = '';
   @Input() placeholder = '';
   @Input() suggestions: NxMentionSuggestion[] = [];

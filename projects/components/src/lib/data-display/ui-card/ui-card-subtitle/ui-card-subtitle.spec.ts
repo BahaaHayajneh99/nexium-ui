@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UiCardSubtitle } from './ui-card-subtitle';
+import { NxCardSubtitle } from './ui-card-subtitle';
 
-describe('UiCardSubtitle', () => {
-  let component: UiCardSubtitle;
-  let fixture: ComponentFixture<UiCardSubtitle>;
+describe('NxCardSubtitle', () => {
+  let component: NxCardSubtitle;
+  let fixture: ComponentFixture<NxCardSubtitle>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UiCardSubtitle],
+      imports: [NxCardSubtitle],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UiCardSubtitle);
+    fixture = TestBed.createComponent(NxCardSubtitle);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

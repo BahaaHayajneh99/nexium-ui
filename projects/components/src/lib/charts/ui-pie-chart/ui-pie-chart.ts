@@ -23,7 +23,7 @@ interface PieSlice {
   templateUrl: './ui-pie-chart.html',
   styleUrl: './ui-pie-chart.scss',
 })
-export class UiPieChart {
+export class NxPieChart {
   @Input() data: NxPieDatum[] = [];
   /** 0 for a full pie; e.g. 0.6 for a donut. Clamped to [0, 0.9]. */
   @Input() innerRadius = 0;

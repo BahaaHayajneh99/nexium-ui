@@ -34,7 +34,7 @@ const ALIGN_MAP: Record<NxStackAlign, string> = {
     }
   `,
 })
-export class UiStack {
+export class NxStack {
   @Input() direction: NxStackDirection = 'vertical';
   @Input() align: NxStackAlign = 'stretch';
   @Input({ transform: numberAttribute }) gap = 12;

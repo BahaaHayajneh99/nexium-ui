@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { UiBreadcrumb, NxBreadcrumbItem } from '../../../../../dist/components';
+import { NxBreadcrumb, NxBreadcrumbItem } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-breadcrumb-demo',
-  imports: [UiBreadcrumb, DemoSection],
+  imports: [NxBreadcrumb, DemoSection],
   templateUrl: './ui-breadcrumb-demo.html',
   styleUrl: './ui-breadcrumb-demo.scss',
 })
 export class UiBreadcrumbDemo {
+  importCode = `import { NxBreadcrumb, NxBreadcrumbItem } from 'nexium-ui';`;
+
   public commonService = inject(CommonService);
   items: NxBreadcrumbItem[] = [
     { label: 'Home', link: '/' },

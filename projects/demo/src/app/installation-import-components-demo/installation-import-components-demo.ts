@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
+import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-installation-import-components-demo',
+  imports: [DemoSection],
   templateUrl: './installation-import-components-demo.html',
 })
 export class InstallationImportComponentsDemo {
   usageCode = `import { Component } from '@angular/core';
-import { UiInput, UiBadge, UiButton } from 'components';
+import { NxInput, NxBadge, NxButton } from 'nexium-ui';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [UiInput, UiBadge, UiButton],
+  imports: [NxInput, NxBadge, NxButton],
   template: \`
     <nx-input label="Email" [(value)]="email"></nx-input>
     <nx-badge variant="success">Verified</nx-badge>
@@ -22,7 +24,11 @@ export class Example {
   email = '';
 }`;
 
-  noModuleCode = `// There is no NxModule to import - every component is standalone.
-// Add only the components your own component's template actually uses
-// to its "imports" array, same as any other standalone Angular component.`;
+  moduleCode = `import { NgModule } from '@angular/core';
+import { NexiumUiModule } from 'nexium-ui';
+
+@NgModule({
+  imports: [NexiumUiModule],
+})
+export class SharedModule {}`;
 }
