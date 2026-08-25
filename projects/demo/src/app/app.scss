@@ -1,7 +1,10 @@
+@use './variables.scss' as *;
+
 $main-nav-width: 300px;
 $main-content-width: calc(100% - #{$main-nav-width});
 $main-nav-content-gap: 16px;
 $padding-right-content: 100px;
+
 .main {
     display: flex;
     gap: $main-nav-content-gap;
@@ -14,4 +17,85 @@ $padding-right-content: 100px;
 
 .main-nav {
     width: $main-nav-width;
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+.mobile-nav-backdrop {
+    display: none;
+}
+
+// Below 992px the fixed-width sidebar has no room to sit next to the content,
+// so it becomes an off-canvas drawer instead: hidden by default, toggled open
+// by .mobile-nav-toggle and closed by the backdrop or a real navigation.
+@media (max-width: 992px) {
+    .main {
+        gap: 0;
+    }
+
+    .main-nav {
+        position: fixed;
+        inset: 0 auto 0 0;
+        z-index: 200;
+        width: $main-nav-width;
+        max-width: 85vw;
+        transform: translateX(-100%);
+        transition: transform $transition-normal;
+        box-shadow: 0 0 32px rgba(0, 0, 0, .25);
+    }
+
+    .main.nav-open .main-nav {
+        transform: translateX(0);
+    }
+
+    .main-content-container {
+        width: 100%;
+        padding-right: $spacing-lg;
+        padding-left: $spacing-lg;
+    }
+
+    .mobile-nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        position: sticky;
+        top: $spacing-md;
+        z-index: 150;
+
+        width: 40px;
+        height: 40px;
+        margin-bottom: $spacing-md;
+
+        border: 1px solid var(--shell-border);
+        border-radius: $radius-md;
+
+        background: var(--shell-surface);
+        color: var(--shell-text);
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+            border-color: var(--shell-primary);
+            color: var(--shell-primary);
+        }
+    }
+
+    .mobile-nav-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 150;
+        background: rgba(0, 0, 0, .45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity $transition-normal;
+    }
+
+    .main.nav-open .mobile-nav-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+    }
 }

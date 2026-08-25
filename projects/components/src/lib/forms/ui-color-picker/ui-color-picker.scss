@@ -1,3 +1,5 @@
+@import '../../../../../demo/src/app/variables.scss';
+
 .nx-color-picker-wrapper {
     position: relative;
     display: flex;
@@ -57,7 +59,7 @@
 .nx-color-picker-value {
     font-size: 13px;
     color: var(--shell-text);
-    font-family: 'Courier New', monospace;
+    font-family: $font-family;
 }
 
 .nx-color-picker-panel {
@@ -133,7 +135,7 @@
     border-radius: 6px;
     background: var(--shell-bg);
     color: var(--shell-text);
-    font-family: 'Courier New', monospace;
+    font-family: $font-family;
     font-size: 13px;
     outline: none;
 }

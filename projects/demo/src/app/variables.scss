@@ -107,6 +107,8 @@ $spacing-sm: 8px;
 $spacing-md: 16px;
 $spacing-lg: 24px;
 $spacing-xl: 32px;
+$spacing-2xl: 40px;
+$spacing-3xl: 48px;
 
 $language-code-bg-color: #1b1d1f;
 $language-code-selector-color: var(--shell-primary); //#3498db;
@@ -124,7 +126,7 @@ $language-ts-prop-color: #9cdcfe;
 
 
 //Font Family and Sizes
-$font-family: 'Arial', sans-serif;
+$font-family: "Roboto", sans-serif;
 $font-size: 16px;
 $h1-font-size: 2.5rem;
 $h2-font-size: 2rem;

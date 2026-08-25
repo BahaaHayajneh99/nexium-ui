@@ -1,0 +1,65 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Has Permission</h4>
+                <p class="main-section-description">
+                    A structural directive that renders its content only when a permission is granted.
+                    A permission can be a numeric role/code (a TS enum, matching systems that model roles
+                    as numbers like Admin=1, Account=2, Employee=3) or a string permission key like
+                    <code>'VW_AUDT'</code> - mix both freely, including within the same array. What
+                    "granted" means is entirely up to your app, via an injectable NxPermissionChecker.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Provide a checker"
+                description="Extend NxPermissionChecker once with your own auth logic, then provide it at the root, a route, or a single component - this demo provides one scoped just to this page."
+                [codeLang]="'ts'"
+                [code]="providerCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Numeric roles and string keys, mixed"
+                description="Switch roles to see the numeric checks react; toggle the checkboxes to see the string-keyed ones react. With no checker provided at all, nxHasPermission fails closed and logs a console warning."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <div class="mb-3">
+                    <div class="template-form-note mb-2">Current role: <nx-badge variant="primary" size="small">{{ currentRole }} ({{ Role[currentRole] }})</nx-badge></div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        @for (role of roles; track role.value) {
+                            <nx-button
+                                [variant]="currentRole === role.value ? 'primary' : 'secondary'"
+                                size="small"
+                                (click)="setRole(role.value)">
+                                {{ role.label }} ({{ role.value }})
+                            </nx-button>
+                        }
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1.5rem; margin-bottom: 1rem;">
+                    <nx-checkbox label="VW_AUDT granted" [checked]="canViewAudit" (checkedChange)="onViewAuditChange($event)"></nx-checkbox>
+                    <nx-checkbox label="DEL_INV granted" [checked]="canDeleteInvoice" (checkedChange)="onDeleteInvoiceChange($event)"></nx-checkbox>
+                </div>
+
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <nx-button *nxHasPermission="Role.Admin" variant="secondary">Admin panel (role = 1)</nx-button>
+                    <nx-button *nxHasPermission="Role.Account" variant="secondary">Account tools (role = 2)</nx-button>
+                    <nx-button *nxHasPermission="'VW_AUDT'" variant="secondary">View audit log</nx-button>
+                    <nx-button *nxHasPermission="[Role.Admin, 'DEL_INV']" variant="danger">Delete invoice</nx-button>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -630,6 +630,51 @@
 
         <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
 
+            <a (click)="toggleExpandItem('Directives')">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-external-link" variant="svg" [size]="18"></nx-icon>
+                    Directives
+                </span>
+                <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('Directives')" icon="nx-chevron-right"
+                    variant="svg" [size]="14"></nx-icon>
+            </a>
+
+            <div class="sub-nav" *ngIf="isExpandedSubNav('Directives')">
+
+                <div class="sub-nav-child">
+
+                    <a class="nav-link" routerLink="/directives/click-outside" routerLinkActive="active">
+                        Click Outside
+                    </a>
+
+                    <a class="nav-link" routerLink="/directives/autofocus" routerLinkActive="active">
+                        Autofocus
+                    </a>
+
+                    <a class="nav-link" routerLink="/directives/copy-to-clipboard" routerLinkActive="active">
+                        Copy to Clipboard
+                    </a>
+
+                    <a class="nav-link" routerLink="/directives/long-press" routerLinkActive="active">
+                        Long Press
+                    </a>
+
+                    <a class="nav-link" routerLink="/directives/debounce-click" routerLinkActive="active">
+                        Debounce Click
+                    </a>
+
+                    <a class="nav-link" routerLink="/directives/has-permission" routerLinkActive="active">
+                        Has Permission
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
             <a (click)="toggleExpandItem('Charts')">
                 <span class="nav-item-content">
                     <nx-icon class="nav-icon" icon="nx-chart-bar" variant="svg" [size]="18"></nx-icon>

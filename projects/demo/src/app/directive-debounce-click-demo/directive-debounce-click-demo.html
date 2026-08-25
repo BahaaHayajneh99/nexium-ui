@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Debounce Click</h4>
+                <p class="main-section-description">
+                    Ignores repeat clicks within nxDebounceTime milliseconds of the last accepted one - a
+                    quick guard against accidental double-submit on a form, without any RxJS wiring.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Rapid-click comparison"
+                description="Click both buttons as fast as you can - the plain button counts every click, the debounced one only counts one per second."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                    <div>
+                        <nx-button variant="secondary" (click)="onRawClick()">Plain click</nx-button>
+                        <p class="template-form-note mt-2">Registered {{ rawClicks }} time(s).</p>
+                    </div>
+
+                    <div>
+                        <nx-button [nxDebounceTime]="1000" (nxDebounceClick)="onSubmit()">Debounced submit</nx-button>
+                        <p class="template-form-note mt-2">Registered {{ submitCount }} time(s).</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

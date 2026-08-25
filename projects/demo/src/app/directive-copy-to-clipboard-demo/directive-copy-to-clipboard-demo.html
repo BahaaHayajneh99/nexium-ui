@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Copy to Clipboard</h4>
+                <p class="main-section-description">
+                    Copies the bound text to the clipboard when the host is clicked, falling back to a
+                    manual text-selection copy in contexts where the Clipboard API isn't available.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Copy an API key"
+                description="nxCopied emits the copied string once the write succeeds; nxCopyFailed emits if both the Clipboard API and the fallback fail."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <code class="template-form-note" style="font-family: 'Courier New', monospace;">{{ apiKey }}</code>
+                    <nx-button variant="secondary" size="small" [nxCopyToClipboard]="apiKey" (nxCopied)="onCopied()">
+                        {{ copied ? 'Copied!' : 'Copy' }}
+                    </nx-button>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

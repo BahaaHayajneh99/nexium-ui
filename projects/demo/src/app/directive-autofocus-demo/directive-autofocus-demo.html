@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Autofocus</h4>
+                <p class="main-section-description">
+                    Focuses the host element once it renders - handy for a newly-opened form's first
+                    field, or a search box that should be ready to type into immediately. Apply it to a
+                    real focusable element (a native input/button/textarea) - a custom component's host
+                    element usually isn't focusable on its own.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Focus a field on open"
+                description="nxAutofocus runs once, right after the host renders. Use nxAutofocusDelay for elements still animating in."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <nx-button (click)="toggleForm()">{{ formOpen ? 'Hide field' : 'Add item' }}</nx-button>
+
+                @if (formOpen) {
+                    <div class="mt-2">
+                        <input
+                            placeholder="Name"
+                            nxAutofocus
+                            style="padding: 8px 12px; border: 1px solid var(--shell-border); border-radius: 4px; background: var(--shell-surface); color: var(--shell-text); font-size: 14px;">
+                    </div>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

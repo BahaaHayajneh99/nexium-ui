@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Click Outside</h4>
+                <p class="main-section-description">
+                    Emits when a click lands outside the host element - the same dismiss-on-outside-click
+                    pattern nx-popover, nx-dropdown-menu and nx-mega-menu each already hand-roll internally,
+                    pulled out here for anything custom you build yourself.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Dismissible panel"
+                description="nxClickOutside fires once, on the first click outside the host - it doesn't fire for clicks inside it."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <nx-button (click)="togglePanel()">{{ panelOpen ? 'Close panel' : 'Open panel' }}</nx-button>
+
+                @if (panelOpen) {
+                    <div class="template-card" style="margin-top: 1rem; padding: 1.5rem; border: 1px solid var(--shell-border); border-radius: 8px;" (nxClickOutside)="onClickOutside()">
+                        Click anywhere outside this box to close it.
+                    </div>
+                }
+
+                @if (closedCount > 0) {
+                    <p class="template-form-note mt-2">Closed by an outside click {{ closedCount }} time(s).</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

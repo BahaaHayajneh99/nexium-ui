@@ -1,3 +1,5 @@
+@import '../../../../../demo/src/app/variables.scss';
+
 .nx-command-backdrop {
     position: fixed;
     inset: 0;
@@ -73,7 +75,7 @@
     padding: 1px 6px;
     border: 1px solid var(--shell-border);
     border-radius: 4px;
-    font-family: 'Courier New', monospace;
+    font-family: $font-family;
     font-size: 11px;
     color: var(--shell-text-muted);
 }

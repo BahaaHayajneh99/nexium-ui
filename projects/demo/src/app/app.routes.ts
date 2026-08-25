@@ -1,5 +1,11 @@
 import { Routes } from '@angular/router';
 import { GettingStartedDemo } from './getting-started-demo/getting-started-demo';
+import { DirectiveClickOutsideDemo } from './directive-click-outside-demo/directive-click-outside-demo';
+import { DirectiveAutofocusDemo } from './directive-autofocus-demo/directive-autofocus-demo';
+import { DirectiveCopyToClipboardDemo } from './directive-copy-to-clipboard-demo/directive-copy-to-clipboard-demo';
+import { DirectiveLongPressDemo } from './directive-long-press-demo/directive-long-press-demo';
+import { DirectiveDebounceClickDemo } from './directive-debounce-click-demo/directive-debounce-click-demo';
+import { DirectiveHasPermissionDemo } from './directive-has-permission-demo/directive-has-permission-demo';
 import { UiButtonDemo } from './ui-button-demo/ui-button-demo';
 import { UiCardDemo } from './ui-card-demo/ui-card-demo';
 import { UiChipDemo } from './ui-chip-demo/ui-chip-demo';
@@ -815,5 +821,29 @@ export const routes: Routes = [
     {
         path: 'templates/notifications',
         component: TemplatesNotificationsDemo
+    },
+    {
+        path: 'directives/click-outside',
+        component: DirectiveClickOutsideDemo
+    },
+    {
+        path: 'directives/autofocus',
+        component: DirectiveAutofocusDemo
+    },
+    {
+        path: 'directives/copy-to-clipboard',
+        component: DirectiveCopyToClipboardDemo
+    },
+    {
+        path: 'directives/long-press',
+        component: DirectiveLongPressDemo
+    },
+    {
+        path: 'directives/debounce-click',
+        component: DirectiveDebounceClickDemo
+    },
+    {
+        path: 'directives/has-permission',
+        component: DirectiveHasPermissionDemo
     }
 ];

@@ -103,6 +103,13 @@ import { NxRadarChart } from './charts/ui-radar-chart';
 import { NxScatterChart } from './charts/ui-scatter-chart';
 import { NxSparkline } from './charts/ui-sparkline';
 
+import { NxClickOutside } from './directives/nx-click-outside';
+import { NxAutofocus } from './directives/nx-autofocus';
+import { NxCopyToClipboard } from './directives/nx-copy-to-clipboard';
+import { NxLongPress } from './directives/nx-long-press';
+import { NxDebounceClick } from './directives/nx-debounce-click';
+import { NxHasPermission } from './directives/nx-has-permission';
+
 // Every standalone component/directive the library ships, gathered in one
 // place so NexiumUiModule (below) and anyone hand-rolling a similar aggregate
 // stay in sync with a single source of truth.
@@ -220,6 +227,14 @@ const NEXIUM_UI_DECLARATIONS = [
   NxRadarChart,
   NxScatterChart,
   NxSparkline,
+
+  // Directives
+  NxClickOutside,
+  NxAutofocus,
+  NxCopyToClipboard,
+  NxLongPress,
+  NxDebounceClick,
+  NxHasPermission,
 ] as const;
 
 /**

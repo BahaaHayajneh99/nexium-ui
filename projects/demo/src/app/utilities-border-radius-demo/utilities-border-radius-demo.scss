@@ -22,13 +22,13 @@
 }
 
 .radius-class {
-    font-family: 'Courier New', monospace;
+    font-family: $font-family;
     font-size: $font-size-sm;
     color: var(--shell-text);
 }
 
 .radius-value {
-    font-family: 'Courier New', monospace;
+    font-family: $font-family;
     font-size: $font-size-xs;
     color: var(--shell-text-muted);
 }

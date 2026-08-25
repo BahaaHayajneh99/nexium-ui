@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Long Press</h4>
+                <p class="main-section-description">
+                    Emits after the pointer is held down on the host for nxLongPressDuration milliseconds -
+                    releasing or leaving early cancels it. Works with mouse, touch, and pen alike via
+                    Pointer Events.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Hold to trigger"
+                description="Press and hold for 600ms - releasing early does nothing."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <nx-button [nxLongPressDuration]="600" (nxLongPress)="onLongPress()">Hold me</nx-button>
+
+                <p class="template-form-note mt-2">Triggered {{ triggeredCount }} time(s).</p>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>
