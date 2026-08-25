@@ -1,14 +1,14 @@
 # nexium-ui
 
 Standalone Angular components for the NexiumUI library — data display, forms, feedback,
-navigation, panels, media, uploads, layout, and charts. Every component is a standalone
-Angular component or directive; the library also ships `NexiumUiModule`, which aggregates
-all of them into a single `@NgModule` for apps that prefer that style.
+navigation, panels, media, uploads, layout, charts, and directives. Every component is a
+standalone Angular component or directive; the library also ships `NexiumUiModule`, which
+aggregates all of them into a single `@NgModule` for apps that prefer that style.
 
 ## Demo
 
 Browse every component live, with usage examples and copy-paste code snippets, at
-**[nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started)**.
+**[nexium-ui.vercel.app](https://nexium-ui.vercel.app)**.
 
 ## Installation
 
@@ -220,6 +220,20 @@ your production bundle smaller.
 | Scatter Chart | `nx-scatter-chart` |
 | Sparkline | `nx-sparkline` |
 
+### Directives
+
+Behavior-only primitives with no template of their own - attach them to any element, native
+or component.
+
+| Directive | Selector | Description |
+| --- | --- | --- |
+| Autofocus | `[nxAutofocus]` | Focuses the host once it renders. |
+| Click Outside | `[nxClickOutside]` | Emits when a click lands outside the host. |
+| Copy to Clipboard | `[nxCopyToClipboard]` | Copies bound text to the clipboard on click. |
+| Debounce Click | `[nxDebounceClick]` | Ignores repeat clicks within a time window - a guard against double-submit. |
+| Has Permission | `*nxHasPermission` | Structural directive - renders its content only when an injectable `NxPermissionChecker` grants the given permission(s). |
+| Long Press | `[nxLongPress]` | Emits after the pointer is held down on the host for a set duration. |
+
 For full input/output reference and live examples, see the hosted demo at
 [nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started), or run it locally with
 `ng serve demo` — either way it has a dedicated page per component.
@@ -398,6 +412,63 @@ Components: `nx-tabs`, `nx-tab`.
 <nx-alert variant="success" title="Payment successful" dismissible (dismissed)="onDismissed()">
   Your order #1029 has been confirmed.
 </nx-alert>
+```
+
+### Click Outside (`[nxClickOutside]`)
+
+Emits when a click lands outside the host element - the same dismiss-on-outside-click logic
+`nx-popover`/`nx-dropdown-menu`/`nx-mega-menu` already use internally, exposed for anything
+custom you build yourself.
+
+| Output | Type | Description |
+| --- | --- | --- |
+| `nxClickOutside` | `EventEmitter<MouseEvent>` | Emitted on the first click outside the host; clicks inside it don't trigger it. |
+
+```html
+<button (click)="panelOpen = true">Open</button>
+
+@if (panelOpen) {
+  <div class="panel" (nxClickOutside)="panelOpen = false">
+    Click anywhere outside this box to close it.
+  </div>
+}
+```
+
+### Has Permission (`*nxHasPermission`)
+
+A structural directive that renders its content only when a permission is granted. A
+permission can be a numeric role/code (e.g. a TS enum) or a string permission key - mix both
+freely, including within the same array. What "granted" means is entirely up to your app: the
+directive checks against an injectable `NxPermissionChecker` that you extend and provide, and
+it fails closed (content hidden, with a console warning) if no checker is registered.
+
+| Input | Type | Description |
+| --- | --- | --- |
+| `nxHasPermission` | `NxPermissionValue \| NxPermissionValue[]` (`NxPermissionValue = string \| number`) | One permission, or a list evaluated as "the user has at least one of these". |
+
+```ts
+@Injectable({ providedIn: 'root' })
+export class AppPermissionChecker extends NxPermissionChecker {
+  private readonly auth = inject(AuthService);
+
+  override hasPermission(permissions: NxPermissionValue | NxPermissionValue[]): boolean {
+    const required = Array.isArray(permissions) ? permissions : [permissions];
+    return required.some((p) =>
+      typeof p === 'number'
+        ? this.auth.currentUser.roleId === p
+        : this.auth.currentUser.permissionCodes.includes(p),
+    );
+  }
+}
+
+// in your app config / module:
+providers: [{ provide: NxPermissionChecker, useClass: AppPermissionChecker }]
+```
+
+```html
+<button *nxHasPermission="Role.Admin">Admin panel</button>
+<button *nxHasPermission="'VW_AUDT'">View audit log</button>
+<button *nxHasPermission="[Role.Admin, 'DEL_INV']">Delete invoice</button>
 ```
 
 ## Running end-to-end tests
