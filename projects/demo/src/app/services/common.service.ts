@@ -49,7 +49,7 @@ export class CommonService {
   /** Single source of truth for the package/brand name shown across the demo site. */
   readonly appName = 'NexiumUI';
 
-  packageVersion = '0.1.0';
+  packageVersion = '0.1.1';
 
 //Theme Colors - reference the CSS custom properties defined in styles.scss
 // (`:root { --primary-color: ...; }`), so TS stays in sync with the SCSS
