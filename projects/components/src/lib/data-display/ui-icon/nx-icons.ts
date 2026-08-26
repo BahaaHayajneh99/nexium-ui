@@ -22,6 +22,10 @@ export const NX_ICONS: Record<string, string> = {
   <circle cx="5.5" cy="5" r="1.8" fill="currentColor"/>
   <path d="M10 20V9H13V10.5C13.6 9.5 14.7 9 16 9C18.2 9 20 10.5 20 13.3V20H17V13.7C17 12.4 16.2 11.7 15.1 11.7C13.9 11.7 13 12.5 13 13.8V20H10Z" fill="currentColor"/>
 </svg>`,
+  'nx-npm': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 3L20 7V17L12 21L4 17V7L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M4 7L12 11L20 7M12 11V21" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>`,
   'nx-rocket': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M12 2C12 2 17 5 17 11C17 13.5 16 15.5 15 17L12 22L9 17C8 15.5 7 13.5 7 11C7 5 12 2 12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
   <circle cx="12" cy="11" r="2" stroke="currentColor" stroke-width="1.6"/>
