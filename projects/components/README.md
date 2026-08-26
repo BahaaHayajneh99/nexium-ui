@@ -89,6 +89,37 @@ export class SharedModule {}
 prefer importing individual standalone components when you only need a handful, since that keeps
 your production bundle smaller.
 
+### Forms integration (`ngModel` / reactive forms)
+
+Every form component (`nx-input`, `nx-textarea`, `nx-select`, `nx-autocomplete`, `nx-checkbox`,
+`nx-radio-group`, `nx-switch`, `nx-toggle`, `nx-slider`, `nx-rating`, `nx-otp-input`, `nx-mention`,
+`nx-rich-text-editor`, `nx-color-picker`, `nx-datepicker`) implements Angular's
+`ControlValueAccessor`, so on top of its native `[(value)]`/`[(checked)]` binding it also works
+with `[(ngModel)]` and `formControlName`/`[formControl]` - no adapter needed.
+
+**Important:** because these are standalone components, `NgModel`/`FormControlName` are directives
+that your OWN component must import - nexium-ui can't do this for you. If you bind `[(ngModel)]`
+or `formControlName` and see `NG8002: Can't bind to 'ngModel' since it isn't a known property of
+'nx-autocomplete'`, it means your component is missing `FormsModule` (template-driven) or
+`ReactiveFormsModule` (reactive) from its own `imports` array - this is standard Angular behavior
+for standalone components, not specific to nexium-ui:
+
+```ts
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NxAutocomplete } from 'nexium-ui';
+
+@Component({
+  selector: 'app-example',
+  imports: [NxAutocomplete, FormsModule], // FormsModule is required for [(ngModel)]
+  template: `<nx-autocomplete label="City" [options]="options" [(ngModel)]="city"></nx-autocomplete>`,
+})
+export class Example {
+  city = '';
+  options = ['Cairo', 'Berlin', 'London'];
+}
+```
+
 ## Components
 
 ### Data display
@@ -442,6 +473,42 @@ Components: `nx-tabs`, `nx-tab`.
   Your order #1029 has been confirmed.
 </nx-alert>
 ```
+
+### Autocomplete (`nx-autocomplete`)
+
+By default, `options` is a list of plain strings or `{ label, value, group? }` objects. Set
+`bindLabel`/`bindValue` to use arbitrary objects instead - handy when your data comes straight
+from an API response:
+
+| Input | Type | Default | Description |
+| --- | --- | --- | --- |
+| `options` | `string[] \| Record<string, any>[]` | `[]` | The list to search/select from. |
+| `bindLabel` | `string` | - | Property to read as the display label when `options` are arbitrary objects. |
+| `bindValue` | `string` | - | Property to read as the bound value when `options` are arbitrary objects. If omitted, the whole option object becomes the value. |
+| `multiple` | `boolean` | `false` | Select more than one option as removable chips (bound via `[(values)]`). |
+
+```html
+<nx-autocomplete
+  label="City"
+  [options]="cities"
+  bindLabel="name"
+  bindValue="id"
+  [(ngModel)]="selectedCityId">
+</nx-autocomplete>
+```
+
+```ts
+cities = [
+  { id: 1, name: 'Cairo' },
+  { id: 2, name: 'Alexandria' },
+  { id: 3, name: 'Giza' },
+];
+
+selectedCityId: number | null = null;
+```
+
+`selectedCityId` ends up holding the numeric `id` of whichever city is picked, not its label -
+the input box still displays the label for you.
 
 ### Click Outside (`[nxClickOutside]`)
 

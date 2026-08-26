@@ -14,11 +14,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export interface NxAutocompleteOption {
   label: string;
-  value: string;
+  value: any;
   group?: string;
 }
 
-export type NxAutocompleteOptionInput = string | NxAutocompleteOption;
+/** A plain string, a `{ label, value, group? }` object, or - with `bindLabel`/`bindValue` set - any object shape. */
+export type NxAutocompleteOptionInput = string | Record<string, any>;
 
 interface NxAutocompleteRow {
   type: 'group' | 'option';
@@ -44,8 +45,13 @@ export class NxAutocomplete implements ControlValueAccessor {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() options: NxAutocompleteOptionInput[] = [];
-  @Input() value = '';
-  @Input() values: string[] = [];
+
+  /** Property to read as the display label when `options` are arbitrary objects, e.g. `bindLabel="name"`. */
+  @Input() bindLabel?: string;
+  /** Property to read as the bound value when `options` are arbitrary objects, e.g. `bindValue="id"`. If omitted, the whole option object becomes the value. */
+  @Input() bindValue?: string;
+
+  @Input() values: any[] = [];
   @Input() variant: 'outlined' | 'filled' = 'outlined';
   @Input({ transform: booleanAttribute }) disabled = false;
   @Input({ transform: booleanAttribute }) multiple = false;
@@ -56,8 +62,8 @@ export class NxAutocomplete implements ControlValueAccessor {
   @Input({ transform: numberAttribute }) itemSize = 36;
   @Input({ transform: numberAttribute }) scrollHeight = 200;
 
-  @Output() valueChange = new EventEmitter<string>();
-  @Output() valuesChange = new EventEmitter<string[]>();
+  @Output() valueChange = new EventEmitter<any>();
+  @Output() valuesChange = new EventEmitter<any[]>();
 
   @ViewChild('input') private inputRef?: ElementRef<HTMLInputElement>;
 
@@ -66,20 +72,71 @@ export class NxAutocomplete implements ControlValueAccessor {
   query = '';
   scrollTop = 0;
 
-  // In `multiple` mode the CVA value is string[] (matching `values`); in
-  // single mode it's a plain string (matching `value`) - writeValue picks
-  // the right shape based on `multiple` at the time it's called.
-  private onChangeFn: (value: string | string[]) => void = () => {};
+  /** Text shown in the single-select input box - kept in sync with the selected option's label, or free-typed text when `bindLabel`/`bindValue` aren't set. */
+  displayValue = '';
+
+  private rawValue: any = '';
+
+  @Input()
+  set value(v: any) {
+    this.rawValue = v;
+    this.displayValue = this.labelForValue(v);
+  }
+  get value(): any {
+    return this.rawValue;
+  }
+
+  // In `multiple` mode the CVA value is an array (matching `values`); in
+  // single mode it's whatever `bindValue` resolves to (or the raw option/text
+  // when `bindValue` isn't set) - writeValue picks the right shape based on
+  // `multiple` at the time it's called.
+  private onChangeFn: (value: any) => void = () => {};
   private onTouchedFn: () => void = () => {};
 
+  private get isBoundToObjects(): boolean {
+    return !!this.bindLabel || !!this.bindValue;
+  }
+
+  private toOption(raw: NxAutocompleteOptionInput): NxAutocompleteOption {
+    if (typeof raw === 'string') {
+      return { label: raw, value: raw };
+    }
+
+    if (this.isBoundToObjects) {
+      const label = this.bindLabel ? String(raw[this.bindLabel] ?? '') : String(raw['label'] ?? '');
+      const value = this.bindValue ? raw[this.bindValue] : raw;
+      const group = typeof raw['group'] === 'string' ? raw['group'] : undefined;
+      return { label, value, group };
+    }
+
+    return { label: String(raw['label'] ?? ''), value: raw['value'], group: raw['group'] };
+  }
+
   private get normalizedOptions(): NxAutocompleteOption[] {
-    return this.options.map((option) =>
-      typeof option === 'string' ? { label: option, value: option } : option
-    );
+    return this.options.map((option) => this.toOption(option));
+  }
+
+  private labelForValue(value: any): string {
+    if (value === null || value === undefined || value === '') {
+      return typeof value === 'string' ? value : '';
+    }
+
+    const match = this.normalizedOptions.find((option) => option.value === value);
+    if (match) {
+      return match.label;
+    }
+
+    return typeof value === 'string' ? value : '';
+  }
+
+  /** Resolves a bound value (from `values`) back to its option's label, for chip display. */
+  labelFor(value: any): string {
+    const match = this.normalizedOptions.find((option) => option.value === value);
+    return match ? match.label : String(value);
   }
 
   get filteredOptions(): NxAutocompleteOption[] {
-    const query = (this.multiple ? this.query : this.value).toLowerCase();
+    const query = (this.multiple ? this.query : this.displayValue).toLowerCase();
     return this.normalizedOptions.filter(
       (option) =>
         option.label.toLowerCase().includes(query) &&
@@ -129,7 +186,7 @@ export class NxAutocomplete implements ControlValueAccessor {
   }
 
   get hasValue(): boolean {
-    return this.multiple ? this.values.length > 0 || !!this.query : !!this.value;
+    return this.multiple ? this.values.length > 0 || !!this.query : !!this.displayValue;
   }
 
   private get virtualStartIndex(): number {
@@ -142,9 +199,15 @@ export class NxAutocomplete implements ControlValueAccessor {
     if (this.multiple) {
       this.query = inputValue;
     } else {
-      this.value = inputValue;
-      this.valueChange.emit(this.value);
-      this.onChangeFn(this.value);
+      this.displayValue = inputValue;
+
+      // Free-text mode (no bindLabel/bindValue): what's typed IS the value.
+      // Object-bound mode: typing only filters - the value is set on selectOption/clear.
+      if (!this.isBoundToObjects) {
+        this.rawValue = inputValue;
+        this.valueChange.emit(this.rawValue);
+        this.onChangeFn(this.rawValue);
+      }
     }
 
     this.showList = true;
@@ -178,14 +241,15 @@ export class NxAutocomplete implements ControlValueAccessor {
       }
       this.query = '';
     } else {
-      this.value = option.label;
-      this.valueChange.emit(this.value);
-      this.onChangeFn(this.value);
+      this.rawValue = option.value;
+      this.displayValue = option.label;
+      this.valueChange.emit(this.rawValue);
+      this.onChangeFn(this.rawValue);
       this.showList = false;
     }
   }
 
-  removeChip(value: string, event: Event): void {
+  removeChip(value: any, event: Event): void {
     event.stopPropagation();
     this.values = this.values.filter((v) => v !== value);
     this.valuesChange.emit(this.values);
@@ -200,23 +264,25 @@ export class NxAutocomplete implements ControlValueAccessor {
       this.valuesChange.emit(this.values);
       this.onChangeFn(this.values);
     } else {
-      this.value = '';
-      this.valueChange.emit(this.value);
-      this.onChangeFn(this.value);
+      this.rawValue = '';
+      this.displayValue = '';
+      this.valueChange.emit(this.rawValue);
+      this.onChangeFn(this.rawValue);
     }
 
     this.query = '';
   }
 
-  writeValue(value: string | string[]): void {
+  writeValue(value: any): void {
     if (this.multiple) {
       this.values = Array.isArray(value) ? value : [];
     } else {
-      this.value = typeof value === 'string' ? value : '';
+      this.rawValue = value ?? '';
+      this.displayValue = this.labelForValue(this.rawValue);
     }
   }
 
-  registerOnChange(fn: (value: string | string[]) => void): void {
+  registerOnChange(fn: (value: any) => void): void {
     this.onChangeFn = fn;
   }
 

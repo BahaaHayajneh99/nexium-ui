@@ -12,7 +12,7 @@
             <ul class="nx-autocomplete-chips">
                 @for (val of values; track val) {
                     <li class="nx-autocomplete-chip">
-                        {{ val }}
+                        {{ labelFor(val) }}
                         <button type="button" class="nx-autocomplete-chip-remove" (mousedown)="removeChip(val, $event)">×</button>
                     </li>
                 }
@@ -24,7 +24,7 @@
             class="nx-autocomplete-input"
             [placeholder]="floatLabel ? '' : placeholder"
             [disabled]="disabled"
-            [value]="multiple ? query : value"
+            [value]="multiple ? query : displayValue"
             [attr.aria-invalid]="invalid ? true : null"
             (input)="onInput($event)"
             (focus)="onFocus()"

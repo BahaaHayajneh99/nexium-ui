@@ -76,6 +76,33 @@ options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 
     { label: 'Manchester', value: 'Manchester', group: 'United Kingdom' },
 ];`;
 
+  selectedCityId: number | null = null;
+
+  cityObjects = [
+    { id: 1, name: 'Cairo' },
+    { id: 2, name: 'Alexandria' },
+    { id: 3, name: 'Giza' },
+    { id: 4, name: 'Berlin' },
+  ];
+
+  bindCode = `<nx-autocomplete
+    label="City"
+    placeholder="Search cities..."
+    [options]="cityObjects"
+    bindLabel="name"
+    bindValue="id"
+    [(ngModel)]="selectedCityId">
+</nx-autocomplete>`;
+
+  bindTs = `cityObjects = [
+    { id: 1, name: 'Cairo' },
+    { id: 2, name: 'Alexandria' },
+    { id: 3, name: 'Giza' },
+    { id: 4, name: 'Berlin' },
+];
+
+selectedCityId: number | null = null;`;
+
   virtualScrollCity = '';
 
   virtualScrollOptions = Array.from({ length: 5000 }, (_, i) => `Item ${i + 1}`);

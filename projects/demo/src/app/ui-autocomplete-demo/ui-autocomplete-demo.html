@@ -54,6 +54,25 @@
             </app-demo-section>
 
             <app-demo-section
+                header="Bind to Objects (bindLabel / bindValue)"
+                description="Pass options as arbitrary objects - bindLabel picks the display property, bindValue picks the property that becomes the bound value (here, the numeric id)."
+                [code]="bindCode"
+                [tsCode]="bindTs"
+                [hasSampleClass]="false">
+                <nx-autocomplete
+                    label="City"
+                    placeholder="Search cities..."
+                    [options]="cityObjects"
+                    bindLabel="name"
+                    bindValue="id"
+                    [(ngModel)]="selectedCityId">
+                </nx-autocomplete>
+                @if (selectedCityId !== null) {
+                    <p class="template-form-note mt-2">Selected id: {{ selectedCityId }}</p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
                 header="Virtual Scroll"
                 description="Enable virtualScroll to render only the visible options for large datasets."
                 [code]="virtualScrollCode"
