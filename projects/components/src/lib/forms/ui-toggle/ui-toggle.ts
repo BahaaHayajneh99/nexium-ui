@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'nx-toggle',
@@ -10,7 +11,8 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
       class="nx-toggle"
       [class.active]="pressed"
       [disabled]="disabled"
-      (click)="toggle()">
+      (click)="toggle()"
+      (blur)="onBlur()">
       <ng-content></ng-content>
     </button>
   `,
@@ -33,12 +35,22 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
     }
     .nx-toggle:disabled { opacity: .6; cursor: not-allowed; }
   `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxToggle),
+      multi: true,
+    },
+  ],
 })
-export class NxToggle {
+export class NxToggle implements ControlValueAccessor {
   @Input({ transform: booleanAttribute }) pressed = false;
   @Input({ transform: booleanAttribute }) disabled = false;
 
   @Output() pressedChange = new EventEmitter<boolean>();
+
+  private onChangeFn: (value: boolean) => void = () => {};
+  private onTouchedFn: () => void = () => {};
 
   toggle(): void {
     if (this.disabled) {
@@ -46,5 +58,26 @@ export class NxToggle {
     }
     this.pressed = !this.pressed;
     this.pressedChange.emit(this.pressed);
+    this.onChangeFn(this.pressed);
+  }
+
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: boolean): void {
+    this.pressed = !!value;
+  }
+
+  registerOnChange(fn: (value: boolean) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }

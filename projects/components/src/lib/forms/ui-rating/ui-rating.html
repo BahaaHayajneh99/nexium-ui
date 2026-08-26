@@ -15,7 +15,8 @@
             [attr.aria-checked]="star === value"
             [attr.aria-label]="star + ' of ' + max"
             (mouseenter)="onEnter(star)"
-            (click)="onSelect(star)">
+            (click)="onSelect(star)"
+            (blur)="onBlur()">
             <svg viewBox="0 0 24 24" width="100%" height="100%">
                 <path
                     d="M12 2.5L14.9 8.6L21.6 9.5L16.8 14.2L18 20.9L12 17.6L6 20.9L7.2 14.2L2.4 9.5L9.1 8.6L12 2.5Z"

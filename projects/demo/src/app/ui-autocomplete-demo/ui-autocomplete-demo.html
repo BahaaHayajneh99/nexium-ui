@@ -10,16 +10,32 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic AutoComplete"
-                description="The {{ commonService.appName }} AutoComplete filters a list of suggestions as the user types."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="The {{ commonService.appName }} AutoComplete implements ControlValueAccessor, so it works with formControlName inside a reactive form."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
+                [hasSampleClass]="false">
+                <div [formGroup]="cityForm">
+                    <nx-autocomplete
+                        label="City"
+                        placeholder="Search cities..."
+                        [options]="options"
+                        formControlName="city">
+                    </nx-autocomplete>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="The {{ commonService.appName }} AutoComplete also works with [(ngModel)] in a template-driven form."
+                [code]="templateCode"
+                [tsCode]="templateTs"
                 [hasSampleClass]="false">
                 <nx-autocomplete
                     label="City"
                     placeholder="Search cities..."
                     [options]="options"
-                    [(value)]="city">
+                    [(ngModel)]="city">
                 </nx-autocomplete>
             </app-demo-section>
 
@@ -33,7 +49,7 @@
                     label="City"
                     placeholder="Search cities..."
                     [options]="groupedOptions"
-                    [(value)]="groupCountry">
+                    [(ngModel)]="groupCountry">
                 </nx-autocomplete>
             </app-demo-section>
 
@@ -48,7 +64,7 @@
                     placeholder="Search items..."
                     [options]="virtualScrollOptions"
                     [virtualScroll]="true"
-                    [(value)]="virtualScrollCity">
+                    [(ngModel)]="virtualScrollCity">
                 </nx-autocomplete>
             </app-demo-section>
 
@@ -63,7 +79,7 @@
                     placeholder="Search cities..."
                     [options]="options"
                     [multiple]="true"
-                    [(values)]="multipleCities">
+                    [(ngModel)]="multipleCities">
                 </nx-autocomplete>
             </app-demo-section>
 
@@ -76,7 +92,7 @@
                     label="City"
                     [options]="options"
                     [floatLabel]="true"
-                    [(value)]="floatLabelCity">
+                    [(ngModel)]="floatLabelCity">
                 </nx-autocomplete>
             </app-demo-section>
 
@@ -90,7 +106,7 @@
                     placeholder="Search cities..."
                     variant="filled"
                     [options]="options"
-                    [(value)]="filledCity">
+                    [(ngModel)]="filledCity">
                 </nx-autocomplete>
             </app-demo-section>
 
@@ -103,7 +119,7 @@
                     label="City"
                     [options]="options"
                     [disabled]="true"
-                    [(value)]="disabledCity">
+                    [(ngModel)]="disabledCity">
                 </nx-autocomplete>
             </app-demo-section>
 
@@ -117,7 +133,7 @@
                     placeholder="Search cities..."
                     [options]="options"
                     [showClear]="true"
-                    [(value)]="showClearCity">
+                    [(ngModel)]="showClearCity">
                 </nx-autocomplete>
             </app-demo-section>
 
@@ -131,7 +147,7 @@
                     placeholder="Search cities..."
                     [options]="options"
                     [invalid]="true"
-                    [(value)]="invalidCity">
+                    [(ngModel)]="invalidCity">
                 </nx-autocomplete>
             </app-demo-section>
 

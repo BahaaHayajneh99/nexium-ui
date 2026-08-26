@@ -114,7 +114,7 @@
     --chart-critical: #d03b3b;
 }
 
-:root[data-theme='dark'] { 
+:root[data-theme='dark'] {
     --chart-series-1: var(--shell-primary);
     --chart-series-2: #d95926;
     --chart-series-3: #199e70;
@@ -789,7 +789,7 @@ body {
     margin-top: $spacing-lg;
 }
 
-.main-container { 
+.main-container {
     padding: 0 $spacing-md;
 }
 
@@ -1487,14 +1487,25 @@ body {
 }
 
 .block-cta-colored {
-    background: linear-gradient(135deg, var(--shell-primary), $primary-color-dark); 
+    background: linear-gradient(135deg, var(--shell-primary), $primary-color-dark);
     padding: $spacing-md;
+
     .block-heading,
     .block-subheading {
         color: $white-color;
     }
 }
 
+.content-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-md;
+
+    @media (max-width: 600px) {
+        gap: $spacing-sm;
+    }
+}
 
 // ===============================
 // Shared reference-list rows - a label + description pair, used across
@@ -1517,7 +1528,6 @@ body {
     }
 
     @media (max-width: 600px) {
-        flex-direction: column;
         align-items: flex-start;
         gap: $spacing-xs;
     }
@@ -1529,18 +1539,21 @@ body {
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
     color: var(--shell-text);
+
+    @media (max-width: 600px) {
+        font-size: $font-size-xs;
+        flex: 0 0 120px;
+    }
 }
 
 .utility-desc {
     font-size: $font-size-sm;
     color: var(--shell-text-secondary);
+
+    @media (max-width: 600px) {
+        font-size: $font-size-xs;
+    }
 } 
-
-
-
-
-
-
 
 //---------------- Responsive Utilities ----------------//
 // Six tiers for .main-container/.main-section-header/.main-section-description,
@@ -1641,4 +1654,3 @@ body {
         font-size: $font-size-sm;
     }
 }
-

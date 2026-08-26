@@ -1,4 +1,15 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, booleanAttribute, numberAttribute } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  booleanAttribute,
+  forwardRef,
+  numberAttribute,
+} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export interface NxMentionSuggestion {
   id: string | number;
@@ -14,8 +25,15 @@ export interface NxMentionSuggestion {
   host: {
     '(document:click)': 'onDocumentClick($event)',
   },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxMention),
+      multi: true,
+    },
+  ],
 })
-export class NxMention {
+export class NxMention implements ControlValueAccessor {
   @Input() value = '';
   @Input() placeholder = '';
   @Input() suggestions: NxMentionSuggestion[] = [];
@@ -32,6 +50,8 @@ export class NxMention {
   activeIndex = 0;
   private triggerIndex: number | null = null;
   private query = '';
+  private onChangeFn: (value: string) => void = () => {};
+  private onTouchedFn: () => void = () => {};
 
   constructor(private elementRef: ElementRef<HTMLElement>) {}
 
@@ -44,6 +64,7 @@ export class NxMention {
     const textarea = event.target as HTMLTextAreaElement;
     this.value = textarea.value;
     this.valueChange.emit(this.value);
+    this.onChangeFn(this.value);
     this.updateMentionContext(textarea.selectionStart);
   }
 
@@ -79,6 +100,7 @@ export class NxMention {
 
     this.value = `${before}${inserted}${after}`;
     this.valueChange.emit(this.value);
+    this.onChangeFn(this.value);
     this.mentioned.emit(suggestion);
     this.open = false;
 
@@ -93,6 +115,26 @@ export class NxMention {
     if (!this.elementRef.nativeElement.contains(event.target as Node)) {
       this.open = false;
     }
+  }
+
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: string): void {
+    this.value = value ?? '';
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
   private updateMentionContext(cursor: number): void {

@@ -10,12 +10,23 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic Slider"
-                description="The {{ commonService.appName }} Slider selects a numeric value within a range."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="The {{ commonService.appName }} Slider works with Angular reactive forms via formControlName."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
                 [hasSampleClass]="false">
-                <nx-slider label="Volume" [(value)]="volume"></nx-slider>
+                <div [formGroup]="volumeForm">
+                    <nx-slider label="Volume" formControlName="volume"></nx-slider>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="The {{ commonService.appName }} Slider also works with template-driven forms via [(ngModel)]."
+                [code]="templateCode"
+                [tsCode]="templateTs"
+                [hasSampleClass]="false">
+                <nx-slider label="Volume" [(ngModel)]="volume"></nx-slider>
             </app-demo-section>
 
             <app-demo-section
@@ -24,7 +35,7 @@
                 [code]="rangeCode"
                 [tsCode]="rangeTs"
                 [hasSampleClass]="false">
-                <nx-slider label="Custom Range" [min]="0" [max]="10" [step]="1" [(value)]="rangeVolume"></nx-slider>
+                <nx-slider label="Custom Range" [min]="0" [max]="10" [step]="1" [(ngModel)]="rangeVolume"></nx-slider>
             </app-demo-section>
 
         </div>

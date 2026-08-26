@@ -18,6 +18,24 @@
                 <nx-toggle [(pressed)]="italic">Italic</nx-toggle>
             </app-demo-section>
 
+            <app-demo-section
+                header="Reactive Form"
+                description="The {{ commonService.appName }} Toggle implements ControlValueAccessor, so it works with formControlName inside a reactive form."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs">
+                <div [formGroup]="boldForm">
+                    <nx-toggle formControlName="bold">Bold</nx-toggle>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="It also works with [(ngModel)] for template-driven forms."
+                [code]="templateCode"
+                [tsCode]="templateTs">
+                <nx-toggle [(ngModel)]="bold">Bold</nx-toggle>
+            </app-demo-section>
+
         </div>
     </div>
 </div>

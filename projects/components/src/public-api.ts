@@ -15,6 +15,7 @@ export * from './lib/data-display/ui-tag';
 export * from './lib/data-display/ui-statistic';
 export * from './lib/data-display/ui-key-value-list';
 export * from './lib/data-display/ui-icon';
+export * from './lib/data-display/ui-emoji';
 export * from './lib/data-display/ui-table';
 export * from './lib/data-display/ui-list';
 export * from './lib/data-display/ui-timeline';

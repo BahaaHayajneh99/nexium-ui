@@ -10,16 +10,32 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic Select"
-                description="The {{ commonService.appName }} Select renders a native dropdown from an options array."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="The {{ commonService.appName }} Select works with ReactiveFormsModule via formControlName."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
+                [hasSampleClass]="false">
+                <div [formGroup]="countryForm">
+                    <nx-select
+                        label="Country"
+                        placeholder="Select a country"
+                        [options]="options"
+                        formControlName="country">
+                    </nx-select>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="The {{ commonService.appName }} Select also works with FormsModule via [(ngModel)]."
+                [code]="templateCode"
+                [tsCode]="templateTs"
                 [hasSampleClass]="false">
                 <nx-select
                     label="Country"
                     placeholder="Select a country"
                     [options]="options"
-                    [(value)]="country">
+                    [(ngModel)]="country">
                 </nx-select>
             </app-demo-section>
 

@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NxAutocompleteOption, NxAutocomplete } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-autocomplete-demo',
-  imports: [NxAutocomplete, DemoSection],
+  imports: [NxAutocomplete, FormsModule, ReactiveFormsModule, DemoSection],
   templateUrl: './ui-autocomplete-demo.html',
   styleUrl: './ui-autocomplete-demo.scss',
 })
@@ -13,18 +14,36 @@ export class UiAutocompleteDemo {
   importCode = `import { NxAutocompleteOption, NxAutocomplete } from 'nexium-ui';`;
 
   public commonService = inject(CommonService);
+
+  private fb = new FormBuilder();
+
   city = '';
+
+  cityForm = this.fb.group({ city: [''] });
 
   options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 'New York'];
 
-  basicCode = `<nx-autocomplete
+  reactiveCode = `<div [formGroup]="cityForm">
+    <nx-autocomplete
+        label="City"
+        placeholder="Search cities..."
+        [options]="options"
+        formControlName="city">
+    </nx-autocomplete>
+</div>`;
+
+  reactiveTs = `cityForm = this.fb.group({ city: [''] });
+
+options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 'New York'];`;
+
+  templateCode = `<nx-autocomplete
     label="City"
     placeholder="Search cities..."
     [options]="options"
-    [(value)]="city">
+    [(ngModel)]="city">
 </nx-autocomplete>`;
 
-  basicTs = `city = '';
+  templateTs = `city = '';
 
 options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 'New York'];`;
 
@@ -44,7 +63,7 @@ options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 
     label="City"
     placeholder="Search cities..."
     [options]="groupedOptions"
-    [(value)]="city">
+    [(ngModel)]="groupCountry">
 </nx-autocomplete>`;
 
   groupTs = `groupedOptions: NxAutocompleteOption[] = [
@@ -66,7 +85,7 @@ options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 
     placeholder="Search items..."
     [options]="virtualScrollOptions"
     [virtualScroll]="true"
-    [(value)]="city">
+    [(ngModel)]="virtualScrollCity">
 </nx-autocomplete>`;
 
   virtualScrollTs = `virtualScrollOptions = Array.from({ length: 5000 }, (_, i) => \`Item \${i + 1}\`);`;
@@ -78,7 +97,7 @@ options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 
     placeholder="Search cities..."
     [options]="options"
     [multiple]="true"
-    [(values)]="cities">
+    [(ngModel)]="multipleCities">
 </nx-autocomplete>`;
 
   multipleTs = `cities: string[] = [];`;
@@ -89,7 +108,7 @@ options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 
     label="City"
     [options]="options"
     [floatLabel]="true"
-    [(value)]="city">
+    [(ngModel)]="floatLabelCity">
 </nx-autocomplete>`;
 
   filledCity = '';
@@ -99,7 +118,7 @@ options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 
     placeholder="Search cities..."
     variant="filled"
     [options]="options"
-    [(value)]="city">
+    [(ngModel)]="filledCity">
 </nx-autocomplete>`;
 
   disabledCity = 'Cairo';
@@ -108,7 +127,7 @@ options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 
     label="City"
     [options]="options"
     [disabled]="true"
-    [(value)]="city">
+    [(ngModel)]="disabledCity">
 </nx-autocomplete>`;
 
   showClearCity = '';
@@ -118,7 +137,7 @@ options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 
     placeholder="Search cities..."
     [options]="options"
     [showClear]="true"
-    [(value)]="city">
+    [(ngModel)]="showClearCity">
 </nx-autocomplete>`;
 
   invalidCity = '';
@@ -128,6 +147,6 @@ options = ['Cairo', 'Alexandria', 'Giza', 'Luxor', 'Aswan', 'Berlin', 'London', 
     placeholder="Search cities..."
     [options]="options"
     [invalid]="true"
-    [(value)]="city">
+    [(ngModel)]="invalidCity">
 </nx-autocomplete>`;
 }

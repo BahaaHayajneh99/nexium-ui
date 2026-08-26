@@ -1,6 +1,6 @@
 {
   "name": "nexium-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "build:styles": "sass src/styles.scss dist/nexium-ui/styles.css --style=compressed --no-source-map",
     "build": "ng build nexium-ui && npm run build:styles"

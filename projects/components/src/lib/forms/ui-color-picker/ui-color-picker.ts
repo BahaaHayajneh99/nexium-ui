@@ -1,4 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const HEX_PATTERN = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i;
 
@@ -16,8 +17,15 @@ const DEFAULT_PRESETS = [
   host: {
     '(document:click)': 'onDocumentClick($event)',
   },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxColorPicker),
+      multi: true,
+    },
+  ],
 })
-export class NxColorPicker {
+export class NxColorPicker implements ControlValueAccessor {
   @Input() label = '';
   @Input() value = '#3498db';
   @Input() presets: string[] = DEFAULT_PRESETS;
@@ -28,6 +36,9 @@ export class NxColorPicker {
 
   open = false;
   hexDraft = this.value;
+
+  private onChangeFn: (value: string) => void = () => {};
+  private onTouchedFn: () => void = () => {};
 
   constructor(private elementRef: ElementRef<HTMLElement>) {}
 
@@ -78,9 +89,31 @@ export class NxColorPicker {
     }
   }
 
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: string): void {
+    this.value = value ?? '#3498db';
+    this.hexDraft = this.value;
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
   private emitValue(hex: string): void {
     this.value = hex;
     this.hexDraft = hex;
     this.valueChange.emit(hex);
+    this.onChangeFn(hex);
   }
 }

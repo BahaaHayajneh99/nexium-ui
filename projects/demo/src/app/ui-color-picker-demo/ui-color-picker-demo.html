@@ -10,12 +10,23 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic Color Picker"
-                description="A swatch + hex field trigger opens a panel with quick presets, a native color input for precise picking, and a hex text field."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="Bind the color picker to a FormGroup with formControlName - it fully implements Angular's ControlValueAccessor."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
                 [hasSampleClass]="false">
-                <nx-color-picker label="Brand color" [(value)]="brandColor"></nx-color-picker>
+                <div [formGroup]="brandColorForm">
+                    <nx-color-picker label="Brand color" formControlName="brandColor"></nx-color-picker>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="Bind the color picker with a plain [(ngModel)] for simple template-driven forms."
+                [code]="templateCode"
+                [tsCode]="templateTs"
+                [hasSampleClass]="false">
+                <nx-color-picker label="Brand color" [(ngModel)]="brandColor"></nx-color-picker>
             </app-demo-section>
 
             <app-demo-section
@@ -24,7 +35,7 @@
                 [code]="customPresetsCode"
                 [tsCode]="customPresetsTs"
                 [hasSampleClass]="false">
-                <nx-color-picker label="Chart series color" [presets]="customPresets" [(value)]="customPresetColor"></nx-color-picker>
+                <nx-color-picker label="Chart series color" [presets]="customPresets" [(ngModel)]="customPresetColor"></nx-color-picker>
             </app-demo-section>
 
             <app-demo-section
@@ -32,7 +43,7 @@
                 description="Set invalid to true to highlight the field with an error state."
                 [code]="invalidCode"
                 [hasSampleClass]="false">
-                <nx-color-picker label="Required color" [invalid]="true" [(value)]="invalidColor"></nx-color-picker>
+                <nx-color-picker label="Required color" [invalid]="true" [(ngModel)]="invalidColor"></nx-color-picker>
             </app-demo-section>
 
             <app-demo-section

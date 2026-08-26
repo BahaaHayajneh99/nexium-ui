@@ -6,9 +6,11 @@ import {
   Output,
   ViewChild,
   booleanAttribute,
+  forwardRef,
   numberAttribute,
 } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export interface NxAutocompleteOption {
   label: string;
@@ -30,8 +32,15 @@ interface NxAutocompleteRow {
   imports: [NgClass],
   templateUrl: './ui-autocomplete.html',
   styleUrl: './ui-autocomplete.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxAutocomplete),
+      multi: true,
+    },
+  ],
 })
-export class NxAutocomplete {
+export class NxAutocomplete implements ControlValueAccessor {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() options: NxAutocompleteOptionInput[] = [];
@@ -56,6 +65,12 @@ export class NxAutocomplete {
   focused = false;
   query = '';
   scrollTop = 0;
+
+  // In `multiple` mode the CVA value is string[] (matching `values`); in
+  // single mode it's a plain string (matching `value`) - writeValue picks
+  // the right shape based on `multiple` at the time it's called.
+  private onChangeFn: (value: string | string[]) => void = () => {};
+  private onTouchedFn: () => void = () => {};
 
   private get normalizedOptions(): NxAutocompleteOption[] {
     return this.options.map((option) =>
@@ -129,6 +144,7 @@ export class NxAutocomplete {
     } else {
       this.value = inputValue;
       this.valueChange.emit(this.value);
+      this.onChangeFn(this.value);
     }
 
     this.showList = true;
@@ -141,6 +157,7 @@ export class NxAutocomplete {
 
   onBlur(): void {
     this.focused = false;
+    this.onTouchedFn();
     setTimeout(() => (this.showList = false), 150);
   }
 
@@ -157,11 +174,13 @@ export class NxAutocomplete {
       if (!this.values.includes(option.value)) {
         this.values = [...this.values, option.value];
         this.valuesChange.emit(this.values);
+        this.onChangeFn(this.values);
       }
       this.query = '';
     } else {
       this.value = option.label;
       this.valueChange.emit(this.value);
+      this.onChangeFn(this.value);
       this.showList = false;
     }
   }
@@ -170,6 +189,7 @@ export class NxAutocomplete {
     event.stopPropagation();
     this.values = this.values.filter((v) => v !== value);
     this.valuesChange.emit(this.values);
+    this.onChangeFn(this.values);
   }
 
   clear(event: Event): void {
@@ -178,12 +198,33 @@ export class NxAutocomplete {
     if (this.multiple) {
       this.values = [];
       this.valuesChange.emit(this.values);
+      this.onChangeFn(this.values);
     } else {
       this.value = '';
       this.valueChange.emit(this.value);
+      this.onChangeFn(this.value);
     }
 
     this.query = '';
   }
-}
 
+  writeValue(value: string | string[]): void {
+    if (this.multiple) {
+      this.values = Array.isArray(value) ? value : [];
+    } else {
+      this.value = typeof value === 'string' ? value : '';
+    }
+  }
+
+  registerOnChange(fn: (value: string | string[]) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+}

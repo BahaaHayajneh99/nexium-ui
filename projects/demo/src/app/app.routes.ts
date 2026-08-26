@@ -78,6 +78,7 @@ import { AboutWhoWeAreDemo } from './about-who-we-are-demo/about-who-we-are-demo
 import { AboutChangelogDemo } from './about-changelog-demo/about-changelog-demo';
 import { AboutLicenseDemo } from './about-license-demo/about-license-demo';
 import { IconsDemo } from './icons-demo/icons-demo';
+import { EmojiDemo } from './emoji-demo/emoji-demo';
 import { NxTranslateDemo } from './nx-translate-demo/nx-translate-demo';
 import { NxSidebarDemo } from './nx-sidebar-demo/nx-sidebar-demo';
 import { GuideColorsDemo } from './guide-colors-demo/guide-colors-demo';
@@ -85,6 +86,7 @@ import { GuideTypographyDemo } from './guide-typography-demo/guide-typography-de
 import { GuideSpacingDemo } from './guide-spacing-demo/guide-spacing-demo';
 import { GuideResponsiveDesignDemo } from './guide-responsive-design-demo/guide-responsive-design-demo';
 import { GuideRtlSupportDemo } from './guide-rtl-support-demo/guide-rtl-support-demo';
+import { GuideFormsDemo } from './guide-forms-demo/guide-forms-demo';
 import { AboutRoadmapDemo } from './about-roadmap-demo/about-roadmap-demo';
 import { AboutContributingDemo } from './about-contributing-demo/about-contributing-demo';
 import { UtilitiesColorsDemo } from './utilities-colors-demo/utilities-colors-demo';
@@ -479,6 +481,10 @@ export const routes: Routes = [
         component: GuideRtlSupportDemo
     },
     {
+        path: 'guide/forms',
+        component: GuideFormsDemo
+    },
+    {
         path: 'about/who-we-are',
         component: AboutWhoWeAreDemo
     },
@@ -501,6 +507,10 @@ export const routes: Routes = [
     {
         path: 'icons',
         component: IconsDemo
+    },
+    {
+        path: 'emoji',
+        component: EmojiDemo
     },
     {
         path: 'utilities/colors',

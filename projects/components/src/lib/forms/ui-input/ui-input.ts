@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'nx-input',
@@ -17,7 +18,8 @@ import { NgClass } from '@angular/common';
         [placeholder]="placeholder"
         [disabled]="disabled"
         [value]="value"
-        (input)="onInput($event)" />
+        (input)="onInput($event)"
+        (blur)="onBlur()" />
       @if (error) {
         <span class="nx-input-error">{{ error }}</span>
       }
@@ -41,8 +43,15 @@ import { NgClass } from '@angular/common';
     .nx-input:disabled { background-color: var(--shell-surface-hover); color: var(--shell-text-muted); cursor: not-allowed; }
     .nx-input-error { font-size: 12px; color: #e74c3c; }
   `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxInput),
+      multi: true,
+    },
+  ],
 })
-export class NxInput {
+export class NxInput implements ControlValueAccessor {
   @Input() label = '';
   @Input() type: 'text' | 'email' | 'password' | 'number' = 'text';
   @Input() placeholder = '';
@@ -52,8 +61,32 @@ export class NxInput {
 
   @Output() valueChange = new EventEmitter<string>();
 
+  private onChangeFn: (value: string) => void = () => {};
+  private onTouchedFn: () => void = () => {};
+
   onInput(event: Event): void {
     this.value = (event.target as HTMLInputElement).value;
     this.valueChange.emit(this.value);
+    this.onChangeFn(this.value);
+  }
+
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: string): void {
+    this.value = value ?? '';
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }

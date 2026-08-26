@@ -10,12 +10,23 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic Checkbox"
-                description="The {{ commonService.appName }} Checkbox supports two-way binding of the checked state."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="The {{ commonService.appName }} Checkbox implements ControlValueAccessor, so it can be bound with formControlName inside a FormGroup."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
                 [hasSampleClass]="false">
-                <nx-checkbox label="I agree to the terms and conditions" [(checked)]="agreed"></nx-checkbox>
+                <div [formGroup]="agreedForm">
+                    <nx-checkbox label="I agree to the terms and conditions" formControlName="agreed"></nx-checkbox>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="The same checkbox also works with plain [(ngModel)] binding, using Angular's standard forms integration."
+                [code]="templateCode"
+                [tsCode]="templateTs"
+                [hasSampleClass]="false">
+                <nx-checkbox label="I agree to the terms and conditions" [(ngModel)]="agreed"></nx-checkbox>
             </app-demo-section>
 
             <app-demo-section
@@ -44,7 +55,7 @@
                 description="Specify the variant property as filled to display the checkbox with a higher visual emphasis than the default outlined style."
                 [code]="filledCode"
                 [hasSampleClass]="false">
-                <nx-checkbox label="Filled checkbox" variant="filled" [(checked)]="agreed"></nx-checkbox>
+                <nx-checkbox label="Filled checkbox" variant="filled" [(ngModel)]="agreed"></nx-checkbox>
             </app-demo-section>
 
             <app-demo-section

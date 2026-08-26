@@ -1,45 +1,103 @@
-# Core
+# core
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.0.
+Shared, framework-level utilities for the NexiumUI ecosystem, published separately from
+`nexium-ui` so apps that only need them (without the full component library) aren't forced to
+pull it in. Currently ships one feature: a lightweight translation (i18n) service.
 
-## Code scaffolding
+## Installation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the library, run:
+While this workspace is in development, build the library locally and consume it through the
+`core` TypeScript path mapping declared in the root `tsconfig.json`:
 
 ```bash
 ng build core
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+Once published to npm, install it like any other package:
 
-### Publishing the Library
+```bash
+npm install core
+```
 
-Once the project is built, you can publish your library by following these steps:
+## Translation (i18n)
 
-1. Navigate to the `dist` directory:
+A minimal, dependency-free translation layer - a config object, a service, and a pipe. No
+external i18n library required.
 
-   ```bash
-   cd dist/core
-   ```
+### Configure
 
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
+Register your dictionaries once, at bootstrap, with `provideNxTranslate`:
+
+```ts
+import { ApplicationConfig } from '@angular/core';
+import { provideNxTranslate } from 'core';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideNxTranslate({
+      defaultLang: 'en',
+      fallbackLang: 'en',
+      translations: {
+        en: {
+          nav: { home: 'Home', settings: 'Settings' },
+          greeting: 'Hello, {{name}}!',
+        },
+        ar: {
+          nav: { home: 'الرئيسية', settings: 'الإعدادات' },
+          greeting: 'أهلاً، {{name}}!',
+        },
+      },
+    }),
+    // ...your other providers
+  ],
+};
+```
+
+| `NxTranslateConfig` field | Type | Description |
+| --- | --- | --- |
+| `defaultLang` | `string` | Language activated immediately after the app bootstraps. |
+| `fallbackLang` | `string` (optional) | Language used when a key is missing from the active language. |
+| `translations` | `Record<string, NxTranslations>` | Nested dictionaries keyed by language code - dot-notation keys resolve through the nesting (e.g. `'nav.home'`). |
+
+### Use in templates - `nxTranslate` pipe
+
+```html
+<h1>{{ 'nav.home' | nxTranslate }}</h1>
+<p>{{ 'greeting' | nxTranslate:{ name: user.firstName } }}</p>
+```
+
+The pipe is impure, so it re-renders automatically whenever the active language changes - no
+manual refresh needed.
+
+### Use in code - `NxTranslateService`
+
+```ts
+import { Component, inject } from '@angular/core';
+import { NxTranslateService } from 'core';
+
+@Component({ /* ... */ })
+export class LanguageSwitcher {
+  private readonly translate = inject(NxTranslateService);
+
+  switchToArabic(): void {
+    this.translate.use('ar');
+  }
+
+  get homeLabel(): string {
+    return this.translate.instant('nav.home');
+  }
+}
+```
+
+| Member | Type | Description |
+| --- | --- | --- |
+| `currentLang` | `string` | Currently active language code. |
+| `availableLangs` | `string[]` | Language codes that have a registered dictionary. |
+| `langChanges$` | `Observable<string>` | Emits the new language code every time `use()` switches it. |
+| `use(lang)` | `(lang: string) => void` | Switches the active language. No-op if `lang` has no registered dictionary. |
+| `setTranslations(lang, dict)` | `(lang: string, dict: NxTranslations) => void` | Registers or replaces a language's dictionary at runtime - handy for lazy-loaded translation files. |
+| `instant(key, params?)` | `(key: string, params?: Record<string, string \| number>) => string` | Synchronously resolves a dot-notation key, falling back to `fallbackLang` and then to the key itself if nothing matches. `params` interpolates `{{ placeholders }}` in the resolved string. |
+| `get(key, params?)` | `(key: string, params?: Record<string, string \| number>) => Observable<string>` | Observable form of `instant` - re-emits whenever the active language changes. |
 
 ## Running unit tests
 
@@ -48,16 +106,6 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ```bash
 ng test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
 ## Additional Resources
 

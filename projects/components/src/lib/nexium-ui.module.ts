@@ -13,6 +13,7 @@ import {
   NxCardFooter,
 } from './data-display/ui-card';
 import { NxChip } from './data-display/ui-chip';
+import { NxEmoji } from './data-display/ui-emoji';
 import { NxIcon } from './data-display/ui-icon';
 import { NxKeyValueList } from './data-display/ui-key-value-list';
 import { NxList } from './data-display/ui-list';
@@ -126,6 +127,7 @@ const NEXIUM_UI_DECLARATIONS = [
   NxCardActions,
   NxCardFooter,
   NxChip,
+  NxEmoji,
   NxIcon,
   NxKeyValueList,
   NxList,

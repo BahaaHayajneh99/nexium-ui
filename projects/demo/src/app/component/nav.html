@@ -167,6 +167,10 @@
                         RTL Support
                     </a>
 
+                    <a class="nav-link" routerLink="/guide/forms" routerLinkActive="active">
+                        Forms
+                    </a>
+
                 </div>
 
             </div>
@@ -942,6 +946,17 @@
                 <span class="nav-item-content">
                     <nx-icon class="nav-icon" icon="nx-star" variant="svg" [size]="18"></nx-icon>
                     Icons
+                </span>
+            </a>
+
+        </div>
+
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+            <a class="nav-link" routerLink="/emoji" routerLinkActive="active">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-heart" variant="svg" [size]="18"></nx-icon>
+                    Emoji
                 </span>
             </a>
 

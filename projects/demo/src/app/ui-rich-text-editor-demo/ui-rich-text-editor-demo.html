@@ -20,12 +20,23 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic"
-                description="value is the editor's HTML content."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="Bind the editor to a FormGroup control with formControlName - the component implements ControlValueAccessor."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
                 [hasSampleClass]="false">
-                <nx-rich-text-editor [(value)]="content"></nx-rich-text-editor>
+                <div [formGroup]="contentForm">
+                    <nx-rich-text-editor formControlName="content"></nx-rich-text-editor>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="Bind the editor's HTML content with [(ngModel)] for template-driven forms."
+                [code]="templateCode"
+                [tsCode]="templateTs"
+                [hasSampleClass]="false">
+                <nx-rich-text-editor [(ngModel)]="content"></nx-rich-text-editor>
             </app-demo-section>
 
             <app-demo-section

@@ -7,8 +7,10 @@ import {
   QueryList,
   ViewChildren,
   booleanAttribute,
+  forwardRef,
   numberAttribute,
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export type NxOtpInputType = 'number' | 'text';
 
@@ -18,8 +20,15 @@ export type NxOtpInputType = 'number' | 'text';
   imports: [],
   templateUrl: './ui-otp-input.html',
   styleUrl: './ui-otp-input.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxOtpInput),
+      multi: true,
+    },
+  ],
 })
-export class NxOtpInput {
+export class NxOtpInput implements ControlValueAccessor {
   @Input({ transform: numberAttribute }) length = 6;
   @Input() value = '';
   @Input() type: NxOtpInputType = 'number';
@@ -30,6 +39,9 @@ export class NxOtpInput {
   @Output() completed = new EventEmitter<string>();
 
   @ViewChildren('cell') private cells!: QueryList<ElementRef<HTMLInputElement>>;
+
+  private onChangeFn: (value: string) => void = () => {};
+  private onTouchedFn: () => void = () => {};
 
   get indexes(): number[] {
     return Array.from({ length: this.length }, (_, i) => i);
@@ -75,9 +87,30 @@ export class NxOtpInput {
     this.focusCell(Math.min(this.value.length, this.length - 1));
   }
 
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: string): void {
+    this.value = value ?? '';
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
   private setValue(value: string): void {
     this.value = value;
     this.valueChange.emit(value);
+    this.onChangeFn(value);
     if (value.length === this.length) {
       this.completed.emit(value);
     }

@@ -7,7 +7,8 @@
         [disabled]="disabled"
         [value]="value"
         (input)="onInput($event)"
-        (keydown)="onKeydown($event)">
+        (keydown)="onKeydown($event)"
+        (blur)="onBlur()">
     </textarea>
 
     @if (open) {

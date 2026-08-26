@@ -35,9 +35,10 @@
                 description="Set closable to true and listen for closed to remove a tag from its source list."
                 [code]="closableCode"
                 [tsCode]="closableTs"
-                [hasSampleClass]="false">
+                [hasSampleClass]="false"
+                specialClass="content-flex">
                 @for (skill of skills; let i = $index; track skill.label) {
-                    <nx-tag [ngClass]="{'mx-2': i > 0}" [color]="skill.color" [closable]="true" (closed)="removeSkill(skill)">
+                    <nx-tag [color]="skill.color" [closable]="true" (closed)="removeSkill(skill)">
                         {{ skill.label }}
                     </nx-tag>
                 }
@@ -48,7 +49,8 @@
                 description="Set editable to true to render a text input instead of a label - type a name and press Enter to add it. The field clears itself, ready for the next tag."
                 [code]="editableCode"
                 [tsCode]="editableTs"
-                [hasSampleClass]="false">
+                [hasSampleClass]="false"
+                specialClass="content-flex">
                 @for (tag of editableTags; let i = $index; track tag) {
                     <nx-tag [ngClass]="{'mx-2': i > 0}" color="var(--shell-primary)" [closable]="true" (closed)="removeTag(tag)">
                         {{ tag }}

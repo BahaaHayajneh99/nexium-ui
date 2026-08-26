@@ -1,4 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -71,8 +72,15 @@ function compareYmd(a: YMD, b: YMD): number {
   host: {
     '(document:click)': 'onDocumentClick($event)',
   },
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxDatepicker),
+      multi: true,
+    },
+  ],
 })
-export class NxDatepicker {
+export class NxDatepicker implements ControlValueAccessor {
   @Input() label = '';
   @Input() placeholder = 'Select date';
   @Input() value = '';
@@ -102,6 +110,12 @@ export class NxDatepicker {
   private viewYear: number;
   private viewMonth: number;
   timeValue = '00:00';
+
+  // CVA covers the single `value` date only - range mode's endValue stays a
+  // plain [(endValue)] binding, since a FormControl's single value can't
+  // naturally represent a start/end pair without a custom value shape.
+  private onChangeFn: (value: string) => void = () => {};
+  private onTouchedFn: () => void = () => {};
 
   constructor(private elementRef: ElementRef<HTMLElement>) {
     const seed = parseIso(this.value) ?? todayYmd();
@@ -147,15 +161,21 @@ export class NxDatepicker {
       this.viewYear = seed.year;
       this.viewMonth = seed.month;
       this.selectingEnd = false;
+    } else {
+      this.onTouchedFn();
     }
   }
 
   close(): void {
     this.open = false;
+    this.onTouchedFn();
   }
 
   onDocumentClick(event: MouseEvent): void {
     if (!this.elementRef.nativeElement.contains(event.target as Node)) {
+      if (this.open) {
+        this.onTouchedFn();
+      }
       this.open = false;
     }
   }
@@ -232,9 +252,29 @@ export class NxDatepicker {
     }
   }
 
+  writeValue(value: string): void {
+    this.value = value ?? '';
+    const seed = parseIso(this.value) ?? todayYmd();
+    this.viewYear = seed.year;
+    this.viewMonth = seed.month;
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
   private emitValue(iso: string): void {
     this.value = iso;
     this.valueChange.emit(iso);
+    this.onChangeFn(iso);
   }
 
   private emitEndValue(iso: string): void {

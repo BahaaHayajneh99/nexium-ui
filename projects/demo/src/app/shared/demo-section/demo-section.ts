@@ -20,6 +20,7 @@ export class DemoSection {
   @Input({ required: true }) code = '';
   @Input() tsCode = '';
   @Input() hasSampleClass = true;
+  @Input() specialClass = '';
   /** Language of the primary `code` block when there's no separate `tsCode` tab - use 'ts' for plain TypeScript snippets so they get TS coloring instead of HTML coloring. */
   @Input() codeLang: 'html' | 'ts' = 'html';
 

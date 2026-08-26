@@ -10,12 +10,23 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic DatePicker"
-                description="A hand-built calendar dropdown - click the field to open a month grid with Today/Clear shortcuts, no native browser date input involved."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="Single-date mode implements ControlValueAccessor, so it works with formControlName inside a FormGroup."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
                 [hasSampleClass]="false">
-                <nx-datepicker label="Date of birth" [(value)]="birthDate"></nx-datepicker>
+                <div [formGroup]="birthDateForm">
+                    <nx-datepicker label="Date of birth" formControlName="birthDate"></nx-datepicker>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="Bind directly with ngModel for template-driven forms - no wrapping form element required."
+                [code]="templateCode"
+                [tsCode]="templateTs"
+                [hasSampleClass]="false">
+                <nx-datepicker label="Date of birth" [(ngModel)]="birthDate"></nx-datepicker>
             </app-demo-section>
 
             <app-demo-section
@@ -23,7 +34,7 @@
                 description="showIcon defaults to true; set it to false to hide the calendar icon in the field."
                 [code]="iconCode"
                 [hasSampleClass]="false">
-                <nx-datepicker label="Appointment date" [showIcon]="false" [(value)]="iconDate"></nx-datepicker>
+                <nx-datepicker label="Appointment date" [showIcon]="false" [(ngModel)]="iconDate"></nx-datepicker>
             </app-demo-section>
 
             <app-demo-section
@@ -35,7 +46,7 @@
                     label="Booking date"
                     min="2026-01-01"
                     max="2026-12-31"
-                    [(value)]="minMaxDate">
+                    [(ngModel)]="minMaxDate">
                 </nx-datepicker>
             </app-demo-section>
 
@@ -57,7 +68,7 @@
                 description="Set showTime to true to include a time selector alongside the date."
                 [code]="timeCode"
                 [hasSampleClass]="false">
-                <nx-datepicker label="Meeting time" [showTime]="true" [(value)]="meetingTime"></nx-datepicker>
+                <nx-datepicker label="Meeting time" [showTime]="true" [(ngModel)]="meetingTime"></nx-datepicker>
             </app-demo-section>
 
             <app-demo-section

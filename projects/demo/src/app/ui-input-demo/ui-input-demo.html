@@ -10,12 +10,23 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic Input"
-                description="The {{ commonService.appName }} Input supports two-way binding through the value input/output pair."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="The {{ commonService.appName }} Input implements ControlValueAccessor, so it plugs straight into a FormGroup with formControlName."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
                 [hasSampleClass]="false">
-                <nx-input label="Full Name" placeholder="Enter your name" [(value)]="name"></nx-input>
+                <div [formGroup]="nameForm">
+                    <nx-input label="Full Name" placeholder="Enter your name" formControlName="name"></nx-input>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="For simple cases, bind the {{ commonService.appName }} Input directly with [(ngModel)]."
+                [code]="templateCode"
+                [tsCode]="templateTs"
+                [hasSampleClass]="false">
+                <nx-input label="Full Name" placeholder="Enter your name" [(ngModel)]="name"></nx-input>
             </app-demo-section>
 
             <app-demo-section
@@ -24,7 +35,7 @@
                 [code]="errorCode"
                 [tsCode]="errorTs"
                 [hasSampleClass]="false">
-                <nx-input label="Email" [(value)]="email" error="Please enter a valid email address"></nx-input>
+                <nx-input label="Email" [(ngModel)]="email" error="Please enter a valid email address"></nx-input>
             </app-demo-section>
 
             <app-demo-section

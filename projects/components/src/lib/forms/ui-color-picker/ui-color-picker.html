@@ -36,14 +36,15 @@
                     type="color"
                     class="nx-color-picker-native"
                     [value]="isValidHex ? value : '#3498db'"
-                    (input)="onNativeInput($event)" />
+                    (input)="onNativeInput($event)"
+                    (blur)="onBlur()" />
 
                 <input
                     type="text"
                     class="nx-color-picker-hex"
                     [value]="hexDraft"
                     (input)="onHexDraftChange($event)"
-                    (blur)="commitHexDraft()"
+                    (blur)="commitHexDraft(); onBlur()"
                     (keydown.enter)="commitHexDraft()"
                     spellcheck="false" />
             </div>

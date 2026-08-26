@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Usage"
+                description="Pass a kebab-case emoji name to render its Unicode character. An optional size input (in px) controls the glyph's font size."
+                [code]="usageCode"
+                [hasSampleClass]="false">
+                <nx-emoji emoji="fire"></nx-emoji>
+                <nx-emoji emoji="red-heart" [size]="32"></nx-emoji>
+            </app-demo-section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Browse Emoji</h4>
+                <p class="main-section-description">
+                    Every emoji {{ commonService.appName }} ships a name for. Click a card to copy
+                    its <code>nx-emoji</code> name.
+                </p>
+
+                <div class="emoji-search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M20 20L15.8 15.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <input
+                        type="text"
+                        placeholder="Search emoji ({{ emojis.length }} total)..."
+                        [value]="searchQuery"
+                        (input)="onSearch($event)"
+                    />
+                </div>
+            </section>
+
+            <div class="emoji-grid">
+                @for (item of filteredEmojis; track item.key) {
+                    <button type="button" class="emoji-card" (click)="copyEmoji(item)" [title]="'Copy &quot;' + item.key + '&quot;'">
+                        <nx-emoji class="emoji-card-glyph" [emoji]="item.key" [size]="28"></nx-emoji>
+                        <span class="emoji-card-name">{{ copiedKey === item.key ? 'Copied!' : item.key }}</span>
+                    </button>
+                } @empty {
+                    <p class="emoji-empty">No emoji match "{{ searchQuery }}".</p>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

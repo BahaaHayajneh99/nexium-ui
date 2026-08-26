@@ -10,12 +10,23 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic Textarea"
-                description="The {{ commonService.appName }} Textarea supports multi-line text entry with two-way binding."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="The {{ commonService.appName }} Textarea implements ControlValueAccessor, so it binds to a FormGroup with formControlName."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
                 [hasSampleClass]="false">
-                <nx-textarea label="Message" placeholder="Write your message" [(value)]="message"></nx-textarea>
+                <div [formGroup]="messageForm">
+                    <nx-textarea label="Message" placeholder="Write your message" formControlName="message"></nx-textarea>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="It also works with plain [(ngModel)] two-way binding for simple template-driven forms."
+                [code]="templateCode"
+                [tsCode]="templateTs"
+                [hasSampleClass]="false">
+                <nx-textarea label="Message" placeholder="Write your message" [(ngModel)]="message"></nx-textarea>
             </app-demo-section>
 
             <app-demo-section
@@ -24,7 +35,7 @@
                 [code]="rowsCode"
                 [tsCode]="rowsTs"
                 [hasSampleClass]="false">
-                <nx-textarea label="Description" [rows]="6" [(value)]="message"></nx-textarea>
+                <nx-textarea label="Description" [rows]="6" [(ngModel)]="message"></nx-textarea>
             </app-demo-section>
 
         </div>

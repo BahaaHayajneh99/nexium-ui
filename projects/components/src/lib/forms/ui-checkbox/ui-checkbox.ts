@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'nx-checkbox',
@@ -13,7 +14,8 @@ import { NgClass } from '@angular/common';
         [checked]="checked"
         [disabled]="disabled"
         [attr.aria-invalid]="invalid ? true : null"
-        (change)="onChange($event)" />
+        (change)="onChange($event)"
+        (blur)="onBlur()" />
       <span class="nx-checkbox-box"></span>
       @if (label) {
         <span class="nx-checkbox-label">{{ label }}</span>
@@ -73,8 +75,15 @@ import { NgClass } from '@angular/common';
     .nx-checkbox.invalid .nx-checkbox-box { border-color: #e74c3c; }
     .nx-checkbox.invalid .nx-checkbox-label { color: #e74c3c; }
   `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxCheckbox),
+      multi: true,
+    },
+  ],
 })
-export class NxCheckbox {
+export class NxCheckbox implements ControlValueAccessor {
   @Input({ transform: booleanAttribute }) checked = false;
   @Input({ transform: booleanAttribute }) disabled = false;
   @Input({ transform: booleanAttribute }) invalid = false;
@@ -83,10 +92,32 @@ export class NxCheckbox {
 
   @Output() checkedChange = new EventEmitter<boolean>();
 
+  private onChangeFn: (value: boolean) => void = () => {};
+  private onTouchedFn: () => void = () => {};
+
   onChange(event: Event): void {
     this.checked = (event.target as HTMLInputElement).checked;
     this.checkedChange.emit(this.checked);
+    this.onChangeFn(this.checked);
+  }
+
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: boolean): void {
+    this.checked = !!value;
+  }
+
+  registerOnChange(fn: (value: boolean) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }
-
-

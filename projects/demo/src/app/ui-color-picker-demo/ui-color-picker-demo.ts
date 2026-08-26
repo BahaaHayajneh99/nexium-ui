@@ -1,20 +1,31 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NxColorPicker } from 'components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-color-picker-demo',
-  imports: [NxColorPicker, DemoSection],
+  imports: [NxColorPicker, FormsModule, ReactiveFormsModule, DemoSection],
   templateUrl: './ui-color-picker-demo.html',
 })
 export class UiColorPickerDemo {
   importCode = `import { NxColorPicker } from 'nexium-ui';`;
 
+  private fb = new FormBuilder();
+
   brandColor = '#3498db';
 
-  basicCode = `<nx-color-picker label="Brand color" [(value)]="brandColor"></nx-color-picker>`;
+  brandColorForm = this.fb.group({ brandColor: ['#3498db'] });
 
-  basicTs = `brandColor = '#3498db';`;
+  reactiveCode = `<div [formGroup]="brandColorForm">
+    <nx-color-picker label="Brand color" formControlName="brandColor"></nx-color-picker>
+</div>`;
+
+  reactiveTs = `brandColorForm = this.fb.group({ brandColor: ['#3498db'] });`;
+
+  templateCode = `<nx-color-picker label="Brand color" [(ngModel)]="brandColor"></nx-color-picker>`;
+
+  templateTs = `brandColor = '#3498db';`;
 
   customPresetColor = '#4a3aa7';
 
@@ -23,7 +34,7 @@ export class UiColorPickerDemo {
   customPresetsCode = `<nx-color-picker
     label="Chart series color"
     [presets]="customPresets"
-    [(value)]="customPresetColor">
+    [(ngModel)]="customPresetColor">
 </nx-color-picker>`;
 
   customPresetsTs = `customPresetColor = '#4a3aa7';

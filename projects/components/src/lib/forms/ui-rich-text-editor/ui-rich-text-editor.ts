@@ -9,7 +9,9 @@ import {
   SimpleChanges,
   ViewChild,
   booleanAttribute,
+  forwardRef,
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 interface ToolbarButton {
   label: string;
@@ -46,8 +48,15 @@ const TOOLBAR: ToolbarButton[] = [
   imports: [],
   templateUrl: './ui-rich-text-editor.html',
   styleUrl: './ui-rich-text-editor.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxRichTextEditor),
+      multi: true,
+    },
+  ],
 })
-export class NxRichTextEditor implements AfterViewInit, OnChanges {
+export class NxRichTextEditor implements AfterViewInit, OnChanges, ControlValueAccessor {
   @Input() value = '';
   @Input() placeholder = 'Write something...';
   @Input({ transform: booleanAttribute }) disabled = false;
@@ -57,6 +66,9 @@ export class NxRichTextEditor implements AfterViewInit, OnChanges {
   @ViewChild('editorRef', { static: true }) private editorRef!: ElementRef<HTMLDivElement>;
 
   readonly toolbar = TOOLBAR;
+
+  private onChangeFn: (value: string) => void = () => {};
+  private onTouchedFn: () => void = () => {};
 
   ngAfterViewInit(): void {
     this.editorRef.nativeElement.innerHTML = this.value;
@@ -102,8 +114,32 @@ export class NxRichTextEditor implements AfterViewInit, OnChanges {
     this.syncValue();
   }
 
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: string): void {
+    this.value = value ?? '';
+    if (this.editorRef && this.value !== this.editorRef.nativeElement.innerHTML) {
+      this.editorRef.nativeElement.innerHTML = this.value;
+    }
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
   private syncValue(): void {
     this.value = this.editorRef.nativeElement.innerHTML;
     this.valueChange.emit(this.value);
+    this.onChangeFn(this.value);
   }
 }

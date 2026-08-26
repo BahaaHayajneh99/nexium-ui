@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'nx-switch',
@@ -10,7 +11,8 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
         type="checkbox"
         [checked]="checked"
         [disabled]="disabled"
-        (change)="onChange($event)" />
+        (change)="onChange($event)"
+        (blur)="onBlur()" />
       <span class="nx-switch-track">
         <span class="nx-switch-thumb"></span>
       </span>
@@ -44,16 +46,47 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
     .nx-switch input:checked + .nx-switch-track { background-color: var(--shell-primary); }
     .nx-switch input:checked + .nx-switch-track .nx-switch-thumb { transform: translateX(18px); }
   `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxSwitch),
+      multi: true,
+    },
+  ],
 })
-export class NxSwitch {
+export class NxSwitch implements ControlValueAccessor {
   @Input({ transform: booleanAttribute }) checked = false;
   @Input({ transform: booleanAttribute }) disabled = false;
   @Input() label = '';
 
   @Output() checkedChange = new EventEmitter<boolean>();
 
+  private onChangeFn: (value: boolean) => void = () => {};
+  private onTouchedFn: () => void = () => {};
+
   onChange(event: Event): void {
     this.checked = (event.target as HTMLInputElement).checked;
     this.checkedChange.emit(this.checked);
+    this.onChangeFn(this.checked);
+  }
+
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: boolean): void {
+    this.checked = !!value;
+  }
+
+  registerOnChange(fn: (value: boolean) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }

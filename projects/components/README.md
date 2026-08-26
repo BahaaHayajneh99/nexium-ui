@@ -12,17 +12,8 @@ Browse every component live, with usage examples and copy-paste code snippets, a
 
 ## Installation
 
-While this workspace is in development, build the library locally and consume it through the
-`components` TypeScript path mapping declared in the root `tsconfig.json`:
-
 ```bash
-ng build components
-```
-
-Once published to npm, install it like any other package:
-
-```bash
-npm install nexium-ui
+npm i nexium-ui
 ```
 
 ## Styles & Theming
@@ -106,6 +97,7 @@ your production bundle smaller.
 | --- | --- |
 | Card | `nx-card`, `nx-card-header`, `nx-card-title`, `nx-card-subtitle`, `nx-card-image`, `nx-card-content`, `nx-card-actions`, `nx-card-footer` |
 | Chip | `nx-chip` |
+| Emoji | `nx-emoji` |
 | Icon | `nx-icon` |
 | Key-Value List | `nx-key-value-list` |
 | List | `nx-list` |
@@ -238,6 +230,27 @@ For full input/output reference and live examples, see the hosted demo at
 [nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started), or run it locally with
 `ng serve demo` — either way it has a dedicated page per component.
 
+## Translation (i18n)
+
+Translation is **not** part of `nexium-ui` - it ships from the separate `core` package
+(`provideNxTranslate`, `NxTranslateService`, `NxTranslatePipe`), so it doesn't add weight to
+this library for apps that don't need it. Install it separately and see
+[`projects/core/README.md`](../core/README.md) for the full config and API reference. Quick
+taste:
+
+```ts
+import { provideNxTranslate } from 'core';
+
+provideNxTranslate({
+  defaultLang: 'en',
+  translations: { en: { greeting: 'Hello, {{name}}!' } },
+});
+```
+
+```html
+<p>{{ 'greeting' | nxTranslate:{ name: user.firstName } }}</p>
+```
+
 ## Detailed examples
 
 A few components with commonly-used options, as a starting reference:
@@ -325,6 +338,22 @@ Highlights counts, statuses, or short labels next to other content.
 ```html
 <nx-badge variant="danger" rounded>8</nx-badge>
 <nx-badge variant="success" dot></nx-badge>
+```
+
+### Emoji (`nx-emoji`)
+
+Renders a Unicode emoji character from a kebab-case name, so you don't have to paste raw emoji
+characters into your source files. Browse every available name on the hosted demo's
+[Emoji page](https://nexium-ui.vercel.app/emoji).
+
+| Input | Type | Default | Description |
+| --- | --- | --- | --- |
+| `emoji` | `string` (required) | - | Kebab-case emoji name, e.g. `fire`, `red-heart`, `grinning-face`. Unknown names render nothing. |
+| `size` | `number \| string` | `24` | Font size of the glyph; a number is treated as px. |
+
+```html
+<nx-emoji emoji="fire"></nx-emoji>
+<nx-emoji emoji="red-heart" [size]="32"></nx-emoji>
 ```
 
 ### Avatar (`nx-avatar`)

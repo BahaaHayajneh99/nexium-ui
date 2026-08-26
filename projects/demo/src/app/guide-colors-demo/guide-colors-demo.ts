@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
+import { highlightTs } from '../shared/demo-section/ts-highlight';
 
 @Component({
   selector: 'app-guide-colors-demo',
@@ -39,4 +40,8 @@ export class GuideColorsDemo {
 
 // CSS custom property (runtime, works in any stylesheet or inline style)
 .my-panel { border-color: var(--primary-color); }`;
+
+  get highlightedUsageCode(): string {
+    return highlightTs(this.usageCode);
+  }
 }

@@ -11,6 +11,7 @@
             [disabled]="disabled"
             (input)="onInput(index, $event)"
             (keydown)="onKeydown(index, $event)"
-            (paste)="onPaste($event)" />
+            (paste)="onPaste($event)"
+            (blur)="onBlur()" />
     }
 </div>

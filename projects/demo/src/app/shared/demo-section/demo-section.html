@@ -46,7 +46,13 @@
         }
     </div>
 
-    <div class="demo-preview" [ngClass]="{'main-section-code-sample': hasSampleClass,'mt-5': !hasSampleClass}">
+    <div
+        class="demo-preview"
+        [ngClass]="[
+            hasSampleClass ? 'main-section-code-sample' : 'mt-5',
+            specialClass
+        ]"
+    >
         <ng-content></ng-content>
     </div>
 

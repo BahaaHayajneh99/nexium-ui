@@ -10,12 +10,23 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Basic Rating"
-                description="Click a star to set the rating; clicking the currently-selected star clears it back to zero."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="Bind the rating to a reactive form control with formControlName."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
                 [hasSampleClass]="false">
-                <nx-rating [(value)]="rating"></nx-rating>
+                <div [formGroup]="ratingForm">
+                    <nx-rating formControlName="rating"></nx-rating>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="Bind the rating to a plain component property with [(ngModel)]."
+                [code]="templateCode"
+                [tsCode]="templateTs"
+                [hasSampleClass]="false">
+                <nx-rating [(ngModel)]="rating"></nx-rating>
             </app-demo-section>
 
             <app-demo-section
@@ -31,7 +42,7 @@
                 description="Set max for a scale other than 5 stars."
                 [code]="maxCode"
                 [hasSampleClass]="false">
-                <nx-rating [(value)]="rating" [max]="10"></nx-rating>
+                <nx-rating [(ngModel)]="rating" [max]="10"></nx-rating>
             </app-demo-section>
 
         </div>

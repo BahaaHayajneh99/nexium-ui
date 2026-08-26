@@ -10,13 +10,32 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Mention"
-                description="Type @ inside the textarea to open a filtered suggestion list - arrow keys to move, Enter or Tab to insert, Escape to dismiss."
-                [code]="basicCode"
-                [tsCode]="basicTs"
+                header="Reactive Form"
+                description="Bound through a FormGroup via formControlName - type @ inside the textarea to open a filtered suggestion list - arrow keys to move, Enter or Tab to insert, Escape to dismiss."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
+                [hasSampleClass]="false">
+                <div [formGroup]="commentForm">
+                    <nx-mention
+                        formControlName="comment"
+                        [suggestions]="teammates"
+                        placeholder="Leave a comment - type @ to mention someone"
+                        (mentioned)="onMentioned($event)">
+                    </nx-mention>
+                </div>
+                @if (lastMentioned) {
+                    <p class="template-form-note mt-2">Last mentioned: &#64;{{ lastMentioned }}</p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="Bound with plain [(ngModel)] - type @ inside the textarea to open a filtered suggestion list - arrow keys to move, Enter or Tab to insert, Escape to dismiss."
+                [code]="templateCode"
+                [tsCode]="templateTs"
                 [hasSampleClass]="false">
                 <nx-mention
-                    [(value)]="comment"
+                    [(ngModel)]="comment"
                     [suggestions]="teammates"
                     placeholder="Leave a comment - type @ to mention someone"
                     (mentioned)="onMentioned($event)">

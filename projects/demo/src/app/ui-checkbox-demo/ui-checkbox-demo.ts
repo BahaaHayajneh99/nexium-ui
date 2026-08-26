@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonService } from '../services/common.service';
 import { NxCheckbox } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
@@ -10,7 +11,7 @@ interface Category {
 
 @Component({
   selector: 'app-ui-checkbox-demo',
-  imports: [NxCheckbox, DemoSection],
+  imports: [NxCheckbox, DemoSection, FormsModule, ReactiveFormsModule],
   templateUrl: './ui-checkbox-demo.html',
   styleUrl: './ui-checkbox-demo.scss',
 })
@@ -20,10 +21,19 @@ export class UiCheckboxDemo {
   public commonService = inject(CommonService);
   agreed = false;
 
-  basicCode = `<nx-checkbox label="I agree to the terms and conditions" [(checked)]="agreed">
-</nx-checkbox>`;
+  private fb = new FormBuilder();
 
-  basicTs = `agreed = false;`;
+  agreedForm = this.fb.group({ agreed: [false] });
+
+  reactiveCode = `<div [formGroup]="agreedForm">
+    <nx-checkbox label="I agree to the terms and conditions" formControlName="agreed"></nx-checkbox>
+</div>`;
+
+  reactiveTs = `agreedForm = this.fb.group({ agreed: [false] });`;
+
+  templateCode = `<nx-checkbox label="I agree to the terms and conditions" [(ngModel)]="agreed"></nx-checkbox>`;
+
+  templateTs = `agreed = false;`;
 
   disabledCode = `<nx-checkbox label="Disabled option" [disabled]="true">
 </nx-checkbox>`;
@@ -63,7 +73,7 @@ toggleCategory(key: string): void {
         : [...this.selectedCategories, key];
 }`;
 
-  filledCode = `<nx-checkbox label="Filled checkbox" variant="filled" [(checked)]="agreed">
+  filledCode = `<nx-checkbox label="Filled checkbox" variant="filled" [(ngModel)]="agreed">
 </nx-checkbox>`;
 
   invalidCode = `<nx-checkbox label="This field is required" [invalid]="true">

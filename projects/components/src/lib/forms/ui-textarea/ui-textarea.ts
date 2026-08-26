@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'nx-textarea',
@@ -16,6 +17,7 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
         [disabled]="disabled"
         [value]="value"
         (input)="onInput($event)"
+        (blur)="onBlur()"
       ></textarea>
     </div>
   `,
@@ -37,8 +39,15 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
     .nx-textarea:focus { border-color: var(--shell-primary); }
     .nx-textarea:disabled { background-color: var(--shell-surface-hover); color: var(--shell-text-muted); cursor: not-allowed; }
   `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxTextarea),
+      multi: true,
+    },
+  ],
 })
-export class NxTextarea {
+export class NxTextarea implements ControlValueAccessor {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() value = '';
@@ -47,8 +56,32 @@ export class NxTextarea {
 
   @Output() valueChange = new EventEmitter<string>();
 
+  private onChangeFn: (value: string) => void = () => {};
+  private onTouchedFn: () => void = () => {};
+
   onInput(event: Event): void {
     this.value = (event.target as HTMLTextAreaElement).value;
     this.valueChange.emit(this.value);
+    this.onChangeFn(this.value);
+  }
+
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: string): void {
+    this.value = value ?? '';
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }

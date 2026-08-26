@@ -1,0 +1,56 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Forms</h4>
+                <p class="main-section-description">
+                    Every form component implements Angular's <code>ControlValueAccessor</code>, so on top
+                    of the existing <code>[(value)]</code>/<code>[(checked)]</code> two-way bindings, they
+                    also work with <code>[(ngModel)]</code> (template-driven forms) and
+                    <code>formControlName</code>/<code>[formControl]</code> (reactive forms) - no adapter,
+                    no extra module beyond Angular's own <code>FormsModule</code>/<code>ReactiveFormsModule</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Reactive form"
+                description="A FormGroup drives validation and disabled state directly - setDisabledState() and the built-in validators both just work."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
+                [hasSampleClass]="false">
+
+                <form [formGroup]="reactiveForm" (ngSubmit)="onReactiveSubmit()" class="template-form" style="max-width: 360px;">
+                    <nx-input label="Name" formControlName="name"></nx-input>
+                    <nx-select label="Plan" [options]="planOptions" formControlName="plan"></nx-select>
+                    <nx-checkbox label="I agree to the Terms" formControlName="agree"></nx-checkbox>
+                    <nx-button type="submit" [disabled]="reactiveForm.invalid">Submit</nx-button>
+                </form>
+
+                @if (reactiveSubmitted) {
+                    <p class="template-form-note mt-2">Submitted: {{ reactiveSubmitted | json }}</p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-driven form"
+                description="Plain [(ngModel)] bindings inside an ngForm - the same components, no reactive-forms module needed."
+                [code]="templateCode"
+                [tsCode]="templateTs"
+                [hasSampleClass]="false">
+
+                <form #f="ngForm" (ngSubmit)="onTemplateSubmit()" class="template-form" style="max-width: 360px;">
+                    <nx-input label="Name" [(ngModel)]="templateModel.name" name="name" required></nx-input>
+                    <nx-select label="Plan" [options]="planOptions" [(ngModel)]="templateModel.plan" name="plan"></nx-select>
+                    <nx-switch label="Email notifications" [(ngModel)]="templateModel.notifications" name="notifications"></nx-switch>
+                    <nx-button type="submit">Submit</nx-button>
+                </form>
+
+                @if (templateSubmitted) {
+                    <p class="template-form-note mt-2">Submitted: {{ templateSubmitted | json }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'nx-slider',
@@ -17,7 +18,8 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
         [step]="step"
         [disabled]="disabled"
         [value]="value"
-        (input)="onInput($event)" />
+        (input)="onInput($event)"
+        (blur)="onBlur()" />
     </div>
   `,
   styles: `
@@ -32,8 +34,15 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
     .nx-slider { width: 100%; accent-color: var(--shell-primary); cursor: pointer; }
     .nx-slider:disabled { cursor: not-allowed; opacity: .6; }
   `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxSlider),
+      multi: true,
+    },
+  ],
 })
-export class NxSlider {
+export class NxSlider implements ControlValueAccessor {
   @Input() label = '';
   @Input() min = 0;
   @Input() max = 100;
@@ -43,8 +52,32 @@ export class NxSlider {
 
   @Output() valueChange = new EventEmitter<number>();
 
+  private onChangeFn: (value: number) => void = () => {};
+  private onTouchedFn: () => void = () => {};
+
   onInput(event: Event): void {
     this.value = Number((event.target as HTMLInputElement).value);
     this.valueChange.emit(this.value);
+    this.onChangeFn(this.value);
+  }
+
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: number): void {
+    this.value = value ?? 0;
+  }
+
+  registerOnChange(fn: (value: number) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }

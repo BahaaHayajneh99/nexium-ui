@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export interface NxSelectOption {
   label: string;
@@ -14,7 +15,7 @@ export interface NxSelectOption {
       @if (label) {
         <label class="nx-select-label">{{ label }}</label>
       }
-      <select class="nx-select" [disabled]="disabled" [value]="value" (change)="onChange($event)">
+      <select class="nx-select" [disabled]="disabled" [value]="value" (change)="onChange($event)" (blur)="onBlur()">
         @if (placeholder) {
           <option value="" disabled selected>{{ placeholder }}</option>
         }
@@ -44,8 +45,15 @@ export interface NxSelectOption {
     }
     .nx-select option:disabled { color: var(--shell-text-muted); }
   `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NxSelect),
+      multi: true,
+    },
+  ],
 })
-export class NxSelect {
+export class NxSelect implements ControlValueAccessor {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() options: NxSelectOption[] = [];
@@ -54,8 +62,32 @@ export class NxSelect {
 
   @Output() valueChange = new EventEmitter<string>();
 
+  private onChangeFn: (value: string) => void = () => {};
+  private onTouchedFn: () => void = () => {};
+
   onChange(event: Event): void {
     this.value = (event.target as HTMLSelectElement).value;
     this.valueChange.emit(this.value);
+    this.onChangeFn(this.value);
+  }
+
+  onBlur(): void {
+    this.onTouchedFn();
+  }
+
+  writeValue(value: string): void {
+    this.value = value ?? '';
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }
