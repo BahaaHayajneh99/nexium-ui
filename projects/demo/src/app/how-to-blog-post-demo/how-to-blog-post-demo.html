@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Blog Post</h4>
+                <p class="main-section-description">
+                    An article layout combining <code>nx-avatar</code> for the author byline,
+                    <code>nx-tag</code> for topics and <code>nx-card</code> for the body.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Article layout"
+                description="Author byline, title, topic tags and a card-wrapped body."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <article>
+                    <header>
+                        <div class="post-byline">
+                            <nx-avatar [name]="author" size="medium"></nx-avatar>
+                            <div>
+                                <div class="template-profile-name">{{ author }}</div>
+                                <div class="template-stat-label">{{ publishedOn }} - {{ readTime }}</div>
+                            </div>
+                        </div>
+
+                        <h2 class="mt-2">Building a Design System with Reusable Components</h2>
+
+                        <div class="post-tags mt-2">
+                            @for (tag of tags; track tag) {
+                                <nx-tag variant="outline">{{ tag }}</nx-tag>
+                            }
+                        </div>
+                    </header>
+
+                    <nx-card variant="flat" class="mt-2">
+                        <nx-card-content>
+                            <p>
+                                A design system lives or dies by how consistently its components are used.
+                                Standalone Angular components, shared design tokens and a predictable API
+                                surface make it easy for a team to move fast without reinventing a button
+                                or a card on every page.
+                            </p>
+                        </nx-card-content>
+                    </nx-card>
+                </article>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

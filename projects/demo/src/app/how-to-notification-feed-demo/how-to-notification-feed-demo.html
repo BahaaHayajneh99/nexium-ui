@@ -1,0 +1,33 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Real-time Notification Feed</h4>
+                <p class="main-section-description">
+                    A live-updating notification bell built from <code>nx-notification-center</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Notification feed"
+                description="Click the button to simulate a new notification arriving; open the bell to mark all read or dismiss one at a time."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-form-row">
+                    <nx-button variant="primary" (click)="simulate()">Simulate New Notification</nx-button>
+
+                    <nx-notification-center
+                        [notifications]="notifications"
+                        (markAllRead)="onMarkAllRead()"
+                        (dismiss)="onDismiss($event)">
+                    </nx-notification-center>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

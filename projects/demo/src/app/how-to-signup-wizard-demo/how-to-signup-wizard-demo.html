@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Multi-Step Signup Wizard</h4>
+                <p class="main-section-description">
+                    A three-step signup form built from <code>nx-stepper</code> and <code>nx-input</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Signup steps"
+                description="The active step is bound with [(activeIndex)]; each step shows a different set of fields."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-form" style="max-width: 420px;">
+                    <nx-stepper [steps]="steps" [(activeIndex)]="activeIndex"></nx-stepper>
+
+                    @if (activeIndex === 0) {
+                        <nx-input label="Email" [(ngModel)]="email"></nx-input>
+                        <nx-input label="Password" type="password" [(ngModel)]="password"></nx-input>
+                    } @else if (activeIndex === 1) {
+                        <nx-input label="Full Name" [(ngModel)]="fullName"></nx-input>
+                        <nx-input label="Company" [(ngModel)]="company"></nx-input>
+                    } @else {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <p>Email: {{ email || '-' }}</p>
+                                <p>Name: {{ fullName || '-' }}</p>
+                                <p>Company: {{ company || '-' }}</p>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+
+                    <div class="template-form-row">
+                        <nx-button variant="secondary" [disabled]="activeIndex === 0" (click)="back()">Back</nx-button>
+                        <nx-button variant="primary" (click)="next()">
+                            {{ activeIndex === steps.length - 1 ? 'Finish' : 'Next' }}
+                        </nx-button>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

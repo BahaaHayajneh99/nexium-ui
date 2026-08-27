@@ -1,6 +1,7 @@
 import { Component, inject, Inject } from '@angular/core';
 import { NxIcon } from '../../../../../dist/components';
 import { CommonService } from '../services/common.service';
+import { DemoSection } from '../shared/demo-section/demo-section';
 
 interface IconEntry {
   name: string;
@@ -11,13 +12,26 @@ interface IconEntry {
   selector: 'app-icons-demo',
   templateUrl: './icons-demo.html',
   styleUrl: './icons-demo.scss',
-  imports: [NxIcon],
+  imports: [NxIcon, DemoSection],
 })
 export class IconsDemo {
     public commonService = inject(CommonService);
   copiedName: string | null = null;
   searchQuery = ''; 
   primary = this.commonService.colors.primary
+
+  importCode = `import { NxIcon } from 'nexium-ui';`;
+
+  usageCode = `<nx-icon icon="nx-home" variant="svg"></nx-icon>
+<nx-icon icon="nx-heart" variant="svg" [size]="32"></nx-icon>`;
+
+  howToCode = `<!-- 1. Click any icon in the grid below to copy its name -->
+<!-- 2. Import NxIcon from 'nexium-ui' and add it to your component's imports -->
+<!-- 3. Render it, tweaking size/color/variant as needed -->
+<nx-icon icon="nx-rocket" variant="svg" [size]="20" color="#6366f1"></nx-icon>
+
+<!-- variant="icon" also prints the name as a label next to the glyph -->
+<nx-icon icon="nx-rocket" variant="icon" [size]="20"></nx-icon>`;
   icons: IconEntry[] = [
     {
       name: 'nx-home',

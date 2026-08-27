@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Support Ticket System</h4>
+                <p class="main-section-description">
+                    A filterable ticket queue built from <code>nx-select</code>, <code>nx-card</code> and
+                    <code>nx-badge</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Ticket queue"
+                description="A getter filters the ticket list by the selected status."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-form" style="max-width: 480px;">
+                    <nx-select [options]="statusOptions" [(value)]="statusFilter"></nx-select>
+
+                    @for (ticket of filteredTickets; track ticket.id) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <div class="template-form-row">
+                                    <div class="template-form-row">
+                                        <nx-avatar [name]="ticket.requester" size="small"></nx-avatar>
+                                        <div>
+                                            <div class="template-profile-name">{{ ticket.id }} - {{ ticket.subject }}</div>
+                                            <div class="template-stat-label">{{ ticket.requester }}</div>
+                                        </div>
+                                    </div>
+                                    <nx-badge [variant]="statusVariant(ticket.status)" size="small">
+                                        {{ ticket.status }}
+                                    </nx-badge>
+                                </div>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

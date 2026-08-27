@@ -1,0 +1,39 @@
+@use '../variables.scss' as *;
+
+.media-player {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+
+    @media (max-width: 720px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.lesson-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.lesson-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: $radius-md;
+    cursor: pointer;
+
+    .lesson-row-title {
+        flex: 1;
+    }
+
+    &:hover {
+        background: var(--shell-surface-hover);
+    }
+}
+
+.lesson-row-active {
+    background: var(--shell-surface-hover);
+    border: 1px solid var(--shell-primary);
+}

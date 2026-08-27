@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">File Manager / Document Browser</h4>
+                <p class="main-section-description">
+                    An upload zone that feeds a browsable file list, built from <code>nx-file-upload</code>
+                    and <code>nx-icon</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Upload &amp; browse"
+                description="The filesSelected event prepends newly dropped files onto the list."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-form" style="max-width: 480px;">
+                    <nx-file-upload label="Drop files here or click to browse" multiple
+                        (filesSelected)="onFilesSelected($event)"></nx-file-upload>
+
+                    @for (file of files; track file.name) {
+                        <div class="file-row">
+                            <nx-icon [icon]="file.icon" variant="svg" [size]="18"></nx-icon>
+                            <span class="file-row-name">{{ file.name }}</span>
+                            <nx-badge variant="secondary" size="small">{{ file.size }}</nx-badge>
+                            <nx-button variant="danger" size="small" (click)="remove(file)">Delete</nx-button>
+                        </div>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

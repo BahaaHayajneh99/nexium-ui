@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Subscription / Plan Comparison</h4>
+                <p class="main-section-description">
+                    A pricing grid built from <code>nx-card</code>, <code>nx-badge</code> and <code>nx-icon</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Plans"
+                description="The highlighted plan uses the 'elevated' card variant and a 'Most Popular' badge."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <div class="block-grid-3">
+                    @for (plan of plans; track plan.name) {
+                        <nx-card [variant]="plan.highlighted ? 'elevated' : 'outlined'">
+                            <nx-card-content>
+                                @if (plan.highlighted) {
+                                    <nx-badge variant="primary" size="small">Most Popular</nx-badge>
+                                }
+                                <h3 class="template-profile-name mt-2">{{ plan.name }}</h3>
+                                <strong>{{ plan.price }}</strong>
+                                <div class="mt-2">
+                                    @for (feature of plan.features; track feature) {
+                                        <div class="plan-feature">
+                                            <nx-icon icon="nx-check" variant="svg" [size]="14"></nx-icon>
+                                            {{ feature }}
+                                        </div>
+                                    }
+                                </div>
+                            </nx-card-content>
+                            <nx-card-footer>
+                                <nx-button [variant]="selected === plan.name ? 'primary' : 'secondary'" [fullWidth]="true"
+                                    (click)="choose(plan)">
+                                    {{ selected === plan.name ? 'Selected' : 'Choose Plan' }}
+                                </nx-button>
+                            </nx-card-footer>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

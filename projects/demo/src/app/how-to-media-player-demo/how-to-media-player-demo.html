@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Media Player / Video Course Page</h4>
+                <p class="main-section-description">
+                    A course viewer combining a preview card, <code>nx-progress-bar</code> and a lesson list.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Course viewer"
+                description="Clicking a lesson sets it as the active preview; the progress bar reflects completed lessons."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <div class="media-player">
+                    <nx-card variant="outlined">
+                        <nx-card-image>
+                            <img [src]="poster" alt="Course preview" style="width: 100%;" />
+                        </nx-card-image>
+                        <nx-card-content>
+                            <h3 class="template-profile-name">{{ activeLesson.title }}</h3>
+                            <nx-progress-bar [value]="completion" [showLabel]="true" label="Course progress"></nx-progress-bar>
+                        </nx-card-content>
+                    </nx-card>
+
+                    <div class="lesson-list">
+                        @for (lesson of lessons; track lesson.title) {
+                            <div class="lesson-row" [class.lesson-row-active]="lesson === activeLesson" (click)="select(lesson)">
+                                <nx-icon [icon]="lesson.completed ? 'nx-check-circle' : 'nx-video'" variant="svg"
+                                    [size]="16"></nx-icon>
+                                <span class="lesson-row-title">{{ lesson.title }}</span>
+                                <nx-badge variant="secondary" size="small">{{ lesson.duration }}</nx-badge>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

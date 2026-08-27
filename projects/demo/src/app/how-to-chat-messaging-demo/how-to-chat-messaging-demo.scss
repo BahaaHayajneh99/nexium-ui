@@ -1,0 +1,31 @@
+@use '../variables.scss' as *;
+
+.chat-log {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.chat-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+
+    .chat-bubble {
+        background: var(--shell-surface-hover);
+        border-radius: $radius-md;
+        padding: 0.5rem 0.75rem;
+        max-width: 75%;
+    }
+}
+
+.chat-row-me {
+    flex-direction: row-reverse;
+
+    .chat-bubble {
+        background: var(--shell-primary);
+        color: $white-color;
+    }
+}

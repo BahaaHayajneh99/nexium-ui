@@ -1,0 +1,46 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Search &amp; Filter Results</h4>
+                <p class="main-section-description">
+                    A search box and category filter narrowing down a list of <code>nx-card</code> results.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Filterable results"
+                description="A getter combines the free-text query and the selected category to derive the visible list."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-form" style="max-width: 480px;">
+                    <div class="template-form-row">
+                        <nx-input placeholder="Search products..." [(ngModel)]="query" style="flex: 1;"></nx-input>
+                        <nx-select [options]="categoryOptions" [(value)]="category"></nx-select>
+                    </div>
+
+                    @for (item of filteredResults; track item.name) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <div class="template-form-row">
+                                    <div>
+                                        <div class="template-profile-name">{{ item.name }}</div>
+                                        <nx-badge variant="secondary" size="small">{{ item.category }}</nx-badge>
+                                    </div>
+                                    <strong>{{ item.price }}</strong>
+                                </div>
+                            </nx-card-content>
+                        </nx-card>
+                    } @empty {
+                        <p class="template-form-note">No results match your search.</p>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -677,6 +677,8 @@
 
         </div>
 
+   
+
         <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
 
             <a (click)="toggleExpandItem('Charts')">
@@ -962,6 +964,87 @@
 
         </div>
 
+            <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            
+                <a (click)="toggleExpandItem('How To')">
+                    <span class="nav-item-content">
+                        <nx-icon class="nav-icon" icon="nx-help-circle" variant="svg" [size]="18"></nx-icon>
+                        How To
+                    </span>
+                    <nx-icon class="nav-chevron" [class.expanded]="isExpandedSubNav('How To')" icon="nx-chevron-right" variant="svg"
+                        [size]="14"></nx-icon>
+                </a>
+            
+                <div class="sub-nav" *ngIf="isExpandedSubNav('How To')">
+            
+                    <div class="sub-nav-child">
+            
+                        <a class="nav-link" routerLink="/how-to/portfolio-gallery" routerLinkActive="active">
+                            Portfolio Gallery
+                        </a>
+            
+                        <a class="nav-link" routerLink="/how-to/buy-product" routerLinkActive="active">
+                            Buy Product
+                        </a>
+            
+                        <a class="nav-link" routerLink="/how-to/blog-post" routerLinkActive="active">
+                            Blog Post
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/onboarding-flow" routerLinkActive="active">
+                            User Onboarding Flow
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/signup-wizard" routerLinkActive="active">
+                            Multi-Step Signup Wizard
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/search-filter" routerLinkActive="active">
+                            Search &amp; Filter Results
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/file-manager" routerLinkActive="active">
+                            File Manager
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/chat-messaging" routerLinkActive="active">
+                            Chat / Messaging UI
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/booking-flow" routerLinkActive="active">
+                            Booking / Reservation Flow
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/job-application" routerLinkActive="active">
+                            Job Application Form
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/support-tickets" routerLinkActive="active">
+                            Support Ticket System
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/notification-feed" routerLinkActive="active">
+                            Real-time Notification Feed
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/kanban-board" routerLinkActive="active">
+                            Kanban Task Board
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/plan-comparison" routerLinkActive="active">
+                            Subscription / Plan Comparison
+                        </a>
+
+                        <a class="nav-link" routerLink="/how-to/media-player" routerLinkActive="active">
+                            Media Player / Video Course
+                        </a>
+            
+                    </div>
+            
+                </div>
+            
+            </div>
+
         <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
 
             <a (click)="toggleExpandItem('Utilities')">
@@ -1126,19 +1209,19 @@
     </div>
 
     <div class="nav-footer">
-        <div class="nav-socials">
-
-            <a class="nav-social-link" href="https://www.linkedin.com/in/bahaa-hayajneh-67466018b/?skipRedirect=true"
-                target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                <nx-icon icon="nx-linkedin" variant="svg" [size]="14"></nx-icon>
-            </a>
-
-            <a class="nav-social-link" href="https://www.npmjs.com/package/nexium-ui"
-                target="_blank" rel="noopener noreferrer" title="npm">
-                <nx-icon icon="nx-npm" variant="svg" [size]="14"></nx-icon>
-            </a>
-
-        </div>
+                <div class="nav-socials">
+                
+                    <a class="nav-social-link" href="https://www.linkedin.com/in/bahaa-hayajneh-67466018b/?skipRedirect=true"
+                        target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                        <nx-icon icon="nx-linkedin" variant="svg" [size]="14"></nx-icon>
+                    </a>
+                
+                    <a class="nav-social-link" href="https://www.npmjs.com/package/nexium-ui" target="_blank" rel="noopener noreferrer"
+                        title="npm">
+                        <nx-icon icon="nx-npm" variant="svg" [size]="14"></nx-icon>
+                    </a>
+                
+                </div>
 
         <p class="nav-footer-text">
             &copy; {{ currentYaer }} {{ commonService.appName }}. All rights reserved.
@@ -1146,7 +1229,9 @@
 
         <p class="nav-footer-text">
             Version: {{ commonService.packageVersion }} 
-        </p>    
+        </p>   
+        
+
     </div>
 
 </div>

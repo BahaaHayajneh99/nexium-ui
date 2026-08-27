@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Booking / Reservation Flow</h4>
+                <p class="main-section-description">
+                    A date, time and party-size picker built from <code>nx-datepicker</code> and <code>nx-select</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Reservation form"
+                description="All three fields must resolve before the Confirm button is enabled."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-form" style="max-width: 420px;">
+                    <nx-datepicker label="Date" [(value)]="date"></nx-datepicker>
+                    <nx-select label="Time" [options]="timeOptions" [(value)]="time"></nx-select>
+                    <nx-select label="Guests" [options]="guestOptions" [(value)]="guests"></nx-select>
+
+                    <nx-button variant="primary" [disabled]="!canConfirm" (click)="confirm()">
+                        Confirm Reservation
+                    </nx-button>
+
+                    @if (confirmed) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                Reserved for {{ guests }} guest(s) on {{ date }} at {{ time }}.
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

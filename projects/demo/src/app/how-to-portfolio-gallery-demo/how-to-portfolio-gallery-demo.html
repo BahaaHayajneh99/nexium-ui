@@ -1,0 +1,39 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Portfolio Gallery</h4>
+                <p class="main-section-description">
+                    A masonry grid of portfolio pieces built from <code>nx-masonry</code>,
+                    <code>nx-card</code> and <code>nx-tag</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Masonry grid"
+                description="Cards of varying image height flow into a balanced multi-column layout."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-masonry [cols]="3" [gap]="16">
+                    @for (item of items; track item.title) {
+                        <nx-card variant="outlined">
+                            <nx-card-image>
+                                <img [src]="item.image" [alt]="item.title" [style.height.px]="item.height"
+                                    style="width: 100%; object-fit: cover;" />
+                            </nx-card-image>
+                            <nx-card-content>
+                                <div class="template-profile-name">{{ item.title }}</div>
+                                <nx-tag variant="outline">{{ item.category }}</nx-tag>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </nx-masonry>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

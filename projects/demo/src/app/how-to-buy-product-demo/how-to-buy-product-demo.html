@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Buy Product</h4>
+                <p class="main-section-description">
+                    A single product detail card with rating, quantity stepper and an "Add to Cart" action,
+                    built from <code>nx-card</code>, <code>nx-rating</code> and <code>nx-button</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Product detail"
+                description="Quantity is tracked in component state; the button label reflects the running total."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="outlined" style="max-width: 360px;">
+                    <nx-card-image>
+                        <img [src]="productImage" alt="Wireless Headphones" style="width: 100%; object-fit: cover;" />
+                    </nx-card-image>
+                    <nx-card-content>
+                        <nx-tag variant="outline">Audio</nx-tag>
+                        <h3 class="template-profile-name mt-2">Wireless Headphones</h3>
+                        <nx-rating [value]="rating" readonly></nx-rating>
+                        <div class="mt-2">
+                            <strong>${{ price }}.00</strong>
+                            <nx-badge class="mx-2" variant="success" size="small">In Stock</nx-badge>
+                        </div>
+
+                        <div class="qty-stepper mt-2">
+                            <nx-button variant="danger" size="small" (click)="decrement()">-</nx-button>
+                            <span>{{ quantity }}</span>
+                            <nx-button variant="primary" size="small" (click)="increment()">+</nx-button>
+                        </div>
+                    </nx-card-content>
+                    <nx-card-footer>
+                        <nx-button variant="primary" [fullWidth]="true" (click)="addToCart()">
+                            {{ added ? 'Added to Cart!' : 'Add to Cart - $' + total }}
+                        </nx-button>
+                    </nx-card-footer>
+                </nx-card>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

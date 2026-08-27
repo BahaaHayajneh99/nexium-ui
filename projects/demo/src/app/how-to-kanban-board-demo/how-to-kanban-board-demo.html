@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Kanban Task Board</h4>
+                <p class="main-section-description">
+                    A three-column task board built from <code>nx-card</code> and <code>nx-button</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Board"
+                description="Each card has a 'Move' action that advances its status to the next column."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <div class="kanban-board">
+                    @for (column of columns; track column) {
+                        <div class="kanban-column">
+                            <h4>{{ column }}</h4>
+                            @for (task of tasksIn(column); track task.title) {
+                                <nx-card variant="outlined">
+                                    <nx-card-content>
+                                        <div class="template-form-row">
+                                            <span>{{ task.title }}</span>
+                                            @if (task.status !== 'Done') {
+                                                <nx-button size="small" variant="secondary" (click)="moveNext(task)">
+                                                    Move &rarr;
+                                                </nx-button>
+                                            }
+                                        </div>
+                                    </nx-card-content>
+                                </nx-card>
+                            }
+                        </div>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

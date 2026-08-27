@@ -1,0 +1,19 @@
+.kanban-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    @media (max-width: 720px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.kanban-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    h4 {
+        margin: 0 0 0.25rem;
+    }
+}

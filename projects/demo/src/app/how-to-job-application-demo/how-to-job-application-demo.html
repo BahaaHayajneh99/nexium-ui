@@ -1,0 +1,39 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Job Application Form</h4>
+                <p class="main-section-description">
+                    A resume-upload application form built from <code>nx-input</code>, <code>nx-textarea</code>,
+                    <code>nx-file-upload</code> and <code>nx-checkbox</code>.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Application form"
+                description="Submit is disabled until the required fields are filled and the agreement checkbox is checked."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-form" style="max-width: 480px;">
+                    <nx-input label="Full Name" [(ngModel)]="fullName"></nx-input>
+                    <nx-input label="Email" type="email" [(ngModel)]="email"></nx-input>
+                    <nx-textarea label="Cover Letter" [(ngModel)]="coverLetter" [rows]="5"></nx-textarea>
+                    <nx-file-upload label="Upload your resume" (filesSelected)="onResumeSelected($event)"></nx-file-upload>
+                    @if (resumeName) {
+                        <p class="template-form-note">Attached: {{ resumeName }}</p>
+                    }
+                    <nx-checkbox [(ngModel)]="agreed" label="I confirm the details above are accurate"></nx-checkbox>
+
+                    <nx-button variant="primary" [disabled]="!canSubmit" (click)="submit()">
+                        {{ submitted ? 'Application Sent!' : 'Submit Application' }}
+                    </nx-button>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

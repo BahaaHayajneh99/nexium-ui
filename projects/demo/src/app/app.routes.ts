@@ -38,6 +38,21 @@ import { UiCheckboxDemo } from './ui-checkbox-demo/ui-checkbox-demo';
 import { UiRadioDemo } from './ui-radio-demo/ui-radio-demo';
 import { UiSwitchDemo } from './ui-switch-demo/ui-switch-demo';
 import { UiToggleDemo } from './ui-toggle-demo/ui-toggle-demo';
+import { HowToPortfolioGalleryDemo } from './how-to-portfolio-gallery-demo/how-to-portfolio-gallery-demo';
+import { HowToBuyProductDemo } from './how-to-buy-product-demo/how-to-buy-product-demo';
+import { HowToBlogPostDemo } from './how-to-blog-post-demo/how-to-blog-post-demo';
+import { HowToOnboardingFlowDemo } from './how-to-onboarding-flow-demo/how-to-onboarding-flow-demo';
+import { HowToSignupWizardDemo } from './how-to-signup-wizard-demo/how-to-signup-wizard-demo';
+import { HowToSearchFilterDemo } from './how-to-search-filter-demo/how-to-search-filter-demo';
+import { HowToFileManagerDemo } from './how-to-file-manager-demo/how-to-file-manager-demo';
+import { HowToChatMessagingDemo } from './how-to-chat-messaging-demo/how-to-chat-messaging-demo';
+import { HowToBookingFlowDemo } from './how-to-booking-flow-demo/how-to-booking-flow-demo';
+import { HowToJobApplicationDemo } from './how-to-job-application-demo/how-to-job-application-demo';
+import { HowToSupportTicketsDemo } from './how-to-support-tickets-demo/how-to-support-tickets-demo';
+import { HowToNotificationFeedDemo } from './how-to-notification-feed-demo/how-to-notification-feed-demo';
+import { HowToKanbanBoardDemo } from './how-to-kanban-board-demo/how-to-kanban-board-demo';
+import { HowToPlanComparisonDemo } from './how-to-plan-comparison-demo/how-to-plan-comparison-demo';
+import { HowToMediaPlayerDemo } from './how-to-media-player-demo/how-to-media-player-demo';
 import { UiSliderDemo } from './ui-slider-demo/ui-slider-demo';
 import { UiDatepickerDemo } from './ui-datepicker-demo/ui-datepicker-demo';
 import { UiColorPickerDemo } from './ui-color-picker-demo/ui-color-picker-demo';
@@ -855,5 +870,65 @@ export const routes: Routes = [
     {
         path: 'directives/has-permission',
         component: DirectiveHasPermissionDemo
+    },
+    {
+        path: 'how-to/portfolio-gallery',
+        component: HowToPortfolioGalleryDemo
+    },
+    {
+        path: 'how-to/buy-product',
+        component: HowToBuyProductDemo
+    },
+    {
+        path: 'how-to/blog-post',
+        component: HowToBlogPostDemo
+    },
+    {
+        path: 'how-to/onboarding-flow',
+        component: HowToOnboardingFlowDemo
+    },
+    {
+        path: 'how-to/signup-wizard',
+        component: HowToSignupWizardDemo
+    },
+    {
+        path: 'how-to/search-filter',
+        component: HowToSearchFilterDemo
+    },
+    {
+        path: 'how-to/file-manager',
+        component: HowToFileManagerDemo
+    },
+    {
+        path: 'how-to/chat-messaging',
+        component: HowToChatMessagingDemo
+    },
+    {
+        path: 'how-to/booking-flow',
+        component: HowToBookingFlowDemo
+    },
+    {
+        path: 'how-to/job-application',
+        component: HowToJobApplicationDemo
+    },
+    {
+        path: 'how-to/support-tickets',
+        component: HowToSupportTicketsDemo
+    },
+    {
+        path: 'how-to/notification-feed',
+        component: HowToNotificationFeedDemo
+    },
+    {
+        path: 'how-to/kanban-board',
+        component: HowToKanbanBoardDemo
+    },
+    {
+        path: 'how-to/plan-comparison',
+        component: HowToPlanComparisonDemo
+    },
+    {
+        path: 'how-to/media-player',
+        component: HowToMediaPlayerDemo
     }
 ];

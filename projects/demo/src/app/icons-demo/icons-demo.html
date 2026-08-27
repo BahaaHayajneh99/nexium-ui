@@ -2,8 +2,33 @@
     <div class="main-container">
         <div class="main-sections">
 
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Usage"
+                description="Pass an icon name to render its SVG. An optional size input (in px) controls the icon's dimensions."
+                [code]="usageCode"
+                [hasSampleClass]="false">
+                <nx-icon icon="nx-home" variant="svg"></nx-icon>
+                <nx-icon icon="nx-heart" variant="svg" [size]="32"></nx-icon>
+            </app-demo-section>
+
+            <app-demo-section
+                header="How To"
+                description="Browse the icons below and click a card to copy its name, then pass it to nx-icon. The variant input switches between a plain svg glyph and icon (glyph + name label); size (px) and color (any CSS color) are optional."
+                [code]="howToCode"
+                [hasSampleClass]="false">
+                <nx-icon icon="nx-rocket" variant="svg" [size]="20" color="#6366f1"></nx-icon>
+                <nx-icon icon="nx-rocket" variant="icon" [size]="20"></nx-icon>
+            </app-demo-section>
+
             <section class="main-section">
-                <h4 class="main-section-header">Icons</h4>
+                <h4 class="main-section-header">Browse Icons</h4>
                 <p class="main-section-description">
                     The icon set used throughout the {{ commonService.appName }} demo - plain inline SVGs, styled with
                     <code>currentColor</code> so they inherit their surrounding text/hover color.
