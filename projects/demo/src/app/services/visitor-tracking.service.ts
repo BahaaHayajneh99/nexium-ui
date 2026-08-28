@@ -12,7 +12,6 @@ export class VisitorTrackingService {
   constructor() {
     const app = initializeApp(firebaseConfig);
     this.db = getDatabase(app);
-    console.log('✅ Firebase initialized for visitor tracking');
   }
 
   /**
@@ -22,11 +21,8 @@ export class VisitorTrackingService {
   trackUniqueVisitor(userId: string): Promise<void> {
     return new Promise(async (resolve) => {
       try {
-        console.log('📍 Tracking visitor:', userId);
-        
         // Get user location from IP
         const locationData = await this.getUserLocation();
-        console.log('🌍 Location detected:', locationData);
         
         const userVisitorRef = ref(this.db, `visitors/${userId}`);
         const snapshot = await get(userVisitorRef);
@@ -50,22 +46,12 @@ export class VisitorTrackingService {
           
           const newTotal = currentTotal + 1;
           await set(totalRef, newTotal);
-          
-          console.log(`✅ NEW VISITOR TRACKED! Total unique visitors: ${newTotal}`);
-          console.log(`📍 Location: ${locationData.city}, ${locationData.country}`);
         } else {
-          console.log('ℹ️ Returning visitor (not counted again):', userId);
-          
-          // Get current total anyway
-          const totalRef = ref(this.db, 'stats/totalUniqueVisitors');
-          const totalSnapshot = await get(totalRef);
-          const currentTotal = totalSnapshot.val() || 0;
-          console.log(`📊 Current total unique visitors: ${currentTotal}`);
+          // Returning visitor (not counted again)
         }
         
         resolve();
       } catch (error) {
-        console.error('❌ Error tracking visitor:', error);
         resolve();
       }
     });
@@ -89,7 +75,6 @@ export class VisitorTrackingService {
         postal: data.postal || ''
       };
     } catch (error) {
-      console.error('❌ Error getting location:', error);
       return { 
         country: 'Unknown', 
         city: 'Unknown', 
@@ -114,7 +99,6 @@ export class VisitorTrackingService {
         console.log(`📊 Total visitors retrieved: ${count}`);
         resolve(count);
       } catch (error) {
-        console.error('❌ Error getting visitor count:', error);
         resolve(0);
       }
     });
@@ -128,12 +112,10 @@ export class VisitorTrackingService {
       const totalRef = ref(this.db, 'stats/totalUniqueVisitors');
       const unsubscribe = onValue(totalRef, (snapshot) => {
         const count = snapshot.val() || 0;
-        console.log(`📊 Visitor count updated: ${count}`);
         callback(count);
       });
       return unsubscribe;
     } catch (error) {
-      console.error('❌ Error setting up visitor count listener:', error);
       return () => {}; // Return empty function if error
     }
   }
@@ -158,10 +140,8 @@ export class VisitorTrackingService {
         countByCountry[country] = (countByCountry[country] || 0) + 1;
       });
 
-      console.log('📍 Visitors by country:', countByCountry);
       return countByCountry;
     } catch (error) {
-      console.error('❌ Error getting visitors by country:', error);
       return {};
     }
   }

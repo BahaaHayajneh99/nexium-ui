@@ -40,11 +40,6 @@ export class App implements OnInit {
 
     // Track as unique visitor in Firebase with location data
     this.visitorTracking.trackUniqueVisitor(visitorId).then(() => {
-      // Get total visitor count
-      this.visitorTracking.getTotalVisitorCount().then(count => {
-        console.log(`📊 Total unique visitors: ${count}`);
-      });
-
       // Get visitors by country/location
       this.visitorTracking.getVisitorsByCountry();
     });
