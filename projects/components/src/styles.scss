@@ -46,6 +46,8 @@
 
     --border-color: #{$border-color};
     --border-hover-color: #{$border-hover-color};
+
+    --font-family: #{$font-family};
 }
 
 // ===============================
@@ -131,7 +133,7 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: $font-family;
+    font-family: var(--font-family);
 }
 
 // ===============================
@@ -814,7 +816,7 @@ body {
     border: 1px solid var(--shell-border);
     padding: 16px;
     border-radius: 4px;
-    font-family: $font-family;
+    font-family: var(--font-family);
     font-size: 14px;
     overflow-x: auto;
     letter-spacing: 2px;
@@ -832,7 +834,7 @@ body {
 
     pre {
         margin: 0;
-        font-family: $font-family;
+        font-family: var(--font-family);
         font-size: 14px;
         color: $text-white;
         white-space: pre;
@@ -861,7 +863,7 @@ body {
     padding: 4px 12px;
     margin-bottom: $spacing-sm;
     margin-left: auto;
-    font-family: $font-family;
+    font-family: var(--font-family);
     font-size: $font-size-xs;
     font-weight: $font-weight-medium;
     cursor: pointer;
@@ -881,7 +883,7 @@ body {
     color: $gray-400;
     border-radius: $radius-sm;
     padding: 4px 12px;
-    font-family: $font-family;
+    font-family: var(--font-family);
     font-size: $font-size-xs;
     font-weight: $font-weight-medium;
     cursor: pointer;
@@ -1478,7 +1480,7 @@ body {
 
 .utility-class {
     flex: 0 0 200px;
-    font-family: $font-family;
+    font-family: var(--font-family);
     font-size: $font-size-sm;
     font-weight: $font-weight-semibold;
     color: var(--shell-text);
