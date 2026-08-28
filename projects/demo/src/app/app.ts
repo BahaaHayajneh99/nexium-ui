@@ -38,12 +38,15 @@ export class App implements OnInit {
       localStorage.setItem('nexaui_visitor_id', visitorId);
     }
 
-    // Track as unique visitor in Firebase
-    this.visitorTracking.trackUniqueVisitor(visitorId);
+    // Track as unique visitor in Firebase with location data
+    this.visitorTracking.trackUniqueVisitor(visitorId).then(() => {
+      // Get total visitor count
+      this.visitorTracking.getTotalVisitorCount().then(count => {
+        console.log(`📊 Total unique visitors: ${count}`);
+      });
 
-    // Optional: Get and log total visitor count
-    this.visitorTracking.getTotalVisitorCount().then(count => {
-      console.log(`📊 Total unique visitors: ${count}`);
+      // Get visitors by country/location
+      this.visitorTracking.getVisitorsByCountry();
     });
   }
 
