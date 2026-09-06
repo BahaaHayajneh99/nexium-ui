@@ -4,7 +4,6 @@
     display: flex;
     align-items: center;
     gap: $spacing-sm;
-
     max-width: 340px;
     margin-top: $spacing-md;
     padding: 0 $spacing-sm;
@@ -29,26 +28,18 @@
     }
 }
 
-.emoji-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: $spacing-sm;
+.nx-auto-fit-grid {
     margin: $spacing-lg 0 3rem;
 }
 
-.emoji-card {
+.nx-auto-fit-grid .nx-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: $spacing-sm;
-
-    padding: $spacing-md $spacing-sm;
-    border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
-    background: var(--shell-surface);
+    width: 100%;
     cursor: pointer;
     font-family: inherit;
-
     transition: all $transition-fast;
 
     &:hover {
@@ -57,12 +48,7 @@
     }
 }
 
-.emoji-card-glyph {
-    font-size: 28px;
-    line-height: 1;
-}
-
-.emoji-card-name {
+.emoji-name {
     font-size: $font-size-xs;
     color: var(--shell-text-secondary);
     text-align: center;

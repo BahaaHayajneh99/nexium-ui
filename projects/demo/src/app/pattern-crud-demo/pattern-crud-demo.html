@@ -1,0 +1,93 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">CRUD Pattern</h4>
+                <p class="main-section-description">
+                    Complete Create, Read, Update, Delete operations
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="CRUD (Create, Read, Update, Delete) is the foundation of data management. This pattern covers UI/UX for all four operations and handling edge cases."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="CRUD Operations"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="operations-table">
+                    <div class="table-header">
+                        <div class="col-operation">Operation</div>
+                        <div class="col-endpoint">Endpoint</div>
+                        <div class="col-action">Action</div>
+                    </div>
+                    <div class="table-body">
+                        <div class="table-row" *ngFor="let op of crudOperations">
+                            <div class="col-operation">{{ op.operation }}</div>
+                            <div class="col-endpoint">{{ op.endpoint }}</div>
+                            <div class="col-action">{{ op.action }}</div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="UI Patterns"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="pattern-item">
+                        <h3>List View</h3>
+                        <p>Display records in table/grid with row actions (edit, delete)</p>
+                    </div>
+                    <div class="pattern-item">
+                        <h3>Detail View</h3>
+                        <p>Full record details with edit and delete options</p>
+                    </div>
+                    <div class="pattern-item">
+                        <h3>Forms</h3>
+                        <p>Separate create and edit forms with validation</p>
+                    </div>
+                    <div class="pattern-item">
+                        <h3>Confirmations</h3>
+                        <p>Confirm delete and save actions with undo option</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

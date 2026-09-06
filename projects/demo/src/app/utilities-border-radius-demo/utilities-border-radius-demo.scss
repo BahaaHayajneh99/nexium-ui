@@ -7,7 +7,7 @@
     margin-bottom: $spacing-lg;
 }
 
-.radius-card-wrap {
+.nx-card-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-.radius-card {
+.nx-card {
     width: 72px;
     height: 72px;
     background: var(--shell-primary);

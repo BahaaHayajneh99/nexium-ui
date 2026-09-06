@@ -1,0 +1,42 @@
+<div class="nx-search-wrapper">
+    <div class="nx-search" [class.disabled]="disabled">
+        <nx-icon class="nx-search-icon" icon="nx-search" variant="svg" [size]="18"></nx-icon>
+
+        <input
+            class="nx-search-input"
+            type="text"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [value]="value"
+            (input)="onInput($event)"
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            (keydown)="onKeydown($event)" />
+
+        @if (showClear && value) {
+            <button type="button" class="nx-search-clear" aria-label="Clear search" (mousedown)="clear($event)">
+                <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+            </button>
+        }
+    </div>
+
+    @if (showPanel) {
+        <ul class="nx-search-results">
+            @if (normalizedResults.length) {
+                @for (result of normalizedResults; track $index) {
+                    <li
+                        class="nx-search-result"
+                        [class.active]="$index === activeIndex"
+                        (mousedown)="selectResult(result)">
+                        {{ result.label }}
+                    </li>
+                }
+            } @else {
+                <li class="nx-search-empty">
+                    <p>{{ noResultsText }} for "{{ value }}"</p>
+                    <p class="nx-search-empty-hint">{{ noResultsHint }}</p>
+                </li>
+            }
+        </ul>
+    }
+</div>

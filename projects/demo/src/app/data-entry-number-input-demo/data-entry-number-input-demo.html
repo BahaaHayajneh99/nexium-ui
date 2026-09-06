@@ -1,0 +1,241 @@
+<div class="main-content">
+  <div class="main-container">
+    <div class="main-sections">
+
+      <app-demo-section
+        header="Import"
+        description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+        [codeLang]="'ts'"
+        [code]="importCode">
+      </app-demo-section>
+
+      <app-demo-section
+        header="Overview"
+        description="Number Input provides a specialized field for capturing numeric data with built-in validation, step control, and range constraints. Perfect for quantities, prices, percentages, and any numeric value entry."
+        code="">
+      </app-demo-section>
+
+      <app-demo-section
+        header="Key Features"
+        description=""
+        code=""
+        [hasSampleClass]="false">
+        <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+          @for (feature of features; track feature.name) {
+            <div class="use-case-item">
+              <h3>{{ feature.name }}</h3>
+              <p>{{ feature.description }}</p>
+            </div>
+          }
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Basic Example"
+        description=""
+        [code]="basicCode"
+        [codeLang]="'html'"
+        [hasSampleClass]="false">
+      </app-demo-section>
+
+      <app-demo-section
+        header="Interactive Demo"
+        description=""
+        code="">
+        <div class="demo-box">
+          <div class="input-group">
+            <nx-number label="Quantity (1-100)" [(ngModel)]="quantity" [min]="1" [max]="100"></nx-number>
+            <span class="current-value">{{ quantity }}</span>
+          </div>
+
+          <div class="input-group">
+            <nx-number label="Price ($)" [(ngModel)]="price" [min]="0" [step]="0.01"></nx-number>
+            <span class="current-value">${{ price.toFixed(2) }}</span>
+          </div>
+
+          <div class="input-group">
+            <nx-number label="Percentage (%)" [(ngModel)]="percentage" [min]="0" [max]="100"></nx-number>
+            <span class="current-value">{{ percentage }}%</span>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Step Control"
+        description="Configure increment/decrement precision with the step input."
+        [code]="stepCode"
+        [codeLang]="'html'"
+        [hasSampleClass]="false">
+        <div class="demo-box">
+          <div class="input-group">
+            <nx-number
+              label="Step: 5"
+              [(ngModel)]="stepValue"
+              [step]="5"
+              [min]="0"
+              [max]="100">
+            </nx-number>
+            <span class="current-value">{{ stepValue }}</span>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Min/Max Constraints"
+        description="Clamp values to a specific numeric range."
+        [code]="minMaxCode"
+        [codeLang]="'html'"
+        [hasSampleClass]="false">
+        <div class="demo-box">
+          <div class="input-group">
+            <nx-number
+              label="Range: 10 to 50"
+              [(ngModel)]="rangedValue"
+              [min]="10"
+              [max]="50"
+              [step]="1">
+            </nx-number>
+            <span class="current-value">{{ rangedValue }}</span>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Increase/Decrease Button Visibility"
+        description="Show or hide buttons using dedicated inputs."
+        [code]="buttonControlCode"
+        [codeLang]="'html'"
+        [hasSampleClass]="false">
+        <div class="demo-box">
+          <div class="control-toggles">
+            <label><input type="checkbox" [(ngModel)]="showStepButtons"> Show both step buttons</label>
+            <label><input type="checkbox" [(ngModel)]="showDecreaseButton"> Show decrease button</label>
+            <label><input type="checkbox" [(ngModel)]="showIncreaseButton"> Show increase button</label>
+          </div>
+
+          <div class="input-group">
+            <nx-number
+              label="Button Visibility"
+              [(ngModel)]="visibilityValue"
+              [showStepButtons]="showStepButtons"
+              [showDecreaseButton]="showDecreaseButton"
+              [showIncreaseButton]="showIncreaseButton"
+              [step]="1">
+            </nx-number>
+            <span class="current-value">{{ visibilityValue }}</span>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Prefix and Suffix"
+        description="Use symbols like $, %, or any text around the number value."
+        [code]="prefixCode"
+        [codeLang]="'html'"
+        [hasSampleClass]="false">
+        <div class="demo-box">
+          <div class="input-group">
+            <nx-number
+              label="Amount"
+              [(ngModel)]="amountValue"
+              prefix="$"
+              [step]="0.01"
+              [min]="0">
+            </nx-number>
+            <span class="current-value">${{ amountValue.toFixed(2) }}</span>
+          </div>
+
+          <div class="input-group">
+            <nx-number
+              label="Discount"
+              [(ngModel)]="percentValue"
+              suffix="%"
+              [min]="0"
+              [max]="100">
+            </nx-number>
+            <span class="current-value">{{ percentValue }}%</span>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Use Cases"
+        description=""
+        code=""
+        [hasSampleClass]="false">
+        <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+          @for (useCase of useCases; track useCase.title) {
+            <div class="use-case-item">
+              <h3>{{ useCase.title }}</h3>
+              <p>{{ useCase.description }}</p>
+            </div>
+          }
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Properties & Attributes"
+        description=""
+        code="">
+        <div class="usage-table">
+          <div class="table-header">
+            <div class="table-cell">Attribute</div>
+            <div class="table-cell">Type</div>
+            <div class="table-cell">Description</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">type</div>
+            <div class="table-cell">string</div>
+            <div class="table-cell">"number" to enable numeric input</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">min</div>
+            <div class="table-cell">number</div>
+            <div class="table-cell">Minimum allowed value</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">max</div>
+            <div class="table-cell">number</div>
+            <div class="table-cell">Maximum allowed value</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">step</div>
+            <div class="table-cell">number</div>
+            <div class="table-cell">Increment/decrement step size</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">disabled</div>
+            <div class="table-cell">boolean</div>
+            <div class="table-cell">Disable input field</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">showStepButtons</div>
+            <div class="table-cell">boolean</div>
+            <div class="table-cell">Show or hide both step buttons</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">showDecreaseButton</div>
+            <div class="table-cell">boolean</div>
+            <div class="table-cell">Show or hide the decrease button</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">showIncreaseButton</div>
+            <div class="table-cell">boolean</div>
+            <div class="table-cell">Show or hide the increase button</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">prefix</div>
+            <div class="table-cell">string</div>
+            <div class="table-cell">Text shown before the numeric input (e.g. $)</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">suffix</div>
+            <div class="table-cell">string</div>
+            <div class="table-cell">Text shown after the numeric input (e.g. %)</div>
+          </div>
+        </div>
+      </app-demo-section>
+
+    </div>
+  </div>
+</div>

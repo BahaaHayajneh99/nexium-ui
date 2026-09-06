@@ -1,0 +1,9 @@
+@mixin auto-fit-columns($min-width, $max-width: 1fr) {
+  grid-template-columns: repeat(auto-fit, minmax($min-width, $max-width));
+}
+
+@mixin auto-fit-grid($min-width, $gap: 1.5rem, $max-width: 1fr) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, $max-width));
+  gap: $gap;
+}

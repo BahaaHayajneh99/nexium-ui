@@ -1,0 +1,164 @@
+@use '../variables.scss' as *;
+
+.breakpoint-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+
+  .breakpoint-name {
+    font-size: 1.1rem;
+    color: var(--shell-primary);
+  }
+
+  code {
+    background: var(--shell-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--shell-text-secondary);
+  }
+}
+
+.breakpoint-range {
+  margin-bottom: 0.75rem;
+
+  small {
+    color: var(--shell-text-secondary);
+    font-size: 0.8rem;
+  }
+}
+
+.breakpoint-device {
+  color: var(--shell-text-secondary);
+  font-size: 0.875rem;
+}
+
+.code-examples {  margin: 1.5rem 0;
+}
+
+.code-example {
+  padding: 1.5rem;
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--shell-text);
+  }
+
+  .code-block {
+    display: block; 
+    background: var(--shell-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    overflow-x: auto;
+    margin: 0;
+    color: var(--shell-text);
+  }
+}
+
+.mobile-first-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.mobile-first-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: var(--shell-bg);
+  border-radius: 8px;
+  border-left: 4px solid var(--shell-primary);
+}
+
+.step-number {
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--shell-primary);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.step-content {
+  color: var(--shell-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  background: var(--shell-bg);
+  text-align: center;
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--shell-text);
+  }
+
+  p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.var-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.var-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+  border-radius: 6px;
+
+  code {
+    font-weight: 500;
+    color: var(--shell-primary);
+    font-size: 0.9rem;
+  }
+
+  span {
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.example-code {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+
+  .code-block {
+    display: block; 
+    background: var(--shell-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    overflow-x: auto;
+    margin: 0;
+    color: var(--shell-text);
+  }
+}

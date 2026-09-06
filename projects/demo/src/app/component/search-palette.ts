@@ -65,7 +65,14 @@ export class SearchPalette implements OnChanges {
   }
 
   go(item: NxSearchItem): void {
-    this.router.navigateByUrl(item.path);
+    if (!item.path) return;
+    
+    // Handle external links
+    if (item.path.startsWith('http://') || item.path.startsWith('https://')) {
+      window.open(item.path, '_blank');
+    } else {
+      this.router.navigateByUrl(item.path);
+    }
     this.close();
   }
 
@@ -76,7 +83,10 @@ export class SearchPalette implements OnChanges {
   private updateResults(): void {
     const q = this.query.trim().toLowerCase();
     const matches = q
-      ? SEARCH_INDEX.filter(item => item.label.toLowerCase().includes(q) || item.group.toLowerCase().includes(q))
+      ? SEARCH_INDEX.filter(item => 
+          item.label.toLowerCase().includes(q) || 
+          item.group.toLowerCase().includes(q)
+        )
       : SEARCH_INDEX;
 
     const byGroup = new Map<string, NxSearchItem[]>();
@@ -86,7 +96,18 @@ export class SearchPalette implements OnChanges {
       byGroup.set(item.group, list);
     }
 
-    this.groupedResults = [...byGroup.entries()].map(([group, items]) => ({ group, items }));
+    // Sort groups: Quick Links first, then Documentation, then Components, etc.
+    const groupOrder = ['Quick Links', 'Documentation', 'Components', 'Patterns', 'Testing', 'Charts', 'About'];
+    const sortedEntries = [...byGroup.entries()].sort((a, b) => {
+      const indexA = groupOrder.indexOf(a[0]);
+      const indexB = groupOrder.indexOf(b[0]);
+      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+      if (indexA !== -1) return -1;
+      if (indexB !== -1) return 1;
+      return a[0].localeCompare(b[0]);
+    });
+
+    this.groupedResults = sortedEntries.map(([group, items]) => ({ group, items }));
     this.flatResults = matches;
   }
 }

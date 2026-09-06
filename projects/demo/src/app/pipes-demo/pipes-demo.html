@@ -1,0 +1,151 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Pipes</h4>
+                <p class="main-section-description">
+                    A small set of standalone pipes for formatting jobs that come up constantly in
+                    real apps - dates, long text, and byte counts - without pulling in a date
+                    library or hand-rolling a helper each time.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every pipe is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Date Format - nxDateFormat"
+                description="Usage: {{ '{{ value | nxDateFormat' }}[:'format'] }}. value is a Date, an ISO string, or a timestamp (number). The optional format argument is a string built from the tokens below - anything that isn't a token (like '/', '-', ':', or a space) is kept as-is. Omit the argument and it defaults to 'yyyy-MM-dd'."
+                [code]="dateFormatCode"
+                [hasSampleClass]="false">
+
+                <div class="usage-table">
+                    <div class="table-header">
+                        <div class="table-cell">Token</div>
+                        <div class="table-cell">Means</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>yyyy</code></div>
+                        <div class="table-cell">4-digit year</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>MM</code></div>
+                        <div class="table-cell">2-digit month (01-12)</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>dd</code></div>
+                        <div class="table-cell">2-digit day (01-31)</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>HH</code></div>
+                        <div class="table-cell">2-digit hour, 24h (00-23)</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>mm</code></div>
+                        <div class="table-cell">2-digit minute (00-59)</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>ss</code></div>
+                        <div class="table-cell">2-digit second (00-59)</div>
+                    </div>
+                </div>
+
+                <p class="pipe-example-caption">Same <code>Date</code> object (right now), three different format strings:</p>
+
+                <div class="usage-table">
+                    <div class="table-header">
+                        <div class="table-cell">Template</div>
+                        <div class="table-cell">Result</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>{{ '{{ now | nxDateFormat }}' }}</code> <span class="pipe-hint">(no argument = default)</span></div>
+                        <div class="table-cell">{{ now | nxDateFormat }}</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>{{ "{{ now | nxDateFormat:'dd/MM/yyyy' }}" }}</code></div>
+                        <div class="table-cell">{{ now | nxDateFormat:'dd/MM/yyyy' }}</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>{{ "{{ now | nxDateFormat:'yyyy-MM-dd HH:mm:ss' }}" }}</code></div>
+                        <div class="table-cell">{{ now | nxDateFormat:'yyyy-MM-dd HH:mm:ss' }}</div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Truncate - nxTruncate"
+                description="Usage: {{ '{{ value | nxTruncate[:maxLength[:ellipsis]] }}' }}. If value is longer than maxLength (default 50), it's cut to that length and ellipsis (default '…') is appended. If value is already shorter, it's returned unchanged - nothing is added."
+                [code]="truncateCode"
+                [hasSampleClass]="false">
+
+                <p class="pipe-example-caption">The full source text used below (<strong>{{ longText.length }} characters</strong>):</p>
+                <p class="pipe-source-text">{{ longText }}</p>
+
+                <div class="usage-table">
+                    <div class="table-header">
+                        <div class="table-cell">Call</div>
+                        <div class="table-cell">Result</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>{{ "{{ longText | nxTruncate:40 }}" }}</code></div>
+                        <div class="table-cell">{{ longText | nxTruncate:40 }}</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>{{ "{{ longText | nxTruncate:20:'...' }}" }}</code> <span class="pipe-hint">(custom ellipsis)</span></div>
+                        <div class="table-cell">{{ longText | nxTruncate:20:'...' }}</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>{{ "{{ shortText | nxTruncate:40 }}" }}</code> <span class="pipe-hint">(shorter than 40 already)</span></div>
+                        <div class="table-cell">{{ shortText | nxTruncate:40 }} <span class="pipe-hint">— unchanged, no ellipsis added</span></div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="File Size - nxFileSize"
+                description="Usage: {{ '{{ bytes | nxFileSize[:decimals] }}' }}. bytes is a plain number. The pipe picks the largest unit (B, KB, MB, GB, TB) where the value is still ≥ 1, dividing by 1024 each step up, and rounds to decimals places (default 1)."
+                [code]="fileSizeCode"
+                [hasSampleClass]="false">
+
+                <div class="usage-table">
+                    <div class="table-header">
+                        <div class="table-cell">Bytes (input)</div>
+                        <div class="table-cell">Call</div>
+                        <div class="table-cell">Result</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">512</div>
+                        <div class="table-cell"><code>{{ "{{ 512 | nxFileSize }}" }}</code></div>
+                        <div class="table-cell">{{ 512 | nxFileSize }} <span class="pipe-hint">— under 1024, stays in bytes</span></div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">2,048</div>
+                        <div class="table-cell"><code>{{ "{{ 2048 | nxFileSize }}" }}</code></div>
+                        <div class="table-cell">{{ 2048 | nxFileSize }} <span class="pipe-hint">— 2048 ÷ 1024 = 2 KB</span></div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">1,536,000</div>
+                        <div class="table-cell"><code>{{ "{{ 1536000 | nxFileSize }}" }}</code></div>
+                        <div class="table-cell">{{ 1536000 | nxFileSize }} <span class="pipe-hint">— default 1 decimal place</span></div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">3,200,000,000</div>
+                        <div class="table-cell"><code>{{ "{{ 3200000000 | nxFileSize:2 }}" }}</code></div>
+                        <div class="table-cell">{{ 3200000000 | nxFileSize:2 }} <span class="pipe-hint">— 2 decimal places</span></div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">3,200,000,000</div>
+                        <div class="table-cell"><code>{{ "{{ 3200000000 | nxFileSize:0 }}" }}</code></div>
+                        <div class="table-cell">{{ 3200000000 | nxFileSize:0 }} <span class="pipe-hint">— 0 decimal places, rounded</span></div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

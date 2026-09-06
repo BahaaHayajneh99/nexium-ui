@@ -1,0 +1,60 @@
+<div class="nx-time-picker" [class.disabled]="disabled" [class.inline]="inline">
+
+    @if (!inline) {
+        <div class="nx-time-picker-input-wrapper" (click)="toggle()">
+            <input
+                class="nx-time-picker-input"
+                type="text"
+                readonly
+                [placeholder]="placeholder"
+                [disabled]="disabled"
+                [value]="displayValue"
+                (blur)="onBlur()" />
+            <nx-icon class="nx-time-picker-icon" icon="nx-clock" variant="svg" [size]="16"></nx-icon>
+        </div>
+    }
+
+    @if (inline || open) {
+        <div class="nx-time-picker-panel">
+
+            <div class="nx-time-picker-column">
+                <div class="nx-time-picker-column-label">Hour</div>
+                <ul class="nx-time-picker-list">
+                    @for (h of hourOptions; track h) {
+                        <li [class.active]="h === selectedHour" (mousedown)="selectHour(h)">{{ pad(h) }}</li>
+                    }
+                </ul>
+            </div>
+
+            <div class="nx-time-picker-column">
+                <div class="nx-time-picker-column-label">Minute</div>
+                <ul class="nx-time-picker-list">
+                    @for (m of minuteOptions; track m) {
+                        <li [class.active]="m === selectedMinute" (mousedown)="selectMinute(m)">{{ pad(m) }}</li>
+                    }
+                </ul>
+            </div>
+
+            @if (showSeconds) {
+                <div class="nx-time-picker-column">
+                    <div class="nx-time-picker-column-label">Second</div>
+                    <ul class="nx-time-picker-list">
+                        @for (s of secondOptions; track s) {
+                            <li [class.active]="s === selectedSecond" (mousedown)="selectSecond(s)">{{ pad(s) }}</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            @if (use12Hour) {
+                <div class="nx-time-picker-column nx-time-picker-period">
+                    <div class="nx-time-picker-column-label">&nbsp;</div>
+                    <button type="button" [class.active]="selectedPeriod === 'AM'" (mousedown)="selectPeriod('AM')">AM</button>
+                    <button type="button" [class.active]="selectedPeriod === 'PM'" (mousedown)="selectPeriod('PM')">PM</button>
+                </div>
+            }
+
+        </div>
+    }
+
+</div>

@@ -45,7 +45,7 @@
                 [code]="rowCode"
                 [hasSampleClass]="false">
 
-                <div class="block-grid-3">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                     @for (metric of metrics; track metric.label) {
                         <nx-card variant="outlined">
                             <nx-card-content>

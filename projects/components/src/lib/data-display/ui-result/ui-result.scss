@@ -1,0 +1,83 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-result {
+    text-align: center;
+    padding: $spacing-xl;
+    border-radius: $radius-lg;
+    border: 2px solid var(--shell-border);
+    background: var(--shell-surface);
+    font-family: $font-family;
+    transition: all $transition-fast;
+
+    &.status-success {
+        border-color: var(--success-color);
+        background: color-mix(in srgb, var(--success-color) 8%, transparent);
+
+        .nx-result-icon { color: var(--success-color); }
+        .nx-result-action { background: var(--success-color); }
+    }
+
+    &.status-error {
+        border-color: var(--danger-color);
+        background: color-mix(in srgb, var(--danger-color) 8%, transparent);
+
+        .nx-result-icon { color: var(--danger-color); }
+        .nx-result-action { background: var(--danger-color); }
+    }
+
+    &.status-warning {
+        border-color: var(--warning-color);
+        background: color-mix(in srgb, var(--warning-color) 8%, transparent);
+
+        .nx-result-icon { color: var(--warning-color); }
+        .nx-result-action { background: var(--warning-color); }
+    }
+
+    &.status-info {
+        border-color: var(--info-color);
+        background: color-mix(in srgb, var(--info-color) 8%, transparent);
+
+        .nx-result-icon { color: var(--info-color); }
+        .nx-result-action { background: var(--info-color); }
+    }
+}
+
+.nx-result-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto $spacing-md;
+}
+
+.nx-result-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: var(--shell-text);
+    margin: 0 0 $spacing-sm;
+}
+
+.nx-result-description {
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+    line-height: 1.6;
+    margin: 0 0 $spacing-lg;
+}
+
+.nx-result-action {
+    padding: $spacing-sm $spacing-lg;
+    border: none;
+    border-radius: $radius-md;
+    color: $white-color;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+        filter: brightness(0.92);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}

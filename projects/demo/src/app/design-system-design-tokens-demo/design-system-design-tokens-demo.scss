@@ -1,0 +1,269 @@
+@use '../variables.scss' as *;
+.token-benefits {  margin: 1.5rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  background: var(--shell-bg);
+  text-align: center;
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--shell-text);
+  }
+
+  p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.token-category {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  background: var(--shell-bg);
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--shell-text);
+  }
+}
+
+.token-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 6px;
+  background: var(--shell-bg);
+}
+
+.token-swatch {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  border: 1px solid var(--shell-border);
+  flex-shrink: 0;
+}
+
+.token-info {
+  flex: 1;
+}
+
+.token-name {
+  font-size: 0.85rem;
+  color: var(--shell-text);
+  font-weight: 500;
+  font-family: monospace;
+}
+
+.token-value {
+  font-size: 0.75rem;
+  color: var(--shell-text-secondary);
+  font-family: monospace;
+}
+
+.typography-tokens {}
+
+.token-subsection {
+  border: 1px solid var(--shell-border);
+  border-radius: 6px;
+  padding: 1rem;
+  background: var(--shell-bg);
+
+  strong {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--shell-text);
+  }
+}
+
+.token-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.token-row {
+  padding: 0.5rem;
+  background: var(--shell-bg);
+  border-radius: 4px;
+  color: var(--shell-text);
+  font-size: 0.875rem;
+}
+
+.token-label {
+  font-family: monospace;
+  color: var(--shell-text-secondary);
+}
+
+.spacing-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-end;
+}
+
+.token-item-spacing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spacing-box {
+  background: var(--shell-primary);
+  border-radius: 4px;
+}
+
+.spacing-label {
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: var(--shell-text-secondary);
+}
+
+.radius-tokens {}
+
+.token-item-radius {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.radius-box {
+  width: 80px;
+  height: 80px;
+  background: var(--shell-primary);
+  border: 1px solid var(--shell-border);
+}
+
+.radius-label {
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: var(--shell-text-secondary);
+}
+
+.shadow-tokens {}
+
+.token-item-shadow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.shadow-box {
+  width: 100px;
+  height: 100px;
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+}
+
+.shadow-label {
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: var(--shell-text-secondary);
+  text-align: center;
+  word-break: break-all;
+  max-width: 100%;
+}
+
+.usage-example {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  background: var(--shell-bg);
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--shell-text);
+  }
+
+  .code-block {
+    display: block; 
+    background: var(--shell-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin: 0;
+    color: var(--shell-text);
+  }
+}
+
+.semantic-item {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  background: var(--shell-bg);
+
+  strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--shell-primary);
+    font-family: monospace;
+    font-size: 0.875rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.best-practices {  margin: 1.5rem 0;
+}
+
+.practice {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: var(--shell-bg);
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--shell-text);
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+
+    li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--shell-text-secondary);
+      font-size: 0.875rem;
+
+      &::before {
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+
+  &:first-child ul li::before {
+    content: '✓';
+    color: var(--shell-success);
+    font-weight: bold;
+  }
+
+  &:last-child ul li::before {
+    content: '✗';
+    color: var(--shell-danger);
+    font-weight: bold;
+  }
+}

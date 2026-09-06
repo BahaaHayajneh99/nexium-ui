@@ -1,0 +1,107 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Overview"
+                description="Empty State is a component for handling situations when no data is available. It provides visual feedback, clear messaging, and guides users on what to do next with call-to-action buttons and suggestions."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Usage"
+                description="An icon, title, description, and an optional primary action button."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-empty-state
+                    icon="nx-search"
+                    title="No Search Results"
+                    description="Try adjusting your search terms or filters"
+                    actionLabel="Clear Search"
+                    (actionClick)="onClearSearch()">
+                </nx-empty-state>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="More Examples"
+                description="A few more empty-state scenarios, each with its own icon and action."
+                [code]="moreExamplesCode"
+                [tsCode]="moreExamplesTs"
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <nx-empty-state
+                        *ngFor="let state of emptyStates"
+                        [icon]="state.icon"
+                        [title]="state.title"
+                        [description]="state.description"
+                        [actionLabel]="state.action">
+                    </nx-empty-state>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{ practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="State Types"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let stateType of stateTypes">
+                        <h3>{{ stateType.title }}</h3>
+                        <p>{{ stateType.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

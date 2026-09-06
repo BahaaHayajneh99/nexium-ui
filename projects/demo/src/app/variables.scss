@@ -7,7 +7,6 @@ $primary-color: #3498db;
 $primary-color-dark: #2980b9;
 $primary-color-light: #5dade2;
 
-
 // Neutral Colors
 $white-color: #ffffff;
 $black-color: #000000;
@@ -41,8 +40,6 @@ $warning-color-dark: #d68910;
 $info-color: #17a2b8;
 $info-color-dark: #138496;
 
-
-
 // ======================================
 // Neutral Colors
 // ======================================
@@ -54,7 +51,7 @@ $black: #000000;
 $primary-bg-color: #1b1d1f;
 $surface-color: #ffffff;
 $surface-hover-color: #f8f9fa; 
-
+$surface-light: #f5f5f5;
 // ======================================
 // Text
 // ======================================
@@ -67,7 +64,6 @@ $text-white: #ffffff;
 // Border
 $border-color: #dee2e6;
 $border-hover-color: #adb5bd;
-
 
 // ======================================
 // Component States
@@ -100,7 +96,6 @@ $shadow-md: 0 4px 8px rgba(0, 0, 0, .12);
 $shadow-lg: 0 10px 20px rgba(0, 0, 0, .15);
 $shadow-xl: 0 20px 40px rgba(0, 0, 0, .2);
 
-
 // Spacing
 $spacing-xs: 4px;
 $spacing-sm: 8px;
@@ -123,7 +118,6 @@ $language-ts-import-path-color: #4fc1ff;
 $language-ts-decorator-color: #dcdcaa;
 $language-ts-class-name-color: var(--shell-primary); //#4ec9b0;
 $language-ts-prop-color: #9cdcfe;
-
 
 //Font Family and Sizes
 $font-family: "Roboto", sans-serif;

@@ -1,0 +1,183 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Visual Testing</h4>
+                <p class="main-section-description">
+                    Detect visual regressions and ensure UI consistency across browsers and devices
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Visual Testing Tools"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 340px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let tool of visualTestingTools" class="nx-card">
+                        <div class="tool-header">
+                            <h3>{{ tool.name }}</h3>
+                            <span class="tool-type">{{ tool.type }}</span>
+                        </div>
+                        <p class="description">{{ tool.description }}</p>
+                        <div class="features">
+                            <strong>Features:</strong>
+                            <ul>
+                                <li *ngFor="let feature of tool.features">{{ feature }}</li>
+                            </ul>
+                        </div>
+                        <div class="setup">
+                            <strong>Setup:</strong>
+                            <code>{{ tool.setup }}</code>
+                        </div>
+                        <div class="pros-cons">
+                            <div>
+                                <strong>Pros:</strong>
+                                <ul>
+                                    <li *ngFor="let pro of tool.pros">{{ pro }}</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>Cons:</strong>
+                                <ul>
+                                    <li *ngFor="let con of tool.cons">{{ con }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Visual Testing Approaches"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let approach of visualTestingApproaches" class="nx-card">
+                        <h3>{{ approach.approach }}</h3>
+                        <p>{{ approach.description }}</p>
+                        <div class="use-cases">
+                            <strong>Use Cases:</strong>
+                            <ul>
+                                <li *ngFor="let usecase of approach.useCases">{{ usecase }}</li>
+                            </ul>
+                        </div>
+                        <p><strong>Tools:</strong> {{ approach.tools.join(', ') }}</p>
+                        <p><strong>Workflow:</strong> {{ approach.workflow }}</p>
+                        <div class="pros-cons">
+                            <div>
+                                <strong>Pros:</strong>
+                                <ul>
+                                    <li *ngFor="let pro of approach.pros">{{ pro }}</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>Cons:</strong>
+                                <ul>
+                                    <li *ngFor="let con of approach.cons">{{ con }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Common Visual Issues"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="issues-table-wrapper">
+                    <table class="issues-table">
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Description</th>
+                                <th>Detection</th>
+                                <th>Prevention</th>
+                                <th>Tool</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let issue of commonVisualIssues">
+                                <td><strong>{{ issue.issue }}</strong></td>
+                                <td>{{ issue.description }}</td>
+                                <td>{{ issue.detection }}</td>
+                                <td>{{ issue.prevention }}</td>
+                                <td>{{ issue.tool }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Implementation Steps"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="steps-list">
+                    <div *ngFor="let step of implementationSteps" class="nx-card">
+                        <div class="step-header">
+                            <h4>{{ step.step }}</h4>
+                            <p>{{ step.details }}</p>
+                        </div>
+                        <div *ngIf="step.command" class="command">
+                            <code>{{ step.command }}</code>
+                        </div>
+                        <div *ngIf="step.code" class="code-example">
+                            <code>{{ step.code }}</code>
+                        </div>
+                        <div *ngIf="step.action" class="action">
+                            {{ step.action }}
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Cross-Browser Testing Matrix"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="matrix-table-wrapper">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Browser</th>
+                                <th>Desktop Versions</th>
+                                <th>Mobile Support</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let browser of crossBrowserMatrix">
+                                <td><strong>{{ browser.browser }}</strong></td>
+                                <td>{{ browser.versions.join(', ') }}</td>
+                                <td>{{ browser.mobileSupport }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{ practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

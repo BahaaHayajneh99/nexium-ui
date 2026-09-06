@@ -15,7 +15,7 @@
                 [code]="code"
                 [hasSampleClass]="false">
 
-                <div class="block-grid-3">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                     @for (plan of plans; track plan.name) {
                         <nx-card [variant]="plan.highlighted ? 'elevated' : 'outlined'">
                             <nx-card-content>

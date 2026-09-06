@@ -1,0 +1,106 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">File Management Pattern</h4>
+                <p class="main-section-description">
+                    Upload, organize, preview, and share files
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="File management patterns handle file uploads, storage, organization, preview, and sharing. Essential for document, media, and asset management systems."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Implementation Steps"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ol class="steps-list">
+                    <li *ngFor="let step of fileManagementSteps">{{ step }}</li>
+                </ol>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="File Upload Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="features-list">
+                    <div class="feature-item">
+                        <h3>Drag & Drop</h3>
+                        <p>Intuitive file upload by dragging files into the upload area</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Progress Tracking</h3>
+                        <p>Show upload progress with cancel option</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Type Validation</h3>
+                        <p>Accept only allowed file types (images, PDFs, etc.)</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Size Validation</h3>
+                        <p>Enforce maximum file size limits</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Multi-file Upload</h3>
+                        <p>Upload multiple files simultaneously</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>File Preview</h3>
+                        <p>Display thumbnails and file metadata</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Security Considerations"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="security-list">
+                    <li>Validate file type on server (not just extension)</li>
+                    <li>Scan uploads for malware</li>
+                    <li>Store files outside web root</li>
+                    <li>Generate random file names</li>
+                    <li>Set appropriate file permissions</li>
+                    <li>Implement access controls for downloads</li>
+                    <li>Log all file operations</li>
+                </ul>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

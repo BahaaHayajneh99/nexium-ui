@@ -11,10 +11,10 @@
             </section>
 
             <section class="main-section">
-                <div class="radius-grid">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                     @for (r of radii; track r.className) {
-                        <div class="radius-card-wrap">
-                            <div class="radius-card" [class]="r.className"></div>
+                        <div class="nx-card-wrap">
+                            <div class="use-case-item" [class]="r.className"></div>
                             <code class="radius-class">.{{ r.className }}</code>
                             <span class="radius-value">{{ r.value }}</span>
                         </div>

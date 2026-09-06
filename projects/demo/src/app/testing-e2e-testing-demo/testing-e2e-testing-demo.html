@@ -1,0 +1,157 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">E2E Testing</h4>
+                <p class="main-section-description">
+                    Write comprehensive end-to-end tests that simulate real user interactions
+                </p>
+            </section>
+
+            <app-demo-section
+                header="E2E Testing Frameworks"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 340px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let fw of e2eFrameworks" class="nx-card">
+                        <h3>{{ fw.name }}</h3>
+                        <p class="description">{{ fw.description }}</p>
+                        <div class="setup">
+                            <strong>Setup:</strong>
+                            <code>{{ fw.setup }}</code>
+                        </div>
+                        <div class="features">
+                            <strong>Features:</strong>
+                            <ul>
+                                <li *ngFor="let feature of fw.features">{{ feature }}</li>
+                            </ul>
+                        </div>
+                        <p><strong>Language Support:</strong> {{ fw.languageSupport }}</p>
+                        <div class="pros-cons">
+                            <div>
+                                <strong>Pros:</strong>
+                                <ul>
+                                    <li *ngFor="let pro of fw.pros">{{ pro }}</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>Cons:</strong>
+                                <ul>
+                                    <li *ngFor="let con of fw.cons">{{ con }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <strong>Example:</strong>
+                            <code>{{ fw.example }}</code>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="E2E Test Scenarios"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 340px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let scenario of e2eScenarios" class="nx-card">
+                        <div class="scenario-header">
+                            <h3>{{ scenario.scenario }}</h3>
+                            <span class="coverage" [class]="'coverage-' + scenario.coverage.toLowerCase()">{{ scenario.coverage }}</span>
+                        </div>
+                        <p>{{ scenario.description }}</p>
+                        <div class="steps">
+                            <strong>Steps:</strong>
+                            <ol>
+                                <li *ngFor="let step of scenario.steps">{{ step }}</li>
+                            </ol>
+                        </div>
+                        <div class="assertions">
+                            <strong>Assertions:</strong>
+                            <ul>
+                                <li *ngFor="let assertion of scenario.assertions">{{ assertion }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Page Object Model Pattern"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let component of pageObjectPattern" class="nx-card">
+                        <h4>{{ component.component }}</h4>
+                        <p>{{ component.description }}</p>
+                        <div class="code-example">
+                            <code>{{ component.example }}</code>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Debugging Techniques"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let technique of debuggingTechniques" class="nx-card">
+                        <h3>{{ technique.technique }}</h3>
+                        <p>{{ technique.description }}</p>
+                        <div class="usage">
+                            <strong>Usage:</strong>
+                            <code>{{ technique.usage }}</code>
+                        </div>
+                        <p><strong>Use Case:</strong> {{ technique.usecase }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="CI/CD Integration"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let ci of ciCdIntegration" class="nx-card">
+                        <h3>{{ ci.platform }}</h3>
+                        <div class="setup">
+                            <strong>Setup:</strong>
+                            <p>{{ ci.setup }}</p>
+                            <code>{{ ci.config }}</code>
+                        </div>
+                        <div class="benefits">
+                            <strong>Benefits:</strong>
+                            <ul>
+                                <li *ngFor="let benefit of ci.benefits">{{ benefit }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{ practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

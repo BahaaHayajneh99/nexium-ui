@@ -1,0 +1,21 @@
+<div class="nx-empty-state">
+
+    @if (icon) {
+        <nx-icon class="nx-empty-state-icon" [icon]="icon" variant="svg" [size]="iconSize"></nx-icon>
+    }
+
+    @if (title) {
+        <h3 class="nx-empty-state-title">{{ title }}</h3>
+    }
+
+    @if (description) {
+        <p class="nx-empty-state-description">{{ description }}</p>
+    }
+
+    @if (actionLabel) {
+        <button type="button" class="nx-empty-state-action" (click)="actionClick.emit()">{{ actionLabel }}</button>
+    }
+
+    <ng-content></ng-content>
+
+</div>

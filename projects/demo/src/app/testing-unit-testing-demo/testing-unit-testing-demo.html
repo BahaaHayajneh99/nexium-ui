@@ -1,0 +1,142 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Unit Testing</h4>
+                <p class="main-section-description">
+                    Learn how to write effective unit tests for Angular components, services, and utilities
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Testing Frameworks"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let fw of frameworks" class="nx-card">
+                        <h3>{{ fw.name }}</h3>
+                        <p class="description">{{ fw.description }}</p>
+                        <div class="features">
+                            <strong>Features:</strong>
+                            <ul>
+                                <li *ngFor="let feature of fw.features">{{ feature }}</li>
+                            </ul>
+                        </div>
+                        <div class="setup">
+                            <code>{{ fw.setup }}</code>
+                        </div>
+                        <div class="pros-cons">
+                            <div>
+                                <strong>Pros:</strong>
+                                <ul class="pros-list">
+                                    <li *ngFor="let pro of fw.pros">{{ pro }}</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong>Cons:</strong>
+                                <ul class="cons-list">
+                                    <li *ngFor="let con of fw.cons">{{ con }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Testing Patterns"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let pattern of testPatterns" class="nx-card">
+                        <h3>{{ pattern.name }}</h3>
+                        <p><strong>Purpose:</strong> {{ pattern.purpose }}</p>
+                        <div class="components">
+                            <strong>Components:</strong>
+                            <ul>
+                                <li *ngFor="let component of pattern.components">{{ component }}</li>
+                            </ul>
+                        </div>
+                        <p><strong>Example:</strong> {{ pattern.example }}</p>
+                        <p><strong>Tools:</strong> {{ pattern.tools.join(', ') }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Common Matchers"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="matchers-table-wrapper">
+                    <table class="matchers-table">
+                        <thead>
+                            <tr>
+                                <th>Matcher</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let matcher of commonMatchers">
+                                <td><code>{{ matcher.matcher }}</code></td>
+                                <td>{{ matcher.description }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Test Structure"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let phase of testStructure" class="nx-card">
+                        <h4>{{ phase.phase }}</h4>
+                        <p><strong>Description:</strong> {{ phase.description }}</p>
+                        <div class="code-example">
+                            <code>{{ phase.code }}</code>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Coverage Targets"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let target of coverageTargets" class="nx-card">
+                        <div class="coverage-header">
+                            <h4>{{ target.metric }}</h4>
+                            <span class="target">{{ target.target }}</span>
+                        </div>
+                        <p>{{ target.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{ practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

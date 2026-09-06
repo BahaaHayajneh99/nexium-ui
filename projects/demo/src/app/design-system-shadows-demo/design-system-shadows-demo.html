@@ -1,0 +1,151 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Shadows</h4>
+                <p class="main-section-description">
+                    Shadows add depth and visual hierarchy to your interface, helping users understand 
+                    the relationship between elements and their relative importance.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Shadow Scale</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} provides a carefully designed shadow scale that creates 
+                    visual hierarchy without overwhelming the interface:
+                </p>
+                
+                <div  class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                    @for (shadow of shadows; track shadow.name) {
+                        <div class="shadow-item">
+                            <div class="shadow-preview" [style.boxShadow]="shadow.value"></div>
+                            <div class="shadow-info">
+                                <strong>{{ shadow.name }}</strong>
+                                <p class="shadow-desc">{{ shadow.description }}</p>
+                                <code>{{ shadow.value }}</code>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Element Usage</h4>
+                <p class="main-section-description">
+                    Different UI elements use different shadow levels to communicate their role and elevation:
+                </p>
+                
+                <div class="usage-table">
+                    <div class="table-header">
+                        <div class="table-cell">Element</div>
+                        <div class="table-cell">Shadow Level</div>
+                        <div class="table-cell">Purpose</div>
+                    </div>
+                    @for (use of useCases; track use.element) {
+                        <div class="table-row">
+                            <div class="table-cell">{{ use.element }}</div>
+                            <div class="table-cell"><strong>{{ use.shadow }}</strong></div>
+                            <div class="table-cell">{{ use.purpose }}</div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Shadow Psychology</h4>
+                
+                <div  class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                    <div class="use-case-item">
+                        <h5>📐 Depth</h5>
+                        <p>Shadows create an illusion of depth, making elements appear to float above the page</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>👁️ Focus</h5>
+                        <p>Stronger shadows draw the user's eye to important interactive elements</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>🎯 Hierarchy</h5>
+                        <p>Shadow intensity indicates element importance and interactivity level</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>✨ Polish</h5>
+                        <p>Subtle shadows give interfaces a refined, professional appearance</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Best Practices</h4>
+                
+                <div class="best-practices-section">
+                    <div class="practice-column">
+                        <h5>✓ DO</h5>
+                        <ul>
+                            <li>Use consistent shadow scale throughout the app</li>
+                            <li>Match shadow intensity to element elevation</li>
+                            <li>Use subtle shadows - let content be the focus</li>
+                            <li>Test shadows at different brightness levels</li>
+                            <li>Apply shadows to interactive and elevated elements</li>
+                        </ul>
+                    </div>
+                    <div class="practice-column">
+                        <h5>✗ DON'T</h5>
+                        <ul>
+                            <li>Use multiple shadow values on the same element</li>
+                            <li>Apply shadows to every element indiscriminately</li>
+                            <li>Use pure black for shadow color</li>
+                            <li>Forget shadows in dark mode (adjust opacity)</li>
+                            <li>Use shadows to compensate for poor contrast</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">CSS Variables</h4>
+                <p class="main-section-description">
+                    Use these CSS custom properties for consistent shadow application:
+                </p>
+                
+                <div class="css-vars-section">
+                    <div class="var-group">
+                        <code>--shadow-xs</code>
+                        <span>0 1px 2px rgba(0, 0, 0, 0.05)</span>
+                    </div>
+                    <div class="var-group">
+                        <code>--shadow-sm</code>
+                        <span>0 1px 3px rgba(0, 0, 0, 0.1)</span>
+                    </div>
+                    <div class="var-group">
+                        <code>--shadow-md</code>
+                        <span>0 4px 6px rgba(0, 0, 0, 0.1)</span>
+                    </div>
+                    <div class="var-group">
+                        <code>--shadow-lg</code>
+                        <span>0 10px 15px rgba(0, 0, 0, 0.1)</span>
+                    </div>
+                    <div class="var-group">
+                        <code>--shadow-xl</code>
+                        <span>0 20px 25px rgba(0, 0, 0, 0.1)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Dark Mode Considerations</h4>
+                <p class="main-section-description">
+                    Shadows behave differently in dark mode. Adjust opacity and blur to maintain visual hierarchy:
+                </p>
+                
+                <div class="dark-mode-note">
+                    <strong>Light Mode:</strong> Darker shadows with lower opacity
+                    <br/>
+                    <strong>Dark Mode:</strong> Lighter, more visible shadows with higher opacity
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

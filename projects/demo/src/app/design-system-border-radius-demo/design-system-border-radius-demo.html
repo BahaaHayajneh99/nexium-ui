@@ -1,0 +1,153 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Border Radius</h4>
+                <p class="main-section-description">
+                    Border radius defines the corner rounding of UI elements, creating visual harmony and 
+                    affecting the overall aesthetic of your interface.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Radius Scale</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} provides a carefully balanced border radius scale that can be 
+                    applied consistently across all components:
+                </p>
+                
+                <div class="radius-showcase">
+                    @for (radius of radiusValues; track radius.value) {
+                        <div class="radius-item">
+                            <div class="radius-box" [style.borderRadius]="radius.value"></div>
+                            <div class="radius-info">
+                                <strong>{{ radius.name }}</strong>
+                                <code>border-radius: {{ radius.value }};</code>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Component Usage</h4>
+                <p class="main-section-description">
+                    Different components use different border radius values to create visual hierarchy 
+                    and improve usability:
+                </p>
+                
+                <div class="usage-table">
+                    <div class="table-header">
+                        <div class="table-cell">Component</div>
+                        <div class="table-cell">Border Radius</div>
+                        <div class="table-cell">Purpose</div>
+                    </div>
+                    @for (usage of usageCases; track usage.component) {
+                        <div class="table-row">
+                            <div class="table-cell">{{ usage.component }}</div>
+                            <div class="table-cell"><code>{{ usage.radius }}</code></div>
+                            <div class="table-cell">{{ usage.purpose }}</div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Design Principles</h4>
+                
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item">
+                        <h5>🎯 Consistency</h5>
+                        <p>Use the same radius values throughout your interface to maintain visual cohesion</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>📐 Hierarchy</h5>
+                        <p>Smaller radius values for small components, larger values for prominent containers</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>🔄 Balance</h5>
+                        <p>Not every element needs rounded corners - use them purposefully</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>🎨 Brand</h5>
+                        <p>Adjust radius values to match your brand's personality (modern vs. traditional)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">CSS Variables</h4>
+                <p class="main-section-description">
+                    Use these CSS custom properties to apply border radius consistently:
+                </p>
+                
+                <div class="css-vars-list">
+                    <div class="var-item">
+                        <code>--radius-sm</code>
+                        <span>2px</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--radius-md</code>
+                        <span>4px</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--radius-lg</code>
+                        <span>8px</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--radius-xl</code>
+                        <span>12px</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--radius-full</code>
+                        <span>50%</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Best Practices</h4>
+                
+                <div class="best-practices-section">
+                    <div class="practice-item">
+                        <h5>✓ DO</h5>
+                        <ul>
+                            <li>Use predefined radius values for consistency</li>
+                            <li>Match radius to component importance and size</li>
+                            <li>Test radius values on different screen sizes</li>
+                            <li>Use CSS variables for easy theme changes</li>
+                        </ul>
+                    </div>
+                    <div class="practice-item">
+                        <h5>✗ DON'T</h5>
+                        <ul>
+                            <li>Use arbitrary radius values across components</li>
+                            <li>Apply extreme radius (> 20px) without purpose</li>
+                            <li>Hardcode radius values in component styles</li>
+                            <li>Use different radius values for the same component type</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Customization</h4>
+                <p class="main-section-description">
+                    You can easily customize border radius values by overriding CSS variables in your application:
+                </p>
+                
+                <div class="customization-code">
+                    <code class="code-block">:root {{'{'}
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+{'}'}
+</code>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,155 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Data Grid</h1>
+    <p>Advanced data display component for large datasets with sorting, filtering, and editing capabilities</p>
+  </div>
+
+  <section class="demo-section">
+    <h2>Overview</h2>
+    <p>
+      {{ commonService.appName }} Data Grid is a powerful component for displaying and managing large datasets. It
+      provides advanced features like sorting, filtering, pagination, lazy loading, and inline editing - making it
+      perfect for admin panels, analytics dashboards, and data-heavy applications.
+    </p>
+  </section>
+
+  <section class="demo-section">
+    <h2>Key Features</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let feature of features">
+        <h3>{{ feature.name }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Why Data Grid is Powerful</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let highlight of keyHighlights">
+        <h3>{{ highlight.title }}</h3>
+        <p>{{ highlight.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Basic Usage</h2>
+    <div class="code-block">
+      <pre [innerHTML]="basicUsageCode"></pre>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Common Use Cases</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let useCase of useCases">
+        <h3>{{ useCase.title }}</h3>
+        <p>{{ useCase.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Column Configuration</h2>
+    <div class="usage-table">
+      <div class="table-header">
+        <div class="table-cell">Property</div>
+        <div class="table-cell">Type</div>
+        <div class="table-cell">Description</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">field</div>
+        <div class="table-cell">string</div>
+        <div class="table-cell">Field name from data object</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">header</div>
+        <div class="table-cell">string</div>
+        <div class="table-cell">Column header text</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">width</div>
+        <div class="table-cell">number | string</div>
+        <div class="table-cell">Column width in pixels or percentage</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">sortable</div>
+        <div class="table-cell">boolean</div>
+        <div class="table-cell">Enable column sorting</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">filterable</div>
+        <div class="table-cell">boolean</div>
+        <div class="table-cell">Enable column filtering</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">editable</div>
+        <div class="table-cell">boolean</div>
+        <div class="table-cell">Allow inline cell editing</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Best Practices</h2>
+    <div class="best-practices-list">
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Virtual scrolling</h4>
+          <p>Use for datasets over 1000 rows</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Lazy loading</h4>
+          <p>Implement for real-time data updates</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Clear headers</h4>
+          <p>Provide descriptive column headers and tooltips</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Use pagination</h4>
+          <p>Improve performance with page navigation</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Row selection</h4>
+          <p>Include selection with batch operations</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Export functionality</h4>
+          <p>Allow data export for analysis</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Highlight important data</h4>
+          <p>Use formatting to draw attention</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Mobile responsive</h4>
+          <p>Ensure usability on mobile devices</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

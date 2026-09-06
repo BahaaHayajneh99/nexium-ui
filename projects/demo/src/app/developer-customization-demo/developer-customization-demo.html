@@ -1,0 +1,101 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Customization</h4>
+                <p class="main-section-description">
+                    Extend and customize NexaUI components
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Customization Levels"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="customization-levels">
+                    <div class="use-case-item mb-5" *ngFor="let level of customizationLevels">
+                        <h3>{{ level.level }}</h3>
+                        <p class="description">{{ level.description }}</p>
+                        <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                            <div class="info-item">
+                                <strong>Methods:</strong>
+                                <div class="methods-list">
+                                    <span class="method" *ngFor="let method of level.methods">{{ method }}</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <strong>Difficulty:</strong> {{ level.difficulty }}
+                            </div>
+                            <div class="info-item">
+                                <strong>Scope:</strong> {{ level.scope }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Customization Patterns"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="patterns-list">
+                    <div class="use-case-item mb-5" *ngFor="let pattern of customizationPatterns">
+                        <h3>{{ pattern.name }}</h3>
+                        <p class="description">{{ pattern.description }}</p>
+                        <p class="use"><strong>Use case:</strong> {{ pattern.use }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Extension Guides"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="guides-list">
+                    <li *ngFor="let guide of extensionGuides">{{ guide }}</li>
+                </ul>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{ practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Example: Extending a Button"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="code-block">
+                    <pre>import {{ '{' }} Component, Input {{ '}' }} from '@angular/core';
+import {{ '{' }} NxButtonComponent {{ '}' }} from '@nexaui/components';
+
+@Component({{ '{' }}
+  selector: 'app-custom-button',
+  template: '<button class="custom"><ng-content></ng-content></button>',
+  standalone: true
+{{ '}' }})
+export class CustomButtonComponent {{ '{' }}
+  @Input() customProp: string;
+{{ '}' }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

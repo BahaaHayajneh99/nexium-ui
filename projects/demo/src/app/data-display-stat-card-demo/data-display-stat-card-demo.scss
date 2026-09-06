@@ -1,0 +1,132 @@
+.demo-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.demo-header {
+  margin-bottom: 3rem;
+  border-bottom: 2px solid var(--shell-border, #e0e0e0);
+  padding-bottom: 1.5rem;
+
+  h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--shell-text, #000);
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary, #666);
+    font-size: 1.1rem;
+  }
+}
+
+.demo-section {
+  margin-bottom: 3rem;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--shell-text, #000);
+  }
+
+  p {
+    color: var(--text-secondary, #666);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface-light, #f9f9f9);
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--shell-text, #000);
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #666);
+  }
+}
+
+.demo-box {
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  padding: 2rem;
+  background: var(--shell-surface, #fff);
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface, #fff);
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--primary-color, #007bff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+.stat-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #666);
+  font-weight: 500;
+}
+
+.stat-value {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--shell-text, #000);
+}
+
+.stat-change {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+
+  &.trend-up {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  &.trend-down {
+    background: #ffebee;
+    color: #c62828;
+  }
+
+  &.trend-neutral {
+    background: #f5f5f5;
+    color: #666;
+  }
+}
+
+.trend-example {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface, #fff);
+
+}
+}

@@ -1,0 +1,100 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Data Management Pattern</h4>
+                <p class="main-section-description">
+                    Handle bulk data operations, import/export, and sync
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="Data management patterns handle large-scale data operations including imports, exports, validation, and syncing across systems."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Data Flow"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="data-flows">
+                    <div class="flow-item" *ngFor="let flow of dataFlows">
+                        <h3>{{ flow.stage }}</h3>
+                        <p>{{ flow.tasks }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Supported Formats"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item">
+                        <h3>CSV</h3>
+                        <p>Comma-separated values, easily editable in Excel</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Excel</h3>
+                        <p>XLSX format with multiple sheets and formatting</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>JSON</h3>
+                        <p>Structured data for APIs and systems</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>XML</h3>
+                        <p>Legacy system integration format</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Error Handling"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="error-handling">
+                    <li>Validate data before import</li>
+                    <li>Show detailed error report with line numbers</li>
+                    <li>Allow partial import (skip invalid rows)</li>
+                    <li>Preview data before final import</li>
+                    <li>Generate export logs for compliance</li>
+                    <li>Support rollback on errors</li>
+                </ul>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

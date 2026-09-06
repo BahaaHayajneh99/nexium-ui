@@ -1,0 +1,104 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Tree Table</h1>
+    <p>Hierarchical table component for displaying nested data with expand/collapse functionality</p>
+  </div>
+
+  <section class="demo-section">
+    <h2>Overview</h2>
+    <p>
+      Tree Table combines the structure of a traditional table with hierarchical navigation. Perfect for displaying
+      nested data like file systems, organizational charts, and category trees with expand/collapse controls.
+    </p>
+  </section>
+
+  <section class="demo-section">
+    <h2>Key Features</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let feature of features">
+        <h3>{{ feature.name }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Interactive Demo</h2>
+    <div class="demo-box">
+      <table class="tree-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let node of treeData" [class.expanded]="node.expanded">
+            <td class="name-cell">
+              <button 
+                *ngIf="node.children?.length" 
+                (click)="toggleNode(node)"
+                class="expand-btn">
+                {{ node.expanded ? '▼' : '▶' }}
+              </button>
+              <span *ngIf="!node.children?.length" class="no-expand"></span>
+              <span class="node-name">{{ node.name }}</span>
+            </td>
+            <td>{{ node.size }}</td>
+          </tr>
+
+          <ng-container *ngIf="treeData[0].expanded && treeData[0].children">
+            <tr *ngFor="let child of treeData[0].children" class="level-1" [class.expanded]="child.expanded">
+              <td class="name-cell">
+                <span class="indent"></span>
+                <button 
+                  *ngIf="child.children?.length" 
+                  (click)="toggleNode(child)"
+                  class="expand-btn">
+                  {{ child.expanded ? '▼' : '▶' }}
+                </button>
+                <span *ngIf="!child.children?.length" class="no-expand"></span>
+                <span class="node-name">{{ child.name }}</span>
+              </td>
+              <td>{{ child.size }}</td>
+            </tr>
+
+            <ng-container *ngIf="treeData[0].children[0].expanded && treeData[0].children[0].children">
+              <tr *ngFor="let grandchild of treeData[0].children[0].children" class="level-2">
+                <td class="name-cell">
+                  <span class="indent"></span>
+                  <span class="indent"></span>
+                  <span class="leaf-icon">📄</span>
+                  <span class="node-name">{{ grandchild.name }}</span>
+                </td>
+                <td>{{ grandchild.size }}</td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Use Cases</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let useCase of useCases">
+        <h3>{{ useCase.title }}</h3>
+        <p>{{ useCase.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Benefits</h2>
+    <ul class="benefits-list">
+      <li>Display complex hierarchies clearly</li>
+      <li>Easy navigation with expand/collapse</li>
+      <li>Space-efficient with lazy loading</li>
+      <li>Sortable and filterable</li>
+      <li>Support for custom icons and styling</li>
+      <li>Accessible keyboard navigation</li>
+    </ul>
+  </section>
+</div>

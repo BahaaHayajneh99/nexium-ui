@@ -1,0 +1,107 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">i18n Implementation</h4>
+                <p class="main-section-description">
+                    Setup and configuration for internationalization.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="i18n Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of i18nFeatures">
+                        <h3>{{ feature.feature }}</h3>
+                        <p class="description">{{ feature.description }}</p>
+                        <div class="examples">
+                            <span class="example" *ngFor="let example of feature.examples">{{ example }}</span>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Setup Steps"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ol class="setup-steps">
+                    <li *ngFor="let step of setupSteps">{{ step }}</li>
+                </ol>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Supported Locales"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let locale of supportedLocales">
+                        <span class="flag">{{ locale.flag }}</span>
+                        <div class="locale-info">
+                            <p class="code">{{ locale.code }}</p>
+                            <p class="name">{{ locale.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Translation File Formats"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <table class="formats-table">
+                    <thead>
+                        <tr>
+                            <th>Format</th>
+                            <th>File Extension</th>
+                            <th>Pros</th>
+                            <th>Cons</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let format of translationFormats">
+                            <td><strong>{{ format.format }}</strong></td>
+                            <td><code>{{ format.extension }}</code></td>
+                            <td>{{ format.pros }}</td>
+                            <td>{{ format.cons }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices for i18n"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{ practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Angular i18n Command"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="code-block">
+                    <pre>{{ cliCommands }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

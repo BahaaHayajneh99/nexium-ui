@@ -49,7 +49,7 @@ import { NexiumUiModule } from 'nexium-ui';
 export class SharedModule {}`;
 
   designTokensCode = `.my-panel {
-  background: var(--shell-surface);
+  background: var(--shell-bg);
   border: 1px solid var(--shell-border);
   border-radius: 8px;
   color: var(--shell-text);

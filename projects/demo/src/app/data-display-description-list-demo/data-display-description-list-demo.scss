@@ -1,0 +1,147 @@
+.demo-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.demo-header {
+  margin-bottom: 3rem;
+  border-bottom: 2px solid var(--shell-border, #e0e0e0);
+  padding-bottom: 1.5rem;
+
+  h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--shell-text, #000);
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-secondary, #666);
+    font-size: 1.1rem;
+  }
+}
+
+.demo-section {
+  margin-bottom: 3rem;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--shell-text, #000);
+  }
+
+  p {
+    color: var(--text-secondary, #666);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface-light, #f9f9f9);
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--shell-text, #000);
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #666);
+  }
+}
+}
+.demo-box {
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  padding: 2rem;
+  background: var(--shell-surface, #fff);
+}
+
+.description-list {
+  margin: 0;
+  padding: 0;
+
+  &:not(.inline):not(.grouped):not(.grid) {
+    dt {
+      font-weight: 600;
+      color: var(--shell-text, #000);
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    dd {
+      margin: 0 0 0 0;
+      padding: 0 0 0 2rem;
+      color: var(--text-secondary, #666);
+      line-height: 1.6;
+    }
+  }
+
+  &.inline {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: baseline;
+
+    dt {
+      font-weight: 600;
+      color: var(--shell-text, #000);
+    }
+
+    dd {
+      margin: 0;
+      color: var(--text-secondary, #666);
+    }
+  }
+
+  &.grouped {
+    dt {
+      font-weight: 600;
+      color: var(--shell-text, #000);
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    dd {
+      margin: 0 0 0.5rem 2rem;
+      color: var(--text-secondary, #666);
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.grid {    dt {
+      font-weight: 600;
+      color: var(--shell-text, #000);
+    }
+
+    dd {
+      margin: 0;
+      color: var(--text-secondary, #666);
+    }
+  }
+}
+
+.term {
+  font-weight: 600;
+}
+
+.definition {
+  color: var(--text-secondary, #666);
+}

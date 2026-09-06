@@ -25,13 +25,13 @@ export class GuideThemingDemo {
 
 /* Text & borders */
 --text-primary, --text-secondary, --text-disabled, --text-white
---border-color, --border-hover-color`;
+--shell-border, --border-hover-color`;
 
   usageCode = `.my-panel {
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--shell-border);
   border-radius: 8px;
   padding: 16px;
-  color: var(--text-primary);
+  color: var(--shell-text);
 }`;
 
   overrideCode = `/* your own global stylesheet, after the ${this.commonService.appName} stylesheet import */

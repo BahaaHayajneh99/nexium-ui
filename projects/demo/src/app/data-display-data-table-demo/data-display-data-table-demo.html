@@ -1,0 +1,150 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Data Table</h1>
+    <p>Semantic table component for displaying structured data in rows and columns</p>
+  </div>
+
+  <section class="demo-section">
+    <h2>Overview</h2>
+    <p>
+      The Data Table component provides a clean, semantic way to display structured tabular data. It's perfect for
+      displaying lists of records, comparisons, and any data that benefits from a grid layout. It supports striped
+      rows, hover effects, sorting, and responsive design.
+    </p>
+  </section>
+
+  <section class="demo-section">
+    <h2>Key Features</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let feature of features">
+        <h3>{{ feature.name }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Basic Usage</h2>
+    <div class="code-block">
+      <pre [innerHTML]="basicUsageCode"></pre>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Table Variants</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let variant of tableVariants">
+        <h3>{{ variant.name }}</h3>
+        <p>{{ variant.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Common Use Cases</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let useCase of useCases">
+        <h3>{{ useCase.title }}</h3>
+        <p>{{ useCase.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Table Structure</h2>
+    <div class="usage-table">
+      <div class="table-header">
+        <div class="table-cell">Component</div>
+        <div class="table-cell">Purpose</div>
+        <div class="table-cell">Example</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">NxTable</div>
+        <div class="table-cell">Root table container</div>
+        <div class="table-cell">&lt;nx-table&gt;&lt;/nx-table&gt;</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">NxTableHead</div>
+        <div class="table-cell">Table header section</div>
+        <div class="table-cell">&lt;nx-table-head&gt;&lt;/nx-table-head&gt;</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">NxTableBody</div>
+        <div class="table-cell">Table body section</div>
+        <div class="table-cell">&lt;nx-table-body&gt;&lt;/nx-table-body&gt;</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">NxTableRow</div>
+        <div class="table-cell">Table row</div>
+        <div class="table-cell">&lt;nx-table-row&gt;&lt;/nx-table-row&gt;</div>
+      </div>
+      <div class="table-row">
+        <div class="table-cell">NxTableCell</div>
+        <div class="table-cell">Table cell (TH or TD)</div>
+        <div class="table-cell">&lt;nx-table-cell&gt;&lt;/nx-table-cell&gt;</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Best Practices</h2>
+    <div class="best-practices-list">
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Semantic HTML</h4>
+          <p>Use proper HTML structure for accessibility</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Clear headers</h4>
+          <p>Include descriptive and clear column headers</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Align numbers</h4>
+          <p>Right-align numbers for better clarity</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Striped rows</h4>
+          <p>Use alternating row colors for readability</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Hover effects</h4>
+          <p>Highlight rows on hover for interaction feedback</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Mobile responsive</h4>
+          <p>Adapt table layout for mobile devices</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Width management</h4>
+          <p>Limit table width for very large tables</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Sorting and filtering</h4>
+          <p>Provide these for large datasets</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

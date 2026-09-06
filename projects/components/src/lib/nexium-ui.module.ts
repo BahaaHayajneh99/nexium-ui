@@ -14,6 +14,8 @@ import {
 } from './data-display/ui-card';
 import { NxChip } from './data-display/ui-chip';
 import { NxEmoji } from './data-display/ui-emoji';
+import { NxEmptyState } from './data-display/ui-empty-state';
+import { NxResult } from './data-display/ui-result';
 import { NxIcon } from './data-display/ui-icon';
 import { NxKeyValueList } from './data-display/ui-key-value-list';
 import { NxList } from './data-display/ui-list';
@@ -40,18 +42,24 @@ import { NxAutocomplete } from './forms/ui-autocomplete';
 import { NxButton } from './forms/ui-button';
 import { NxCheckbox } from './forms/ui-checkbox';
 import { NxColorPicker } from './forms/ui-color-picker';
+import { NxDateRangePicker } from './forms/ui-date-range-picker';
 import { NxDatepicker } from './forms/ui-datepicker';
 import { NxInput } from './forms/ui-input';
 import { NxMention } from './forms/ui-mention';
+import { NxMask } from './forms/ui-mask';
+import { NxNumber } from './forms/ui-number';
+import { NxPassword } from './forms/ui-password';
 import { NxOtpInput } from './forms/ui-otp-input';
 import { NxRadioGroup } from './forms/ui-radio-group';
 import { NxRating } from './forms/ui-rating';
 import { NxRichTextEditor } from './forms/ui-rich-text-editor';
 import { NxSelect } from './forms/ui-select';
+import { NxSearch } from './forms/ui-search';
 import { NxSlider } from './forms/ui-slider';
 import { NxSwitch } from './forms/ui-switch';
 import { NxTextarea } from './forms/ui-textarea';
 import { NxToggle } from './forms/ui-toggle';
+import { NxTimePicker } from './forms/ui-time-picker';
 
 import { NxFileUpload } from './uploads/ui-file-upload';
 
@@ -110,6 +118,7 @@ import { NxCopyToClipboard } from './directives/nx-copy-to-clipboard';
 import { NxLongPress } from './directives/nx-long-press';
 import { NxDebounceClick } from './directives/nx-debounce-click';
 import { NxHasPermission } from './directives/nx-has-permission';
+import { NxDateFormatPipe, NxTruncatePipe, NxFileSizePipe } from './pipes';
 
 // Every standalone component/directive the library ships, gathered in one
 // place so NexiumUiModule (below) and anyone hand-rolling a similar aggregate
@@ -128,6 +137,8 @@ const NEXIUM_UI_DECLARATIONS = [
   NxCardFooter,
   NxChip,
   NxEmoji,
+  NxEmptyState,
+  NxResult,
   NxIcon,
   NxKeyValueList,
   NxList,
@@ -157,18 +168,24 @@ const NEXIUM_UI_DECLARATIONS = [
   NxButton,
   NxCheckbox,
   NxColorPicker,
+  NxDateRangePicker,
   NxDatepicker,
   NxInput,
   NxMention,
+  NxMask,
+  NxNumber,
+  NxPassword,
   NxOtpInput,
   NxRadioGroup,
   NxRating,
   NxRichTextEditor,
   NxSelect,
+  NxSearch,
   NxSlider,
   NxSwitch,
   NxTextarea,
   NxToggle,
+  NxTimePicker,
 
   // Uploads
   NxFileUpload,
@@ -237,6 +254,11 @@ const NEXIUM_UI_DECLARATIONS = [
   NxLongPress,
   NxDebounceClick,
   NxHasPermission,
+
+  // Pipes
+  NxDateFormatPipe,
+  NxTruncatePipe,
+  NxFileSizePipe,
 ] as const;
 
 /**

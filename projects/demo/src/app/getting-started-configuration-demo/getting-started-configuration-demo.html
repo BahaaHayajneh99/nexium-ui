@@ -1,0 +1,129 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Configuration</h4>
+                <p class="main-section-description">
+                    Learn how to configure {{ commonService.appName }} for your specific needs and customize 
+                    components, themes, and behavior.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Application Setup</h4>
+                <p class="main-section-description">
+                    Configure {{ commonService.appName }} providers in your application's main configuration:
+                </p>
+                <app-demo-section 
+                    header="Provider Configuration"
+                    description="Set up {{ commonService.appName }} services and utilities"
+                    [code]="providerCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Theming Configuration</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} uses CSS custom properties for theming, allowing runtime customization 
+                    without rebuilding your application. Define your theme colors in your global styles:
+                </p>
+                <app-demo-section 
+                    header="Custom Theme"
+                    description="Override default colors with your brand colors"
+                    [code]="customThemeCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+                <div class="use-case-item">
+                    <strong>💡 Tip:</strong> All available CSS custom properties are defined in the Design Tokens section
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Component Imports</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} uses standalone components, so you import only what you need:
+                </p>
+                <app-demo-section 
+                    header="Selective Component Imports"
+                    description="Import only the components you use to optimize bundle size"
+                    [code]="moduleImportsCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Configuration Options</h4>
+                <div class="usage-table">
+                    <div class="table-header">
+                        <div class="table-cell">Option</div>
+                        <div class="table-cell">Description</div>
+                        <div class="table-cell">Default</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>provideNxTranslate()</code></div>
+                        <div class="table-cell">Enable i18n/translation support</div>
+                        <div class="table-cell">Required</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell"><code>styles.css</code></div>
+                        <div class="table-cell">Global component styles</div>
+                        <div class="table-cell">Required</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">CSS Variables</div>
+                        <div class="table-cell">Theme customization via :root</div>
+                        <div class="table-cell">Light theme</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Available Design Tokens"
+                    description="All component styles can be customized through these CSS custom properties."
+                    code=""
+                    [hasSampleClass]="false">
+                    <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                        <div class="use-case-item">
+                            <h3>Colors</h3>
+                            <p><code>--primary-color, --secondary-color, --success-color, --danger-color, --warning-color, --info-color</code></p>
+                        </div>
+                        <div class="use-case-item">
+                            <h3>Gray Scale</h3>
+                            <p><code>--gray-50, --gray-100, ... --gray-900</code></p>
+                        </div>
+                        <div class="use-case-item">
+                            <h3>Text Colors</h3>
+                            <p><code>--text-primary, --text-secondary, --text-disabled, --text-white</code></p>
+                        </div>
+                        <div class="use-case-item">
+                            <h3>Surfaces</h3>
+                            <p><code>--shell-surface, --shell-background</code></p>
+                        </div>
+                    </div>
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Environment-Specific Configuration"
+                    description="Use Angular environment files to configure different settings for development, staging, and production."
+                    code=""
+                    [hasSampleClass]="false">
+                    <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                        <div class="use-case-item">
+                            <h3>Example</h3>
+                            <p>Set different API endpoints, feature flags, or theme preferences based on your deployment environment.</p>
+                        </div>
+                    </div>
+                </app-demo-section>
+            </section>
+
+        </div>
+    </div>
+</div>

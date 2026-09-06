@@ -1,0 +1,106 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Dashboard Pattern</h4>
+                <p class="main-section-description">
+                    Display key metrics, charts, and insights at a glance
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="Dashboards provide at-a-glance insights into critical business metrics. This pattern covers KPI display, data visualization, real-time updates, and customization."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Dashboard Components"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="component-item" *ngFor="let component of dashboardComponents">
+                        <h3>{{ component.component }}</h3>
+                        <p>{{ component.purpose }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Dashboard Design Principles"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item">
+                        <h3>Information Hierarchy</h3>
+                        <p>Place most important metrics above the fold. Use size and color to indicate importance.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Real-time Updates</h3>
+                        <p>Refresh data frequently for active dashboards. Show last update timestamp.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Responsive Design</h3>
+                        <p>Stack widgets vertically on mobile. Ensure readability at all screen sizes.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Actionable Insights</h3>
+                        <p>Link metrics to actions. Enable drill-down to detailed views.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Customization</h3>
+                        <p>Allow users to configure widgets and layout. Save preferences.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Performance</h3>
+                        <p>Optimize for fast loading. Use caching and lazy loading.</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Common Dashboard Types"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="dashboard-types">
+                    <li><strong>Executive Dashboard:</strong> High-level KPIs and strategic metrics</li>
+                    <li><strong>Operational Dashboard:</strong> Real-time operational metrics</li>
+                    <li><strong>Analytical Dashboard:</strong> Detailed data analysis and trends</li>
+                    <li><strong>Personal Dashboard:</strong> User-specific information and tasks</li>
+                </ul>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

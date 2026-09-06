@@ -40,6 +40,11 @@ export const NX_ICONS: Record<string, string> = {
   <rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/>
   <rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6"/>
 </svg>`,
+  'nx-layout': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M9 4V20" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M10.5 10H21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+</svg>`,
   'nx-star': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M12 3L14.5 8.5L20.5 9.3L16 13.3L17.2 19.2L12 16.2L6.8 19.2L8 13.3L3.5 9.3L9.5 8.5L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
 </svg>`,
@@ -77,8 +82,8 @@ export const NX_ICONS: Record<string, string> = {
   <path d="M12 5V19M12 19L6 13M12 19L18 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`,
   'nx-search': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/>
-  <path d="M20 20L15.8 15.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="10.5" cy="10.5" r="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M20 20L15.5 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
 </svg>`,
   'nx-plus': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -339,6 +344,12 @@ export const NX_ICONS: Record<string, string> = {
   <path d="M8 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
   <path d="M16 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
 </svg>`,
+  'nx-palette': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 4C7.03 4 3 7.58 3 12C3 16.42 6.58 20 11 20H12.5C13.33 20 14 19.33 14 18.5C14 17.67 14.67 17 15.5 17H17C18.66 17 20 15.66 20 14V12C20 7.58 16.42 4 12 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="8.5" cy="11.5" r="1" fill="currentColor"/>
+  <circle cx="12" cy="8.5" r="1" fill="currentColor"/>
+  <circle cx="15.5" cy="11.5" r="1" fill="currentColor"/>
+</svg>`,
   'nx-chart-bar': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M4 20V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
   <path d="M10 20V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -352,6 +363,15 @@ export const NX_ICONS: Record<string, string> = {
   <path d="M6.5 10C8 10.9 10 11.4 12 11.4C14 11.4 16 10.9 17.5 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
   <path d="M12 11.4V14L9.5 18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M12 14L14.5 18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`,
+  'nx-book': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 5.5C4 4.7 4.7 4 5.5 4H12V20H5.5C4.7 20 4 19.3 4 18.5V5.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M20 5.5C20 4.7 19.3 4 18.5 4H12V20H18.5C19.3 20 20 19.3 20 18.5V5.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M12 4V20" stroke="currentColor" stroke-width="1.6"/>
+</svg>`,
+  'nx-whatsapp': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 4C7.6 4 4 7.6 4 12C4 13.4 4.4 14.7 5 15.9L4 20L8.2 19C9.4 19.6 10.6 20 12 20C16.4 20 20 16.4 20 12C20 7.6 16.4 4 12 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M9 9.5C9 9 9.3 8 9.8 8C10.3 8 10.6 8 10.8 8.5C11 9 11.3 9.8 11.4 10C11.5 10.2 11.4 10.4 11.2 10.7C11 11 10.8 11.2 10.6 11.4C10.4 11.6 10.2 11.8 10.5 12.3C10.8 12.8 11.4 13.5 12.2 14.1C13.2 14.9 14 15.1 14.4 15.3C14.8 15.5 15 15.4 15.2 15.2C15.4 15 15.7 14.6 16 14.2C16.2 14 16.4 13.9 16.7 14C17 14.1 18 14.6 18.3 14.8C18.6 15 18.8 15.1 18.8 15.3C18.9 15.5 18.9 16.3 18.5 17.1C18.1 17.9 16.9 18.6 16.2 18.7C15.5 18.8 15.1 18.9 13.7 18.3C12 17.6 10.7 16.5 9.7 15.2C8.9 14.2 8.3 13.1 8.1 12.6C7.9 12.1 7.5 11.3 7.5 10.5C7.5 9.5 8 9 8.2 8.7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`,
 };
 

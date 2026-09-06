@@ -1,0 +1,108 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Quick Start Guide</h4>
+                <p class="main-section-description">
+                    Get {{ commonService.appName }} up and running in just a few minutes with this quick start guide.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Step 1: Install {{ commonService.appName }}</h4>
+                <p class="main-section-description">
+                    Install the {{ commonService.appName }} package from npm:
+                </p>
+                <app-demo-section 
+                    header="Install via npm"
+                    description="Use npm to add {{ commonService.appName }} to your project"
+                    [code]="installCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Step 2: Import Global Styles</h4>
+                <p class="main-section-description">
+                    Import the {{ commonService.appName }} stylesheet in your main application file:
+                </p>
+                <app-demo-section 
+                    header="Import Styles"
+                    description="Add the global styles to your application"
+                    [code]="importThemeCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Step 3: Configure Providers</h4>
+                <p class="main-section-description">
+                    Set up the {{ commonService.appName }} providers in your application configuration:
+                </p>
+                <app-demo-section 
+                    header="App Configuration"
+                    description="Configure your Angular application to use {{ commonService.appName }} services"
+                    [code]="appConfigCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Step 4: Use Your First Component</h4>
+                <p class="main-section-description">
+                    Now you're ready to use {{ commonService.appName }} components! Here's a simple button example:
+                </p>
+                <app-demo-section 
+                    header="Button Component"
+                    description="A simple example using the NxButton component"
+                    [code]="buttonUsageCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">What's Next?</h4>
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item">
+                        <h3>📚 Explore Components</h3>
+                        <p>Browse the full component library in the Components section to find what you need</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>🎨 Customize Theming</h3>
+                        <p>Learn how to customize colors and styles using design tokens and CSS variables</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>⚙️ Configuration</h3>
+                        <p>Check the Configuration guide for advanced setup options and customizations</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>🚀 Build Components</h3>
+                        <p>Follow the First Component guide to build your own {{ commonService.appName }}-based component</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Common Issues</h4>
+                <div class="issue-item">
+                    <strong>Styles not loading?</strong>
+                    <p>Make sure you've imported 'nexium-ui/styles.css' in your main.ts or global styles file.</p>
+                </div>
+                <div class="issue-item">
+                    <strong>Component not recognized?</strong>
+                    <p>Ensure the component is imported in your component's imports array (standalone mode).</p>
+                </div>
+                <div class="issue-item">
+                    <strong>TypeScript errors?</strong>
+                    <p>Run 'npm install' to ensure all dependencies are properly installed.</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

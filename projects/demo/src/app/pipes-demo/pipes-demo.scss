@@ -1,0 +1,20 @@
+.pipe-example-caption {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+    color: var(--shell-text-secondary);
+}
+
+.pipe-source-text {
+    margin: 0 0 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--shell-border);
+    border-radius: 6px;
+    background: var(--shell-surface-hover);
+    font-size: 0.9rem;
+    color: var(--shell-text);
+}
+
+.pipe-hint {
+    color: var(--shell-text-secondary);
+    font-size: 0.8rem;
+}

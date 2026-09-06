@@ -6,12 +6,13 @@
                 header="Pricing"
                 description="A three-tier pricing table with one plan highlighted, built from nx-card, nx-badge and nx-button."
                 [code]="previewCode"
+                [tsCode]="previewTs"
                 [hasSampleClass]="false">
 
-                <div class="block-grid-3">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                     @for (tier of tiers; track tier.name) {
                         <nx-card
-                            variant="outlined"
+                            [variant]="tier.highlighted ? 'outlined' : 'elevated'"
                             [hoverable]="true"
                             [class.block-pricing-card-highlighted]="tier.highlighted">
                             <nx-card-header>

@@ -22,7 +22,8 @@ export class Nav {
 
   @HostListener('document:keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+    // Ctrl+K or Cmd+K or Ctrl+/ for search
+    if ((event.ctrlKey || event.metaKey) && (event.key.toLowerCase() === 'k' || event.key === '/')) {
       event.preventDefault();
       this.paletteOpen = true;
     }

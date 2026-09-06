@@ -27,7 +27,7 @@
                 <nx-button (click)="togglePanel()">{{ panelOpen ? 'Close panel' : 'Open panel' }}</nx-button>
 
                 @if (panelOpen) {
-                    <div class="template-card" style="margin-top: 1rem; padding: 1.5rem; border: 1px solid var(--shell-border); border-radius: 8px;" (nxClickOutside)="onClickOutside()">
+                    <div class="use-case-item" style="margin-top: 1rem; padding: 1.5rem; border: 1px solid var(--shell-border); border-radius: 8px;" (nxClickOutside)="onClickOutside()">
                         Click anywhere outside this box to close it.
                     </div>
                 }

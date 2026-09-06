@@ -1,0 +1,203 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Design Tokens"
+                description="Design tokens are the foundational design decisions captured in a reusable and scalable format. They are the visual design attributes that make up our design system."
+                code="">
+            </app-demo-section>
+
+            <app-demo-section
+                header="What are Design Tokens?"
+                description="Design tokens are named entities that represent a specific design value. Instead of hardcoding color values like #3498db throughout your application, you use a token name like --primary-color that can be updated in one place."
+                code="">
+                
+                <div class="token-benefits">
+                    <div class="use-case-item">
+                        <h5>🎨 Consistency</h5>
+                        <p>Use the same values everywhere, ensuring visual consistency</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>⚡ Maintainability</h5>
+                        <p>Update design decisions in one place, applied everywhere</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>🔄 Scalability</h5>
+                        <p>Easily scale and manage design systems across multiple products</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>🎯 Flexibility</h5>
+                        <p>Support multiple themes with the same component code</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Token Categories"
+                [description]="'Design tokens in ' + commonService.appName + ' are organized into logical categories:'"
+                code="">
+
+                <div class="token-category">
+                    <h5>Color Tokens</h5>
+                    <div  class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                        @for (color of tokens.colors | keyvalue; track color.key) {
+                            <div class="token-item">
+                                <div class="token-swatch" [style.background]="color.value"></div>
+                                <div class="token-info">
+                                    <div class="token-name">--{{ color.key }}-color</div>
+                                    <div class="token-value">{{ color.value }}</div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="token-category">
+                    <h5>Typography Tokens</h5>
+                    <div class="typography-tokens">
+                        <div class="token-subsection">
+                            <strong>Font Sizes</strong>
+                            <div class="token-list">
+                                @for (size of tokens.typography.fontSize; track size) {
+                                    <div class="token-row">
+                                        <span class="token-label">{{ size }}</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="token-subsection">
+                            <strong>Font Weights</strong>
+                            <div class="token-list">
+                                @for (weight of tokens.typography.fontWeight; track weight) {
+                                    <div class="token-row">
+                                        <span class="token-label" [style.fontWeight]="weight">{{ weight }}</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="token-category">
+                    <h5>Spacing Tokens</h5>
+                    <div class="spacing-tokens">
+                        @for (space of tokens.spacing; track space) {
+                            <div class="token-item-spacing">
+                                <div class="spacing-box" [style.width]="space" [style.height]="space"></div>
+                                <div class="spacing-label">{{ space }}</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="token-category">
+                    <h5>Border Radius Tokens</h5>
+                    <div class="radius-tokens">
+                        @for (radius of tokens.borderRadius; track radius) {
+                            <div class="token-item-radius">
+                                <div class="radius-box" [style.borderRadius]="radius"></div>
+                                <div class="radius-label">{{ radius }}</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="token-category">
+                    <h5>Shadow Tokens</h5>
+                    <div class="shadow-tokens">
+                        @for (shadow of tokens.shadows; track shadow) {
+                            <div class="token-item-shadow">
+                                <div class="shadow-box" [style.boxShadow]="shadow"></div>
+                                <div class="shadow-label">{{ shadow || 'none' }}</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Using Design Tokens"
+                [description]="'Design tokens in ' + commonService.appName + ' are implemented as CSS custom properties. Use them in your stylesheets with the var() function:'"
+                code="">
+
+                <div class="usage-example">
+                    <h5>CSS</h5>
+                    <code class="code-block">.button {{ '{' }}
+  background-color: var(--primary-color);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+{{ '}' }}</code>
+                </div>
+
+                <div class="usage-example">
+                    <h5>Inline Styles</h5>
+                                        <code class="code-block">&lt;div [style]="{{ '{' }} 
+  'color': 'var(--shell-text)',
+  'font-size': 'var(--font-size-base)'
+{{ '}' }}"&gt;&lt;/div&gt;</code>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Semantic Tokens"
+                [description]="'Beyond raw design tokens, ' + commonService.appName + ' provides semantic tokens that describe intent rather than appearance:'"
+                code="">
+                
+                <div  class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                    <div class="semantic-item">
+                        <strong>--primary-color</strong>
+                        <p>Primary brand color for main actions and focus states</p>
+                    </div>
+                    <div class="semantic-item">
+                        <strong>--success-color</strong>
+                        <p>Positive or successful state indicator</p>
+                    </div>
+                    <div class="semantic-item">
+                        <strong>--danger-color</strong>
+                        <p>Destructive or error state indicator</p>
+                    </div>
+                    <div class="semantic-item">
+                        <strong>--warning-color</strong>
+                        <p>Warning or caution state indicator</p>
+                    </div>
+                    <div class="semantic-item">
+                        <strong>--text-primary</strong>
+                        <p>Primary text color for body content</p>
+                    </div>
+                    <div class="semantic-item">
+                        <strong>--text-secondary</strong>
+                        <p>Secondary text for less important information</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Token Best Practices"
+                description=""
+                code="">
+                <div class="best-practices">
+                    <div class="practice">
+                        <h5>✓ DO</h5>
+                        <ul>
+                            <li>Use tokens consistently throughout your application</li>
+                            <li>Create semantic names that describe intent</li>
+                            <li>Use design tokens for all design decisions</li>
+                            <li>Document token usage and relationships</li>
+                        </ul>
+                    </div>
+                    <div class="practice">
+                        <h5>✗ DON'T</h5>
+                        <ul>
+                            <li>Hardcode color values or spacing values</li>
+                            <li>Create tokens for one-off values</li>
+                            <li>Overuse tokens where a standard value exists</li>
+                            <li>Forget to update documentation when tokens change</li>
+                        </ul>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

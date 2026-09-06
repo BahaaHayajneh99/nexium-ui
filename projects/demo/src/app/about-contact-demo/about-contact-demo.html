@@ -1,0 +1,60 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Contact</h4>
+                <p class="main-section-description">
+                    Have a question, found a bug, or just want to say hi? Reach out through any of
+                    the channels below, or send a message directly.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <div style="--nx-grid-min-width: 220px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <a class="contact-card" href="mailto:bahaahayajneh3@gmail.com">
+                        <nx-icon icon="nx-mail" variant="svg" [size]="22"></nx-icon>
+                        <h3>Email</h3>
+                        <p>bahaahayajneh3@gmail.com</p>
+                    </a>
+
+                    <a class="contact-card" href="tel:+962779446483">
+                        <nx-icon icon="nx-phone" variant="svg" [size]="22"></nx-icon>
+                        <h3>Phone</h3>
+                        <p>+962 779446483</p>
+                    </a>
+
+                    <a class="contact-card" href="https://wa.me/962779446483" target="_blank" rel="noopener noreferrer">
+                        <nx-icon icon="nx-whatsapp" variant="svg" [size]="22"></nx-icon>
+                        <h3>WhatsApp</h3>
+                        <p>+962 779446483</p>
+                    </a>
+
+                    <a class="contact-card" href="https://linkedin.com/in/bahaa-hayajneh-67466018b/?skipRedirect=true" target="_blank" rel="noopener noreferrer">
+                        <nx-icon icon="nx-linkedin" variant="svg" [size]="22"></nx-icon>
+                        <h3>LinkedIn</h3>
+                        <p>Connect with me</p>
+                    </a>
+                </div>
+            </section>
+
+            <app-demo-section
+                header="Send a Message"
+                description="Fill this out and submitting opens your email client with the message pre-filled, addressed to me directly."
+                code=""
+                [hasSampleClass]="false">
+                <form (ngSubmit)="sendMessage()" class="contact-form">
+                    <nx-input label="Name" [(ngModel)]="name" name="name" required></nx-input>
+                    <nx-input label="Your Email" type="email" [(ngModel)]="email" name="email" required></nx-input>
+                    <nx-textarea label="Message" [(ngModel)]="message" name="message" required></nx-textarea>
+                    <nx-button type="submit">Send Message</nx-button>
+
+                    @if (sent) {
+                        <p class="contact-form-note">Your email client should now be open with the message ready to send.</p>
+                    }
+                </form>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

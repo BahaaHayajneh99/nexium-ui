@@ -1,0 +1,97 @@
+<div class="main-content">
+  <div class="main-container">
+    <div class="main-sections">
+
+      <app-demo-section
+        header="Overview"
+        description="Calendar provides an interactive date picker with month navigation, multiple selection modes, and customizable disabled dates. Perfect for booking systems, scheduling, and any date-based selection."
+        code="">
+      </app-demo-section>
+
+      <app-demo-section
+        header="Key Features"
+        description=""
+        code="">
+        <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+          <div class="use-case-item" *ngFor="let feature of features">
+            <h3>{{ feature.name }}</h3>
+            <p>{{ feature.description }}</p>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Interactive Demo"
+        description=""
+        code="">
+        <div class="demo-box">
+          <div class="calendar-wrapper">
+            <div class="calendar-header">
+              <button (click)="previousMonth()" class="nav-btn">← Previous</button>
+              <h3>{{ months[currentDate.getMonth()] }} {{ currentDate.getFullYear() }}</h3>
+              <button (click)="nextMonth()" class="nav-btn">Next →</button>
+            </div>
+
+            <div class="calendar-weekdays">
+              <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+            </div>
+
+            <div class="calendar-days">
+              <ng-container *ngFor="let i of [].constructor(getFirstDayOfMonth(currentDate))">
+                <div class="day empty"></div>
+              </ng-container>
+              
+              <button 
+                *ngFor="let day of [].constructor(getDaysInMonth(currentDate)); let i = index"
+                [ngClass]="{
+                  'selected': isSelected(i + 1),
+                  'today': isToday(i + 1)
+                }"
+                (click)="selectDate(i + 1)"
+                class="day">
+                {{ i + 1 }}
+              </button>
+            </div>
+          </div>
+
+          <div class="selected-date" *ngIf="selectedDate">
+            <p>Selected: <strong>{{ selectedDate | date:'MMM dd, yyyy' }}</strong></p>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Use Cases"
+        description=""
+        code="">
+        <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+          <div class="use-case-item" *ngFor="let useCase of useCases">
+            <h3>{{ useCase.title }}</h3>
+            <p>{{ useCase.description }}</p>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Selection Modes"
+        description=""
+        code="">
+        <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+          <div class="use-case-item">
+            <h3>Single Date</h3>
+            <p>Select a specific date for events, birthdays, or appointments</p>
+          </div>
+          <div class="use-case-item">
+            <h3>Date Range</h3>
+            <p>Select start and end dates for duration-based selections</p>
+          </div>
+          <div class="use-case-item">
+            <h3>Multiple Dates</h3>
+            <p>Select multiple non-consecutive dates for availability</p>
+          </div>
+        </div>
+      </app-demo-section>
+
+    </div>
+  </div>
+</div>

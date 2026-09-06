@@ -1,0 +1,58 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-empty-state {
+    text-align: center;
+    padding: $spacing-xl;
+    border: 2px dashed var(--shell-border);
+    border-radius: $radius-lg;
+    background: var(--shell-surface-hover);
+    font-family: $font-family;
+    transition: all $transition-fast;
+
+    &:hover {
+        border-color: var(--shell-primary);
+    }
+}
+
+.nx-empty-state-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--shell-text-muted);
+    margin-bottom: $spacing-md;
+}
+
+.nx-empty-state-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text);
+    margin: 0 0 $spacing-sm;
+}
+
+.nx-empty-state-description {
+    font-size: $font-size-sm;
+    color: var(--shell-text-secondary);
+    line-height: 1.5;
+    margin: 0 0 $spacing-lg;
+}
+
+.nx-empty-state-action {
+    padding: $spacing-sm $spacing-lg;
+    border: none;
+    border-radius: $radius-md;
+    background: var(--shell-primary);
+    color: $white-color;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+        filter: brightness(0.92);
+        box-shadow: 0 4px 12px color-mix(in srgb, var(--shell-primary) 30%, transparent);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}

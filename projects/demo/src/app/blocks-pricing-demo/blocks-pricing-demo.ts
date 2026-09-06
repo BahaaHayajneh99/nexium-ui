@@ -74,4 +74,44 @@ export class BlocksPricingDemo {
         <nx-button variant="primary" [fullWidth]="true">Choose Pro</nx-button>
     </nx-card-footer>
 </nx-card>`;
+
+  previewTs = `interface PricingTier {
+  name: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  variant: 'primary' | 'secondary';
+  highlighted: boolean;
+}
+
+tiers: PricingTier[] = [
+  {
+    name: 'Starter',
+    price: '$0',
+    period: '/month',
+    description: 'For side projects and evaluating NexiumUI.',
+    features: ['All components', 'Community support', 'MIT license'],
+    variant: 'secondary',
+    highlighted: false,
+  },
+  {
+    name: 'Pro',
+    price: '$19',
+    period: '/month',
+    description: 'For freelancers and small teams shipping real products.',
+    features: ['Everything in Starter', 'Priority issue triage', 'Early access to new components'],
+    variant: 'primary',
+    highlighted: true,
+  },
+  {
+    name: 'Team',
+    price: '$49',
+    period: '/month',
+    description: 'For teams that need a direct line to maintainers.',
+    features: ['Everything in Pro', 'Shared Slack channel', 'Roadmap input'],
+    variant: 'secondary',
+    highlighted: false,
+  },
+];`;
 }

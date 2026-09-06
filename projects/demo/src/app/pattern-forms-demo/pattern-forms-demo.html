@@ -1,0 +1,99 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Forms Pattern</h4>
+                <p class="main-section-description">
+                    Best practices for designing accessible, user-friendly forms
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="Effective forms are critical to user experience. This pattern demonstrates best practices for creating forms that are easy to use, accessible, and handle validation gracefully."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{ practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Form Structure"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="form-structure">
+                    <div class="structure-item">
+                        <h3>Layout</h3>
+                        <ul>
+                            <li>Single column for mobile</li>
+                            <li>Two columns for desktop</li>
+                            <li>Group related fields</li>
+                            <li>Consistent spacing</li>
+                        </ul>
+                    </div>
+                    <div class="structure-item">
+                        <h3>Labels & Inputs</h3>
+                        <ul>
+                            <li>Clear, concise labels</li>
+                            <li>Placeholder hints (not required)</li>
+                            <li>Focus states visible</li>
+                            <li>Required indicator (*)</li>
+                        </ul>
+                    </div>
+                    <div class="structure-item">
+                        <h3>Validation</h3>
+                        <ul>
+                            <li>Real-time validation</li>
+                            <li>Clear error messages</li>
+                            <li>Error near field</li>
+                            <li>Success feedback</li>
+                        </ul>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

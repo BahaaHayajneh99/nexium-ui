@@ -1,0 +1,109 @@
+.use-case-item {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface-light, #f9f9f9);
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--shell-text, #000);
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #666);
+  }
+}
+
+.error-codes-table {
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 100px 2fr 3fr;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--shell-surface-light, #f5f5f5);
+  font-weight: 600;
+  color: var(--shell-text, #000);
+}
+
+.table-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 100px 2fr 3fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid var(--shell-border, #e0e0e0);
+  color: var(--text-secondary, #666);
+
+  &:hover {
+    background: var(--shell-surface-light, #f9f9f9);
+  }
+}
+
+.strategies-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+
+  li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #666);
+    line-height: 1.6;
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color, #007bff);
+      font-weight: bold;
+    }
+  }
+}
+
+.guideline-item {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface, #fff);
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--shell-text, #000);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0.5rem 0;
+      color: var(--text-secondary, #666);
+      font-size: 0.95rem;
+      line-height: 1.5;
+
+      &::before {
+        content: '•';
+        margin-right: 0.75rem;
+        color: var(--primary-color, #007bff);
+      }
+    }
+  }
+}

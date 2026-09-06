@@ -9,18 +9,16 @@
                 [hasSampleClass]="false">
 
                 <div class="template-preview">
-                    <div class="template-stats-grid">
+                    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                         @for (stat of stats; track stat.label) {
                             <nx-card variant="outlined">
                                 <nx-card-content>
-                                    <div class="template-stat-card">
-                                        <div>
-                                            <div class="template-stat-label">{{ stat.label }}</div>
-                                            <div class="template-stat-value">{{ stat.value }}</div>
-                                            <nx-badge [variant]="stat.trendVariant" size="small">{{ stat.trend }}</nx-badge>
-                                        </div>
-                                        <nx-icon class="template-stat-icon" [icon]="stat.icon" variant="svg" [size]="22"></nx-icon>
+                                    <div>
+                                        <div class="template-stat-label">{{ stat.label }}</div>
+                                        <div class="template-stat-value">{{ stat.value }}</div>
+                                        <nx-badge [variant]="stat.trendVariant" size="small">{{ stat.trend }}</nx-badge>
                                     </div>
+                                    <nx-icon class="template-stat-icon" [icon]="stat.icon" variant="svg" [size]="22"></nx-icon>
                                 </nx-card-content>
                             </nx-card>
                         }

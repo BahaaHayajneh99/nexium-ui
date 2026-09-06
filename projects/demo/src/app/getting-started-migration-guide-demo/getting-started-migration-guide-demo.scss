@@ -1,0 +1,105 @@
+@use '../variables.scss' as *;
+
+.migration-comparison {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+
+  .comparison-item {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem;
+    background: var(--shell-bg);
+    border-radius: 4px;
+
+    strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--shell-text);
+    }
+
+    code {
+      font-size: 0.75rem;
+      display: block;
+      word-break: break-all;
+    }
+  }
+
+  .arrow {
+    font-size: 1.5rem;
+    color: var(--shell-primary);
+    font-weight: bold;
+  }
+}
+
+.comparison-note {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  border-radius: 4px;
+  background: var(--info-color);
+  color: white;
+  font-size: 0.875rem;
+}
+
+.migration-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+
+  li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--shell-text-secondary);
+
+    &::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--shell-primary);
+      font-weight: bold;
+    }
+  }
+}
+.version-changes {
+  margin: 1.5rem 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.version-section {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  background: var(--shell-bg);
+  li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--shell-text-secondary);
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--success-color);
+      font-weight: bold;
+    }
+  }
+}
+
+.use-case-item code {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: var(--shell-bg);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  overflow-x: auto;
+}
+
+.use-case-item .code-block {
+  margin: 0.75rem 0;
+}

@@ -14,31 +14,49 @@
                 <input
                     #searchInput
                     type="text"
-                    placeholder="Search components, guides..."
+                    placeholder="Search Nexium UI... (↑↓ navigate, Enter select, Esc close)"
                     [value]="query"
                     (input)="onQueryChange($any($event.target).value)" />
-                <button type="button" class="search-palette-close" (click)="close()" aria-label="Close search">
-                    <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
-                </button>
+                <div class="search-palette-kbd">
+                    <kbd>Esc</kbd>
+                </div>
             </div>
 
             <div class="search-palette-results">
 
                 @if (flatResults.length === 0) {
-                    <div class="search-palette-empty">No results for "{{ query }}"</div>
+                    <div class="search-palette-empty">
+                        <div class="empty-message">No results found</div>
+                        <div class="empty-hint">Try searching for components, documentation, or guides</div>
+                    </div>
+                }
+
+                @if (flatResults.length > 0 && !query) {
+                    <div class="search-palette-tips">
+                        <div class="tips-title">💡 Tips</div>
+                        <div class="tips-list">
+                            <div class="tip-item">Press <kbd>↑</kbd> <kbd>↓</kbd> to navigate</div>
+                            <div class="tip-item">Press <kbd>Enter</kbd> to select</div>
+                            <div class="tip-item">Press <kbd>Ctrl</kbd>+<kbd>K</kbd> or <kbd>Ctrl</kbd>+<kbd>/</kbd> anytime</div>
+                        </div>
+                    </div>
                 }
 
                 @for (group of groupedResults; track group.group) {
-                    <div class="search-palette-group">
-                        <h5>{{ group.group }}</h5>
-                        @for (item of group.items; track item.path) {
+                    <div class="search-palette-group" [class.quick-links]="group.group === 'Quick Links'">
+                        <h5 class="group-title">{{ group.group }}</h5>
+                        @for (item of group.items; track item.path || item.label) {
                             <button
                                 type="button"
                                 class="search-palette-item"
                                 [class.active]="flatResults[activeIndex] === item"
+                                [class.external]="item.path && (item.path.startsWith('http://') || item.path.startsWith('https://'))"
                                 (mouseenter)="setActive(item)"
                                 (click)="go(item)">
-                                {{ item.label }}
+                                <span class="item-label">{{ item.label }}</span>
+                                @if (item.path && (item.path.startsWith('http') || item.path.includes('://'))) {
+                                    <nx-icon class="external-icon" icon="nx-external-link" variant="svg" [size]="12"></nx-icon>
+                                }
                             </button>
                         }
                     </div>

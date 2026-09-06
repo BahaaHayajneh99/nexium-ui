@@ -1,0 +1,100 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Server-Side Rendering (SSR)</h4>
+                <p class="main-section-description">
+                    Implement NexaUI components with Angular Universal
+                </p>
+            </section>
+
+            <app-demo-section
+                header="SSR Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of ssrFeatures">
+                        <h3>{{ feature.feature }}</h3>
+                        <p class="description">{{ feature.description }}</p>
+                        <div class="benefits">
+                            <div class="benefit" *ngFor="let benefit of feature.benefits">✓ {{ benefit }}</div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Setup Steps"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ol class="setup-steps">
+                    <li *ngFor="let step of setupSteps">{{ step }}</li>
+                </ol>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Common SSR Issues & Solutions"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="issues-list">
+                    <div class="use-case-item" *ngFor="let issue of commonIssues">
+                        <h4>{{ issue.issue }}</h4>
+                        <p><strong>Cause:</strong> {{ issue.cause }}</p>
+                        <p><strong>Solution:</strong> {{ issue.solution }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Component SSR Compatibility Matrix"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <table class="compatibility-table">
+                    <thead>
+                        <tr>
+                            <th>Component Type</th>
+                            <th>SSR Support</th>
+                            <th>SSE/Hydration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let compat of compatibilityMatrix">
+                            <td>{{ compat.component }}</td>
+                            <td>{{ compat.ssr }}</td>
+                            <td>{{ compat.sse }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Performance Tips"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="tips-list">
+                    <li *ngFor="let tip of performanceTips">{{ tip }}</li>
+                </ul>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Deployment"
+                description="NexaUI components work with:"
+                code=""
+                [hasSampleClass]="false">
+                <ul class="deployment-list">
+                    <li>Angular Universal on Node.js server</li>
+                    <li>Serverless platforms (Vercel, Firebase, etc.)</li>
+                    <li>Static site generation (Scully, etc.)</li>
+                    <li>Hybrid rendering (pre-render + on-demand)</li>
+                </ul>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

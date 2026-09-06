@@ -1,0 +1,87 @@
+<div class="main-content">
+  <div class="main-container">
+    <div class="main-sections">
+
+      <app-demo-section
+        header="Utility Classes"
+        description="Pre-built utility classes for display, spacing, typography, borders, and shadows"
+        code="">
+        <div class="utilities-sections">
+          <div class="utilities-section" *ngFor="let section of utilityClasses">
+            <h3>{{ section.category }}</h3>
+            <table class="utilities-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Property</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let utility of section.utilities">
+                  <td><code>{{ utility.class }}</code></td>
+                  <td><code>{{ utility.property }}</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Flexbox Utilities"
+        description="Layout utilities for flexbox-based designs with alignment and direction controls"
+        code="">
+        <div class="utilities-list">
+          <div class="utility-item" *ngFor="let util of flexUtilities">
+            <code class="class">{{ util.class }}</code>
+            <span class="effect">{{ util.effect }}</span>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Grid Utilities"
+        description="Layout utilities for CSS grid-based layouts with column spans and gaps"
+        code="">
+        <div class="utilities-list">
+          <div class="utility-item" *ngFor="let util of gridUtilities">
+            <code class="class">{{ util.class }}</code>
+            <span class="effect">{{ util.effect }}</span>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Responsive Breakpoints"
+        description="Media query breakpoints for responsive design implementation"
+        code="">
+        <table class="breakpoints-table">
+          <thead>
+            <tr>
+              <th>Breakpoint</th>
+              <th>Width</th>
+              <th>Media Query</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bp of responsiveUtilities">
+              <td><code>{{ bp.breakpoint }}</code></td>
+              <td>{{ bp.width }}</td>
+              <td><code>{{ bp.usage }}</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </app-demo-section>
+
+      <app-demo-section
+        header="Usage Example"
+        description="Practical example combining multiple utility classes for a layout"
+        code="&lt;div class=&quot;nx-flex nx-flex-row nx-items-center nx-gap-md nx-p-lg&quot;&gt;
+  &lt;div class=&quot;nx-flex-1&quot;&gt;Content&lt;/div&gt;
+  &lt;button class=&quot;nx-button nx-button-primary&quot;&gt;Action&lt;/button&gt;
+&lt;/div&gt;">
+      </app-demo-section>
+
+    </div>
+  </div>
+</div>

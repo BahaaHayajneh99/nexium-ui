@@ -1,0 +1,99 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Angular Compatibility</h4>
+                <p class="main-section-description">
+                    NexaUI compatibility with Angular versions
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Angular Version Compatibility"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="version-matrix">
+                    <div class="matrix-header">
+                        <div class="col-version">Angular Version</div>
+                        <div class="col-nexaui">NexaUI Version</div>
+                        <div class="col-status">Status</div>
+                        <div class="col-notes">Notes</div>
+                    </div>
+                    <div class="matrix-body">
+                        <div class="matrix-row" *ngFor="let row of versionMatrix">
+                            <div class="col-version">{{ row.version }}</div>
+                            <div class="col-nexaui">{{ row.nexaUI }}</div>
+                            <div class="col-status" [class]="'status-' + row.status.toLowerCase()">{{ row.status }}</div>
+                            <div class="col-notes">{{ row.notes }}</div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Node.js & npm Requirements"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <table class="requirements-table">
+                    <thead>
+                        <tr>
+                            <th>Angular</th>
+                            <th>Node.js</th>
+                            <th>npm</th>
+                            <th>Recommended</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let req of nodeVersions">
+                            <td>{{ req.angular }}</td>
+                            <td>{{ req.node }}</td>
+                            <td>{{ req.npm }}</td>
+                            <td><strong>{{ req.recommended }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Feature Support by Angular Version"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                        <div class="support-badge">{{ feature.support }}</div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Migration Guide"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="migration-guide" *ngFor="let path of migrationPaths">
+                    <h3>{{ path.from }} → {{ path.to }}</h3>
+                    <ol class="steps-list">
+                        <li *ngFor="let step of path.steps">{{ step }}</li>
+                    </ol>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Breaking Changes"
+                description="Check the changelog for each major version for breaking changes and migration instructions."
+                code=""
+                [hasSampleClass]="false">
+                <div class="alert-box">
+                    <strong>Note:</strong> Always test your application thoroughly after updating Angular or NexaUI versions.
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

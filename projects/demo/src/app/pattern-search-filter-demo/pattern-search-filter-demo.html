@@ -1,0 +1,82 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Search & Filter Pattern</h4>
+                <p class="main-section-description">
+                    Powerful search and filtering for efficient data discovery
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="Search and filtering enables users to quickly find what they need. This pattern covers search UI, filter combinations, result display, and performance optimization."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Implementation Steps"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ol class="steps-list">
+                    <li *ngFor="let step of implementationSteps">{{ step }}</li>
+                </ol>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Search UI Components"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item">
+                        <h3>Search Input</h3>
+                        <p>Debounced search field with clear button and suggestions dropdown</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Filter Sidebar</h3>
+                        <p>Faceted filters with count badges and "Apply Filters" button</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Results Display</h3>
+                        <p>Result count, sorting options, and pagination controls</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Active Filters</h3>
+                        <p>Show applied filters as removable chips or tags</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

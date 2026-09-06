@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { highlightHtml } from './code-highlight';
 import { highlightTs } from './ts-highlight';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 /**
  * Shared "code + live preview" block used by every component demo page,
@@ -12,7 +12,7 @@ import { NgClass } from '@angular/common';
   selector: 'app-demo-section',
   standalone: true,
   templateUrl: './demo-section.html',
-  imports: [NgClass],
+  imports: [NgClass,NgIf],
 })
 export class DemoSection {
   @Input({ required: true }) header = '';

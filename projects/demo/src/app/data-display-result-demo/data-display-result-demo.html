@@ -1,0 +1,95 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Overview"
+                description="Result communicates the outcome of user actions with clear status indicators, descriptive messaging, and actionable next steps. Essential for guiding users through transaction flows and error recovery."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Usage"
+                description="A status, title, description, and an optional primary action button. status picks the icon and color automatically."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-result
+                    status="success"
+                    title="Payment Successful"
+                    description="Your order #12345 has been placed and payment confirmed."
+                    actionLabel="View Order"
+                    (actionClick)="onAction('View Order')">
+                </nx-result>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Result States"
+                description="success, error, warning, and info - each with its own default icon and color."
+                [code]="statesCode"
+                [tsCode]="statesTs"
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <nx-result
+                        *ngFor="let result of results"
+                        [status]="result.status"
+                        [title]="result.title"
+                        [description]="result.description"
+                        [actionLabel]="result.action"
+                        (actionClick)="onAction(result.title)">
+                    </nx-result>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{ practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

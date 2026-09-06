@@ -1,0 +1,80 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Configuration</h4>
+                <p class="main-section-description">
+                    Configure NexaUI for your application
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Configuration Options"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ng-container *ngFor="let section of configurationOptions; let i=index;">
+                            <app-demo-section [header]="i + 1 + '. ' + section.section" [description]="section.description" code="" [hasSampleClass]="false">
+                                </app-demo-section>
+                    <div class="usage-table">
+                        <div class="table-header">
+                            <div class="table-cell">Option</div>
+                            <div class="table-cell">Type</div>
+                            <div class="table-cell">Default</div>
+                            <div class="table-cell">Description</div>
+                        </div>
+                        <div class="table-row" *ngFor="let option of section.options">
+                            <div class="table-cell"><code>{{ option.key }}</code></div>
+                            <div class="table-cell"><code>{{ option.type }}</code></div>
+                            <div class="table-cell"><code>{{ option.default }}</code></div>
+                            <div class="table-cell">{{ option.description }}</div>
+                        </div>
+                    </div>
+                </ng-container>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Setup Steps"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ol class="setup-steps">
+                    <li *ngFor="let step of setupSteps">{{ step }}</li>
+                </ol>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Environment-Specific Configuration"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="usage-table">
+                    <div class="table-header">
+                        <div class="table-cell">Environment</div>
+                        <div class="table-cell">Debug</div>
+                        <div class="table-cell">Animations</div>
+                        <div class="table-cell">Logging</div>
+                    </div>
+                    <div class="table-row" *ngFor="let env of environmentConfigs">
+                        <div class="table-cell"><strong>{{ env.env }}</strong></div>
+                        <div class="table-cell">{{ env.debug }}</div>
+                        <div class="table-cell">{{ env.animations }}</div>
+                        <div class="table-cell">{{ env.logging }}</div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Example Configuration"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="code-block">
+                    <pre>{{ exampleConfigCode }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

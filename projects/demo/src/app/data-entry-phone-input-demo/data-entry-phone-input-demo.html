@@ -1,0 +1,275 @@
+<div class="main-content">
+  <div class="main-container">
+    <div class="main-sections">
+
+      <!-- Import Section -->
+      <section class="main-section">
+        <app-demo-section
+          header="Import"
+          description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+          [codeLang]="'ts'"
+          [code]="importCode">
+        </app-demo-section>
+      </section>
+
+      <!-- Overview Section -->
+      <section class="main-section">
+        <app-demo-section
+          header="Phone Input"
+          description="Phone Input simplifies phone number entry with automatic formatting, country support, and validation. It handles international formats and ensures consistent data collection across regions."
+          code=""
+          [hasSampleClass]="false">
+        </app-demo-section>
+      </section>
+
+      <!-- Key Features Section -->
+      <section class="main-section">
+        <app-demo-section
+          header="Key Features"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+            @for (feature of features; track feature.name) {
+              <div class="use-case-item">
+                <h3>{{ feature.name }}</h3>
+                <p>{{ feature.description }}</p>
+              </div>
+            }
+          </div>
+        </app-demo-section>
+      </section>
+
+      <!-- Basic Usage Section -->
+      <section class="main-section">
+        <app-demo-section
+          header="Basic Usage"
+          description=""
+          [code]="basicCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+        </app-demo-section>
+      </section>
+
+      <!-- International Formats Section -->
+      <section class="main-section">
+        <app-demo-section
+          header="International Formats"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="formats-grid">
+            @for (country of countryFormats; track country.code) {
+              <div class="format-card">
+                <div class="country-header">
+                  <span class="flag">{{ country.flag }}</span>
+                  <div class="country-info">
+                    <h4>{{ country.country }}</h4>
+                    <span class="code">{{ country.code }}</span>
+                  </div>
+                </div>
+                <div class="format-details">
+                  <div class="format-item">
+                    <span class="label">Format:</span>
+                    <code class="format-pattern">{{ country.format }}</code>
+                  </div>
+                  <div class="format-item">
+                    <span class="label">Example:</span>
+                    <code class="example">{{ country.example }}</code>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </app-demo-section>
+      </section>
+
+      <!-- Interactive Demo Section -->
+      <section class="main-section">
+        <app-demo-section
+          header="Interactive Demo"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="nx-demo-surface-card">
+            <!-- US Phone Example -->
+            <div class="demo-group">
+              <h4>US Phone Number</h4>
+              <div class="input-group">
+                <nx-mask
+                  label="Phone Number"
+                  type="phone"
+                  [(ngModel)]="phone"
+                  placeholder="(555) 123-4567">
+                </nx-mask>
+                @if (phone) {
+                  <div class="value-display">✓ Input: {{ phone }}</div>
+                }
+              </div>
+            </div>
+
+            <!-- Country Selection Example -->
+            <div class="demo-group">
+              <h4>Select Country Format</h4>
+              <div class="country-selector">
+                @for (country of countryFormats; track country.code) {
+                  <button
+                    class="country-btn"
+                    [class.active]="selectedCountry === country"
+                    (click)="selectCountry(country)">
+                    <span class="flag">{{ country.flag }}</span>
+                    <span class="name">{{ country.country }}</span>
+                  </button>
+                }
+              </div>
+
+              <div class="input-group" style="margin-top: 1.5rem;">
+                <nx-mask
+                  [label]="'Phone Number - ' + selectedCountry.country"
+                  type="custom"
+                  [mask]="selectedCountry.mask"
+                  [(ngModel)]="usPhone"
+                  [placeholder]="selectedCountry.example">
+                </nx-mask>
+                @if (usPhone) {
+                  <div class="value-display">✓ Input: {{ usPhone }}</div>
+                }
+              </div>
+            </div>
+
+            <!-- Multiple Format Examples -->
+            <div class="demo-group">
+              <h4>Different Country Examples</h4>
+              <div class="examples-grid">
+                <div class="example-input">
+                  <nx-mask
+                    label="UK Phone"
+                    type="custom"
+                    mask="+44 9999 999999"
+                    [(ngModel)]="ukPhone"
+                    placeholder="+44 2071 838750">
+                  </nx-mask>
+                  @if (ukPhone) {
+                    <span class="example-value">{{ ukPhone }}</span>
+                  }
+                </div>
+
+                <div class="example-input">
+                  <nx-mask
+                    label="France Phone"
+                    type="custom"
+                    mask="+33 9 99 99 99 99"
+                    [(ngModel)]="francePhone"
+                    placeholder="+33 1 23 45 67 89">
+                  </nx-mask>
+                  @if (francePhone) {
+                    <span class="example-value">{{ francePhone }}</span>
+                  }
+                </div>
+
+                <div class="example-input">
+                  <nx-mask
+                    label="Germany Phone"
+                    type="custom"
+                    mask="+49 999 9999999"
+                    [(ngModel)]="germanPhone"
+                    placeholder="+49 123 456789">
+                  </nx-mask>
+                  @if (germanPhone) {
+                    <span class="example-value">{{ germanPhone }}</span>
+                  }
+                </div>
+
+                <div class="example-input">
+                  <nx-mask
+                    label="Australia Phone"
+                    type="custom"
+                    mask="+61 9 9999 9999"
+                    [(ngModel)]="australiaPhone"
+                    placeholder="+61 2 1234 5678">
+                  </nx-mask>
+                  @if (australiaPhone) {
+                    <span class="example-value">{{ australiaPhone }}</span>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </app-demo-section>
+      </section>
+
+      <!-- Use Cases Section -->
+      <section class="main-section">
+        <app-demo-section
+          header="Use Cases"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+            @for (useCase of useCases; track useCase.title) {
+              <div class="use-case-item">
+                <h3>{{ useCase.title }}</h3>
+                <p>{{ useCase.description }}</p>
+              </div>
+            }
+          </div>
+        </app-demo-section>
+      </section>
+
+      <!-- Best Practices Section -->
+      <section class="main-section">
+        <app-demo-section
+          header="Best Practices"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="best-practices-list">
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Always validate</h4>
+                <p>Verify phone numbers server-side before processing</p>
+              </div>
+            </div>
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Consider international</h4>
+                <p>Support multiple country formats in your forms</p>
+              </div>
+            </div>
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Provide feedback</h4>
+                <p>Show formatting guidance and validation status</p>
+              </div>
+            </div>
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Mobile first</h4>
+                <p>Use numeric keyboard on mobile devices</p>
+              </div>
+            </div>
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Respect privacy</h4>
+                <p>Only collect and store necessary phone data</p>
+              </div>
+            </div>
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Easy correction</h4>
+                <p>Allow users to easily edit and update phone numbers</p>
+              </div>
+            </div>
+          </div>
+        </app-demo-section>
+      </section>
+
+    </div>
+  </div>
+</div>

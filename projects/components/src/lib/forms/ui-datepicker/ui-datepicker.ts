@@ -213,8 +213,15 @@ export class NxDatepicker implements ControlValueAccessor {
 
     const start = parseIso(this.value);
 
-    if (!start || this.selectingEnd) {
-      if (start && compareYmd(cell.ymd, start) < 0) {
+    if (!start) {
+      this.emitValue(cell.iso);
+      this.emitEndValue('');
+      this.selectingEnd = true;
+      return;
+    }
+
+    if (this.selectingEnd) {
+      if (compareYmd(cell.ymd, start) < 0) {
         this.emitValue(cell.iso);
         this.emitEndValue('');
         this.selectingEnd = true;

@@ -1,0 +1,124 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Building Your First Component</h4>
+                <p class="main-section-description">
+                    Learn how to create your first component using {{ commonService.appName }} components 
+                    and build interactive features.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Step 1: Create a Simple Component</h4>
+                <p class="main-section-description">
+                    Start by creating a basic component that uses {{ commonService.appName }} components. 
+                    In this example, we'll build a welcome component with a button:
+                </p>
+                <app-demo-section 
+                    header="Welcome Component"
+                    description="A simple component using NxButton from {{ commonService.appName }}"
+                    [code]="componentCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Step 2: Use Your Component</h4>
+                <p class="main-section-description">
+                    Now import and use your new component in your application:
+                </p>
+                <app-demo-section 
+                    header="Using Your Component"
+                    description="Import and add your custom component to the app"
+                    [code]="usageCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Step 3: Add Inputs and Outputs</h4>
+                <p class="main-section-description">
+                    Make your component reusable by adding @Input and @Output properties to handle 
+                    data flow and communicate with parent components:
+                </p>
+                <app-demo-section 
+                    header="Counter Component"
+                    description="A reusable component with inputs and outputs"
+                    [code]="inputsOutputsCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Best Practices</h4>
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item">
+                        <h3>Single Responsibility</h3>
+                        <p>Each component should have a single, well-defined purpose</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Reusability</h3>
+                        <p>Design components to be reusable across different parts of your application</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Documentation</h3>
+                        <p>Add comments and documentation to explain component purpose and usage</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Testability</h3>
+                        <p>Structure components to be easily testable with unit tests</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Consistency</h3>
+                        <p>Use {{ commonService.appName }} components consistently throughout your app</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Accessibility</h3>
+                        <p>Ensure all components follow accessibility standards (WCAG 2.1)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Common Patterns"
+                    description="Use these common composition patterns when building with {{ commonService.appName }}."
+                    code=""
+                    [hasSampleClass]="false">
+                    <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                        <div class="use-case-item">
+                            <h3>Form Components</h3>
+                            <p>Combine {{ commonService.appName }} form elements with reactive forms for powerful form handling.</p>
+                        </div>
+                        <div class="use-case-item">
+                            <h3>Data Display</h3>
+                            <p>Use tables, lists, and cards to display data in organized, user-friendly layouts.</p>
+                        </div>
+                        <div class="use-case-item">
+                            <h3>Navigation</h3>
+                            <p>Build navigation structures using sidebars, menus, and breadcrumbs.</p>
+                        </div>
+                        <div class="use-case-item">
+                            <h3>Feedback</h3>
+                            <p>Provide user feedback with alerts, toasts, modals, and notifications.</p>
+                        </div>
+                    </div>
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Next Steps</h4>
+                <p class="main-section-description">
+                    Now that you've created your first component, explore the Component Library 
+                    to discover all available components and see them in action.
+                </p>
+            </section>
+
+        </div>
+    </div>
+</div>

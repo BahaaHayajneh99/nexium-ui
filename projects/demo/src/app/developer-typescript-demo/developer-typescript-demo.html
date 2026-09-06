@@ -1,0 +1,83 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">TypeScript</h4>
+                <p class="main-section-description">
+                    Type-safe development with NexaUI components
+                </p>
+            </section>
+
+            <app-demo-section
+                header="TypeScript Support"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of typescriptFeatures">
+                        <h3>{{ feature.feature }}</h3>
+                        <p class="description">{{ feature.description }}</p>
+                        <p class="benefit"><strong>Benefit:</strong> {{ feature.benefit }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Common Types"
+                description="Key TypeScript types exported by NexaUI:"
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let type of typeExamples">
+                        <h4>{{ type.name }}</h4>
+                        <div class="type-definition">
+                            <code>{{ type.type }}</code>
+                        </div>
+                        <p class="usage">{{ type.usage }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Strict Mode Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{  practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Common TypeScript Patterns"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="patterns-list">
+                    <div class="pattern-item" *ngFor="let pattern of commonPatterns">
+                        <span class="bullet">✓</span>
+                        <span class="text">{{ pattern }}</span>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="TypeScript Configuration"
+                description="Recommended tsconfig.json settings for strict type checking:"
+                code=""
+                [hasSampleClass]="false">
+                <div class="code-block">
+                    <pre>{{ tsconfigExample }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

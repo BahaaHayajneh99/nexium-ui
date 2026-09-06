@@ -49,11 +49,11 @@
                 </div>
             </section>
 
-            <div class="icons-grid">
+            <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                 @for (icon of filteredIcons; track icon.name) {
-                    <button type="button" class="icon-card" (click)="copyIcon(icon)">
-                        <span class="icon-card-preview" [innerHTML]="icon.svg"></span>
-                        <span class="icon-card-name">{{ copiedName === icon.name ? 'Copied!' : icon.name }}</span>
+                    <button type="button" class="nx-card" (click)="copyIcon(icon)">
+                        <span class="icon-preview" [innerHTML]="icon.svg"></span>
+                        <span class="icon-name">{{ copiedName === icon.name ? 'Copied!' : icon.name }}</span>
                         <nx-icon [icon]="icon.name" variant="svg" [size]="32" [color]="primary"></nx-icon>
                     </button>
                 } @empty {

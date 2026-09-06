@@ -1,0 +1,142 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Component Testing</h4>
+                <p class="main-section-description">
+                    Master testing Angular components with TestBed, fixtures, and realistic scenarios
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Testing Approaches"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let approach of componentTestingApproaches" class="nx-card">
+                        <h3>{{ approach.name }}</h3>
+                        <p><strong>Description:</strong> {{ approach.description }}</p>
+                        <div class="benefits">
+                            <strong>Benefits:</strong>
+                            <ul>
+                                <li *ngFor="let benefit of approach.benefits">{{ benefit }}</li>
+                            </ul>
+                        </div>
+                        <div class="tradeoffs">
+                            <strong>Tradeoffs:</strong>
+                            <ul>
+                                <li *ngFor="let tradeoff of approach.tradeoffs">{{ tradeoff }}</li>
+                            </ul>
+                        </div>
+                        <p><strong>Example:</strong> {{ approach.example }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="TestBed Setup Steps"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="setup-steps">
+                    <div *ngFor="let step of testbedSetupSteps; let i = index" class="nx-card">
+                        <div class="step-number">{{ step.step }}</div>
+                        <code>{{ step.code }}</code>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Common Testing Tasks"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let task of commonTasks" class="nx-card">
+                        <h4>{{ task.task }}</h4>
+                        <p><strong>Description:</strong> {{ task.description }}</p>
+                        <div class="code-block">
+                            <code>{{ task.code }}</code>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Dependency Mocking Strategies"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let strategy of dependencyMockingStrategies" class="nx-card">
+                        <h3>{{ strategy.strategy }}</h3>
+                        <p>{{ strategy.description }}</p>
+                        <div class="example">
+                            <strong>Example:</strong>
+                            <code>{{ strategy.example }}</code>
+                        </div>
+                        <p><strong>Usage Scenario:</strong> {{ strategy.usageScenario }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Change Detection Strategies"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let strategy of detectionChangeStrategies" class="nx-card">
+                        <h4>{{ strategy.name }}</h4>
+                        <p><strong>When:</strong> {{ strategy.when }}</p>
+                        <code>{{ strategy.code }}</code>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Async Testing Patterns"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div *ngFor="let pattern of asyncTestingPatterns" class="nx-card">
+                        <h3>{{ pattern.pattern }}</h3>
+                        <p>{{ pattern.description }}</p>
+                        <div class="usage">
+                            <strong>Usage:</strong>
+                            <code>{{ pattern.usage }}</code>
+                        </div>
+                        <div class="pros-cons">
+                            <div>
+                                <strong>Pros:</strong> {{ pattern.pros }}
+                            </div>
+                            <div>
+                                <strong>Cons:</strong> {{ pattern.cons }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item" *ngFor="let practice of bestPractices">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>{{ practice.title }}</h4>
+                            <p>{{ practice.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

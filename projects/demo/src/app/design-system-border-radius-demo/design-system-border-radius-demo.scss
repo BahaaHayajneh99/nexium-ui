@@ -1,0 +1,149 @@
+@use '../variables.scss' as *;
+.radius-showcase {  margin: 1.5rem 0;
+}
+
+.radius-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.radius-box {
+  width: 100px;
+  height: 100px;
+  background: var(--shell-primary);
+  border: 1px solid var(--shell-border);
+}
+
+.radius-info {
+  text-align: center;
+
+  strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--shell-text);
+    margin-bottom: 0.25rem;
+  }
+
+  code {
+    font-size: 0.75rem;
+    color: var(--shell-text-secondary);
+    display: block;
+    word-break: break-all;
+  }
+}
+
+.use-case-item {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  background: var(--shell-bg);
+  text-align: center;
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--shell-text);
+  }
+
+  p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.css-vars-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.var-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+  border-radius: 6px;
+
+  code {
+    font-weight: 500;
+    color: var(--shell-primary);
+    font-size: 0.9rem;
+  }
+
+  span {
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.best-practices-section {  margin: 1.5rem 0;
+}
+
+.practice-item {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--shell-text);
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+
+    li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--shell-text-secondary);
+      font-size: 0.875rem;
+
+      &::before {
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+
+  &:first-child ul li::before {
+    content: '✓';
+    color: var(--shell-success);
+    font-weight: bold;
+  }
+
+  &:last-child ul li::before {
+    content: '✗';
+    color: var(--shell-danger);
+    font-weight: bold;
+  }
+}
+
+.customization-code {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+
+  .code-block {
+    display: block;
+    background: var(--shell-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin: 0;
+    color: var(--shell-text);
+  }
+}

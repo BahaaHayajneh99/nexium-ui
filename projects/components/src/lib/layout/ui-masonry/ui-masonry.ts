@@ -11,7 +11,7 @@ import { Component, Input, ViewEncapsulation, numberAttribute } from '@angular/c
   template: `
     <div
       class="nx-masonry"
-      [style.column-count]="cols"
+      [style.--nx-masonry-cols]="cols"
       [style.column-gap.px]="gap"
       [style.--nx-masonry-item-gap.px]="gap">
       <ng-content></ng-content>
@@ -25,6 +25,7 @@ import { Component, Input, ViewEncapsulation, numberAttribute } from '@angular/c
 
     .nx-masonry {
       width: 100%;
+      column-count: var(--nx-masonry-cols, 3);
     }
 
     .nx-masonry > * {
@@ -33,6 +34,21 @@ import { Component, Input, ViewEncapsulation, numberAttribute } from '@angular/c
       margin-bottom: var(--nx-masonry-item-gap, 16px);
       display: inline-block;
       width: 100%;
+    }
+
+    /* Below each breakpoint, cap the column count regardless of the [cols]
+       input, so a fixed [cols]="3" (or higher) never forces the layout
+       narrower than its content can shrink to. */
+    @media (max-width: 768px) {
+      .nx-masonry {
+        column-count: min(var(--nx-masonry-cols, 3), 2);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nx-masonry {
+        column-count: 1;
+      }
     }
   `,
 })

@@ -91,6 +91,14 @@ export class IconsDemo {
 </svg>`,
     },
     {
+      name: 'nx-layout',
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M9 4V20" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M10.5 10H21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+</svg>`,
+    },
+    {
       name: 'nx-star',
       svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M12 3L14.5 8.5L20.5 9.3L16 13.3L17.2 19.2L12 16.2L6.8 19.2L8 13.3L3.5 9.3L9.5 8.5L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -606,6 +614,15 @@ export class IconsDemo {
   <path d="M3 9H21" stroke="currentColor" stroke-width="2"/>
   <path d="M8 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
   <path d="M16 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>`,
+    },
+    {
+      name: 'nx-palette',
+      svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 4C7.03 4 3 7.58 3 12C3 16.42 6.58 20 11 20H12.5C13.33 20 14 19.33 14 18.5C14 17.67 14.67 17 15.5 17H17C18.66 17 20 15.66 20 14V12C20 7.58 16.42 4 12 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="8.5" cy="11.5" r="1" fill="currentColor"/>
+  <circle cx="12" cy="8.5" r="1" fill="currentColor"/>
+  <circle cx="15.5" cy="11.5" r="1" fill="currentColor"/>
 </svg>`,
     },
   ];

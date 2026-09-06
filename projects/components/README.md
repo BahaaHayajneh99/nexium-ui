@@ -129,10 +129,12 @@ export class Example {
 | Card | `nx-card`, `nx-card-header`, `nx-card-title`, `nx-card-subtitle`, `nx-card-image`, `nx-card-content`, `nx-card-actions`, `nx-card-footer` |
 | Chip | `nx-chip` |
 | Emoji | `nx-emoji` |
+| Empty State | `nx-empty-state` |
 | Icon | `nx-icon` |
 | Key-Value List | `nx-key-value-list` |
 | List | `nx-list` |
 | Progress Bar | `nx-progress-bar` |
+| Result | `nx-result` |
 | Skeleton | `nx-skeleton` |
 | Spinner | `nx-spinner` |
 | Statistic | `nx-statistic` |
@@ -158,6 +160,7 @@ export class Example {
 | Radio Group | `nx-radio-group` |
 | Rating | `nx-rating` |
 | Rich Text Editor | `nx-rich-text-editor` |
+| Search | `nx-search` |
 | Select | `nx-select` |
 | Slider | `nx-slider` |
 | Switch | `nx-switch` |
@@ -260,6 +263,20 @@ or component.
 For full input/output reference and live examples, see the hosted demo at
 [nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started), or run it locally with
 `ng serve demo` — either way it has a dedicated page per component.
+
+### Pipes
+
+| Pipe | Name | Description |
+| --- | --- | --- |
+| Date Format | `nxDateFormat` | Formats a `Date`, ISO string, or timestamp with simple tokens: `yyyy`, `MM`, `dd`, `HH`, `mm`, `ss`. Default format: `'yyyy-MM-dd'`. |
+| Truncate | `nxTruncate` | Cuts text to a max length (default `50`), appending an ellipsis when cut. Optional second arg overrides the ellipsis string. |
+| File Size | `nxFileSize` | Formats a byte count as a human-readable size (`B`/`KB`/`MB`/`GB`/`TB`). Optional second arg sets decimal places (default `1`). |
+
+```html
+<p>{{ order.createdAt | nxDateFormat:'dd/MM/yyyy' }}</p>
+<p>{{ comment.body | nxTruncate:120 }}</p>
+<p>{{ file.size | nxFileSize }}</p>
+```
 
 ## Translation (i18n)
 
@@ -387,6 +404,66 @@ characters into your source files. Browse every available name on the hosted dem
 <nx-emoji emoji="red-heart" [size]="32"></nx-emoji>
 ```
 
+### Empty State (`nx-empty-state`)
+
+Communicates an empty condition - no results, an empty list, no permissions - with an icon,
+title, description, and an optional primary action button.
+
+| Input | Type | Default | Description |
+| --- | --- | --- | --- |
+| `icon` | `string` | `''` | An `nx-icon` name shown above the title, e.g. `'nx-search'`. |
+| `iconSize` | `number \| string` | `48` | Size of the icon, in px if a number. |
+| `title` | `string` | `''` | |
+| `description` | `string` | `''` | |
+| `actionLabel` | `string` | `''` | Label for the built-in primary action button. Omit to render no button. |
+
+| Output | Type | Description |
+| --- | --- | --- |
+| `actionClick` | `EventEmitter<void>` | Emitted when the action button is clicked. |
+
+Anything projected inside the tag renders below the action button, for a secondary action or
+custom content.
+
+```html
+<nx-empty-state
+  icon="nx-search"
+  title="No Search Results"
+  description="Try adjusting your search terms or filters"
+  actionLabel="Clear Search"
+  (actionClick)="clearSearch()">
+</nx-empty-state>
+```
+
+### Result (`nx-result`)
+
+Communicates the outcome of an action - a transaction, a submission, an error page - with a
+status-appropriate icon and color, a title, description, and an optional primary action button.
+
+| Input | Type | Default | Description |
+| --- | --- | --- | --- |
+| `status` | `'success' \| 'error' \| 'warning' \| 'info'` | `'info'` | Picks the default icon and color. |
+| `icon` | `string` | - | An `nx-icon` name overriding the status default (`nx-check-circle`, `nx-x-circle`, `nx-alert-triangle`, `nx-info-circle`). |
+| `title` | `string` | `''` | |
+| `description` | `string` | `''` | |
+| `actionLabel` | `string` | `''` | Label for the built-in primary action button. Omit to render no button. |
+
+| Output | Type | Description |
+| --- | --- | --- |
+| `actionClick` | `EventEmitter<void>` | Emitted when the action button is clicked. |
+
+Anything projected inside the tag renders below the action button, for a secondary action or
+custom content.
+
+```html
+<nx-result
+  status="success"
+  title="Payment Successful"
+  description="Your order #12345 has been placed and payment confirmed."
+  actionLabel="View Order"
+  (actionClick)="viewOrder()">
+</nx-result>
+```
+
 ### Avatar (`nx-avatar`)
 
 Displays a user image, with automatic fallback to initials when no image is provided.
@@ -509,6 +586,28 @@ selectedCityId: number | null = null;
 
 `selectedCityId` ends up holding the numeric `id` of whichever city is picked, not its label -
 the input box still displays the label for you.
+
+### Search (`nx-search`)
+
+A self-contained search field - icon, input, and a clear button that appears once there's text -
+so you don't have to hand-assemble `nx-icon` + `nx-input` + a clear button yourself. Implements
+`ControlValueAccessor`, so it works with `[(value)]`, `[(ngModel)]`, and `formControlName` alike.
+
+| Input | Type | Default | Description |
+| --- | --- | --- | --- |
+| `placeholder` | `string` | `'Search...'` | Input placeholder text. |
+| `value` | `string` | `''` | The search text. |
+| `disabled` | `boolean` | `false` | Disables the field. |
+| `showClear` | `boolean` | `true` | Shows a clear (×) button once `value` is non-empty. |
+
+| Output | Type | Description |
+| --- | --- | --- |
+| `valueChange` | `EventEmitter<string>` | Emitted on every keystroke (also emits `''` when cleared). |
+| `cleared` | `EventEmitter<void>` | Emitted specifically when the clear button is pressed. |
+
+```html
+<nx-search placeholder="Search products..." [(value)]="query" (valueChange)="onSearch()"></nx-search>
+```
 
 ### Click Outside (`[nxClickOutside]`)
 

@@ -1,0 +1,77 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Authentication Pattern</h4>
+                <p class="main-section-description">
+                    Secure user authentication flows and session management
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="Authentication is foundational to security. This pattern covers login flows, password management, two-factor authentication, and session handling."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Authentication Flows"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="flow-item" *ngFor="let flow of flows">
+                        <h3>{{ flow.stage }}</h3>
+                        <p>{{ flow.tasks }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Security Considerations"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="security-list">
+                    <li>Use HTTPS for all auth endpoints</li>
+                    <li>Hash passwords with strong algorithms (bcrypt, Argon2)</li>
+                    <li>Implement rate limiting on login attempts</li>
+                    <li>Store tokens securely (httpOnly cookies)</li>
+                    <li>Set appropriate token expiration times</li>
+                    <li>Support 2FA for enhanced security</li>
+                    <li>Validate tokens on each request</li>
+                    <li>Implement logout everywhere</li>
+                </ul>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

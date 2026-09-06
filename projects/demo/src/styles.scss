@@ -51,6 +51,45 @@
     --border-hover-color: #{$border-hover-color};
 
     --font-family: #{$font-family};
+
+
+    // Spacing
+    --nx-spacing-xs: #{$spacing-xs};
+    --nx-spacing-sm: #{$spacing-sm};
+    --nx-spacing-md: #{$spacing-md};
+    --nx-spacing-lg: #{$spacing-lg};
+    --nx-spacing-xl: #{$spacing-xl};
+    --nx-spacing-2xl: #{$spacing-2xl};
+    --nx-spacing-3xl: #{$spacing-3xl};
+
+    // Radius
+    --nx-radius-xs: #{$radius-xs};
+    --nx-radius-sm: #{$radius-sm};
+    --nx-radius-md: #{$radius-md};
+    --nx-radius-lg: #{$radius-lg};
+    --nx-radius-xl: #{$radius-xl};
+    --nx-radius-round: #{$radius-round};
+
+    // Shadows
+    --nx-shadow-xs: #{$shadow-xs};
+    --nx-shadow-sm: #{$shadow-sm};
+    --nx-shadow-md: #{$shadow-md};
+    --nx-shadow-lg: #{$shadow-lg};
+    --nx-shadow-xl: #{$shadow-xl};
+
+    // Typography
+    --nx-text-primary: #{$text-primary};
+    --nx-text-secondary: #{$text-secondary};
+
+    --nx-font-weight-light: #{$font-weight-light};
+    --nx-font-weight-normal: #{$font-weight-normal};
+    --nx-font-weight-medium: #{$font-weight-medium};
+    --nx-font-weight-semibold: #{$font-weight-semibold};
+    --nx-font-weight-bold: #{$font-weight-bold};
+
+    // Border
+    --nx-border-color: #{$border-color};
+    --nx-border-hover-color: #{$border-hover-color};
 }
 
 // ===============================
@@ -69,6 +108,7 @@
     --shell-text-muted: #{$gray-500};
     --shell-scrollbar-thumb: #{$gray-400};
     --shell-primary: #{$primary-color};
+    --shell-surface-light: #{$surface-light};
     // Full rgba() value (not a bare color) for callers that need to control
     // alpha themselves, e.g. a loading spinner's translucent backdrop —
     // rgba(var(--shell-surface), .7) doesn't work since rgba() needs numeric
@@ -86,6 +126,7 @@
     --shell-text-muted: #82878f;
     --shell-scrollbar-thumb: #454b54;
     --shell-overlay: rgba(0, 0, 0, .7);
+    --shell-surface-light: #2a2e36;
 }
 
 // ===============================
@@ -137,6 +178,111 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font-family);
+}
+
+.nx-auto-fit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--nx-grid-min-width, 250px), 1fr));
+    gap: var(--nx-grid-gap, 1.5rem);
+}
+
+.nx-auto-fit-grid-250 {
+    --nx-grid-min-width: 250px;
+    --nx-grid-gap: 1.5rem;
+}
+
+.nx-demo-stack {
+    margin: 1.5rem 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.nx-demo-surface-card {
+    padding: 1.5rem;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background: var(--shell-bg);
+}
+
+.nx-demo-dashed-stage {
+    background: var(--shell-bg);
+    border: 2px dashed var(--shell-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.nx-demo-meta {
+    strong {
+        display: block;
+        margin-bottom: 0.25rem;
+        color: var(--shell-text);
+    }
+
+    code {
+        display: block;
+        background: var(--shell-bg);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+        color: var(--shell-text-secondary);
+    }
+
+    p,
+    small {
+        margin: 0;
+        color: var(--text-disabled);
+        font-size: 0.8rem;
+    }
+}
+
+.nx-demo-note-warning {
+    margin: 1rem 0;
+    padding: 1.5rem;
+    border: 2px solid var(--warning-color);
+    border-radius: 8px;
+    background: var(--shell-bg);
+    color: var(--shell-text);
+}
+
+.nx-card {
+    padding: 1.5rem;
+    border: 1px solid var(--shell-border, #e0e0e0);
+    border-radius: 8px;
+    background: var(--shell-surface, #fff);
+
+    h3 {
+
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem 0;
+        color: var(--shell-text, #000);
+    }
+
+    p {
+
+        margin: 0;
+        font-size: 0.95rem;
+        color: var(--text-secondary, #666);
+    }
+}
+
+
+
+@media (max-width: 768px) {
+
+    .table-header,
+    .table-row {
+        grid-template-columns: 1fr;
+    }
+
+    .table-cell {
+        border-bottom: 1px solid var(--shell-border);
+        padding: 0.75rem;
+    }
 }
 
 // ===============================
@@ -1020,7 +1166,7 @@ body {
 .template-preview {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
     gap: $spacing-md;
     padding: $spacing-xl $spacing-md;
 }
@@ -1352,7 +1498,14 @@ body {
 }
 
 .block-pricing-card-highlighted {
-    border: 2px solid var(--shell-primary) !important;
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--shell-primary) 20%, transparent);
+}
+
+// .outlined already gives this card a 2px primary border, but .hoverable:hover
+// (higher specificity than .outlined alone) would otherwise swap it to the
+// neutral hover border color - keep it primary-colored on hover too.
+.nx-card.hoverable.block-pricing-card-highlighted:hover {
+    border-color: var(--shell-primary);
 }
 
 .block-price {
@@ -1562,7 +1715,7 @@ body {
     @media (max-width: 600px) {
         font-size: $font-size-xs;
     }
-} 
+}
 
 //---------------- Responsive Utilities ----------------//
 // Six tiers for .main-container/.main-section-header/.main-section-description,
@@ -1661,5 +1814,381 @@ body {
 
     .language-html-selector {
         font-size: $font-size-sm;
+    }
+}
+
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.5rem 0;
+
+    li {
+        position: relative;
+        padding: 0.5rem 0 0.5rem 1.5rem;
+
+        &::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+    }
+}
+
+.issue-item {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: 4px solid var(--warning-color);
+    background: var(--shell-bg);
+    border-radius: 4px;
+
+    strong {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: 0.875rem;
+    }
+}
+
+.use-case-item {
+    padding: 1.5rem;
+    border-left: 4px solid var(--shell-primary, #007bff);
+    background: var(--shell-surface-light, #f9f9f9);
+    border-radius: 4px;
+
+    h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem 0;
+        color: var(--shell-text, #000);
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-secondary, #666);
+    }
+}
+
+.usage-table {
+    width: 100%;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1rem;
+    background: var(--shell-surface, #fff);
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    background: var(--shell-surface-light, #f5f5f5);
+    font-weight: 600;
+    color: var(--shell-text, #000);
+    border-bottom: 2px solid var(--shell-border, #e0e0e0);
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    border-bottom: 1px solid var(--shell-border, #e0e0e0);
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.table-cell {
+    padding: 1rem;
+    color: var(--text-secondary, #666);
+
+    &:first-child {
+        font-weight: 600;
+        color: var(--shell-text, #000);
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.9rem;
+    }
+
+    code {
+        background: var(--shell-surface-light, #f5f5f5);
+        color: var(--shell-text, #000);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+}
+
+// Shared Best Practices Styles
+.best-practices-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+
+    .practice-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1.5rem;
+        border: 1px solid var(--shell-border);
+        border-radius: 8px;
+        background: var(--shell-surface);
+        transition: all 0.2s ease;
+
+        &:hover {
+            border-color: var(--shell-primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .icon {
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1b5e20;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(27, 94, 32, 0.1);
+            border-radius: 50%;
+            line-height: 1;
+        }
+
+        .content {
+            flex: 1;
+
+            h4 {
+                margin: 0 0 0.5rem 0;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--shell-text);
+            }
+
+            p {
+                margin: 0;
+                font-size: 0.9rem;
+                color: var(--shell-text-secondary);
+                line-height: 1.5;
+            }
+        }
+    }
+}
+
+// ======================================
+// Display & Visibility
+// ======================================
+
+.nx-hidden {
+    display: none !important;
+}
+
+.nx-block {
+    display: block !important;
+}
+
+.nx-flex {
+    display: flex !important;
+}
+
+.nx-grid {
+    display: grid !important;
+}
+
+.nx-invisible {
+    visibility: hidden !important;
+}
+
+
+// ======================================
+// Spacing
+// ======================================
+
+.nx-p-xs {
+    padding: var(--nx-spacing-xs) !important;
+}
+
+.nx-p-sm {
+    padding: var(--nx-spacing-sm) !important;
+}
+
+.nx-p-md {
+    padding: var(--nx-spacing-md) !important;
+}
+
+.nx-p-lg {
+    padding: var(--nx-spacing-lg) !important;
+}
+
+.nx-p-xl {
+    padding: var(--nx-spacing-xl) !important;
+}
+
+.nx-m-xs {
+    margin: var(--nx-spacing-xs) !important;
+}
+
+.nx-m-sm {
+    margin: var(--nx-spacing-sm) !important;
+}
+
+.nx-m-md {
+    margin: var(--nx-spacing-md) !important;
+}
+
+.nx-m-lg {
+    margin: var(--nx-spacing-lg) !important;
+}
+
+.nx-m-xl {
+    margin: var(--nx-spacing-xl) !important;
+}
+
+.nx-gap-xs {
+    gap: var(--nx-spacing-xs) !important;
+}
+
+.nx-gap-sm {
+    gap: var(--nx-spacing-sm) !important;
+}
+
+.nx-gap-md {
+    gap: var(--nx-spacing-md) !important;
+}
+
+.nx-gap-lg {
+    gap: var(--nx-spacing-lg) !important;
+}
+
+.nx-gap-xl {
+    gap: var(--nx-spacing-xl) !important;
+}
+
+
+// ======================================
+// Typography
+// ======================================
+
+.nx-text-primary {
+    color: var(--nx-text-primary) !important;
+}
+
+.nx-text-secondary {
+    color: var(--nx-text-secondary) !important;
+}
+
+.nx-font-bold {
+    font-weight: var(--nx-font-weight-bold) !important;
+}
+
+.nx-text-center {
+    text-align: center !important;
+}
+
+
+// ======================================
+// Borders
+// ======================================
+
+.nx-border {
+    border: 1px solid var(--nx-border-color) !important;
+}
+
+
+// ======================================
+// Shadows
+// ======================================
+
+.nx-shadow-xs {
+    box-shadow: var(--nx-shadow-xs) !important;
+}
+
+.nx-shadow-sm {
+    box-shadow: var(--nx-shadow-sm) !important;
+}
+
+.nx-shadow-md {
+    box-shadow: var(--nx-shadow-md) !important;
+}
+
+.nx-shadow-lg {
+    box-shadow: var(--nx-shadow-lg) !important;
+}
+
+.nx-shadow-xl {
+    box-shadow: var(--nx-shadow-xl) !important;
+}
+
+
+// ======================================
+// Border Radius
+// ======================================
+
+.nx-rounded-xs {
+    border-radius: var(--nx-radius-xs) !important;
+}
+
+.nx-rounded-sm {
+    border-radius: var(--nx-radius-sm) !important;
+}
+
+.nx-rounded-md {
+    border-radius: var(--nx-radius-md) !important;
+}
+
+.nx-rounded-lg {
+    border-radius: var(--nx-radius-lg) !important;
+}
+
+.nx-rounded-xl {
+    border-radius: var(--nx-radius-xl) !important;
+}
+
+.nx-rounded-full {
+    border-radius: var(--nx-radius-round) !important;
+}
+
+
+// ======================================
+// Flex
+// ======================================
+
+.nx-flex-row {
+    flex-direction: row !important;
+}
+
+.nx-flex-col {
+    flex-direction: column !important;
+}
+
+.nx-justify-center {
+    justify-content: center !important;
+}
+
+.nx-items-center {
+    align-items: center !important;
+}
+
+.nx-flex-1 {
+    flex: 1 1 0% !important;
+}
+
+
+// ======================================
+// Grid
+// ======================================
+
+@for $i from 1 through 12 {
+    .nx-grid-cols-#{$i} {
+        grid-template-columns: repeat(#{$i}, minmax(0, 1fr)) !important;
+    }
+
+    .nx-col-span-#{$i} {
+        grid-column: span #{$i} / span #{$i} !important;
     }
 }

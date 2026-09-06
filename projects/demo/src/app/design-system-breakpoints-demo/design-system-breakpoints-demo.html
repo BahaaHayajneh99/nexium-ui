@@ -1,0 +1,165 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Breakpoints"
+                description="Breakpoints define the viewport widths at which your layout changes to optimize the user experience across different devices."
+                code="">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Responsive Design Scale"
+                [description]="commonService.appName + ' uses industry-standard breakpoints that align with common device sizes:'"
+                code="">
+                <div  class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                    @for (bp of breakpoints; track bp.name) {
+                        <div class="use-case-item">
+                            <div class="breakpoint-header">
+                                <strong class="breakpoint-name">{{ bp.name }}</strong>
+                                <code>{{ bp.value }}</code>
+                            </div>
+                            <div class="breakpoint-range">
+                                @if (bp.maxWidth !== 'unlimited') {
+                                    <small>{{ bp.value }} - {{ bp.maxWidth }}</small>
+                                } @else {
+                                    <small>{{ bp.value }}+</small>
+                                }
+                            </div>
+                            <div class="breakpoint-device">
+                                {{ bp.device }}
+                            </div>
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="CSS Media Queries"
+                description="Use these SCSS mixins or CSS media queries to target specific breakpoints:"
+                code="">
+                <div class="code-examples">
+                    <div class="code-example">
+                        <h5>SCSS (Recommended)</h5>
+                        <code class="code-block">@media (min-width: 768px) {{ '{' }}
+  .component {{ '{' }}
+    grid-template-columns: repeat(2, 1fr);
+  {{ '}' }}
+{{ '}' }}
+</code>
+                    </div>
+                    <div class="code-example">
+                        <h5>CSS</h5>
+                        <code class="code-block">@media (min-width: 768px) {{ '{' }}
+  .component {{ '{' }}
+    grid-template-columns: repeat(2, 1fr);
+  {{ '}' }}
+{{ '}' }}
+</code>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Mobile-First Approach"
+                [description]="commonService.appName + ' follows a mobile-first design philosophy:'"
+                code="">
+                <div class="mobile-first-list">
+                    @for (step of mobileFirstApproach; track step) {
+                        <div class="mobile-first-item">
+                            <div class="step-number">{{ $index + 1 }}</div>
+                            <div class="step-content">{{ step }}</div>
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Breakpoint Usage Tips"
+                description=""
+                code="">
+                <div  class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                    <div class="use-case-item">
+                        <h5>📱 Mobile First</h5>
+                        <p>Start designing for mobile, then enhance for larger screens</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>🎯 Content-Driven</h5>
+                        <p>Set breakpoints where content needs to adapt, not device sizes</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>🔄 Consistent</h5>
+                        <p>Use the same breakpoints throughout your application</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>📏 Test</h5>
+                        <p>Test at each breakpoint to ensure responsive design works well</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>⚡ Performance</h5>
+                        <p>Consider performance implications of different layouts</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h5>🎨 Touch-Friendly</h5>
+                        <p>Ensure touch targets are at least 44x44px on mobile</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Breakpoint Variables"
+                description="Use these CSS custom properties to reference breakpoint values:"
+                code="">
+                <div class="var-list">
+                    <div class="var-item">
+                        <code>--breakpoint-sm</code>
+                        <span>576px</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--breakpoint-md</code>
+                        <span>768px</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--breakpoint-lg</code>
+                        <span>992px</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--breakpoint-xl</code>
+                        <span>1200px</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--breakpoint-xxl</code>
+                        <span>1400px</span>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Responsive Component Example"
+                description="Here's how to create a responsive grid component:"
+                code="">
+                <div class="example-code">
+                    <code class="code-block">.grid {{ '{' }}
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+{{ '}' }}
+
+@media (min-width: 768px) {{ '{' }}
+  .grid {{ '{' }}
+    grid-template-columns: repeat(2, 1fr);
+  {{ '}' }}
+{{ '}' }}
+
+@media (min-width: 1200px) {{ '{' }}
+  .grid {{ '{' }}
+    grid-template-columns: repeat(3, 1fr);
+  {{ '}' }}
+{{ '}' }}
+</code>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

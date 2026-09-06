@@ -1,0 +1,273 @@
+ul, ol {
+  color: var(--text-secondary, #666);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+// Cards Grid
+
+.nx-card {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface, #fff);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--primary-color, #007bff);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  h3, h4 {
+    margin-top: 0;
+    color: var(--shell-text, #000);
+  }
+
+  .description {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary, #666);
+  }
+
+  .features, .use-cases, .tools, .workflow, .components {
+    margin-bottom: 1rem;
+
+    strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--shell-text, #000);
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.5rem;
+      font-size: 0.9rem;
+
+      li {
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    > div {
+      padding: 0.75rem;
+      background: var(--shell-surface-light, #f9f9f9);
+      border-radius: 4px;
+
+      strong {
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      ul {
+        font-size: 0.85rem;
+        margin: 0;
+        padding-left: 1rem;
+      }
+    }
+  }
+
+  .setup {
+    background: var(--shell-bg);
+    padding: 0.75rem;
+    border-left: 3px solid var(--primary-color, #007bff);
+    border-radius: 4px;
+    margin-top: 1rem;
+
+    strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--shell-text, #000);
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--primary-color, #007bff);
+      display: block;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+  }
+
+  .code-example, .example {
+    background: var(--shell-bg);
+    padding: 0.75rem;
+    border-left: 3px solid var(--primary-color, #007bff);
+    border-radius: 4px;
+    margin-top: 1rem;
+
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--primary-color, #007bff);
+      display: block;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+  }
+}
+
+// Tool header
+.tool-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  h3 {
+    margin: 0;
+    flex: 1;
+  }
+
+  .tool-type {
+    background: var(--shell-surface-light, #f5f5f5);
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary, #666);
+    white-space: nowrap;
+  }
+}
+
+// Table wrappers
+.issues-table-wrapper,
+.matrix-table-wrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.issues-table,
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 4px;
+  min-width: 100%;
+
+  thead {
+    background: var(--shell-surface-light, #f5f5f5);
+  }
+
+  th {
+    padding: 1rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--shell-text, #000);
+    border-bottom: 2px solid var(--shell-border, #e0e0e0);
+    font-size: 0.9rem;
+  }
+
+  td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--shell-border, #e0e0e0);
+    color: var(--text-secondary, #666);
+    font-size: 0.85rem;
+
+    code {
+      background: var(--shell-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--primary-color, #007bff);
+    }
+
+    strong {
+      color: var(--shell-text, #000);
+      font-weight: 600;
+    }
+  }
+
+  tbody tr:hover {
+    background: var(--shell-surface-light, #f9f9f9);
+  }
+}
+
+// Steps list
+.steps-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.steps-list .nx-card {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface, #fff);
+
+  .step-header {
+    display: block;
+    margin-bottom: 1rem;
+
+    h4 {
+      margin: 0 0 0.5rem 0;
+      color: var(--shell-text, #000);
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary, #666);
+    }
+  }
+
+  .command, .code-example, .action {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: var(--shell-bg);
+    border-left: 3px solid var(--primary-color, #007bff);
+    border-radius: 4px;
+
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--primary-color, #007bff);
+      display: block;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+  }
+
+  .action {
+    background: var(--shell-surface-light, #f9f9f9);
+    border-left: none;
+    color: var(--text-secondary, #666);
+    padding: 1rem;
+  }
+}
+
+// Best Practices List defined in app.scss
+
+// Responsive
+@media (max-width: 768px) {
+  .pros-cons {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tool-header {
+    flex-direction: column;
+  }
+
+  .issues-table-wrapper,
+  .matrix-table-wrapper {
+    overflow-x: auto;
+  }
+}

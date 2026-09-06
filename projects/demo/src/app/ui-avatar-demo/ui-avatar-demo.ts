@@ -2,11 +2,10 @@ import { Component, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import { NxAvatar } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
-import { NxLogo } from '../shared/nx-logo/nx-logo';
 
 @Component({
   selector: 'app-ui-avatar-demo',
-  imports: [NxAvatar, DemoSection, NxLogo],
+  imports: [NxAvatar, DemoSection],
   templateUrl: './ui-avatar-demo.html',
   styleUrl: './ui-avatar-demo.scss',
 })

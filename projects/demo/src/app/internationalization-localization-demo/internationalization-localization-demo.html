@@ -1,0 +1,105 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Localization</h4>
+                <p class="main-section-description">
+                    Adapt your application for different locales and regions.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Localization Aspects"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let aspect of localizationAspects">
+                        <h3>{{ aspect.aspect }}</h3>
+                        <p class="description">{{ aspect.description }}</p>
+                        <div class="considerations">
+                            <h4>Key Considerations:</h4>
+                            <ul class="list">
+                                <li *ngFor="let consideration of aspect.considerations">{{ consideration }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Common Locale Settings"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="locales-table-wrapper">
+                    <table class="locales-table">
+                        <thead>
+                            <tr>
+                                <th>Region</th>
+                                <th>Locale Code</th>
+                                <th>Date Format</th>
+                                <th>Time Format</th>
+                                <th>Decimal</th>
+                                <th>Thousands</th>
+                                <th>Currency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let locale of commonLocales">
+                                <td>{{ locale.region }}</td>
+                                <td><code>{{ locale.locale }}</code></td>
+                                <td>{{ locale.dateFormat }}</td>
+                                <td>{{ locale.timeFormat }}</td>
+                                <td><code>{{ locale.decimalSeparator }}</code></td>
+                                <td><code>{{ locale.thousandsSeparator }}</code></td>
+                                <td>{{ locale.currencySymbol }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Implementation Steps"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ol class="steps-list">
+                    <li *ngFor="let step of implementationSteps">{{ step }}</li>
+                </ol>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Region-Specific Settings"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let setting of regionSettings">
+                        <h4>{{ setting.setting }}</h4>
+                        <p class="example">{{ setting.example }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Localization Tips"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="tips-list">
+                    <li>Always test with native speakers to catch cultural misunderstandings</li>
+                    <li>Be aware of cultural holidays and local events that affect your users</li>
+                    <li>Consider color symbolism in different cultures (e.g., white = mourning in some Asian cultures)</li>
+                    <li>Avoid cultural idioms or references that don't translate well</li>
+                    <li>Provide locale-specific contact information and support</li>
+                    <li>Test with actual localized operating systems and browsers</li>
+                    <li>Monitor user feedback from different regions for improvements</li>
+                </ul>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

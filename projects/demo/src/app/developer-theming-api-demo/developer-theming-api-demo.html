@@ -1,0 +1,86 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Theming API</h4>
+                <p class="main-section-description">
+                    Customize the look and feel of your application
+                </p>
+            </section>
+
+            <app-demo-section
+                header="CSS Custom Properties"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="css-variables-sections">
+                    <div class="variables-section" *ngFor="let section of cssVariables">
+                        <h3>{{ section.category }}</h3>
+                        <div class="variables-list">
+                            <div class="variable" *ngFor="let variable of section.variables">
+                                <code>{{ variable }}</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Theming Approaches"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let approach of themingApproaches">
+                        <h3>{{ approach.name }}</h3>
+                        <p class="description">{{ approach.description }}</p>
+                        <p class="use"><strong>Use:</strong> {{ approach.use }}</p>
+                        <div class="example">
+                            <code>{{ approach.example }}</code>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Color Palette"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="nx-auto-fit-grid nx-auto-fit-grid-250" style="--nx-grid-gap: 1.5rem;">
+                    <div class="color-item" *ngFor="let color of colorPalette">
+                        <div class="color-swatch" [style.backgroundColor]="color.hex"></div>
+                        <div class="color-info">
+                            <h4>{{ color.name }}</h4>
+                            <p><code>{{ color.hex }}</code></p>
+                            <p class="rgb">rgb({{ color.rgb }})</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Dark Mode"
+                description="NexaUI includes comprehensive dark mode support:"
+                code=""
+                [hasSampleClass]="false">
+                <ul class="features-list">
+                    <li *ngFor="let feature of darkModeFeatures">{{ feature }}</li>
+                </ul>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Customizing Themes"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="code-block">
+                    <pre>{{ themeCustomizationExample }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+
+    </div>

@@ -1,0 +1,144 @@
+<div class="main-content">
+  <div class="main-container">
+    <div class="main-sections">
+      <section class="main-section">
+        <app-demo-section
+          header="Import"
+          description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+          [codeLang]="'ts'"
+          [code]="importCode">
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Overview"
+          description="Search Input enables users to quickly find information with auto-complete suggestions, real-time filtering, and search result highlighting. Perfect for product catalogs, user directories, and knowledge bases."
+          [code]="basicCode"
+          [hasSampleClass]="false">
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Key Features"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+            <div class="use-case-item" *ngFor="let feature of features">
+              <h3>{{ feature.name }}</h3>
+              <p>{{ feature.description }}</p>
+            </div>
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Interactive Demo"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="demo-box">
+            <nx-search
+              placeholder="Search frameworks... (e.g., Angular, React)"
+              [(value)]="searchTerm"
+              [results]="filteredResults"
+              [showResultsPanel]="true"
+              bindLabel="name"
+              (valueChange)="onSearch()"
+              (cleared)="clearSearch()"
+              (resultSelected)="selectResult($event)">
+            </nx-search>
+
+            <div class="search-info" *ngIf="searchTerm">
+              <p>Search Results: <strong>{{ filteredResults.length }}</strong></p>
+              <p class="selected" *ngIf="searchTerm && filteredResults.length === 0">
+                ✓ Selected: {{ searchTerm }}
+              </p>
+            </div>
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Use Cases"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+            <div class="use-case-item" *ngFor="let useCase of useCases">
+              <h3>{{ useCase.title }}</h3>
+              <p>{{ useCase.description }}</p>
+            </div>
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Implementation Features"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <ul class="features-list">
+            <li>Debounced search for better performance</li>
+            <li>Case-insensitive matching</li>
+            <li>Highlight matching text in results</li>
+            <li>Keyboard navigation (arrow keys, Enter)</li>
+            <li>Recent searches history</li>
+            <li>Search analytics and suggestions</li>
+          </ul>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Best Practices"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="best-practices-list">
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Keep search scoped</h4>
+                <p>Limit results to the most relevant dataset so users can find information faster.</p>
+              </div>
+            </div>
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Show instant feedback</h4>
+                <p>Display suggestions or empty-state messaging to confirm the current search intent.</p>
+              </div>
+            </div>
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Support keyboard input</h4>
+                <p>Allow users to navigate results with keyboard controls and clear actions.</p>
+              </div>
+            </div>
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Make results readable</h4>
+                <p>Use clear labels, spacing, and matching emphasis to highlight the right result.</p>
+              </div>
+            </div>
+            <div class="practice-item">
+              <span class="icon">✓</span>
+              <div class="content">
+                <h4>Keep it accessible</h4>
+                <p>Ensure focus states, labels, and status updates remain clear for screen readers.</p>
+              </div>
+            </div>
+          </div>
+        </app-demo-section>
+      </section>
+    </div>
+  </div>
+</div>

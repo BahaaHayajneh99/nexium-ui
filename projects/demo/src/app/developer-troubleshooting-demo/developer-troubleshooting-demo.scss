@@ -1,0 +1,168 @@
+.issues-accordion {
+  margin-top: 1rem;
+}
+
+.issue-item {
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.issue-header {
+  padding: 1.5rem;
+  background: var(--shell-surface-light, #f9f9f9);
+  border-bottom: 1px solid var(--shell-border, #e0e0e0);
+  cursor: pointer;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--shell-text, #000);
+  }
+
+  &:hover {
+    background: var(--shell-surface, #f5f5f5);
+  }
+}
+
+.issue-content {
+  padding: 1.5rem;
+  background: var(--shell-surface, #fff);
+
+  .section {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      color: var(--shell-text, #000);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-secondary, #666);
+      line-height: 1.6;
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--primary-color, #007bff);
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.debugging-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+
+  li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #666);
+    line-height: 1.6;
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color, #007bff);
+      font-weight: bold;
+    }
+  }
+}
+
+.version-issues-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface-light, #f9f9f9);
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    color: var(--shell-text, #000);
+  }
+
+  p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary, #666);
+    font-size: 0.95rem;
+  }
+}
+
+.nx-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface, #fff);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--primary-color, #007bff);
+  }
+
+  .link-icon {
+    color: var(--primary-color, #007bff);
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    border-color: var(--primary-color, #007bff);
+    background: var(--shell-surface-light, #f9f9f9);
+  }
+}
+
+.practices-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+
+  li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #666);
+    line-height: 1.6;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color, #007bff);
+      font-weight: bold;
+    }
+  }
+}

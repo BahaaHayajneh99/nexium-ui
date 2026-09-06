@@ -1,0 +1,27 @@
+.use-case-item {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface-light, #f9f9f9);
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--shell-text, #000);
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #666);
+  }
+}
+
+ol {
+  list-style-position: inside;
+  color: var(--text-secondary, #666);
+  line-height: 1.8;
+  margin: 1rem 0 0 0;
+  padding: 0;
+}

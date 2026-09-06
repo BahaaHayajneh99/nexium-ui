@@ -1,0 +1,94 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Troubleshooting</h4>
+                <p class="main-section-description">
+                    Solutions to common issues and errors
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Common Issues"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="issues-accordion">
+                    <div class="issue-item" *ngFor="let issue of commonIssues">
+                        <div class="issue-header">
+                            <h3>{{ issue.problem }}</h3>
+                        </div>
+                        <div class="issue-content">
+                            <div class="section">
+                                <h4>Possible Causes:</h4>
+                                <ul class="causes-list">
+                                    <li *ngFor="let cause of issue.causes">{{ cause }}</li>
+                                </ul>
+                            </div>
+                            <div class="section">
+                                <h4>Solutions:</h4>
+                                <ul class="solutions-list">
+                                    <li *ngFor="let solution of issue.solutions">{{ solution }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Debugging Tips"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="debugging-list">
+                    <li *ngFor="let tip of debuggingTips">{{ tip }}</li>
+                </ul>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Version-Related Issues"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="version-issues-list">
+                    <div class="use-case-item" *ngFor="let issue of versionIssues">
+                        <h4>{{ issue.issue }}</h4>
+                        <p><strong>Resolution:</strong> {{ issue.resolution }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Getting Help"
+                description="If you can't find a solution, reach out through these channels:"
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <a class="nx-card" *ngFor="let resource of resources" [href]="resource.url" target="_blank" rel="noopener noreferrer">
+                        <h4>{{ resource.name }}</h4>
+                        <span class="link-icon">→</span>
+                    </a>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="practices-list">
+                    <li>Keep NexaUI and Angular updated to latest versions</li>
+                    <li>Check browser console for error messages</li>
+                    <li>Verify component imports are correct</li>
+                    <li>Test in multiple browsers for compatibility</li>
+                    <li>Read component documentation and examples</li>
+                    <li>Search GitHub issues for similar problems</li>
+                    <li>Report bugs with minimal reproduction case</li>
+                </ul>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

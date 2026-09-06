@@ -1,0 +1,155 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Elevation & Z-Index</h4>
+                <p class="main-section-description">
+                    Elevation defines the vertical stacking order of UI elements on the z-axis, creating 
+                    a clear visual hierarchy and preventing element overlap conflicts.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Elevation Levels</h4>
+                <p class="main-section-description">
+                    {{ commonService.appName }} uses a consistent z-index scale to manage element layering:
+                </p>
+                
+                <div class="usage-table">
+                    <div class="table-header">
+                        <div class="table-cell">Level</div>
+                        <div class="table-cell">Z-Index</div>
+                        <div class="table-cell">Purpose</div>
+                    </div>
+                    @for (elev of elevationLevels; track elev.level) {
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <strong>{{ elev.level }}</strong>
+                            </div>
+                            <div class="table-cell">
+                                <code>{{ elev.zIndex }}</code>
+                            </div>
+                            <div class="table-cell">{{ elev.purpose }}</div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Stacking Context</h4>
+                <p class="main-section-description">
+                    Proper z-index management prevents visual chaos and ensures components always appear 
+                    in the correct order regardless of DOM hierarchy.
+                </p>
+                
+                <div class="stacking-visualization">
+                    <div class="stack-layer" style="--level: 0">
+                        <span>Level 0</span>
+                        <p>Page Content</p>
+                    </div>
+                    <div class="stack-layer" style="--level: 1">
+                        <span>Level 1</span>
+                        <p>Cards & Panels</p>
+                    </div>
+                    <div class="stack-layer" style="--level: 2">
+                        <span>Level 2</span>
+                        <p>Dropdowns</p>
+                    </div>
+                    <div class="stack-layer" style="--level: 3">
+                        <span>Level 3</span>
+                        <p>Modal Backdrop</p>
+                    </div>
+                    <div class="stack-layer" style="--level: 4">
+                        <span>Level 4</span>
+                        <p>Modals</p>
+                    </div>
+                    <div class="stack-layer" style="--level: 5">
+                        <span>Level 5</span>
+                        <p>Toasts</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Best Practices</h4>
+                
+                <div  class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                    <div class="practice-box">
+                        <h5>✓ DO</h5>
+                        <ul>
+                            <li>Use the predefined elevation levels</li>
+                            <li>Avoid arbitrary z-index values</li>
+                            <li>Keep elevation levels consistent across components</li>
+                            <li>Test layering with multiple overlapping elements</li>
+                            <li>Document z-index for complex components</li>
+                        </ul>
+                    </div>
+                    <div class="practice-box">
+                        <h5>✗ DON'T</h5>
+                        <ul>
+                            <li>Use z-index values outside the defined scale</li>
+                            <li>Nest stacking contexts unnecessarily</li>
+                            <li>Use z-index: 9999 or other extreme values</li>
+                            <li>Forget about mobile z-index issues</li>
+                            <li>Rely on z-index to fix layout problems</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">CSS Variables</h4>
+                <p class="main-section-description">
+                    Use these CSS custom properties for elevation:
+                </p>
+                
+                <div class="css-vars-list">
+                    <div class="var-item">
+                        <code>--zindex-dropdown</code>
+                        <span>500</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--zindex-sticky</code>
+                        <span>600</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--zindex-fixed</code>
+                        <span>700</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--zindex-backdrop</code>
+                        <span>1000</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--zindex-modal</code>
+                        <span>1050</span>
+                    </div>
+                    <div class="var-item">
+                        <code>--zindex-notification</code>
+                        <span>1100</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Common Mistakes</h4>
+                <div class="mistake-list">
+                    <div class="mistake-item">
+                        <strong>❌ Using z-index: 9999</strong>
+                        <p>This creates unpredictable layering. Use the predefined scale instead.</p>
+                    </div>
+                    <div class="mistake-item">
+                        <strong>❌ Nesting multiple stacking contexts</strong>
+                        <p>Can cause elements to layer unpredictably. Minimize nesting.</p>
+                    </div>
+                    <div class="mistake-item">
+                        <strong>❌ Forgetting about scrollable containers</strong>
+                        <p>Position: fixed elements inside scrollable containers behave differently.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

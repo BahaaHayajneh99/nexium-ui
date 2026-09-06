@@ -1,0 +1,161 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Notifications Pattern</h4>
+                <p class="main-section-description">
+                    Inform users of system events and updates
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="Notifications keep users informed about system events, order updates, messages, and important alerts. This pattern covers different notification types, delivery channels, and best practices."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Notification Types"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="notifications-demo">
+                    <div class="notification-example" *ngFor="let notif of notificationTypes" [class]="'type-' + notif.type.toLowerCase()">
+                        <span class="icon">{{ notif.icon }}</span>
+                        <div class="content">
+                            <h4>{{ notif.type }}</h4>
+                            <p>{{ notif.message }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Delivery Channels"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item">
+                        <h3>Toast</h3>
+                        <p>Temporary, non-blocking notifications at corner of screen</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>In-app Alert</h3>
+                        <p>Prominent notifications in page flow</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Bell Icon</h3>
+                        <p>Badge with unread count in navbar</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Notification Center</h3>
+                        <p>Dedicated view for notification history</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Push Notifications</h3>
+                        <p>Browser or mobile device notifications</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Email</h3>
+                        <p>Email delivery for important updates</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Use appropriate urgency</h4>
+                            <p>Match notification level to message importance</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Keep messages concise</h4>
+                            <p>Be brief and actionable in notifications</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Include actions</h4>
+                            <p>Provide action buttons when relevant</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Respect preferences</h4>
+                            <p>Allow users to control notification settings</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Avoid fatigue</h4>
+                            <p>Don't overwhelm users with too many notifications</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Use sound sparingly</h4>
+                            <p>Limit audio and vibration alerts</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Show timestamps</h4>
+                            <p>Include timing for historical notifications</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Implement batching</h4>
+                            <p>Group related notifications together</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">User Management Pattern</h4>
+                <p class="main-section-description">
+                    Manage users, roles, permissions, and access control
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="User management is essential for multi-user systems. This pattern covers user listings, role assignment, permission management, and administrative controls."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Implementation Steps"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ol class="steps-list">
+                    <li *ngFor="let step of userManagementSteps">{{ step }}</li>
+                </ol>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Role-Based Access Control (RBAC)"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item">
+                        <h3>Admin</h3>
+                        <p>Full system access and user management</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Manager</h3>
+                        <p>Team management and reporting</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>User</h3>
+                        <p>Standard application access</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Guest</h3>
+                        <p>Limited read-only access</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="User Management Interface"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="interface-sections">
+                    <div class="section-item">
+                        <h3>User List View</h3>
+                        <ul>
+                            <li>Searchable table with user information</li>
+                            <li>Sortable columns (name, role, status)</li>
+                            <li>Action buttons (edit, delete, view)</li>
+                            <li>Bulk selection for batch operations</li>
+                            <li>Filter by role, status, department</li>
+                        </ul>
+                    </div>
+                    <div class="section-item">
+                        <h3>User Detail View</h3>
+                        <ul>
+                            <li>Profile information</li>
+                            <li>Role and permissions</li>
+                            <li>Activity history</li>
+                            <li>Account status</li>
+                            <li>Edit and delete options</li>
+                        </ul>
+                    </div>
+                    <div class="section-item">
+                        <h3>Permission Management</h3>
+                        <ul>
+                            <li>Granular permission control</li>
+                            <li>Permission inheritance</li>
+                            <li>Role templates</li>
+                            <li>Custom permission sets</li>
+                            <li>Audit trail of changes</li>
+                        </ul>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

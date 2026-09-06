@@ -11,10 +11,10 @@
             </section>
 
             <section class="main-section">
-                <div class="shadow-grid">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                     @for (s of shadows; track s.className) {
-                        <div class="shadow-card-wrap">
-                            <div class="shadow-card" [class]="s.className"></div>
+                        <div class="nx-card-wrap">
+                            <div class="use-case-item" [class]="s.className"></div>
                             <code class="shadow-class">.{{ s.className }}</code>
                             <span class="shadow-value">{{ s.value }}</span>
                         </div>

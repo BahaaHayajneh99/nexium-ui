@@ -39,11 +39,11 @@
                 </div>
             </section>
 
-            <div class="emoji-grid">
+            <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                 @for (item of filteredEmojis; track item.key) {
-                    <button type="button" class="emoji-card" (click)="copyEmoji(item)" [title]="'Copy &quot;' + item.key + '&quot;'">
-                        <nx-emoji class="emoji-card-glyph" [emoji]="item.key" [size]="28"></nx-emoji>
-                        <span class="emoji-card-name">{{ copiedKey === item.key ? 'Copied!' : item.key }}</span>
+                    <button type="button" class="nx-card" (click)="copyEmoji(item)" [title]="'Copy &quot;' + item.key + '&quot;'">
+                        <nx-emoji [emoji]="item.key" [size]="28"></nx-emoji>
+                        <span class="emoji-name">{{ copiedKey === item.key ? 'Copied!' : item.key }}</span>
                     </button>
                 } @empty {
                     <p class="emoji-empty">No emoji match "{{ searchQuery }}".</p>

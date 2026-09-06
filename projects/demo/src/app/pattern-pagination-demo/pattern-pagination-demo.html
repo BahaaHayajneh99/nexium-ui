@@ -1,0 +1,153 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Pagination Pattern</h4>
+                <p class="main-section-description">
+                    Navigate large datasets efficiently
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="Pagination breaks large datasets into manageable pages. This pattern covers pagination UI, backend integration, and performance optimization."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pagination Types"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="pagination-types">
+                    <div class="use-case-item" *ngFor="let type of paginationTypes">
+                        <h3>{{ type.type }}</h3>
+                        <p>{{ type.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Interactive Example"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="demo-box">
+                    <div class="pagination-example">
+                        <p class="results-info">Showing {{ startIndex }} to {{ endIndex }} of {{ totalItems }} results</p>
+
+                        <div class="pagination-controls">
+                            <button [disabled]="currentPage === 1">← Previous</button>
+                            <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+                            <button [disabled]="currentPage === totalPages">Next →</button>
+                        </div>
+
+                        <div class="page-size-control">
+                            <label>Items per page:</label>
+                            <select [(ngModel)]="pageSize">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Best Practices"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="best-practices-list">
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Show result count</h4>
+                            <p>Display total count and current range</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Disable at boundaries</h4>
+                            <p>Disable navigation buttons at page limits</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Allow page size selection</h4>
+                            <p>Let users customize items per page</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Support URL parameters</h4>
+                            <p>Use URL state for easy bookmarking</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Consider infinite scroll</h4>
+                            <p>Offer infinite scroll option for mobile</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Reasonable page size</h4>
+                            <p>Keep items per page between 10-100</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Preserve scroll position</h4>
+                            <p>Remember scroll location when returning</p>
+                        </div>
+                    </div>
+                    <div class="practice-item">
+                        <span class="icon">✓</span>
+                        <div class="content">
+                            <h4>Show loading state</h4>
+                            <p>Display loading indicator during fetch</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

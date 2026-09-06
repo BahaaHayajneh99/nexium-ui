@@ -1,0 +1,134 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Migration Guide</h4>
+                <p class="main-section-description">
+                    This guide will help you upgrade to the latest version of {{ commonService.appName }} 
+                    or migrate from other component libraries.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Upgrading {{ commonService.appName }} Versions</h4>
+                <p class="main-section-description">
+                    Before upgrading, always review the release notes for breaking changes and deprecations.
+                </p>
+                
+                <div class="use-case-item">
+                    <h3>Step 1: Backup Your Project</h3>
+                    <p>Create a git commit or backup before upgrading:</p>
+                    <code>git commit -m "Before {{ commonService.appName }} upgrade"</code>
+                </div>
+
+                <div class="use-case-item">
+                    <h3>Step 2: Update Package</h3>
+                    <p>Update {{ commonService.appName }} to the latest version:</p>
+                    <code>npm update nexium-ui</code>
+                </div>
+
+                <div class="use-case-item">
+                    <h3>Step 3: Update Dependencies</h3>
+                    <p>Update Angular and other peer dependencies:</p>
+                    <code>ng update @angular/core @angular/common</code>
+                </div>
+
+                <div class="use-case-item">
+                    <h3>Step 4: Review Breaking Changes</h3>
+                    <p>Check the release notes for any breaking changes specific to the components you use</p>
+                </div>
+
+                <div class="use-case-item">
+                    <h3>Step 5: Test Your Application</h3>
+                    <p>Thoroughly test your application to ensure all components work correctly:</p>
+                    <code>npm test && npm run serve</code>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Migration from Other Libraries</h4>
+                
+                <div class="use-case-item">
+                    <h3>From Angular Material</h3>
+                    <div class="migration-comparison">
+                        <div class="comparison-item">
+                            <strong>Angular Material</strong>
+                            <code>import &#123; MatButtonModule &#125; from '@angular/material/button';</code>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="comparison-item">
+                            <strong>{{ commonService.appName }}</strong>
+                            <code>import &#123; NxButtonComponent &#125; from 'nexium-ui';</code>
+                        </div>
+                    </div>
+                    <p class="comparison-note">
+                        Main difference: {{ commonService.appName }} has zero external dependencies and works as standalone components
+                    </p>
+                </div>
+
+                <div class="use-case-item">
+                    <h3>From ng-bootstrap</h3>
+                    <p>If you're migrating from ng-bootstrap to {{ commonService.appName }}:</p>
+                    <ul class="migration-list">
+                        <li>Replace NgbModule imports with component imports</li>
+                        <li>Update template bindings to use component properties</li>
+                        <li>Use {{ commonService.appName }}'s theme system instead of Bootstrap SCSS</li>
+                        <li>Run your test suite to verify compatibility</li>
+                    </ul>
+                </div>
+
+                <div class="use-case-item">
+                    <h3>From PrimeNG</h3>
+                    <p>When migrating from PrimeNG to {{ commonService.appName }}:</p>
+                    <ul class="migration-list">
+                        <li>Replace PrimeNG component imports with {{ commonService.appName }} equivalents</li>
+                        <li>{{ commonService.appName }} uses simpler APIs with fewer configuration options</li>
+                        <li>Theme system is simpler - just CSS custom properties instead of multiple theme files</li>
+                        <li>No need for PrimeFlex - use built-in layout components or your CSS framework</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Breaking Changes by Version</h4>
+                <p class="main-section-description">
+                    Check the appropriate section below for the version you're upgrading to:
+                </p>
+                
+                <div class="version-changes">
+                    <div class="use-case-item">
+                        <h3>v2.0.0 (Current)</h3>
+                        <ul class="change-list">
+                            <li>Angular 21+ required</li>
+                            <li>All components are standalone (no NgModule version available)</li>
+                            <li>Signal-based inputs available as alternative to @Input</li>
+                        </ul>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>v1.x to v2.0 Migration</h3>
+                        <ul class="change-list">
+                            <li>NgModule imports are no longer supported</li>
+                            <li>Update all component imports to standalone versions</li>
+                            <li>Some component APIs have been simplified</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Getting Help</h4>
+                <div class="use-case-item">
+                    <p><strong>Still having issues?</strong> Here are some resources:</p>
+                    <ul>
+                        <li>📖 Check the <strong>Guide</strong> section for detailed documentation</li>
+                        <li>🔍 Browse the <strong>Components</strong> section for specific component usage</li>
+                        <li>💬 Visit our GitHub Discussions for community support</li>
+                        <li>📄 Review the changelog for detailed version history</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

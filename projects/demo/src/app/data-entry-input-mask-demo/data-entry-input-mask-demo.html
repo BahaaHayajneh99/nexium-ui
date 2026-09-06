@@ -1,0 +1,211 @@
+<div class="main-content">
+  <div class="main-container">
+    <div class="main-sections">
+
+      <section class="main-section">
+        <app-demo-section
+          header="Import"
+          description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+          [codeLang]="'ts'"
+          [code]="importCode">
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Input Mask"
+          description="Format input fields automatically with predefined patterns for consistent data entry"
+          code=""
+          [hasSampleClass]="false">
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Overview"
+          description="Input Mask ensures consistent formatting for structured data like phone numbers, credit cards, and dates. It automatically formats input as users type, enforces correct patterns, and improves data quality."
+          code=""
+          [hasSampleClass]="false">
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Key Features"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+            @for (feature of features; track feature.name) {
+              <div class="use-case-item">
+                <h3>{{ feature.name }}</h3>
+                <p>{{ feature.description }}</p>
+              </div>
+            }
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Basic Usage"
+          description=""
+          [code]="basicCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Common Mask Patterns"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="usage-table">
+            <div class="table-header">
+              <div class="table-cell">Data Type</div>
+              <div class="table-cell">Mask Pattern</div>
+              <div class="table-cell">Example Output</div>
+            </div>
+            @for (example of maskExamples; track example.type) {
+              <div class="table-row">
+                <div class="table-cell">{{ example.type }}</div>
+                <div class="table-cell"><code>{{ example.mask }}</code></div>
+                <div class="table-cell"><code>{{ example.example }}</code></div>
+              </div>
+            }
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Interactive Demo"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="nx-demo-surface-card">
+            <div class="input-group">
+              <nx-mask
+                label="Phone Number"
+                type="phone"
+                [(ngModel)]="phone"
+                placeholder="(123) 456-7890">
+              </nx-mask>
+              @if (phone) {
+                <span class="value-display">Input: {{ phone }}</span>
+              }
+            </div>
+
+            <div class="input-group">
+              <nx-mask
+                label="Social Security Number"
+                type="ssn"
+                [(ngModel)]="ssn"
+                placeholder="123-45-6789">
+              </nx-mask>
+              @if (ssn) {
+                <span class="value-display">Input: {{ ssn }}</span>
+              }
+            </div>
+
+            <div class="input-group">
+              <nx-mask
+                label="Credit Card"
+                type="credit-card"
+                [(ngModel)]="creditCard"
+                placeholder="1234 5678 9012 3456">
+              </nx-mask>
+              @if (creditCard) {
+                <span class="value-display">Input: {{ creditCard }}</span>
+              }
+            </div>
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Dynamic Mask Format"
+          description="Choose a preset mask type or switch to custom and enter any mask pattern using 9 (digit), A (letter), * (alphanumeric)."
+          [code]="dynamicMaskCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+          <div class="nx-demo-surface-card nx-demo-stack">
+            <div class="mask-controls">
+              <div class="mask-field">
+                <label for="mask-type-select">Mask Type</label>
+                <select id="mask-type-select" [(ngModel)]="selectedMaskType" class="mask-control">
+                  @for (option of maskTypeOptions; track option.value) {
+                    <option [value]="option.value">{{ option.label }}</option>
+                  }
+                </select>
+              </div>
+
+              @if (selectedMaskType === 'custom') {
+                <div class="mask-field">
+                  <label for="custom-mask-input">Custom Mask Pattern</label>
+                  <input
+                    id="custom-mask-input"
+                    type="text"
+                    [(ngModel)]="customMaskFormat"
+                    class="mask-control"
+                    placeholder="Ex: 9{12} or AA-9999 or (***) ***-****">
+                  <small class="mask-hint">Use 9 or # for digits, A for letters, * for letters or digits. Use token quantifiers for dynamic length, like 9&#123;12&#125; or A&#123;4&#125;. In custom mode, typed digits are treated as digit slots too.</small>
+                </div>
+              }
+            </div>
+
+            <nx-mask
+              label="Dynamic Preview"
+              [type]="selectedMaskType"
+              [mask]="customMaskFormat"
+              [(ngModel)]="dynamicMaskValue"
+              placeholder="Type to test selected mask">
+            </nx-mask>
+
+            @if (dynamicMaskValue) {
+              <span class="value-display">Input: {{ dynamicMaskValue }}</span>
+            }
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Use Cases"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+            @for (useCase of useCases; track useCase.title) {
+              <div class="use-case-item">
+                <h3>{{ useCase.title }}</h3>
+                <p>{{ useCase.description }}</p>
+              </div>
+            }
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Benefits"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+            <div class="use-case-item"><p>Consistent data formatting</p></div>
+            <div class="use-case-item"><p>Reduced validation errors</p></div>
+            <div class="use-case-item"><p>Improved user experience</p></div>
+            <div class="use-case-item"><p>Auto-advance to next field</p></div>
+            <div class="use-case-item"><p>Real-time validation feedback</p></div>
+            <div class="use-case-item"><p>Mobile-friendly input</p></div>
+          </div>
+        </app-demo-section>
+      </section>
+
+    </div>
+  </div>
+</div>

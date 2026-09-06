@@ -1,0 +1,145 @@
+@use '../../../../../demo/src/app/variables.scss' as *;
+
+.nx-time-picker {
+    position: relative;
+    display: inline-block;
+    font-family: $font-family;
+
+    &.inline {
+        display: block;
+    }
+}
+
+.nx-time-picker-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-md;
+    background-color: var(--shell-surface);
+    cursor: pointer;
+
+    transition: border-color $transition-fast;
+
+    &:focus-within {
+        border-color: var(--shell-primary);
+    }
+}
+
+.nx-time-picker.disabled .nx-time-picker-input-wrapper {
+    background-color: var(--shell-surface-hover);
+    cursor: not-allowed;
+}
+
+.nx-time-picker-input {
+    flex: 1;
+    min-width: 90px;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: $spacing-xs 0;
+    font-size: $font-size-md;
+    font-family: inherit;
+    color: var(--shell-text);
+    cursor: inherit;
+
+    &::placeholder {
+        color: var(--shell-text-muted);
+    }
+}
+
+.nx-time-picker-icon {
+    flex-shrink: 0;
+    color: var(--shell-text-muted);
+}
+
+.nx-time-picker-panel {
+    position: absolute;
+    top: calc(100% + #{$spacing-xs});
+    left: 0;
+    z-index: 20;
+
+    display: flex;
+    gap: 1px;
+
+    background: var(--shell-border);
+    border: 1px solid var(--shell-border);
+    border-radius: $radius-md;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.nx-time-picker.inline .nx-time-picker-panel {
+    position: static;
+    display: inline-flex;
+}
+
+.nx-time-picker-column {
+    display: flex;
+    flex-direction: column;
+    background: var(--shell-surface);
+    min-width: 56px;
+}
+
+.nx-time-picker-column-label {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: var(--shell-text-muted);
+    text-align: center;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-time-picker-list {
+    margin: 0;
+    padding: $spacing-xs 0;
+    list-style: none;
+    max-height: 180px;
+    overflow-y: auto;
+
+    li {
+        padding: $spacing-xs $spacing-sm;
+        text-align: center;
+        font-size: $font-size-sm;
+        color: var(--shell-text);
+        cursor: pointer;
+        transition: background-color $transition-fast;
+
+        &:hover {
+            background-color: var(--shell-surface-hover);
+        }
+
+        &.active {
+            background-color: var(--shell-primary);
+            color: $white-color;
+        }
+    }
+}
+
+.nx-time-picker-period {
+    padding: $spacing-xs;
+    gap: $spacing-xs;
+
+    button {
+        padding: $spacing-xs $spacing-sm;
+        border: 1px solid var(--shell-border);
+        border-radius: $radius-sm;
+        background: var(--shell-surface);
+        color: var(--shell-text);
+        font-size: $font-size-sm;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+            border-color: var(--shell-primary);
+        }
+
+        &.active {
+            background-color: var(--shell-primary);
+            border-color: var(--shell-primary);
+            color: $white-color;
+        }
+    }
+}

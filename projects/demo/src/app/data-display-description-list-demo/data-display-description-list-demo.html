@@ -1,0 +1,94 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Description List</h1>
+    <p>Semantic HTML component for displaying key-value pairs and glossaries</p>
+  </div>
+
+  <section class="demo-section">
+    <h2>Overview</h2>
+    <p>
+      Description List is a semantic HTML component designed for displaying structured key-value data. It's perfect for
+      product information, FAQ sections, glossaries, and specifications with full accessibility support.
+    </p>
+  </section>
+
+  <section class="demo-section">
+    <h2>Key Features</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let feature of features">
+        <h3>{{ feature.name }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Interactive Demo</h2>
+    <div class="demo-box">
+      <dl class="description-list">
+        <ng-container *ngFor="let item of productDetails">
+          <dt class="term">{{ item.term }}</dt>
+          <dd class="definition">{{ item.definition }}</dd>
+        </ng-container>
+      </dl>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Use Cases</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let useCase of useCases">
+        <h3>{{ useCase.title }}</h3>
+        <p>{{ useCase.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Layout Variations</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item">
+        <h3>Inline Layout</h3>
+        <dl class="description-list inline">
+          <dt>Term 1</dt>
+          <dd>Definition 1</dd>
+          <dt>Term 2</dt>
+          <dd>Definition 2</dd>
+        </dl>
+      </div>
+
+      <div class="use-case-item">
+        <h3>Grouped Layout</h3>
+        <dl class="description-list grouped">
+          <dt>Group 1</dt>
+          <dd>Definition A</dd>
+          <dd>Definition B</dd>
+          <dt>Group 2</dt>
+          <dd>Definition C</dd>
+        </dl>
+      </div>
+
+      <div class="use-case-item">
+        <h3>Grid Layout</h3>
+        <dl  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="description-list nx-auto-fit-grid">
+          <dt>Term</dt>
+          <dd>Definition 1</dd>
+          <dt>Another</dt>
+          <dd>Definition 2</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Accessibility Benefits</h2>
+    <ul class="benefits-list">
+      <li>Semantic HTML for screen readers</li>
+      <li>Proper term-definition associations</li>
+      <li>Support for multiple definitions per term</li>
+      <li>Clear, structured information hierarchy</li>
+      <li>Keyboard navigation friendly</li>
+      <li>Enhanced SEO for content</li>
+    </ul>
+  </section>
+</div>

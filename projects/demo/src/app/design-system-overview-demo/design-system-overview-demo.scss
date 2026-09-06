@@ -1,0 +1,144 @@
+@use '../variables.scss' as *;
+.system-benefits {  margin: 1.5rem 0;
+}
+
+.benefit {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: var(--shell-bg);
+  border: 1px solid var(--shell-border);
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    color: var(--shell-text);
+  }
+
+  p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.layers-visualization {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.layer {
+  padding: 1.5rem;
+  background: var(--shell-bg);
+  border-left: 4px solid var(--shell-primary);
+  border-radius: 4px;
+  transition: all 0.2s;
+
+  &:hover {
+    border-left-color: var(--primary-color);
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--shell-tex);
+    font-size: 1.1rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.principle {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 8px;
+  background: var(--shell-bg);
+  text-align: center;
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--shell-text);
+  }
+
+  p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+.getting-started-steps {  margin: 1.5rem 0;
+}
+
+.step-box {
+  padding: 1.5rem;
+  border: 2px solid var(--shell-border);
+  border-radius: 8px;
+  background: var(--shell-bg);
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  h5 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--shell-text);
+  }
+
+  p {
+    margin: 0.5rem 0 0 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.9rem;
+  }
+
+  small {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--text-disabled);
+    font-size: 0.8rem;
+  }
+}
+
+.sections-list {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.section-item {
+  padding: 1.25rem;
+  border-left: 4px solid var(--shell-primary);
+  background: var(--shell-bg);
+  border-radius: 4px;
+
+  strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--shell-text);
+  }
+
+  p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .system-benefits,
+  .principles-grid,
+  .getting-started-steps {
+    grid-template-columns: 1fr;
+  }
+}

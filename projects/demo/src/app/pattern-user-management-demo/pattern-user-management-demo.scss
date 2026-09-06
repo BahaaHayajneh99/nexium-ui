@@ -1,0 +1,45 @@
+.interface-sections {
+  margin-top: 1rem;
+}
+
+.section-item {
+  padding: 1.5rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--shell-surface, #fff);
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--shell-text, #000);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0.5rem 0;
+      color: var(--text-secondary, #666);
+      font-size: 0.95rem;
+      line-height: 1.5;
+
+      &::before {
+        content: '•';
+        margin-right: 0.75rem;
+        color: var(--primary-color, #007bff);
+      }
+    }
+  }
+}
+
+.steps-list {
+  list-style: decimal;
+  list-style-position: inside;
+  color: var(--text-secondary, #666);
+  line-height: 1.8;
+  margin: 1rem 0 0 0;
+  padding: 0;
+}

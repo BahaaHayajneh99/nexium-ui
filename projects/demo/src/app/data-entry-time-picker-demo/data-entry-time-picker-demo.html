@@ -1,0 +1,171 @@
+<div class="main-content">
+  <div class="main-container">
+    <div class="main-sections">
+
+      <section class="main-section">
+        <app-demo-section
+          header="Import"
+          description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+          [codeLang]="'ts'"
+          [code]="importCode">
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Time Picker"
+          description="Select time with flexible formatting and hour/minute controls"
+          code=""
+          [hasSampleClass]="false">
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Overview"
+          description="Time Picker allows users to select a specific time of day. It supports 12/24-hour formats, configurable minute intervals, and time range restrictions for appointment scheduling and time-based selections."
+          code=""
+          [hasSampleClass]="false">
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Key Features"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+            @for (feature of features; track feature.name) {
+              <div class="use-case-item">
+                <h3>{{ feature.name }}</h3>
+                <p>{{ feature.description }}</p>
+              </div>
+            }
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Basic Usage"
+          description="24-hour format (HH:mm) by default."
+          [code]="basicUsageCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+          <nx-time-picker [(ngModel)]="selectedTime" format="HH:mm" (timeChange)="onTimeChange($event)">
+          </nx-time-picker>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="12-Hour Format"
+          description="Use hh:mm A to show hours 1-12 with an AM/PM toggle."
+          [code]="twelveHourCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+          <nx-time-picker [(ngModel)]="twelveHourTime" format="hh:mm A"></nx-time-picker>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="With Seconds"
+          description="Include ss in the format to add a Seconds column."
+          [code]="secondsCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+          <nx-time-picker [(ngModel)]="secondsTime" format="HH:mm:ss"></nx-time-picker>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Minute Step"
+          description="Set minuteStep to restrict the minute options to fixed intervals (e.g. 15-minute slots)."
+          [code]="steppedCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+          <nx-time-picker [(ngModel)]="steppedTime" format="HH:mm" [minuteStep]="15"></nx-time-picker>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Time Range (Min/Max)"
+          description="Constrain selection to a working-hours window with minTime/maxTime."
+          [code]="rangedCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+          <nx-time-picker [(ngModel)]="rangedTime" format="HH:mm" minTime="09:00" maxTime="17:00"></nx-time-picker>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Disabled"
+          description="Set disabled to true to prevent interaction."
+          [code]="disabledCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+          <nx-time-picker [(ngModel)]="disabledTime" format="HH:mm" [disabled]="true"></nx-time-picker>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Use Cases"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+            @for (useCase of useCases; track useCase.title) {
+              <div class="use-case-item">
+                <h3>{{ useCase.title }}</h3>
+                <p>{{ useCase.description }}</p>
+              </div>
+            }
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Time Format Examples"
+          description=""
+          code=""
+          [hasSampleClass]="false">
+          <div class="usage-table">
+            <div class="table-header">
+              <div class="table-cell">Format</div>
+              <div class="table-cell">Example</div>
+              <div class="table-cell">Description</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">HH:mm</div>
+              <div class="table-cell">14:30</div>
+              <div class="table-cell">24-hour format with hours and minutes</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">hh:mm A</div>
+              <div class="table-cell">02:30 PM</div>
+              <div class="table-cell">12-hour format with AM/PM</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">HH:mm:ss</div>
+              <div class="table-cell">14:30:45</div>
+              <div class="table-cell">24-hour format with seconds</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">hh:mm:ss A</div>
+              <div class="table-cell">02:30:45 PM</div>
+              <div class="table-cell">12-hour format with seconds and AM/PM</div>
+            </div>
+          </div>
+        </app-demo-section>
+      </section>
+
+    </div>
+  </div>
+</div>

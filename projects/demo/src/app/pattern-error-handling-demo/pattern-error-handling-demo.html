@@ -1,0 +1,140 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Error Handling Pattern</h4>
+                <p class="main-section-description">
+                    Gracefully handle and communicate errors to users
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Overview"
+                description="Effective error handling is critical to user experience. This pattern covers error boundaries, error messages, logging, recovery options, and fallback UIs."
+                code=""
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Key Features"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let feature of features">
+                        <h3>{{ feature.name }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="HTTP Error Codes"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="error-codes-table">
+                    <div class="table-header">
+                        <div class="col-code">Code</div>
+                        <div class="col-type">Type</div>
+                        <div class="col-description">Description</div>
+                    </div>
+                    <div class="table-body">
+                        <div class="table-row" *ngFor="let error of errorTypes">
+                            <div class="col-code">{{ error.code }}</div>
+                            <div class="col-type">{{ error.type }}</div>
+                            <div class="col-description">{{ error.description }}</div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Use Cases"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let useCase of useCases">
+                        <h3>{{ useCase.title }}</h3>
+                        <p>{{ useCase.description }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Error Handling Strategies"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="strategies-list">
+                    <li *ngFor="let strategy of errorHandlingStrategies">{{ strategy }}</li>
+                </ul>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Error Message Guidelines"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="guideline-item">
+                        <h3>✓ DO</h3>
+                        <ul>
+                            <li>Use clear, simple language</li>
+                            <li>Explain what went wrong</li>
+                            <li>Suggest solutions</li>
+                            <li>Show error codes for support</li>
+                            <li>Use consistent tone</li>
+                        </ul>
+                    </div>
+                    <div class="guideline-item">
+                        <h3>✗ DON'T</h3>
+                        <ul>
+                            <li>Use technical jargon</li>
+                            <li>Blame the user</li>
+                            <li>Show stack traces</li>
+                            <li>Use all caps</li>
+                            <li>Create alarm/panic</li>
+                        </ul>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Error UI Components"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item">
+                        <h3>Error Boundary</h3>
+                        <p>Wraps sections to catch and display errors gracefully</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Error Banner</h3>
+                        <p>Full-width alert for page-level errors</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Inline Error</h3>
+                        <p>Field-level validation errors in forms</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Error Page</h3>
+                        <p>Full page for 404, 500, etc.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Error Toast</h3>
+                        <p>Temporary error notifications</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Error Modal</h3>
+                        <p>Critical error with required action</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

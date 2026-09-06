@@ -1,0 +1,167 @@
+<div class="main-content">
+  <div class="main-container">
+    <div class="main-sections">
+
+      <app-demo-section header="Overview"
+        description="Date Range Picker allows users to select a start and end date for filtering, booking, or scheduling. It provides preset ranges, date restrictions, and flexible customization options."
+        code="">
+      </app-demo-section>
+
+      <app-demo-section header="Key Features" description="" code="" [hasSampleClass]="false">
+        <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+          <div class="use-case-item" *ngFor="let feature of features">
+            <h3>{{ feature.name }}</h3>
+            <p>{{ feature.description }}</p>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section header="Import"
+        description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+        [codeLang]="'ts'" [code]="importCode">
+      </app-demo-section>
+
+      <app-demo-section header="Basic Usage"
+        description="Use two-way binding for startDate and endDate to capture a selected range." [code]="basicUsageCode"
+        [hasSampleClass]="false">
+        <nx-date-range-picker label="Travel dates" [(startDate)]="basicStartDate" [(endDate)]="basicEndDate">
+        </nx-date-range-picker>
+        <p class="example-result mt-2">Start: {{ basicStartDate || 'Not selected' }}</p>
+        <p class="example-result">End: {{ basicEndDate || 'Not selected' }}</p>
+      </app-demo-section>
+
+      <app-demo-section header="Min / Max Range" description="Restrict selectable dates using min and max bounds."
+        [code]="minMaxCode" [hasSampleClass]="false">
+        <nx-date-range-picker label="Booking window" min="2026-01-01" max="2026-12-31" [(startDate)]="bookingStartDate"
+          [(endDate)]="bookingEndDate">
+        </nx-date-range-picker>
+        <p class="example-result mt-2">Start: {{ bookingStartDate }}</p>
+        <p class="example-result">End: {{ bookingEndDate }}</p>
+      </app-demo-section>
+
+      <app-demo-section header="Range With Time"
+        description="Enable showTime to allow users to pick time while selecting the range." [code]="withTimeCode"
+        [hasSampleClass]="false">
+        <nx-date-range-picker label="Meeting schedule" [showTime]="true" [(startDate)]="meetingStartDate"
+          [(endDate)]="meetingEndDate">
+        </nx-date-range-picker>
+        <p class="example-result mt-2">Start: {{ meetingStartDate || 'Not selected' }}</p>
+        <p class="example-result">End: {{ meetingEndDate || 'Not selected' }}</p>
+      </app-demo-section>
+
+      <app-demo-section header="Disabled" description="Set disabled to true to prevent interaction."
+        [code]="disabledCode" [hasSampleClass]="false">
+        <nx-date-range-picker label="Disabled range" [disabled]="true" [startDate]="'2026-09-10'"
+          [endDate]="'2026-09-12'">
+        </nx-date-range-picker>
+      </app-demo-section>
+
+      <app-demo-section header="Common Use Cases" description="" code="" [hasSampleClass]="false">
+        <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+          <div class="use-case-item" *ngFor="let useCase of useCases">
+            <h3>{{ useCase.title }}</h3>
+            <p>{{ useCase.description }}</p>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section header="Display Variants" description="" code="" [hasSampleClass]="false">
+        <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+          <div class="use-case-item" *ngFor="let variant of variantOptions">
+            <nx-icon [icon]="variant.icon" variant="svg" [size]="40"></nx-icon>
+            <h3>{{ variant.name }}</h3>
+            <p>{{ variant.description }}</p>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section header="API Reference" description="" code="">
+        <div class="usage-table">
+          <div class="table-header">
+            <div class="table-cell">Property</div>
+            <div class="table-cell">Type</div>
+            <div class="table-cell">Description</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">startDate</div>
+            <div class="table-cell">Date | null</div>
+            <div class="table-cell">The selected start date</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">endDate</div>
+            <div class="table-cell">Date | null</div>
+            <div class="table-cell">The selected end date</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">minDate</div>
+            <div class="table-cell">Date | null</div>
+            <div class="table-cell">Minimum selectable date</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">maxDate</div>
+            <div class="table-cell">Date | null</div>
+            <div class="table-cell">Maximum selectable date</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">disabledDates</div>
+            <div class="table-cell">Date[]</div>
+            <div class="table-cell">Array of disabled dates</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">presetRanges</div>
+            <div class="table-cell">any[]</div>
+            <div class="table-cell">Predefined date ranges</div>
+          </div>
+        </div>
+      </app-demo-section>
+
+      <app-demo-section header="Best Practices" description="" code="">
+        <div class="best-practices-list">
+          <div class="practice-item">
+            <span class="icon">✓</span>
+            <div class="content">
+              <h4>Clear labels</h4>
+              <p>Always provide clear labels for start and end dates</p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="icon">✓</span>
+            <div class="content">
+              <h4>Preset ranges</h4>
+              <p>Offer preset ranges for common selections</p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="icon">✓</span>
+            <div class="content">
+              <h4>Disable appropriately</h4>
+              <p>Disable past dates if selecting future dates</p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="icon">✓</span>
+            <div class="content">
+              <h4>Show selection</h4>
+              <p>Display selected date range clearly in the input</p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="icon">✓</span>
+            <div class="content">
+              <h4>Visual feedback</h4>
+              <p>Provide feedback for hover and focus states</p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="icon">✓</span>
+            <div class="content">
+              <h4>Error messages</h4>
+              <p>Include clear validation error messages</p>
+            </div>
+          </div>
+        </div>
+      </app-demo-section>
+
+    </div>
+  </div>
+</div>

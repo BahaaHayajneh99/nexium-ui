@@ -92,6 +92,8 @@ import { GuideAccessibilityDemo } from './guide-accessibility-demo/guide-accessi
 import { AboutWhoWeAreDemo } from './about-who-we-are-demo/about-who-we-are-demo';
 import { AboutChangelogDemo } from './about-changelog-demo/about-changelog-demo';
 import { AboutLicenseDemo } from './about-license-demo/about-license-demo';
+import { AboutContactDemo } from './about-contact-demo/about-contact-demo';
+import { PipesDemo } from './pipes-demo/pipes-demo';
 import { IconsDemo } from './icons-demo/icons-demo';
 import { EmojiDemo } from './emoji-demo/emoji-demo';
 import { NxTranslateDemo } from './nx-translate-demo/nx-translate-demo';
@@ -101,8 +103,28 @@ import { GuideTypographyDemo } from './guide-typography-demo/guide-typography-de
 import { GuideSpacingDemo } from './guide-spacing-demo/guide-spacing-demo';
 import { GuideResponsiveDesignDemo } from './guide-responsive-design-demo/guide-responsive-design-demo';
 import { GuideRtlSupportDemo } from './guide-rtl-support-demo/guide-rtl-support-demo';
+import { InternationalizationI18nDemo } from './internationalization-i18n-demo/internationalization-i18n-demo';
+import { InternationalizationLocalizationDemo } from './internationalization-localization-demo/internationalization-localization-demo';
+import { InternationalizationDateNumberFormatsDemo } from './internationalization-date-number-formats-demo/internationalization-date-number-formats-demo';
+import { TestingUnitTestingDemo } from './testing-unit-testing-demo/testing-unit-testing-demo';
+import { TestingComponentTestingDemo } from './testing-component-testing-demo/testing-component-testing-demo';
+import { TestingAccessibilityTestingDemo } from './testing-accessibility-testing-demo/testing-accessibility-testing-demo';
+import { TestingVisualTestingDemo } from './testing-visual-testing-demo/testing-visual-testing-demo';
+import { TestingE2eTestingDemo } from './testing-e2e-testing-demo/testing-e2e-testing-demo';
 import { GuideFormsDemo } from './guide-forms-demo/guide-forms-demo';
 import { AboutRoadmapDemo } from './about-roadmap-demo/about-roadmap-demo';
+import { GettingStartedIntroductionDemo } from './getting-started-introduction-demo/getting-started-introduction-demo';
+import { GettingStartedQuickStartDemo } from './getting-started-quick-start-demo/getting-started-quick-start-demo';
+import { GettingStartedConfigurationDemo } from './getting-started-configuration-demo/getting-started-configuration-demo';
+import { GettingStartedFirstComponentDemo } from './getting-started-first-component-demo/getting-started-first-component-demo';
+import { GettingStartedMigrationGuideDemo } from './getting-started-migration-guide-demo/getting-started-migration-guide-demo';
+import { DesignSystemOverviewDemo } from './design-system-overview-demo/design-system-overview-demo';
+import { DesignSystemDesignTokensDemo } from './design-system-design-tokens-demo/design-system-design-tokens-demo';
+import { DesignSystemBorderRadiusDemo } from './design-system-border-radius-demo/design-system-border-radius-demo';
+import { DesignSystemShadowsDemo } from './design-system-shadows-demo/design-system-shadows-demo';
+import { DesignSystemElevationDemo } from './design-system-elevation-demo/design-system-elevation-demo';
+import { DesignSystemBreakpointsDemo } from './design-system-breakpoints-demo/design-system-breakpoints-demo';
+import { DesignSystemMotionAnimationDemo } from './design-system-motion-animation-demo/design-system-motion-animation-demo';
 import { AboutContributingDemo } from './about-contributing-demo/about-contributing-demo';
 import { UtilitiesColorsDemo } from './utilities-colors-demo/utilities-colors-demo';
 import { UtilitiesTypographyDemo } from './utilities-typography-demo/utilities-typography-demo';
@@ -184,6 +206,41 @@ import { TemplatesRiskManagementDemo } from './templates-risk-management-demo/te
 import { TemplatesDocumentManagementDemo } from './templates-document-management-demo/templates-document-management-demo';
 import { TemplatesUserManagementDemo } from './templates-user-management-demo/templates-user-management-demo';
 import { TemplatesNotificationsDemo } from './templates-notifications-demo/templates-notifications-demo';
+import { DataEntryDateRangePickerDemo } from './data-entry-date-range-picker-demo/data-entry-date-range-picker-demo';
+import { DataEntryTimePickerDemo } from './data-entry-time-picker-demo/data-entry-time-picker-demo';
+import { DataEntryNumberInputDemo } from './data-entry-number-input-demo/data-entry-number-input-demo';
+import { DataEntryInputMaskDemo } from './data-entry-input-mask-demo/data-entry-input-mask-demo';
+import { DataEntryPasswordInputDemo } from './data-entry-password-input-demo/data-entry-password-input-demo';
+import { DataEntryPhoneInputDemo } from './data-entry-phone-input-demo/data-entry-phone-input-demo';
+import { DataEntrySearchInputDemo } from './data-entry-search-input-demo/data-entry-search-input-demo';
+import { DataDisplayDataGridDemo } from './data-display-data-grid-demo/data-display-data-grid-demo';
+import { DataDisplayDataTableDemo } from './data-display-data-table-demo/data-display-data-table-demo';
+import { DataDisplayTreeTableDemo } from './data-display-tree-table-demo/data-display-tree-table-demo';
+import { DataDisplayDescriptionListDemo } from './data-display-description-list-demo/data-display-description-list-demo';
+import { DataDisplayCalendarDemo } from './data-display-calendar-demo/data-display-calendar-demo';
+import { DataDisplayStatCardDemo } from './data-display-stat-card-demo/data-display-stat-card-demo';
+import { DataDisplayEmptyStateDemo } from './data-display-empty-state-demo/data-display-empty-state-demo';
+import { DataDisplayResultDemo } from './data-display-result-demo/data-display-result-demo';
+import { PatternFormsDemo } from './pattern-forms-demo/pattern-forms-demo';
+import { PatternAuthenticationDemo } from './pattern-authentication-demo/pattern-authentication-demo';
+import { PatternSearchFilterDemo } from './pattern-search-filter-demo/pattern-search-filter-demo';
+import { PatternCrudDemo } from './pattern-crud-demo/pattern-crud-demo';
+import { PatternPaginationDemo } from './pattern-pagination-demo/pattern-pagination-demo';
+import { PatternDataManagementDemo } from './pattern-data-management-demo/pattern-data-management-demo';
+import { PatternFileManagementDemo } from './pattern-file-management-demo/pattern-file-management-demo';
+import { PatternNotificationsDemo } from './pattern-notifications-demo/pattern-notifications-demo';
+import { PatternUserManagementDemo } from './pattern-user-management-demo/pattern-user-management-demo';
+import { PatternDashboardDemo } from './pattern-dashboard-demo/pattern-dashboard-demo';
+import { PatternErrorHandlingDemo } from './pattern-error-handling-demo/pattern-error-handling-demo';
+import { DeveloperApiReferenceDemo } from './developer-api-reference-demo/developer-api-reference-demo';
+import { DeveloperAngularCompatibilityDemo } from './developer-angular-compatibility-demo/developer-angular-compatibility-demo';
+import { DeveloperTypescriptDemo } from './developer-typescript-demo/developer-typescript-demo';
+import { DeveloperConfigurationDemo } from './developer-configuration-demo/developer-configuration-demo';
+import { DeveloperThemingApiDemo } from './developer-theming-api-demo/developer-theming-api-demo';
+import { DeveloperCssUtilitiesDemo } from './developer-css-utilities-demo/developer-css-utilities-demo';
+import { DeveloperCustomizationDemo } from './developer-customization-demo/developer-customization-demo';
+import { DeveloperSsrDemo } from './developer-ssr-demo/developer-ssr-demo';
+import { DeveloperTroubleshootingDemo } from './developer-troubleshooting-demo/developer-troubleshooting-demo';
 
 export const routes: Routes = [
     {
@@ -194,6 +251,26 @@ export const routes: Routes = [
     {
         path: 'getting-started',
         component: GettingStartedDemo
+    },
+    {
+        path: 'getting-started/introduction',
+        component: GettingStartedIntroductionDemo
+    },
+    {
+        path: 'getting-started/quick-start',
+        component: GettingStartedQuickStartDemo
+    },
+    {
+        path: 'getting-started/configuration',
+        component: GettingStartedConfigurationDemo
+    },
+    {
+        path: 'getting-started/first-component',
+        component: GettingStartedFirstComponentDemo
+    },
+    {
+        path: 'getting-started/migration-guide',
+        component: GettingStartedMigrationGuideDemo
     },
     {
         path: 'translate',
@@ -332,6 +409,118 @@ export const routes: Routes = [
         component: UiTreeDemo
     },
     {
+        path: 'data-grid',
+        component: DataDisplayDataGridDemo
+    },
+    {
+        path: 'data-table',
+        component: DataDisplayDataTableDemo
+    },
+    {
+        path: 'tree-table',
+        component: DataDisplayTreeTableDemo
+    },
+    {
+        path: 'description-list',
+        component: DataDisplayDescriptionListDemo
+    },
+    {
+        path: 'calendar',
+        component: DataDisplayCalendarDemo
+    },
+    {
+        path: 'stat-card',
+        component: DataDisplayStatCardDemo
+    },
+    {
+        path: 'empty-state',
+        component: DataDisplayEmptyStateDemo
+    },
+    {
+        path: 'result',
+        component: DataDisplayResultDemo
+    },
+    {
+        path: 'patterns/forms',
+        component: PatternFormsDemo
+    },
+    {
+        path: 'patterns/authentication',
+        component: PatternAuthenticationDemo
+    },
+    {
+        path: 'patterns/search-filter',
+        component: PatternSearchFilterDemo
+    },
+    {
+        path: 'patterns/crud',
+        component: PatternCrudDemo
+    },
+    {
+        path: 'patterns/pagination',
+        component: PatternPaginationDemo
+    },
+    {
+        path: 'patterns/data-management',
+        component: PatternDataManagementDemo
+    },
+    {
+        path: 'patterns/file-management',
+        component: PatternFileManagementDemo
+    },
+    {
+        path: 'patterns/notifications',
+        component: PatternNotificationsDemo
+    },
+    {
+        path: 'patterns/user-management',
+        component: PatternUserManagementDemo
+    },
+    {
+        path: 'patterns/dashboard',
+        component: PatternDashboardDemo
+    },
+    {
+        path: 'patterns/error-handling',
+        component: PatternErrorHandlingDemo
+    },
+    {
+        path: 'developer/api-reference',
+        component: DeveloperApiReferenceDemo
+    },
+    {
+        path: 'developer/angular-compatibility',
+        component: DeveloperAngularCompatibilityDemo
+    },
+    {
+        path: 'developer/typescript',
+        component: DeveloperTypescriptDemo
+    },
+    {
+        path: 'developer/configuration',
+        component: DeveloperConfigurationDemo
+    },
+    {
+        path: 'developer/theming-api',
+        component: DeveloperThemingApiDemo
+    },
+    {
+        path: 'developer/css-utilities',
+        component: DeveloperCssUtilitiesDemo
+    },
+    {
+        path: 'developer/customization',
+        component: DeveloperCustomizationDemo
+    },
+    {
+        path: 'developer/ssr',
+        component: DeveloperSsrDemo
+    },
+    {
+        path: 'developer/troubleshooting',
+        component: DeveloperTroubleshootingDemo
+    },
+    {
         path: 'collapse',
         component: UiCollapseDemo
     },
@@ -402,6 +591,34 @@ export const routes: Routes = [
     {
         path: 'datepicker',
         component: UiDatepickerDemo
+    },
+    {
+        path: 'date-range-picker',
+        component: DataEntryDateRangePickerDemo
+    },
+    {
+        path: 'time-picker',
+        component: DataEntryTimePickerDemo
+    },
+    {
+        path: 'number-input',
+        component: DataEntryNumberInputDemo
+    },
+    {
+        path: 'input-mask',
+        component: DataEntryInputMaskDemo
+    },
+    {
+        path: 'password-input',
+        component: DataEntryPasswordInputDemo
+    },
+    {
+        path: 'phone-input',
+        component: DataEntryPhoneInputDemo
+    },
+    {
+        path: 'search-input',
+        component: DataEntrySearchInputDemo
     },
     {
         path: 'form-builder',
@@ -496,8 +713,68 @@ export const routes: Routes = [
         component: GuideRtlSupportDemo
     },
     {
+        path: 'internationalization/i18n',
+        component: InternationalizationI18nDemo
+    },
+    {
+        path: 'internationalization/localization',
+        component: InternationalizationLocalizationDemo
+    },
+    {
+        path: 'internationalization/date-number-formats',
+        component: InternationalizationDateNumberFormatsDemo
+    },
+    {
+        path: 'testing/unit-testing',
+        component: TestingUnitTestingDemo
+    },
+    {
+        path: 'testing/component-testing',
+        component: TestingComponentTestingDemo
+    },
+    {
+        path: 'testing/accessibility-testing',
+        component: TestingAccessibilityTestingDemo
+    },
+    {
+        path: 'testing/visual-testing',
+        component: TestingVisualTestingDemo
+    },
+    {
+        path: 'testing/e2e-testing',
+        component: TestingE2eTestingDemo
+    },
+    {
         path: 'guide/forms',
         component: GuideFormsDemo
+    },
+    {
+        path: 'design-system/overview',
+        component: DesignSystemOverviewDemo
+    },
+    {
+        path: 'design-system/design-tokens',
+        component: DesignSystemDesignTokensDemo
+    },
+    {
+        path: 'design-system/border-radius',
+        component: DesignSystemBorderRadiusDemo
+    },
+    {
+        path: 'design-system/shadows',
+        component: DesignSystemShadowsDemo
+    },
+    {
+        path: 'design-system/elevation',
+        component: DesignSystemElevationDemo
+    },
+    {
+        path: 'design-system/breakpoints',
+        component: DesignSystemBreakpointsDemo
+    },
+    {
+        path: 'design-system/motion-animation',
+        component: DesignSystemMotionAnimationDemo
     },
     {
         path: 'about/who-we-are',
@@ -518,6 +795,14 @@ export const routes: Routes = [
     {
         path: 'about/license',
         component: AboutLicenseDemo
+    },
+    {
+        path: 'about/contact',
+        component: AboutContactDemo
+    },
+    {
+        path: 'pipes',
+        component: PipesDemo
     },
     {
         path: 'icons',

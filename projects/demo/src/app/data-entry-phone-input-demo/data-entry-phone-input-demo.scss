@@ -1,0 +1,327 @@
+.formats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+
+  .format-card {
+    padding: 1.5rem;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background: var(--shell-surface);
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: var(--shell-primary);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .country-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--shell-border);
+
+      .flag {
+        font-size: 2rem;
+        line-height: 1;
+      }
+
+      .country-info {
+        h4 {
+          margin: 0;
+          font-size: 1rem;
+          font-weight: 600;
+          color: var(--shell-text);
+        }
+
+        .code {
+          font-size: 0.85rem;
+          color: var(--shell-primary);
+          font-weight: 600;
+        }
+      }
+    }
+
+    .format-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      .format-item {
+        .label {
+          display: block;
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: var(--shell-text-secondary);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 0.25rem;
+        }
+
+        code {
+          display: block;
+          font-family: 'Monaco', 'Menlo', monospace;
+          font-size: 0.9rem;
+          padding: 0.5rem;
+          background: var(--shell-surface-hover);
+          border-radius: 4px;
+          color: var(--shell-text);
+          overflow-x: auto;
+
+          &.format-pattern {
+            color: var(--shell-primary);
+          }
+
+          &.example {
+            color: #1b5e20;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+.country-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+
+  .country-btn {
+    padding: 0.75rem;
+    border: 2px solid var(--shell-border);
+    background: var(--shell-surface);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--shell-text);
+    transition: all 0.2s ease;
+
+    .flag {
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      border-color: var(--shell-primary);
+      background: var(--shell-surface-hover);
+    }
+
+    &.active {
+      border-color: var(--shell-primary);
+      background: var(--shell-primary);
+      color: white;
+    }
+
+    &:focus {
+      outline: 2px solid var(--shell-primary);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.demo-group {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--shell-border);
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--shell-text);
+  }
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+
+  .example-input {
+    position: relative;
+
+    .example-value {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #1b5e20;
+      font-weight: 500;
+      padding: 0.5rem;
+      background: rgba(27, 94, 32, 0.08);
+      border-radius: 4px;
+      font-family: 'Monaco', 'Menlo', monospace;
+    }
+  }
+}
+
+.value-display {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: #1b5e20;
+  font-weight: 500;
+  padding: 0.75rem;
+  background: rgba(27, 94, 32, 0.08);
+  border-radius: 4px;
+  border-left: 3px solid #1b5e20;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #666);
+  }
+
+
+.formats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: var(--shell-surface, #fff);
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  overflow: hidden;
+
+  thead {
+    background: var(--shell-surface-light, #f5f5f5);
+  }
+
+  th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--shell-text, #000);
+    border-bottom: 2px solid var(--shell-border, #e0e0e0);
+  }
+
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--shell-border, #e0e0e0);
+    color: var(--text-secondary, #666);
+
+    &.mono {
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--shell-text, #000);
+    }
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.demo-box {
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 8px;
+  padding: 2rem;
+  background: var(--shell-surface, #fff);
+}
+
+.input-group {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--shell-text, #000);
+  }
+}
+
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prefix {
+  padding: 0.75rem 1rem;
+  background: var(--shell-surface-light, #f5f5f5);
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 6px 0 0 6px;
+  font-weight: 600;
+  color: var(--text-secondary, #666);
+}
+
+.country-select {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  background: var(--shell-surface, #fff);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--shell-text, #000);
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color, #007bff);
+  }
+}
+
+.phone-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--shell-text, #000);
+  font-family: 'Monaco', 'Menlo', monospace;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color, #007bff);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+}
+
+.phone-info {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #2e7d32;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+
+  li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary, #666);
+    line-height: 1.6;
+
+    &::before {
+      content: '☎️';
+      position: absolute;
+      left: 0;
+    }
+  }
+}

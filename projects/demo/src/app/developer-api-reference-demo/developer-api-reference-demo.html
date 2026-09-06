@@ -1,0 +1,120 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">API Reference</h4>
+                <p class="main-section-description">
+                    Complete component documentation with interactive examples
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Component Categories"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let cat of componentCategories">
+                        <h3>{{ cat.name }}</h3>
+                        <p class="count">{{ cat.count }} Components</p>
+                        <div class="examples">
+                            <span class="example" *ngFor="let example of cat.examples">{{ example }}</span>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="API Documentation Structure"
+                description="Each component is documented with the following sections:"
+                code=""
+                [hasSampleClass]="false">
+                <div class="structure-list">
+                    <div class="structure-item" *ngFor="let item of apiStructure">
+                        <span class="bullet">✓</span>
+                        <span class="text">{{ item }}</span>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Example: NxButton Component API"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="api-documentation">
+                    <div class="api-section">
+                        <h3>Component: {{ componentApiExample.name }}</h3>
+                        <p class="description">{{ componentApiExample.description }}</p>
+                    </div>
+
+                    <div class="api-section">
+                        <h4>Inputs (@Input)</h4>
+                        <div class="usage-table">
+                            <div class="table-header">
+                                <div class="table-cell">Name</div>
+                                <div class="table-cell">Type</div>
+                                <div class="table-cell">Default</div>
+                                <div class="table-cell">Description</div>
+                            </div>
+                            <div class="table-row" *ngFor="let input of componentApiExample.inputs">
+                                <div class="table-cell"><code>{{ input.name }}</code></div>
+                                <div class="table-cell"><code>{{ input.type }}</code></div>
+                                <div class="table-cell"><code>{{ input.default }}</code></div>
+                                <div class="table-cell">{{ input.description }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="api-section">
+                        <h4>Outputs (@Output)</h4>
+                        <div class="usage-table">
+                            <div class="table-header">
+                                <div class="table-cell">Name</div>
+                                <div class="table-cell">Type</div>
+                                <div class="table-cell">Description</div>
+                            </div>
+                            <div class="table-row" *ngFor="let output of componentApiExample.outputs">
+                                <div class="table-cell"><code>{{ output.name }}</code></div>
+                                <div class="table-cell"><code>{{ output.type }}</code></div>
+                                <div class="table-cell">{{ output.description }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="api-section">
+                        <h4>Methods</h4>
+                        <div class="usage-table">
+                            <div class="table-header">
+                                <div class="table-cell">Method</div>
+                                <div class="table-cell">Returns</div>
+                                <div class="table-cell">Description</div>
+                            </div>
+                            <div class="table-row" *ngFor="let method of componentApiExample.methods">
+                                <div class="table-cell"><code>{{ method.name }}</code></div>
+                                <div class="table-cell"><code>{{ method.return }}</code></div>
+                                <div class="table-cell">{{ method.description }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Browser Support"
+                description="All components are tested and supported in modern browsers:"
+                code=""
+                [hasSampleClass]="false">
+                <ul class="support-list">
+                    <li>Chrome (latest 2 versions)</li>
+                    <li>Firefox (latest 2 versions)</li>
+                    <li>Safari (latest 2 versions)</li>
+                    <li>Edge (latest 2 versions)</li>
+                    <li>Mobile browsers (iOS Safari, Chrome Mobile)</li>
+                </ul>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

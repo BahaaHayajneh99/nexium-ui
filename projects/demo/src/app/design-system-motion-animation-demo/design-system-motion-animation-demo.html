@@ -1,0 +1,163 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Motion & Animation"
+                    description="Purposeful animations enhance user experience by providing visual feedback, guiding attention, and creating a sense of polish and responsiveness."
+                    code=""
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Animation Principles"
+                    [description]="'All animations in ' + commonService.appName + ' follow these core principles:'"
+                    code=""
+                    [hasSampleClass]="false">
+                    <div>
+                        @for (principle of principles; track principle; let i = $index) {
+                            <div class="use-case-item mb-2">
+                                <h3>Principle {{ i + 1 }}</h3>
+                                <p>{{ principle }}</p>
+                            </div>
+                        }
+                    </div>
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Animation Timing"
+                    description="Consistent timing creates a cohesive feel across your interface:"
+                    code=""
+                    [hasSampleClass]="false">
+                    <div class="nx-demo-stack">
+                        @for (timing of timings; track timing.name) {
+                            <div class="nx-demo-surface-card">
+                                <div class="timing-box nx-demo-dashed-stage">
+                                    <div class="animated-element" [style.animationDuration]="timing.duration"></div>
+                                </div>
+                                <div class="nx-demo-meta">
+                                    <strong>{{ timing.name }}</strong>
+                                    <code>{{ timing.duration }}</code>
+                                    <small>{{ timing.use }}</small>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Easing Functions"
+                    description="Easing functions control animation acceleration and deceleration:"
+                    code=""
+                    [hasSampleClass]="false">
+                    <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                        @for (easing of easings; track easing.name) {
+                            <div class="use-case-item">
+                                <div class="easing-visualization nx-demo-dashed-stage">
+                                    <div class="easing-box" [style.animationTimingFunction]="easing.value"></div>
+                                </div>
+                                <div class="easing-info nx-demo-meta">
+                                    <strong>{{ easing.name }}</strong>
+                                    <code>{{ easing.value }}</code>
+                                    <p>{{ easing.use }}</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Common Animation Patterns"
+                    description=""
+                    code=""
+                    [hasSampleClass]="false">
+                    <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                        <div class="use-case-item">
+                            <h5>📍 Fade In/Out</h5>
+                            <p>Used for modals, tooltips, and visibility changes</p>
+                            <code>opacity: 0 → 1</code>
+                        </div>
+                        <div class="use-case-item">
+                            <h5>📤 Slide</h5>
+                            <p>Used for drawers, notifications, and slide-in panels</p>
+                            <code>transform: translateX(-100%)</code>
+                        </div>
+                        <div class="use-case-item">
+                            <h5>🔄 Rotate</h5>
+                            <p>Used for spinners, loading indicators</p>
+                            <code>transform: rotate(360deg)</code>
+                        </div>
+                        <div class="use-case-item">
+                            <h5>📏 Scale</h5>
+                            <p>Used for expand/collapse, zoom effects</p>
+                            <code>transform: scale(0 → 1)</code>
+                        </div>
+                    </div>
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="CSS Animation Example"
+                    description="Here's a simple fade-in animation:"
+                                        [code]="fadeInCode"
+                    [hasSampleClass]="false">
+                                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Accessibility: prefers-reduced-motion"
+                    description="Always respect user motion preferences:"
+                                        [code]="reducedMotionCode"
+                    [hasSampleClass]="false">
+                    <div class="nx-demo-note-warning">
+                        <strong>Important:</strong> Many users prefer reduced motion due to sensitivity to motion, 
+                        vestibular disorders, or other reasons. Always include:
+                    </div>
+                                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Best Practices"
+                    description=""
+                    code=""
+                    [hasSampleClass]="false">
+                    <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                        <div class="practice-box nx-demo-surface-card">
+                            <h5>✓ DO</h5>
+                            <ul>
+                                <li>Use animations to guide user attention</li>
+                                <li>Keep animations under 300ms for UI interactions</li>
+                                <li>Use GPU-accelerated properties (transform, opacity)</li>
+                                <li>Test with prefers-reduced-motion enabled</li>
+                                <li>Make animations interruptible and responsive</li>
+                            </ul>
+                        </div>
+                        <div class="practice-box nx-demo-surface-card">
+                            <h5>✗ DON'T</h5>
+                            <ul>
+                                <li>Animate properties like width, height, or position</li>
+                                <li>Use animations longer than 500ms for standard interactions</li>
+                                <li>Create animations that cause motion sickness</li>
+                                <li>Ignore accessibility settings</li>
+                                <li>Add animations just for decoration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </app-demo-section>
+            </section>
+
+        </div>
+    </div>
+</div>

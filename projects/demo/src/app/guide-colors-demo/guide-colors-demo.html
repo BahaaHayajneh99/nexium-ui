@@ -17,7 +17,7 @@
                     The primary brand color and its light/dark variants, used for links, focus states
                     and primary actions.
                 </p>
-                <div class="color-grid">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                     @for (c of brand; track c.name) {
                         <div class="color-swatch">
                             <div class="color-swatch-fill" [style.background]="c.hex"></div>
@@ -36,7 +36,7 @@
                     Semantic colors used consistently across alerts, badges, buttons and form validation
                     states.
                 </p>
-                <div class="color-grid">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                     @for (c of status; track c.name) {
                         <div class="color-swatch">
                             <div class="color-swatch-fill" [style.background]="c.hex"></div>
@@ -55,7 +55,7 @@
                     A 10-step gray scale (<code>$gray-50</code> through <code>$gray-900</code>) used for
                     text, borders and surfaces.
                 </p>
-                <div class="color-grid">
+                <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
                     @for (c of grays; track c.name) {
                         <div class="color-swatch">
                             <div class="color-swatch-fill" [style.background]="c.hex"></div>

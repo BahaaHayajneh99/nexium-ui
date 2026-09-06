@@ -24,7 +24,7 @@
                 <nx-modal [(open)]="modalOpen" header="Focus stays in here">
                     <div nx-modal-body>
                         <p>Tab through this modal - focus can't escape to the page behind it.</p>
-                        <input type="text" placeholder="Try tabbing to me" style="margin-top: 12px; padding: 8px; width: 100%;" />
+                        <nx-input type="text" placeholder="Try tabbing to me" style="margin-top: 12px; padding: 8px; width: 100%;" />
                     </div>
                     <div nx-modal-footer>
                         <nx-button variant="secondary" (click)="modalOpen = false">Close</nx-button>

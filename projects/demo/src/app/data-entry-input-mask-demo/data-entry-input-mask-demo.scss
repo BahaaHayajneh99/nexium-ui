@@ -1,0 +1,47 @@
+.input-group {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.mask-controls {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.mask-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--shell-text, #000);
+  }
+}
+
+.mask-control {
+  width: 100%;
+  border: 1px solid var(--shell-border, #e0e0e0);
+  border-radius: 6px;
+  background: var(--shell-surface, #fff);
+  color: var(--shell-text, #000);
+  font-size: 0.95rem;
+  padding: 0.6rem 0.8rem;
+}
+
+.mask-hint {
+  color: var(--text-secondary, #666);
+  font-size: 0.8rem;
+}
+
+.value-display {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #666);
+  font-family: 'Monaco', 'Menlo', monospace;
+}

@@ -1,0 +1,138 @@
+<div class="demo-container">
+  <div class="demo-header">
+    <h1>Stat Card</h1>
+    <p>Display key metrics and KPIs with trend indicators and comparison data</p>
+  </div>
+
+  <section class="demo-section">
+    <h2>Overview</h2>
+    <p>
+      Stat Card is a compact component for presenting key performance indicators and metrics. Perfect for dashboards,
+      analytics pages, and executive summaries with built-in support for trend indicators and comparisons.
+    </p>
+  </section>
+
+  <section class="demo-section">
+    <h2>Key Features</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let feature of features">
+        <h3>{{ feature.name }}</h3>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Interactive Demo</h2>
+    <div class="demo-box">
+      <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+        <div class="use-case-item" *ngFor="let stat of stats">
+          <div class="stat-icon">{{ stat.icon }}</div>
+          <div class="stat-content">
+            <p class="stat-title">{{ stat.title }}</p>
+            <p class="stat-value">{{ stat.value }}</p>
+            <span class="stat-change" [class]="'trend-' + stat.trend">
+              {{ stat.trend === 'up' ? '↑' : '↓' }} {{ stat.change }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Use Cases</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="use-case-item" *ngFor="let useCase of useCases">
+        <h3>{{ useCase.title }}</h3>
+        <p>{{ useCase.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Trend Variations</h2>
+    <div  style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+      <div class="trend-example">
+        <div class="use-case-item">
+          <div class="stat-icon">📈</div>
+          <div class="stat-content">
+            <p class="stat-title">Positive Trend</p>
+            <p class="stat-value">$12,543</p>
+            <span class="stat-change trend-up">↑ +15.2%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trend-example">
+        <div class="use-case-item">
+          <div class="stat-icon">📉</div>
+          <div class="stat-content">
+            <p class="stat-title">Negative Trend</p>
+            <p class="stat-value">$8,234</p>
+            <span class="stat-change trend-down">↓ -5.8%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trend-example">
+        <div class="use-case-item">
+          <div class="stat-icon">➡️</div>
+          <div class="stat-content">
+            <p class="stat-title">Neutral Trend</p>
+            <p class="stat-value">$9,100</p>
+            <span class="stat-change trend-neutral">➜ 0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Best Practices</h2>
+    <div class="best-practices-list">
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Keep titles concise</h4>
+          <p>Use short, descriptive titles for metrics</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Use consistent formatting</h4>
+          <p>Display values in consistent format and scale</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Highlight with colors</h4>
+          <p>Use colors strategically for important metrics</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Show comparisons</h4>
+          <p>Include period comparisons (MoM, YoY)</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Use visual context</h4>
+          <p>Add appropriate icons for metric context</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <span class="icon">✓</span>
+        <div class="content">
+          <h4>Clear trends</h4>
+          <p>Make trends visible with directional indicators</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,153 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Date &amp; Number Formats</h4>
+                <p class="main-section-description">
+                    Locale-aware formatting for dates, numbers, and currencies.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Date Format Examples"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="formats-table-wrapper">
+                    <table class="formats-table">
+                        <thead>
+                            <tr>
+                                <th>Locale</th>
+                                <th>Short</th>
+                                <th>Medium</th>
+                                <th>Long</th>
+                                <th>Full</th>
+                                <th>Pattern</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let format of dateFormats">
+                                <td><code>{{ format.locale }}</code></td>
+                                <td>{{ format.short }}</td>
+                                <td>{{ format.medium }}</td>
+                                <td>{{ format.long }}</td>
+                                <td>{{ format.full }}</td>
+                                <td><code>{{ format.pattern }}</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Number Format Examples"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="numbers-table-wrapper">
+                    <table class="numbers-table">
+                        <thead>
+                            <tr>
+                                <th>Locale</th>
+                                <th>Standard Number</th>
+                                <th>Currency</th>
+                                <th>Percentage</th>
+                                <th>Decimal Sep.</th>
+                                <th>Thousands Sep.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let format of numberFormats">
+                                <td><code>{{ format.locale }}</code></td>
+                                <td><strong>{{ format.standard }}</strong></td>
+                                <td><strong>{{ format.currency }}</strong></td>
+                                <td><strong>{{ format.percent }}</strong></td>
+                                <td><code>{{ format.decimalSeparator }}</code></td>
+                                <td><code>{{ format.thousandsSeparator }}</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Currency Formatting"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let currency of currencyFormats">
+                        <div class="currency-header">
+                            <span class="symbol">{{ currency.symbol }}</span>
+                            <div class="currency-info">
+                                <h4>{{ currency.locale }}</h4>
+                                <p class="code">{{ currency.currency }}</p>
+                            </div>
+                        </div>
+                        <div class="currency-format">
+                            <p class="label">{{ currency.format }}</p>
+                            <p class="example">{{ currency.example }}</p>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Angular Built-in Pipes"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let pipe of angularPipes">
+                        <h3>{{ pipe.pipe }}</h3>
+                        <div class="pipe-usage">
+                            <code>{{ pipe.usage }}</code>
+                        </div>
+                        <p class="description">{{ pipe.description }}</p>
+                        <div class="formats">
+                            <strong>Formats:</strong>
+                            <ul class="format-list">
+                                <li *ngFor="let format of pipe.formats">{{ format }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Relative Date Formatting"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    <div class="use-case-item" *ngFor="let date of relativeDateFormats">
+                        <strong>{{ date.value }}</strong>
+                        <p>{{ date.example }}</p>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Timezone Considerations"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <ul class="timezone-list">
+                    <li *ngFor="let consideration of timezoneConsiderations">{{ consideration }}</li>
+                </ul>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Usage Examples"
+                description=""
+                code=""
+                [hasSampleClass]="false">
+                <div class="code-block">
+                    <pre>{{ usageExamples }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>
