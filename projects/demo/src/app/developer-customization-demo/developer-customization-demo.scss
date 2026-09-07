@@ -85,20 +85,3 @@
     }
   }
 }
-
-.code-block {
-  background: var(--shell-surface-light, #f5f5f5);
-  border: 1px solid var(--shell-border, #e0e0e0);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-top: 1rem;
-  overflow-x: auto;
-
-  pre {
-    margin: 0;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    color: var(--text-secondary, #666);
-    line-height: 1.6;
-  }
-}

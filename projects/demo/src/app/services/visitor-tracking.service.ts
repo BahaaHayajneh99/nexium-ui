@@ -58,33 +58,59 @@ export class VisitorTrackingService {
   }
 
   /**
-   * Get user location from IP using free GeoIP API
+   * Get user location from IP using free GeoIP APIs.
+   * ipapi.co has a low free-tier rate limit and is sometimes blocked by
+   * ad-blockers, which was leaving real visitors recorded as "Unknown" -
+   * ipwho.is is tried as a fallback before giving up.
    */
   private async getUserLocation(): Promise<any> {
     try {
       const response = await fetch('https://ipapi.co/json/');
       const data = await response.json();
-      
-      return {
-        country: data.country_name || 'Unknown',
-        city: data.city || 'Unknown',
-        ip: data.ip || 'N/A',
-        latitude: data.latitude || null,
-        longitude: data.longitude || null,
-        region: data.region || 'Unknown',
-        postal: data.postal || ''
-      };
+
+      if (data && !data.error && (data.city || data.country_name)) {
+        return {
+          country: data.country_name || 'Unknown',
+          city: data.city || 'Unknown',
+          ip: data.ip || 'N/A',
+          latitude: data.latitude || null,
+          longitude: data.longitude || null,
+          region: data.region || 'Unknown',
+          postal: data.postal || ''
+        };
+      }
     } catch (error) {
-      return { 
-        country: 'Unknown', 
-        city: 'Unknown', 
-        ip: 'N/A',
-        latitude: null,
-        longitude: null,
-        region: 'Unknown',
-        postal: ''
-      };
+      // fall through to the backup provider below
     }
+
+    try {
+      const response = await fetch('https://ipwho.is/');
+      const data = await response.json();
+
+      if (data && data.success !== false) {
+        return {
+          country: data.country || 'Unknown',
+          city: data.city || 'Unknown',
+          ip: data.ip || 'N/A',
+          latitude: data.latitude || null,
+          longitude: data.longitude || null,
+          region: data.region || 'Unknown',
+          postal: data.postal_code || ''
+        };
+      }
+    } catch (error) {
+      // fall through to the Unknown fallback below
+    }
+
+    return {
+      country: 'Unknown',
+      city: 'Unknown',
+      ip: 'N/A',
+      latitude: null,
+      longitude: null,
+      region: 'Unknown',
+      postal: ''
+    };
   }
 
   /**

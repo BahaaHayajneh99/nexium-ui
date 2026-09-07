@@ -103,4 +103,16 @@ export class DeveloperCustomizationDemo {
       description: 'Plan customizations to minimize disruption during library upgrades',
     },
   ];
+
+  customButtonExampleCode = `import { Component, Input } from '@angular/core';
+import { NxButtonComponent } from '@nexaui/components';
+
+@Component({
+  selector: 'app-custom-button',
+  template: '<button class="custom"><ng-content></ng-content></button>',
+  standalone: true
+})
+export class CustomButtonComponent {
+  @Input() customProp: string;
+}`;
 }
