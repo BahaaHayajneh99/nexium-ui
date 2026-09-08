@@ -49,6 +49,16 @@
         <p class="example-result">End: {{ meetingEndDate || 'Not selected' }}</p>
       </app-demo-section>
 
+      <app-demo-section header="Required Field"
+        description="Set isRequired to true to mark the range mandatory - a validation message appears once the field loses focus if either the start or end date is still missing."
+        [code]="requiredCode" [hasSampleClass]="false">
+        <nx-date-range-picker label="Reservation dates" [isRequired]="true" [(startDate)]="requiredStartDate"
+          [(endDate)]="requiredEndDate">
+        </nx-date-range-picker>
+        <p class="example-result mt-2">Start: {{ requiredStartDate || 'Not selected' }}</p>
+        <p class="example-result">End: {{ requiredEndDate || 'Not selected' }}</p>
+      </app-demo-section>
+
       <app-demo-section header="Disabled" description="Set disabled to true to prevent interaction."
         [code]="disabledCode" [hasSampleClass]="false">
         <nx-date-range-picker label="Disabled range" [disabled]="true" [startDate]="'2026-09-10'"
@@ -65,12 +75,22 @@
         </div>
       </app-demo-section>
 
-      <app-demo-section header="Display Variants" description="" code="" [hasSampleClass]="false">
+      <app-demo-section header="Display Variants"
+        description="Compare the default field against showIcon set to false for a plain text field with no calendar icon."
+        [code]="variantsCode" [hasSampleClass]="false">
         <div style="--nx-grid-min-width: 250px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
-          <div class="use-case-item" *ngFor="let variant of variantOptions">
-            <nx-icon [icon]="variant.icon" variant="svg" [size]="40"></nx-icon>
-            <h3>{{ variant.name }}</h3>
-            <p>{{ variant.description }}</p>
+          <div class="use-case-item">
+            <h3>Default</h3>
+            <p>Standard field with the calendar icon shown.</p>
+            <nx-date-range-picker label="Default" [(startDate)]="variantDefaultStart" [(endDate)]="variantDefaultEnd">
+            </nx-date-range-picker>
+          </div>
+          <div class="use-case-item">
+            <h3>No Icon</h3>
+            <p>Set showIcon to false to hide the calendar icon.</p>
+            <nx-date-range-picker label="No icon" [showIcon]="false" [(startDate)]="variantNoIconStart"
+              [(endDate)]="variantNoIconEnd">
+            </nx-date-range-picker>
           </div>
         </div>
       </app-demo-section>
@@ -115,7 +135,7 @@
         </div>
       </app-demo-section>
 
-      <app-demo-section header="Best Practices" description="" code="">
+      <app-demo-section header="Best Practices" description="" code="" [hasSampleClass]="false">
         <div class="best-practices-list">
           <div class="practice-item">
             <span class="icon">✓</span>

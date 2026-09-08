@@ -1,14 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommonService } from '../services/common.service';
-import { NxIcon } from '../../../../../dist/components';
 import { NxDateRangePicker } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-data-entry-date-range-picker-demo',
   standalone: true,
-  imports: [CommonModule, NxDateRangePicker, NxIcon, DemoSection],
+  imports: [CommonModule, NxDateRangePicker, DemoSection],
   templateUrl: './data-entry-date-range-picker-demo.html',
   styleUrl: './data-entry-date-range-picker-demo.scss',
 })
@@ -45,12 +44,21 @@ export class DataEntryDateRangePickerDemo {
   [endDate]="'2026-09-12'">
 </nx-date-range-picker>`;
 
+  requiredCode = `<nx-date-range-picker
+  label="Reservation dates"
+  [isRequired]="true"
+  [(startDate)]="requiredStartDate"
+  [(endDate)]="requiredEndDate">
+</nx-date-range-picker>`;
+
   basicStartDate = '';
   basicEndDate = '';
   bookingStartDate = '2026-05-10';
   bookingEndDate = '2026-05-14';
   meetingStartDate = '';
   meetingEndDate = '';
+  requiredStartDate = '';
+  requiredEndDate = '';
 
   features = [
     { name: 'Range Selection', description: 'Select start and end dates' },
@@ -70,9 +78,21 @@ export class DataEntryDateRangePickerDemo {
     { title: 'Project Timeline', description: 'Define project start and end dates' },
   ];
 
-  variantOptions = [
-    { name: 'Default', description: 'Standard popover range selector', icon: 'nx-calendar' },
-    { name: 'Inline', description: 'Embed the picker directly in the layout', icon: 'nx-calendar' },
-    { name: 'Flat', description: 'Use a compact, borderless presentation', icon: 'nx-calendar' },
-  ];
+  variantDefaultStart = '';
+  variantDefaultEnd = '';
+  variantNoIconStart = '';
+  variantNoIconEnd = '';
+
+  variantsCode = `<nx-date-range-picker
+  label="Default"
+  [(startDate)]="variantDefaultStart"
+  [(endDate)]="variantDefaultEnd">
+</nx-date-range-picker>
+
+<nx-date-range-picker
+  label="No icon"
+  [showIcon]="false"
+  [(startDate)]="variantNoIconStart"
+  [(endDate)]="variantNoIconEnd">
+</nx-date-range-picker>`;
 }

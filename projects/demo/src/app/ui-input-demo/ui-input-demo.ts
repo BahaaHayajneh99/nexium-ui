@@ -38,4 +38,14 @@ export class UiInputDemo {
 
   disabledCode = `<nx-input label="Disabled" value="Can't edit this" [disabled]="true">
 </nx-input>`;
+
+  username = '';
+
+  requiredCode = `<nx-input label="Username" placeholder="Enter your username" [isRequired]="true" [(ngModel)]="username">
+</nx-input>`;
+
+  patternEmail = '';
+
+  patternCode = `<nx-input label="Email" placeholder="Enter your email" pattern="email" [(ngModel)]="patternEmail">
+</nx-input>`;
 }

@@ -58,4 +58,12 @@ export class DataEntryPasswordInputDemo {
   onValidityChange(valid: boolean): void {
     this.isPasswordValid = valid;
   }
+
+  requiredPassword = '';
+
+  requiredCode = `<nx-password
+  label="New Password"
+  [(ngModel)]="requiredPassword"
+  [isRequired]="true">
+</nx-password>`;
 }

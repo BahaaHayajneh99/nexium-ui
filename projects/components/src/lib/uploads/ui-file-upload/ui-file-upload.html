@@ -2,6 +2,7 @@
     <label
         class="nx-file-upload-zone"
         [class.dragging]="isDragging"
+        [class.no-drag]="!draggable"
         (dragover)="onDragOver($event)"
         (dragleave)="onDragLeave()"
         (drop)="onDrop($event)">
@@ -17,7 +18,8 @@
         <ul class="nx-file-upload-list">
             @for (file of files; track file.name; let i = $index) {
                 <li class="nx-file-upload-item">
-                    <span>{{ file.name }}</span>
+                    <span class="nx-file-upload-item-name">{{ file.name }}</span>
+                    <span class="nx-file-upload-item-size">{{ file.size | nxFileSize }}</span>
                     <button type="button" (click)="removeFile(i)">×</button>
                 </li>
             }

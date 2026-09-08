@@ -63,4 +63,9 @@ export class UiDatepickerDemo {
 
   disabledCode = `<nx-datepicker label="Disabled date" [disabled]="true">
 </nx-datepicker>`;
+
+  requiredDate = '';
+
+  requiredCode = `<nx-datepicker label="Departure date" [isRequired]="true" [(ngModel)]="requiredDate">
+</nx-datepicker>`;
 }

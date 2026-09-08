@@ -1,10 +1,8 @@
-@use '../variables.scss' as *;
-
 .playground {
     display: grid;
     grid-template-columns: 240px 1fr;
-    gap: $spacing-xl;
-    margin-bottom: $spacing-lg;
+    gap: var(--nx-spacing-xl, 32px);
+    margin-bottom: var(--nx-spacing-lg, 24px);
 
     @media (max-width: 700px) {
         grid-template-columns: 1fr;
@@ -14,7 +12,7 @@
 .playground-controls {
     display: flex;
     flex-direction: column;
-    gap: $spacing-md;
+    gap: var(--nx-spacing-md, 16px);
 }
 
 .playground-preview {
@@ -23,6 +21,6 @@
     justify-content: center;
     min-height: 160px;
     border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
-    padding: $spacing-lg;
+    border-radius: var(--nx-radius-md, 8px);
+    padding: var(--nx-spacing-lg, 24px);
 }

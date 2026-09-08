@@ -1,24 +1,22 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-table-root {
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
 }
 
 .nx-table-toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
 }
 
 .nx-table-global-filter {
-    padding: $spacing-xs $spacing-sm;
-    border: 1px solid var(--shell-border); 
+    padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
+    border: 1px solid var(--shell-border);
     background-color: var(--shell-bg);
-    border-radius: $radius-sm;
-    font-size: $font-size-sm;
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: var(--nx-font-size-sm, 14px);
     outline: none;
     min-width: 220px;
 
@@ -28,17 +26,17 @@
 }
 
 .nx-table-export-btn {
-    padding: $spacing-xs $spacing-md;
+    padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-md, 16px);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-sm;
-    background-color: $surface-color;
-    color: $text-primary;
-    font-size: $font-size-sm;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface, #ffffff);
+    color: var(--shell-text, #343a40);
+    font-size: var(--nx-font-size-sm, 14px);
     cursor: pointer;
-    transition: background-color $transition-fast;
+    transition: background-color var(--nx-transition-fast, .15s ease);
 
     &:hover {
-        background-color: $surface-hover-color;
+        background-color: var(--shell-surface-hover, #f8f9fa);
     }
 }
 
@@ -59,13 +57,13 @@
 .nx-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: $font-size-sm;
+    font-size: var(--nx-font-size-sm, 14px);
     color: var(--shell-text);
     background-color: var(--shell-bg);
 
     th,
     td {
-        padding: $spacing-sm $spacing-md;
+        padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
         text-align: left;
         border-bottom: 1px solid var(--shell-border);
         position: relative;
@@ -84,20 +82,20 @@
 
     thead th {
         background-color: var(--shell-bg);
-        font-weight: $font-weight-semibold;
+        font-weight: var(--nx-font-weight-semibold, 600);
         color: var(--shell-text);
     }
 
     &.nx-table-sm th,
     &.nx-table-sm td {
-        padding: $spacing-xs $spacing-sm;
-        font-size: $font-size-xs;
+        padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xs, 12px);
     }
 
     &.nx-table-lg th,
     &.nx-table-lg td {
-        padding: $spacing-md $spacing-lg;
-        font-size: $font-size-md;
+        padding: var(--nx-spacing-md, 16px) var(--nx-spacing-lg, 24px);
+        font-size: var(--nx-font-size-md, 16px);
     }
 
     &.bordered {
@@ -123,8 +121,8 @@
 
     .nx-table-empty {
         text-align: center;
-        color: $text-secondary;
-        padding: $spacing-lg;
+        color: var(--shell-text-secondary, #6c757d);
+        padding: var(--nx-spacing-lg, 24px);
     }
 
     .nx-table-select-col {
@@ -140,7 +138,7 @@
     .nx-table-th-content {
         display: inline-flex;
         align-items: center;
-        gap: $spacing-xs;
+        gap: var(--nx-spacing-xs, 4px);
     }
 
     .nx-table-sort-icon {
@@ -149,7 +147,7 @@
         height: 0;
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
-        border-bottom: 5px solid $gray-400;
+        border-bottom: 5px solid var(--gray-400, #ced4da);
         opacity: .6;
 
         &.asc {
@@ -172,9 +170,9 @@
         min-width: 14px;
         height: 14px;
         padding: 0 3px;
-        border-radius: $radius-round;
+        border-radius: var(--nx-radius-round, 999px);
         background-color: var(--shell-primary);
-        color: $text-white;
+        color: var(--text-white, #ffffff);
         font-size: 10px;
         line-height: 14px;
     }
@@ -189,22 +187,22 @@
         user-select: none;
 
         &:hover {
-            background-color: $primary-color-light;
+            background-color: var(--primary-color-light, #5dade2);
         }
     }
 
     .nx-table-filter-row th {
         background-color: var(--shell-surface);
-        padding: $spacing-xs $spacing-sm;
+        padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
     }
 
     .nx-table-filter-input {
         width: 100%;
-        padding: $spacing-xs $spacing-sm;
+        padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
         border: 1px solid var(--shell-border);
-        border-radius: $radius-sm;
-        font-size: $font-size-xs;
-        font-weight: $font-weight-normal;
+        border-radius: var(--nx-radius-sm, 4px);
+        font-size: var(--nx-font-size-xs, 12px);
+        font-weight: var(--nx-font-weight-normal, 400);
         outline: none;
         box-sizing: border-box;
         background-color: var(--shell-bg);
@@ -216,9 +214,9 @@
 
     .nx-table-edit-input {
         width: 100%;
-        padding: $spacing-xs;
+        padding: var(--nx-spacing-xs, 4px);
         border: 1px solid var(--shell-primary-color);
-        border-radius: $radius-sm;
+        border-radius: var(--nx-radius-sm, 4px);
         font-size: inherit;
         outline: none;
         box-sizing: border-box;
@@ -247,18 +245,18 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: $spacing-md;
+    gap: var(--nx-spacing-md, 16px);
     flex-wrap: wrap;
-    font-size: $font-size-sm;
+    font-size: var(--nx-font-size-sm, 14px);
     color: var(--shell-text-secondary);
     background-color: var(--shell-bg);
 }
 
 .nx-table-rows-select {
-    padding: $spacing-xs $spacing-sm;
+    padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-sm;
-    font-size: $font-size-sm;
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: var(--nx-font-size-sm, 14px);
     background-color: var(--shell-bg);
     color: var(--shell-text);
 }
@@ -267,20 +265,20 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: $spacing-xs;
+    gap: var(--nx-spacing-xs, 4px);
 }
 
 .nx-pagination-btn {
     min-width: 32px;
     height: 32px;
-    padding: 0 $spacing-xs;
+    padding: 0 var(--nx-spacing-xs, 4px);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-sm;
+    border-radius: var(--nx-radius-sm, 4px);
     background-color: var(--shell-surface);
     color: var(--shell-text);
-    font-size: $font-size-sm;
+    font-size: var(--nx-font-size-sm, 14px);
     cursor: pointer;
-    transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+    transition: background-color var(--nx-transition-fast, .15s ease), color var(--nx-transition-fast, .15s ease), border-color var(--nx-transition-fast, .15s ease);
 
     &:hover:not(:disabled) {
         background-color: var(--shell-surface-hover);
@@ -289,7 +287,7 @@
     &.active {
         background-color: var(--shell-primary);
         border-color: var(--shell-primary);
-        color: $text-white;
+        color: var(--text-white, #ffffff);
     }
 
     &:disabled {

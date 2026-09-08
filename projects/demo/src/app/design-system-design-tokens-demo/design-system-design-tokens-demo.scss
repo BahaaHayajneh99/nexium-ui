@@ -1,10 +1,5 @@
-@use '../variables.scss' as *;
-.token-benefits {  margin: 1.5rem 0;
-  padding: 1.5rem;
-  border: 1px solid var(--shell-border);
-  border-radius: 8px;
-  background: var(--shell-bg);
-  text-align: center;
+.token-benefits {
+  margin: 1.5rem 0;
 
   h5 {
     margin-top: 0;
@@ -68,7 +63,11 @@
   font-family: monospace;
 }
 
-.typography-tokens {}
+.typography-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
 
 .token-subsection {
   border: 1px solid var(--shell-border);
@@ -127,7 +126,12 @@
   color: var(--shell-text-secondary);
 }
 
-.radius-tokens {}
+.radius-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-end;
+}
 
 .token-item-radius {
   display: flex;
@@ -149,7 +153,12 @@
   color: var(--shell-text-secondary);
 }
 
-.shadow-tokens {}
+.shadow-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-end;
+}
 
 .token-item-shadow {
   display: flex;
@@ -222,7 +231,8 @@
   }
 }
 
-.best-practices {  margin: 1.5rem 0;
+.best-practices {
+  margin: 1.5rem 0;
 }
 
 .practice {
@@ -257,13 +267,13 @@
 
   &:first-child ul li::before {
     content: '✓';
-    color: var(--shell-success);
+    color: var(--success-color);
     font-weight: bold;
   }
 
   &:last-child ul li::before {
     content: '✗';
-    color: var(--shell-danger);
+    color: var(--danger-color);
     font-weight: bold;
   }
 }

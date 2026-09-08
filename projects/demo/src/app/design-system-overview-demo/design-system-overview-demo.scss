@@ -1,5 +1,5 @@
-@use '../variables.scss' as *;
-.system-benefits {  margin: 1.5rem 0;
+.system-benefits {
+  margin: 1.5rem 0;
 }
 
 .benefit {
@@ -44,7 +44,7 @@
   strong {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--shell-tex);
+    color: var(--shell-text);
     font-size: 1.1rem;
   }
 
@@ -75,7 +75,8 @@
   }
 }
 
-.getting-started-steps {  margin: 1.5rem 0;
+.getting-started-steps {
+  margin: 1.5rem 0;
 }
 
 .step-box {
@@ -111,8 +112,6 @@
 }
 
 .sections-list {
-  display: grid;
-  gap: 1rem;
   margin: 1.5rem 0;
 }
 
@@ -132,13 +131,5 @@
     margin: 0;
     color: var(--shell-text-secondary);
     font-size: 0.875rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .system-benefits,
-  .principles-grid,
-  .getting-started-steps {
-    grid-template-columns: 1fr;
   }
 }

@@ -1,10 +1,8 @@
-@use '../../variables.scss' as *;
-
 :host {
     position: fixed;
-    right: $spacing-lg;
-    bottom: $spacing-lg;
-    z-index: $z-popover;
+    right: var(--nx-spacing-lg, 24px);
+    bottom: var(--nx-spacing-lg, 24px);
+    z-index: var(--nx-z-popover, 1060);
 }
 
 .theme-customizer-trigger {
@@ -14,12 +12,12 @@
     width: 48px;
     height: 48px;
     border: 1px solid var(--shell-border);
-    border-radius: $radius-round;
+    border-radius: var(--nx-radius-round, 999px);
     background-color: var(--shell-surface);
     color: var(--shell-text-secondary);
     box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
     cursor: pointer;
-    transition: all $transition-fast;
+    transition: all var(--nx-transition-fast, .15s ease);
 
     &:hover {
         color: var(--shell-primary);
@@ -38,10 +36,10 @@
     right: 0;
     bottom: calc(100% + 12px);
     width: 260px;
-    padding: $spacing-md;
+    padding: var(--nx-spacing-md, 16px);
     background-color: var(--shell-surface);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-lg;
+    border-radius: var(--nx-radius-lg, 12px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
 }
 
@@ -49,12 +47,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: $spacing-sm;
+    margin-bottom: var(--nx-spacing-sm, 8px);
 }
 
 .theme-customizer-title {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
     color: var(--shell-text);
 }
 
@@ -77,31 +75,31 @@
 }
 
 .theme-customizer-description {
-    font-size: $font-size-xs;
+    font-size: var(--nx-font-size-xs, 12px);
     color: var(--shell-text-secondary);
-    margin-bottom: $spacing-md;
+    margin-bottom: var(--nx-spacing-md, 16px);
 
     code {
-        font-family: $font-family;
+        font-family: var(--font-family, "Roboto", sans-serif);
         background: var(--shell-surface-hover);
         padding: 1px 4px;
-        border-radius: $radius-xs;
+        border-radius: var(--nx-radius-xs, 2px);
     }
 }
 
 .theme-customizer-reset {
     display: block;
     width: 100%;
-    margin-top: $spacing-md;
+    margin-top: var(--nx-spacing-md, 16px);
     padding: 6px;
     border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
     background: transparent;
     color: var(--shell-text-secondary);
-    font-size: $font-size-xs;
-    font-weight: $font-weight-semibold;
+    font-size: var(--nx-font-size-xs, 12px);
+    font-weight: var(--nx-font-weight-semibold, 600);
     cursor: pointer;
-    transition: all $transition-fast;
+    transition: all var(--nx-transition-fast, .15s ease);
 
     &:hover {
         border-color: var(--shell-primary);

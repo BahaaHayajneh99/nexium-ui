@@ -139,6 +139,39 @@
           </div>
         </app-demo-section>
       </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Required Field"
+          description="Set isRequired to true to mark the field mandatory - nx-search has no built-in label, so a plain label is added in the demo markup - a validation message shows once the field is touched and left empty."
+          [code]="requiredCode"
+          [hasSampleClass]="false">
+          <div class="demo-box">
+            <label>Search Keyword <span style="color: #e74c3c;">*</span></label>
+            <nx-search
+              placeholder="Search for a keyword..."
+              [isRequired]="true"
+              [(ngModel)]="requiredSearchTerm">
+            </nx-search>
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
+          header="Pattern Validation"
+          description="Use pattern with a named preset ('email', 'url', 'phone', 'numeric', 'alpha', 'alphanumeric'), a custom RegExp, or a regex string to validate the field's format once it's touched - here 'numeric' allows only digits while searching, e.g. searching by ID."
+          [code]="patternCode"
+          [hasSampleClass]="false">
+          <div class="demo-box">
+            <nx-search
+              placeholder="Search by ID (digits only)..."
+              pattern="numeric"
+              [(ngModel)]="patternSearchTerm">
+            </nx-search>
+          </div>
+        </app-demo-section>
+      </section>
     </div>
   </div>
 </div>

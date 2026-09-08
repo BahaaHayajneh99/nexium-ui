@@ -44,5 +44,11 @@ customPresets = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#4a3aa7
 
   invalidCode = `<nx-color-picker label="Required color" [invalid]="true"></nx-color-picker>`;
 
+  requiredColor = '';
+
+  requiredCode = `<nx-color-picker label="Accent color" [isRequired]="true" [(ngModel)]="requiredColor"></nx-color-picker>`;
+
+  requiredTs = `requiredColor = '';`;
+
   disabledCode = `<nx-color-picker label="Disabled color" [disabled]="true" value="#adb5bd"></nx-color-picker>`;
 }

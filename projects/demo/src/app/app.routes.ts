@@ -91,6 +91,7 @@ import { GuideThemingDemo } from './guide-theming-demo/guide-theming-demo';
 import { GuideAccessibilityDemo } from './guide-accessibility-demo/guide-accessibility-demo';
 import { AboutWhoWeAreDemo } from './about-who-we-are-demo/about-who-we-are-demo';
 import { AboutChangelogDemo } from './about-changelog-demo/about-changelog-demo';
+import { AboutReleasesDemo } from './about-releases-demo/about-releases-demo';
 import { AboutLicenseDemo } from './about-license-demo/about-license-demo';
 import { AboutContactDemo } from './about-contact-demo/about-contact-demo';
 import { PipesDemo } from './pipes-demo/pipes-demo';
@@ -783,6 +784,10 @@ export const routes: Routes = [
     {
         path: 'about/changelog',
         component: AboutChangelogDemo
+    },
+    {
+        path: 'about/releases',
+        component: AboutReleasesDemo
     },
     {
         path: 'about/roadmap',

@@ -1,7 +1,5 @@
-@use '../variables.scss' as *;
-
 .gs-code {
-    background-color: $language-code-bg-color;
+    background-color: var(--language-code-bg-color, #1b1d1f);
     padding: 16px;
     border-radius: 4px;
     margin-bottom: 2rem;
@@ -9,9 +7,9 @@
 
     pre {
         margin: 0;
-        font-family: $font-family;
+        font-family: var(--font-family, "Roboto", sans-serif);
         font-size: 14px;
-        color: $text-white;
+        color: var(--text-white, #ffffff);
         white-space: pre;
     }
 }

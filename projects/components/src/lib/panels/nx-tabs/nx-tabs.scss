@@ -1,10 +1,8 @@
-@import '../../../../../demo/src/app/variables.scss';
-
 .nx-tabs {
 
     width: 100%;
 
-    font-family: $font-family;
+    font-family: var(--font-family, "Roboto", sans-serif);
 
 
     // ==========================
@@ -17,9 +15,9 @@
 
         align-items: center;
 
-        gap: $tabs-gap;
+        gap: var(--nx-tabs-gap, 8px);
 
-        min-height: $tabs-height;
+        min-height: var(--nx-tabs-height, 42px);
 
         border-bottom: 1px solid var(--shell-border);
 
@@ -40,11 +38,11 @@
 
         justify-content: center;
 
-        gap: $spacing-xs;
+        gap: var(--nx-spacing-xs, 4px);
 
-        height: $tabs-height;
+        height: var(--nx-tabs-height, 42px);
 
-        padding: $tabs-padding;
+        padding: var(--nx-tabs-padding, 8px 16px);
 
         background: transparent;
 
@@ -52,15 +50,15 @@
 
         color: var(--shell-text-secondary);
 
-        font-size: $font-size-sm;
+        font-size: var(--nx-font-size-sm, 14px);
 
-        font-weight: $font-weight-medium;
+        font-weight: var(--nx-font-weight-medium, 500);
 
         cursor: pointer;
 
         transition:
-            color $transition-normal,
-            background-color $transition-normal;
+            color var(--nx-transition-normal, .25s ease),
+            background-color var(--nx-transition-normal, .25s ease);
 
 
         &:hover {
@@ -78,7 +76,7 @@
 
             color: var(--shell-primary);
 
-            font-weight: $font-weight-semibold;
+            font-weight: var(--nx-font-weight-semibold, 600);
 
 
             &::after {
@@ -93,11 +91,11 @@
 
                 width: 100%;
 
-                height: $tabs-active-indicator-height;
+                height: var(--nx-tabs-active-indicator-height, 2px);
 
                 background-color: var(--shell-primary);
 
-                border-radius: $radius-round;
+                border-radius: var(--nx-radius-round, 999px);
 
             }
 
@@ -126,7 +124,7 @@
 
     &-body {
 
-        padding-top: $spacing-lg;
+        padding-top: var(--nx-spacing-lg, 24px);
 
     }
 
@@ -135,7 +133,7 @@
 
         color: var(--shell-text);
 
-        font-size: $font-size-md;
+        font-size: var(--nx-font-size-md, 16px);
 
     }
 
@@ -159,23 +157,23 @@
 
             background-color: var(--shell-surface-hover);
 
-            padding: $spacing-xs;
+            padding: var(--nx-spacing-xs, 4px);
 
-            border-radius: $radius-md;
+            border-radius: var(--nx-radius-md, 8px);
 
         }
 
 
         .nx-tab-button {
 
-            border-radius: $radius-sm;
+            border-radius: var(--nx-radius-sm, 4px);
 
 
             &.active {
 
                 background-color: var(--shell-surface);
 
-                box-shadow: $shadow-sm;
+                box-shadow: var(--nx-shadow-sm, 0 2px 4px rgba(0, 0, 0, .08));
 
             }
 
@@ -200,7 +198,7 @@
 
                 border-bottom-color: transparent;
 
-                border-radius: $radius-md $radius-md 0 0;
+                border-radius: var(--nx-radius-md, 8px) var(--nx-radius-md, 8px) 0 0;
 
             }
 
@@ -216,23 +214,23 @@
 
             background-color: var(--shell-surface-hover);
 
-            padding: $spacing-xs;
+            padding: var(--nx-spacing-xs, 4px);
 
-            border-radius: $radius-round;
+            border-radius: var(--nx-radius-round, 999px);
 
         }
 
 
         .nx-tab-button {
 
-            border-radius: $radius-round;
+            border-radius: var(--nx-radius-round, 999px);
 
 
             &.active {
 
                 background-color: var(--shell-primary);
 
-                color: $white-color;
+                color: var(--white-color, #ffffff);
 
             }
 
@@ -273,7 +271,7 @@
 
             align-items: stretch;
 
-            min-width: $tabs-height * 3;
+            min-width: calc(var(--nx-tabs-height, 42px) * 3);
 
             border-bottom: none;
 
@@ -297,7 +295,7 @@
 
                 left: auto;
 
-                width: $tabs-active-indicator-height;
+                width: var(--nx-tabs-active-indicator-height, 2px);
 
                 height: 100%;
 

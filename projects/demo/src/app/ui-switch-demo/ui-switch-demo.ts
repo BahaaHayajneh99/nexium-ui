@@ -31,6 +31,13 @@ export class UiSwitchDemo {
 
   templateTs = `notifications = true;`;
 
+  termsAccepted = false;
+
+  requiredCode = `<nx-switch label="I accept the terms and conditions" [isRequired]="true" [(ngModel)]="termsAccepted">
+</nx-switch>`;
+
+  requiredTs = `termsAccepted = false;`;
+
   disabledCode = `<nx-switch label="Disabled switch" [disabled]="true">
 </nx-switch>`;
 }

@@ -30,6 +30,15 @@
     cursor: not-allowed;
 }
 
+.nx-mention-textarea.error {
+    border-color: #e74c3c;
+}
+
+.nx-mention-error {
+    font-size: 12px;
+    color: #e74c3c;
+}
+
 .nx-mention-panel {
     position: absolute;
     z-index: 100;

@@ -21,6 +21,34 @@
                 }
             </app-demo-section>
 
+            <app-demo-section
+                header="Multiple Images"
+                description="Set multiple to select several images at once - each one gets its own thumbnail preview."
+                [code]="multipleCode"
+                [tsCode]="multipleTs">
+                <nx-file-upload accept="image/*" label="Drop images here or click to browse" multiple (filesSelected)="onMultipleFilesSelected($event)"></nx-file-upload>
+
+                @if (previewSrcs.length) {
+                    <div class="image-preview-grid">
+                        @for (src of previewSrcs; track src) {
+                            <nx-preview [src]="src" type="image"></nx-preview>
+                        }
+                    </div>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Click to Browse Only"
+                description="Set draggable to false to disable drag-and-drop entirely - the zone only responds to a click, opening the native file picker. Useful when the surrounding page already handles drag-and-drop for something else."
+                [code]="noDragCode">
+                <nx-file-upload
+                    accept="image/*"
+                    label="Click to browse - drag & drop is disabled"
+                    [draggable]="false"
+                    multiple>
+                </nx-file-upload>
+            </app-demo-section>
+
         </div>
     </div>
 </div>

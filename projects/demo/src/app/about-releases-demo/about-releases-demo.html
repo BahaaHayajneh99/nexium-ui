@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">What's New</h4>
+                <p class="main-section-description">
+                    Pick a version to see what changed in {{ commonService.appName }}.
+                </p>
+            </section>
+
+            <div class="release-version-picker">
+                <nx-select
+                    label="Version"
+                    [options]="versionOptions"
+                    [(ngModel)]="selectedVersion">
+                </nx-select>
+            </div>
+
+            @if (selectedEntry) {
+                <div class="release-meta">
+                    <h4 class="main-section-header">{{ selectedEntry.version }}</h4>
+                    <span>&mdash; {{ selectedEntry.date }}</span>
+                    @if (isLatest) {
+                        <span class="latest-badge">Latest</span>
+                    }
+                </div>
+
+                <ul class="release-changes">
+                    @for (change of selectedEntry.changes; track change.description) {
+                        <li>
+                            <span class="release-tag" [class]="change.type">{{ change.type }}</span>
+                            <span>{{ change.description }}</span>
+                        </li>
+                    }
+                </ul>
+            }
+
+        </div>
+    </div>
+</div>

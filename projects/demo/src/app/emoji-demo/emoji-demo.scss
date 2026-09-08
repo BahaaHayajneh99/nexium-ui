@@ -1,14 +1,12 @@
-@use '../variables.scss' as *;
-
 .emoji-search {
     display: flex;
     align-items: center;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
     max-width: 340px;
-    margin-top: $spacing-md;
-    padding: 0 $spacing-sm;
+    margin-top: var(--nx-spacing-md, 16px);
+    padding: 0 var(--nx-spacing-sm, 8px);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
     color: var(--shell-text-secondary);
 
     &:focus-within {
@@ -21,26 +19,26 @@
         border: none;
         outline: none;
         background: transparent;
-        padding: $spacing-sm 0;
-        font-size: $font-size-sm;
+        padding: var(--nx-spacing-sm, 8px) 0;
+        font-size: var(--nx-font-size-sm, 14px);
         color: var(--shell-text-primary);
         font-family: inherit;
     }
 }
 
 .nx-auto-fit-grid {
-    margin: $spacing-lg 0 3rem;
+    margin: var(--nx-spacing-lg, 24px) 0 3rem;
 }
 
 .nx-auto-fit-grid .nx-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
     width: 100%;
     cursor: pointer;
     font-family: inherit;
-    transition: all $transition-fast;
+    transition: all var(--nx-transition-fast, .15s ease);
 
     &:hover {
         border-color: var(--shell-primary);
@@ -49,7 +47,7 @@
 }
 
 .emoji-name {
-    font-size: $font-size-xs;
+    font-size: var(--nx-font-size-xs, 12px);
     color: var(--shell-text-secondary);
     text-align: center;
     word-break: break-word;
@@ -59,5 +57,5 @@
     grid-column: 1 / -1;
     text-align: center;
     color: var(--shell-text-secondary);
-    padding: $spacing-lg 0;
+    padding: var(--nx-spacing-lg, 24px) 0;
 }

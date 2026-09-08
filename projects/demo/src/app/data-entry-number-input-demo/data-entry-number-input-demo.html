@@ -236,6 +236,20 @@
         </div>
       </app-demo-section>
 
+      <app-demo-section
+        header="Required Field"
+        description="Set isRequired to true to mark the field mandatory - a '*' appears next to the label and a validation message shows once the field is touched without a value entered."
+        [code]="requiredCode"
+        [tsCode]="requiredTs"
+        [hasSampleClass]="false">
+        <div class="demo-box">
+          <div class="input-group">
+            <nx-number label="Quantity" placeholder="Enter quantity" [isRequired]="true" [(ngModel)]="requiredQuantity"></nx-number>
+            <span class="current-value">{{ requiredQuantity }}</span>
+          </div>
+        </div>
+      </app-demo-section>
+
     </div>
   </div>
 </div>

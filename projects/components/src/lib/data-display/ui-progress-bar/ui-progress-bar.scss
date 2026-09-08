@@ -1,6 +1,3 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
-
 .nx-progress-bar {
 
     display: flex;
@@ -13,9 +10,9 @@
 
     background: var(--shell-surface-hover);
 
-    border-radius: $radius-sm;
+    border-radius: var(--nx-radius-sm, 4px);
 
-    transition: $transition-normal;
+    transition: var(--nx-transition-normal, .25s ease);
 
 
 
@@ -38,7 +35,7 @@
 
     // Rounded
     &.rounded {
-        border-radius: $radius-round;
+        border-radius: var(--nx-radius-round, 999px);
     }
 
 
@@ -56,13 +53,13 @@
 
         justify-content: center;
 
-        color: $text-white;
+        color: var(--text-white, #ffffff);
 
-        font-size: $font-size-xs;
+        font-size: var(--nx-font-size-xs, 12px);
 
-        font-weight: $font-weight-semibold;
+        font-weight: var(--nx-font-weight-semibold, 600);
 
-        transition: width $transition-normal;
+        transition: width var(--nx-transition-normal, .25s ease);
 
 
 
@@ -73,32 +70,32 @@
 
 
         &.secondary {
-            background: $secondary-color;
+            background: var(--secondary-color, #6c757d);
         }
 
 
         &.success {
-            background: $success-color;
+            background: var(--success-color, #28a745);
         }
 
 
         &.danger {
-            background: $danger-color;
+            background: var(--danger-color, #e74c3c);
         }
 
 
         &.warning {
-            background: $warning-color;
+            background: var(--warning-color, #f39c12);
         }
 
 
         &.info {
-            background: $info-color;
+            background: var(--info-color, #17a2b8);
         }
 
 
         &.dark {
-            background: $gray-800;
+            background: var(--gray-800, #343a40);
         }
 
 
@@ -113,11 +110,11 @@
         &.striped {
 
             background-image: linear-gradient(45deg,
-                    rgba($white-color, .15) 25%,
+                    color-mix(in srgb, var(--white-color, #ffffff) 15%, transparent) 25%,
                     transparent 25%,
                     transparent 50%,
-                    rgba($white-color, .15) 50%,
-                    rgba($white-color, .15) 75%,
+                    color-mix(in srgb, var(--white-color, #ffffff) 15%, transparent) 50%,
+                    color-mix(in srgb, var(--white-color, #ffffff) 15%, transparent) 75%,
                     transparent 75%);
 
             background-size: 1rem 1rem;
@@ -145,16 +142,16 @@
 
     align-items: center;
 
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
 
 
     .nx-progress-label {
 
-        color: $white-color;
+        color: var(--white-color, #ffffff);
 
-        font-size: $font-size-sm;
+        font-size: var(--nx-font-size-sm, 14px);
 
-        font-weight: $font-weight-medium;
+        font-weight: var(--nx-font-weight-medium, 500);
 
         white-space: nowrap;
 

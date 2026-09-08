@@ -10,7 +10,7 @@ import {
   forwardRef,
   numberAttribute,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 export type NxOtpInputType = 'number' | 'text';
 
@@ -26,25 +26,46 @@ export type NxOtpInputType = 'number' | 'text';
       useExisting: forwardRef(() => NxOtpInput),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxOtpInput),
+      multi: true,
+    },
   ],
 })
-export class NxOtpInput implements ControlValueAccessor {
+export class NxOtpInput implements ControlValueAccessor, Validator {
   @Input({ transform: numberAttribute }) length = 6;
   @Input() value = '';
   @Input() type: NxOtpInputType = 'number';
   @Input({ transform: booleanAttribute }) disabled = false;
   @Input({ transform: booleanAttribute }) invalid = false;
+  /** Marks the field as required - a code must be entered. Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'Please enter a code';
 
   @Output() valueChange = new EventEmitter<string>();
   @Output() completed = new EventEmitter<string>();
 
   @ViewChildren('cell') private cells!: QueryList<ElementRef<HTMLInputElement>>;
 
+  touched = false;
+
   private onChangeFn: (value: string) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
 
   get indexes(): number[] {
     return Array.from({ length: this.length }, (_, i) => i);
+  }
+
+  get displayError(): string {
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && !this.value) {
+      return this.requiredErrorMessage;
+    }
+    return '';
   }
 
   digitAt(index: number): string {
@@ -84,10 +105,12 @@ export class NxOtpInput implements ControlValueAccessor {
     const pasted = event.clipboardData?.getData('text') ?? '';
     const filtered = this.type === 'number' ? pasted.replace(/\D/g, '') : pasted;
     this.setValue(filtered.slice(0, this.length));
+    this.touched = true;
     this.focusCell(Math.min(this.value.length, this.length - 1));
   }
 
   onBlur(): void {
+    this.touched = true;
     this.onTouchedFn();
   }
 
@@ -105,6 +128,17 @@ export class NxOtpInput implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.isRequired && !control.value) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 
   private setValue(value: string): void {

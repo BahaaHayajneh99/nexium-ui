@@ -1,5 +1,3 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-modal-backdrop {
     position: fixed;
     inset: 0;
@@ -12,38 +10,38 @@
 
 .nx-modal {
     width: 420px;
-    max-width: calc(100vw - #{$spacing-lg} * 2);
-    max-height: calc(100vh - #{$spacing-lg} * 2);
+    max-width: calc(100vw - var(--nx-spacing-lg, 24px) * 2);
+    max-height: calc(100vh - var(--nx-spacing-lg, 24px) * 2);
     overflow-y: auto;
     background-color: var(--shell-surface);
-    border-radius: $radius-md;
-    box-shadow: $shadow-lg;
+    border-radius: var(--nx-radius-md, 8px);
+    box-shadow: var(--nx-shadow-lg, 0 10px 20px rgba(0, 0, 0, .15));
 }
 
 .nx-modal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: $spacing-md $spacing-lg;
+    padding: var(--nx-spacing-md, 16px) var(--nx-spacing-lg, 24px);
     border-bottom: 1px solid var(--shell-border);
 }
 
 .nx-modal-title {
-    font-weight: $font-weight-semibold;
+    font-weight: var(--nx-font-weight-semibold, 600);
     color: var(--shell-text);
 }
 
 .nx-modal-close {
     border: none;
     background: none;
-    font-size: $h2-font-size;
+    font-size: var(--nx-h2-font-size, 2rem);
     line-height: 1;
     cursor: pointer;
     color: var(--shell-text-secondary);
 }
 
 .nx-modal-body {
-    padding: $spacing-lg;
+    padding: var(--nx-spacing-lg, 24px);
     color: var(--shell-text);
 
     &:empty {
@@ -54,8 +52,8 @@
 .nx-modal-footer {
     display: flex;
     justify-content: flex-end;
-    gap: $spacing-sm;
-    padding: $spacing-md $spacing-lg;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-md, 16px) var(--nx-spacing-lg, 24px);
     border-top: 1px solid var(--shell-border);
 
     &:empty {

@@ -1,4 +1,4 @@
-<div class="nx-rte" [class.disabled]="disabled">
+<div class="nx-rte" [class.disabled]="disabled" [class.invalid]="!!displayError">
 
     <div class="nx-rte-toolbar">
         @for (button of toolbar; track button.command + (button.arg ?? '')) {
@@ -31,8 +31,14 @@
         class="nx-rte-editor"
         [attr.contenteditable]="!disabled"
         [attr.data-placeholder]="placeholder"
+        [attr.aria-required]="isRequired ? true : null"
+        [attr.aria-invalid]="displayError ? true : null"
         (input)="onInput()"
         (blur)="onBlur()">
     </div>
+
+    @if (displayError) {
+        <span class="nx-rte-error">{{ displayError }}</span>
+    }
 
 </div>

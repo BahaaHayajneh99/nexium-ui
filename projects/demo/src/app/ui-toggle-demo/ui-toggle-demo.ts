@@ -36,4 +36,10 @@ italic = false;`;
   templateCode = `<nx-toggle [(ngModel)]="bold">Bold</nx-toggle>`;
 
   templateTs = `bold = false;`;
+
+  accepted = false;
+
+  requiredCode = `<nx-toggle [isRequired]="true" [(ngModel)]="accepted">Accept</nx-toggle>`;
+
+  requiredTs = `accepted = false;`;
 }

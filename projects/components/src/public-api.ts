@@ -36,6 +36,7 @@ export * from './lib/feedback/ui-dialog';
 export * from './lib/feedback/ui-notification-center';
 export * from './lib/feedback/ui-drawer';
 export * from './lib/feedback/ui-command-palette';
+export * from './lib/forms/shared';
 export * from './lib/forms/ui-input';
 export * from './lib/forms/ui-textarea';
 export * from './lib/forms/ui-select';

@@ -148,6 +148,18 @@ selectedCityId: number | null = null;`;
     [(ngModel)]="filledCity">
 </nx-autocomplete>`;
 
+  requiredCity = '';
+
+  requiredCode = `<nx-autocomplete
+    label="City"
+    placeholder="Search cities..."
+    [options]="options"
+    [isRequired]="true"
+    [(ngModel)]="requiredCity">
+</nx-autocomplete>`;
+
+  requiredTs = `requiredCity = '';`;
+
   disabledCity = 'Cairo';
 
   disabledCode = `<nx-autocomplete

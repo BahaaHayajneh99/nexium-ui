@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef, numberAttribute } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 type NxPasswordStrength = 'Weak' | 'Fair' | 'Good' | 'Strong';
 
@@ -14,7 +14,7 @@ interface NxPasswordRequirement {
   template: `
     <div class="nx-password-wrapper">
       @if (label) {
-        <label class="nx-password-label">{{ label }}</label>
+        <label class="nx-password-label">{{ label }}@if (isRequired) {<span class="nx-password-required">*</span>}</label>
       }
 
       <div class="nx-password-field">
@@ -24,7 +24,9 @@ interface NxPasswordRequirement {
           [value]="value"
           [placeholder]="placeholder"
           [disabled]="disabled"
-          [class.invalid]="showValidationState && !isValid"
+          [class.invalid]="(showValidationState && !isValid) || !!displayError"
+          [attr.aria-required]="isRequired ? true : null"
+          [attr.aria-invalid]="displayError ? true : null"
           (input)="onInput($event)"
           (blur)="onBlur()" />
 
@@ -75,8 +77,8 @@ interface NxPasswordRequirement {
         </div>
       }
 
-      @if (error) {
-        <span class="nx-password-error">{{ error }}</span>
+      @if (displayError) {
+        <span class="nx-password-error">{{ displayError }}</span>
       }
     </div>
   `,
@@ -92,6 +94,11 @@ interface NxPasswordRequirement {
       font-size: 0.875rem;
       font-weight: 600;
       color: var(--shell-text);
+    }
+
+    .nx-password-required {
+      color: #e74c3c;
+      margin-left: 2px;
     }
 
     .nx-password-field {
@@ -239,9 +246,14 @@ interface NxPasswordRequirement {
       useExisting: forwardRef(() => NxPassword),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxPassword),
+      multi: true,
+    },
   ],
 })
-export class NxPassword implements ControlValueAccessor {
+export class NxPassword implements ControlValueAccessor, Validator {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() error = '';
@@ -256,6 +268,9 @@ export class NxPassword implements ControlValueAccessor {
   @Input({ transform: booleanAttribute }) showRequirements = true;
   @Input({ transform: booleanAttribute }) showValidationState = false;
   @Input({ transform: booleanAttribute }) disabled = false;
+  /** Marks the field as required - a value must be entered. Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'Password is required';
 
   @Output() valueChange = new EventEmitter<string>();
   @Output() validChange = new EventEmitter<boolean>();
@@ -263,9 +278,24 @@ export class NxPassword implements ControlValueAccessor {
 
   value = '';
   visible = false;
+  touched = false;
 
   private onChangeFn: (value: string) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
+
+  get displayError(): string {
+    if (this.error) {
+      return this.error;
+    }
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && !this.value) {
+      return this.requiredErrorMessage;
+    }
+    return '';
+  }
 
   get requirements(): NxPasswordRequirement[] {
     const checks: NxPasswordRequirement[] = [];
@@ -335,6 +365,7 @@ export class NxPassword implements ControlValueAccessor {
   }
 
   onBlur(): void {
+    this.touched = true;
     this.onTouchedFn();
   }
 
@@ -356,6 +387,17 @@ export class NxPassword implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.isRequired && !control.value) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 
   private hasSpecialCharacter(value: string): boolean {

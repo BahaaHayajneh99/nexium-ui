@@ -51,4 +51,11 @@ options: NxRadioOption[] = [
   inlinePlan = 'basic';
 
   inlineCode = `<nx-radio-group name="inline-plan" [options]="options" [inline]="true" [(ngModel)]="inlinePlan"></nx-radio-group>`;
+
+  requiredPlan = '';
+
+  requiredCode = `<nx-radio-group name="required-plan" [options]="options" [isRequired]="true" [(ngModel)]="requiredPlan">
+</nx-radio-group>`;
+
+  requiredTs = `requiredPlan = '';`;
 }

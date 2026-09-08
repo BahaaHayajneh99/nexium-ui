@@ -1,5 +1,3 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-avatar {
 
     position: relative;
@@ -14,10 +12,10 @@
     //overflow: hidden;
 
     background: var(--shell-primary);
-    color: $text-white;
+    color: var(--text-white, #ffffff);
 
-    font-family: $font-family;
-    font-weight: $font-weight-semibold;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-weight: var(--nx-font-weight-semibold, 600);
 
     user-select: none;
 
@@ -28,25 +26,25 @@
     &.small {
         width: 28px;
         height: 28px;
-        font-size: $font-size-xs;
+        font-size: var(--nx-font-size-xs, 12px);
     }
 
     &.medium {
         width: 40px;
         height: 40px;
-        font-size: $font-size-sm;
+        font-size: var(--nx-font-size-sm, 14px);
     }
 
     &.large {
         width: 56px;
         height: 56px;
-        font-size: $font-size-md;
+        font-size: var(--nx-font-size-md, 16px);
     }
 
     &.xlarge {
         width: 80px;
         height: 80px;
-        font-size: $h2-font-size;
+        font-size: var(--nx-h2-font-size, 2rem);
     }
 
     // =========================
@@ -54,7 +52,7 @@
     // =========================
 
     &.circle {
-        border-radius: $radius-round;
+        border-radius: var(--nx-radius-round, 999px);
     }
 
     &.square {
@@ -62,7 +60,7 @@
     }
 
     &.rounded {
-        border-radius: $radius-md;
+        border-radius: var(--nx-radius-md, 8px);
     }
 
     // =========================
@@ -78,12 +76,12 @@
     // =========================
 
     &.primary { background: var(--shell-primary); }
-    &.secondary { background: $secondary-color; }
-    &.success { background: $success-color; }
-    &.danger { background: $danger-color; }
-    &.warning { background: $warning-color; }
-    &.info { background: $info-color; }
-    &.dark { background: $gray-900; }
+    &.secondary { background: var(--secondary-color, #6c757d); }
+    &.success { background: var(--success-color, #28a745); }
+    &.danger { background: var(--danger-color, #e74c3c); }
+    &.warning { background: var(--warning-color, #f39c12); }
+    &.info { background: var(--info-color, #17a2b8); }
+    &.dark { background: var(--gray-900, #212529); }
 
     &.light {
         background: var(--shell-surface-hover);
@@ -98,7 +96,7 @@
     height: 100%;
 
     object-fit: cover;
-    border-radius: $radius-round;
+    border-radius: var(--nx-radius-round, 999px);
 
 }
 
@@ -127,11 +125,11 @@
     min-height: 8px;
 
     border: 2px solid var(--shell-surface);
-    border-radius: $radius-round;
+    border-radius: var(--nx-radius-round, 999px);
 
-    &.online { background: $success-color; }
-    &.away { background: $warning-color; }
-    &.busy { background: $danger-color; }
-    &.offline { background: $gray-500; }
+    &.online { background: var(--success-color, #28a745); }
+    &.away { background: var(--warning-color, #f39c12); }
+    &.busy { background: var(--danger-color, #e74c3c); }
+    &.offline { background: var(--gray-500, #adb5bd); }
 
 }

@@ -1,22 +1,15 @@
-@use './variables.scss' as *;
-
-$main-nav-width: 300px;
-$main-content-width: calc(100% - #{$main-nav-width});
-$main-nav-content-gap: 16px;
-$padding-right-content: 100px;
-
 .main {
     display: flex;
-    gap: $main-nav-content-gap;
+    gap: var(--nx-main-nav-content-gap, 16px);
 }
 
 .main-content-container {
-    width: $main-content-width;
-    padding-right: $padding-right-content;
+    width: calc(100% - var(--nx-main-nav-width, 300px));
+    padding-right: var(--nx-padding-right-content, 100px);
 }
 
 .main-nav {
-    width: $main-nav-width;
+    width: var(--nx-main-nav-width, 300px);
 }
 
 .mobile-nav-toggle {
@@ -39,10 +32,10 @@ $padding-right-content: 100px;
         position: fixed;
         inset: 0 auto 0 0;
         z-index: 200;
-        width: $main-nav-width;
+        width: var(--nx-main-nav-width, 300px);
         max-width: 85vw;
         transform: translateX(-100%);
-        transition: transform $transition-normal;
+        transition: transform var(--nx-transition-normal, .25s ease);
         box-shadow: 0 0 32px rgba(0, 0, 0, .25);
     }
 
@@ -52,8 +45,8 @@ $padding-right-content: 100px;
 
     .main-content-container {
         width: 100%;
-        padding-right: $spacing-lg;
-        padding-left: $spacing-lg;
+        padding-right: var(--nx-spacing-lg, 24px);
+        padding-left: var(--nx-spacing-lg, 24px);
     }
 
     .mobile-nav-toggle {
@@ -62,20 +55,20 @@ $padding-right-content: 100px;
         justify-content: center;
 
         position: sticky;
-        top: $spacing-md;
+        top: var(--nx-spacing-md, 16px);
         z-index: 150;
 
         width: 40px;
         height: 40px;
-        margin-bottom: $spacing-md;
+        margin-bottom: var(--nx-spacing-md, 16px);
 
         border: 1px solid var(--shell-border);
-        border-radius: $radius-md;
+        border-radius: var(--nx-radius-md, 8px);
 
         background: var(--shell-surface);
         color: var(--shell-text);
         cursor: pointer;
-        transition: all $transition-fast;
+        transition: all var(--nx-transition-fast, .15s ease);
 
         &:hover {
             border-color: var(--shell-primary);
@@ -91,7 +84,7 @@ $padding-right-content: 100px;
         background: rgba(0, 0, 0, .45);
         opacity: 0;
         pointer-events: none;
-        transition: opacity $transition-normal;
+        transition: opacity var(--nx-transition-normal, .25s ease);
     }
 
     .main.nav-open .mobile-nav-backdrop {

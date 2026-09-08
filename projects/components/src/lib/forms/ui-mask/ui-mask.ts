@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges, booleanAttribute, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NxPatternInput, nxPatternErrorMessage, resolveNxPattern } from '../shared/nx-validators';
 
 export type NxMaskType = 'custom' | 'phone' | 'ssn' | 'credit-card' | 'zip' | 'date' | 'time';
 
@@ -18,7 +19,7 @@ const NX_MASK_PRESETS: Record<Exclude<NxMaskType, 'custom'>, string> = {
   template: `
     <div class="nx-mask-wrapper">
       @if (label) {
-        <label class="nx-mask-label">{{ label }}</label>
+        <label class="nx-mask-label">{{ label }}@if (isRequired) {<span class="nx-mask-required">*</span>}</label>
       }
 
       <input
@@ -28,12 +29,14 @@ const NX_MASK_PRESETS: Record<Exclude<NxMaskType, 'custom'>, string> = {
         [disabled]="disabled"
         [attr.maxlength]="resolvedMask ? resolvedMask.length : null"
         [attr.inputmode]="inputMode"
-        [class.error]="!!error"
+        [attr.aria-required]="isRequired ? true : null"
+        [attr.aria-invalid]="displayError ? true : null"
+        [class.error]="!!displayError"
         (input)="onInput($event)"
         (blur)="onBlur()" />
 
-      @if (error) {
-        <span class="nx-mask-error">{{ error }}</span>
+      @if (displayError) {
+        <span class="nx-mask-error">{{ displayError }}</span>
       }
     </div>
   `,
@@ -49,6 +52,11 @@ const NX_MASK_PRESETS: Record<Exclude<NxMaskType, 'custom'>, string> = {
       font-size: 14px;
       font-weight: 600;
       color: var(--shell-text);
+    }
+
+    .nx-mask-required {
+      color: #e74c3c;
+      margin-left: 2px;
     }
 
     .nx-mask-input {
@@ -89,24 +97,56 @@ const NX_MASK_PRESETS: Record<Exclude<NxMaskType, 'custom'>, string> = {
       useExisting: forwardRef(() => NxMask),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxMask),
+      multi: true,
+    },
   ],
 })
-export class NxMask implements ControlValueAccessor {
+export class NxMask implements ControlValueAccessor, Validator {
   @Input() label = '';
   @Input() placeholder = '';
+  /** Manual error override - takes priority over the built-in required/pattern messages. */
   @Input() error = '';
   @Input() type: NxMaskType = 'custom';
   @Input() mask = '';
   @Input({ transform: booleanAttribute }) disabled = false;
+  /** Marks the field as required - shown with a `*` and validated once the field is touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  /** Named preset ('email', 'url', 'phone', 'numeric', 'alpha', 'alphanumeric'), a RegExp, or a custom regex source string. */
+  @Input() pattern: NxPatternInput = null;
+  @Input() requiredErrorMessage = 'This field is required';
+  @Input() patternErrorMessage = '';
 
   @Output() valueChange = new EventEmitter<string>();
   @Output() rawValueChange = new EventEmitter<string>();
 
   value = '';
   rawValue = '';
+  touched = false;
 
   private onChangeFn: (value: string) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
+
+  /** The message actually shown - the `error` override, else the built-in required/pattern check once touched. */
+  get displayError(): string {
+    if (this.error) {
+      return this.error;
+    }
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && !this.value) {
+      return this.requiredErrorMessage;
+    }
+    const regex = resolveNxPattern(this.pattern);
+    if (regex && this.value && !regex.test(this.value)) {
+      return this.patternErrorMessage || nxPatternErrorMessage(this.pattern);
+    }
+    return '';
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['mask'] && !changes['type']) {
@@ -154,6 +194,7 @@ export class NxMask implements ControlValueAccessor {
   }
 
   onBlur(): void {
+    this.touched = true;
     this.onTouchedFn();
   }
 
@@ -174,6 +215,22 @@ export class NxMask implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (this.isRequired && !value) {
+      return { required: true };
+    }
+    const regex = resolveNxPattern(this.pattern);
+    if (regex && value && !regex.test(value)) {
+      return { pattern: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 
   private applyMask(input: string): { formatted: string; raw: string } {

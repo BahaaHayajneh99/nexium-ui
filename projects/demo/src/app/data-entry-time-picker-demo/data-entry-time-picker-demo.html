@@ -104,6 +104,20 @@
 
       <section class="main-section">
         <app-demo-section
+          header="Required Field"
+          description="Set isRequired to true to mark the field mandatory - a validation message shows once the field is blurred without a time selected."
+          [code]="requiredCode"
+          [codeLang]="'html'"
+          [hasSampleClass]="false">
+          <div class="nx-demo-stack">
+            <label>Appointment Time</label>
+            <nx-time-picker format="HH:mm" [isRequired]="true" [(ngModel)]="requiredTime"></nx-time-picker>
+          </div>
+        </app-demo-section>
+      </section>
+
+      <section class="main-section">
+        <app-demo-section
           header="Disabled"
           description="Set disabled to true to prevent interaction."
           [code]="disabledCode"

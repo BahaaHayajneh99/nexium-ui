@@ -1,23 +1,21 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-pagination {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: $spacing-xs;
+    gap: var(--nx-spacing-xs, 4px);
 }
 
 .nx-pagination-btn {
     min-width: 32px;
     height: 32px;
-    padding: 0 $spacing-xs;
+    padding: 0 var(--nx-spacing-xs, 4px);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-sm;
+    border-radius: var(--nx-radius-sm, 4px);
     background-color: var(--shell-surface);
     color: var(--shell-text);
-    font-size: $font-size-sm;
+    font-size: var(--nx-font-size-sm, 14px);
     cursor: pointer;
-    transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast;
+    transition: background-color var(--nx-transition-fast, .15s ease), color var(--nx-transition-fast, .15s ease), border-color var(--nx-transition-fast, .15s ease);
 
     &:hover:not(:disabled) {
         background-color: var(--shell-surface-hover);
@@ -26,7 +24,7 @@
     &.active {
         background-color: var(--shell-primary);
         border-color: var(--shell-primary);
-        color: $text-white;
+        color: var(--text-white, #ffffff);
 
     &:hover:not(:disabled) {
             color: var(--shell-text);

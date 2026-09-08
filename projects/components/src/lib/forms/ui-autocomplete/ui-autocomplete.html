@@ -1,9 +1,9 @@
 <div
     class="nx-autocomplete"
-    [ngClass]="[variant, multiple ? 'multiple' : '', invalid ? 'invalid' : '', disabled ? 'disabled' : '']">
+    [ngClass]="[variant, multiple ? 'multiple' : '', (invalid || !!displayError) ? 'invalid' : '', disabled ? 'disabled' : '']">
 
     @if (label && !floatLabel) {
-        <label class="nx-autocomplete-label">{{ label }}</label>
+        <label class="nx-autocomplete-label">{{ label }}@if (isRequired) {<span class="nx-autocomplete-required">*</span>}</label>
     }
 
     <div class="nx-autocomplete-input-wrapper" (click)="focusInput()">
@@ -25,13 +25,14 @@
             [placeholder]="floatLabel ? '' : placeholder"
             [disabled]="disabled"
             [value]="multiple ? query : displayValue"
-            [attr.aria-invalid]="invalid ? true : null"
+            [attr.aria-required]="isRequired ? true : null"
+            [attr.aria-invalid]="(invalid || !!displayError) ? true : null"
             (input)="onInput($event)"
             (focus)="onFocus()"
             (blur)="onBlur()" />
 
         @if (floatLabel && label) {
-            <label class="nx-autocomplete-float-label" [class.active]="focused || hasValue">{{ label }}</label>
+            <label class="nx-autocomplete-float-label" [class.active]="focused || hasValue">{{ label }}@if (isRequired) {<span class="nx-autocomplete-required">*</span>}</label>
         }
 
         @if (showClear && hasValue && !disabled) {
@@ -39,6 +40,10 @@
         }
 
     </div>
+
+    @if (displayError) {
+        <span class="nx-autocomplete-error">{{ displayError }}</span>
+    }
 
     @if (showList) {
         <ul class="nx-autocomplete-list" [style.max-height.px]="virtualScroll ? scrollHeight : null" (scroll)="onListScroll($event)">

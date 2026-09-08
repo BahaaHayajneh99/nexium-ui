@@ -1,5 +1,3 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-timeline {
     display: flex;
     flex-direction: column;
@@ -8,8 +6,8 @@
 .nx-timeline-item {
     position: relative;
     display: flex;
-    gap: $spacing-md;
-    padding-bottom: $spacing-lg;
+    gap: var(--nx-spacing-md, 16px);
+    padding-bottom: var(--nx-spacing-lg, 24px);
 
     &:last-child {
         padding-bottom: 0;
@@ -26,7 +24,7 @@
     width: 12px;
     height: 12px;
     margin-top: 4px;
-    border-radius: $radius-round;
+    border-radius: var(--nx-radius-round, 999px);
     background-color: var(--shell-primary);
 
     &::after {
@@ -35,16 +33,16 @@
         top: 16px;
         left: 50%;
         width: 2px;
-        height: calc(100% + #{$spacing-lg} - 12px);
+        height: calc(100% + var(--nx-spacing-lg, 24px) - 12px);
         transform: translateX(-50%);
-        background-color: $border-color;
+        background-color: var(--shell-border, #dee2e6);
     }
 
-    &.secondary { background-color: $secondary-color; }
-    &.success { background-color: $success-color; }
-    &.danger { background-color: $danger-color; }
-    &.warning { background-color: $warning-color; }
-    &.info { background-color: $info-color; }
+    &.secondary { background-color: var(--secondary-color, #6c757d); }
+    &.success { background-color: var(--success-color, #28a745); }
+    &.danger { background-color: var(--danger-color, #e74c3c); }
+    &.warning { background-color: var(--warning-color, #f39c12); }
+    &.info { background-color: var(--info-color, #17a2b8); }
 }
 
 .nx-timeline-content {
@@ -54,21 +52,21 @@
 .nx-timeline-header {
     display: flex;
     align-items: baseline;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
 }
 
 .nx-timeline-title {
-    font-weight: $font-weight-semibold;
+    font-weight: var(--nx-font-weight-semibold, 600);
     color: var(--shell-text);
 }
 
 .nx-timeline-time {
-    font-size: $font-size-xs;
+    font-size: var(--nx-font-size-xs, 12px);
     color: var(--shell-text-secondary);
 }
 
 .nx-timeline-description {
-    margin-top: $spacing-xs;
+    margin-top: var(--nx-spacing-xs, 4px);
     color: var(--shell-text-secondary);
-    font-size: $font-size-sm;
+    font-size: var(--nx-font-size-sm, 14px);
 }

@@ -1,13 +1,11 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-empty-state {
     text-align: center;
-    padding: $spacing-xl;
+    padding: var(--nx-spacing-xl, 32px);
     border: 2px dashed var(--shell-border);
-    border-radius: $radius-lg;
+    border-radius: var(--nx-radius-lg, 12px);
     background: var(--shell-surface-hover);
-    font-family: $font-family;
-    transition: all $transition-fast;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    transition: all var(--nx-transition-fast, .15s ease);
 
     &:hover {
         border-color: var(--shell-primary);
@@ -19,33 +17,33 @@
     align-items: center;
     justify-content: center;
     color: var(--shell-text-muted);
-    margin-bottom: $spacing-md;
+    margin-bottom: var(--nx-spacing-md, 16px);
 }
 
 .nx-empty-state-title {
-    font-size: $font-size-lg;
-    font-weight: $font-weight-semibold;
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-semibold, 600);
     color: var(--shell-text);
-    margin: 0 0 $spacing-sm;
+    margin: 0 0 var(--nx-spacing-sm, 8px);
 }
 
 .nx-empty-state-description {
-    font-size: $font-size-sm;
+    font-size: var(--nx-font-size-sm, 14px);
     color: var(--shell-text-secondary);
     line-height: 1.5;
-    margin: 0 0 $spacing-lg;
+    margin: 0 0 var(--nx-spacing-lg, 24px);
 }
 
 .nx-empty-state-action {
-    padding: $spacing-sm $spacing-lg;
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-lg, 24px);
     border: none;
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
     background: var(--shell-primary);
-    color: $white-color;
-    font-weight: $font-weight-semibold;
-    font-size: $font-size-sm;
+    color: var(--white-color, #ffffff);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    font-size: var(--nx-font-size-sm, 14px);
     cursor: pointer;
-    transition: all $transition-fast;
+    transition: all var(--nx-transition-fast, .15s ease);
 
     &:hover {
         filter: brightness(0.92);

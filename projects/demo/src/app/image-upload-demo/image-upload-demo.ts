@@ -39,4 +39,34 @@ onFilesSelected(files: File[]): void {
       this.fileName = file.name;
     }
   }
+
+  previewSrcs: string[] = [];
+
+  multipleCode = `<nx-file-upload accept="image/*" label="Drop images here or click to browse" multiple (filesSelected)="onMultipleFilesSelected($event)">
+</nx-file-upload>
+
+@if (previewSrcs.length) {
+    <div class="image-preview-grid">
+        @for (src of previewSrcs; track src) {
+            <nx-preview [src]="src" type="image"></nx-preview>
+        }
+    </div>
+}`;
+
+  multipleTs = `previewSrcs: string[] = [];
+
+onMultipleFilesSelected(files: File[]): void {
+  this.previewSrcs = files.map(file => URL.createObjectURL(file));
+}`;
+
+  onMultipleFilesSelected(files: File[]): void {
+    this.previewSrcs = files.map(file => URL.createObjectURL(file));
+  }
+
+  noDragCode = `<nx-file-upload
+  accept="image/*"
+  label="Click to browse - drag & drop is disabled"
+  [draggable]="false"
+  multiple>
+</nx-file-upload>`;
 }

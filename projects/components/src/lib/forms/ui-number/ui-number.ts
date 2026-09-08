@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 @Component({
   selector: 'nx-number',
@@ -7,7 +7,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   template: `
     <div class="nx-number-wrapper">
       @if (label) {
-        <label class="nx-number-label">{{ label }}</label>
+        <label class="nx-number-label">{{ label }}@if (isRequired) {<span class="nx-number-required">*</span>}</label>
       }
 
       <div class="nx-number-field">
@@ -36,6 +36,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
           [max]="max ?? null"
           [step]="step"
           [value]="value ?? ''"
+          [attr.aria-required]="isRequired ? true : null"
+          [attr.aria-invalid]="displayError ? true : null"
           (input)="onInput($event)"
           (blur)="onBlur()" />
 
@@ -55,8 +57,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
         }
       </div>
 
-      @if (error) {
-        <span class="nx-number-error">{{ error }}</span>
+      @if (displayError) {
+        <span class="nx-number-error">{{ displayError }}</span>
       }
     </div>
   `,
@@ -152,6 +154,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       font-size: 12px;
       color: #e74c3c;
     }
+
+    .nx-number-required {
+      color: #e74c3c;
+      margin-left: 2px;
+    }
   `,
   providers: [
     {
@@ -159,9 +166,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       useExisting: forwardRef(() => NxNumber),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxNumber),
+      multi: true,
+    },
   ],
 })
-export class NxNumber implements ControlValueAccessor {
+export class NxNumber implements ControlValueAccessor, Validator {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() error = '';
@@ -174,13 +186,32 @@ export class NxNumber implements ControlValueAccessor {
   @Input({ transform: booleanAttribute }) showDecreaseButton = true;
   @Input({ transform: booleanAttribute }) showIncreaseButton = true;
   @Input({ transform: booleanAttribute }) disabled = false;
+  /** Marks the field as required - a value must be entered. Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'Please enter a value';
 
   @Output() valueChange = new EventEmitter<number | null>();
 
   value: number | null = null;
+  touched = false;
 
   private onChangeFn: (value: number | null) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
+
+  /** `error` (manual override) wins first; otherwise the built-in required check applies once touched. */
+  get displayError(): string {
+    if (this.error) {
+      return this.error;
+    }
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && this.value === null) {
+      return this.requiredErrorMessage;
+    }
+    return '';
+  }
 
   onInput(event: Event): void {
     const rawValue = (event.target as HTMLInputElement).value;
@@ -223,6 +254,7 @@ export class NxNumber implements ControlValueAccessor {
   }
 
   onBlur(): void {
+    this.touched = true;
     this.onTouchedFn();
   }
 
@@ -240,6 +272,17 @@ export class NxNumber implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.isRequired && control.value === null) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 
   private setValue(value: number | null): void {

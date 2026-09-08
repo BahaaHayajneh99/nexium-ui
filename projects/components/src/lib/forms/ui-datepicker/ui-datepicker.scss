@@ -12,6 +12,16 @@
     color: var(--shell-text);
 }
 
+.nx-datepicker-required {
+    color: #e74c3c;
+    margin-left: 2px;
+}
+
+.nx-datepicker-error {
+    font-size: 12px;
+    color: #e74c3c;
+}
+
 .nx-datepicker-field {
     position: relative;
     display: inline-flex;

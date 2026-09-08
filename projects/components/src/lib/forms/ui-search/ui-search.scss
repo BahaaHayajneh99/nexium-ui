@@ -1,21 +1,19 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-search-wrapper {
     position: relative;
-    font-family: $font-family;
+    font-family: var(--font-family, "Roboto", sans-serif);
 }
 
 .nx-search {
     display: flex;
     align-items: center;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
 
-    padding: $spacing-xs $spacing-sm;
+    padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
     background-color: var(--shell-surface);
 
-    transition: border-color $transition-fast;
+    transition: border-color var(--nx-transition-fast, .15s ease);
 
     &:focus-within {
         border-color: var(--shell-primary);
@@ -25,6 +23,15 @@
         background-color: var(--shell-surface-hover);
         cursor: not-allowed;
     }
+
+    &.error {
+        border-color: #e74c3c;
+    }
+}
+
+.nx-search-error {
+    font-size: var(--nx-font-size-xs, 12px);
+    color: #e74c3c;
 }
 
 .nx-search-icon {
@@ -38,8 +45,8 @@
     border: none;
     outline: none;
     background: transparent;
-    padding: $spacing-xs 0;
-    font-size: $font-size-md;
+    padding: var(--nx-spacing-xs, 4px) 0;
+    font-size: var(--nx-font-size-md, 16px);
     font-family: inherit;
     color: var(--shell-text);
 
@@ -61,12 +68,12 @@
 
     padding: 2px;
     border: none;
-    border-radius: $radius-round;
+    border-radius: var(--nx-radius-round, 999px);
     background: transparent;
     color: var(--shell-text-muted);
     cursor: pointer;
 
-    transition: color $transition-fast, background-color $transition-fast;
+    transition: color var(--nx-transition-fast, .15s ease), background-color var(--nx-transition-fast, .15s ease);
 
     &:hover {
         color: var(--shell-text);
@@ -76,13 +83,13 @@
 
 .nx-search-results {
     position: absolute;
-    top: calc(100% + #{$spacing-xs});
+    top: calc(100% + var(--nx-spacing-xs, 4px));
     left: 0;
     right: 0;
     z-index: 20;
 
     margin: 0;
-    padding: $spacing-xs 0;
+    padding: var(--nx-spacing-xs, 4px) 0;
     list-style: none;
 
     max-height: 280px;
@@ -90,16 +97,16 @@
 
     background: var(--shell-surface);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .nx-search-result {
-    padding: $spacing-sm $spacing-md;
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
     color: var(--shell-text);
-    font-size: $font-size-sm;
+    font-size: var(--nx-font-size-sm, 14px);
     cursor: pointer;
-    transition: background-color $transition-fast;
+    transition: background-color var(--nx-transition-fast, .15s ease);
 
     &:hover,
     &.active {
@@ -108,18 +115,18 @@
 }
 
 .nx-search-empty {
-    padding: $spacing-lg $spacing-md;
+    padding: var(--nx-spacing-lg, 24px) var(--nx-spacing-md, 16px);
     text-align: center;
 
     p {
         margin: 0;
         color: var(--shell-text-secondary);
-        font-size: $font-size-sm;
+        font-size: var(--nx-font-size-sm, 14px);
     }
 }
 
 .nx-search-empty-hint {
-    margin-top: $spacing-xs !important;
-    font-size: $font-size-xs !important;
+    margin-top: var(--nx-spacing-xs, 4px) !important;
+    font-size: var(--nx-font-size-xs, 12px) !important;
     color: var(--shell-text-muted) !important;
 }

@@ -59,6 +59,15 @@
             </app-demo-section>
 
             <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the checkbox mandatory - it must be checked, and a validation message shows once the checkbox is blurred while still unchecked."
+                [code]="requiredCode"
+                [tsCode]="requiredTs"
+                [hasSampleClass]="false">
+                <nx-checkbox label="I accept the terms and conditions" [isRequired]="true" [(ngModel)]="termsAccepted"></nx-checkbox>
+            </app-demo-section>
+
+            <app-demo-section
                 header="Disabled"
                 description="Disabled checkboxes cannot be toggled."
                 [code]="disabledCode"

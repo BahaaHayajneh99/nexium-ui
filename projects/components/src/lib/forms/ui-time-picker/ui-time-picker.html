@@ -1,7 +1,7 @@
 <div class="nx-time-picker" [class.disabled]="disabled" [class.inline]="inline">
 
     @if (!inline) {
-        <div class="nx-time-picker-input-wrapper" (click)="toggle()">
+        <div class="nx-time-picker-input-wrapper" [class.invalid]="!!displayError" (click)="toggle()">
             <input
                 class="nx-time-picker-input"
                 type="text"
@@ -9,6 +9,8 @@
                 [placeholder]="placeholder"
                 [disabled]="disabled"
                 [value]="displayValue"
+                [attr.aria-required]="isRequired ? true : null"
+                [attr.aria-invalid]="displayError ? true : null"
                 (blur)="onBlur()" />
             <nx-icon class="nx-time-picker-icon" icon="nx-clock" variant="svg" [size]="16"></nx-icon>
         </div>
@@ -55,6 +57,10 @@
             }
 
         </div>
+    }
+
+    @if (displayError) {
+        <span class="nx-time-picker-error">{{ displayError }}</span>
     }
 
 </div>

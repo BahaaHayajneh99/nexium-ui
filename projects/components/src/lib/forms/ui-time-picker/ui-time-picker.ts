@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef, numberAttribute } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { NxIcon } from '../../data-display/ui-icon';
 
 @Component({
@@ -14,9 +14,14 @@ import { NxIcon } from '../../data-display/ui-icon';
       useExisting: forwardRef(() => NxTimePicker),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxTimePicker),
+      multi: true,
+    },
   ],
 })
-export class NxTimePicker implements ControlValueAccessor {
+export class NxTimePicker implements ControlValueAccessor, Validator {
   /** Display/output format - supports `HH` (24h), `hh` (12h), `mm`, `ss`, `A` (AM/PM) tokens, e.g. `'HH:mm'`, `'hh:mm A'`, `'HH:mm:ss'`. */
   @Input() format = 'HH:mm';
   @Input() value = '';
@@ -29,12 +34,16 @@ export class NxTimePicker implements ControlValueAccessor {
   @Input() minTime?: string;
   /** Latest selectable time, as a 24-hour `"HH:mm"` string, e.g. `'17:00'`. */
   @Input() maxTime?: string;
+  /** Marks the field as required - a time must be selected. Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'Please select a time';
 
   @Output() valueChange = new EventEmitter<string>();
   /** Alias of `valueChange`, emitted at the same time. */
   @Output() timeChange = new EventEmitter<string>();
 
   open = false;
+  touched = false;
 
   private hour24 = 0;
   private minute = 0;
@@ -42,6 +51,17 @@ export class NxTimePicker implements ControlValueAccessor {
 
   private onChangeFn: (value: string) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
+
+  get displayError(): string {
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && !this.value) {
+      return this.requiredErrorMessage;
+    }
+    return '';
+  }
 
   get use12Hour(): boolean {
     return /h|A/.test(this.format);
@@ -102,6 +122,7 @@ export class NxTimePicker implements ControlValueAccessor {
   }
 
   onBlur(): void {
+    this.touched = true;
     this.onTouchedFn();
     setTimeout(() => (this.open = false), 150);
   }
@@ -251,5 +272,16 @@ export class NxTimePicker implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.isRequired && !control.value) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 }

@@ -12,9 +12,46 @@
             <app-demo-section
                 header="Document Upload"
                 description="Restrict the accepted files to common document formats."
-                [code]="basicCode"
-                [tsCode]="basicTs">
-                <nx-file-upload accept=".pdf,.doc,.docx,.txt" label="Drop a document here or click to browse"></nx-file-upload>
+                [code]="basicCode">
+                <nx-file-upload accept=".pdf,.doc,.docx,.txt" label="Drop documents here or click to browse" multiple></nx-file-upload>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Single File"
+                description="Omit multiple to restrict selection to one document at a time - picking a new file replaces the previous one instead of adding to the list."
+                [code]="singleFileCode">
+                <nx-file-upload accept=".pdf,.doc,.docx,.txt" label="Drop a single document here or click to browse"></nx-file-upload>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reacting to filesSelected"
+                description="The built-in list already shows each file's name and size - listen to filesSelected when you need to react elsewhere on the page, e.g. a running total or enabling a submit button."
+                [code]="dragDropCode"
+                [tsCode]="dragDropTs">
+                <nx-file-upload
+                    accept=".pdf,.doc,.docx,.txt"
+                    label="Drag documents here, or click to browse"
+                    multiple
+                    (filesSelected)="selectedFiles = $event">
+                </nx-file-upload>
+                @if (selectedFiles.length) {
+                    <p class="selected-files-summary">
+                        {{ selectedFiles.length }} file{{ selectedFiles.length > 1 ? 's' : '' }} selected -
+                        {{ totalSize(selectedFiles) | nxFileSize }} total
+                    </p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Click to Browse Only"
+                description="Set draggable to false to disable drag-and-drop entirely - the zone only responds to a click, opening the native file picker. Useful when the surrounding page already handles drag-and-drop for something else."
+                [code]="noDragCode">
+                <nx-file-upload
+                    accept=".pdf,.doc,.docx,.txt"
+                    label="Click to browse - drag & drop is disabled"
+                    [draggable]="false"
+                    multiple>
+                </nx-file-upload>
             </app-demo-section>
 
         </div>

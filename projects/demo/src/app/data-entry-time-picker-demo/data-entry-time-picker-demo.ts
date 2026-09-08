@@ -67,6 +67,14 @@ export class DataEntryTimePickerDemo {
   [disabled]="true">
 </nx-time-picker>`;
 
+  requiredTime = '';
+
+  requiredCode = `<nx-time-picker
+  format="HH:mm"
+  [isRequired]="true"
+  [(ngModel)]="requiredTime">
+</nx-time-picker>`;
+
   features = [
     { name: '12/24 Hour Format', description: 'Support both time formats' },
     { name: 'Minute Intervals', description: 'Configurable minute steps' },

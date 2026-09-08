@@ -39,6 +39,21 @@
                 </nx-select>
             </app-demo-section>
 
+            <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the field mandatory - a '*' appears next to the label and a validation message shows once the field is touched without a selection."
+                [code]="requiredCode"
+                [tsCode]="requiredTs"
+                [hasSampleClass]="false">
+                <nx-select
+                    label="Plan"
+                    placeholder="Choose a plan"
+                    [options]="planOptions"
+                    [isRequired]="true"
+                    [(ngModel)]="plan">
+                </nx-select>
+            </app-demo-section>
+
         </div>
     </div>
 </div>

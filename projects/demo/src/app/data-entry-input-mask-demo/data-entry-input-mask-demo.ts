@@ -75,4 +75,25 @@ export class DataEntryInputMaskDemo {
     { title: 'Registration', description: 'License numbers' },
   ];
 
+  requiredPhone = '';
+
+  requiredCode = `<nx-mask
+  label="Phone Number"
+  type="phone"
+  [isRequired]="true"
+  [(ngModel)]="requiredPhone"
+  placeholder="(123) 456-7890">
+</nx-mask>`;
+
+  patternZip = '';
+
+  patternCode = `<nx-mask
+  label="ZIP Code"
+  type="zip"
+  pattern="numeric"
+  [isRequired]="true"
+  [(ngModel)]="patternZip"
+  placeholder="12345">
+</nx-mask>`;
+
 }

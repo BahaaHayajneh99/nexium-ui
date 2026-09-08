@@ -36,6 +36,14 @@
                 <nx-toggle [(ngModel)]="bold">Bold</nx-toggle>
             </app-demo-section>
 
+            <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the toggle mandatory - it must be pressed, and a validation message shows once the toggle is blurred while still unpressed. Note there is no built-in asterisk marker here, since the toggle has no separate label element like the checkbox or switch - the required state is only surfaced through the error message."
+                [code]="requiredCode"
+                [tsCode]="requiredTs">
+                <nx-toggle [isRequired]="true" [(ngModel)]="accepted">Accept</nx-toggle>
+            </app-demo-section>
+
         </div>
     </div>
 </div>

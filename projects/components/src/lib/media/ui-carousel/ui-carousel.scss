@@ -1,14 +1,12 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-carousel {
     position: relative;
     overflow: hidden;
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
 }
 
 .nx-carousel-track {
     display: flex;
-    transition: transform $transition-fast;
+    transition: transform var(--nx-transition-fast, .15s ease);
 }
 
 .nx-carousel-slide {
@@ -45,10 +43,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    padding: $spacing-md;
+    padding: var(--nx-spacing-md, 16px);
     background: linear-gradient(to top, rgba(0, 0, 0, .65), transparent);
-    color: $white-color;
-    font-size: $font-size-sm;
+    color: var(--white-color, #ffffff);
+    font-size: var(--nx-font-size-sm, 14px);
 }
 
 .nx-carousel-arrow {
@@ -61,11 +59,11 @@
     width: 36px;
     height: 36px;
     border: none;
-    border-radius: $radius-round;
+    border-radius: var(--nx-radius-round, 999px);
     background: rgba(0, 0, 0, .45);
-    color: $white-color;
+    color: var(--white-color, #ffffff);
     cursor: pointer;
-    transition: background-color $transition-fast;
+    transition: background-color var(--nx-transition-fast, .15s ease);
 
     &:hover {
         background: rgba(0, 0, 0, .65);
@@ -73,22 +71,22 @@
 }
 
 .nx-carousel-arrow-prev {
-    left: $spacing-sm;
+    left: var(--nx-spacing-sm, 8px);
 }
 
 .nx-carousel-arrow-next {
-    right: $spacing-sm;
+    right: var(--nx-spacing-sm, 8px);
 }
 
 .nx-carousel-indicators {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: $spacing-sm;
+    bottom: var(--nx-spacing-sm, 8px);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: $spacing-xs;
+    gap: var(--nx-spacing-xs, 4px);
 }
 
 .nx-carousel-dot {
@@ -96,13 +94,13 @@
     height: 8px;
     padding: 0;
     border: none;
-    border-radius: $radius-round;
+    border-radius: var(--nx-radius-round, 999px);
     background: rgba(255, 255, 255, .5);
     cursor: pointer;
-    transition: background-color $transition-fast, width $transition-fast;
+    transition: background-color var(--nx-transition-fast, .15s ease), width var(--nx-transition-fast, .15s ease);
 
     &.active {
         width: 20px;
-        background: $white-color;
+        background: var(--white-color, #ffffff);
     }
 }

@@ -1,9 +1,7 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-time-picker {
     position: relative;
     display: inline-block;
-    font-family: $font-family;
+    font-family: var(--font-family, "Roboto", sans-serif);
 
     &.inline {
         display: block;
@@ -13,15 +11,15 @@
 .nx-time-picker-input-wrapper {
     display: flex;
     align-items: center;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
 
-    padding: $spacing-xs $spacing-sm;
+    padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
     background-color: var(--shell-surface);
     cursor: pointer;
 
-    transition: border-color $transition-fast;
+    transition: border-color var(--nx-transition-fast, .15s ease);
 
     &:focus-within {
         border-color: var(--shell-primary);
@@ -33,14 +31,25 @@
     cursor: not-allowed;
 }
 
+.nx-time-picker-input-wrapper.invalid {
+    border-color: #e74c3c;
+}
+
+.nx-time-picker-error {
+    display: block;
+    margin-top: var(--nx-spacing-xs, 4px);
+    font-size: 12px;
+    color: #e74c3c;
+}
+
 .nx-time-picker-input {
     flex: 1;
     min-width: 90px;
     border: none;
     outline: none;
     background: transparent;
-    padding: $spacing-xs 0;
-    font-size: $font-size-md;
+    padding: var(--nx-spacing-xs, 4px) 0;
+    font-size: var(--nx-font-size-md, 16px);
     font-family: inherit;
     color: var(--shell-text);
     cursor: inherit;
@@ -57,7 +66,7 @@
 
 .nx-time-picker-panel {
     position: absolute;
-    top: calc(100% + #{$spacing-xs});
+    top: calc(100% + var(--nx-spacing-xs, 4px));
     left: 0;
     z-index: 20;
 
@@ -66,7 +75,7 @@
 
     background: var(--shell-border);
     border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
@@ -84,9 +93,9 @@
 }
 
 .nx-time-picker-column-label {
-    padding: $spacing-xs $spacing-sm;
-    font-size: $font-size-xs;
-    font-weight: $font-weight-semibold;
+    padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
+    font-size: var(--nx-font-size-xs, 12px);
+    font-weight: var(--nx-font-weight-semibold, 600);
     color: var(--shell-text-muted);
     text-align: center;
     border-bottom: 1px solid var(--shell-border);
@@ -94,18 +103,18 @@
 
 .nx-time-picker-list {
     margin: 0;
-    padding: $spacing-xs 0;
+    padding: var(--nx-spacing-xs, 4px) 0;
     list-style: none;
     max-height: 180px;
     overflow-y: auto;
 
     li {
-        padding: $spacing-xs $spacing-sm;
+        padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
         text-align: center;
-        font-size: $font-size-sm;
+        font-size: var(--nx-font-size-sm, 14px);
         color: var(--shell-text);
         cursor: pointer;
-        transition: background-color $transition-fast;
+        transition: background-color var(--nx-transition-fast, .15s ease);
 
         &:hover {
             background-color: var(--shell-surface-hover);
@@ -113,24 +122,24 @@
 
         &.active {
             background-color: var(--shell-primary);
-            color: $white-color;
+            color: var(--white-color, #ffffff);
         }
     }
 }
 
 .nx-time-picker-period {
-    padding: $spacing-xs;
-    gap: $spacing-xs;
+    padding: var(--nx-spacing-xs, 4px);
+    gap: var(--nx-spacing-xs, 4px);
 
     button {
-        padding: $spacing-xs $spacing-sm;
+        padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
         border: 1px solid var(--shell-border);
-        border-radius: $radius-sm;
+        border-radius: var(--nx-radius-sm, 4px);
         background: var(--shell-surface);
         color: var(--shell-text);
-        font-size: $font-size-sm;
+        font-size: var(--nx-font-size-sm, 14px);
         cursor: pointer;
-        transition: all $transition-fast;
+        transition: all var(--nx-transition-fast, .15s ease);
 
         &:hover {
             border-color: var(--shell-primary);
@@ -139,7 +148,7 @@
         &.active {
             background-color: var(--shell-primary);
             border-color: var(--shell-primary);
-            color: $white-color;
+            color: var(--white-color, #ffffff);
         }
     }
 }

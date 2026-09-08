@@ -39,6 +39,22 @@
             </app-demo-section>
 
             <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the field mandatory - a '*' appears next to the label and a validation message shows once the field is touched and left empty."
+                [code]="requiredCode"
+                [hasSampleClass]="false">
+                <nx-input label="Username" placeholder="Enter your username" [isRequired]="true" [(ngModel)]="username"></nx-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pattern Validation"
+                description="Use pattern with a named preset ('email', 'url', 'phone', 'numeric', 'alpha', 'alphanumeric'), a custom RegExp, or a regex string to validate the field's format once it's touched."
+                [code]="patternCode"
+                [hasSampleClass]="false">
+                <nx-input label="Email" placeholder="Enter your email" pattern="email" [(ngModel)]="patternEmail"></nx-input>
+            </app-demo-section>
+
+            <app-demo-section
                 header="Disabled Input"
                 description="Disabled inputs cannot be edited."
                 [code]="disabledCode"

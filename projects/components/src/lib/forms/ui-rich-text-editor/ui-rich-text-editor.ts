@@ -11,7 +11,7 @@ import {
   booleanAttribute,
   forwardRef,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 interface ToolbarButton {
   label: string;
@@ -54,12 +54,20 @@ const TOOLBAR: ToolbarButton[] = [
       useExisting: forwardRef(() => NxRichTextEditor),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxRichTextEditor),
+      multi: true,
+    },
   ],
 })
-export class NxRichTextEditor implements AfterViewInit, OnChanges, ControlValueAccessor {
+export class NxRichTextEditor implements AfterViewInit, OnChanges, ControlValueAccessor, Validator {
   @Input() value = '';
   @Input() placeholder = 'Write something...';
   @Input({ transform: booleanAttribute }) disabled = false;
+  /** Marks the field as required - some non-empty text content must be entered. Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'This field is required';
 
   @Output() valueChange = new EventEmitter<string>();
 
@@ -67,8 +75,25 @@ export class NxRichTextEditor implements AfterViewInit, OnChanges, ControlValueA
 
   readonly toolbar = TOOLBAR;
 
+  touched = false;
+
   private onChangeFn: (value: string) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
+
+  private get plainText(): string {
+    return (this.value ?? '').replace(/<[^>]*>/g, '').trim();
+  }
+
+  get displayError(): string {
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && !this.plainText) {
+      return this.requiredErrorMessage;
+    }
+    return '';
+  }
 
   ngAfterViewInit(): void {
     this.editorRef.nativeElement.innerHTML = this.value;
@@ -115,6 +140,7 @@ export class NxRichTextEditor implements AfterViewInit, OnChanges, ControlValueA
   }
 
   onBlur(): void {
+    this.touched = true;
     this.onTouchedFn();
   }
 
@@ -135,6 +161,18 @@ export class NxRichTextEditor implements AfterViewInit, OnChanges, ControlValueA
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    const plain = ((control.value as string) ?? '').replace(/<[^>]*>/g, '').trim();
+    if (this.isRequired && !plain) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 
   private syncValue(): void {

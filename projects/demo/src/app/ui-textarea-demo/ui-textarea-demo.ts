@@ -35,4 +35,14 @@ export class UiTextareaDemo {
 </nx-textarea>`;
 
   rowsTs = this.templateTs;
+
+  requiredMessage = '';
+
+  requiredCode = `<nx-textarea label="Feedback" placeholder="Tell us what you think" [isRequired]="true" [(ngModel)]="requiredMessage">
+</nx-textarea>`;
+
+  patternMessage = '';
+
+  patternCode = `<nx-textarea label="Bio" placeholder="Letters only, please" pattern="alpha" [(ngModel)]="patternMessage">
+</nx-textarea>`;
 }

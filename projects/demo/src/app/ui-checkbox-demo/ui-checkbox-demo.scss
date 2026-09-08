@@ -1,13 +1,11 @@
-@use '../variables.scss' as *;
-
 .nx-checkbox-layout-controls {
     display: flex;
-    gap: $spacing-sm;
-    margin-bottom: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-sm, 8px);
 
     .demo-btn.active {
         background-color: var(--shell-primary);
-        color: $white-color;
+        color: var(--white-color, #ffffff);
         border-color: var(--shell-primary);
     }
 }
@@ -15,11 +13,11 @@
 .nx-checkbox-list {
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
 
     &.nx-checkbox-list-inline {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: $spacing-md;
+        gap: var(--nx-spacing-md, 16px);
     }
 }

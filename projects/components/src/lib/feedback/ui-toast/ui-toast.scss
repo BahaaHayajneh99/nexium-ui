@@ -1,44 +1,42 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-toast-container {
     position: fixed;
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
     z-index: 2000;
 
     &.top-left {
-        top: $spacing-lg;
-        left: $spacing-lg;
+        top: var(--nx-spacing-lg, 24px);
+        left: var(--nx-spacing-lg, 24px);
     }
 
     &.top-center {
-        top: $spacing-lg;
+        top: var(--nx-spacing-lg, 24px);
         left: 50%;
         align-items: center;
         transform: translateX(-50%);
     }
 
     &.top-right {
-        top: $spacing-lg;
-        right: $spacing-lg;
+        top: var(--nx-spacing-lg, 24px);
+        right: var(--nx-spacing-lg, 24px);
     }
 
     &.bottom-left {
-        bottom: $spacing-lg;
-        left: $spacing-lg;
+        bottom: var(--nx-spacing-lg, 24px);
+        left: var(--nx-spacing-lg, 24px);
     }
 
     &.bottom-center {
-        bottom: $spacing-lg;
+        bottom: var(--nx-spacing-lg, 24px);
         left: 50%;
         align-items: center;
         transform: translateX(-50%);
     }
 
     &.bottom-right {
-        bottom: $spacing-lg;
-        right: $spacing-lg;
+        bottom: var(--nx-spacing-lg, 24px);
+        right: var(--nx-spacing-lg, 24px);
     }
 }
 
@@ -46,25 +44,25 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: $spacing-md;
+    gap: var(--nx-spacing-md, 16px);
     min-width: 260px;
-    padding: $spacing-sm $spacing-md;
-    border-radius: $radius-sm;
-    border-left: 4px solid $info-color;
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
+    border-radius: var(--nx-radius-sm, 4px);
+    border-left: 4px solid var(--info-color, #17a2b8);
     background-color: var(--shell-surface);
-    box-shadow: $shadow-md;
+    box-shadow: var(--nx-shadow-md, 0 4px 8px rgba(0, 0, 0, .12));
     color: var(--shell-text);
 
-    &.success { border-left-color: $success-color; }
-    &.danger { border-left-color: $danger-color; }
-    &.warning { border-left-color: $warning-color; }
-    &.info { border-left-color: $info-color; }
+    &.success { border-left-color: var(--success-color, #28a745); }
+    &.danger { border-left-color: var(--danger-color, #e74c3c); }
+    &.warning { border-left-color: var(--warning-color, #f39c12); }
+    &.info { border-left-color: var(--info-color, #17a2b8); }
 }
 
 .nx-toast-close {
     border: none;
     background: none;
     cursor: pointer;
-    font-size: $font-size-md;
+    font-size: var(--nx-font-size-md, 16px);
     color: var(--shell-text-secondary);
 }

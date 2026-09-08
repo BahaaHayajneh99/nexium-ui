@@ -1,5 +1,5 @@
 <div class="nx-search-wrapper">
-    <div class="nx-search" [class.disabled]="disabled">
+    <div class="nx-search" [class.disabled]="disabled" [class.error]="!!displayError">
         <nx-icon class="nx-search-icon" icon="nx-search" variant="svg" [size]="18"></nx-icon>
 
         <input
@@ -7,6 +7,8 @@
             type="text"
             [placeholder]="placeholder"
             [disabled]="disabled"
+            [attr.aria-required]="isRequired ? true : null"
+            [attr.aria-invalid]="displayError ? true : null"
             [value]="value"
             (input)="onInput($event)"
             (focus)="onFocus()"
@@ -19,6 +21,10 @@
             </button>
         }
     </div>
+
+    @if (displayError) {
+        <span class="nx-search-error">{{ displayError }}</span>
+    }
 
     @if (showPanel) {
         <ul class="nx-search-results">

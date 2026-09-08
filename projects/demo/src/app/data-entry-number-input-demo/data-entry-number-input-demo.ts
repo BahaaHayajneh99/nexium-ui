@@ -87,6 +87,12 @@ export class DataEntryNumberInputDemo {
     { name: 'Prefix & Suffix', description: 'Display $, %, or custom symbols' },
   ];
 
+  requiredQuantity: number | null = null;
+
+  requiredCode = `<nx-number label="Quantity" placeholder="Enter quantity" [isRequired]="true" [(ngModel)]="requiredQuantity"></nx-number>`;
+
+  requiredTs = `requiredQuantity: number | null = null;`;
+
   useCases = [
     { title: 'E-commerce', description: 'Product quantity selection' },
     { title: 'Pricing', description: 'Price and discount calculations' },

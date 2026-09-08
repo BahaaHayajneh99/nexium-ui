@@ -30,6 +30,15 @@
             </app-demo-section>
 
             <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the switch mandatory - it must be turned on, and a validation message shows once the switch is blurred while still off."
+                [code]="requiredCode"
+                [tsCode]="requiredTs"
+                [hasSampleClass]="false">
+                <nx-switch label="I accept the terms and conditions" [isRequired]="true" [(ngModel)]="termsAccepted"></nx-switch>
+            </app-demo-section>
+
+            <app-demo-section
                 header="Disabled Switch"
                 description="Disabled switches cannot be toggled."
                 [code]="disabledCode"

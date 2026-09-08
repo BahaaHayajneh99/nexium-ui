@@ -1,17 +1,15 @@
-@use '../variables.scss' as *;
-
 .rtl-preview {
     border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
-    padding: $spacing-lg;
+    border-radius: var(--nx-radius-md, 8px);
+    padding: var(--nx-spacing-lg, 24px);
 }
 
 .rtl-preview-row {
     display: flex;
     align-items: center;
-    gap: $spacing-sm;
-    margin-bottom: $spacing-sm;
-    font-weight: $font-weight-semibold;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-sm, 8px);
+    font-weight: var(--nx-font-weight-semibold, 600);
     color: var(--shell-text);
 }
 
@@ -22,13 +20,13 @@
 .rtl-preview-badge {
     margin-inline-start: auto;
     background: var(--shell-primary);
-    color: $white-color;
-    border-radius: $radius-round;
+    color: var(--white-color, #ffffff);
+    border-radius: var(--nx-radius-round, 999px);
     padding: 2px 8px;
-    font-size: $font-size-xs;
+    font-size: var(--nx-font-size-xs, 12px);
 }
 
 .rtl-preview-text {
     color: var(--shell-text-secondary);
-    font-size: $font-size-sm;
+    font-size: var(--nx-font-size-sm, 14px);
 }

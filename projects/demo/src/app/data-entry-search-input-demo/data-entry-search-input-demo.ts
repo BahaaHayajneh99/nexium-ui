@@ -76,4 +76,21 @@ export class DataEntrySearchInputDemo {
     this.searchTerm = '';
     this.filteredResults = [];
   }
+
+  requiredSearchTerm = '';
+
+  requiredCode = `<label>Search Keyword *</label>
+<nx-search
+  placeholder="Search for a keyword..."
+  [isRequired]="true"
+  [(ngModel)]="requiredSearchTerm">
+</nx-search>`;
+
+  patternSearchTerm = '';
+
+  patternCode = `<nx-search
+  placeholder="Search by ID (digits only)..."
+  pattern="numeric"
+  [(ngModel)]="patternSearchTerm">
+</nx-search>`;
 }

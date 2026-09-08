@@ -1,19 +1,25 @@
 <div class="nx-color-picker-wrapper">
     @if (label) {
-        <label class="nx-color-picker-label">{{ label }}</label>
+        <label class="nx-color-picker-label">{{ label }}@if (isRequired) {<span class="nx-color-picker-required">*</span>}</label>
     }
 
     <button
         type="button"
         class="nx-color-picker-field"
-        [class.invalid]="invalid"
+        [class.invalid]="invalid || !!displayError"
         [class.disabled]="disabled"
         [class.open]="open"
         [disabled]="disabled"
+        [attr.aria-required]="isRequired ? true : null"
+        [attr.aria-invalid]="(invalid || !!displayError) ? true : null"
         (click)="toggle()">
         <span class="nx-color-picker-swatch" [style.background]="isValidHex ? value : 'transparent'"></span>
         <span class="nx-color-picker-value">{{ value }}</span>
     </button>
+
+    @if (displayError) {
+        <span class="nx-color-picker-error">{{ displayError }}</span>
+    }
 
     @if (open) {
         <div class="nx-color-picker-panel">

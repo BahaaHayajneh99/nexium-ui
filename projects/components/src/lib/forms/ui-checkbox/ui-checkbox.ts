@@ -1,26 +1,30 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 @Component({
   selector: 'nx-checkbox',
   standalone: true,
   imports: [NgClass],
   template: `
-    <label class="nx-checkbox" [ngClass]="variant" [class.disabled]="disabled" [class.invalid]="invalid">
+    <label class="nx-checkbox" [ngClass]="variant" [class.disabled]="disabled" [class.invalid]="invalid || !!displayError">
       <input
         type="checkbox"
         class="nx-checkbox-input"
         [checked]="checked"
         [disabled]="disabled"
-        [attr.aria-invalid]="invalid ? true : null"
+        [attr.aria-required]="isRequired ? true : null"
+        [attr.aria-invalid]="(invalid || !!displayError) ? true : null"
         (change)="onChange($event)"
         (blur)="onBlur()" />
       <span class="nx-checkbox-box"></span>
       @if (label) {
-        <span class="nx-checkbox-label">{{ label }}</span>
+        <span class="nx-checkbox-label">{{ label }}@if (isRequired) {<span class="nx-checkbox-required">*</span>}</span>
       }
     </label>
+    @if (displayError) {
+      <span class="nx-checkbox-error">{{ displayError }}</span>
+    }
   `,
   styles: `
     .nx-checkbox {
@@ -74,6 +78,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     .nx-checkbox.filled .nx-checkbox-input:checked + .nx-checkbox-box { background-color: var(--shell-primary); }
     .nx-checkbox.invalid .nx-checkbox-box { border-color: #e74c3c; }
     .nx-checkbox.invalid .nx-checkbox-label { color: #e74c3c; }
+    .nx-checkbox-required { color: #e74c3c; margin-left: 2px; }
+    .nx-checkbox-error { display: block; font-size: 12px; color: #e74c3c; margin-top: 4px; }
   `,
   providers: [
     {
@@ -81,19 +87,37 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       useExisting: forwardRef(() => NxCheckbox),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxCheckbox),
+      multi: true,
+    },
   ],
 })
-export class NxCheckbox implements ControlValueAccessor {
+export class NxCheckbox implements ControlValueAccessor, Validator {
   @Input({ transform: booleanAttribute }) checked = false;
   @Input({ transform: booleanAttribute }) disabled = false;
   @Input({ transform: booleanAttribute }) invalid = false;
   @Input() variant: 'outlined' | 'filled' = 'outlined';
   @Input() label = '';
+  /** Marks the checkbox as required - must be checked. Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'This field is required';
 
   @Output() checkedChange = new EventEmitter<boolean>();
 
+  touched = false;
+
   private onChangeFn: (value: boolean) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
+
+  get displayError(): string {
+    if (this.touched && this.isRequired && !this.checked) {
+      return this.requiredErrorMessage;
+    }
+    return '';
+  }
 
   onChange(event: Event): void {
     this.checked = (event.target as HTMLInputElement).checked;
@@ -102,6 +126,7 @@ export class NxCheckbox implements ControlValueAccessor {
   }
 
   onBlur(): void {
+    this.touched = true;
     this.onTouchedFn();
   }
 
@@ -119,5 +144,16 @@ export class NxCheckbox implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.isRequired && !control.value) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 }

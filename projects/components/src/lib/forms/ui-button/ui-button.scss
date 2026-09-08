@@ -1,10 +1,7 @@
-
-@import '../../../../../demo/src/app/variables.scss';
-
 .btn {
 
     border: 1px solid transparent;
-    border-radius: $radius-sm;
+    border-radius: var(--nx-radius-sm, 4px);
     cursor: pointer;
     transition: all .2s ease;
 
@@ -15,83 +12,83 @@
 
 
     &.primary {
-        background-color: $primary-color;
-        color: $white-color;
+        background-color: var(--shell-primary, #3498db);
+        color: var(--white-color, #ffffff);
 
         &:hover {
-            background-color: $primary-color-dark;
+            background-color: var(--primary-color-dark, #2980b9);
         }
     }
 
 
     &.secondary {
-        background-color: $secondary-color;
-        color: $white-color;
+        background-color: var(--secondary-color, #6c757d);
+        color: var(--white-color, #ffffff);
 
         &:hover {
-            background-color: $secondary-color-dark;
+            background-color: var(--secondary-color-dark, #495057);
         }
     }
 
 
     &.danger {
-        background-color: $danger-color;
-        color: $white-color;
+        background-color: var(--danger-color, #e74c3c);
+        color: var(--white-color, #ffffff);
 
         &:hover {
-            background-color: $danger-color-dark;
+            background-color: var(--danger-color-dark, #c0392b);
         }
     }
 
 
     &.success {
-        background-color: $success-color;
-        color: $white-color;
+        background-color: var(--success-color, #28a745);
+        color: var(--white-color, #ffffff);
 
         &:hover {
-            background-color: $success-color-dark;
+            background-color: var(--success-color-dark, #218838);
         }
     }
 
 
     &.warning {
-        background-color: $warning-color;
-        color: $black-color;
+        background-color: var(--warning-color, #f39c12);
+        color: var(--black-color, #000000);
 
         &:hover {
-            background-color: $warning-color-dark;
+            background-color: var(--warning-color-dark, #d68910);
         }
     }
 
 
     &.info {
-        background-color: $info-color;
-        color: $white-color;
+        background-color: var(--info-color, #17a2b8);
+        color: var(--white-color, #ffffff);
 
         &:hover {
-            background-color: $info-color-dark;
+            background-color: var(--info-color-dark, #138496);
         }
     }
 
 
     &.outline {
         background-color: transparent;
-        border-color: $primary-color;
-        color: $primary-color;
+        border-color: var(--shell-primary, #3498db);
+        color: var(--shell-primary, #3498db);
 
         &:hover {
-            background-color: $primary-color;
-            color: $white-color;
+            background-color: var(--shell-primary, #3498db);
+            color: var(--white-color, #ffffff);
         }
     }
 
 
     &.ghost {
         background-color: transparent;
-        color: $primary-color;
+        color: var(--shell-primary, #3498db);
 
         &:hover {
-            background-color: rgba($primary-color, .1);
+            background-color: color-mix(in srgb, var(--shell-primary, #3498db) 10%, transparent);
         }
     }
 
@@ -100,7 +97,7 @@
     &.text {
         background: transparent;
         border: none;
-        color: $primary-color;
+        color: var(--shell-primary, #3498db);
 
         &:hover {
             text-decoration: underline;
@@ -109,53 +106,53 @@
 
 
     &.dark {
-        background-color: $gray-800;
-        color: $white-color;
+        background-color: var(--gray-800, #343a40);
+        color: var(--white-color, #ffffff);
 
         &:hover {
-            background-color: $gray-900;
+            background-color: var(--gray-900, #212529);
         }
     }
 
 
     &.light {
-        background-color: $gray-50;
-        color: $gray-900;
+        background-color: var(--gray-50, #f8f9fa);
+        color: var(--gray-900, #212529);
 
         &:hover {
-            background-color: $gray-200;
+            background-color: var(--gray-200, #e9ecef);
         }
     }
 
 
     &.disabled {
-        background-color: $disabled-bg;
-        color: $disabled-color;
+        background-color: var(--disabled-bg, #e9ecef);
+        color: var(--disabled-color, #9e9e9e);
         cursor: not-allowed;
         pointer-events: none;
     }
 
     //Rounded
     &.rounded {
-        border-radius: $radius-round;
+        border-radius: var(--nx-radius-round, 999px);
     }
 
 
     // Sizes
     &.small {
-        padding: $spacing-xs $spacing-sm;
+        padding: var(--nx-spacing-xs, 4px) var(--nx-spacing-sm, 8px);
         font-size: 12px;
     }
 
 
     &.medium {
-        padding: $spacing-sm $spacing-md;
+        padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
         font-size: 14px;
     }
 
 
     &.large {
-        padding: $spacing-md $spacing-lg;
+        padding: var(--nx-spacing-md, 16px) var(--nx-spacing-lg, 24px);
         font-size: 16px;
     }
 }

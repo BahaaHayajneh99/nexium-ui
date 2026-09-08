@@ -45,6 +45,33 @@
                 }
             </app-demo-section>
 
+            <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the field mandatory - since nx-mention has no built-in label, add a plain label in the demo markup - a validation message shows once the field is touched and left empty."
+                [code]="requiredCode"
+                [hasSampleClass]="false">
+                <label class="template-form-note">Comment <span style="color: #e74c3c;">*</span></label>
+                <nx-mention
+                    [isRequired]="true"
+                    [(ngModel)]="requiredComment"
+                    [suggestions]="teammates"
+                    placeholder="Leave a comment - type @ to mention someone">
+                </nx-mention>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pattern Validation"
+                description="Use pattern with a named preset ('email', 'url', 'phone', 'numeric', 'alpha', 'alphanumeric'), a custom RegExp, or a regex string to validate the field's format once it's touched - here 'alphanumeric' restricts the comment to letters and digits."
+                [code]="patternCode"
+                [hasSampleClass]="false">
+                <nx-mention
+                    pattern="alphanumeric"
+                    [(ngModel)]="patternComment"
+                    [suggestions]="teammates"
+                    placeholder="Letters and digits only">
+                </nx-mention>
+            </app-demo-section>
+
         </div>
     </div>
 </div>

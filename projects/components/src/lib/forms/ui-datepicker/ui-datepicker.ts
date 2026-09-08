@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -78,9 +78,14 @@ function compareYmd(a: YMD, b: YMD): number {
       useExisting: forwardRef(() => NxDatepicker),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxDatepicker),
+      multi: true,
+    },
   ],
 })
-export class NxDatepicker implements ControlValueAccessor {
+export class NxDatepicker implements ControlValueAccessor, Validator {
   @Input() label = '';
   @Input() placeholder = 'Select date';
   @Input() value = '';
@@ -92,20 +97,17 @@ export class NxDatepicker implements ControlValueAccessor {
   @Input({ transform: booleanAttribute }) showIcon = true;
   @Input({ transform: booleanAttribute }) range = false;
   @Input({ transform: booleanAttribute }) showTime = false;
+  /** Marks the field as required - a value must be selected (both dates, in range mode). Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'Please select a date';
 
   @Output() valueChange = new EventEmitter<string>();
   @Output() endValueChange = new EventEmitter<string>();
 
-  readonly calendarIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
-    <path d="M3 9H21" stroke="currentColor" stroke-width="2"/>
-    <path d="M8 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M16 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </svg>`;
-
   readonly weekdayLabels = WEEKDAY_LABELS;
 
   open = false;
+  touched = false;
   private selectingEnd = false;
   private viewYear: number;
   private viewMonth: number;
@@ -116,11 +118,26 @@ export class NxDatepicker implements ControlValueAccessor {
   // naturally represent a start/end pair without a custom value shape.
   private onChangeFn: (value: string) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
 
   constructor(private elementRef: ElementRef<HTMLElement>) {
     const seed = parseIso(this.value) ?? todayYmd();
     this.viewYear = seed.year;
     this.viewMonth = seed.month;
+  }
+
+  private get isValueMissing(): boolean {
+    return this.range ? (!this.value || !this.endValue) : !this.value;
+  }
+
+  get displayError(): string {
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && this.isValueMissing) {
+      return this.requiredErrorMessage;
+    }
+    return '';
   }
 
   get displayText(): string {
@@ -162,18 +179,21 @@ export class NxDatepicker implements ControlValueAccessor {
       this.viewMonth = seed.month;
       this.selectingEnd = false;
     } else {
+      this.touched = true;
       this.onTouchedFn();
     }
   }
 
   close(): void {
     this.open = false;
+    this.touched = true;
     this.onTouchedFn();
   }
 
   onDocumentClick(event: MouseEvent): void {
     if (!this.elementRef.nativeElement.contains(event.target as Node)) {
       if (this.open) {
+        this.touched = true;
         this.onTouchedFn();
       }
       this.open = false;
@@ -276,6 +296,17 @@ export class NxDatepicker implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.isRequired && this.isValueMissing) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 
   private emitValue(iso: string): void {

@@ -1,15 +1,13 @@
-@use '../variables.scss' as *;
-
 .color-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: $spacing-md;
-    margin-bottom: $spacing-lg;
+    gap: var(--nx-spacing-md, 16px);
+    margin-bottom: var(--nx-spacing-lg, 24px);
 }
 
 .color-swatch {
     border: 1px solid var(--shell-border);
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
     overflow: hidden;
 }
 
@@ -18,17 +16,17 @@
 }
 
 .color-swatch-meta {
-    padding: $spacing-sm $spacing-md;
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
 }
 
 .color-swatch-name {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
     color: var(--shell-text);
 }
 
 .color-swatch-value {
-    font-family: $font-family;
-    font-size: $font-size-xs;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-xs, 12px);
     color: var(--shell-text-muted);
 }

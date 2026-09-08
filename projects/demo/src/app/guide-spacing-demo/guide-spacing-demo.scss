@@ -1,14 +1,12 @@
-@use '../variables.scss' as *;
-
 .spacing-scale {
-    margin-bottom: $spacing-lg;
+    margin-bottom: var(--nx-spacing-lg, 24px);
 }
 
 .spacing-scale-row {
     display: flex;
     align-items: center;
-    gap: $spacing-md;
-    padding: $spacing-sm 0;
+    gap: var(--nx-spacing-md, 16px);
+    padding: var(--nx-spacing-sm, 8px) 0;
     border-bottom: 1px solid var(--shell-border);
 
     &:last-child {
@@ -18,19 +16,19 @@
 
 .spacing-scale-name {
     flex: 0 0 140px;
-    font-family: $font-family;
-    font-size: $font-size-sm;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-sm, 14px);
     color: var(--shell-text-secondary);
 }
 
 .spacing-scale-bar {
     height: 16px;
     background: var(--shell-primary);
-    border-radius: $radius-sm;
+    border-radius: var(--nx-radius-sm, 4px);
 }
 
 .spacing-scale-value {
-    font-family: $font-family;
-    font-size: $font-size-sm;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-sm, 14px);
     color: var(--shell-text-muted);
 }

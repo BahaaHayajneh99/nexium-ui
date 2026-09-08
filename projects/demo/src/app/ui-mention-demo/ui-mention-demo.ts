@@ -68,4 +68,23 @@ onMentioned(suggestion: NxMentionSuggestion): void {
   onMentioned(suggestion: NxMentionSuggestion): void {
     this.lastMentioned = suggestion.label;
   }
+
+  requiredComment = '';
+
+  requiredCode = `<label>Comment *</label>
+<nx-mention
+    [isRequired]="true"
+    [(ngModel)]="requiredComment"
+    [suggestions]="teammates"
+    placeholder="Leave a comment - type @ to mention someone">
+</nx-mention>`;
+
+  patternComment = '';
+
+  patternCode = `<nx-mention
+    pattern="alphanumeric"
+    [(ngModel)]="patternComment"
+    [suggestions]="teammates"
+    placeholder="Letters and digits only">
+</nx-mention>`;
 }

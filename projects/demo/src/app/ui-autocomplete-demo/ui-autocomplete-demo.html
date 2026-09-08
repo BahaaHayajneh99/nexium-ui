@@ -130,6 +130,21 @@
             </app-demo-section>
 
             <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the field mandatory - a validation message shows once the field is touched without a selection."
+                [code]="requiredCode"
+                [tsCode]="requiredTs"
+                [hasSampleClass]="false">
+                <nx-autocomplete
+                    label="City"
+                    placeholder="Search cities..."
+                    [options]="options"
+                    [isRequired]="true"
+                    [(ngModel)]="requiredCity">
+                </nx-autocomplete>
+            </app-demo-section>
+
+            <app-demo-section
                 header="Disabled"
                 description="Set disabled to true to prevent user interaction with the component."
                 [code]="disabledCode"

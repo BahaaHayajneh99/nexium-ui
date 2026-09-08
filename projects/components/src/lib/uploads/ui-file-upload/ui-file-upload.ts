@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NxFileSizePipe } from '../../pipes/nx-file-size.pipe';
 
 @Component({
   selector: 'nx-file-upload',
   standalone: true,
-  imports: [],
+  imports: [NxFileSizePipe],
   templateUrl: './ui-file-upload.html',
   styleUrl: './ui-file-upload.scss',
 })
@@ -11,6 +12,8 @@ export class NxFileUpload {
   @Input() accept = '*';
   @Input({ transform: booleanAttribute }) multiple = false;
   @Input() label = 'Drag & drop files here, or click to browse';
+  /** Set to false to disable drag-and-drop and only allow picking files via the click-to-browse dialog. */
+  @Input({ transform: booleanAttribute }) draggable = true;
 
   @Output() filesSelected = new EventEmitter<File[]>();
 
@@ -19,6 +22,9 @@ export class NxFileUpload {
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();
+    if (!this.draggable) {
+      return;
+    }
     this.isDragging = true;
   }
 
@@ -29,6 +35,9 @@ export class NxFileUpload {
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.isDragging = false;
+    if (!this.draggable) {
+      return;
+    }
     if (event.dataTransfer?.files) {
       this.addFiles(event.dataTransfer.files);
     }

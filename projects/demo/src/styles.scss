@@ -90,6 +90,44 @@
     // Border
     --nx-border-color: #{$border-color};
     --nx-border-hover-color: #{$border-hover-color};
+
+    // Font sizes
+    --nx-font-size-xs: #{$font-size-xs};
+    --nx-font-size-sm: #{$font-size-sm};
+    --nx-font-size-md: #{$font-size-md};
+    --nx-font-size-lg: #{$font-size-lg};
+    --nx-font-size-xl: #{$font-size-xl};
+    --nx-font-size-2xl: #{$font-size-2xl};
+    --nx-font-size-3xl: #{$font-size-3xl};
+    --nx-h1-font-size: #{$h1-font-size};
+    --nx-h2-font-size: #{$h2-font-size};
+    --nx-h3-font-size: #{$h3-font-size};
+    --nx-h4-font-size: #{$h4-font-size};
+    --nx-h5-font-size: #{$h5-font-size};
+    --nx-h6-font-size: #{$h6-font-size};
+    --nx-line-height: #{$line-height};
+    --nx-line-height-code: #{$line-height-code};
+
+    // Transitions
+    --nx-transition-fast: #{$transition-fast};
+    --nx-transition-normal: #{$transition-normal};
+    --nx-transition-slow: #{$transition-slow};
+
+    // Z-index
+    --nx-z-dropdown: #{$z-dropdown};
+    --nx-z-overlay: #{$z-overlay};
+
+    // Tabs
+    --nx-tabs-height: #{$tabs-height};
+    --nx-tabs-active-indicator-height: #{$tabs-active-indicator-height};
+    --nx-tabs-gap: #{$tabs-gap};
+    --nx-tabs-padding: #{$tabs-padding};
+
+    // Component states
+    --disabled-bg: #{$disabled-bg};
+    --disabled-color: #{$disabled-color};
+    --surface-color: #{$surface-color};
+    --surface-hover-color: #{$surface-hover-color};
 }
 
 // ===============================

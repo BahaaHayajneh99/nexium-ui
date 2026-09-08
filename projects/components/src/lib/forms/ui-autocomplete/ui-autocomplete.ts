@@ -10,7 +10,7 @@ import {
   numberAttribute,
 } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 export interface NxAutocompleteOption {
   label: string;
@@ -39,9 +39,14 @@ interface NxAutocompleteRow {
       useExisting: forwardRef(() => NxAutocomplete),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxAutocomplete),
+      multi: true,
+    },
   ],
 })
-export class NxAutocomplete implements ControlValueAccessor {
+export class NxAutocomplete implements ControlValueAccessor, Validator {
   @Input() label = '';
   @Input() placeholder = '';
   @Input() options: NxAutocompleteOptionInput[] = [];
@@ -61,6 +66,9 @@ export class NxAutocomplete implements ControlValueAccessor {
   @Input({ transform: booleanAttribute }) virtualScroll = false;
   @Input({ transform: numberAttribute }) itemSize = 36;
   @Input({ transform: numberAttribute }) scrollHeight = 200;
+  /** Marks the field as required - a value must be selected. Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'Please select a value';
 
   @Output() valueChange = new EventEmitter<any>();
   @Output() valuesChange = new EventEmitter<any[]>();
@@ -71,6 +79,7 @@ export class NxAutocomplete implements ControlValueAccessor {
   focused = false;
   query = '';
   scrollTop = 0;
+  touched = false;
 
   /** Text shown in the single-select input box - kept in sync with the selected option's label, or free-typed text when `bindLabel`/`bindValue` aren't set. */
   displayValue = '';
@@ -92,6 +101,17 @@ export class NxAutocomplete implements ControlValueAccessor {
   // `multiple` at the time it's called.
   private onChangeFn: (value: any) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
+
+  get displayError(): string {
+    if (!this.touched || !this.isRequired) {
+      return '';
+    }
+    const empty = this.multiple
+      ? this.values.length === 0
+      : this.rawValue === '' || this.rawValue === null || this.rawValue === undefined;
+    return empty ? this.requiredErrorMessage : '';
+  }
 
   private get isBoundToObjects(): boolean {
     return !!this.bindLabel || !!this.bindValue;
@@ -220,6 +240,7 @@ export class NxAutocomplete implements ControlValueAccessor {
 
   onBlur(): void {
     this.focused = false;
+    this.touched = true;
     this.onTouchedFn();
     setTimeout(() => (this.showList = false), 150);
   }
@@ -233,6 +254,8 @@ export class NxAutocomplete implements ControlValueAccessor {
   }
 
   selectOption(option: NxAutocompleteOption): void {
+    this.touched = true;
+
     if (this.multiple) {
       if (!this.values.includes(option.value)) {
         this.values = [...this.values, option.value];
@@ -292,5 +315,25 @@ export class NxAutocomplete implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (!this.isRequired) {
+      return null;
+    }
+
+    const value = control.value;
+    const empty = this.multiple
+      ? !Array.isArray(value) || value.length === 0
+      : value === '' || value === null || value === undefined;
+
+    if (empty) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 }

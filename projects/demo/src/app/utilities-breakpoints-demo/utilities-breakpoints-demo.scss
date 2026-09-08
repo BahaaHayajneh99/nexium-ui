@@ -1,14 +1,12 @@
-@use '../variables.scss' as *;
-
 .utility-list {
-    margin-bottom: $spacing-lg;
+    margin-bottom: var(--nx-spacing-lg, 24px);
 }
 
 .utility-row {
     display: flex;
     align-items: center;
-    gap: $spacing-md;
-    padding: $spacing-sm 0;
+    gap: var(--nx-spacing-md, 16px);
+    padding: var(--nx-spacing-sm, 8px) 0;
     border-bottom: 1px solid var(--shell-border);
 
     &:last-child {
@@ -18,20 +16,20 @@
 
 .utility-class {
     flex: 0 0 48px;
-    font-family: $font-family;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
     color: var(--shell-text);
 }
 
 .utility-min {
     flex: 0 0 160px;
-    font-family: $font-family;
-    font-size: $font-size-sm;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-sm, 14px);
     color: var(--shell-text-secondary);
 }
 
 .utility-desc {
-    font-size: $font-size-sm;
+    font-size: var(--nx-font-size-sm, 14px);
     color: var(--shell-text-muted);
 }

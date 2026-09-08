@@ -1,49 +1,47 @@
-@use '../../../../../demo/src/app/variables.scss' as *;
-
 .nx-alert {
     display: flex;
     align-items: flex-start;
-    gap: $spacing-sm;
-    padding: $spacing-md;
-    border-radius: $radius-md;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-md, 16px);
+    border-radius: var(--nx-radius-md, 8px);
     border-left: 4px solid transparent;
-    font-family: $font-family;
-    font-size: $font-size-sm;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-sm, 14px);
     color: var(--shell-text);
 
     &.success {
-        border-left-color: $success-color;
-        background: color-mix(in srgb, $success-color 10%, var(--shell-surface));
+        border-left-color: var(--success-color, #28a745);
+        background: color-mix(in srgb, var(--success-color, #28a745) 10%, var(--shell-surface));
 
         .nx-alert-icon {
-            color: $success-color;
+            color: var(--success-color, #28a745);
         }
     }
 
     &.danger {
-        border-left-color: $danger-color;
-        background: color-mix(in srgb, $danger-color 10%, var(--shell-surface));
+        border-left-color: var(--danger-color, #e74c3c);
+        background: color-mix(in srgb, var(--danger-color, #e74c3c) 10%, var(--shell-surface));
 
         .nx-alert-icon {
-            color: $danger-color;
+            color: var(--danger-color, #e74c3c);
         }
     }
 
     &.warning {
-        border-left-color: $warning-color;
-        background: color-mix(in srgb, $warning-color 10%, var(--shell-surface));
+        border-left-color: var(--warning-color, #f39c12);
+        background: color-mix(in srgb, var(--warning-color, #f39c12) 10%, var(--shell-surface));
 
         .nx-alert-icon {
-            color: $warning-color;
+            color: var(--warning-color, #f39c12);
         }
     }
 
     &.info {
-        border-left-color: $info-color;
-        background: color-mix(in srgb, $info-color 10%, var(--shell-surface));
+        border-left-color: var(--info-color, #17a2b8);
+        background: color-mix(in srgb, var(--info-color, #17a2b8) 10%, var(--shell-surface));
 
         .nx-alert-icon {
-            color: $info-color;
+            color: var(--info-color, #17a2b8);
         }
     }
 }
@@ -59,13 +57,13 @@
 }
 
 .nx-alert-title {
-    font-weight: $font-weight-semibold;
+    font-weight: var(--nx-font-weight-semibold, 600);
     margin-bottom: 2px;
 }
 
 .nx-alert-message {
     color: var(--shell-text-secondary);
-    line-height: $line-height;
+    line-height: var(--nx-line-height, 1.5);
 }
 
 .nx-alert-close {
@@ -75,11 +73,11 @@
     flex-shrink: 0;
     padding: 2px;
     border: none;
-    border-radius: $radius-sm;
+    border-radius: var(--nx-radius-sm, 4px);
     background: transparent;
     color: var(--shell-text-secondary);
     cursor: pointer;
-    transition: background-color $transition-fast, color $transition-fast;
+    transition: background-color var(--nx-transition-fast, .15s ease), color var(--nx-transition-fast, .15s ease);
 
     &:hover {
         background-color: var(--shell-surface-hover);

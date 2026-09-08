@@ -30,4 +30,9 @@ export class UiRichTextEditorDemo {
   templateTs = `content = '<p>Start typing to try <strong>bold</strong>, <em>italic</em>, lists and more.</p>';`;
 
   disabledCode = `<nx-rich-text-editor [value]="content" [disabled]="true"></nx-rich-text-editor>`;
+
+  requiredContent = '';
+
+  requiredCode = `<nx-rich-text-editor [isRequired]="true" [(ngModel)]="requiredContent">
+</nx-rich-text-editor>`;
 }

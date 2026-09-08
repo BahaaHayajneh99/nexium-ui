@@ -62,4 +62,28 @@ options: NxSelectOption[] = [
   { label: 'Germany', value: 'de' },
   { label: 'Egypt', value: 'eg' },
 ];`;
+
+  plan = '';
+
+  planOptions: NxSelectOption[] = [
+    { label: 'Basic', value: 'basic' },
+    { label: 'Pro', value: 'pro' },
+    { label: 'Enterprise', value: 'enterprise' },
+  ];
+
+  requiredCode = `<nx-select
+    label="Plan"
+    placeholder="Choose a plan"
+    [options]="planOptions"
+    [isRequired]="true"
+    [(ngModel)]="plan">
+</nx-select>`;
+
+  requiredTs = `plan = '';
+
+planOptions: NxSelectOption[] = [
+  { label: 'Basic', value: 'basic' },
+  { label: 'Pro', value: 'pro' },
+  { label: 'Enterprise', value: 'enterprise' },
+];`;
 }

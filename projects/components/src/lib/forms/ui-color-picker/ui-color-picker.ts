@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 const HEX_PATTERN = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i;
 
@@ -23,27 +23,47 @@ const DEFAULT_PRESETS = [
       useExisting: forwardRef(() => NxColorPicker),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxColorPicker),
+      multi: true,
+    },
   ],
 })
-export class NxColorPicker implements ControlValueAccessor {
+export class NxColorPicker implements ControlValueAccessor, Validator {
   @Input() label = '';
   @Input() value = '#3498db';
   @Input() presets: string[] = DEFAULT_PRESETS;
   @Input({ transform: booleanAttribute }) disabled = false;
   @Input({ transform: booleanAttribute }) invalid = false;
+  /** Marks the field as required - a color value must be set. Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'Please select a color';
 
   @Output() valueChange = new EventEmitter<string>();
 
   open = false;
   hexDraft = this.value;
+  touched = false;
 
   private onChangeFn: (value: string) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
 
   constructor(private elementRef: ElementRef<HTMLElement>) {}
 
   get isValidHex(): boolean {
     return HEX_PATTERN.test(this.value);
+  }
+
+  get displayError(): string {
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && !this.value) {
+      return this.requiredErrorMessage;
+    }
+    return '';
   }
 
   toggle(): void {
@@ -69,6 +89,7 @@ export class NxColorPicker implements ControlValueAccessor {
 
   selectPreset(hex: string): void {
     this.emitValue(hex);
+    this.touched = true;
     this.open = false;
   }
 
@@ -90,6 +111,7 @@ export class NxColorPicker implements ControlValueAccessor {
   }
 
   onBlur(): void {
+    this.touched = true;
     this.onTouchedFn();
   }
 
@@ -108,6 +130,17 @@ export class NxColorPicker implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.isRequired && !control.value) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 
   private emitValue(hex: string): void {

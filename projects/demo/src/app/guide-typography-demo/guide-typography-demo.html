@@ -5,7 +5,7 @@
             <section class="main-section">
                 <h4 class="main-section-header">Typography</h4>
                 <p class="main-section-description">
-                    {{ commonService.appName }} ships a single font stack (<code>$font-family: 'Arial', sans-serif</code>) and
+                    {{ commonService.appName }} ships a single font stack (<code>--font-family: 'Roboto', sans-serif</code>) and
                     a small set of size, weight and line-height tokens that every component reads from,
                     so type stays consistent without needing a design system on top.
                 </p>
@@ -14,12 +14,12 @@
             <section class="main-section">
                 <h4 class="main-section-header">Type Scale</h4>
                 <p class="main-section-description">
-                    Body text sizes, from <code>$font-size-xs</code> to <code>$font-size-3xl</code>.
+                    Body text sizes, from <code>--nx-font-size-xs</code> to <code>--nx-font-size-3xl</code>.
                 </p>
                 <div class="type-scale">
                     @for (s of sizes; track s.name) {
                         <div class="type-scale-row">
-                            <span class="type-scale-sample" [style.font-size]="s.value">Aa</span>
+                            <span class="type-scale-sample" [style.font-size]="'var(' + s.cssVar + ', ' + s.value + ')'">Aa</span>
                             <span class="type-scale-name">{{ s.name }}</span>
                             <span class="type-scale-value">{{ s.value }}</span>
                         </div>
@@ -36,7 +36,7 @@
                 <div class="type-scale">
                     @for (h of headings; track h.name) {
                         <div class="type-scale-row">
-                            <span class="type-scale-sample" [style.font-size]="h.value">Aa</span>
+                            <span class="type-scale-sample" [style.font-size]="'var(' + h.cssVar + ', ' + h.value + ')'">Aa</span>
                             <span class="type-scale-name">{{ h.name }}</span>
                             <span class="type-scale-value">{{ h.value }}</span>
                         </div>
@@ -52,7 +52,7 @@
                 <div class="type-scale">
                     @for (w of weights; track w.name) {
                         <div class="type-scale-row">
-                            <span class="type-scale-sample" [style.font-weight]="w.value">Aa</span>
+                            <span class="type-scale-sample" [style.font-weight]="'var(' + w.cssVar + ', ' + w.value + ')'">Aa</span>
                             <span class="type-scale-name">{{ w.name }}</span>
                             <span class="type-scale-value">{{ w.value }}</span>
                         </div>
@@ -63,7 +63,7 @@
             <section class="main-section">
                 <h4 class="main-section-header">Line Height</h4>
                 <p class="main-section-description">
-                    Body copy uses <code>$line-height: 1.5</code> for comfortable reading; tighten it for
+                    Body copy uses <code>--nx-line-height: 1.5</code> for comfortable reading; tighten it for
                     headings and dense UI where you don't need the extra breathing room.
                 </p>
             </section>

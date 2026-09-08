@@ -1,5 +1,3 @@
-@use '../variables.scss' as *;
-
 .media-player {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -21,7 +19,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
-    border-radius: $radius-md;
+    border-radius: var(--nx-radius-md, 8px);
     cursor: pointer;
 
     .lesson-row-title {

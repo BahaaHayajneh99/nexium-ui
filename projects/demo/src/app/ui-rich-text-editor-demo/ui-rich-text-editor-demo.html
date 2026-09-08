@@ -40,6 +40,15 @@
             </app-demo-section>
 
             <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to require non-empty content. The check strips HTML tags before testing, so an empty paragraph or a lone line break still counts as empty - a validation message shows once the editor is blurred with no real text typed."
+                [code]="requiredCode"
+                [hasSampleClass]="false">
+                <label>Feedback</label>
+                <nx-rich-text-editor [isRequired]="true" [(ngModel)]="requiredContent"></nx-rich-text-editor>
+            </app-demo-section>
+
+            <app-demo-section
                 header="Disabled"
                 description="Disabled editors cannot be edited or formatted."
                 [code]="disabledCode"

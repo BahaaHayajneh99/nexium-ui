@@ -50,6 +50,16 @@
             </app-demo-section>
 
             <app-demo-section
+                header="Required Field"
+                description="nx-otp-input has no built-in label, so pair it with your own - set isRequired to true and a validation message shows once the boxes are touched without a full code entered."
+                [code]="requiredCode"
+                [tsCode]="requiredTs"
+                [hasSampleClass]="false">
+                <label>Verification code <span style="color: #e74c3c;">*</span></label>
+                <nx-otp-input [length]="6" [isRequired]="true" [(ngModel)]="requiredOtp"></nx-otp-input>
+            </app-demo-section>
+
+            <app-demo-section
                 header="Disabled"
                 description="Disabled OTP inputs cannot be interacted with."
                 [code]="disabledCode"

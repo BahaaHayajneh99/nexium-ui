@@ -35,6 +35,13 @@ export class UiCheckboxDemo {
 
   templateTs = `agreed = false;`;
 
+  termsAccepted = false;
+
+  requiredCode = `<nx-checkbox label="I accept the terms and conditions" [isRequired]="true" [(ngModel)]="termsAccepted">
+</nx-checkbox>`;
+
+  requiredTs = `termsAccepted = false;`;
+
   disabledCode = `<nx-checkbox label="Disabled option" [disabled]="true">
 </nx-checkbox>`;
 

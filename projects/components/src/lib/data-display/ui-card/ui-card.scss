@@ -1,5 +1,3 @@
-@import '../../../../../demo/src/app/variables.scss';
-
 .nx-card {
 
     display: flex;
@@ -8,9 +6,9 @@
     background: var(--shell-surface);
 
     border: 1px solid var(--shell-border);
-    border-radius: $radius-lg;
+    border-radius: var(--nx-radius-lg, 12px);
 
-    padding: $spacing-lg;
+    padding: var(--nx-spacing-lg, 24px);
 
     color: var(--shell-text);
 
@@ -35,7 +33,7 @@
 
         border-color: transparent;
 
-        box-shadow: $shadow-md;
+        box-shadow: var(--nx-shadow-md, 0 4px 8px rgba(0, 0, 0, .12));
 
     }
 
@@ -64,9 +62,9 @@
 
             transform: translateY(-4px);
 
-            box-shadow: $shadow-lg;
+            box-shadow: var(--nx-shadow-lg, 0 10px 20px rgba(0, 0, 0, .15));
 
-            border-color: $border-hover-color;
+            border-color: var(--border-hover-color, #adb5bd);
 
         }
 
@@ -79,14 +77,14 @@
 
     &.small {
 
-        padding: $spacing-md;
+        padding: var(--nx-spacing-md, 16px);
 
     }
 
 
     &.large {
 
-        padding: $spacing-xl;
+        padding: var(--nx-spacing-xl, 32px);
 
     }
 
@@ -98,8 +96,8 @@
 // Card Header
 // ==========================
 
-.nx-card-header { 
-    margin-bottom: $spacing-md;
+.nx-card-header {
+    margin-bottom: var(--nx-spacing-md, 16px);
 
 }
 
@@ -108,11 +106,11 @@
 // Card Image
 //=========================
 .nx-card-image {
-    margin-bottom: $spacing-md;
+    margin-bottom: var(--nx-spacing-md, 16px);
     img {
         width: 100%;
         height: auto;
-        border-radius: $radius-md;
+        border-radius: var(--nx-radius-md, 8px);
     }
 }
 
@@ -125,7 +123,7 @@
 
     margin: 0;
 
-    font-size: $h5-font-size;
+    font-size: var(--nx-h5-font-size, 1.25rem);
 
     font-weight: 600;
 
@@ -141,7 +139,7 @@
 
 .nx-card-subtitle {
 
-    margin-top: $spacing-xs;
+    margin-top: var(--nx-spacing-xs, 4px);
 
     margin-bottom: 0;
 
@@ -161,7 +159,7 @@
 
     flex: 1;
 
-    line-height: $line-height;
+    line-height: var(--nx-line-height, 1.5);
 
     color: var(--shell-text);
 
@@ -181,9 +179,9 @@
 
     justify-content: flex-end;
 
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
 
-    margin-top: $spacing-lg;
+    margin-top: var(--nx-spacing-lg, 24px);
 
 
     &.start {
@@ -216,9 +214,9 @@
 
 .nx-card-footer {
 
-    margin-top: $spacing-lg;
+    margin-top: var(--nx-spacing-lg, 24px);
 
-    padding-top: $spacing-md;
+    padding-top: var(--nx-spacing-md, 16px);
 
     border-top: 1px solid var(--shell-border);
 

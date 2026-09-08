@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { NxIcon } from '../../data-display/ui-icon';
+import { NxPatternInput, nxPatternErrorMessage, resolveNxPattern } from '../shared/nx-validators';
 
 /** A plain string, or a `{ label, ... }`-shaped object (use `bindLabel` if the label lives under a different key). */
 export type NxSearchResultInput = string | Record<string, any>;
@@ -22,13 +23,26 @@ interface NxSearchResult {
       useExisting: forwardRef(() => NxSearch),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxSearch),
+      multi: true,
+    },
   ],
 })
-export class NxSearch implements ControlValueAccessor {
+export class NxSearch implements ControlValueAccessor, Validator {
   @Input() placeholder = 'Search...';
+  /** Manual error override - takes priority over the built-in required/pattern messages. */
+  @Input() error = '';
   @Input() value = '';
   @Input({ transform: booleanAttribute }) disabled = false;
   @Input({ transform: booleanAttribute }) showClear = true;
+  /** Marks the field as required - shown with a `*` and validated once the field is touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  /** Named preset ('email', 'url', 'phone', 'numeric', 'alpha', 'alphanumeric'), a RegExp, or a custom regex source string. */
+  @Input() pattern: NxPatternInput = null;
+  @Input() requiredErrorMessage = 'This field is required';
+  @Input() patternErrorMessage = '';
 
   /** Set to true to render the built-in results dropdown below the field. */
   @Input({ transform: booleanAttribute }) showResultsPanel = false;
@@ -48,9 +62,29 @@ export class NxSearch implements ControlValueAccessor {
   open = false;
   focused = false;
   activeIndex = -1;
+  touched = false;
 
   private onChangeFn: (value: string) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
+
+  /** The message actually shown - the `error` override, else the built-in required/pattern check once touched. */
+  get displayError(): string {
+    if (this.error) {
+      return this.error;
+    }
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && !this.value) {
+      return this.requiredErrorMessage;
+    }
+    const regex = resolveNxPattern(this.pattern);
+    if (regex && this.value && !regex.test(this.value)) {
+      return this.patternErrorMessage || nxPatternErrorMessage(this.pattern);
+    }
+    return '';
+  }
 
   get normalizedResults(): NxSearchResult[] {
     return this.results.map((result) => ({
@@ -78,6 +112,7 @@ export class NxSearch implements ControlValueAccessor {
 
   onBlur(): void {
     this.focused = false;
+    this.touched = true;
     this.onTouchedFn();
     setTimeout(() => (this.open = false), 150);
   }
@@ -132,5 +167,21 @@ export class NxSearch implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    if (this.isRequired && !value) {
+      return { required: true };
+    }
+    const regex = resolveNxPattern(this.pattern);
+    if (regex && value && !regex.test(value)) {
+      return { pattern: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
   }
 }

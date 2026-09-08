@@ -12,9 +12,44 @@
             <app-demo-section
                 header="File Upload"
                 description="The {{ commonService.appName }} File Upload lets users drag and drop, or browse, any type of file."
-                [code]="basicCode"
-                [tsCode]="basicTs">
+                [code]="basicCode">
                 <nx-file-upload label="Drop files here or click to browse" multiple></nx-file-upload>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Single File"
+                description="Omit multiple to restrict selection to one file at a time - picking a new file replaces the previous one instead of adding to the list."
+                [code]="singleFileCode">
+                <nx-file-upload label="Drop a single file here or click to browse"></nx-file-upload>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reacting to filesSelected"
+                description="The built-in list already shows each file's name and size - listen to filesSelected when you need to react elsewhere on the page, e.g. a running total or enabling a submit button."
+                [code]="dragDropCode"
+                [tsCode]="dragDropTs">
+                <nx-file-upload
+                    label="Drag files here, or click to browse"
+                    multiple
+                    (filesSelected)="dragDropFiles = $event">
+                </nx-file-upload>
+                @if (dragDropFiles.length) {
+                    <p class="selected-files-summary">
+                        {{ dragDropFiles.length }} file{{ dragDropFiles.length > 1 ? 's' : '' }} selected -
+                        {{ totalSize(dragDropFiles) | nxFileSize }} total
+                    </p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Click to Browse Only"
+                description="Set draggable to false to disable drag-and-drop entirely - the zone only responds to a click, opening the native file picker. Useful when the surrounding page already handles drag-and-drop for something else."
+                [code]="noDragCode">
+                <nx-file-upload
+                    label="Click to browse - drag & drop is disabled"
+                    [draggable]="false"
+                    multiple>
+                </nx-file-upload>
             </app-demo-section>
 
         </div>

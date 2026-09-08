@@ -2,14 +2,21 @@
     <textarea
         #textareaRef
         class="nx-mention-textarea"
+        [class.error]="!!displayError"
         [rows]="rows"
         [placeholder]="placeholder"
         [disabled]="disabled"
+        [attr.aria-required]="isRequired ? true : null"
+        [attr.aria-invalid]="displayError ? true : null"
         [value]="value"
         (input)="onInput($event)"
         (keydown)="onKeydown($event)"
         (blur)="onBlur()">
     </textarea>
+
+    @if (displayError) {
+        <span class="nx-mention-error">{{ displayError }}</span>
+    }
 
     @if (open) {
         <div class="nx-mention-panel">

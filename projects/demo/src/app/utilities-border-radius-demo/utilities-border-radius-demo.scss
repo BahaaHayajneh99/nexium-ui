@@ -1,17 +1,15 @@
-@use '../variables.scss' as *;
-
 .radius-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: $spacing-xl;
-    margin-bottom: $spacing-lg;
+    gap: var(--nx-spacing-xl, 32px);
+    margin-bottom: var(--nx-spacing-lg, 24px);
 }
 
 .nx-card-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $spacing-sm;
+    gap: var(--nx-spacing-sm, 8px);
     text-align: center;
 }
 
@@ -22,13 +20,13 @@
 }
 
 .radius-class {
-    font-family: $font-family;
-    font-size: $font-size-sm;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-sm, 14px);
     color: var(--shell-text);
 }
 
 .radius-value {
-    font-family: $font-family;
-    font-size: $font-size-xs;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-xs, 12px);
     color: var(--shell-text-muted);
 }

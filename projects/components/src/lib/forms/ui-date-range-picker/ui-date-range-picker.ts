@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { NxDatepicker } from '../ui-datepicker';
 
 export interface NxDateRangeValue {
@@ -11,21 +11,30 @@ export interface NxDateRangeValue {
   selector: 'nx-date-range-picker',
   imports: [NxDatepicker],
   template: `
-    <nx-datepicker
-      [label]="label"
-      [placeholder]="placeholder"
-      [value]="startDate"
-      [endValue]="endDate"
-      [min]="min"
-      [max]="max"
-      [disabled]="disabled"
-      [invalid]="invalid"
-      [showIcon]="showIcon"
-      [showTime]="showTime"
-      [range]="true"
-      (valueChange)="onStartDateChange($event)"
-      (endValueChange)="onEndDateChange($event)">
-    </nx-datepicker>
+    <div class="nx-date-range-picker-wrapper" [attr.aria-required]="isRequired ? true : null">
+      <nx-datepicker
+        [label]="label"
+        [placeholder]="placeholder"
+        [value]="startDate"
+        [endValue]="endDate"
+        [min]="min"
+        [max]="max"
+        [disabled]="disabled"
+        [invalid]="invalid || !!displayError"
+        [showIcon]="showIcon"
+        [showTime]="showTime"
+        [range]="true"
+        (valueChange)="onStartDateChange($event)"
+        (endValueChange)="onEndDateChange($event)">
+      </nx-datepicker>
+      @if (displayError) {
+        <span class="nx-date-range-picker-error">{{ displayError }}</span>
+      }
+    </div>
+  `,
+  styles: `
+    .nx-date-range-picker-wrapper { display: flex; flex-direction: column; gap: 4px; }
+    .nx-date-range-picker-error { font-size: 12px; color: #e74c3c; }
   `,
   providers: [
     {
@@ -33,9 +42,14 @@ export interface NxDateRangeValue {
       useExisting: forwardRef(() => NxDateRangePicker),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => NxDateRangePicker),
+      multi: true,
+    },
   ],
 })
-export class NxDateRangePicker implements ControlValueAccessor {
+export class NxDateRangePicker implements ControlValueAccessor, Validator {
   @Input() label = '';
   @Input() placeholder = 'Select date range';
   @Input() min = '';
@@ -44,6 +58,9 @@ export class NxDateRangePicker implements ControlValueAccessor {
   @Input({ transform: booleanAttribute }) invalid = false;
   @Input({ transform: booleanAttribute }) showIcon = true;
   @Input({ transform: booleanAttribute }) showTime = false;
+  /** Marks the field as required - both a start and end date must be selected. Validated once touched. */
+  @Input({ transform: booleanAttribute }) isRequired = false;
+  @Input() requiredErrorMessage = 'Please select a date range';
 
   @Input() startDate = '';
   @Input() endDate = '';
@@ -52,8 +69,25 @@ export class NxDateRangePicker implements ControlValueAccessor {
   @Output() endDateChange = new EventEmitter<string>();
   @Output() valueChange = new EventEmitter<NxDateRangeValue>();
 
+  touched = false;
+
   private onChangeFn: (value: NxDateRangeValue) => void = () => {};
   private onTouchedFn: () => void = () => {};
+  private onValidatorChangeFn: () => void = () => {};
+
+  private get isValueMissing(): boolean {
+    return !this.startDate || !this.endDate;
+  }
+
+  get displayError(): string {
+    if (!this.touched) {
+      return '';
+    }
+    if (this.isRequired && this.isValueMissing) {
+      return this.requiredErrorMessage;
+    }
+    return '';
+  }
 
   onStartDateChange(value: string): void {
     this.startDate = value;
@@ -84,6 +118,17 @@ export class NxDateRangePicker implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (this.isRequired && this.isValueMissing) {
+      return { required: true };
+    }
+    return null;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChangeFn = fn;
+  }
+
   private emitValue(): void {
     const currentValue: NxDateRangeValue = {
       startDate: this.startDate,
@@ -92,6 +137,7 @@ export class NxDateRangePicker implements ControlValueAccessor {
 
     this.valueChange.emit(currentValue);
     this.onChangeFn(currentValue);
+    this.touched = true;
     this.onTouchedFn();
   }
 }

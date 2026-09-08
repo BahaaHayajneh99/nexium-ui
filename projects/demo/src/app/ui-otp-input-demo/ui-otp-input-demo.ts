@@ -37,5 +37,12 @@ export class UiOtpInputDemo {
 
   invalidCode = `<nx-otp-input [length]="6" [invalid]="true"></nx-otp-input>`;
 
+  requiredOtp = '';
+
+  requiredCode = `<label>Verification code <span style="color: #e74c3c;">*</span></label>
+<nx-otp-input [length]="6" [isRequired]="true" [(ngModel)]="requiredOtp"></nx-otp-input>`;
+
+  requiredTs = `requiredOtp = '';`;
+
   disabledCode = `<nx-otp-input [length]="6" [disabled]="true" value="123"></nx-otp-input>`;
 }

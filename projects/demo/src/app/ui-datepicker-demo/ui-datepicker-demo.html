@@ -80,6 +80,14 @@
             </app-demo-section>
 
             <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the field mandatory - a '*' appears next to the label and a validation message shows once the field is closed without a date selected."
+                [code]="requiredCode"
+                [hasSampleClass]="false">
+                <nx-datepicker label="Departure date" [isRequired]="true" [(ngModel)]="requiredDate"></nx-datepicker>
+            </app-demo-section>
+
+            <app-demo-section
                 header="Disabled"
                 description="Disabled date pickers cannot be interacted with."
                 [code]="disabledCode"
