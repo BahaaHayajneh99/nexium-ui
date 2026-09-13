@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Notes App"
+                description="A complete notes app in one tag - live search, category filtering, and an add-note form, built entirely from other NexiumUI components."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-notes-app></nx-notes-app>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Categories"
+                description="Pass your own categories - they drive both the filter chips and the category picker in the add-note form."
+                [code]="customCategoriesCode"
+                [tsCode]="customCategoriesTs"
+                [hasSampleClass]="false">
+                <nx-notes-app [categories]="projectCategories" [notes]="projectNotes"></nx-notes-app>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reacting to Changes"
+                description="Listen to notesChange, noteAdded or noteRemoved to sync the notes elsewhere, e.g. persisting them or showing a running count."
+                [code]="reactingCode"
+                [tsCode]="reactingTs"
+                [hasSampleClass]="false">
+                <nx-notes-app
+                    [notes]="reactingNotes"
+                    (notesChange)="reactingNotes = $event"
+                    (noteAdded)="onNoteAdded($event)">
+                </nx-notes-app>
+                @if (lastAddedTitle) {
+                    <p class="notes-app-note">Last added: "{{ lastAddedTitle }}" - {{ reactingNotes.length }} note{{ reactingNotes.length === 1 ? '' : 's' }} total</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

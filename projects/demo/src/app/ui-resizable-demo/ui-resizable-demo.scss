@@ -1,0 +1,21 @@
+.resizable-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    background: var(--shell-primary, #3498db);
+    color: #fff;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.resizable-live-value {
+    margin: 0.75rem 0 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.875rem;
+}

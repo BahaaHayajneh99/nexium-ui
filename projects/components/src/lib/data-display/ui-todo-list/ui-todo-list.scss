@@ -1,0 +1,174 @@
+.nx-todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    width: 100%;
+
+    &.disabled {
+        opacity: .7;
+    }
+}
+
+.nx-todo-list-label {
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.nx-todo-list-add {
+    display: flex;
+    gap: var(--nx-spacing-sm, 8px);
+}
+
+.nx-todo-list-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: var(--nx-font-size-sm, 14px);
+    outline: none;
+    transition: border-color var(--nx-transition-fast, .15s ease);
+
+    &:focus {
+        border-color: var(--shell-primary);
+    }
+
+    &:disabled {
+        background-color: var(--shell-surface-hover);
+        color: var(--shell-text-muted);
+        cursor: not-allowed;
+    }
+}
+
+.nx-todo-list-add-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: var(--white-color, #ffffff);
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-medium, 500);
+    cursor: pointer;
+    transition: opacity var(--nx-transition-fast, .15s ease);
+
+    &:hover:not(:disabled) {
+        opacity: .9;
+    }
+
+    &:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+}
+
+.nx-todo-list-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-xs, 4px);
+}
+
+.nx-todo-list-item {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: 8px 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover);
+
+    &.done .nx-todo-list-item-label {
+        color: var(--shell-text-muted);
+        text-decoration: line-through;
+    }
+}
+
+.nx-todo-list-item-label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text);
+}
+
+.nx-todo-list-checkbox {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    input {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        opacity: 0;
+        cursor: inherit;
+    }
+}
+
+.nx-todo-list-checkbox-box {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--shell-border);
+    border-radius: 4px;
+    background-color: var(--shell-surface);
+    transition: all var(--nx-transition-fast, .15s ease);
+}
+
+.nx-todo-list-checkbox input:checked + .nx-todo-list-checkbox-box {
+    background-color: var(--shell-primary);
+    border-color: var(--shell-primary);
+}
+
+.nx-todo-list-checkbox input:checked + .nx-todo-list-checkbox-box::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--white-color, #ffffff);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.nx-todo-list-remove {
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-md, 16px);
+    line-height: 1;
+    padding: 2px 6px;
+
+    &:hover:not(:disabled) {
+        color: var(--danger-color, #e74c3c);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: .5;
+    }
+}
+
+.nx-todo-list-summary {
+    margin: 0;
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-secondary);
+}
+
+.nx-todo-list-empty {
+    margin: 0;
+    padding: var(--nx-spacing-md, 16px) 0;
+    color: var(--shell-text-muted);
+    font-size: var(--nx-font-size-sm, 14px);
+    text-align: center;
+}

@@ -1,0 +1,30 @@
+<div
+    class="nx-resizable"
+    [class.disabled]="disabled"
+    [class.resizing]="!!activeHandle"
+    [style.width.px]="width"
+    [style.height.px]="height">
+
+    <ng-content></ng-content>
+
+    @if (!disabled) {
+        @if (hasHandle('right')) {
+            <div
+                class="nx-resizable-handle nx-resizable-handle-right"
+                (pointerdown)="onHandlePointerDown('right', $event)">
+            </div>
+        }
+        @if (hasHandle('bottom')) {
+            <div
+                class="nx-resizable-handle nx-resizable-handle-bottom"
+                (pointerdown)="onHandlePointerDown('bottom', $event)">
+            </div>
+        }
+        @if (hasHandle('corner')) {
+            <div
+                class="nx-resizable-handle nx-resizable-handle-corner"
+                (pointerdown)="onHandlePointerDown('corner', $event)">
+            </div>
+        }
+    }
+</div>

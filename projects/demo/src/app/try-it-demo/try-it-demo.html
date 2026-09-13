@@ -1,0 +1,109 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Try It</h4>
+                <p class="main-section-description">
+                    Write a component &mdash; a template and a TypeScript class &mdash; and see it rendered
+                    live on the right, compiled for real in your browser. This isn't limited to a single
+                    class: define helper functions, interfaces, enums, or extra classes (including your own
+                    <code>&#64;Injectable()</code> services) above your component, and use <code>inject()</code>
+                    or constructor DI to wire them together, exactly like a real Angular file. Every NexaUI
+                    component, directive and pipe is available, alongside imports from
+                    <code>&#64;angular/core</code>, <code>&#64;angular/common</code>,
+                    <code>&#64;angular/forms</code> and <code>rxjs</code> &mdash; paste anything from these
+                    docs, or build your own, and it will just work.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <div class="try-it">
+
+                    <div class="try-it-editor">
+                        <div class="try-it-editor-toolbar">
+                            <nx-select
+                                label="Start from an example"
+                                [options]="exampleOptions"
+                                [value]="selectedExample"
+                                (valueChange)="onExampleChange($event)">
+                            </nx-select>
+                        </div>
+
+                        <div class="main-section-code-tabs">
+                            <button type="button" class="main-section-code-tab"
+                                [class.active]="activeTab() === 'html'"
+                                (click)="setActiveTab('html')">
+                                template.html
+                            </button>
+                            <button type="button" class="main-section-code-tab"
+                                [class.active]="activeTab() === 'ts'"
+                                (click)="setActiveTab('ts')">
+                                component.ts
+                            </button>
+
+                            <button type="button" class="main-section-code-copy" (click)="copyCode()">
+                                {{ copied ? 'Copied!' : 'Copy' }}
+                            </button>
+                        </div>
+
+                        @if (activeTab() === 'html') {
+                            <div class="code-editor">
+                                <pre class="code-editor-highlight" #htmlHighlight aria-hidden="true"><code [innerHTML]="highlightedHtml()"></code></pre>
+                                <textarea
+                                    class="code-editor-input"
+                                    #activeTextarea
+                                    spellcheck="false"
+                                    autocapitalize="off"
+                                    autocorrect="off"
+                                    autocomplete="off"
+                                    data-gramm="false"
+                                    data-gramm_editor="false"
+                                    data-enable-grammarly="false"
+                                    (input)="onHtmlInput($any($event.target).value)"
+                                    (scroll)="syncScroll($event, htmlHighlight)">
+                                </textarea>
+                            </div>
+                        } @else {
+                            <div class="code-editor">
+                                <pre class="code-editor-highlight" #tsHighlight aria-hidden="true"><code [innerHTML]="highlightedTs()"></code></pre>
+                                <textarea
+                                    class="code-editor-input"
+                                    #activeTextarea
+                                    spellcheck="false"
+                                    autocapitalize="off"
+                                    autocorrect="off"
+                                    autocomplete="off"
+                                    data-gramm="false"
+                                    data-gramm_editor="false"
+                                    data-enable-grammarly="false"
+                                    (input)="onTsInput($any($event.target).value)"
+                                    (scroll)="syncScroll($event, tsHighlight)">
+                                </textarea>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="try-it-preview">
+                        <div class="try-it-preview-header">
+                            <span>Preview</span>
+                        </div>
+
+                        <div class="try-it-preview-body demo-preview">
+                            <ng-container #previewHost></ng-container>
+                        </div>
+
+                        @if (error()) {
+                            <div class="try-it-error">
+                                <strong>Couldn't render this component</strong>
+                                <pre>{{ error() }}</pre>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>

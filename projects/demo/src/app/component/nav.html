@@ -8,7 +8,6 @@
             <span class="brand-ui">UI</span>
         </div>
 
-        ```
         <div class="nav-toolbar">
             <button type="button" class="nav-search-trigger" (click)="openPalette()">
                 <nx-icon icon="nx-search" variant="svg" [size]="15"></nx-icon>
@@ -123,7 +122,7 @@
                     <h4>Date &amp; Time</h4>
                     <a class="nav-link" routerLink="/datepicker" routerLinkActive="active">DatePicker</a>
                     <a class="nav-link" routerLink="/date-range-picker" routerLinkActive="active">Date Range Picker</a>
-                    <a class="nav-link" routerLink="/time-picker" routerLinkActive="active">TimePicker</a> 
+                    <a class="nav-link" routerLink="/time-picker" routerLinkActive="active">TimePicker</a>
                 </div>
 
                 <!-- Advanced Inputs -->
@@ -137,6 +136,7 @@
                     <a class="nav-link" routerLink="/search-input" routerLinkActive="active">Search Input</a>
                     <a class="nav-link" routerLink="/otp-input" routerLinkActive="active">OTP Input</a>
                     <a class="nav-link" routerLink="/mention" routerLinkActive="active">Mention</a>
+                    <a class="nav-link" routerLink="/unit-input" routerLinkActive="active">Unit Input</a>
                 </div>
 
                 <!-- Data Display -->
@@ -156,6 +156,10 @@
                     <a class="nav-link" routerLink="/skeleton" routerLinkActive="active">Skeleton</a>
                     <a class="nav-link" routerLink="/statistic" routerLinkActive="active">Statistic</a>
                     <a class="nav-link" routerLink="/key-value-list" routerLinkActive="active">Key-Value List</a>
+                    <a class="nav-link" routerLink="/todo-list" routerLinkActive="active">Todo List</a>
+                    <a class="nav-link" routerLink="/notes-app" routerLinkActive="active">
+                        Notes App
+                    </a>
                 </div>
 
                 <!-- Feedback -->
@@ -189,6 +193,7 @@
                     <a class="nav-link" routerLink="/mega-menu" routerLinkActive="active">Mega Menu</a>
                     <a class="nav-link" routerLink="/navbar" routerLinkActive="active">Navbar</a>
                     <a class="nav-link" routerLink="/bottom-navigation" routerLinkActive="active">Bottom Navigation</a>
+                    <a class="nav-link" routerLink="/back-to-top" routerLinkActive="active">Back to Top</a>
                 </div>
 
                 <!-- Panels -->
@@ -213,6 +218,7 @@
                     <a class="nav-link" routerLink="/layout/splitter" routerLinkActive="active">Splitter</a>
                     <a class="nav-link" routerLink="/layout/aspect-ratio" routerLinkActive="active">Aspect Ratio</a>
                     <a class="nav-link" routerLink="/layout/masonry" routerLinkActive="active">Masonry</a>
+                    <a class="nav-link" routerLink="/layout/resizable" routerLinkActive="active">Resizable</a>
                 </div>
 
                 <!-- Uploads -->
@@ -447,6 +453,8 @@
                         Plan Comparison</a>
                     <a class="nav-link" routerLink="/how-to/media-player" routerLinkActive="active">Media Player / Video
                         Course</a>
+                    <a class="nav-link" routerLink="/how-to/map-notes" routerLinkActive="active">
+                        Notes App with Search &amp; Categories</a>
                 </div>
             </div>
         </div>
@@ -534,6 +542,16 @@
             </a>
         </div>
 
+        <!-- ✏️ TRY IT
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link" routerLink="/try-it" routerLinkActive="active">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-edit" variant="svg" [size]="18"></nx-icon>
+                    Try It
+                </span>
+            </a>
+        </div> -->
+
         <!-- 📚 API REFERENCE -->
         <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a (click)="toggleExpandItem('API Reference')">
@@ -574,6 +592,17 @@
             </a>
         </div>
 
+        <!-- 🎨 What's New -->
+        <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link" routerLink="/about/releases" routerLinkActive="active">
+                <span class="nav-item-content">
+                    <nx-icon class="nav-icon" icon="nx-new" variant="svg" [size]="18"></nx-icon>
+                    What's New
+                </span>
+
+            </a>
+        </div>
+
         <!-- ℹ️ ABOUT -->
         <div class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a (click)="toggleExpandItem('About')">
@@ -589,7 +618,6 @@
                 <div class="sub-nav-child">
                     <a class="nav-link" routerLink="/about/who-we-are" routerLinkActive="active">Who We Are</a>
                     <a class="nav-link" routerLink="/about/changelog" routerLinkActive="active">Changelog</a>
-                    <a class="nav-link" routerLink="/about/releases" routerLinkActive="active">What's New</a>
                     <a class="nav-link" routerLink="/about/roadmap" routerLinkActive="active">Roadmap</a>
                     <a class="nav-link" routerLink="/about/contributing" routerLinkActive="active">Contributing</a>
                     <a class="nav-link" routerLink="/about/license" routerLinkActive="active">License</a>

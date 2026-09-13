@@ -1,0 +1,54 @@
+<div class="nx-unit-input-wrapper">
+    @if (label) {
+        <label class="nx-unit-input-label">{{ label }}@if (isRequired) {<span class="nx-unit-input-required">*</span>}</label>
+    }
+
+    <div class="nx-unit-input-field" [class.error]="!!displayError">
+        @if (unitPosition === 'prefix') {
+            @if (units.length > 1) {
+                <select
+                    class="nx-unit-input-unit-select"
+                    [value]="effectiveUnit"
+                    [disabled]="disabled"
+                    (change)="onUnitSelect($event)">
+                    @for (u of units; track u) {
+                        <option [value]="u">{{ u }}</option>
+                    }
+                </select>
+            } @else {
+                <span class="nx-unit-input-affix">{{ effectiveUnit }}</span>
+            }
+        }
+
+        <input
+            type="number"
+            class="nx-unit-input-input"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [value]="value ?? ''"
+            [attr.aria-required]="isRequired ? true : null"
+            [attr.aria-invalid]="displayError ? true : null"
+            (input)="onValueInput($event)"
+            (blur)="onBlur()" />
+
+        @if (unitPosition === 'suffix') {
+            @if (units.length > 1) {
+                <select
+                    class="nx-unit-input-unit-select"
+                    [value]="effectiveUnit"
+                    [disabled]="disabled"
+                    (change)="onUnitSelect($event)">
+                    @for (u of units; track u) {
+                        <option [value]="u">{{ u }}</option>
+                    }
+                </select>
+            } @else {
+                <span class="nx-unit-input-affix">{{ effectiveUnit }}</span>
+            }
+        }
+    </div>
+
+    @if (displayError) {
+        <span class="nx-unit-input-error">{{ displayError }}</span>
+    }
+</div>

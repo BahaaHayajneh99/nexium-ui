@@ -1,0 +1,99 @@
+.try-it {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--nx-spacing-xl, 32px);
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.try-it-editor,
+.try-it-preview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 12px);
+    min-width: 0;
+}
+
+.try-it-editor-toolbar {
+    max-width: 280px;
+}
+
+.code-editor {
+    position: relative;
+    flex: 1;
+    min-height: 320px;
+    background-color: var(--shell-code-bg, #1e1e1e);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.code-editor-highlight,
+.code-editor-input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 16px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    tab-size: 4;
+    overflow: auto;
+    border: none;
+}
+
+.code-editor-highlight {
+    pointer-events: none;
+    color: #e6e6e6;
+
+    code {
+        font: inherit;
+        white-space: inherit;
+        word-break: inherit;
+    }
+}
+
+.code-editor-input {
+    resize: none;
+    background: transparent;
+    color: transparent;
+    caret-color: #ffffff;
+    -webkit-text-fill-color: transparent;
+}
+
+.try-it-preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--shell-text-secondary);
+}
+
+.try-it-preview-body {
+    flex: 1;
+    min-height: 320px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    overflow: auto;
+}
+
+.try-it-error {
+    border: 1px solid var(--nx-danger, #dc3545);
+    border-radius: var(--nx-radius-md, 8px);
+    padding: 12px 16px;
+    color: var(--nx-danger, #dc3545);
+    font-size: 0.875rem;
+
+    pre {
+        margin: 8px 0 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8125rem;
+    }
+}

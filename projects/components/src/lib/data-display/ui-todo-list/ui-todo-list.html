@@ -1,0 +1,57 @@
+<div class="nx-todo-list" [class.disabled]="disabled">
+    @if (label) {
+        <label class="nx-todo-list-label">{{ label }}</label>
+    }
+
+    @if (showAddInput) {
+        <div class="nx-todo-list-add">
+            <input
+                type="text"
+                class="nx-todo-list-input"
+                [placeholder]="placeholder"
+                [disabled]="disabled"
+                [value]="draft"
+                (input)="onDraftInput($event)"
+                (keydown.enter)="addItem()" />
+            <button
+                type="button"
+                class="nx-todo-list-add-btn"
+                [disabled]="disabled || !draft.trim()"
+                (click)="addItem()">
+                Add
+            </button>
+        </div>
+    }
+
+    @if (items.length) {
+        <ul class="nx-todo-list-items">
+            @for (item of items; track item.id) {
+                <li class="nx-todo-list-item" [class.done]="item.done">
+                    <label class="nx-todo-list-checkbox">
+                        <input
+                            type="checkbox"
+                            [checked]="item.done"
+                            [disabled]="disabled"
+                            (change)="toggleItem(item)" />
+                        <span class="nx-todo-list-checkbox-box"></span>
+                    </label>
+                    <span class="nx-todo-list-item-label">{{ item.label }}</span>
+                    <button
+                        type="button"
+                        class="nx-todo-list-remove"
+                        [disabled]="disabled"
+                        (click)="removeItem(item)"
+                        aria-label="Remove task">
+                        ×
+                    </button>
+                </li>
+            }
+        </ul>
+
+        @if (showSummary) {
+            <p class="nx-todo-list-summary">{{ remainingCount }} of {{ items.length }} remaining</p>
+        }
+    } @else {
+        <p class="nx-todo-list-empty">{{ emptyText }}</p>
+    }
+</div>

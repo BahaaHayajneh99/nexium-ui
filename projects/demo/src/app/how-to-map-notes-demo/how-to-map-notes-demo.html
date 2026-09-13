@@ -1,0 +1,82 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Notes App with Search &amp; Categories</h4>
+                <p class="main-section-description">
+                    A small notes app with a real interactive map (Leaflet + OpenStreetMap, loaded from a CDN -
+                    no API key needed). Notes are pinned at a location, click the map to choose where the next
+                    note goes, and use search/category filters together with the map.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Notes App"
+                description="Click a note card to fly to its pin, click the map to choose a location for a new note, and type in the search box or click a category chip to filter both the list and the map markers."
+                [code]="code"
+                [tsCode]="tsCode"
+                [hasSampleClass]="false">
+
+                <div class="notes-map" #mapContainer></div>
+
+                <div class="notes-toolbar">
+                    <nx-search placeholder="Search notes..." [(value)]="searchTerm"></nx-search>
+
+                    <div class="notes-filters">
+                        <nx-chip [selected]="activeCategory === 'all'" (click)="setCategory('all')">All</nx-chip>
+                        @for (category of categories; track category) {
+                            <nx-chip [selected]="activeCategory === category" (click)="setCategory(category)">{{ category }}</nx-chip>
+                        }
+                    </div>
+                </div>
+
+                <nx-card variant="outlined" class="notes-add-card">
+                    <nx-card-content>
+                        <div class="notes-add-form">
+                            <nx-input label="Title" placeholder="Note title" [(value)]="newTitle"></nx-input>
+                            <nx-textarea label="Body" placeholder="Write your note..." [rows]="2" [(value)]="newBody"></nx-textarea>
+                            <nx-select label="Category" [options]="categoryOptions" [(value)]="newCategory"></nx-select>
+                            @if (pendingLocation) {
+                                <p class="notes-location-hint">
+                                    Pinned at {{ pendingLocation.lat | number:'1.3-3' }}, {{ pendingLocation.lng | number:'1.3-3' }}
+                                    <button type="button" class="notes-location-clear" (click)="clearPendingLocation()">Clear</button>
+                                </p>
+                            } @else {
+                                <p class="notes-location-hint">Click the map to choose a location (defaults to the map's center).</p>
+                            }
+                            <nx-button variant="primary" [disabled]="!newTitle.trim()" (click)="addNote()">Add Note</nx-button>
+                        </div>
+                    </nx-card-content>
+                </nx-card>
+
+                @if (filteredNotes.length) {
+                    <div class="notes-grid">
+                        @for (note of filteredNotes; track note.id) {
+                            <nx-card variant="outlined" hoverable class="note-card" (click)="focusNote(note)">
+                                <nx-card-header>
+                                    <nx-card-title>{{ note.title }}</nx-card-title>
+                                    <nx-tag variant="outline">{{ note.category }}</nx-tag>
+                                </nx-card-header>
+                                <nx-card-content>
+                                    <p>{{ note.body }}</p>
+                                </nx-card-content>
+                                <nx-card-footer>
+                                    <nx-button variant="ghost" size="small" (click)="removeNote(note.id); $event.stopPropagation()">Delete</nx-button>
+                                </nx-card-footer>
+                            </nx-card>
+                        }
+                    </div>
+                } @else {
+                    <nx-empty-state
+                        icon="nx-search"
+                        title="No notes found"
+                        description="Try a different search term or clear the category filter.">
+                    </nx-empty-state>
+                }
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

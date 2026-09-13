@@ -10,6 +10,7 @@ export interface NxSearchItem {
 export const SEARCH_INDEX: NxSearchItem[] = [
   // ===== QUICK LINKS (Top Priority) =====
   { label: 'Playground', path: '/playground', group: 'Quick Links', icon: 'nx-fire' },
+  // { label: 'Try It', path: '/try-it', group: 'Quick Links', icon: 'nx-edit' },
   { label: 'NPM Package', path: 'https://www.npmjs.com/package/nexium-ui', group: 'Quick Links', icon: 'nx-external-link' },
   { label: 'GitHub Repository', path: 'https://github.com/nexiumui/nexium-ui', group: 'Quick Links', icon: 'nx-github' },
   { label: 'Changelog', path: '/about/changelog', group: 'Quick Links', icon: 'nx-history' },
@@ -48,6 +49,7 @@ export const SEARCH_INDEX: NxSearchItem[] = [
   { label: 'Form Builder', path: '/form-builder', group: 'Components' },
   { label: 'Color Picker', path: '/color-picker', group: 'Components' },
   { label: 'Rich Text Editor', path: '/rich-text-editor', group: 'Components' },
+  { label: 'Unit Input', path: '/unit-input', group: 'Components' },
 
   // ===== COMPONENTS - DATA DISPLAY =====
   { label: 'Table', path: '/table', group: 'Components' },
@@ -63,6 +65,9 @@ export const SEARCH_INDEX: NxSearchItem[] = [
   { label: 'Spinner', path: '/spinner', group: 'Components' },
   { label: 'Skeleton', path: '/skeleton', group: 'Components' },
   { label: 'Statistic', path: '/statistic', group: 'Components' },
+  { label: 'Key-Value List', path: '/key-value-list', group: 'Components' },
+  { label: 'Todo List', path: '/todo-list', group: 'Components' },
+  { label: 'Notes App', path: '/notes-app', group: 'Components' },
 
   // ===== COMPONENTS - FEEDBACK =====
   { label: 'Alert', path: '/alert', group: 'Components' },
@@ -91,6 +96,8 @@ export const SEARCH_INDEX: NxSearchItem[] = [
   { label: 'Sidebar', path: '/sidebar', group: 'Components' },
   { label: 'Menu', path: '/menu', group: 'Components' },
   { label: 'Navbar', path: '/navbar', group: 'Components' },
+  { label: 'Back to Top', path: '/back-to-top', group: 'Components' },
+  { label: 'Resizable', path: '/layout/resizable', group: 'Components' },
 
   // ===== COMPONENTS - UPLOADS & MEDIA =====
   { label: 'File Upload', path: '/file-upload', group: 'Components' },
@@ -107,6 +114,7 @@ export const SEARCH_INDEX: NxSearchItem[] = [
   { label: 'Data Management', path: '/patterns/data-management', group: 'Patterns' },
   { label: 'User Management', path: '/patterns/user-management', group: 'Patterns' },
   { label: 'Error Handling', path: '/patterns/error-handling', group: 'Patterns' },
+  { label: 'Notes App with Search & Categories', path: '/how-to/map-notes', group: 'Patterns' },
 
   // ===== TESTING & QUALITY =====
   { label: 'Unit Testing', path: '/testing/unit-testing', group: 'Testing' },

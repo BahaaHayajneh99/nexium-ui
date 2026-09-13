@@ -1,0 +1,63 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Todo List"
+                description="A self-contained task list - type in the input and press Enter (or click Add) to add a task, check it off, or remove it."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-todo-list [items]="tasks" (itemsChange)="tasks = $event"></nx-todo-list>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reacting to itemsChange"
+                description="Listen to itemsChange (or the more specific itemAdded/itemToggled/itemRemoved) to react elsewhere on the page, e.g. showing a live summary."
+                [code]="reactingCode"
+                [tsCode]="reactingTs"
+                [hasSampleClass]="false">
+                <nx-todo-list
+                    [items]="reactingTasks"
+                    (itemsChange)="reactingTasks = $event"
+                    (itemAdded)="onItemAdded($event)">
+                </nx-todo-list>
+                @if (lastAdded) {
+                    <p class="todo-list-note">Last added: "{{ lastAdded }}"</p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without the Add Input"
+                description="Set showAddInput to false to render a read-only-entry checklist - useful when items are managed entirely from outside the component."
+                [code]="noAddCode"
+                [hasSampleClass]="false">
+                <nx-todo-list [items]="readonlyTasks" [showAddInput]="false"></nx-todo-list>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Set disabled to true to prevent adding, checking, or removing tasks."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-todo-list [items]="disabledTasks" [disabled]="true"></nx-todo-list>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Empty State"
+                description="Customize the message shown when there are no tasks yet with emptyText."
+                [code]="emptyCode"
+                [hasSampleClass]="false">
+                <nx-todo-list [items]="[]" emptyText="Nothing to do - enjoy your day!"></nx-todo-list>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

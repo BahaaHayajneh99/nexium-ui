@@ -1,0 +1,48 @@
+<div class="nx-notes-app">
+    <div class="nx-notes-toolbar">
+        <nx-search [placeholder]="searchPlaceholder" [(value)]="searchTerm"></nx-search>
+
+        <div class="nx-notes-filters">
+            <nx-chip [selected]="activeCategory === 'all'" (click)="setCategory('all')">All</nx-chip>
+            @for (category of categories; track category) {
+                <nx-chip [selected]="activeCategory === category" (click)="setCategory(category)">{{ category }}</nx-chip>
+            }
+        </div>
+    </div>
+
+    <nx-card variant="outlined" class="nx-notes-add-card">
+        <nx-card-content>
+            <div class="nx-notes-add-form">
+                <nx-input label="Title" placeholder="Note title" [(value)]="newTitle"></nx-input>
+                <nx-textarea label="Body" placeholder="Write your note..." [rows]="2" [(value)]="newBody"></nx-textarea>
+                <nx-select label="Category" [options]="categoryOptions" [(value)]="newCategory"></nx-select>
+                <nx-button variant="primary" [disabled]="!newTitle.trim()" (click)="addNote()">Add Note</nx-button>
+            </div>
+        </nx-card-content>
+    </nx-card>
+
+    @if (filteredNotes.length) {
+        <div class="nx-notes-grid">
+            @for (note of filteredNotes; track note.id) {
+                <nx-card variant="outlined" hoverable class="nx-note-card">
+                    <nx-card-header>
+                        <nx-card-title>{{ note.title }}</nx-card-title>
+                        <nx-tag variant="outline">{{ note.category }}</nx-tag>
+                    </nx-card-header>
+                    <nx-card-content>
+                        <p>{{ note.body }}</p>
+                    </nx-card-content>
+                    <nx-card-footer>
+                        <nx-button variant="ghost" size="small" (click)="removeNote(note)">Delete</nx-button>
+                    </nx-card-footer>
+                </nx-card>
+            }
+        </div>
+    } @else {
+        <nx-empty-state
+            icon="nx-search"
+            [title]="emptyTitle"
+            [description]="emptyDescription">
+        </nx-empty-state>
+    }
+</div>

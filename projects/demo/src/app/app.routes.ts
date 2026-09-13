@@ -60,6 +60,12 @@ import { UiRatingDemo } from './ui-rating-demo/ui-rating-demo';
 import { UiOtpInputDemo } from './ui-otp-input-demo/ui-otp-input-demo';
 import { UiStatisticDemo } from './ui-statistic-demo/ui-statistic-demo';
 import { UiKeyValueListDemo } from './ui-key-value-list-demo/ui-key-value-list-demo';
+import { UiTodoListDemo } from './ui-todo-list-demo/ui-todo-list-demo';
+import { UiNotesAppDemo } from './ui-notes-app-demo/ui-notes-app-demo';
+import { UiBackToTopDemo } from './ui-back-to-top-demo/ui-back-to-top-demo';
+import { UiResizableDemo } from './ui-resizable-demo/ui-resizable-demo';
+import { UiUnitInputDemo } from './ui-unit-input-demo/ui-unit-input-demo';
+import { HowToMapNotesDemo } from './how-to-map-notes-demo/how-to-map-notes-demo';
 import { UiNotificationCenterDemo } from './ui-notification-center-demo/ui-notification-center-demo';
 import { UiMentionDemo } from './ui-mention-demo/ui-mention-demo';
 import { UiRichTextEditorDemo } from './ui-rich-text-editor-demo/ui-rich-text-editor-demo';
@@ -134,6 +140,7 @@ import { UtilitiesShadowsDemo } from './utilities-shadows-demo/utilities-shadows
 import { UtilitiesBorderRadiusDemo } from './utilities-border-radius-demo/utilities-border-radius-demo';
 import { UtilitiesBreakpointsDemo } from './utilities-breakpoints-demo/utilities-breakpoints-demo';
 import { PlaygroundDemo } from './playground-demo/playground-demo';
+import { TryItDemo } from './try-it-demo/try-it-demo';
 import { TemplatesLoginDemo } from './templates-login-demo/templates-login-demo';
 import { TemplatesRegisterDemo } from './templates-register-demo/templates-register-demo';
 import { TemplatesForgotPasswordDemo } from './templates-forgot-password-demo/templates-forgot-password-demo';
@@ -310,6 +317,10 @@ export const routes: Routes = [
         component: UiMentionDemo
     },
     {
+        path: 'unit-input',
+        component: UiUnitInputDemo
+    },
+    {
         path: 'rich-text-editor',
         component: UiRichTextEditorDemo
     },
@@ -342,6 +353,10 @@ export const routes: Routes = [
         component: UiBottomNavigationDemo
     },
     {
+        path: 'back-to-top',
+        component: UiBackToTopDemo
+    },
+    {
         path: 'drawer',
         component: UiDrawerDemo
     },
@@ -356,6 +371,14 @@ export const routes: Routes = [
     {
         path: 'key-value-list',
         component: UiKeyValueListDemo
+    },
+    {
+        path: 'todo-list',
+        component: UiTodoListDemo
+    },
+    {
+        path: 'notes-app',
+        component: UiNotesAppDemo
     },
     {
         path: 'notification-center',
@@ -846,6 +869,10 @@ export const routes: Routes = [
         component: PlaygroundDemo
     },
     {
+        path: 'try-it',
+        component: TryItDemo
+    },
+    {
         path: 'templates/login',
         component: TemplatesLoginDemo
     },
@@ -956,6 +983,10 @@ export const routes: Routes = [
     {
         path: 'layout/masonry',
         component: LayoutMasonryDemo
+    },
+    {
+        path: 'layout/resizable',
+        component: UiResizableDemo
     },
     {
         path: 'installation/requirements',
@@ -1220,5 +1251,9 @@ export const routes: Routes = [
     {
         path: 'how-to/media-player',
         component: HowToMediaPlayerDemo
+    },
+    {
+        path: 'how-to/map-notes',
+        component: HowToMapNotesDemo
     }
 ];

@@ -1,0 +1,69 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Default"
+                description="Renders a floating, fixed-position button that appears once the page scrolls past 300px and smooth-scrolls back to the top on click. It listens to the real page scroll, so scroll this demo page itself down to see it appear in the bottom-right corner."
+                [code]="defaultCode"
+                [hasSampleClass]="false">
+                <nx-back-to-top></nx-back-to-top>
+                <p class="stage-hint">Keep scrolling this page down past 300px - the button appears fixed in the bottom-right corner of the browser window, just like it would on any real page using this component.</p>
+                @for (i of fillerParagraphs; track i) {
+                    <p class="filler-paragraph">
+                        Placeholder paragraph {{ i + 1 }} - this content exists purely to give the demo page enough
+                        height to scroll, since NxBackToTop reacts to the actual browser window's scroll position
+                        rather than any inner container. Scroll down to watch the button reveal itself.
+                    </p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Threshold"
+                description="Set threshold to change how far (in px) the page must scroll before the button appears - here it only shows up after 800px. The preview below is boxed for clarity, but it still reacts to the real page's scroll position (not the box's own scrollbar) - scroll this whole page down past 800px to see it appear inside the box."
+                [code]="thresholdCode"
+                [hasSampleClass]="false">
+                <div class="stage">
+                    <nx-back-to-top [threshold]="800"></nx-back-to-top>
+                    @for (i of boxFillerParagraphs; track i) {
+                        <p class="filler-paragraph">Box filler paragraph {{ i + 1 }} - scroll within this box for reference.</p>
+                    }
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Bottom Left"
+                description="Set position to 'bottom-left' to anchor the button to the bottom-left corner instead. As above, this preview is boxed for clarity but still tracks the real page's scroll position - scroll the whole page down past 300px."
+                [code]="positionCode"
+                [hasSampleClass]="false">
+                <div class="stage">
+                    <nx-back-to-top position="bottom-left"></nx-back-to-top>
+                    @for (i of boxFillerParagraphs; track i) {
+                        <p class="filler-paragraph">Box filler paragraph {{ i + 1 }} - scroll within this box for reference.</p>
+                    }
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Show Only While Scrolling Up"
+                description="Set showOnScrollUpOnly to hide the button again while the user keeps scrolling down, even past the threshold - it only reveals itself as a hint once the user starts scrolling back up. Scroll the whole page down past 300px (it stays hidden), then scroll back up to see it appear inside the box."
+                [code]="scrollUpCode"
+                [hasSampleClass]="false">
+                <div class="stage">
+                    <nx-back-to-top [showOnScrollUpOnly]="true"></nx-back-to-top>
+                    @for (i of boxFillerParagraphs; track i) {
+                        <p class="filler-paragraph">Box filler paragraph {{ i + 1 }} - scroll within this box for reference.</p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

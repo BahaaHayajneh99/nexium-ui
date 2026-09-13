@@ -8,7 +8,7 @@ aggregates all of them into a single `@NgModule` for apps that prefer that style
 ## Demo
 
 Browse every component live, with usage examples and copy-paste code snippets, at
-**[nexium-ui.vercel.app](https://nexium-ui.vercel.app)**.
+**[nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started)**.
 
 ## Installation
 

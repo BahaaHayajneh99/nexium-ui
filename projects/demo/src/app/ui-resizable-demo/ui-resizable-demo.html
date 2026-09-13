@@ -1,0 +1,73 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic"
+                description="A resizable box with the default handles - right, bottom, and corner."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-resizable [width]="320" [height]="200">
+                    <div class="resizable-placeholder">Resize me from the edges or corner</div>
+                </nx-resizable>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Min / Max Constraints"
+                description="Set minWidth/maxWidth and minHeight/maxHeight to keep the box from being dragged smaller or larger than the given bounds."
+                [code]="constraintsCode"
+                [hasSampleClass]="false">
+                <nx-resizable
+                    [width]="320"
+                    [height]="200"
+                    [minWidth]="150"
+                    [maxWidth]="500"
+                    [minHeight]="100"
+                    [maxHeight]="350">
+                    <div class="resizable-placeholder">Bounded between 150-500 wide and 100-350 tall</div>
+                </nx-resizable>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Single Handle"
+                description="Restrict which edges are draggable by passing a subset of handles - here only the corner handle is enabled."
+                [code]="singleHandleCode"
+                [tsCode]="singleHandleTs"
+                [hasSampleClass]="false">
+                <nx-resizable [width]="320" [height]="200" [handles]="cornerOnly">
+                    <div class="resizable-placeholder">Only the corner handle is draggable</div>
+                </nx-resizable>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reacting to resized"
+                description="Listen to the resized output to react to size changes continuously while dragging."
+                [code]="reactingCode"
+                [tsCode]="reactingTs"
+                [hasSampleClass]="false">
+                <nx-resizable [width]="320" [height]="200" (resized)="onResized($event)">
+                    <div class="resizable-placeholder">Drag to see the live size below</div>
+                </nx-resizable>
+                <p class="resizable-live-value">{{ liveWidth }} x {{ liveHeight }}px</p>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="When disabled, the resize handles are hidden and dragging has no effect."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+                <nx-resizable [width]="320" [height]="200" [disabled]="true">
+                    <div class="resizable-placeholder">Handles are hidden, dragging is inert</div>
+                </nx-resizable>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

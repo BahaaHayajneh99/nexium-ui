@@ -18,6 +18,11 @@ import { NxEmptyState } from './data-display/ui-empty-state';
 import { NxResult } from './data-display/ui-result';
 import { NxIcon } from './data-display/ui-icon';
 import { NxKeyValueList } from './data-display/ui-key-value-list';
+import { NxTodoList } from './data-display/ui-todo-list';
+import { NxNotesApp } from './data-display/ui-notes-app';
+import { NxBackToTop } from './navigation/ui-back-to-top';
+import { NxResizable } from './layout/ui-resizable';
+import { NxUnitInput } from './forms/ui-unit-input';
 import { NxList } from './data-display/ui-list';
 import { NxProgressBarComponent } from './data-display/ui-progress-bar';
 import { NxSkeleton } from './data-display/ui-skeleton';
@@ -141,6 +146,8 @@ const NEXIUM_UI_DECLARATIONS = [
   NxResult,
   NxIcon,
   NxKeyValueList,
+  NxTodoList,
+  NxNotesApp,
   NxList,
   NxProgressBarComponent,
   NxSkeleton,
@@ -186,6 +193,7 @@ const NEXIUM_UI_DECLARATIONS = [
   NxTextarea,
   NxToggle,
   NxTimePicker,
+  NxUnitInput,
 
   // Uploads
   NxFileUpload,
@@ -209,6 +217,7 @@ const NEXIUM_UI_DECLARATIONS = [
   NxNavbar,
   NxPagination,
   NxStepper,
+  NxBackToTop,
 
   // Panels
   NxAccordionComponent,
@@ -232,6 +241,7 @@ const NEXIUM_UI_DECLARATIONS = [
   NxSpacer,
   NxSplitter,
   NxStack,
+  NxResizable,
 
   // Charts
   NxAreaChart,

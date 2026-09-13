@@ -1,0 +1,65 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Currency (single unit)"
+                description="With a single entry in units, the unit is rendered as static prefix/suffix text instead of a dropdown - no selection to make. unitPosition is set to 'prefix' here since currency symbols conventionally come before the amount."
+                [code]="currencyCode"
+                [tsCode]="currencyTs"
+                [hasSampleClass]="false">
+                <nx-unit-input label="Price" [units]="['$']" unitPosition="prefix" [(ngModel)]="price"></nx-unit-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Multiple Currencies (dynamic dropdown)"
+                description="units is just an array the consumer supplies - it's not a fixed enum baked into the component. Pass it more than one entry and a <select> dropdown appears automatically, letting the user switch units; unitChange (bound here via [(unit)]) emits the newly picked one. The same input works for currencies, weights, percentages, or any other unit list you define."
+                [code]="multiCurrencyCode"
+                [tsCode]="multiCurrencyTs"
+                [hasSampleClass]="false">
+                <nx-unit-input
+                    label="Budget"
+                    [units]="currencies"
+                    unitPosition="prefix"
+                    [(ngModel)]="budget"
+                    [(unit)]="selectedCurrency">
+                </nx-unit-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Weight with Multiple Units"
+                description="A completely different unit domain, driven by the exact same component and API - proving units is fully dynamic and not tied to currency at all."
+                [code]="weightCode"
+                [tsCode]="weightTs"
+                [hasSampleClass]="false">
+                <nx-unit-input label="Weight" [units]="['kg', 'lb', 'g']" unitPosition="suffix" [(ngModel)]="weight"></nx-unit-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Required"
+                description="Set isRequired to true to mark the field mandatory - a validation message shows once the field is touched and left empty."
+                [code]="requiredCode"
+                [tsCode]="requiredTs"
+                [hasSampleClass]="false">
+                <nx-unit-input label="Percentage" [units]="['%']" [isRequired]="true" [(ngModel)]="percentage"></nx-unit-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Disabled unit inputs cannot be edited and the unit dropdown (when present) is locked as well."
+                [code]="disabledCode"
+                [tsCode]="disabledTs"
+                [hasSampleClass]="false">
+                <nx-unit-input label="Locked value" [units]="['$']" [(ngModel)]="lockedValue" [disabled]="true"></nx-unit-input>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

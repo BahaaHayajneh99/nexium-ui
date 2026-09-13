@@ -48,6 +48,10 @@ export const NX_ICONS: Record<string, string> = {
   'nx-star': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M12 3L14.5 8.5L20.5 9.3L16 13.3L17.2 19.2L12 16.2L6.8 19.2L8 13.3L3.5 9.3L9.5 8.5L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
 </svg>`,
+  'nx-new': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 3L13.4 8.6L19 10L13.4 11.4L12 17L10.6 11.4L5 10L10.6 8.6L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M19 15L19.7 17.3L22 18L19.7 18.7L19 21L18.3 18.7L16 18L18.3 17.3L19 15Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+</svg>`,
   'nx-fire': `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M12 2C12 2 6 8 6 13C6 16.5 8.5 19 12 19C15.5 19 18 16.5 18 13C18 11 17 9.5 16 8.5C16 10 15 11 14 11C14.5 9 13.5 6 12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
   <path d="M12 19C10.5 19 9.5 17.8 9.5 16.3C9.5 15 10.3 14 11 13.3C11 14.5 11.8 15 12.5 15.3C13 15.5 13.5 16 13.5 16.8C13.5 18 12.8 19 12 19Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>

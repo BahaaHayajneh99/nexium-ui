@@ -1,0 +1,23 @@
+.stage {
+    position: relative;
+    height: 320px;
+    overflow: auto;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    // A transform establishes a containing block for descendant `position: fixed`
+    // elements, so the boxed nx-back-to-top preview stays confined to this box
+    // instead of floating over the whole viewport like the real one would.
+    transform: translateZ(0);
+}
+
+.stage-hint {
+    font-style: italic;
+    color: var(--shell-text-secondary, currentColor);
+    margin-bottom: 16px;
+}
+
+.filler-paragraph {
+    margin: 0 0 16px;
+    line-height: 1.6;
+}
