@@ -15,7 +15,7 @@ export interface ReleaseNote {
 export const RELEASE_NOTES: ReleaseNote[] = [
   {
     version: '0.1.7',
-    date: 'Unreleased',
+    date: '14-09-2026',
     changes: [
       { type: 'feature', description: 'Added a new Todo List component (NxTodoList) - a self-contained task list with adding, checking off and removing tasks built in, plus itemsChange/itemAdded/itemToggled/itemRemoved outputs to react to changes.' },
       // { type: 'feature', description: 'Added a "Reactive form (constructor DI)" example and a "Todo list (helper service + DI)" example to the Try It playground, demonstrating constructor-based dependency injection and a standalone @Injectable() service.' },
@@ -31,7 +31,7 @@ export const RELEASE_NOTES: ReleaseNote[] = [
   },
   {
     version: '0.1.6',
-    date: 'Unreleased',
+    date: '07-09-2026',
     changes: [
       { type: 'feature', description: 'Added isRequired and pattern validation to form components (Input, Textarea, Select, Checkbox, Radio Group, Datepicker and more), with built-in Reactive Forms validator support.' },
       { type: 'feature', description: 'New components: Empty State, Result, Search (with a results dropdown), Time Picker, Date Range Picker, Number Input, Password Input and Input Mask.' },
