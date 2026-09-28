@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef, numberAttribute } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 type NxPasswordStrength = 'Weak' | 'Fair' | 'Good' | 'Strong';
 
@@ -11,7 +13,9 @@ interface NxPasswordRequirement {
 @Component({
   selector: 'nx-password',
   standalone: true,
+  imports: [NxProLocked],
   template: `
+    @if (licensed()) {
     <div class="nx-password-wrapper">
       @if (label) {
         <label class="nx-password-label">{{ label }}@if (isRequired) {<span class="nx-password-required">*</span>}</label>
@@ -81,6 +85,9 @@ interface NxPasswordRequirement {
         <span class="nx-password-error">{{ displayError }}</span>
       }
     </div>
+    } @else {
+      <nx-pro-locked componentName="Password Input"></nx-pro-locked>
+    }
   `,
   styles: `
     .nx-password-wrapper {
@@ -254,6 +261,8 @@ interface NxPasswordRequirement {
   ],
 })
 export class NxPassword implements ControlValueAccessor, Validator {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input() label = '';
   @Input() placeholder = '';
   @Input() error = '';

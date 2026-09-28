@@ -62,6 +62,14 @@ export class NxButton {
   @Input({ transform: booleanAttribute })
   rounded = false;
 
+  /** Shows a spinner and disables the button - for an in-flight action (submitting a form, saving, ...). */
+  @Input({ transform: booleanAttribute })
+  loading = false;
+
+  /** Replaces the button's projected content while `loading` is true. Leave unset to keep showing the normal content alongside the spinner. */
+  @Input()
+  loadingText = '';
+
   get buttonClasses() {
     return {
       btn: true,
@@ -72,7 +80,8 @@ export class NxButton {
       raised: this.raised,
       fab: this.fab,
       icon: this.icon,
-      'full-width': this.fullWidth
+      'full-width': this.fullWidth,
+      loading: this.loading
     };
   }
 } 

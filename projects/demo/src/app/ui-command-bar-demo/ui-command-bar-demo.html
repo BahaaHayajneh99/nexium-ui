@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Command Bar"
+                description="The {{ commonService.appName }} Command Bar is a horizontal, grouped toolbar of commands - e.g. a document/editor action bar. Disabled items are ignored by commandClick."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <nx-command-bar [groups]="groups" (commandClick)="onCommandClick($event)"></nx-command-bar>
+                    <p>Last command: {{ lastCommand ?? '—' }}</p>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="In Context"
+                description="A typical use case - grouping related actions in an editor toolbar."
+                [code]="editorCode"
+                [tsCode]="editorTs"
+                [hasSampleClass]="false">
+                <nx-command-bar [groups]="editorGroups" (commandClick)="onCommandClick($event)"></nx-command-bar>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

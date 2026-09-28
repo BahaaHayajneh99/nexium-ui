@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Spacing Editor"
+                description="The {{ commonService.appName }} Spacing Editor is a DevTools-style nested box-model diagram for margin and padding, edited directly on the diagram. Bind [value] and handle (valueChange) to keep your own state in sync."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-spacing-editor [value]="spacing" (valueChange)="onSpacingChange($event)"></nx-spacing-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Asymmetric Spacing"
+                description="An initial value with different sides is respected as-is - useful for modeling a card that only has vertical margin."
+                [code]="asymmetricCode"
+                [tsCode]="asymmetricTs"
+                [hasSampleClass]="false">
+                <nx-spacing-editor [value]="cardSpacing" (valueChange)="onCardSpacingChange($event)"></nx-spacing-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reading The Live Values"
+                description="The emitted NxSpacingValue can be formatted into a CSS-style shorthand string in the host component."
+                [code]="summaryCode"
+                [tsCode]="summaryTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:12px; max-width:420px;">
+                    <nx-spacing-editor [value]="spacing" (valueChange)="onSpacingChange($event)"></nx-spacing-editor>
+                    <code style="font-size:12px;">margin: {{ marginSummary }}</code>
+                    <code style="font-size:12px;">padding: {{ paddingSummary }}</code>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

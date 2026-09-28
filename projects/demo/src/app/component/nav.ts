@@ -1,19 +1,21 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { NgFor, NgIf } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NxIcon } from '../../../../../dist/components';
+import { NxIcon, NxChip } from '../../../../../dist/components';
 import { ThemeService } from '../services/theme.service';
 import { SearchPalette } from './search-palette';
+import { NAV_ITEMS } from './nav-items';
 
 @Component({
   selector: 'app-nav',
-  imports: [NgIf,NgFor, RouterLink, RouterLinkActive, NxIcon, SearchPalette],
+  imports: [RouterLink, RouterLinkActive, NxIcon, NxChip, SearchPalette],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
 })
 export class Nav {
   public commonService = inject(CommonService);
+
+  readonly navItems = NAV_ITEMS;
 
   paletteOpen = false;
   currentYaer = new Date().getFullYear();

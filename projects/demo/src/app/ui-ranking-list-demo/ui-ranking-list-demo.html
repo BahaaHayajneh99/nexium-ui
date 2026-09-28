@@ -1,0 +1,25 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Ranking List"
+                description="A ranked list of items - rank, avatar, name, value, and an optional delta badge - driven by an NxRankingItem[] array."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:380px;">
+                    <nx-ranking-list [items]="items"></nx-ranking-list>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+@if (licensed()) {
+    <div class="nx-diff-viewer">
+        @for (line of diffLines; track $index) {
+            <div class="nx-diff-line" [class]="line.type">
+                <span class="nx-diff-gutter">{{ line.oldLineNumber ?? '' }}</span>
+                <span class="nx-diff-gutter">{{ line.newLineNumber ?? '' }}</span>
+                <span class="nx-diff-marker">{{ line.type === 'added' ? '+' : line.type === 'removed' ? '-' : ' ' }}</span>
+                <span class="nx-diff-text">{{ line.text }}</span>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Diff Viewer"></nx-pro-locked>
+}

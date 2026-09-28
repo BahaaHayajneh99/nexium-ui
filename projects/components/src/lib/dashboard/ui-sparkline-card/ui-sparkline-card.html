@@ -1,0 +1,10 @@
+<div class="nx-sparkline-card">
+    <div class="nx-sparkline-card-info">
+        <span class="nx-sparkline-card-label">{{ label }}</span>
+        <span class="nx-sparkline-card-value">{{ value }}</span>
+        @if (delta) {
+            <span class="nx-sparkline-card-delta" [class]="direction">{{ delta }}</span>
+        }
+    </div>
+    <nx-sparkline [data]="data" [color]="color" [showArea]="true" [width]="100" [height]="36"></nx-sparkline>
+</div>

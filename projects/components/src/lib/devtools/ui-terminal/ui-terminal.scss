@@ -1,0 +1,58 @@
+.nx-terminal {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.nx-terminal-output {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px;
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.nx-terminal-line {
+    display: flex;
+    gap: 8px;
+    color: #d4d4d4;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.nx-terminal-line.error {
+    color: #ff6b6b;
+}
+
+.nx-terminal-line.input {
+    color: #7ee787;
+}
+
+.nx-terminal-prompt {
+    flex-shrink: 0;
+    color: var(--shell-primary);
+    font-weight: 700;
+}
+
+.nx-terminal-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+.nx-terminal-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+}

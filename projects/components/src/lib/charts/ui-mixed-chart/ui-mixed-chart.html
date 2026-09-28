@@ -1,3 +1,4 @@
+@if (licensed()) {
 <div class="nx-chart">
 
     <button type="button" class="nx-chart-table-toggle" (click)="toggleTable()">
@@ -112,3 +113,6 @@
     }
 
 </div>
+} @else {
+    <nx-pro-locked componentName="Mixed Chart"></nx-pro-locked>
+}

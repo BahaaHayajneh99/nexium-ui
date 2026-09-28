@@ -1,0 +1,21 @@
+<header class="nx-page-header">
+    <div class="nx-page-header-breadcrumb">
+        <ng-content select="[nxPageHeaderBreadcrumb]"></ng-content>
+    </div>
+
+    <div class="nx-page-header-main">
+        <div class="nx-page-header-text">
+            <h1 class="nx-page-header-title">{{ title }}</h1>
+            @if (description) {
+                <p class="nx-page-header-description">{{ description }}</p>
+            }
+        </div>
+        <div class="nx-page-header-actions">
+            <ng-content select="[nxPageHeaderActions]"></ng-content>
+        </div>
+    </div>
+
+    <div class="nx-page-header-tabs">
+        <ng-content select="[nxPageHeaderTabs]"></ng-content>
+    </div>
+</header>

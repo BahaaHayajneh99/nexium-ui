@@ -1,0 +1,41 @@
+.nx-hover-card-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.nx-hover-card-panel {
+    position: absolute;
+    z-index: 100;
+    width: 280px;
+    padding: var(--nx-spacing-md, 16px);
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    box-shadow: var(--nx-shadow-lg, 0 10px 20px rgba(0, 0, 0, .15));
+    color: var(--shell-text);
+    font-size: 14px;
+}
+
+.placement-bottom {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.placement-top {
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.placement-left {
+    right: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.placement-right {
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+}

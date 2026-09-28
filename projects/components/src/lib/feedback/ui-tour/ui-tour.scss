@@ -1,0 +1,113 @@
+.nx-tour-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.nx-tour-cutout {
+    position: fixed;
+    z-index: 1000;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, .65);
+    pointer-events: none;
+    transition: top .2s ease, left .2s ease, width .2s ease, height .2s ease;
+}
+
+.nx-tour-callout {
+    position: fixed;
+    z-index: 1001;
+    width: 300px;
+    max-width: calc(100vw - 32px);
+    padding: var(--nx-spacing-md, 16px);
+    background-color: var(--shell-surface);
+    border-radius: var(--nx-radius-md, 8px);
+    box-shadow: var(--nx-shadow-lg, 0 10px 20px rgba(0, 0, 0, .25));
+    transition: top .2s ease, left .2s ease;
+}
+
+.nx-tour-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.nx-tour-step-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.nx-tour-skip {
+    border: none;
+    background: none;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-tour-skip:hover {
+    color: var(--shell-text);
+    text-decoration: underline;
+}
+
+.nx-tour-title {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+    margin-bottom: 4px;
+}
+
+.nx-tour-description {
+    margin: 0 0 var(--nx-spacing-sm, 12px);
+    font-size: 14px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-tour-dots {
+    display: flex;
+    gap: 6px;
+    margin-bottom: var(--nx-spacing-sm, 12px);
+}
+
+.nx-tour-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--shell-border);
+    cursor: pointer;
+}
+
+.nx-tour-dot.active {
+    background-color: var(--shell-primary);
+    width: 16px;
+    border-radius: 3px;
+}
+
+.nx-tour-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.nx-tour-back,
+.nx-tour-next {
+    padding: 6px 14px;
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nx-tour-back {
+    border: 1px solid var(--shell-border);
+    background: transparent;
+    color: var(--shell-text);
+}
+
+.nx-tour-next {
+    border: none;
+    background-color: var(--shell-primary);
+    color: #ffffff;
+}

@@ -1,0 +1,56 @@
+.nx-filter-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-filter-builder-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-filter-builder-select,
+.nx-filter-builder-input {
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-filter-builder-input {
+    flex: 1;
+}
+
+.nx-filter-builder-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nx-filter-builder-remove:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-filter-builder-add {
+    align-self: flex-start;
+    padding: 6px 10px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-primary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}

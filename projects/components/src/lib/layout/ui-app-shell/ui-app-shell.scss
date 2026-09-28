@@ -1,0 +1,47 @@
+.nx-app-shell {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header header"
+        "sidebar content"
+        "footer footer";
+    min-height: 100%;
+    transition: grid-template-columns .15s ease;
+}
+
+.nx-app-shell.sidebar-collapsed {
+    grid-template-columns: 72px 1fr;
+}
+
+.nx-app-shell-header {
+    grid-area: header;
+}
+
+.nx-app-shell-header:empty {
+    display: none;
+}
+
+.nx-app-shell-sidebar {
+    grid-area: sidebar;
+    overflow-y: auto;
+    border-right: 1px solid var(--shell-border);
+}
+
+.nx-app-shell-sidebar:empty {
+    display: none;
+}
+
+.nx-app-shell-content {
+    grid-area: content;
+    min-width: 0;
+    padding: 20px;
+}
+
+.nx-app-shell-footer {
+    grid-area: footer;
+}
+
+.nx-app-shell-footer:empty {
+    display: none;
+}

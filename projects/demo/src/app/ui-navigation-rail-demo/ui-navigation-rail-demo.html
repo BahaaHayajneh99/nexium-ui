@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Navigation Rail"
+                description="The {{ commonService.appName }} Navigation Rail is a vertical icon rail nav for app-shell-style layouts with a slim left-side nav column. active supports two-way binding."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="height:320px; display:flex;">
+                    <nx-navigation-rail [items]="items" [(active)]="active"></nx-navigation-rail>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Icon Only"
+                description="Set showLabels to false for a compact, icon-only rail."
+                [code]="noLabelsCode"
+                [tsCode]="noLabelsTs"
+                [hasSampleClass]="false">
+                <div style="height:320px; display:flex;">
+                    <nx-navigation-rail [items]="items" [active]="active" [showLabels]="false" (activeChange)="onActiveChange($event)"></nx-navigation-rail>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

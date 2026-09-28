@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Editor"
+                description="The {{ commonService.appName }} Color Gradient Editor is a draggable-stop gradient builder - drag a handle to reposition it, double-click the track to add a stop, or use the type/angle/color controls below the track."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-color-gradient-editor
+                    style="max-width:420px; display:block;"
+                    [type]="type"
+                    [angle]="angle"
+                    [stops]="stops"
+                    (typeChange)="onTypeChange($event)"
+                    (angleChange)="onAngleChange($event)"
+                    (stopsChange)="onStopsChange($event)">
+                </nx-color-gradient-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Starting From a Preset"
+                description="Pass any initial stops, type and angle - the editor is fully controlled through [(stops)], [(type)] and [(angle)] style two-way bindings."
+                [code]="presetCode"
+                [tsCode]="presetTs"
+                [hasSampleClass]="false">
+                <nx-color-gradient-editor
+                    style="max-width:420px; display:block;"
+                    [type]="presetType"
+                    [angle]="presetAngle"
+                    [stops]="presetStops"
+                    (typeChange)="onPresetTypeChange($event)"
+                    (angleChange)="onPresetAngleChange($event)"
+                    (stopsChange)="onPresetStopsChange($event)">
+                </nx-color-gradient-editor>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

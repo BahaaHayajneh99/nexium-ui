@@ -1,0 +1,56 @@
+@if (licensed()) {
+    <div class="nx-formula-wrapper">
+        <div class="nx-formula-field">
+            <input
+                #inputRef
+                type="text"
+                class="nx-formula-input"
+                [class.error]="!!displayError"
+                [placeholder]="placeholder"
+                [disabled]="disabled"
+                [attr.aria-required]="isRequired ? true : null"
+                [attr.aria-invalid]="displayError ? true : null"
+                [value]="value"
+                (input)="onInput($event)"
+                (keydown)="onKeydown($event)"
+                (blur)="onBlur()" />
+
+            @if (open) {
+                <div class="nx-formula-panel">
+                    @if (filteredFields.length === 0) {
+                        <div class="nx-formula-empty">No matching fields</div>
+                    }
+                    @for (field of filteredFields; track field.name; let i = $index) {
+                        <button
+                            type="button"
+                            class="nx-formula-option"
+                            [class.active]="i === activeIndex"
+                            (mousedown)="$event.preventDefault(); insertField(field)">
+                            <span class="nx-formula-option-name">{{ field.name }}</span>
+                            <span class="nx-formula-option-label">{{ field.label }}</span>
+                        </button>
+                    }
+                </div>
+            }
+        </div>
+
+        @if (displayError) {
+            <span class="nx-formula-error">{{ displayError }}</span>
+        }
+
+        @if (showTokens && tokens.length > 0) {
+            <div class="nx-formula-tokens">
+                @for (token of tokens; track $index) {
+                    <span class="nx-formula-token" [class.unknown]="!token.known">
+                        {{ token.label }}
+                        @if (!token.known) {
+                            <span class="nx-formula-token-flag" title="Unknown field">?</span>
+                        }
+                    </span>
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Formula Input"></nx-pro-locked>
+}

@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Maintenance State"
+                description="{{ commonService.appName }}'s Maintenance State is a preset of Result for a temporarily-unavailable page."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-maintenance-state></nx-maintenance-state>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With an Action"
+                description="actionLabel is empty by default (no button) - set it to add one, e.g. a link to a status page."
+                [code]="customCode"
+                [tsCode]="customTs"
+                [hasSampleClass]="false">
+                <nx-maintenance-state
+                    title="Upgrading our servers"
+                    description="Expected to be back by 3:00 PM UTC. Thanks for your patience!"
+                    actionLabel="Check status page">
+                </nx-maintenance-state>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

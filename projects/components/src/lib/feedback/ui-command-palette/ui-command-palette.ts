@@ -1,4 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, Output, booleanAttribute } from '@angular/core';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxCommandItem {
   id: string | number;
@@ -10,11 +12,12 @@ export interface NxCommandItem {
 @Component({
   selector: 'nx-command-palette',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-command-palette.html',
   styleUrl: './ui-command-palette.scss',
 })
 export class NxCommandPalette {
+  protected readonly licensed = nxProLicenseGranted();
   @Input({ transform: booleanAttribute }) open = false;
   @Input() commands: NxCommandItem[] = [];
   @Input() placeholder = 'Type a command or search...';

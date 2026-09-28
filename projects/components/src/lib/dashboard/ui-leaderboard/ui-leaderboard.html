@@ -1,0 +1,15 @@
+<div class="nx-leaderboard">
+    @for (item of items; track item.id) {
+        <div class="nx-leaderboard-row" [class]="medalClass(item.rank)">
+            <span class="nx-leaderboard-rank">
+                @if (medalClass(item.rank)) {
+                    <span class="nx-leaderboard-medal">&#9679;</span>
+                }
+                {{ item.rank }}
+            </span>
+            <nx-avatar [src]="item.avatarUrl" [alt]="item.name" size="small"></nx-avatar>
+            <span class="nx-leaderboard-name">{{ item.name }}</span>
+            <span class="nx-leaderboard-value">{{ item.value }}</span>
+        </div>
+    }
+</div>

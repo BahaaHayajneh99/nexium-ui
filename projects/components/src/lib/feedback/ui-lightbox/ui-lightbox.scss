@@ -1,0 +1,124 @@
+.nx-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 12px);
+    padding: var(--nx-spacing-lg, 24px);
+    background-color: rgba(0, 0, 0, .9);
+    box-sizing: border-box;
+}
+
+.nx-lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .1);
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.nx-lightbox-close:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.nx-lightbox-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+}
+
+.nx-lightbox-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--nx-radius-md, 8px);
+    cursor: default;
+}
+
+.nx-lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .1);
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.nx-lightbox-nav:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.nx-lightbox-nav.prev {
+    left: 8px;
+}
+
+.nx-lightbox-nav.next {
+    right: 8px;
+}
+
+.nx-lightbox-caption {
+    margin: 0;
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+    max-width: 600px;
+}
+
+.nx-lightbox-thumbnails {
+    display: flex;
+    gap: 8px;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.nx-lightbox-thumbnail {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--nx-radius-sm, 4px);
+    overflow: hidden;
+    cursor: pointer;
+    opacity: .6;
+    transition: opacity .15s ease, border-color .15s ease;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+.nx-lightbox-thumbnail:hover {
+    opacity: .9;
+}
+
+.nx-lightbox-thumbnail.active {
+    opacity: 1;
+    border-color: var(--shell-primary);
+}

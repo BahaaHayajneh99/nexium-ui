@@ -1,0 +1,51 @@
+@if (licensed()) {
+    <div class="nx-property-editor">
+        @for (prop of properties; track prop.key) {
+            <div class="nx-property-editor-row">
+                <label class="nx-property-editor-label">{{ prop.label }}</label>
+                <div class="nx-property-editor-control">
+                    @switch (prop.type) {
+                        @case ('text') {
+                            <input
+                                type="text"
+                                [value]="values[prop.key]"
+                                (input)="setValue(prop.key, $any($event.target).value)" />
+                        }
+                        @case ('number') {
+                            <div class="nx-property-editor-number-wrap">
+                                <input
+                                    type="number"
+                                    [value]="values[prop.key]"
+                                    (input)="setValue(prop.key, $any($event.target).valueAsNumber)" />
+                                @if (prop.unit) {
+                                    <span class="nx-property-editor-unit">{{ prop.unit }}</span>
+                                }
+                            </div>
+                        }
+                        @case ('color') {
+                            <input
+                                type="color"
+                                [value]="values[prop.key]"
+                                (input)="setValue(prop.key, $any($event.target).value)" />
+                        }
+                        @case ('boolean') {
+                            <input
+                                type="checkbox"
+                                [checked]="values[prop.key]"
+                                (change)="setValue(prop.key, $any($event.target).checked)" />
+                        }
+                        @case ('select') {
+                            <select [value]="values[prop.key]" (change)="setValue(prop.key, $any($event.target).value)">
+                                @for (option of prop.options; track option.value) {
+                                    <option [value]="option.value">{{ option.label }}</option>
+                                }
+                            </select>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Property Editor"></nx-pro-locked>
+}

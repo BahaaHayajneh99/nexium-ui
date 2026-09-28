@@ -1,0 +1,19 @@
+@if (licensed()) {
+    <div class="nx-sortable-list">
+        @for (item of items; track item.id; let i = $index) {
+            <div
+                class="nx-sortable-list-item"
+                [class.drag-over]="dragOverIndex() === i"
+                draggable="true"
+                (dragstart)="onDragStart(i, $event)"
+                (dragover)="onDragOver(i, $event)"
+                (drop)="onDrop(i, $event)"
+                (dragend)="onDragEnd()">
+                <nx-icon icon="nx-menu" variant="svg" [size]="16" class="nx-sortable-list-grip"></nx-icon>
+                <span class="nx-sortable-list-label">{{ item.label }}</span>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Sortable List"></nx-pro-locked>
+}

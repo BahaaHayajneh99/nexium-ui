@@ -1,0 +1,51 @@
+<div class="pro-upgrade">
+    <div class="pro-upgrade-card">
+        <span class="pro-upgrade-badge">PRO</span>
+
+        @if (licenseToken()) {
+            <h1>You're all set!</h1>
+            <p class="pro-upgrade-description">
+                Copy this license token and pass it to <code>provideNxLicense()</code> in your own project's
+                bootstrap providers to unlock every PRO component.
+            </p>
+
+            <div class="pro-upgrade-token-row">
+                <code class="pro-upgrade-token">{{ licenseToken() }}</code>
+                <button type="button" class="pro-upgrade-copy" (click)="copyToken()">
+                    {{ copied() ? 'Copied!' : 'Copy' }}
+                </button>
+            </div>
+
+            <pre class="pro-upgrade-snippet">bootstrapApplication(AppComponent, &#123;
+  providers: [provideNxLicense('{{ licenseToken() }}')],
+&#125;);</pre>
+        } @else {
+            <h1>Unlock PRO components</h1>
+            <p class="pro-upgrade-description">
+                PRO components (like Kanban Board and Query Builder) render a locked placeholder in your project
+                until you configure a license. Get one with a one-time payment.
+            </p>
+
+            <div class="pro-upgrade-price">
+                ${{ price }}
+                <span>one-time</span>
+            </div>
+
+            <div id="paypal-button-container" class="pro-upgrade-paypal"></div>
+
+            @if (checkoutFailed()) {
+                <p class="pro-upgrade-error">
+                    Couldn't load PayPal checkout. Check your connection and refresh the page.
+                </p>
+            }
+            @if (claimFailed()) {
+                <p class="pro-upgrade-error">
+                    Payment went through, but we couldn't issue a license token. Please contact
+                    support with your PayPal receipt/order id and we'll get one to you manually.
+                </p>
+            }
+        }
+
+        <a class="pro-upgrade-back" routerLink="/">Back to home</a>
+    </div>
+</div>

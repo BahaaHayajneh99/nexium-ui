@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Widget"
+                description="A generic dashboard tile shell - a title bar with an actions slot, plus a default content slot for the body."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-dashboard-widget title="Recent Orders" style="max-width:360px;">
+                    <button nxDashboardWidgetActions>Refresh</button>
+                    <p>142 orders in the last 24 hours.</p>
+                </nx-dashboard-widget>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Loading, Error and Content States"
+                description="loading and error are checked before the projected content - set loading to true while fetching, or error to a message when the fetch fails."
+                [code]="statesCode"
+                [tsCode]="statesTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-wrap:wrap; gap:16px;">
+                    <nx-dashboard-widget title="Revenue" style="max-width:260px;">
+                        <p>$48,290 this month, up 12.4%.</p>
+                    </nx-dashboard-widget>
+                    <nx-dashboard-widget title="Revenue" [loading]="true" style="max-width:260px;"></nx-dashboard-widget>
+                    <nx-dashboard-widget title="Revenue" error="Failed to load revenue data." style="max-width:260px;"></nx-dashboard-widget>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

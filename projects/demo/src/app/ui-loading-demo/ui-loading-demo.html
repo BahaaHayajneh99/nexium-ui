@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Loading State"
+                description="The {{ commonService.appName }} Loading State is a full-section placeholder for content that's still being fetched for the first time - the loading sibling of Empty State and Result."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-loading-state title="Loading..."></nx-loading-state>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With a Description"
+                description="Add description for extra context."
+                [code]="descriptionCode"
+                [tsCode]="descriptionTs"
+                [hasSampleClass]="false">
+                <nx-loading-state
+                    title="Fetching your dashboard"
+                    description="This usually takes a few seconds.">
+                </nx-loading-state>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Variants"
+                description="spinnerVariant matches nx-spinner's palette; spinnerSize controls how large the spinner renders."
+                [code]="variantCode"
+                [tsCode]="variantTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:16px;">
+                    <nx-loading-state title="Loading..." spinnerVariant="success"></nx-loading-state>
+                    <nx-loading-state title="Loading..." spinnerVariant="danger"></nx-loading-state>
+                    <nx-loading-state title="Loading..." spinnerSize="small"></nx-loading-state>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

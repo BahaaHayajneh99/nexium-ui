@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Before / After"
+                description="The {{ commonService.appName }} Before/After is a draggable-divider image comparison slider - drag or tap anywhere to move the divider."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-before-after
+                        beforeSrc="https://picsum.photos/id/1015/600/400"
+                        afterSrc="https://picsum.photos/id/1016/600/400">
+                    </nx-before-after>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Labels & Start Position"
+                description="beforeLabel/afterLabel customize the overlay captions, and initialPosition sets where the divider starts (0-100)."
+                [code]="labelCode"
+                [tsCode]="labelTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-before-after
+                        beforeSrc="https://picsum.photos/id/1015/600/400"
+                        afterSrc="https://picsum.photos/id/1016/600/400"
+                        beforeLabel="Original"
+                        afterLabel="Edited"
+                        [initialPosition]="30">
+                    </nx-before-after>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

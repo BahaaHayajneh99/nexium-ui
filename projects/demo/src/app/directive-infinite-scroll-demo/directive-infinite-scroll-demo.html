@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Load more on scroll"
+                description="Attach nxInfiniteScroll to a scrollable container (a fixed height plus overflow-y: auto). It emits (nxInfiniteScroll) once the remaining scroll distance drops under threshold pixels - scroll near the bottom of the list below to load more rows."
+                [code]="code"
+                [tsCode]="ts"
+                [hasSampleClass]="false">
+                <div
+                    nxInfiniteScroll
+                    [threshold]="150"
+                    (nxInfiniteScroll)="loadMore()"
+                    style="max-width:420px; height:320px; overflow-y:auto; border:1px solid var(--shell-border); border-radius:8px;">
+                    @for (row of rows(); track row.id) {
+                        <div style="padding:10px 16px; border-bottom:1px solid var(--shell-border);">{{ row.label }}</div>
+                    }
+                    @if (loading()) {
+                        <div style="padding:12px 16px; color:var(--shell-text-muted); font-size:0.85rem;">Loading more...</div>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

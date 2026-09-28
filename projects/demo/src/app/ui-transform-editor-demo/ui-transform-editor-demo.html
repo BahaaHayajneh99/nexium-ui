@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Transform Editor"
+                description="The {{ commonService.appName }} Transform Editor is a translate/rotate/scale/skew builder with a live-transformed preview box and CSS output. Bind [value] and handle (valueChange) to keep your own state in sync."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-transform-editor [value]="transform" (valueChange)="onTransformChange($event)"></nx-transform-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Preset Value"
+                description="Pass an initial value to start the editor with a preset transform - every field, including the preview and generated CSS, reflects it immediately."
+                [code]="presetCode"
+                [tsCode]="presetTs"
+                [hasSampleClass]="false">
+                <nx-transform-editor [value]="preset" (valueChange)="onPresetChange($event)"></nx-transform-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reading The Live Output"
+                description="The component's own CSS string can be recomputed from the emitted value in the host - handy for showing the resulting transform elsewhere on the page."
+                [code]="outputCode"
+                [tsCode]="outputTs"
+                [hasSampleClass]="false">
+                <div>
+                    <nx-transform-editor [value]="transform" (valueChange)="onTransformChange($event)"></nx-transform-editor>
+                    <code style="font-size:12px; word-break:break-all;">{{ cssOutput }}</code>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

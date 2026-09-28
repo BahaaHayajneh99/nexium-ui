@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Layout Templates"
+                description="A small wireframe thumbnail of a layout template - header/sidebar/content boxes - useful for a 'choose a layout' picker."
+                [code]="templatesCode"
+                [tsCode]="templatesTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; align-items:flex-start; gap:24px; flex-wrap:wrap;">
+                    <nx-layout-preview template="sidebar-left" label="Sidebar Left"></nx-layout-preview>
+                    <nx-layout-preview template="sidebar-right" label="Sidebar Right"></nx-layout-preview>
+                    <nx-layout-preview template="header-content" label="Header + Content"></nx-layout-preview>
+                    <nx-layout-preview template="holy-grail" label="Holy Grail"></nx-layout-preview>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Selected State"
+                description="Set selected to true to highlight one of the previews - typically the currently chosen layout."
+                [code]="selectedCode"
+                [hasSampleClass]="false">
+                <div style="display:flex; align-items:flex-start; gap:24px; flex-wrap:wrap;">
+                    <nx-layout-preview template="sidebar-left" label="Sidebar Left" [selected]="true"></nx-layout-preview>
+                    <nx-layout-preview template="holy-grail" label="Holy Grail"></nx-layout-preview>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="In Context: Layout Picker"
+                description="A typical use case - clicking a preview marks it as selected, driven by a template list in the component class."
+                [code]="pickerCode"
+                [tsCode]="pickerTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; align-items:flex-start; gap:24px; flex-wrap:wrap;">
+                    @for (option of layouts; track option.template) {
+                        <nx-layout-preview
+                            [template]="option.template"
+                            [label]="option.label"
+                            [selected]="option.template === selectedTemplate"
+                            (click)="selectedTemplate = option.template"
+                            style="cursor:pointer;">
+                        </nx-layout-preview>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

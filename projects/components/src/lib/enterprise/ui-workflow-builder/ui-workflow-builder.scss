@@ -1,0 +1,70 @@
+.nx-workflow-builder {
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: auto;
+}
+
+.nx-workflow-builder-canvas {
+    position: relative;
+    min-width: 100%;
+    min-height: 480px;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .02));
+    background-image: radial-gradient(var(--shell-border) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.nx-workflow-builder-edges {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.nx-workflow-builder-edge {
+    fill: none;
+    stroke: var(--shell-text-secondary);
+    stroke-width: 2;
+}
+
+.nx-workflow-builder-edge.connecting {
+    stroke: var(--shell-primary);
+    stroke-dasharray: 4 4;
+}
+
+.nx-workflow-builder-node {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-bg, #ffffff);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .12);
+    cursor: grab;
+    user-select: none;
+}
+
+.nx-workflow-builder-node-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nx-workflow-builder-node-handle {
+    position: absolute;
+    top: 50%;
+    right: -7px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--shell-bg, #ffffff);
+    border-radius: 50%;
+    background-color: var(--shell-primary);
+    transform: translateY(-50%);
+    cursor: crosshair;
+}

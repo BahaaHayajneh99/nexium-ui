@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Success Response"
+                description="The {{ commonService.appName }} API Response Viewer is a Postman-style panel - a status badge, request duration, and tabbed body/headers views."
+                [code]="successCode"
+                [tsCode]="successTs"
+                [hasSampleClass]="false">
+                <div style="max-width:560px;">
+                    <nx-api-response-viewer [response]="successResponse"></nx-api-response-viewer>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Error Response"
+                description="The status badge and coloring adapt automatically to the response's status code."
+                [code]="errorCode"
+                [tsCode]="errorTs"
+                [hasSampleClass]="false">
+                <div style="max-width:560px;">
+                    <nx-api-response-viewer [response]="errorResponse"></nx-api-response-viewer>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

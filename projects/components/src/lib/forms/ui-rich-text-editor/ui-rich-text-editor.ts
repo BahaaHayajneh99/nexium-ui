@@ -12,6 +12,8 @@ import {
   forwardRef,
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 interface ToolbarButton {
   label: string;
@@ -45,7 +47,7 @@ const TOOLBAR: ToolbarButton[] = [
 @Component({
   selector: 'nx-rich-text-editor',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-rich-text-editor.html',
   styleUrl: './ui-rich-text-editor.scss',
   providers: [
@@ -62,6 +64,8 @@ const TOOLBAR: ToolbarButton[] = [
   ],
 })
 export class NxRichTextEditor implements AfterViewInit, OnChanges, ControlValueAccessor, Validator {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input() value = '';
   @Input() placeholder = 'Write something...';
   @Input({ transform: booleanAttribute }) disabled = false;

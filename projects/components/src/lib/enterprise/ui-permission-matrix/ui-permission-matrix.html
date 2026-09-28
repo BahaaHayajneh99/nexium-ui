@@ -1,0 +1,37 @@
+@if (licensed()) {
+    <table class="nx-permission-matrix">
+        <thead>
+            <tr>
+                <th class="nx-permission-matrix-corner"></th>
+                @for (permission of permissions; track permission) {
+                    <th class="nx-permission-matrix-col-header">
+                        <button type="button" class="nx-permission-matrix-header-btn" (click)="toggleColumn(permission)">
+                            {{ permission }}
+                        </button>
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (role of roles; track role) {
+                <tr>
+                    <th class="nx-permission-matrix-row-header">
+                        <button type="button" class="nx-permission-matrix-header-btn" (click)="toggleRow(role)">
+                            {{ role }}
+                        </button>
+                    </th>
+                    @for (permission of permissions; track permission) {
+                        <td class="nx-permission-matrix-cell">
+                            <input
+                                type="checkbox"
+                                [checked]="isGranted(role, permission)"
+                                (change)="toggleCell(role, permission)" />
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+} @else {
+    <nx-pro-locked componentName="Permission Matrix"></nx-pro-locked>
+}

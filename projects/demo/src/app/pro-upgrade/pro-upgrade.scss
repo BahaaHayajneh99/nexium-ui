@@ -1,0 +1,130 @@
+.pro-upgrade {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+    padding: 40px 20px;
+}
+
+.pro-upgrade-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 32px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    background-color: var(--shell-surface);
+    text-align: center;
+}
+
+.pro-upgrade-token-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+}
+
+.pro-upgrade-token {
+    flex: 1;
+    overflow-x: auto;
+    white-space: nowrap;
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-align: left;
+}
+
+.pro-upgrade-copy {
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: #e6e6e6;
+    font-size: 12px;
+    padding: 2px 10px;
+    cursor: pointer;
+}
+
+.pro-upgrade-copy:hover {
+    background: rgba(255, 255, 255, .08);
+}
+
+.pro-upgrade-snippet {
+    width: 100%;
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #7ee787;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.pro-upgrade-badge {
+    padding: 3px 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f59e0b, #ef4444);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+}
+
+.pro-upgrade-card h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.pro-upgrade-description {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.pro-upgrade-price {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--shell-text);
+}
+
+.pro-upgrade-price span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--shell-text-secondary);
+}
+
+.pro-upgrade-paypal {
+    width: 100%;
+    min-height: 45px;
+    margin-top: 8px;
+}
+
+.pro-upgrade-error {
+    margin: 0;
+    color: var(--nx-color-danger, #e74c3c);
+    font-size: 13px;
+}
+
+.pro-upgrade-back {
+    margin-top: 8px;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.pro-upgrade-back:hover {
+    color: var(--shell-primary);
+    text-decoration: underline;
+}

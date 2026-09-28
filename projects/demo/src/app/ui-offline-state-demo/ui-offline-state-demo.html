@@ -1,0 +1,40 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Auto-Detecting Offline Banner"
+                description="With display=&quot;banner&quot; and no status input, {{ commonService.appName }}'s Connection Status auto-detects via navigator.onLine - the banner only appears while you're actually offline, and briefly flashes 'Back online' on reconnect."
+                [code]="autoCode"
+                [tsCode]="autoTs"
+                [hasSampleClass]="false">
+                <nx-connection-status display="banner"></nx-connection-status>
+                <p class="main-section-description" style="margin-top: 8px;">
+                    (Nothing to see here unless you're actually offline right now - try the manual demo below,
+                    or your devtools' network throttling.)
+                </p>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Manually Controlled"
+                description="Pass status to drive it yourself instead of auto-detecting - handy for previewing it, or for driving it from your own connectivity check."
+                [code]="manualCode"
+                [tsCode]="manualTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; gap:8px; margin-bottom:12px;">
+                    <button type="button" class="demo-btn" (click)="goOffline()">Go offline</button>
+                    <button type="button" class="demo-btn" (click)="goOnline()">Go online</button>
+                </div>
+                <nx-connection-status display="banner" [status]="demoStatus"></nx-connection-status>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

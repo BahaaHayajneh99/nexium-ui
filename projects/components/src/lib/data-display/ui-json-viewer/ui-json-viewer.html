@@ -1,0 +1,27 @@
+@if (licensed()) {
+    <div class="nx-json-viewer">
+        @for (row of rows; track row.path) {
+            <div class="nx-json-row" [style.padding-left.px]="row.indent * 16">
+                @if (row.hasChildren) {
+                    <button
+                        type="button"
+                        class="nx-json-toggle"
+                        [attr.aria-label]="isCollapsed(row.path) ? 'Expand' : 'Collapse'"
+                        (click)="toggle(row.path)">
+                        {{ isCollapsed(row.path) ? '▶' : '▼' }}
+                    </button>
+                } @else {
+                    <span class="nx-json-toggle-spacer"></span>
+                }
+
+                @if (row.key !== null) {
+                    <span class="nx-json-key">{{ row.key }}:</span>
+                }
+
+                <span class="nx-json-value" [class]="row.valueType">{{ row.preview }}</span>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="JSON Viewer"></nx-pro-locked>
+}

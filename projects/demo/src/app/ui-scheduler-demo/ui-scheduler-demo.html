@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Week View"
+                description="{{ commonService.appName }} Scheduler - drag an event to move it, drag its bottom edge to resize (change its end time). This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-scheduler [startDate]="startDate" [events]="events" (eventChange)="onEventChange($event)"></nx-scheduler>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

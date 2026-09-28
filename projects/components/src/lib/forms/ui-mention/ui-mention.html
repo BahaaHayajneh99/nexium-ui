@@ -1,34 +1,38 @@
-<div class="nx-mention-wrapper">
-    <textarea
-        #textareaRef
-        class="nx-mention-textarea"
-        [class.error]="!!displayError"
-        [rows]="rows"
-        [placeholder]="placeholder"
-        [disabled]="disabled"
-        [attr.aria-required]="isRequired ? true : null"
-        [attr.aria-invalid]="displayError ? true : null"
-        [value]="value"
-        (input)="onInput($event)"
-        (keydown)="onKeydown($event)"
-        (blur)="onBlur()">
-    </textarea>
+@if (licensed()) {
+    <div class="nx-mention-wrapper">
+        <textarea
+            #textareaRef
+            class="nx-mention-textarea"
+            [class.error]="!!displayError"
+            [rows]="rows"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [attr.aria-required]="isRequired ? true : null"
+            [attr.aria-invalid]="displayError ? true : null"
+            [value]="value"
+            (input)="onInput($event)"
+            (keydown)="onKeydown($event)"
+            (blur)="onBlur()">
+        </textarea>
 
-    @if (displayError) {
-        <span class="nx-mention-error">{{ displayError }}</span>
-    }
+        @if (displayError) {
+            <span class="nx-mention-error">{{ displayError }}</span>
+        }
 
-    @if (open) {
-        <div class="nx-mention-panel">
-            @for (suggestion of filteredSuggestions; track suggestion.id; let i = $index) {
-                <button
-                    type="button"
-                    class="nx-mention-option"
-                    [class.active]="i === activeIndex"
-                    (mousedown)="$event.preventDefault(); selectSuggestion(suggestion)">
-                    {{ trigger }}{{ suggestion.label }}
-                </button>
-            }
-        </div>
-    }
-</div>
+        @if (open) {
+            <div class="nx-mention-panel">
+                @for (suggestion of filteredSuggestions; track suggestion.id; let i = $index) {
+                    <button
+                        type="button"
+                        class="nx-mention-option"
+                        [class.active]="i === activeIndex"
+                        (mousedown)="$event.preventDefault(); selectSuggestion(suggestion)">
+                        {{ trigger }}{{ suggestion.label }}
+                    </button>
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Mention"></nx-pro-locked>
+}

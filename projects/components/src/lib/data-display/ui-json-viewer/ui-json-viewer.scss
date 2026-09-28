@@ -1,0 +1,59 @@
+.nx-json-viewer {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    padding: 12px;
+    border-radius: var(--nx-radius-md, 8px);
+    overflow-x: auto;
+}
+
+.nx-json-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    line-height: 1.7;
+}
+
+.nx-json-toggle,
+.nx-json-toggle-spacer {
+    flex-shrink: 0;
+    width: 14px;
+    text-align: center;
+}
+
+.nx-json-toggle {
+    border: none;
+    background: transparent;
+    color: #9aa5b1;
+    font-size: 9px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nx-json-key {
+    color: #79b8ff;
+}
+
+.nx-json-value.string {
+    color: #9ecbff;
+}
+
+.nx-json-value.number {
+    color: #f8c555;
+}
+
+.nx-json-value.boolean {
+    color: #d19a66;
+}
+
+.nx-json-value.null {
+    color: #7c8794;
+    font-style: italic;
+}
+
+.nx-json-value.object,
+.nx-json-value.array {
+    color: #9aa5b1;
+}

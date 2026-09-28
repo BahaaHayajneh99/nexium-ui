@@ -1,0 +1,46 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Loading Overlay"
+                description="The {{ commonService.appName }} Loading Overlay wraps its content and, while loading is true, covers it with a spinner and blocks interaction - the classic 'block a section while an async call runs' pattern."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <button type="button" class="demo-btn" (click)="toggleLoading()">Reload data</button>
+                <nx-loading-overlay [loading]="loading" style="display:block; margin-top:12px;">
+                    <p>This section's content sits underneath the overlay.</p>
+                    <p>Click the button above to simulate a 2-second request.</p>
+                </nx-loading-overlay>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With a Message"
+                description="Set message to show text alongside the spinner."
+                [code]="messageCode"
+                [tsCode]="messageTs">
+                <nx-loading-overlay [loading]="true" message="Loading your dashboard..." style="display:block;">
+                    <div style="height: 160px;"></div>
+                </nx-loading-overlay>
+            </app-demo-section>
+
+            <app-demo-section
+                header="No Blur + Variant"
+                description="Set blur to false to skip the background blur, and spinnerVariant to match any nx-spinner color."
+                [code]="noBlurCode"
+                [tsCode]="noBlurTs">
+                <nx-loading-overlay [loading]="true" [blur]="false" spinnerVariant="success" style="display:block;">
+                    <div style="height: 160px;"></div>
+                </nx-loading-overlay>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

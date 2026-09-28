@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Filters with Counts"
+                description="A row of toggleable filter chips - a multi-select set of active filters, each with an optional result count, plus a 'Clear all' affordance once anything is selected."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-filter-chip-group
+                    [options]="statusOptions"
+                    [selectedIds]="selectedStatuses"
+                    (selectedIdsChange)="selectedStatuses = $event">
+                </nx-filter-chip-group>
+                <p style="margin-top:10px; font-size:13px; color:var(--shell-text-secondary);">
+                    Selected: {{ selectedStatuses.length ? selectedStatuses.join(', ') : 'none' }}
+                </p>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without Counts"
+                description="count is optional and clearLabel can be customized for a plain tag-picker use case."
+                [code]="noCountCode"
+                [tsCode]="noCountTs"
+                [hasSampleClass]="false">
+                <nx-filter-chip-group
+                    [options]="tagOptions"
+                    [selectedIds]="selectedTags"
+                    clearLabel="Reset"
+                    (selectedIdsChange)="selectedTags = $event">
+                </nx-filter-chip-group>
+                <p style="margin-top:10px; font-size:13px; color:var(--shell-text-secondary);">
+                    Selected: {{ selectedTags.length ? selectedTags.join(', ') : 'none' }}
+                </p>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

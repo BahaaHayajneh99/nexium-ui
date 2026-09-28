@@ -1,0 +1,42 @@
+@if (licensed()) {
+    <div class="nx-chat">
+        <div class="nx-chat-messages">
+            @for (message of messages; track message.id; let last = $last) {
+                <div class="nx-chat-message" [class.user]="message.role === 'user'" [class.assistant]="message.role === 'assistant'">
+                    <div class="nx-chat-bubble" [innerHTML]="renderContent(message.content)"></div>
+                    <div class="nx-chat-message-actions">
+                        <button type="button" class="nx-chat-action" (click)="copyMessage(message)">
+                            {{ copiedId() === message.id ? 'Copied' : 'Copy' }}
+                        </button>
+                        @if (last && message.role === 'assistant') {
+                            <button type="button" class="nx-chat-action" (click)="regenerate.emit(message)">Regenerate</button>
+                        }
+                    </div>
+                </div>
+            }
+
+            @if (typing) {
+                <div class="nx-chat-message assistant">
+                    <div class="nx-chat-bubble nx-chat-typing">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="nx-chat-composer">
+            <textarea
+                class="nx-chat-input"
+                [placeholder]="placeholder"
+                [disabled]="disabled"
+                [value]="draft()"
+                (input)="draft.set($any($event.target).value)"
+                (keydown.enter)="onEnterKey($event)"></textarea>
+            <button type="button" class="nx-chat-send" [disabled]="disabled || !draft().trim()" (click)="send()">
+                <nx-icon icon="nx-send" variant="svg" [size]="16"></nx-icon>
+            </button>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Chat"></nx-pro-locked>
+}

@@ -1,0 +1,56 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Status Codes"
+                description="The {{ commonService.appName }} HTTP Status badge color-codes a numeric status: 2xx green, 3xx blue, 4xx amber, 5xx red."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <nx-http-status [code]="200"></nx-http-status>
+                    <nx-http-status [code]="201"></nx-http-status>
+                    <nx-http-status [code]="301"></nx-http-status>
+                    <nx-http-status [code]="404"></nx-http-status>
+                    <nx-http-status [code]="500"></nx-http-status>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With Status Text"
+                description="Pass statusText to show the reason phrase alongside the code."
+                [code]="textCode">
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <nx-http-status [code]="200" statusText="OK"></nx-http-status>
+                    <nx-http-status [code]="201" statusText="Created"></nx-http-status>
+                    <nx-http-status [code]="404" statusText="Not Found"></nx-http-status>
+                    <nx-http-status [code]="500" statusText="Internal Server Error"></nx-http-status>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="In Context"
+                description="A typical use case - a status column in an API request log."
+                [code]="contextCode"
+                [tsCode]="contextTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:10px; max-width:420px;">
+                    @for (endpoint of endpoints; track endpoint.path + endpoint.code) {
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                            <span style="font-family:'JetBrains Mono', monospace; font-size:13px;">{{ endpoint.method }} {{ endpoint.path }}</span>
+                            <nx-http-status [code]="endpoint.code" [statusText]="endpoint.statusText"></nx-http-status>
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

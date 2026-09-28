@@ -1,0 +1,51 @@
+.nx-diff-viewer {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    border-radius: var(--nx-radius-md, 8px);
+    overflow-x: auto;
+}
+
+.nx-diff-line {
+    display: flex;
+    white-space: pre;
+    line-height: 1.6;
+}
+
+.nx-diff-gutter {
+    flex-shrink: 0;
+    width: 36px;
+    padding: 0 6px;
+    text-align: right;
+    color: #6e7681;
+    user-select: none;
+}
+
+.nx-diff-marker {
+    flex-shrink: 0;
+    width: 16px;
+    text-align: center;
+    color: #6e7681;
+}
+
+.nx-diff-text {
+    flex: 1;
+    padding-right: 12px;
+}
+
+.nx-diff-line.added {
+    background-color: rgba(46, 204, 113, .12);
+}
+
+.nx-diff-line.added .nx-diff-marker {
+    color: #2ecc71;
+}
+
+.nx-diff-line.removed {
+    background-color: rgba(231, 76, 60, .12);
+}
+
+.nx-diff-line.removed .nx-diff-marker {
+    color: #e74c3c;
+}

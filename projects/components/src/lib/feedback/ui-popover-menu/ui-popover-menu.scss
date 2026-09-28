@@ -1,0 +1,94 @@
+.nx-popover-menu-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.nx-popover-menu-trigger {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.nx-popover-menu-trigger.disabled {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+.nx-popover-menu-panel {
+    position: absolute;
+    z-index: 100;
+    min-width: 200px;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    box-shadow: var(--nx-shadow-lg, 0 10px 20px rgba(0, 0, 0, .15));
+    padding: 4px;
+}
+
+.nx-popover-menu-arrow {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    transform: rotate(45deg);
+}
+
+// Bottom-anchored: panel below the trigger, arrow points up.
+.placement-bottom,
+.placement-bottom-start,
+.placement-bottom-end {
+    top: calc(100% + 10px);
+
+    .nx-popover-menu-arrow {
+        top: -6px;
+        border-right: none;
+        border-bottom: none;
+    }
+}
+
+.placement-bottom { left: 50%; transform: translateX(-50%); .nx-popover-menu-arrow { left: calc(50% - 5px); } }
+.placement-bottom-start { left: 0; .nx-popover-menu-arrow { left: 16px; } }
+.placement-bottom-end { right: 0; .nx-popover-menu-arrow { right: 16px; } }
+
+// Top-anchored: panel above the trigger, arrow points down.
+.placement-top,
+.placement-top-start,
+.placement-top-end {
+    bottom: calc(100% + 10px);
+
+    .nx-popover-menu-arrow {
+        bottom: -6px;
+        border-left: none;
+        border-top: none;
+    }
+}
+
+.placement-top { left: 50%; transform: translateX(-50%); .nx-popover-menu-arrow { left: calc(50% - 5px); } }
+.placement-top-start { left: 0; .nx-popover-menu-arrow { left: 16px; } }
+.placement-top-end { right: 0; .nx-popover-menu-arrow { right: 16px; } }
+
+.placement-left {
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+
+    .nx-popover-menu-arrow {
+        right: -6px;
+        top: calc(50% - 5px);
+        border-left: none;
+        border-bottom: none;
+    }
+}
+
+.placement-right {
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+
+    .nx-popover-menu-arrow {
+        left: -6px;
+        top: calc(50% - 5px);
+        border-right: none;
+        border-top: none;
+    }
+}

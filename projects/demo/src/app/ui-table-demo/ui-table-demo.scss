@@ -1,0 +1,13 @@
+.nx-table-demo-note {
+    padding: 12px 16px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}
+
+.nx-table-demo-note a {
+    color: var(--shell-primary);
+    font-weight: 600;
+}

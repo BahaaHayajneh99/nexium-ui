@@ -1,0 +1,77 @@
+.nx-transform-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nx-transform-editor-preview-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+    overflow: hidden;
+}
+
+.nx-transform-editor-preview {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--nx-radius-sm, 6px);
+    background-color: var(--shell-primary);
+    transition: transform .05s linear;
+}
+
+.nx-transform-editor-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-transform-editor-field {
+    display: grid;
+    grid-template-columns: 90px 1fr 56px;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-transform-editor-value {
+    text-align: right;
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-transform-editor-css-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+}
+
+.nx-transform-editor-css {
+    flex: 1;
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.nx-transform-editor-copy {
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: #e6e6e6;
+    font-size: 12px;
+    padding: 2px 10px;
+    cursor: pointer;
+}
+
+.nx-transform-editor-copy:hover {
+    background: rgba(255, 255, 255, .08);
+}

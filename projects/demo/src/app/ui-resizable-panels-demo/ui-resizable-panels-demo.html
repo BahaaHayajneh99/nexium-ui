@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Side by side panels"
+                description="Drag the gutter between two panels to resize them. Panels are literal nx-resizable-panel children of nx-resizable-panels, each keeping its own percentage-of-container size and a minimum size."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-resizable-panels style="height:320px; max-width:760px; border:1px solid var(--shell-border); border-radius:8px;">
+                    <nx-resizable-panel [size]="25" [minSize]="15">
+                        <div style="padding:16px; height:100%; box-sizing:border-box; background:var(--shell-surface);">
+                            <strong>Sidebar</strong>
+                            <p style="color:var(--shell-text-secondary); font-size:0.85rem;">25% - min 15%</p>
+                        </div>
+                    </nx-resizable-panel>
+                    <nx-resizable-panel [size]="50" [minSize]="20">
+                        <div style="padding:16px; height:100%; box-sizing:border-box;">
+                            <strong>Main content</strong>
+                            <p style="color:var(--shell-text-secondary); font-size:0.85rem;">50% - min 20%</p>
+                        </div>
+                    </nx-resizable-panel>
+                    <nx-resizable-panel [size]="25" [minSize]="15">
+                        <div style="padding:16px; height:100%; box-sizing:border-box; background:var(--shell-surface);">
+                            <strong>Details</strong>
+                            <p style="color:var(--shell-text-secondary); font-size:0.85rem;">25% - min 15%</p>
+                        </div>
+                    </nx-resizable-panel>
+                </nx-resizable-panels>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Vertical orientation"
+                description="Set orientation to 'vertical' to stack panels top-to-bottom instead of side by side."
+                [code]="verticalCode"
+                [tsCode]="verticalTs"
+                [hasSampleClass]="false">
+                <nx-resizable-panels orientation="vertical" style="height:320px; max-width:480px; border:1px solid var(--shell-border); border-radius:8px;">
+                    <nx-resizable-panel [size]="60" [minSize]="20">
+                        <div style="padding:16px; height:100%; box-sizing:border-box;">Top</div>
+                    </nx-resizable-panel>
+                    <nx-resizable-panel [size]="40" [minSize]="20">
+                        <div style="padding:16px; height:100%; box-sizing:border-box; background:var(--shell-surface);">Bottom</div>
+                    </nx-resizable-panel>
+                </nx-resizable-panels>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="nx-layout-preview" [class.selected]="selected">
+    <div class="nx-layout-preview-diagram" [class]="template">
+        @switch (template) {
+            @case ('sidebar-left') {
+                <span class="nx-layout-preview-box sidebar"></span>
+                <span class="nx-layout-preview-box content"></span>
+            }
+            @case ('sidebar-right') {
+                <span class="nx-layout-preview-box content"></span>
+                <span class="nx-layout-preview-box sidebar"></span>
+            }
+            @case ('header-content') {
+                <span class="nx-layout-preview-box header"></span>
+                <span class="nx-layout-preview-box content"></span>
+            }
+            @case ('holy-grail') {
+                <span class="nx-layout-preview-box header"></span>
+                <span class="nx-layout-preview-box sidebar"></span>
+                <span class="nx-layout-preview-box content"></span>
+                <span class="nx-layout-preview-box aside"></span>
+                <span class="nx-layout-preview-box footer"></span>
+            }
+            @default {
+                <span class="nx-layout-preview-box content"></span>
+            }
+        }
+    </div>
+    @if (label) {
+        <span class="nx-layout-preview-label">{{ label }}</span>
+    }
+</div>

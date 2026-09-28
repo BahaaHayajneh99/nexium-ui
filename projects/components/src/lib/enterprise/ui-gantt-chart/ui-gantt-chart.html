@@ -1,0 +1,47 @@
+@if (licensed()) {
+    <div class="nx-gantt-chart">
+        <div class="nx-gantt-chart-labels">
+            <div class="nx-gantt-chart-labels-header">Task</div>
+            @for (row of rows; track row.task.id) {
+                <div class="nx-gantt-chart-label">{{ row.task.name }}</div>
+            }
+        </div>
+
+        <div class="nx-gantt-chart-timeline">
+            <div class="nx-gantt-chart-header" [style.width.px]="totalDays * pxPerDay">
+                @for (tick of dayTicks; track tick.left) {
+                    <span class="nx-gantt-chart-tick" [style.left.px]="tick.left">
+                        {{ tick.date | date: 'MMM d' }}
+                    </span>
+                }
+            </div>
+
+            <div
+                class="nx-gantt-chart-body"
+                [style.width.px]="totalDays * pxPerDay"
+                [style.background-size.px]="pxPerDay">
+                @for (row of rows; track row.task.id) {
+                    <div class="nx-gantt-chart-row">
+                        <div
+                            class="nx-gantt-chart-bar"
+                            [attr.data-task]="row.task.id"
+                            [style.left.px]="row.left"
+                            [style.width.px]="row.width"
+                            [style.background-color]="row.task.color ?? 'var(--shell-primary)'"
+                            (pointerdown)="onBarPointerDown(row, 'move', $event)">
+                            @if (row.task.progress !== undefined) {
+                                <div class="nx-gantt-chart-progress" [style.width.%]="row.task.progress"></div>
+                            }
+                            <span class="nx-gantt-chart-bar-label">{{ row.task.name }}</span>
+                            <span
+                                class="nx-gantt-chart-resize-handle"
+                                (pointerdown)="onBarPointerDown(row, 'resize', $event)"></span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Gantt Chart"></nx-pro-locked>
+}

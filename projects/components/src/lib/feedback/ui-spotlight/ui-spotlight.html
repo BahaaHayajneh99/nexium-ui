@@ -1,0 +1,33 @@
+@if (open && rect) {
+    <div class="nx-spotlight-backdrop" (click)="onBackdropClick()"></div>
+
+    <div
+        class="nx-spotlight-cutout"
+        [style.top.px]="rect.top"
+        [style.left.px]="rect.left"
+        [style.width.px]="rect.width"
+        [style.height.px]="rect.height"
+        [style.borderRadius.px]="radius">
+    </div>
+
+    <div
+        class="nx-spotlight-callout"
+        role="dialog"
+        [attr.aria-label]="title"
+        [style.top.px]="calloutTop"
+        [style.bottom.px]="calloutBottom"
+        [style.left.px]="calloutLeft">
+        @if (title) {
+            <div class="nx-spotlight-title">{{ title }}</div>
+        }
+        @if (description) {
+            <p class="nx-spotlight-description">{{ description }}</p>
+        }
+
+        <ng-content></ng-content>
+
+        <div class="nx-spotlight-actions">
+            <button type="button" class="nx-spotlight-close" (click)="close()">Got it</button>
+        </div>
+    </div>
+}

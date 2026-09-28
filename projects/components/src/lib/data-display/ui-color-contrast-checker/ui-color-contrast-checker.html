@@ -1,0 +1,44 @@
+@if (licensed()) {
+    <div class="nx-contrast-checker">
+        <div class="nx-contrast-inputs">
+            <label class="nx-contrast-field">
+                <span>Foreground</span>
+                <span class="nx-contrast-swatch">
+                    <input type="color" [value]="foreground" (input)="onForegroundInput($event)" />
+                    {{ foreground }}
+                </span>
+            </label>
+
+            <label class="nx-contrast-field">
+                <span>Background</span>
+                <span class="nx-contrast-swatch">
+                    <input type="color" [value]="background" (input)="onBackgroundInput($event)" />
+                    {{ background }}
+                </span>
+            </label>
+        </div>
+
+        <div class="nx-contrast-preview" [style.color]="foreground" [style.background-color]="background">
+            {{ previewText }}
+        </div>
+
+        <div class="nx-contrast-result">
+            <span class="nx-contrast-ratio">{{ ratioLabel }}</span>
+
+            <span class="nx-contrast-badge" [class.pass]="passesAA" [class.fail]="!passesAA">
+                AA {{ passesAA ? 'Pass' : 'Fail' }}
+            </span>
+            <span class="nx-contrast-badge" [class.pass]="passesAAA" [class.fail]="!passesAAA">
+                AAA {{ passesAAA ? 'Pass' : 'Fail' }}
+            </span>
+            <span class="nx-contrast-badge" [class.pass]="passesAALarge" [class.fail]="!passesAALarge">
+                AA Large {{ passesAALarge ? 'Pass' : 'Fail' }}
+            </span>
+            <span class="nx-contrast-badge" [class.pass]="passesAAALarge" [class.fail]="!passesAAALarge">
+                AAA Large {{ passesAAALarge ? 'Pass' : 'Fail' }}
+            </span>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Color Contrast Checker"></nx-pro-locked>
+}

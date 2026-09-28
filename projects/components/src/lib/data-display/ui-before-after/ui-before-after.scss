@@ -1,0 +1,64 @@
+.nx-before-after {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--nx-radius-md, 8px);
+    user-select: none;
+    line-height: 0;
+}
+
+.nx-before-after-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.nx-before-after-image.before {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nx-before-after-label {
+    position: absolute;
+    top: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, .6);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.before-label {
+    left: 12px;
+}
+
+.after-label {
+    right: 12px;
+}
+
+.nx-before-after-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ffffff;
+    transform: translateX(-1px);
+    cursor: ew-resize;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+}
+
+.nx-before-after-handle-grip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+}

@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="5,000 rows, smoothly"
+                description="{{ commonService.appName }}'s Virtual Scroll only renders the rows visible inside the fixed-height viewport (plus a small buffer), so lists with thousands of items stay smooth. Project an ng-template with let-item and let-index=&quot;index&quot; to render each row - row markup is entirely up to you."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-virtual-scroll
+                    [items]="rows"
+                    [itemHeight]="40"
+                    [height]="400"
+                    style="display:block; max-width:480px; border:1px solid var(--shell-border); border-radius:8px; overflow:hidden;">
+                    <ng-template let-item let-index="index">
+                        <div style="display:flex; align-items:center; gap:12px; padding:0 16px; height:40px; border-bottom:1px solid var(--shell-border); box-sizing:border-box;">
+                            <span style="color:var(--shell-text-muted); width:56px;">#{{ index }}</span>
+                            <span style="flex:1;">{{ item.name }}</span>
+                            <span style="color:var(--shell-text-secondary);">{{ item.value }}</span>
+                        </div>
+                    </ng-template>
+                </nx-virtual-scroll>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

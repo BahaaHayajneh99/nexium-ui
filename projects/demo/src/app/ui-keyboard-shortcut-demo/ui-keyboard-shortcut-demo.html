@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Keyboard Shortcut"
+                description="The {{ commonService.appName }} Keyboard Shortcut renders a key combo as styled <kbd> chips - pass a '+'-joined string."
+                [code]="stringCode"
+                [tsCode]="stringTs">
+                <div style="display:flex; gap:16px;">
+                    <nx-keyboard-shortcut keys="Ctrl+K"></nx-keyboard-shortcut>
+                    <nx-keyboard-shortcut keys="Ctrl+Shift+P"></nx-keyboard-shortcut>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Array Form"
+                description="keys also accepts an array of individual key names, rendered the same way."
+                [code]="arrayCode"
+                [tsCode]="arrayTs">
+                <nx-keyboard-shortcut [keys]="['Ctrl', 'Alt', 'Delete']"></nx-keyboard-shortcut>
+            </app-demo-section>
+
+            <app-demo-section
+                header="In Context"
+                description="A typical use case - a command list with its shortcut shown alongside each entry."
+                [code]="contextCode"
+                [tsCode]="contextTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:10px; max-width:320px;">
+                    @for (command of commands; track command.label) {
+                        <div style="display:flex; align-items:center; justify-content:space-between;">
+                            <span>{{ command.label }}</span>
+                            <nx-keyboard-shortcut [keys]="command.keys"></nx-keyboard-shortcut>
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

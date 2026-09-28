@@ -1,0 +1,22 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Cron Builder"
+                description="The {{ commonService.appName }} Cron Builder assembles a 5-field cron expression from per-field inputs, with a best-effort plain-English description below it. Starting value here: daily at 9am."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-cron-builder [value]="cronValue()" (valueChange)="cronValue.set($event)"></nx-cron-builder>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

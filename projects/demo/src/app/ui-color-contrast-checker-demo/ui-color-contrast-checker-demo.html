@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Contrast Check"
+                description="Computes the WCAG contrast ratio between two colors and shows AA/AAA pass/fail for both normal and large text, with a live text preview."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-color-contrast-checker foreground="#000000" background="#ffffff"></nx-color-contrast-checker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Failing Pair"
+                description="A ratio below 4.5:1 fails AA for normal text - a useful check before shipping muted or 'subtle' text colors."
+                [code]="lowContrastCode"
+                [tsCode]="lowContrastTs"
+                [hasSampleClass]="false">
+                <nx-color-contrast-checker foreground="#a0a0a0" background="#ffffff"></nx-color-contrast-checker>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Preview Text"
+                description="Pass previewText to check the contrast for a specific piece of real copy, like a button label."
+                [code]="customTextCode"
+                [tsCode]="customTextTs"
+                [hasSampleClass]="false">
+                <nx-color-contrast-checker
+                    foreground="#1d4ed8"
+                    background="#eff6ff"
+                    previewText="Submit application">
+                </nx-color-contrast-checker>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

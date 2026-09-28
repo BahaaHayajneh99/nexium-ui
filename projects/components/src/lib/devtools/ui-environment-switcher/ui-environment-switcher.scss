@@ -1,0 +1,35 @@
+.nx-environment-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-environment-switcher-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 6px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-environment-switcher-item.active {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .06));
+    color: var(--shell-text);
+}
+
+.nx-environment-switcher-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}

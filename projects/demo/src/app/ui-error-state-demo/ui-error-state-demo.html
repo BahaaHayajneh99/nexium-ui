@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="{{ commonService.appName }} doesn't ship a separate 'Error State' component - it's nx-result used with status=&quot;error&quot;. Result already covers success/error/warning/info status pages in one place, so there's nothing to duplicate."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Error State"
+                description="A full-page or full-section error, with a retry action."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-result
+                    status="error"
+                    title="Something went wrong"
+                    description="We couldn't load this page. Please try again."
+                    actionLabel="Retry"
+                    (actionClick)="retry()">
+                </nx-result>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Not Found"
+                description="Override the default icon to fit the specific error - here, search instead of an X for a 404."
+                [code]="notFoundCode"
+                [tsCode]="notFoundTs"
+                [hasSampleClass]="false">
+                <nx-result
+                    status="error"
+                    icon="nx-search"
+                    title="404 - Page not found"
+                    description="The page you're looking for doesn't exist or has been moved."
+                    actionLabel="Go back">
+                </nx-result>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

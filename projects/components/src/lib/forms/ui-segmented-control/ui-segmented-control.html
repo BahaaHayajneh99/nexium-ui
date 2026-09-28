@@ -1,0 +1,33 @@
+<div class="nx-segmented-wrapper">
+    <div
+        class="nx-segmented-control"
+        [class]="'size-' + size"
+        [class.full-width]="fullWidth"
+        [class.disabled]="disabled"
+        role="radiogroup"
+        [attr.aria-required]="isRequired ? true : null"
+        [attr.aria-invalid]="displayError ? true : null">
+        @for (option of options; track option.value; let i = $index) {
+            <button
+                type="button"
+                [id]="segmentId(option)"
+                class="nx-segment"
+                [class.active]="option.value === value"
+                role="radio"
+                [attr.aria-checked]="option.value === value"
+                [tabindex]="isTabStop(option, i) ? 0 : -1"
+                [disabled]="disabled || option.disabled"
+                (click)="select(option)"
+                (keydown)="onKeydown($event, i)">
+                @if (option.icon) {
+                    <nx-icon [icon]="option.icon" variant="svg" [size]="14"></nx-icon>
+                }
+                <span>{{ option.label }}</span>
+            </button>
+        }
+    </div>
+
+    @if (displayError) {
+        <span class="nx-segmented-error">{{ displayError }}</span>
+    }
+</div>

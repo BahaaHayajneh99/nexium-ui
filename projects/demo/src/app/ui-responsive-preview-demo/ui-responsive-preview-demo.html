@@ -1,0 +1,53 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Responsive Preview"
+                description="Renders projected content inside a fixed-width viewport that switches between common breakpoints - mobile, tablet and desktop by default."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-responsive-preview>
+                    <div style="padding:16px; border:1px solid var(--nx-border-color, #e2e8f0); border-radius:8px;">
+                        <h4 style="margin:0 0 8px;">Card title</h4>
+                        <p style="margin:0;">Some sample content that reflows as the viewport width changes.</p>
+                    </div>
+                </nx-responsive-preview>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Breakpoints"
+                description="Pass a custom breakpoints array and set activeId to control which one is selected initially."
+                [code]="customCode"
+                [tsCode]="customTs"
+                [hasSampleClass]="false">
+                <nx-responsive-preview [breakpoints]="customBreakpoints" activeId="medium">
+                    <div style="padding:16px; border:1px solid var(--nx-border-color, #e2e8f0); border-radius:8px;">
+                        Custom set of breakpoints
+                    </div>
+                </nx-responsive-preview>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Listening to Changes"
+                description="activeIdChange emits the selected breakpoint's id whenever the visitor switches tabs."
+                [code]="eventCode"
+                [tsCode]="eventTs"
+                [hasSampleClass]="false">
+                <nx-responsive-preview (activeIdChange)="onActiveIdChange($event)">
+                    <div style="padding:16px; border:1px solid var(--nx-border-color, #e2e8f0); border-radius:8px;">
+                        Watch the console for the emitted id
+                    </div>
+                </nx-responsive-preview>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

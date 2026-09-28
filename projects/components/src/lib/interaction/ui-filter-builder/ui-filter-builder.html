@@ -1,0 +1,46 @@
+@if (licensed()) {
+    <div class="nx-filter-builder">
+        @for (condition of conditions; track condition.id) {
+            <div class="nx-filter-builder-row">
+                <select
+                    class="nx-filter-builder-select"
+                    [value]="condition.field"
+                    (change)="updateCondition(condition.id, { field: $any($event.target).value })">
+                    @for (field of fields; track field.id) {
+                        <option [value]="field.id">{{ field.label }}</option>
+                    }
+                </select>
+
+                <select
+                    class="nx-filter-builder-select"
+                    [value]="condition.operator"
+                    (change)="updateCondition(condition.id, { operator: $any($event.target).value })">
+                    @for (operator of operators; track operator.value) {
+                        <option [value]="operator.value">{{ operator.label }}</option>
+                    }
+                </select>
+
+                @if (needsValue(condition.operator)) {
+                    <input
+                        type="text"
+                        class="nx-filter-builder-input"
+                        placeholder="Value"
+                        [value]="condition.value"
+                        (input)="updateCondition(condition.id, { value: $any($event.target).value })" />
+                }
+
+                <button
+                    type="button"
+                    class="nx-filter-builder-remove"
+                    aria-label="Remove condition"
+                    (click)="removeCondition(condition.id)">
+                    &#10005;
+                </button>
+            </div>
+        }
+
+        <button type="button" class="nx-filter-builder-add" (click)="addCondition()">+ Add condition</button>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Filter Builder"></nx-pro-locked>
+}

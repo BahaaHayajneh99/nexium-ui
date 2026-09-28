@@ -1,0 +1,20 @@
+<div class="nx-comparison-card">
+    <span class="nx-comparison-card-label">{{ label }}</span>
+
+    <div class="nx-comparison-card-main">
+        <span class="nx-comparison-card-value">{{ prefix }}{{ currentValue }}{{ suffix }}</span>
+        <span class="nx-comparison-card-delta" [class]="direction" [class.good]="isGoodDirection" [class.bad]="!isGoodDirection">
+            @if (direction === 'up') {
+                &#9650;
+            } @else if (direction === 'down') {
+                &#9660;
+            }
+            {{ deltaPercentDisplay }}%
+        </span>
+    </div>
+
+    <div class="nx-comparison-card-footer">
+        <span>{{ currentLabel }}: {{ prefix }}{{ currentValue }}{{ suffix }}</span>
+        <span>{{ previousLabel }}: {{ prefix }}{{ previousValue }}{{ suffix }}</span>
+    </div>
+</div>

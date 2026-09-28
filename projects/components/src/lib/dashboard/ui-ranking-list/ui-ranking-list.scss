@@ -1,0 +1,42 @@
+.nx-ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nx-ranking-list-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--nx-radius-sm, 6px);
+}
+
+.nx-ranking-list-row:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-ranking-list-rank {
+    width: 20px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--shell-text-secondary);
+}
+
+.nx-ranking-list-name {
+    flex: 1;
+    font-size: 13px;
+    color: var(--shell-text);
+}
+
+.nx-ranking-list-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-ranking-list-delta {
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}

@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Navigation Progress"
+                description="The {{ commonService.appName }} Navigation Progress is a slim top-of-page loading bar, driven imperatively via a template reference variable. It renders fixed to the top of the viewport, so watch the very top of the page when you click Start."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-navigation-progress #progress></nx-navigation-progress>
+                <div style="display:flex; gap:8px;">
+                    <button class="demo-btn" type="button" (click)="progress.start()">Start</button>
+                    <button class="demo-btn" type="button" (click)="progress.complete()">Complete</button>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Setting Exact Progress"
+                description="set(percent) jumps the bar to an exact value (0-100) - useful when you can track real progress, e.g. from an upload's progress event."
+                [code]="setCode"
+                [tsCode]="setTs"
+                [hasSampleClass]="false">
+                <nx-navigation-progress #upload></nx-navigation-progress>
+                <div style="display:flex; gap:8px;">
+                    <button class="demo-btn" type="button" (click)="upload.start()">Start upload</button>
+                    <button class="demo-btn" type="button" (click)="upload.set(50)">Set 50%</button>
+                    <button class="demo-btn" type="button" (click)="upload.complete()">Finish upload</button>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

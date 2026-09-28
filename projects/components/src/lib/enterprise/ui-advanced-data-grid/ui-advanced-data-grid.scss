@@ -1,0 +1,284 @@
+.nx-advanced-data-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-advanced-data-grid-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-advanced-data-grid-filter {
+    width: 220px;
+    padding: 5px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-advanced-data-grid-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-advanced-data-grid-export {
+    padding: 5px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-advanced-data-grid-export:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+}
+
+.nx-advanced-data-grid-scroll {
+    overflow: auto;
+    max-height: 420px;
+}
+
+.nx-advanced-data-grid-table {
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.nx-advanced-data-grid-th {
+    position: relative;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+}
+
+.nx-advanced-data-grid-th.pinned-left,
+.nx-advanced-data-grid-th.pinned-right {
+    position: sticky;
+    z-index: 2;
+}
+
+.nx-advanced-data-grid-td.pinned-left,
+.nx-advanced-data-grid-td.pinned-right {
+    position: sticky;
+    z-index: 1;
+    background-color: var(--shell-bg, #ffffff);
+}
+
+.nx-advanced-data-grid-sort-icon {
+    margin-left: 4px;
+    font-size: 10px;
+    color: var(--shell-primary);
+}
+
+.nx-advanced-data-grid-resize-handle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    cursor: col-resize;
+}
+
+.nx-advanced-data-grid-resize-handle:hover {
+    background-color: var(--shell-primary);
+}
+
+.nx-advanced-data-grid-spacer td {
+    padding: 0;
+    border: none;
+}
+
+.nx-advanced-data-grid-td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+tbody tr.selected {
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .08));
+}
+
+.nx-advanced-data-grid-select-col {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    width: 40px;
+    text-align: center;
+    background-color: var(--shell-surface);
+}
+
+td.nx-advanced-data-grid-select-col {
+    z-index: 1;
+    background-color: var(--shell-bg, #ffffff);
+}
+
+.nx-advanced-data-grid-empty {
+    text-align: center;
+    color: var(--shell-text-secondary);
+    padding: 24px;
+}
+
+.nx-advanced-data-grid-filter-row th {
+    padding: 4px 8px;
+    background-color: var(--shell-surface);
+}
+
+.nx-advanced-data-grid-filter-input {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.nx-advanced-data-grid-edit-input {
+    width: 100%;
+    padding: 4px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: inherit;
+    box-sizing: border-box;
+}
+
+.nx-advanced-data-grid-group-row th {
+    text-align: center;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-advanced-data-grid-th[draggable='true'] {
+    cursor: grab;
+}
+
+.nx-advanced-data-grid-th.cdk-drag-preview,
+.nx-advanced-data-grid-th:active[draggable='true'] {
+    cursor: grabbing;
+}
+
+.nx-advanced-data-grid-columns-menu {
+    position: relative;
+}
+
+.nx-advanced-data-grid-columns-btn {
+    padding: 5px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-advanced-data-grid-columns-btn:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+}
+
+.nx-advanced-data-grid-columns-panel {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 160px;
+    padding: 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+}
+
+.nx-advanced-data-grid-columns-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--shell-text);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.nx-advanced-data-grid-paginator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px;
+    border-top: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-advanced-data-grid-paginator-info {
+    white-space: nowrap;
+}
+
+.nx-advanced-data-grid-rows-select {
+    padding: 4px 6px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 12px;
+}
+
+.nx-advanced-data-grid-pagination {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.nx-advanced-data-grid-page-btn {
+    min-width: 26px;
+    padding: 4px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-advanced-data-grid-page-btn:hover:not(:disabled) {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+}
+
+.nx-advanced-data-grid-page-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.nx-advanced-data-grid-page-btn.active {
+    background-color: var(--shell-primary);
+    border-color: var(--shell-primary);
+    color: #fff;
+}

@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Lightbox"
+                description="The {{ commonService.appName }} Lightbox is a full-viewport image viewer overlay: click a thumbnail to open it at that index, then navigate with the arrow buttons, the arrow keys, or the thumbnail strip. Escape or clicking outside the image closes it."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <div style="display:flex; gap:8px;">
+                    @for (image of images; track image.src; let i = $index) {
+                        <img
+                            [src]="image.src"
+                            [alt]="image.alt"
+                            style="width: 96px; height: 64px; object-fit: cover; border-radius: 8px; cursor: pointer;"
+                            (click)="show(i)" />
+                    }
+                </div>
+
+                <nx-lightbox
+                    [images]="images"
+                    [(open)]="open"
+                    [(activeIndex)]="activeIndex">
+                </nx-lightbox>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

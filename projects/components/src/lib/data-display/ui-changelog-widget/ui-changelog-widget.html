@@ -1,0 +1,22 @@
+<div class="nx-changelog-widget">
+    @for (entry of visibleEntries; track entry.version) {
+        <div class="nx-changelog-version">
+            <div class="nx-changelog-version-header">
+                <span class="nx-changelog-version-number">{{ entry.version }}</span>
+                <span class="nx-changelog-version-date">{{ entry.date }}</span>
+            </div>
+            <ul class="nx-changelog-changes">
+                @for (change of entry.changes; track change.description) {
+                    <li>
+                        <span class="nx-changelog-type" [class]="change.type">{{ change.type }}</span>
+                        {{ change.description }}
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
+    @if (visibleEntries.length === 0) {
+        <p class="nx-changelog-empty">No changes yet.</p>
+    }
+</div>

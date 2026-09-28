@@ -1,0 +1,51 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Status Indicator"
+                description="The {{ commonService.appName }} Status Indicator is a small colored dot with an optional label - for a one-glance status."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-status-indicator variant="success" label="Active"></nx-status-indicator>
+                <nx-status-indicator variant="warning" label="Away"></nx-status-indicator>
+                <nx-status-indicator variant="danger" label="Offline"></nx-status-indicator>
+                <nx-status-indicator variant="info" label="In progress"></nx-status-indicator>
+                <nx-status-indicator variant="neutral" label="Unknown"></nx-status-indicator>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pulse"
+                description="Set pulse to true for an animated expanding ring - useful for something actively happening right now."
+                [code]="pulseCode"
+                [tsCode]="pulseTs">
+                <nx-status-indicator variant="success" label="Live" [pulse]="true"></nx-status-indicator>
+                <nx-status-indicator variant="danger" label="Recording" [pulse]="true"></nx-status-indicator>
+            </app-demo-section>
+
+            <app-demo-section
+                header="In Context"
+                description="A typical use case - a status column in a list of servers or services."
+                [code]="contextCode"
+                [tsCode]="contextTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:10px; max-width:280px;">
+                    @for (server of servers; track server.name) {
+                        <div style="display:flex; align-items:center; justify-content:space-between;">
+                            <span>{{ server.name }}</span>
+                            <nx-status-indicator [variant]="server.status" [label]="server.label"></nx-status-indicator>
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

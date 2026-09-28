@@ -1,0 +1,84 @@
+.nx-segmented-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-segmented-control {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 2px;
+    padding: 3px;
+    background-color: var(--shell-surface-hover);
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    width: fit-content;
+}
+
+.nx-segmented-control.full-width {
+    display: flex;
+    width: 100%;
+}
+
+.nx-segmented-control.full-width .nx-segment {
+    flex: 1;
+}
+
+.nx-segmented-control.disabled {
+    opacity: .6;
+}
+
+.nx-segment {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--shell-text-muted);
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.nx-segment:hover:not(:disabled):not(.active) {
+    color: var(--shell-text);
+}
+
+.nx-segment.active {
+    background-color: var(--shell-surface);
+    color: var(--shell-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+}
+
+.nx-segment:disabled {
+    cursor: not-allowed;
+}
+
+.nx-segment:focus-visible {
+    outline: 2px solid var(--shell-primary);
+    outline-offset: 2px;
+}
+
+.size-small .nx-segment {
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+.size-medium .nx-segment {
+    padding: 6px 14px;
+    font-size: 14px;
+}
+
+.size-large .nx-segment {
+    padding: 9px 18px;
+    font-size: 15px;
+}
+
+.nx-segmented-error {
+    font-size: 12px;
+    color: #e74c3c;
+}

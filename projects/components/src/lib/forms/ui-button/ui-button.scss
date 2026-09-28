@@ -1,5 +1,9 @@
 .btn {
 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-xs, 6px);
     border: 1px solid transparent;
     border-radius: var(--nx-radius-sm, 4px);
     cursor: pointer;
@@ -8,6 +12,11 @@
 
     &:hover {
         transform: translateY(-1px);
+    }
+
+
+    &.loading {
+        cursor: wait;
     }
 
 
@@ -154,5 +163,22 @@
     &.large {
         padding: var(--nx-spacing-md, 16px) var(--nx-spacing-lg, 24px);
         font-size: 16px;
+    }
+}
+
+.nx-button-spinner {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border: 2px solid color-mix(in srgb, currentColor 30%, transparent);
+    border-top-color: currentColor;
+    border-radius: var(--nx-radius-round, 999px);
+    animation: nx-button-spin .7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes nx-button-spin {
+    to {
+        transform: rotate(360deg);
     }
 }

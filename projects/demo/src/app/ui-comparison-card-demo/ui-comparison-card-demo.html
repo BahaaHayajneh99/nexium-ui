@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Comparison Card"
+                description="Compares a current-period value against a previous one, with a trend arrow and percent delta computed automatically."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-comparison-card
+                    label="Revenue"
+                    prefix="$"
+                    [currentValue]="48290"
+                    [previousValue]="42950"
+                    currentLabel="This quarter"
+                    previousLabel="Last quarter">
+                </nx-comparison-card>
+            </app-demo-section>
+
+            <app-demo-section
+                header="upIsGood"
+                description="For a metric like bounce rate where up is bad, set upIsGood to false so the trend colors correctly even though the value increased."
+                [code]="gridCode"
+                [tsCode]="gridTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-wrap:wrap; gap:16px;">
+                    <nx-comparison-card label="Revenue" prefix="$" [currentValue]="48290" [previousValue]="42950"></nx-comparison-card>
+                    <nx-comparison-card label="Bounce Rate" suffix="%" [currentValue]="38" [previousValue]="31" [upIsGood]="false"></nx-comparison-card>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

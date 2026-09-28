@@ -1,0 +1,22 @@
+@if (licensed()) {
+    <div class="nx-column-selector">
+        <button type="button" class="nx-column-selector-trigger" (click)="toggleOpen()">
+            <nx-icon icon="nx-layout" variant="svg" [size]="16"></nx-icon>
+            <span>Columns</span>
+            <nx-icon icon="nx-chevron-down" variant="svg" [size]="14"></nx-icon>
+        </button>
+
+        @if (open()) {
+            <div class="nx-column-selector-panel">
+                @for (column of columns; track column.id) {
+                    <label class="nx-column-selector-option">
+                        <input type="checkbox" [checked]="column.visible" (change)="toggleColumn(column)" />
+                        <span>{{ column.label }}</span>
+                    </label>
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Column Selector"></nx-pro-locked>
+}

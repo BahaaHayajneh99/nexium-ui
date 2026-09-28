@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Diff Viewer"
+                description="The {{ commonService.appName }} Diff Viewer renders a unified line-by-line diff between two text blocks, with +/- gutters and line numbers."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:520px;">
+                    <nx-diff-viewer [oldText]="oldConfig" [newText]="newConfig"></nx-diff-viewer>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Multi-line Text"
+                description="Works for any plain text, not just structured data - useful for comparing README, config, or prose changes."
+                [code]="textCode"
+                [tsCode]="textTs"
+                [hasSampleClass]="false">
+                <div style="max-width:520px;">
+                    <nx-diff-viewer [oldText]="oldReadme" [newText]="newReadme"></nx-diff-viewer>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

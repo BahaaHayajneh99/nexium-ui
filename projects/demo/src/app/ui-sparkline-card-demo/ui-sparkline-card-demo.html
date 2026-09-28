@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Sparkline Card"
+                description="A metric card with an inline trend sparkline next to the value - pass the trend as a plain number[] via data."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-sparkline-card label="Revenue" value="$48,290" delta="+12.4%" direction="up" [data]="revenueTrend"></nx-sparkline-card>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Direction and Custom Color"
+                description="direction colors the delta text, while color independently overrides the sparkline's stroke color."
+                [code]="gridCode"
+                [tsCode]="gridTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-wrap:wrap; gap:16px;">
+                    <nx-sparkline-card label="Revenue" value="$48,290" delta="+12.4%" direction="up" [data]="revenueTrend"></nx-sparkline-card>
+                    <nx-sparkline-card label="Signups" [value]="1204" delta="-8.1%" direction="down" color="var(--shell-danger)" [data]="signupsTrend"></nx-sparkline-card>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

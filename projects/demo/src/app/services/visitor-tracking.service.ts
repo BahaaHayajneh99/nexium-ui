@@ -15,46 +15,73 @@ export class VisitorTrackingService {
   }
 
   /**
-   * Track unique visitor by user ID with geolocation
-   * If same user visits again, they won't be counted twice
+   * Track unique visitor by user ID with geolocation.
+   * If the same user visits again, they won't be counted twice - and
+   * neither will the same IP address under a *different* userId (e.g. a
+   * cleared localStorage or a private-browsing window generates a fresh
+   * guest id, but it's still the same real-world visitor).
    */
   trackUniqueVisitor(userId: string): Promise<void> {
     return new Promise(async (resolve) => {
       try {
         // Get user location from IP
         const locationData = await this.getUserLocation();
-        
+
         const userVisitorRef = ref(this.db, `visitors/${userId}`);
         const snapshot = await get(userVisitorRef);
 
-        if (!snapshot.exists()) {
-          // New unique visitor - save their record with location
-          await set(userVisitorRef, {
-            visitedAt: new Date().toISOString(),
-            userId: userId,
-            country: locationData.country,
-            city: locationData.city,
-            ip: locationData.ip,
-            latitude: locationData.latitude,
-            longitude: locationData.longitude
-          });
-
-          // Increment total unique visitors counter
-          const totalRef = ref(this.db, 'stats/totalUniqueVisitors');
-          const totalSnapshot = await get(totalRef);
-          const currentTotal = totalSnapshot.val() || 0;
-          
-          const newTotal = currentTotal + 1;
-          await set(totalRef, newTotal);
-        } else {
-          // Returning visitor (not counted again)
+        if (snapshot.exists()) {
+          // Returning visitor under this exact userId (not counted again).
+          resolve();
+          return;
         }
-        
+
+        if (locationData.ip !== 'N/A' && (await this.isIpAlreadyTracked(locationData.ip))) {
+          // Same IP already has a visitor record under a different userId.
+          resolve();
+          return;
+        }
+
+        // New unique visitor - save their record with location
+        await set(userVisitorRef, {
+          visitedAt: new Date().toISOString(),
+          userId: userId,
+          country: locationData.country,
+          city: locationData.city,
+          ip: locationData.ip,
+          latitude: locationData.latitude,
+          longitude: locationData.longitude
+        });
+
+        // Increment total unique visitors counter
+        const totalRef = ref(this.db, 'stats/totalUniqueVisitors');
+        const totalSnapshot = await get(totalRef);
+        const currentTotal = totalSnapshot.val() || 0;
+
+        const newTotal = currentTotal + 1;
+        await set(totalRef, newTotal);
+
         resolve();
       } catch (error) {
         resolve();
       }
     });
+  }
+
+  /** Whether any existing visitor record already has this IP address. */
+  private async isIpAlreadyTracked(ip: string): Promise<boolean> {
+    try {
+      const visitorsRef = ref(this.db, 'visitors');
+      const snapshot = await get(visitorsRef);
+      if (!snapshot.exists()) {
+        return false;
+      }
+
+      const visitors = snapshot.val();
+      return Object.values(visitors).some((visitor: any) => visitor.ip === ip);
+    } catch (error) {
+      return false;
+    }
   }
 
   /**

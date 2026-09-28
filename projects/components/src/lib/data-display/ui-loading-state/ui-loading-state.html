@@ -1,0 +1,15 @@
+<div class="nx-loading-state" role="status" [attr.aria-label]="title">
+
+    <nx-spinner class="nx-loading-state-spinner" [variant]="spinnerVariant" [size]="spinnerSize"></nx-spinner>
+
+    @if (title) {
+        <h3 class="nx-loading-state-title">{{ title }}</h3>
+    }
+
+    @if (description) {
+        <p class="nx-loading-state-description">{{ description }}</p>
+    }
+
+    <ng-content></ng-content>
+
+</div>

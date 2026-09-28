@@ -1,0 +1,34 @@
+@if (licensed()) {
+    <div class="nx-log-viewer">
+        <div class="nx-log-viewer-toolbar">
+            <input
+                type="text"
+                class="nx-log-viewer-search"
+                placeholder="Search logs..."
+                [value]="searchText()"
+                (input)="searchText.set($any($event.target).value)" />
+
+            <select class="nx-log-viewer-level" [value]="levelFilter()" (change)="levelFilter.set($any($event.target).value)">
+                <option value="all">All levels</option>
+                <option value="debug">Debug</option>
+                <option value="info">Info</option>
+                <option value="warn">Warn</option>
+                <option value="error">Error</option>
+            </select>
+        </div>
+
+        <div class="nx-log-viewer-lines">
+            @for (entry of filteredEntries; track entry.id) {
+                <div class="nx-log-viewer-line" [class]="entry.level">
+                    @if (entry.timestamp) {
+                        <span class="nx-log-viewer-timestamp">{{ entry.timestamp }}</span>
+                    }
+                    <span class="nx-log-viewer-badge">{{ entry.level }}</span>
+                    <span class="nx-log-viewer-message">{{ entry.message }}</span>
+                </div>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Log Viewer"></nx-pro-locked>
+}

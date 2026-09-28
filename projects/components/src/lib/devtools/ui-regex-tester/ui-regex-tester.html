@@ -1,0 +1,50 @@
+@if (licensed()) {
+    <div class="nx-regex-tester">
+    <div class="nx-regex-tester-pattern-row">
+        <span class="nx-regex-tester-slash">/</span>
+        <input
+            type="text"
+            class="nx-regex-tester-pattern"
+            placeholder="pattern"
+            [value]="pattern()"
+            (input)="pattern.set($any($event.target).value)" />
+        <span class="nx-regex-tester-slash">/</span>
+        <input
+            type="text"
+            class="nx-regex-tester-flags"
+            placeholder="flags"
+            [value]="flags()"
+            (input)="flags.set($any($event.target).value)" />
+    </div>
+
+    @if (error) {
+        <p class="nx-regex-tester-error">{{ error }}</p>
+    }
+
+    <textarea
+        class="nx-regex-tester-input"
+        placeholder="Test string"
+        [value]="testString()"
+        (input)="testString.set($any($event.target).value)"></textarea>
+
+    <div class="nx-regex-tester-highlighted" [innerHTML]="highlightedText"></div>
+
+    @if (matches.length) {
+        <div class="nx-regex-tester-matches">
+            <span class="nx-regex-tester-matches-title">{{ matches.length }} match(es)</span>
+            @for (match of matches; track $index) {
+                <div class="nx-regex-tester-match-row">
+                    <code>{{ match[0] }}</code>
+                    @if (match.length > 1) {
+                        <span class="nx-regex-tester-groups">
+                            groups: {{ match.slice(1).join(', ') }}
+                        </span>
+                    }
+                </div>
+            }
+        </div>
+    }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Regex Tester"></nx-pro-locked>
+}

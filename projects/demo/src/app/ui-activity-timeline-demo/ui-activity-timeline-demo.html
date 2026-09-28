@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Activity Timeline"
+                description="A connected vertical timeline of 'who did what' entries, each with an actor avatar (or initial) - the actor-centric sibling of nx-timeline, which is a plain step/event list with no actor."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-activity-timeline [items]="items"></nx-activity-timeline>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Empty State"
+                description="With no items, the timeline simply renders nothing."
+                [code]="emptyCode"
+                [tsCode]="emptyTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-activity-timeline [items]="[]"></nx-activity-timeline>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

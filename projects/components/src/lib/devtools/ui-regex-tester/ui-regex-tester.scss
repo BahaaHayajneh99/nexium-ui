@@ -1,0 +1,102 @@
+.nx-regex-tester {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-regex-tester-pattern-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nx-regex-tester-slash {
+    color: var(--shell-text-secondary);
+    font-weight: 700;
+}
+
+.nx-regex-tester-pattern {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+}
+
+.nx-regex-tester-flags {
+    width: 60px;
+    padding: 7px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+}
+
+.nx-regex-tester-error {
+    margin: 0;
+    color: var(--nx-color-danger, #e74c3c);
+    font-size: 12px;
+}
+
+.nx-regex-tester-input {
+    min-height: 80px;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    resize: vertical;
+}
+
+.nx-regex-tester-highlighted {
+    padding: 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-height: 40px;
+}
+
+::ng-deep .nx-regex-tester-match {
+    padding: 1px 2px;
+    border-radius: 2px;
+    background-color: rgba(245, 166, 35, .35);
+    color: inherit;
+}
+
+.nx-regex-tester-matches {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-regex-tester-matches-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-regex-tester-match-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+    font-size: 12px;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-regex-tester-groups {
+    color: var(--shell-text-secondary);
+}

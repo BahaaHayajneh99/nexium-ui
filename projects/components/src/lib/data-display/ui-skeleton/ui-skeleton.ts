@@ -1,13 +1,17 @@
 import { Component, Input, booleanAttribute, numberAttribute } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 @Component({
   selector: 'nx-skeleton',
-  imports: [NgClass],
+  imports: [NgClass, NxProLocked],
   templateUrl: './ui-skeleton.html',
   styleUrl: './ui-skeleton.scss',
 })
 export class NxSkeleton {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input()
   variant: 'text' | 'circle' | 'rect' = 'text';
 

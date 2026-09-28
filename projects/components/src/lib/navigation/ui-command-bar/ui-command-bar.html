@@ -1,0 +1,22 @@
+<div class="nx-command-bar" role="toolbar">
+    @for (group of groups; track $index; let lastGroup = $last) {
+        <div class="nx-command-bar-group">
+            @for (item of group.items; track item.id) {
+                <button
+                    type="button"
+                    class="nx-command-bar-item"
+                    [disabled]="item.disabled"
+                    [title]="item.label"
+                    (click)="select(item)">
+                    @if (item.icon) {
+                        <nx-icon [icon]="item.icon" variant="svg" [size]="16"></nx-icon>
+                    }
+                    <span>{{ item.label }}</span>
+                </button>
+            }
+        </div>
+        @if (!lastGroup) {
+            <span class="nx-command-bar-separator"></span>
+        }
+    }
+</div>

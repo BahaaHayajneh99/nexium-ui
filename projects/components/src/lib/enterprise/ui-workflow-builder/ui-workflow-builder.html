@@ -1,0 +1,29 @@
+@if (licensed()) {
+    <div class="nx-workflow-builder">
+        <div class="nx-workflow-builder-canvas">
+            <svg class="nx-workflow-builder-edges">
+                @for (edge of edges; track edge.id) {
+                    <path [attr.d]="edgePath(edge)" class="nx-workflow-builder-edge"></path>
+                }
+                @if (connectingPath) {
+                    <path [attr.d]="connectingPath" class="nx-workflow-builder-edge connecting"></path>
+                }
+            </svg>
+
+            @for (node of nodes; track node.id) {
+                <div
+                    class="nx-workflow-builder-node"
+                    [style.left.px]="node.x"
+                    [style.top.px]="node.y"
+                    [style.width.px]="nodeWidth"
+                    [style.height.px]="nodeHeight"
+                    (pointerdown)="onNodePointerDown(node, $event)">
+                    <span class="nx-workflow-builder-node-label">{{ node.label }}</span>
+                    <span class="nx-workflow-builder-node-handle" (pointerdown)="onHandlePointerDown(node, $event)"></span>
+                </div>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Workflow Builder"></nx-pro-locked>
+}

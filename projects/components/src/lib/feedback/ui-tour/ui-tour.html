@@ -1,0 +1,47 @@
+@if (open && rect && currentStep) {
+    <div class="nx-tour-backdrop" (click)="skip()"></div>
+
+    <div
+        class="nx-tour-cutout"
+        [style.top.px]="rect.top"
+        [style.left.px]="rect.left"
+        [style.width.px]="rect.width"
+        [style.height.px]="rect.height"
+        [style.borderRadius.px]="radius">
+    </div>
+
+    <div
+        class="nx-tour-callout"
+        role="dialog"
+        [attr.aria-label]="currentStep.title"
+        [style.top.px]="calloutTop"
+        [style.bottom.px]="calloutBottom"
+        [style.left.px]="calloutLeft">
+        <div class="nx-tour-header">
+            <span class="nx-tour-step-count">{{ currentIndex + 1 }} / {{ steps.length }}</span>
+            <button type="button" class="nx-tour-skip" (click)="skip()">Skip</button>
+        </div>
+
+        <div class="nx-tour-title">{{ currentStep.title }}</div>
+        @if (currentStep.description) {
+            <p class="nx-tour-description">{{ currentStep.description }}</p>
+        }
+
+        <div class="nx-tour-dots">
+            @for (step of steps; track $index; let i = $index) {
+                <span
+                    class="nx-tour-dot"
+                    [class.active]="i === currentIndex"
+                    (click)="goTo(i)">
+                </span>
+            }
+        </div>
+
+        <div class="nx-tour-actions">
+            @if (currentIndex > 0) {
+                <button type="button" class="nx-tour-back" (click)="back()">Back</button>
+            }
+            <button type="button" class="nx-tour-next" (click)="next()">{{ isLastStep ? 'Done' : 'Next' }}</button>
+        </div>
+    </div>
+}

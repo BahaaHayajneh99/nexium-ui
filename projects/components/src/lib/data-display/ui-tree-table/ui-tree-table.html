@@ -1,0 +1,55 @@
+@if (licensed()) {
+    <div class="nx-tree-table-wrapper">
+        <table class="nx-tree-table" [class.striped]="striped" [class.hoverable]="hoverable">
+            <thead>
+                <tr>
+                    @for (col of columns; track col.field) {
+                        <th [style.width]="col.width">{{ col.header }}</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (row of rows; track row.node.id) {
+                    <tr
+                        class="nx-tree-table-row"
+                        [class.selected]="isSelected(row.node)"
+                        [class.selectable]="selectable"
+                        (click)="selectNode(row.node)">
+                        @for (col of columns; track col.field; let first = $first) {
+                            <td>
+                                @if (first) {
+                                    <span class="nx-tree-table-indent" [style.width.px]="row.level * indentSize"></span>
+                                    @if (row.hasChildren) {
+                                        <button
+                                            type="button"
+                                            class="nx-tree-table-toggle"
+                                            [attr.aria-expanded]="isExpanded(row.node.id)"
+                                            [attr.aria-label]="isExpanded(row.node.id) ? 'Collapse' : 'Expand'"
+                                            (click)="$event.stopPropagation(); toggleNode(row.node)">
+                                            <nx-icon
+                                                [icon]="isExpanded(row.node.id) ? 'nx-chevron-down' : 'nx-chevron-right'"
+                                                variant="svg"
+                                                [size]="14">
+                                            </nx-icon>
+                                        </button>
+                                    } @else {
+                                        <span class="nx-tree-table-toggle-spacer"></span>
+                                    }
+                                }
+                                {{ valueFor(row.node, col.field) }}
+                            </td>
+                        }
+                    </tr>
+                }
+
+                @if (rows.length === 0) {
+                    <tr class="nx-tree-table-empty-row">
+                        <td [attr.colspan]="columns.length">No data</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Tree Table"></nx-pro-locked>
+}

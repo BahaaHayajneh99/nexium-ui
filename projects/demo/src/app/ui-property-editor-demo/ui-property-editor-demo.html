@@ -1,0 +1,69 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Property Editor"
+                description="The {{ commonService.appName }} Property Editor is a Figma/VS-Code-style properties panel - label/control rows driven by a typed NxPropertyDef schema. Supported types are text, number, color, boolean and select."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-property-editor
+                    [properties]="properties"
+                    [values]="values"
+                    (valuesChange)="onValuesChange($event)">
+                </nx-property-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reacting To A Single Change"
+                description="propertyChange emits just the field that changed - { key, value } - so you can react to one property without diffing the whole values object."
+                [code]="changeCode"
+                [tsCode]="changeTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:12px; max-width:320px;">
+                    <nx-property-editor
+                        [properties]="properties"
+                        [values]="values"
+                        (propertyChange)="onPropertyChange($event)">
+                    </nx-property-editor>
+                    <code style="font-size:12px;">{{ lastChangeText }}</code>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Driving A Live Preview"
+                description="Use the emitted values to drive an entirely separate preview element - a common pattern for design-tool style panels."
+                [code]="previewCode"
+                [tsCode]="previewTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;">
+                    <nx-property-editor
+                        [properties]="properties"
+                        [values]="values"
+                        (valuesChange)="onValuesChange($event)">
+                    </nx-property-editor>
+                    <div
+                        class="preview-box"
+                        style="display:flex; align-items:center; color:#fff; font-size:13px; border:1px solid rgba(0,0,0,0.08);"
+                        [style.width.px]="previewWidth"
+                        [style.height.px]="previewHeight"
+                        [style.background]="previewColor"
+                        [style.border-radius.px]="previewRadius"
+                        [style.padding.px]="previewPadding"
+                        [style.justify-content]="previewAlign">
+                        Preview
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

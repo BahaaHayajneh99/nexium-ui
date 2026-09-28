@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-driven Binding"
+                description="The {{ commonService.appName }} Code Editor is an editable textarea with a scroll-synced line-number gutter. It implements ControlValueAccessor, so [(ngModel)] works out of the box."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:560px;">
+                    <nx-code-editor language="javascript" [(ngModel)]="code"></nx-code-editor>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reactive Forms"
+                description="Being a ControlValueAccessor, it also plugs directly into a FormControl."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
+                [hasSampleClass]="false">
+                <div style="max-width:560px;">
+                    <nx-code-editor language="sql" [formControl]="snippetControl"></nx-code-editor>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without Line Numbers"
+                description="Set showLineNumbers to false to hide the gutter - useful for short snippets or prose-like content."
+                [code]="noGutterCode"
+                [tsCode]="noGutterTs"
+                [hasSampleClass]="false">
+                <div style="max-width:560px;">
+                    <nx-code-editor language="markdown" [showLineNumbers]="false" [(ngModel)]="readme"></nx-code-editor>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

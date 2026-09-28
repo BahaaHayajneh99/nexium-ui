@@ -1,0 +1,20 @@
+<div class="nx-dashboard-widget">
+    <div class="nx-dashboard-widget-header">
+        <span class="nx-dashboard-widget-title">{{ title }}</span>
+        <div class="nx-dashboard-widget-actions">
+            <ng-content select="[nxDashboardWidgetActions]"></ng-content>
+        </div>
+    </div>
+
+    <div class="nx-dashboard-widget-body">
+        @if (loading) {
+            <div class="nx-dashboard-widget-state">
+                <nx-spinner></nx-spinner>
+            </div>
+        } @else if (error) {
+            <div class="nx-dashboard-widget-state nx-dashboard-widget-error">{{ error }}</div>
+        } @else {
+            <ng-content></ng-content>
+        }
+    </div>
+</div>

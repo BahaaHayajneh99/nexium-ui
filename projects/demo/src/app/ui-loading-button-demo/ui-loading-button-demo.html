@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Loading Button"
+                description="Set loading to true on any {{ commonService.appName }} Button to show a spinner and disable it - for an in-flight action like submitting a form or saving. Click the button to see it."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-button variant="primary" [loading]="saving()" (click)="save()">
+                    Save changes
+                </nx-button>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Loading Text"
+                description="Set loadingText to replace the button's normal content while loading is true, instead of keeping it alongside the spinner."
+                [code]="loadingTextCode"
+                [tsCode]="loadingTextTs">
+                <nx-button variant="danger" [loading]="submitting()" loadingText="Submitting..." (click)="submit()">
+                    Delete account
+                </nx-button>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Works With Every Variant"
+                description="The spinner always inherits the button's own text color, so it matches every variant automatically."
+                [code]="variantCode"
+                [tsCode]="variantTs">
+                <nx-button variant="primary" [loading]="true">Primary</nx-button>
+                <nx-button variant="outline" [loading]="true">Outline</nx-button>
+                <nx-button variant="ghost" [loading]="true">Ghost</nx-button>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

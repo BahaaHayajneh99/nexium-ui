@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Request Builder"
+                description="The {{ commonService.appName }} Request Builder is a mini-Postman: method, URL, headers, and body. It doesn't send anything itself - it emits the assembled request through (send), so the parent decides what to do with it. Click Send below to see the built request."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:640px; display:flex; flex-direction:column; gap:16px;">
+                    <nx-request-builder
+                        [value]="requestValue()"
+                        (valueChange)="requestValue.set($event)"
+                        (send)="onSend($event)">
+                    </nx-request-builder>
+
+                    @if (lastSentRequest()) {
+                        <div>
+                            <p style="margin:0 0 6px;">Last sent request:</p>
+                            <pre style="margin:0; padding:12px; border-radius:8px; background:var(--shell-border); overflow:auto; font-size:12px;">{{ lastSentRequest() | json }}</pre>
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

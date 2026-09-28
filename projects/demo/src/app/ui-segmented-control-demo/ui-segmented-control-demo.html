@@ -1,0 +1,93 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Segmented Control"
+                description="The {{ commonService.appName }} Segmented Control is a one-of-many choice, like Radio Group, rendered as a compact strip of connected segments instead of a list of radio dots. Use it for switching between a small number of views or modes."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-segmented-control
+                    [options]="viewOptions"
+                    [(value)]="view">
+                </nx-segmented-control>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With Icons"
+                description="Each option can carry an icon alongside its label."
+                [code]="iconCode"
+                [tsCode]="iconTs">
+                <nx-segmented-control
+                    [options]="iconOptions"
+                    [(value)]="layout">
+                </nx-segmented-control>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Sizes"
+                description="size accepts small, medium (default) or large."
+                [code]="sizeCode"
+                [tsCode]="sizeTs">
+                <div style="display:flex; flex-direction:column; gap:12px; align-items:flex-start;">
+                    <nx-segmented-control size="small" [options]="viewOptions" [(value)]="view"></nx-segmented-control>
+                    <nx-segmented-control size="medium" [options]="viewOptions" [(value)]="view"></nx-segmented-control>
+                    <nx-segmented-control size="large" [options]="viewOptions" [(value)]="view"></nx-segmented-control>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Full Width"
+                description="Set fullWidth to true to stretch the segments across the available space, each taking an equal share."
+                [code]="fullWidthCode"
+                [tsCode]="fullWidthTs">
+                <nx-segmented-control
+                    [options]="viewOptions"
+                    [fullWidth]="true"
+                    [(value)]="view">
+                </nx-segmented-control>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reactive Form"
+                description="Segmented Control implements ControlValueAccessor, so it works with formControlName inside a reactive form."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs">
+                <div [formGroup]="viewForm">
+                    <nx-segmented-control [options]="viewOptions" formControlName="view"></nx-segmented-control>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="It also works with [(ngModel)] for template-driven forms."
+                [code]="templateCode"
+                [tsCode]="templateTs">
+                <nx-segmented-control
+                    [options]="viewOptions"
+                    [(ngModel)]="view">
+                </nx-segmented-control>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the group mandatory - a validation message shows once the group is blurred while still unselected."
+                [code]="requiredCode"
+                [tsCode]="requiredTs">
+                <nx-segmented-control
+                    [options]="viewOptions"
+                    [isRequired]="true"
+                    [(ngModel)]="required">
+                </nx-segmented-control>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Drag cards between columns"
+                description="nxDraggable marks an element as a drag source and serializes whatever value you pass it as the drop payload; nxDropZone accepts drops and emits that payload on (nxDropZoneDrop). Drag a card from one column to the other."
+                [code]="code"
+                [tsCode]="ts"
+                [hasSampleClass]="false">
+                <div style="display:flex; gap:16px; max-width:560px;">
+                    <div
+                        nxDropZone
+                        (nxDropZoneDrop)="onDrop($event, 'todo')"
+                        style="flex:1; min-height:220px; padding:12px; border:1px dashed var(--shell-border); border-radius:8px; background:var(--shell-surface);">
+                        <strong style="display:block; margin-bottom:8px;">To do</strong>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            @for (card of todo(); track card.id) {
+                                <div
+                                    [nxDraggable]="card"
+                                    (dragStarted)="onDragStarted(card, 'todo')"
+                                    style="padding:10px 12px; background:var(--shell-bg); border:1px solid var(--shell-border); border-radius:6px; cursor:grab;">
+                                    {{ card.title }}
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div
+                        nxDropZone
+                        (nxDropZoneDrop)="onDrop($event, 'done')"
+                        style="flex:1; min-height:220px; padding:12px; border:1px dashed var(--shell-border); border-radius:8px; background:var(--shell-surface);">
+                        <strong style="display:block; margin-bottom:8px;">Done</strong>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            @for (card of done(); track card.id) {
+                                <div
+                                    [nxDraggable]="card"
+                                    (dragStarted)="onDragStarted(card, 'done')"
+                                    style="padding:10px 12px; background:var(--shell-bg); border:1px solid var(--shell-border); border-radius:6px; cursor:grab;">
+                                    {{ card.title }}
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

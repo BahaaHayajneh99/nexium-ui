@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Nested AND/OR tree"
+                description="{{ commonService.appName }}'s Query Builder renders a nested condition tree - add rules or whole sub-groups, switch a group's combinator between AND/OR, and it recurses to any depth. Seeded here with a root AND group containing a nested OR group."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:720px;">
+                    <nx-query-builder [(value)]="value" [fields]="fields"></nx-query-builder>
+                    <pre style="margin-top:16px; padding:12px; background:var(--shell-surface); border:1px solid var(--shell-border); border-radius:8px; font-size:0.8rem; overflow:auto;">{{ value | json }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

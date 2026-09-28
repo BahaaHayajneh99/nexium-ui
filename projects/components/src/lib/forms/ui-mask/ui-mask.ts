@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges, booleanAttribute, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { NxPatternInput, nxPatternErrorMessage, resolveNxPattern } from '../shared/nx-validators';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export type NxMaskType = 'custom' | 'phone' | 'ssn' | 'credit-card' | 'zip' | 'date' | 'time';
 
@@ -16,29 +18,34 @@ const NX_MASK_PRESETS: Record<Exclude<NxMaskType, 'custom'>, string> = {
 @Component({
   selector: 'nx-mask',
   standalone: true,
+  imports: [NxProLocked],
   template: `
-    <div class="nx-mask-wrapper">
-      @if (label) {
-        <label class="nx-mask-label">{{ label }}@if (isRequired) {<span class="nx-mask-required">*</span>}</label>
-      }
+    @if (licensed()) {
+      <div class="nx-mask-wrapper">
+        @if (label) {
+          <label class="nx-mask-label">{{ label }}@if (isRequired) {<span class="nx-mask-required">*</span>}</label>
+        }
 
-      <input
-        class="nx-mask-input"
-        [value]="value"
-        [placeholder]="placeholder"
-        [disabled]="disabled"
-        [attr.maxlength]="resolvedMask ? resolvedMask.length : null"
-        [attr.inputmode]="inputMode"
-        [attr.aria-required]="isRequired ? true : null"
-        [attr.aria-invalid]="displayError ? true : null"
-        [class.error]="!!displayError"
-        (input)="onInput($event)"
-        (blur)="onBlur()" />
+        <input
+          class="nx-mask-input"
+          [value]="value"
+          [placeholder]="placeholder"
+          [disabled]="disabled"
+          [attr.maxlength]="resolvedMask ? resolvedMask.length : null"
+          [attr.inputmode]="inputMode"
+          [attr.aria-required]="isRequired ? true : null"
+          [attr.aria-invalid]="displayError ? true : null"
+          [class.error]="!!displayError"
+          (input)="onInput($event)"
+          (blur)="onBlur()" />
 
-      @if (displayError) {
-        <span class="nx-mask-error">{{ displayError }}</span>
-      }
-    </div>
+        @if (displayError) {
+          <span class="nx-mask-error">{{ displayError }}</span>
+        }
+      </div>
+    } @else {
+      <nx-pro-locked componentName="Input Mask"></nx-pro-locked>
+    }
   `,
   styles: `
     .nx-mask-wrapper {
@@ -105,6 +112,8 @@ const NX_MASK_PRESETS: Record<Exclude<NxMaskType, 'custom'>, string> = {
   ],
 })
 export class NxMask implements ControlValueAccessor, Validator {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input() label = '';
   @Input() placeholder = '';
   /** Manual error override - takes priority over the built-in required/pattern messages. */

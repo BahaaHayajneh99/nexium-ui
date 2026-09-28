@@ -1,9 +1,12 @@
 # nexium-ui
 
 Standalone Angular components for the NexiumUI library — data display, forms, feedback,
-navigation, panels, media, uploads, layout, charts, and directives. Every component is a
-standalone Angular component or directive; the library also ships `NexiumUiModule`, which
-aggregates all of them into a single `@NgModule` for apps that prefer that style.
+navigation, panels, media, uploads, layout, charts, directives, advanced interaction,
+collaboration & activity, design tools, dashboard, developer tools, and enterprise-tier
+components. Every component is a standalone Angular component or directive; the library also
+ships `NexiumUiModule`, which aggregates all of them into a single `@NgModule` for apps that
+prefer that style. A subset of components are 🔒 PRO-tier - see
+[PRO / Licensed components](#pro--licensed-components).
 
 ## Demo
 
@@ -91,11 +94,13 @@ your production bundle smaller.
 
 ### Forms integration (`ngModel` / reactive forms)
 
-Every form component (`nx-input`, `nx-textarea`, `nx-select`, `nx-autocomplete`, `nx-checkbox`,
-`nx-radio-group`, `nx-switch`, `nx-toggle`, `nx-slider`, `nx-rating`, `nx-otp-input`, `nx-mention`,
-`nx-rich-text-editor`, `nx-color-picker`, `nx-datepicker`) implements Angular's
-`ControlValueAccessor`, so on top of its native `[(value)]`/`[(checked)]` binding it also works
-with `[(ngModel)]` and `formControlName`/`[formControl]` - no adapter needed.
+Every form component (`nx-input`, `nx-textarea`, `nx-select`, `nx-autocomplete`, `nx-combobox`,
+`nx-checkbox`, `nx-radio-group`, `nx-switch`, `nx-toggle`, `nx-segmented-control`, `nx-slider`,
+`nx-rating`, `nx-otp-input`, `nx-mention`, `nx-unit-input`, `nx-formula-input`, `nx-mask`,
+`nx-password`, `nx-address-input`, `nx-rich-text-editor`, `nx-json-editor`, `nx-color-picker`,
+`nx-datepicker`) implements Angular's `ControlValueAccessor`, so on top of its native
+`[(value)]`/`[(checked)]` binding it also works with `[(ngModel)]` and
+`formControlName`/`[formControl]` - no adapter needed.
 
 **Important:** because these are standalone components, `NgModel`/`FormControlName` are directives
 that your OWN component must import - nexium-ui can't do this for you. If you bind `[(ngModel)]`
@@ -120,7 +125,50 @@ export class Example {
 }
 ```
 
+## PRO / Licensed components
+
+A subset of components - marked **🔒 PRO** in the tables below - are gated behind a license
+token. Without one they still render (nothing throws, nothing breaks your build), but show a
+`<nx-pro-locked>` placeholder instead of their real content. Buy a license from the hosted demo's
+[Get PRO License](https://nexium-ui.vercel.app/pro-upgrade) page (PayPal checkout) to claim a
+token, then provide it once at your app's root:
+
+```ts
+import { provideNxLicense } from 'nexium-ui';
+
+// app.config.ts
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideNxLicense('paste-your-license-token-here'),
+    // ...your other providers
+  ],
+};
+```
+
+Every PRO component checks the token the same way internally, via an exported helper:
+
+```ts
+import { NX_LICENSE_TOKEN, nxProLicenseGranted } from 'nexium-ui';
+```
+
+- `provideNxLicense(token: string)` - a `Provider` factory that binds your token to the
+  `NX_LICENSE_TOKEN` injection token application-wide.
+- `nxProLicenseGranted(): Signal<boolean>` - what each PRO component calls internally (as a field
+  initializer, so it must run in an injection context), then reads as `licensed()` in its
+  template. Starts `false` and flips to `true` once your token is confirmed against the real,
+  server-side license pool - there's nothing to forge locally: tokens are a fixed set issued only
+  after a payment is independently re-verified with PayPal server-side, and checking one is a
+  live network lookup, not a recomputable local check. Always `false` during server-side
+  rendering; the real check runs client-side after hydration.
+
+Because the check is a network call, it's cached per token (in memory for the page load, and in
+`localStorage` for 24h) so pages with many PRO components only verify once, not once per
+component instance.
+
 ## Components
+
+Components marked **🔒 PRO** implement the license gate described just above - they render
+normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder otherwise.
 
 ### Data display
 
@@ -135,15 +183,36 @@ export class Example {
 | List | `nx-list` |
 | Progress Bar | `nx-progress-bar` |
 | Result | `nx-result` |
-| Skeleton | `nx-skeleton` |
+| Skeleton 🔒 PRO | `nx-skeleton` |
 | Spinner | `nx-spinner` |
 | Statistic | `nx-statistic` |
 | Table | `nx-table` |
 | Tag | `nx-tag` |
 | Timeline | `nx-timeline` |
-| Tree | `nx-tree`, `nx-tree-node` |
+| Tree 🔒 PRO | `nx-tree`, `nx-tree-node` |
+| Tree Table 🔒 PRO | `nx-tree-table` |
 | Avatar | `nx-avatar` |
 | Badge | `nx-badge` |
+| Todo List 🔒 PRO | `nx-todo-list` |
+| Notes App 🔒 PRO | `nx-notes-app` |
+| Filter Chip Group | `nx-filter-chip-group` |
+| Color Contrast Checker 🔒 PRO | `nx-color-contrast-checker` |
+| Version Badge | `nx-version-badge` |
+| Changelog Widget | `nx-changelog-widget` |
+| Activity Timeline | `nx-activity-timeline` |
+| Activity Feed | `nx-activity-feed` |
+| Audit Timeline | `nx-audit-timeline` |
+| Code Block | `nx-code-block` |
+| Copyable Text | `nx-copyable-text` |
+| Keyboard Shortcut | `nx-keyboard-shortcut` |
+| JSON Viewer 🔒 PRO | `nx-json-viewer` |
+| Diff Viewer 🔒 PRO | `nx-diff-viewer` |
+| Before / After 🔒 PRO | `nx-before-after` |
+| Loading State | `nx-loading-state` |
+| Status Indicator | `nx-status-indicator` |
+| Not Found | `nx-not-found` |
+| Permission Denied | `nx-permission-denied` |
+| Maintenance State | `nx-maintenance-state` |
 
 ### Forms
 
@@ -153,14 +222,25 @@ export class Example {
 | Button | `nx-button` |
 | Checkbox | `nx-checkbox` |
 | Color Picker | `nx-color-picker` |
+| Combobox | `nx-combobox` |
 | Datepicker | `nx-datepicker` |
+| Date Range Picker | `nx-date-range-picker` |
+| Time Picker | `nx-time-picker` |
 | Input | `nx-input` |
-| Mention | `nx-mention` |
-| OTP Input | `nx-otp-input` |
+| Number Input | `nx-number` |
+| Input Mask 🔒 PRO | `nx-mask` |
+| Password Input 🔒 PRO | `nx-password` |
+| Mention 🔒 PRO | `nx-mention` |
+| OTP Input 🔒 PRO | `nx-otp-input` |
+| Unit Input 🔒 PRO | `nx-unit-input` |
+| Formula Input 🔒 PRO | `nx-formula-input` |
+| Address Input | `nx-address-input` |
 | Radio Group | `nx-radio-group` |
 | Rating | `nx-rating` |
-| Rich Text Editor | `nx-rich-text-editor` |
+| Rich Text Editor 🔒 PRO | `nx-rich-text-editor` |
+| JSON Editor 🔒 PRO | `nx-json-editor` |
 | Search | `nx-search` |
+| Segmented Control | `nx-segmented-control` |
 | Select | `nx-select` |
 | Slider | `nx-slider` |
 | Switch | `nx-switch` |
@@ -172,27 +252,43 @@ export class Example {
 | Component | Selector |
 | --- | --- |
 | Alert | `nx-alert` |
-| Command Palette | `nx-command-palette` |
+| Banner | `nx-banner` |
+| Command Palette 🔒 PRO | `nx-command-palette` |
+| Connection Status | `nx-connection-status` |
 | Dialog | `nx-dialog` |
 | Drawer | `nx-drawer` |
+| Fullscreen Dialog | `nx-fullscreen-dialog` |
+| Hover Card | `nx-hover-card` |
+| Lightbox | `nx-lightbox` |
+| Loading Overlay | `nx-loading-overlay` |
 | Modal | `nx-modal` |
 | Notification Center | `nx-notification-center` |
 | Popover | `nx-popover` |
+| Popover Menu | `nx-popover-menu` |
+| Spotlight | `nx-spotlight` |
 | Toast | `nx-toast-container` (paired with the injectable `NxToastService`) |
 | Tooltip | `[nxTooltip]` (directive) |
+| Tour | `nx-tour` |
+| Unsaved Changes Dialog | `nx-unsaved-changes-dialog` |
 
 ### Navigation
 
 | Component | Selector |
 | --- | --- |
+| Back Button | `nx-back-button` |
+| Back to Top | `nx-back-to-top` |
 | Breadcrumb | `nx-breadcrumb` |
 | Bottom Navigation | `nx-bottom-navigation` |
+| Command Bar | `nx-command-bar` |
 | Context Menu | `nx-context-menu` |
 | Dropdown Menu | `nx-dropdown-menu` |
 | Mega Menu | `nx-mega-menu` |
 | Menu | `nx-menu` |
 | Menubar | `nx-menubar` |
+| Nav Group | `nx-nav-group` |
 | Navbar | `nx-navbar` |
+| Navigation Progress | `nx-navigation-progress` |
+| Navigation Rail | `nx-navigation-rail` |
 | Pagination | `nx-pagination` |
 | Sidebar | `nx-sidebar`, `nx-sidebar-item` |
 | Stepper | `nx-stepper` |
@@ -210,8 +306,8 @@ export class Example {
 
 | Component | Selector |
 | --- | --- |
-| Carousel | `nx-carousel` (with an `[nxCarouselSlide]` directive for projecting non-image slide content) |
-| Gallery | `nx-gallery` |
+| Carousel 🔒 PRO | `nx-carousel` (with an `[nxCarouselSlide]` directive for projecting non-image slide content) |
+| Gallery 🔒 PRO | `nx-gallery` |
 | Preview | `nx-preview` |
 | File Upload | `nx-file-upload` |
 
@@ -219,12 +315,19 @@ export class Example {
 
 | Component | Selector |
 | --- | --- |
+| App Shell | `nx-app-shell` |
 | Aspect Ratio | `nx-aspect-ratio` |
 | Container | `nx-container` |
+| Device Frame | `nx-device-frame` |
 | Divider | `nx-divider` |
 | Flex | `nx-flex` |
 | Grid | `nx-grid`, `nx-grid-item` |
+| Layout Preview | `nx-layout-preview` |
 | Masonry | `nx-masonry` |
+| Page Actions | `nx-page-actions` |
+| Page Header | `nx-page-header` |
+| Resizable 🔒 PRO | `nx-resizable` |
+| Responsive Preview | `nx-responsive-preview` |
 | Spacer | `nx-spacer` |
 | Splitter | `nx-splitter` |
 | Stack | `nx-stack` |
@@ -237,14 +340,94 @@ export class Example {
 | Bar Chart | `nx-bar-chart` |
 | Bubble Chart | `nx-bubble-chart` |
 | Funnel Chart | `nx-funnel-chart` |
-| Gauge Chart | `nx-gauge-chart` |
+| Gauge Chart 🔒 PRO | `nx-gauge-chart` |
 | Heatmap Chart | `nx-heatmap-chart` |
 | Line Chart | `nx-line-chart` |
-| Mixed Chart | `nx-mixed-chart` |
+| Mixed Chart 🔒 PRO | `nx-mixed-chart` |
 | Pie Chart | `nx-pie-chart` |
 | Radar Chart | `nx-radar-chart` |
 | Scatter Chart | `nx-scatter-chart` |
 | Sparkline | `nx-sparkline` |
+
+`nx-bar-chart` also renders a stacked layout via its `stacked` input - there's no separate
+"Stacked Bar" component/selector, just a different configuration of the same one.
+
+### Advanced Interaction
+
+| Component | Selector |
+| --- | --- |
+| Virtual Scroll 🔒 PRO | `nx-virtual-scroll` |
+| Sortable List 🔒 PRO | `nx-sortable-list` |
+| Kanban Board 🔒 PRO | `nx-kanban` |
+| Resizable Panels | `nx-resizable-panels`, `nx-resizable-panel` |
+| Column Selector 🔒 PRO | `nx-column-selector` |
+| Filter Builder 🔒 PRO | `nx-filter-builder` |
+| Query Builder 🔒 PRO | `nx-query-builder`, `nx-query-builder-group` |
+
+### Collaboration & Activity
+
+| Component | Selector |
+| --- | --- |
+| Chat 🔒 PRO | `nx-chat` |
+| Command History 🔒 PRO | `nx-command-history` |
+| Version Timeline 🔒 PRO | `nx-version-timeline` |
+| Audit Log 🔒 PRO | `nx-audit-log` |
+
+### Design Tools
+
+Every component below is 🔒 PRO.
+
+| Component | Selector |
+| --- | --- |
+| Color Gradient | `nx-color-gradient` |
+| Color Gradient Editor | `nx-color-gradient-editor` |
+| Shadow Editor | `nx-shadow-editor` |
+| Border Editor | `nx-border-editor` |
+| Transform Editor | `nx-transform-editor` |
+| Spacing Editor | `nx-spacing-editor` |
+| Property Editor | `nx-property-editor` |
+| Theme Editor | `nx-theme-editor` |
+
+### Dashboard
+
+| Component | Selector |
+| --- | --- |
+| Metric Card | `nx-metric-card` |
+| Metric Grid | `nx-metric-grid` |
+| Sparkline Card | `nx-sparkline-card` |
+| KPI Card | `nx-kpi-card` |
+| Comparison Card | `nx-comparison-card` |
+| Goal Progress | `nx-goal-progress` |
+| Ranking List | `nx-ranking-list` |
+| Leaderboard | `nx-leaderboard` |
+| Statistic Group 🔒 PRO | `nx-statistic-group` |
+| Dashboard Widget | `nx-dashboard-widget` |
+
+### Developer Tools
+
+| Component | Selector |
+| --- | --- |
+| HTTP Status | `nx-http-status` |
+| Environment Switcher | `nx-environment-switcher` |
+| Terminal | `nx-terminal` |
+| Log Viewer | `nx-log-viewer` |
+| API Response Viewer | `nx-api-response-viewer` |
+| Request Builder | `nx-request-builder` |
+| Regex Tester 🔒 PRO | `nx-regex-tester` |
+| Cron Builder 🔒 PRO | `nx-cron-builder` |
+| Code Editor | `nx-code-editor` |
+
+### Enterprise / PRO
+
+Every component below is 🔒 PRO.
+
+| Component | Selector |
+| --- | --- |
+| Advanced Data Grid | `nx-advanced-data-grid` |
+| Scheduler | `nx-scheduler` |
+| Gantt Chart | `nx-gantt-chart` |
+| Workflow Builder | `nx-workflow-builder` |
+| Permission Matrix | `nx-permission-matrix` |
 
 ### Directives
 
@@ -257,8 +440,12 @@ or component.
 | Click Outside | `[nxClickOutside]` | Emits when a click lands outside the host. |
 | Copy to Clipboard | `[nxCopyToClipboard]` | Copies bound text to the clipboard on click. |
 | Debounce Click | `[nxDebounceClick]` | Ignores repeat clicks within a time window - a guard against double-submit. |
+| Drag & Drop | `[nxDraggable]`, `[nxDropZone]` | A pair of attribute directives implementing native HTML5 drag-and-drop between a draggable host and a drop zone. |
+| Feature Flag | `nx-feature-flag` | Component wrapper - shows its projected content only when `enabled` is true, otherwise shows the `[nxFeatureFlagFallback]` slot. |
 | Has Permission | `*nxHasPermission` | Structural directive - renders its content only when an injectable `NxPermissionChecker` grants the given permission(s). |
+| Infinite Scroll | `[nxInfiniteScroll]` | Emits when the host is scrolled near its end, for loading more data. |
 | Long Press | `[nxLongPress]` | Emits after the pointer is held down on the host for a set duration. |
+| Permission Gate | `nx-permission-gate` | Like `*nxHasPermission`, but a component with an explicit `[nxPermissionGateFallback]` slot instead of just removing the content. |
 
 For full input/output reference and live examples, see the hosted demo at
 [nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started), or run it locally with

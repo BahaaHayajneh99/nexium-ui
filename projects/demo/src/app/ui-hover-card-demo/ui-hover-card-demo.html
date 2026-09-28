@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Hover Card"
+                description="The {{ commonService.appName }} Hover Card shows rich content when the trigger is hovered or focused - like a tooltip, but for content richer than a line of text. Moving the pointer from the trigger into the card itself keeps it open."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-hover-card>
+                    <a nx-hover-card-trigger href="javascript:void(0)" style="color: var(--shell-primary);">&#64;nexiumui</a>
+
+                    <div>
+                        <strong>NexaUI</strong>
+                        <p style="margin: 4px 0 0;">A component library for building fast, accessible Angular apps.</p>
+                    </div>
+                </nx-hover-card>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Placement"
+                description="placement accepts top, bottom (default), left or right."
+                [code]="placementCode"
+                [tsCode]="placementTs">
+                <div style="display:flex; gap:32px; padding: 40px 0;">
+                    <nx-hover-card placement="top">
+                        <button nx-hover-card-trigger class="demo-btn" type="button">Hover me (top)</button>
+                        <div>Appears above the trigger.</div>
+                    </nx-hover-card>
+
+                    <nx-hover-card placement="right">
+                        <button nx-hover-card-trigger class="demo-btn" type="button">Hover me (right)</button>
+                        <div>Appears to the right of the trigger.</div>
+                    </nx-hover-card>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Delays"
+                description="openDelay defaults to 400ms, closeDelay to 200ms - tune both to taste."
+                [code]="delayCode"
+                [tsCode]="delayTs">
+                <nx-hover-card [openDelay]="0" [closeDelay]="500">
+                    <button nx-hover-card-trigger class="demo-btn" type="button">Instant open, slow close</button>
+                    <div>Opens immediately; stays open for half a second after you leave.</div>
+                </nx-hover-card>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

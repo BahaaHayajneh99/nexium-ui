@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every directive/component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Flag"
+                description="Shows its projected content only when enabled is true, otherwise renders nothing - a plain named wrapper around what would otherwise be an @if."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-feature-flag [enabled]="bulkExportEnabled">
+                    <nx-button variant="primary">Bulk export</nx-button>
+                </nx-feature-flag>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With a Fallback"
+                description="Project content into the [nxFeatureFlagFallback] slot to show something else - a 'coming soon' message, for example - when the flag is off. Toggle the checkbox to switch."
+                [code]="fallbackCode"
+                [tsCode]="fallbackTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:12px; align-items:flex-start;">
+                    <nx-checkbox label="darkModeEnabled" [checked]="darkModeEnabled" (checkedChange)="toggleDarkMode($event)"></nx-checkbox>
+                    <nx-feature-flag [enabled]="darkModeEnabled">
+                        <nx-badge variant="success">Dark mode is live</nx-badge>
+                        <span nxFeatureFlagFallback>
+                            <nx-badge variant="secondary">Dark mode coming soon</nx-badge>
+                        </span>
+                    </nx-feature-flag>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

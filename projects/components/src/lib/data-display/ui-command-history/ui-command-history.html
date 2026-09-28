@@ -1,0 +1,29 @@
+@if (licensed()) {
+    <div class="nx-command-history">
+        <div class="nx-command-history-toolbar">
+            <button type="button" class="nx-command-history-btn" [disabled]="!canUndo" (click)="undo.emit()">
+                <nx-icon icon="nx-arrow-left" variant="svg" [size]="14"></nx-icon>
+                Undo
+            </button>
+            <button type="button" class="nx-command-history-btn" [disabled]="!canRedo" (click)="redo.emit()">
+                Redo
+                <nx-icon icon="nx-arrow-right" variant="svg" [size]="14"></nx-icon>
+            </button>
+        </div>
+
+        <ol class="nx-command-history-list">
+            @for (entry of entries; track entry.id; let i = $index) {
+                <li
+                    class="nx-command-history-item"
+                    [class.current]="i === currentIndex"
+                    [class.future]="i > currentIndex"
+                    (click)="select(entry, i)">
+                    <span class="nx-command-history-dot"></span>
+                    <span class="nx-command-history-label">{{ entry.label }}</span>
+                </li>
+            }
+        </ol>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Command History"></nx-pro-locked>
+}

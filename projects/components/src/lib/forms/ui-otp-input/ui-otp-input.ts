@@ -11,13 +11,15 @@ import {
   numberAttribute,
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export type NxOtpInputType = 'number' | 'text';
 
 @Component({
   selector: 'nx-otp-input',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-otp-input.html',
   styleUrl: './ui-otp-input.scss',
   providers: [
@@ -34,6 +36,8 @@ export type NxOtpInputType = 'number' | 'text';
   ],
 })
 export class NxOtpInput implements ControlValueAccessor, Validator {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input({ transform: numberAttribute }) length = 6;
   @Input() value = '';
   @Input() type: NxOtpInputType = 'number';

@@ -1,0 +1,26 @@
+<div class="nx-audit-timeline">
+    @for (entry of entries; track entry.id) {
+        <div class="nx-audit-row">
+            <span class="nx-audit-severity" [class]="entry.severity || 'info'"></span>
+
+            <div class="nx-audit-main">
+                <span class="nx-audit-text">
+                    <strong>{{ entry.actor }}</strong> {{ entry.action }}
+                    @if (entry.target) {
+                        <span class="nx-audit-target">{{ entry.target }}</span>
+                    }
+                </span>
+                <span class="nx-audit-meta">
+                    {{ entry.timestamp }}
+                    @if (entry.ipAddress) {
+                        &middot; {{ entry.ipAddress }}
+                    }
+                </span>
+            </div>
+        </div>
+    }
+
+    @if (entries.length === 0) {
+        <p class="nx-audit-empty">No audit entries.</p>
+    }
+</div>

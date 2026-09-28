@@ -1,0 +1,88 @@
+.nx-spacing-editor {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+.nx-spacing-editor-ring {
+    position: relative;
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+    grid-template-rows: 26px 1fr 26px;
+    grid-template-areas:
+        ".    top    ."
+        "left center right"
+        ".    bottom .";
+    gap: 4px;
+    padding: 6px;
+    border: 1px dashed var(--shell-border);
+}
+
+.nx-spacing-editor-ring.margin {
+    background-color: rgba(245, 166, 35, .08);
+    min-width: 280px;
+}
+
+.nx-spacing-editor-ring.padding {
+    grid-area: center;
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .1));
+    border-style: solid;
+    border-color: var(--shell-primary);
+}
+
+.nx-spacing-editor-ring-label {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--shell-text-secondary);
+}
+
+.nx-spacing-editor-input {
+    width: 40px;
+    padding: 2px 4px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 11px;
+    text-align: center;
+}
+
+.nx-spacing-editor-input.top {
+    grid-area: top;
+    align-self: end;
+    justify-self: center;
+}
+
+.nx-spacing-editor-input.right {
+    grid-area: right;
+    align-self: center;
+}
+
+.nx-spacing-editor-input.bottom {
+    grid-area: bottom;
+    align-self: start;
+    justify-self: center;
+}
+
+.nx-spacing-editor-input.left {
+    grid-area: left;
+    align-self: center;
+}
+
+.nx-spacing-editor-content {
+    grid-area: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    min-height: 50px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+}

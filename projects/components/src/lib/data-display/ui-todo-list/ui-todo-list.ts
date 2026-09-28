@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxTodoItem {
   id: string | number;
@@ -9,11 +11,13 @@ export interface NxTodoItem {
 @Component({
   selector: 'nx-todo-list',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-todo-list.html',
   styleUrl: './ui-todo-list.scss',
 })
 export class NxTodoList {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input() items: NxTodoItem[] = [];
   @Input() label = '';
   @Input() placeholder = 'Add a task...';

@@ -1,0 +1,25 @@
+@if (licensed()) {
+    <div class="nx-before-after">
+        <img class="nx-before-after-image after" [src]="afterSrc" [alt]="afterLabel" draggable="false" />
+
+        <img
+            class="nx-before-after-image before"
+            [src]="beforeSrc"
+            [alt]="beforeLabel"
+            draggable="false"
+            [style.clip-path]="'inset(0 ' + (100 - position()) + '% 0 0)'" />
+
+        <span class="nx-before-after-label before-label">{{ beforeLabel }}</span>
+        <span class="nx-before-after-label after-label">{{ afterLabel }}</span>
+
+        <div
+            class="nx-before-after-handle"
+            [style.left.%]="position()"
+            (mousedown)="startDrag($event)"
+            (touchstart)="startDrag($event)">
+            <span class="nx-before-after-handle-grip"></span>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Before / After"></nx-pro-locked>
+}

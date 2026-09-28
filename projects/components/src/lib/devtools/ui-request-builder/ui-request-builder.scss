@@ -1,0 +1,108 @@
+.nx-request-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nx-request-builder-url-row {
+    display: flex;
+    gap: 8px;
+}
+
+.nx-request-builder-method {
+    padding: 7px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.nx-request-builder-url {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+}
+
+.nx-request-builder-send {
+    padding: 7px 16px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-request-builder-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-request-builder-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--shell-text-secondary);
+}
+
+.nx-request-builder-add {
+    padding: 3px 8px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-primary);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-request-builder-header-row {
+    display: flex;
+    gap: 8px;
+}
+
+.nx-request-builder-header-row input {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+}
+
+.nx-request-builder-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nx-request-builder-body {
+    min-height: 100px;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    resize: vertical;
+}

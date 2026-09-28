@@ -1,0 +1,49 @@
+.nx-permission-matrix {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+.nx-permission-matrix-corner {
+    border: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-permission-matrix-col-header,
+.nx-permission-matrix-row-header {
+    padding: 0;
+    border: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-permission-matrix-header-btn {
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.nx-permission-matrix-col-header .nx-permission-matrix-header-btn {
+    text-align: center;
+}
+
+.nx-permission-matrix-header-btn:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+    color: var(--shell-primary);
+}
+
+.nx-permission-matrix-cell {
+    border: 1px solid var(--shell-border);
+    text-align: center;
+    padding: 8px;
+}
+
+.nx-permission-matrix-cell input {
+    cursor: pointer;
+}

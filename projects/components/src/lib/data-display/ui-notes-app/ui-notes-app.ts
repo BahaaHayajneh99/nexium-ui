@@ -9,6 +9,8 @@ import { NxButton } from '../../forms/ui-button';
 import { NxCard, NxCardHeader, NxCardTitle, NxCardContent, NxCardFooter } from '../ui-card';
 import { NxTag } from '../ui-tag';
 import { NxEmptyState } from '../ui-empty-state';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxNote {
   id: number;
@@ -50,11 +52,14 @@ const DEFAULT_NOTES: NxNote[] = [
     NxCardFooter,
     NxTag,
     NxEmptyState,
+    NxProLocked,
   ],
   templateUrl: './ui-notes-app.html',
   styleUrl: './ui-notes-app.scss',
 })
 export class NxNotesApp {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input() categories: string[] = DEFAULT_CATEGORIES;
   @Input() notes: NxNote[] = DEFAULT_NOTES;
   @Input() searchPlaceholder = 'Search notes...';

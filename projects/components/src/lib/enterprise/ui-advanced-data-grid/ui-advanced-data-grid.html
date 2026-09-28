@@ -1,0 +1,274 @@
+@if (licensed()) {
+    <div class="nx-advanced-data-grid">
+        <div class="nx-advanced-data-grid-toolbar">
+            <input
+                type="text"
+                class="nx-advanced-data-grid-filter"
+                placeholder="Quick filter..."
+                [value]="quickFilter()"
+                (input)="quickFilter.set($any($event.target).value)" />
+            <span class="nx-advanced-data-grid-count">{{ filteredRows.length }} rows</span>
+
+            <div class="nx-advanced-data-grid-columns-menu">
+                <button type="button" class="nx-advanced-data-grid-columns-btn" (click)="toggleColumnMenu()">Columns</button>
+                @if (columnMenuOpen()) {
+                    <div class="nx-advanced-data-grid-columns-panel">
+                        @for (column of columns; track column.id) {
+                            <label class="nx-advanced-data-grid-columns-option">
+                                <input
+                                    type="checkbox"
+                                    [checked]="isColumnVisible(column)"
+                                    (change)="toggleColumnVisibility(column)" />
+                                {{ column.header }}
+                            </label>
+                        }
+                    </div>
+                }
+            </div>
+
+            @if (showExport) {
+                <button type="button" class="nx-advanced-data-grid-export" (click)="exportCSV()">Export CSV</button>
+            }
+        </div>
+
+        <div class="nx-advanced-data-grid-scroll" #scrollContainer (scroll)="onScroll($event)">
+            <table class="nx-advanced-data-grid-table">
+                <thead>
+                    @if (columnGroups.length) {
+                        <tr class="nx-advanced-data-grid-group-row">
+                            @if (selectionMode) {
+                                <th [attr.rowspan]="2" class="nx-advanced-data-grid-select-col"></th>
+                            }
+                            @for (group of columnGroups; track $index) {
+                                <th [attr.colspan]="group.colspan">{{ group.header }}</th>
+                            }
+                        </tr>
+                    }
+                    <tr>
+                        @if (selectionMode === 'multiple') {
+                            <th class="nx-advanced-data-grid-select-col">
+                                <input type="checkbox" [checked]="allSelected" (change)="toggleSelectAll($any($event.target).checked)" />
+                            </th>
+                        } @else if (selectionMode === 'single') {
+                            <th class="nx-advanced-data-grid-select-col"></th>
+                        }
+                        @for (column of leftPinnedColumns; track column.id) {
+                            <th
+                                class="nx-advanced-data-grid-th pinned-left"
+                                [attr.data-col]="column.id"
+                                [style.width.px]="columnWidth(column)"
+                                [style.min-width.px]="columnWidth(column)"
+                                [style.left.px]="leftOffset(column)"
+                                draggable="true"
+                                (dragstart)="onColumnDragStart(column, $event)"
+                                (dragover)="onColumnDragOver($event)"
+                                (drop)="onColumnDrop(column, $event)"
+                                (click)="onHeaderClick(column, $event)">
+                                {{ column.header }}
+                                @if (sortDirectionFor(column.field)) {
+                                    <span class="nx-advanced-data-grid-sort-icon">{{ sortDirectionFor(column.field) === 'asc' ? '▲' : '▼' }}</span>
+                                }
+                                <span class="nx-advanced-data-grid-resize-handle" (pointerdown)="onResizeStart(column, $event)"></span>
+                            </th>
+                        }
+                        @for (column of scrollableColumns; track column.id) {
+                            <th
+                                class="nx-advanced-data-grid-th"
+                                [attr.data-col]="column.id"
+                                [style.width.px]="columnWidth(column)"
+                                [style.min-width.px]="columnWidth(column)"
+                                draggable="true"
+                                (dragstart)="onColumnDragStart(column, $event)"
+                                (dragover)="onColumnDragOver($event)"
+                                (drop)="onColumnDrop(column, $event)"
+                                (click)="onHeaderClick(column, $event)">
+                                {{ column.header }}
+                                @if (sortDirectionFor(column.field)) {
+                                    <span class="nx-advanced-data-grid-sort-icon">{{ sortDirectionFor(column.field) === 'asc' ? '▲' : '▼' }}</span>
+                                }
+                                <span class="nx-advanced-data-grid-resize-handle" (pointerdown)="onResizeStart(column, $event)"></span>
+                            </th>
+                        }
+                        @for (column of rightPinnedColumns; track column.id) {
+                            <th
+                                class="nx-advanced-data-grid-th pinned-right"
+                                [attr.data-col]="column.id"
+                                [style.width.px]="columnWidth(column)"
+                                [style.min-width.px]="columnWidth(column)"
+                                [style.right.px]="rightOffset(column)"
+                                draggable="true"
+                                (dragstart)="onColumnDragStart(column, $event)"
+                                (dragover)="onColumnDragOver($event)"
+                                (drop)="onColumnDrop(column, $event)"
+                                (click)="onHeaderClick(column, $event)">
+                                {{ column.header }}
+                                @if (sortDirectionFor(column.field)) {
+                                    <span class="nx-advanced-data-grid-sort-icon">{{ sortDirectionFor(column.field) === 'asc' ? '▲' : '▼' }}</span>
+                                }
+                                <span class="nx-advanced-data-grid-resize-handle" (pointerdown)="onResizeStart(column, $event)"></span>
+                            </th>
+                        }
+                    </tr>
+                    @if (hasFilterRow) {
+                        <tr class="nx-advanced-data-grid-filter-row">
+                            @if (selectionMode) {
+                                <th></th>
+                            }
+                            @for (column of visibleColumns; track column.id) {
+                                <th>
+                                    @if (column.filterable) {
+                                        <input
+                                            type="text"
+                                            class="nx-advanced-data-grid-filter-input"
+                                            [placeholder]="column.header"
+                                            [value]="columnFilters()[column.field] || ''"
+                                            (input)="onColumnFilterInput(column.field, $event)"
+                                            (click)="$event.stopPropagation()" />
+                                    }
+                                </th>
+                            }
+                        </tr>
+                    }
+                </thead>
+                <tbody>
+                    @if (virtualScroll && topSpacerHeight > 0) {
+                        <tr class="nx-advanced-data-grid-spacer" [style.height.px]="topSpacerHeight">
+                            <td [attr.colspan]="totalColSpan"></td>
+                        </tr>
+                    }
+                    @for (row of visibleRows; track $index) {
+                        <tr [class.selected]="isSelected(row)" [style.height.px]="virtualScroll ? rowHeight : null" (click)="onRowClick(row)">
+                            @if (selectionMode === 'multiple') {
+                                <td class="nx-advanced-data-grid-select-col">
+                                    <input
+                                        type="checkbox"
+                                        [checked]="isSelected(row)"
+                                        (click)="$event.stopPropagation()"
+                                        (change)="toggleRowSelection(row)" />
+                                </td>
+                            } @else if (selectionMode === 'single') {
+                                <td class="nx-advanced-data-grid-select-col">
+                                    <input
+                                        type="radio"
+                                        name="nx-advanced-data-grid-row-select"
+                                        [checked]="isSelected(row)"
+                                        (click)="$event.stopPropagation(); selectSingle(row)" />
+                                </td>
+                            }
+                            @for (column of leftPinnedColumns; track column.id) {
+                                <td
+                                    class="nx-advanced-data-grid-td pinned-left"
+                                    [attr.data-col]="column.id"
+                                    [style.width.px]="columnWidth(column)"
+                                    [style.min-width.px]="columnWidth(column)"
+                                    [style.left.px]="leftOffset(column)"
+                                    (dblclick)="startEdit(row, column)">
+                                    @if (isEditing(row, column)) {
+                                        <input
+                                            autofocus
+                                            class="nx-advanced-data-grid-edit-input"
+                                            type="text"
+                                            [value]="editValue"
+                                            (click)="$event.stopPropagation()"
+                                            (input)="onEditInput($event)"
+                                            (blur)="commitEdit(row, column)"
+                                            (keydown.enter)="commitEdit(row, column)"
+                                            (keydown.escape)="cancelEdit()" />
+                                    } @else {
+                                        {{ row[column.field] }}
+                                    }
+                                </td>
+                            }
+                            @for (column of scrollableColumns; track column.id) {
+                                <td
+                                    class="nx-advanced-data-grid-td"
+                                    [attr.data-col]="column.id"
+                                    [style.width.px]="columnWidth(column)"
+                                    [style.min-width.px]="columnWidth(column)"
+                                    (dblclick)="startEdit(row, column)">
+                                    @if (isEditing(row, column)) {
+                                        <input
+                                            autofocus
+                                            class="nx-advanced-data-grid-edit-input"
+                                            type="text"
+                                            [value]="editValue"
+                                            (click)="$event.stopPropagation()"
+                                            (input)="onEditInput($event)"
+                                            (blur)="commitEdit(row, column)"
+                                            (keydown.enter)="commitEdit(row, column)"
+                                            (keydown.escape)="cancelEdit()" />
+                                    } @else {
+                                        {{ row[column.field] }}
+                                    }
+                                </td>
+                            }
+                            @for (column of rightPinnedColumns; track column.id) {
+                                <td
+                                    class="nx-advanced-data-grid-td pinned-right"
+                                    [attr.data-col]="column.id"
+                                    [style.width.px]="columnWidth(column)"
+                                    [style.min-width.px]="columnWidth(column)"
+                                    [style.right.px]="rightOffset(column)"
+                                    (dblclick)="startEdit(row, column)">
+                                    @if (isEditing(row, column)) {
+                                        <input
+                                            autofocus
+                                            class="nx-advanced-data-grid-edit-input"
+                                            type="text"
+                                            [value]="editValue"
+                                            (click)="$event.stopPropagation()"
+                                            (input)="onEditInput($event)"
+                                            (blur)="commitEdit(row, column)"
+                                            (keydown.enter)="commitEdit(row, column)"
+                                            (keydown.escape)="cancelEdit()" />
+                                    } @else {
+                                        {{ row[column.field] }}
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    } @empty {
+                        <tr>
+                            <td [attr.colspan]="totalColSpan" class="nx-advanced-data-grid-empty">No data available</td>
+                        </tr>
+                    }
+                    @if (virtualScroll && bottomSpacerHeight > 0) {
+                        <tr class="nx-advanced-data-grid-spacer" [style.height.px]="bottomSpacerHeight">
+                            <td [attr.colspan]="totalColSpan"></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (paginator) {
+            <div class="nx-advanced-data-grid-paginator">
+                <div class="nx-advanced-data-grid-paginator-info">
+                    {{ totalRecordsCount === 0 ? 0 : pageStart + 1 }}-{{ pageEnd }} of {{ totalRecordsCount }}
+                </div>
+                @if (rowsPerPageOptions.length) {
+                    <select class="nx-advanced-data-grid-rows-select" (change)="onRowsChange($event)">
+                        @for (opt of rowsPerPageOptions; track opt) {
+                            <option [value]="opt" [selected]="opt === pageSize">{{ opt }} / page</option>
+                        }
+                    </select>
+                }
+                <div class="nx-advanced-data-grid-pagination">
+                    <button type="button" class="nx-advanced-data-grid-page-btn" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">‹</button>
+                    @for (pageNum of pageNumbers; track pageNum) {
+                        <button
+                            type="button"
+                            class="nx-advanced-data-grid-page-btn"
+                            [class.active]="pageNum === currentPage"
+                            (click)="goToPage(pageNum)">
+                            {{ pageNum }}
+                        </button>
+                    }
+                    <button type="button" class="nx-advanced-data-grid-page-btn" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">›</button>
+                </div>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Advanced Data Grid"></nx-pro-locked>
+}

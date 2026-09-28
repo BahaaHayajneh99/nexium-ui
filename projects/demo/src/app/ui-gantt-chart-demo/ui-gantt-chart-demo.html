@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Project Timeline"
+                description="{{ commonService.appName }} Gantt Chart - drag a bar to move it, drag its right edge to resize (change the end date). This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-gantt-chart [tasks]="tasks" (taskChange)="onTaskChange($event)"></nx-gantt-chart>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

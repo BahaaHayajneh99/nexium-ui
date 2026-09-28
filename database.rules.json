@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "licenseTokens": {
+      ".read": false,
+      ".write": false
+    },
+    "purchases": {
+      ".read": false,
+      ".write": false
+    },
+    "stats": {
+      ".read": true,
+      ".write": false
+    },
+    "visitors": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}

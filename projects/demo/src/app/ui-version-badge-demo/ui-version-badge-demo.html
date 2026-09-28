@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Variants"
+                description="A small pill showing a version string, with an optional new/beta/deprecated tone."
+                [code]="variantsCode"
+                [tsCode]="variantsTs">
+                <nx-version-badge version="v2.4.0"></nx-version-badge>
+                <nx-version-badge version="v3.0.0" label="New" variant="new"></nx-version-badge>
+                <nx-version-badge version="v3.1.0-rc.1" label="Beta" variant="beta"></nx-version-badge>
+                <nx-version-badge version="v1.0.0" label="Deprecated" variant="deprecated"></nx-version-badge>
+            </app-demo-section>
+
+            <app-demo-section
+                header="In Context"
+                description="A typical use case - next to a feature name in a changelog or settings list."
+                [code]="contextCode"
+                [tsCode]="contextTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:10px; max-width:340px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                        <span>Bulk export</span>
+                        <nx-version-badge version="v4.2.0" label="New" variant="new"></nx-version-badge>
+                    </div>
+                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                        <span>Realtime collaboration</span>
+                        <nx-version-badge version="v4.3.0-beta" label="Beta" variant="beta"></nx-version-badge>
+                    </div>
+                    <div style="display:flex; align-items:center; justify-content:space-between;">
+                        <span>Legacy CSV import</span>
+                        <nx-version-badge version="v1.0.0" label="Deprecated" variant="deprecated"></nx-version-badge>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

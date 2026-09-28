@@ -146,6 +146,24 @@
                     }
                 }
             }
+
+            .nav-link-badges {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                flex-shrink: 0;
+            }
+
+            .nav-badge-chip {
+                --nx-font-size-sm: 9px;
+                --nx-spacing-xs: 0px;
+                --nx-spacing-md: 6px;
+                --nx-font-weight-medium: 700;
+                letter-spacing: .04em;
+                line-height: 1.4;
+                flex-shrink: 0;
+            }
         }
     }
 }

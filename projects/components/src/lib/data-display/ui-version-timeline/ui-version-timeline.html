@@ -1,0 +1,26 @@
+@if (licensed()) {
+    <div class="nx-version-timeline">
+        @for (entry of entries; track entry.id; let last = $last) {
+            <div class="nx-version-timeline-node-wrap">
+                <div class="nx-version-timeline-node" [class.current]="entry.current">
+                    <span class="nx-version-timeline-dot"></span>
+                    <span class="nx-version-timeline-version">{{ entry.version }}</span>
+                    @if (entry.date) {
+                        <span class="nx-version-timeline-date">{{ entry.date }}</span>
+                    }
+                </div>
+                @if (entry.current) {
+                    <div class="nx-version-timeline-branch">
+                        <span class="nx-version-timeline-branch-line"></span>
+                        <span class="nx-version-timeline-branch-label">Current</span>
+                    </div>
+                }
+            </div>
+            @if (!last) {
+                <span class="nx-version-timeline-connector"></span>
+            }
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Version Timeline"></nx-pro-locked>
+}

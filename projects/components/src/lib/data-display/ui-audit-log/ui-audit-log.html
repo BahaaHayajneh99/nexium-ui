@@ -1,0 +1,77 @@
+@if (licensed()) {
+    <div class="nx-audit-log">
+        <div class="nx-audit-log-filters">
+            <input
+                type="text"
+                class="nx-audit-log-search"
+                placeholder="Search user, entity, action..."
+                [value]="searchText()"
+                (input)="searchText.set($any($event.target).value)" />
+
+            <select class="nx-audit-log-action-filter" [value]="actionFilter()" (change)="actionFilter.set($any($event.target).value)">
+                <option value="all">All actions</option>
+                @for (action of actions; track action) {
+                    <option [value]="action">{{ action }}</option>
+                }
+            </select>
+        </div>
+
+        <table class="nx-audit-log-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                    <th>Entity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (entry of filteredEntries; track entry.id) {
+                    <tr class="nx-audit-log-row" (click)="toggleExpanded(entry.id)">
+                        <td class="nx-audit-log-expand-cell">
+                            @if (entry.changes?.length) {
+                                <nx-icon
+                                    icon="nx-chevron-right"
+                                    variant="svg"
+                                    [size]="14"
+                                    class="nx-audit-log-chevron"
+                                    [class.open]="isExpanded(entry.id)"></nx-icon>
+                            }
+                        </td>
+                        <td>{{ entry.user }}</td>
+                        <td>{{ entry.date }}</td>
+                        <td><span class="nx-audit-log-action-badge">{{ entry.action }}</span></td>
+                        <td>{{ entry.entity }}</td>
+                    </tr>
+                    @if (isExpanded(entry.id) && entry.changes?.length) {
+                        <tr class="nx-audit-log-details-row">
+                            <td [attr.colspan]="5">
+                                <table class="nx-audit-log-changes">
+                                    <thead>
+                                        <tr>
+                                            <th>Field</th>
+                                            <th>Before</th>
+                                            <th>After</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (change of entry.changes; track change.field) {
+                                            <tr>
+                                                <td>{{ change.field }}</td>
+                                                <td class="nx-audit-log-before">{{ change.before }}</td>
+                                                <td class="nx-audit-log-after">{{ change.after }}</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Audit Log"></nx-pro-locked>
+}

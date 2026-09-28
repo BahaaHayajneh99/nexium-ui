@@ -1,0 +1,74 @@
+.nx-goal-progress.ring {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+}
+
+.nx-goal-progress-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.nx-goal-progress-track {
+    fill: none;
+    stroke: var(--shell-border);
+    stroke-width: 8;
+}
+
+.nx-goal-progress-fill {
+    fill: none;
+    stroke: var(--shell-primary);
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset .3s ease;
+}
+
+.nx-goal-progress-ring-label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nx-goal-progress-percent {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-goal-progress-caption {
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-goal-progress.bar {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.nx-goal-progress-bar-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-goal-progress-track-bar {
+    height: 8px;
+    border-radius: 999px;
+    background-color: var(--shell-border);
+    overflow: hidden;
+}
+
+.nx-goal-progress-fill-bar {
+    height: 100%;
+    border-radius: 999px;
+    background-color: var(--shell-primary);
+    transition: width .2s ease;
+}

@@ -1,0 +1,47 @@
+.nx-cron-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-cron-builder-fields {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.nx-cron-builder-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-cron-builder-field input {
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    text-align: center;
+}
+
+.nx-cron-builder-expression {
+    padding: 8px 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    text-align: center;
+}
+
+.nx-cron-builder-description {
+    margin: 0;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+    text-align: center;
+}

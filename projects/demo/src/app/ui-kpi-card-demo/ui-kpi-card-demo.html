@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic KPI Card"
+                description="A metric card that also shows progress toward a target, with a fill bar and percent readout."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-kpi-card label="Sales Goal" [value]="42000" [target]="60000"></nx-kpi-card>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With a Unit Suffix"
+                description="unit is appended after both the value and the target - useful for storage, task counts, or percentages."
+                [code]="gridCode"
+                [tsCode]="gridTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-wrap:wrap; gap:16px;">
+                    <nx-kpi-card label="Storage Used" [value]="68" [target]="100" unit=" GB"></nx-kpi-card>
+                    <nx-kpi-card label="Tasks Completed" [value]="34" [target]="40" unit=" tasks"></nx-kpi-card>
+                    <nx-kpi-card label="Uptime" [value]="99.95" [target]="100" unit="%"></nx-kpi-card>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>
