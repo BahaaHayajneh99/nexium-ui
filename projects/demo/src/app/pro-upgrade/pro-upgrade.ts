@@ -20,13 +20,20 @@ interface PaypalOrderActions {
 }
 
 /**
- * The PRO Client ID is PayPal's public sandbox placeholder ("sb") - it renders
- * real checkout buttons in test mode with no account setup. Swap it for your
- * own Client ID from developer.paypal.com (Business/Developer account) to
- * accept real payments; no other code changes are needed.
+ * Must be the SAME PayPal app's Client ID as the PAYPAL_CLIENT_ID secret the Cloud Function
+ * verifies orders with (functions/.secret.local for local testing, or
+ * `firebase functions:secrets:set PAYPAL_CLIENT_ID` for a real deploy) - orders created under a
+ * different app/account (e.g. PayPal's generic "sb" placeholder) aren't visible to our server's
+ * REST API lookup, which fails the claim with "order lookup failed (404)". Currently a sandbox
+ * Client ID; swap both this and the server secret to your live app's credentials together to
+ * accept real payments.
  */
 const PAYPAL_CLIENT_ID = 'AVY9yInizkzznTcIrCEzsNZk4W8lFvmMcrXnB6Eusejmc2Tx43SZwDJ1zXrVshkHVG3yhIjqd5gKWTM4';
-const PRO_PRICE_USD = '19.00';
+
+// Must stay in sync with PLAN_PRICES in functions/index.js - the server derives which plan was
+// bought purely from the amount PayPal confirms was paid, never from anything the client asserts.
+export type NxPlan = 'lifetime' | 'yearly';
+const PLAN_PRICES: Record<NxPlan, string> = { lifetime: '199.00', yearly: '59.00' };
 
 // The Cloud Function that server-side-verifies the PayPal order and hands out a real token from
 // the license pool - see functions/index.js (claimLicenseToken). No token generation happens in
@@ -40,6 +47,15 @@ const CLAIM_LICENSE_ENDPOINT =
     ? 'http://127.0.0.1:5001/nexium-ui/us-central1/claimLicenseToken'
     : 'https://us-central1-nexium-ui.cloudfunctions.net/claimLicenseToken';
 
+// Emails an already-claimed token to an address the buyer types in themselves - a backup, since
+// the token above is only ever shown once and a page refresh would otherwise lose it.
+const SEND_EMAIL_ENDPOINT =
+  typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://127.0.0.1:5001/nexium-ui/us-central1/sendLicenseEmail'
+    : 'https://us-central1-nexium-ui.cloudfunctions.net/sendLicenseEmail';
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 /** A "buy a PRO license for your own project" page - completing PayPal checkout claims a real token from the license pool. */
 @Component({
   selector: 'app-pro-upgrade',
@@ -49,11 +65,23 @@ const CLAIM_LICENSE_ENDPOINT =
   styleUrl: './pro-upgrade.scss',
 })
 export class ProUpgrade implements OnInit {
-  price = PRO_PRICE_USD;
+  selectedPlan = signal<NxPlan>('lifetime');
+  plans = PLAN_PRICES;
   checkoutFailed = signal(false);
   claimFailed = signal(false);
   licenseToken = signal<string | null>(null);
   copied = signal(false);
+
+  emailAddress = signal('');
+  emailStatus = signal<'idle' | 'sending' | 'sent' | 'invalid' | 'failed'>('idle');
+
+  get price(): string {
+    return this.plans[this.selectedPlan()];
+  }
+
+  selectPlan(plan: NxPlan): void {
+    this.selectedPlan.set(plan);
+  }
 
   ngOnInit(): void {
     this.loadPaypalSdk()
@@ -69,6 +97,37 @@ export class ProUpgrade implements OnInit {
     this.copied.set(true);
     setTimeout(() => this.copied.set(false), 2000);
     navigator.clipboard?.writeText(token).catch(() => {});
+  }
+
+  onEmailInput(value: string): void {
+    this.emailAddress.set(value);
+    if (this.emailStatus() !== 'sending') {
+      this.emailStatus.set('idle');
+    }
+  }
+
+  async sendTokenByEmail(): Promise<void> {
+    const token = this.licenseToken();
+    const email = this.emailAddress().trim();
+    if (!token) {
+      return;
+    }
+    if (!EMAIL_PATTERN.test(email)) {
+      this.emailStatus.set('invalid');
+      return;
+    }
+
+    this.emailStatus.set('sending');
+    try {
+      const response = await fetch(SEND_EMAIL_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, email }),
+      });
+      this.emailStatus.set(response.ok ? 'sent' : 'failed');
+    } catch {
+      this.emailStatus.set('failed');
+    }
   }
 
   private loadPaypalSdk(): Promise<void> {

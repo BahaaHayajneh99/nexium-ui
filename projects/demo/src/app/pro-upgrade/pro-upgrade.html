@@ -19,16 +19,60 @@
             <pre class="pro-upgrade-snippet">bootstrapApplication(AppComponent, &#123;
   providers: [provideNxLicense('{{ licenseToken() }}')],
 &#125;);</pre>
+
+            <div class="pro-upgrade-email-row">
+                <p class="pro-upgrade-email-hint">
+                    Refreshing this page loses the token above - want a backup copy emailed to you?
+                </p>
+                <div class="pro-upgrade-email-input-row">
+                    <input
+                        type="email"
+                        class="pro-upgrade-email-input"
+                        placeholder="you@example.com"
+                        [value]="emailAddress()"
+                        (input)="onEmailInput($any($event.target).value)"
+                        [disabled]="emailStatus() === 'sending' || emailStatus() === 'sent'" />
+                    <button
+                        type="button"
+                        class="pro-upgrade-email-send"
+                        [disabled]="emailStatus() === 'sending' || emailStatus() === 'sent'"
+                        (click)="sendTokenByEmail()">
+                        {{ emailStatus() === 'sending' ? 'Sending...' : emailStatus() === 'sent' ? 'Sent!' : 'Email it to me' }}
+                    </button>
+                </div>
+                @if (emailStatus() === 'invalid') {
+                    <p class="pro-upgrade-error">Enter a valid email address.</p>
+                }
+                @if (emailStatus() === 'failed') {
+                    <p class="pro-upgrade-error">Couldn't send that email - try again, or just copy the token above.</p>
+                }
+            </div>
         } @else {
             <h1>Unlock PRO components</h1>
             <p class="pro-upgrade-description">
                 PRO components (like Kanban Board and Query Builder) render a locked placeholder in your project
-                until you configure a license. Get one with a one-time payment.
+                until you configure a license. Pick a plan and pay to get one.
             </p>
 
-            <div class="pro-upgrade-price">
-                ${{ price }}
-                <span>one-time</span>
+            <div class="pro-upgrade-plans">
+                <button
+                    type="button"
+                    class="pro-upgrade-plan"
+                    [class.selected]="selectedPlan() === 'lifetime'"
+                    (click)="selectPlan('lifetime')">
+                    <span class="pro-upgrade-plan-name">One-time</span>
+                    <span class="pro-upgrade-plan-price">${{ plans.lifetime }}</span>
+                    <span class="pro-upgrade-plan-note">pay once, use forever</span>
+                </button>
+                <button
+                    type="button"
+                    class="pro-upgrade-plan"
+                    [class.selected]="selectedPlan() === 'yearly'"
+                    (click)="selectPlan('yearly')">
+                    <span class="pro-upgrade-plan-name">Yearly</span>
+                    <span class="pro-upgrade-plan-price">${{ plans.yearly }}<span class="pro-upgrade-plan-suffix">/year</span></span>
+                    <span class="pro-upgrade-plan-note">renews manually each year</span>
+                </button>
             </div>
 
             <div id="paypal-button-container" class="pro-upgrade-paypal"></div>

@@ -14,8 +14,9 @@
 const admin = require('firebase-admin');
 
 admin.initializeApp({
+  projectId: 'nexium-ui',
+  databaseURL: 'https://nexium-ui-default-rtdb.firebaseio.com',
   credential: admin.credential.applicationDefault(),
-  // databaseURL: 'https://nexium-ui-default-rtdb.<your-region>.firebasedatabase.app',
 });
 
 const db = admin.database();
@@ -39,11 +40,14 @@ async function reserve() {
   const [tokenKey] = Object.keys(snapshot.val());
   await db.ref(`licenseTokens/${tokenKey}`).update({
     status: 'paid',
+    plan: 'lifetime',
+    expiresAt: null,
     claimedOrderId: RESERVED_ORDER_ID,
     claimedAt: new Date().toISOString(),
   });
   await db.ref(`purchases/${RESERVED_ORDER_ID}`).set({
     token: tokenKey,
+    plan: 'lifetime',
     amountUsd: '0.00',
     currency: 'USD',
     status: 'RESERVED',

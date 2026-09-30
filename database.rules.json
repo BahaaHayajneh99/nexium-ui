@@ -2,7 +2,8 @@
   "rules": {
     "licenseTokens": {
       ".read": false,
-      ".write": false
+      ".write": false,
+      ".indexOn": ["status"]
     },
     "purchases": {
       ".read": false,

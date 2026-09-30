@@ -44,6 +44,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
     ],
   },
+  { key: 'Using PRO', label: 'Using PRO', icon: 'nx-lock', path: '/getting-started/using-pro' },
   {
     key: 'Design System',
     label: 'Design System',

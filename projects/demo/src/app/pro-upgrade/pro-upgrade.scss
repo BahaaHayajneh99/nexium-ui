@@ -93,15 +93,58 @@
     line-height: 1.5;
 }
 
-.pro-upgrade-price {
-    font-size: 32px;
+.pro-upgrade-plans {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.pro-upgrade-plan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-bg, transparent);
+    cursor: pointer;
+    transition: border-color .15s ease, background-color .15s ease;
+}
+
+.pro-upgrade-plan:hover {
+    border-color: var(--shell-primary);
+}
+
+.pro-upgrade-plan.selected {
+    border-color: var(--shell-primary);
+    background-color: color-mix(in srgb, var(--shell-primary) 8%, transparent);
+}
+
+.pro-upgrade-plan-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.pro-upgrade-plan-price {
+    font-size: 26px;
     font-weight: 800;
     color: var(--shell-text);
 }
 
-.pro-upgrade-price span {
+.pro-upgrade-plan-suffix {
     font-size: 13px;
     font-weight: 500;
+    color: var(--shell-text-secondary);
+}
+
+.pro-upgrade-plan-note {
+    font-size: 11px;
     color: var(--shell-text-secondary);
 }
 
@@ -109,6 +152,63 @@
     width: 100%;
     min-height: 45px;
     margin-top: 8px;
+}
+
+.pro-upgrade-email-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.pro-upgrade-email-hint {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+}
+
+.pro-upgrade-email-input-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.pro-upgrade-email-input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, transparent);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.pro-upgrade-email-input:disabled {
+    opacity: .6;
+}
+
+.pro-upgrade-email-send {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-primary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.pro-upgrade-email-send:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--shell-primary) 10%, transparent);
+}
+
+.pro-upgrade-email-send:disabled {
+    opacity: .6;
+    cursor: default;
 }
 
 .pro-upgrade-error {

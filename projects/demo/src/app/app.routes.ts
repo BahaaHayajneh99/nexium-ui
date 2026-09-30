@@ -222,6 +222,7 @@ import { GettingStartedQuickStartDemo } from './getting-started-quick-start-demo
 import { GettingStartedConfigurationDemo } from './getting-started-configuration-demo/getting-started-configuration-demo';
 import { GettingStartedFirstComponentDemo } from './getting-started-first-component-demo/getting-started-first-component-demo';
 import { GettingStartedMigrationGuideDemo } from './getting-started-migration-guide-demo/getting-started-migration-guide-demo';
+import { GettingStartedUsingProDemo } from './getting-started-using-pro-demo/getting-started-using-pro-demo';
 import { DesignSystemOverviewDemo } from './design-system-overview-demo/design-system-overview-demo';
 import { DesignSystemDesignTokensDemo } from './design-system-design-tokens-demo/design-system-design-tokens-demo';
 import { DesignSystemBorderRadiusDemo } from './design-system-border-radius-demo/design-system-border-radius-demo';
@@ -372,6 +373,10 @@ export const routes: Routes = [
     {
         path: 'getting-started/configuration',
         component: GettingStartedConfigurationDemo
+    },
+    {
+        path: 'getting-started/using-pro',
+        component: GettingStartedUsingProDemo
     },
     {
         path: 'getting-started/first-component',

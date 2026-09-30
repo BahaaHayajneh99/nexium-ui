@@ -1,0 +1,17 @@
+.pro-demo-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 12px;
+}
+
+.pro-demo-column {
+    h5 {
+        margin: 0 0 10px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--shell-text-secondary);
+        text-transform: uppercase;
+        letter-spacing: .03em;
+    }
+}

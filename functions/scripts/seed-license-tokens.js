@@ -33,9 +33,8 @@ const usingEmulator = !!process.env.FIREBASE_DATABASE_EMULATOR_HOST;
 // case - that's what lets this script seed the emulator without a service account key at all.
 admin.initializeApp({
   projectId: 'nexium-ui',
+  databaseURL: 'https://nexium-ui-default-rtdb.firebaseio.com',
   ...(usingEmulator ? {} : { credential: admin.credential.applicationDefault() }),
-  // If the Admin SDK can't infer your default Realtime Database URL, uncomment and set it:
-  // databaseURL: 'https://nexium-ui-default-rtdb.<your-region>.firebasedatabase.app',
 });
 
 const db = admin.database();
