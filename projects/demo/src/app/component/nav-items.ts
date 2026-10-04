@@ -13,7 +13,7 @@ export interface NxNavGroup {
   /** An `nx-icon` name shown next to `heading` - ignored when `heading` is omitted. */
   icon?: string;
   links: NxNavLink[];
-}
+} 
 
 export interface NxNavItem {
   /** Stable identity used for expand/collapse state - not displayed. */
