@@ -53,11 +53,13 @@ export class CommonService {
 
   /**
    * Site-wide kill switch for PRO license checking, read by `app.config.ts` when wiring up
-   * `provideNxLicense()`. `false` makes every PRO component on this site render unlocked
-   * immediately, with no network call - useful while the license backend isn't deployed yet.
-   * Flip to `true` to run the real check against the live license pool.
+   * `provideNxLicense()`. `false` makes every PRO component on this demo/docs site render
+   * unlocked immediately, with no network call - this site exists to show off what every
+   * component (including PRO ones) can do, so it's never gated. Real npm consumers get a real
+   * check regardless of this flag - they call `provideNxLicense(token)` in their own app, which
+   * defaults `enabled` to `true` whether or not this site's kill switch is on.
    */
-  readonly isEnablePro = true;
+  readonly isEnablePro = false;
 
 //Theme Colors - reference the CSS custom properties defined in styles.scss
 // (`:root { --primary-color: ...; }`), so TS stays in sync with the SCSS
