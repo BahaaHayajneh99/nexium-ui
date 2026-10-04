@@ -4,6 +4,27 @@
     gap: 10px;
 }
 
+.nx-cron-builder-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.nx-cron-builder-preset {
+    padding: 5px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: 999px;
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-cron-builder-preset:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
 .nx-cron-builder-fields {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -29,6 +50,10 @@
     text-align: center;
 }
 
+.nx-cron-builder-field.invalid input {
+    border-color: var(--danger-color, #e74c3c);
+}
+
 .nx-cron-builder-expression {
     padding: 8px 10px;
     border-radius: var(--nx-radius-sm, 4px);
@@ -44,4 +69,8 @@
     font-size: 13px;
     color: var(--shell-text-secondary);
     text-align: center;
+}
+
+.nx-cron-builder-description.error {
+    color: var(--danger-color, #e74c3c);
 }

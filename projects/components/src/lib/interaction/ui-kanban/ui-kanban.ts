@@ -1,11 +1,14 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
+import { NxAvatar } from '../../data-display/ui-avatar';
 
 export interface NxKanbanCard {
   id: string | number;
   title: string;
   description?: string;
+  /** Ids of assigned members, resolved to display names via `memberNames` for the avatar row. */
+  assignees?: string[];
 }
 
 export interface NxKanbanColumn {
@@ -24,7 +27,7 @@ export interface NxKanbanCardMovedEvent {
 @Component({
   selector: 'nx-kanban',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NxAvatar],
   templateUrl: './ui-kanban.html',
   styleUrl: './ui-kanban.scss',
 })
@@ -32,9 +35,13 @@ export class NxKanban {
   protected readonly licensed = nxProLicenseGranted();
 
   @Input() columns: NxKanbanColumn[] = [];
+  /** Maps an assignee id (from `card.assignees`) to a display name, for the avatar initials. */
+  @Input() memberNames: Record<string, string> = {};
 
   @Output() columnsChange = new EventEmitter<NxKanbanColumn[]>();
   @Output() cardMoved = new EventEmitter<NxKanbanCardMovedEvent>();
+  /** Emitted when the card's assign affordance (not the card itself) is clicked. */
+  @Output() cardAssignClicked = new EventEmitter<NxKanbanCard>();
 
   dragOverColumnId = signal<string | number | null>(null);
 
@@ -85,5 +92,18 @@ export class NxKanban {
   onCardDragEnd(): void {
     this.draggedCard = null;
     this.dragOverColumnId.set(null);
+  }
+
+  /** Only consumers that opt in with `[memberNames]` get the assignee footer - everyone else's cards render exactly as before. */
+  hasAssigneeSupport(): boolean {
+    return Object.keys(this.memberNames).length > 0;
+  }
+
+  assigneeName(id: string): string {
+    return this.memberNames[id] ?? id;
+  }
+
+  visibleAssignees(card: NxKanbanCard): string[] {
+    return (card.assignees ?? []).slice(0, 3);
   }
 }

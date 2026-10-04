@@ -164,7 +164,15 @@ onCellEdit(event: NxDataGridCellEditEvent): void {
   exportCode = `<nx-advanced-data-grid [columns]="columns" [rows]="rows" [showExport]="true" exportFilename="rows">
 </nx-advanced-data-grid>`;
 
-  exportTs = `// Click "Export CSV" in the toolbar to download the current (filtered/sorted) rows as CSV.`;
+  exportTs = `// Click "Export CSV" / "Export Excel" / "Export PDF" in the toolbar.
+// exportExcel() writes an Excel-openable HTML table (.xls), not a real .xlsx binary.
+// exportPDF() opens a printable view and calls window.print() - "Save as PDF" is a manual step.`;
+
+  groupByFieldCode = `<nx-advanced-data-grid [columns]="groupColumns" [rows]="rows" [groupByField]="'department'">
+</nx-advanced-data-grid>`;
+
+  groupByFieldTs = `// Rows render grouped into collapsible sections by row['department'].
+// Click a group header to collapse/expand it - groups start expanded.`;
 
   paginationCode = `<nx-advanced-data-grid
     [columns]="largeColumns"

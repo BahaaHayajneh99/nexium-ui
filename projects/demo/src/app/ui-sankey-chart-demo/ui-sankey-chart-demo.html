@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Traffic Source → Landing Page → Outcome"
+                description="{{ commonService.appName }} Sankey Chart assigns each node a column via a longest-path-from-sources layer calculation, stacks nodes within a column by total through-flow, and draws cubic-bezier flow links whose width is proportional to value. This is a PRO component. Hover a link or node for its exact value."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-sankey-chart [nodes]="nodes" [links]="links" [height]="400"></nx-sankey-chart>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

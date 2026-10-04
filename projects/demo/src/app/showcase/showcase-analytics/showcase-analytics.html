@@ -1,0 +1,40 @@
+<div class="showcase-page">
+    <nx-page-header title="Analytics" description="A deeper look at how Nova is growing over the last 12 months."></nx-page-header>
+
+    <nx-metric-grid [minColumnWidth]="220">
+        <nx-metric-card label="Total Revenue" [value]="74600" prefix="$" delta="+9.2%"></nx-metric-card>
+        <nx-metric-card label="MRR" [value]="74600" prefix="$" delta="+5.0%"></nx-metric-card>
+        <nx-metric-card label="ARPU" [value]="30.1" prefix="$" delta="+1.8%"></nx-metric-card>
+        <nx-metric-card label="LTV" [value]="890" prefix="$" delta="+4.4%"></nx-metric-card>
+    </nx-metric-grid>
+
+    <div class="showcase-charts-row">
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">Plan mix</h3>
+            <nx-pie-chart [data]="planMix" [innerRadius]="0.6"></nx-pie-chart>
+        </div>
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">Active users (12 mo)</h3>
+            <nx-line-chart [categories]="months" [series]="userGrowthSeries" [height]="260"></nx-line-chart>
+        </div>
+    </div>
+
+    <div class="showcase-charts-row">
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">Signups by channel</h3>
+            <nx-bar-chart [categories]="recentMonths" [series]="signupsByChannelSeries" [height]="260"></nx-bar-chart>
+        </div>
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">MRR growth (12 mo)</h3>
+            <nx-area-chart [categories]="months" [series]="mrrGrowthSeries" [height]="260"></nx-area-chart>
+        </div>
+    </div>
+
+    <div class="showcase-card showcase-card-centered">
+        <h3 class="showcase-card-title">Revenue by plan &amp; region</h3>
+        <p class="showcase-card-subtitle">The same plan mix above, broken down one level further by region.</p>
+        <nx-sunburst-chart [data]="revenueBreakdown"></nx-sunburst-chart>
+    </div>
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

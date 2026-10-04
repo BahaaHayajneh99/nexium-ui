@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pre-selected Model"
+                description="{{ commonService.appName }} Model Selector - a dropdown for picking an LLM model. The trigger shows the selected model's label; clicking it opens a panel listing every model with its description and an optional badge (e.g. 'Fast', 'Most capable'). Clicking outside the panel closes it."
+                [code]="preselectedCode"
+                [tsCode]="preselectedTs"
+                [hasSampleClass]="false">
+                <nx-model-selector [models]="models" [(selectedId)]="preselectedId"></nx-model-selector>
+            </app-demo-section>
+
+            <app-demo-section
+                header="No Initial Selection"
+                description="When selectedId is left unset, the trigger shows a 'Select a model' placeholder instead of a label."
+                [code]="emptyCode"
+                [tsCode]="emptyTs"
+                [hasSampleClass]="false">
+                <nx-model-selector [models]="models" [(selectedId)]="emptyId"></nx-model-selector>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

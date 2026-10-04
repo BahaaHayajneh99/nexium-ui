@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Live Word &amp; Character Counts"
+                description="{{ commonService.appName }} Text Statistics - words, characters, characters without spaces, sentences, paragraphs, lines, and an estimated reading time, all recomputed live as the text changes. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div class="text-stats-demo">
+                    <nx-textarea [(ngModel)]="text" [rows]="6"></nx-textarea>
+                    <nx-text-statistics [text]="text"></nx-text-statistics>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

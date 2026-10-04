@@ -1,0 +1,100 @@
+.nx-tag-input {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+}
+
+.nx-tag-input-field {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    min-height: 40px;
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-bg, #fff);
+    cursor: text;
+}
+
+.nx-tag-input-field:focus-within {
+    border-color: var(--shell-primary, #3498db);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--shell-primary, #3498db) 20%, transparent);
+}
+
+.nx-tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 6px 3px 10px;
+    border-radius: 999px;
+    background-color: color-mix(in srgb, var(--shell-primary, #3498db) 12%, transparent);
+    color: var(--shell-primary, #3498db);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.nx-tag-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.nx-tag-remove:hover {
+    background-color: color-mix(in srgb, var(--shell-primary, #3498db) 25%, transparent);
+}
+
+.nx-tag-input-control {
+    flex: 1;
+    min-width: 90px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+    padding: 4px 2px;
+}
+
+.nx-tag-suggestions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 4px);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 4px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+}
+
+.nx-tag-suggestion {
+    display: block;
+    width: 100%;
+    padding: 6px 8px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.nx-tag-suggestion:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .06));
+}

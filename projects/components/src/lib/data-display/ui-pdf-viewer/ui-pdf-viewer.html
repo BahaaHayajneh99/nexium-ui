@@ -1,0 +1,34 @@
+@if (licensed()) {
+    <div class="nx-pdf-viewer">
+        <div class="nx-pdf-toolbar">
+            <span class="nx-pdf-title">{{ title }}</span>
+            <div class="nx-pdf-actions">
+                <button type="button" (click)="zoomOut()" aria-label="Zoom out">
+                    <nx-icon icon="nx-minus" variant="svg" [size]="14"></nx-icon>
+                </button>
+                <button type="button" class="nx-pdf-zoom-label" (click)="resetZoom()">{{ zoom() }}%</button>
+                <button type="button" (click)="zoomIn()" aria-label="Zoom in">
+                    <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                </button>
+                <span class="nx-pdf-sep"></span>
+                <button type="button" (click)="download()" aria-label="Download">
+                    <nx-icon icon="nx-download" variant="svg" [size]="14"></nx-icon>
+                </button>
+                <button type="button" (click)="openInNewTab()" aria-label="Open in new tab">
+                    <nx-icon icon="nx-external-link" variant="svg" [size]="14"></nx-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="nx-pdf-frame-wrapper" [style.height.px]="height">
+            <iframe
+                class="nx-pdf-frame"
+                [src]="safeSrc()"
+                [style.transform]="'scale(' + zoom() / 100 + ')'"
+                title="{{ title }}">
+            </iframe>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="PDF Viewer"></nx-pro-locked>
+}

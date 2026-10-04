@@ -79,11 +79,20 @@
 
             <app-demo-section
                 header="Export"
-                description="Set showExport to render a toolbar button that downloads the current (filtered/sorted) rows as CSV."
+                description="Set showExport to render toolbar buttons for the current (filtered/sorted) rows: CSV, an Excel-openable .xls (an HTML table in a vnd.ms-excel Blob - not a real .xlsx binary), and PDF (opens a clean printable view and calls the browser's print dialog, so 'Save as PDF' is a manual step)."
                 [code]="exportCode"
                 [tsCode]="exportTs"
                 [hasSampleClass]="false">
                 <nx-advanced-data-grid [columns]="columns" [rows]="rows" [showExport]="true" exportFilename="rows"></nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Row Grouping"
+                description="Set groupByField to a field name to render rows grouped into collapsible sections by that field's value, with a group header showing the value and row count. Groups default to expanded; click a group header to collapse/expand it."
+                [code]="groupByFieldCode"
+                [tsCode]="groupByFieldTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="groupColumns" [rows]="rows" [groupByField]="'department'"></nx-advanced-data-grid>
             </app-demo-section>
 
             <app-demo-section

@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pre-populated annotations"
+                description="{{ commonService.appName }} PDF Annotator - a markup OVERLAY on top of the browser's native PDF rendering (same approach as the PDF Viewer). Pick a tool and color, then draw directly on the document: highlight (semi-transparent drag-rectangle), rectangle (outline), draw (freehand), or text (click to place, type, Enter to confirm). Annotations are stored as normalized 0-1 coordinates, completely separate from the PDF's own content - 'Export' downloads them as JSON, and the image icon exports just the annotation marks as a transparent PNG overlay (not a flattened page, since pixels can't reliably be read back out of the iframe's rendered PDF). Double-click a text note to delete it. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-pdf-annotator [src]="pdfUrl" title="sample.pdf" [(annotations)]="prefilledAnnotations"></nx-pdf-annotator>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Start from scratch"
+                description="Same document, no pre-populated marks - try each tool yourself."
+                [code]="emptyCode"
+                [hasSampleClass]="false">
+                <nx-pdf-annotator [src]="pdfUrl" title="sample.pdf" [(annotations)]="emptyAnnotations"></nx-pdf-annotator>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

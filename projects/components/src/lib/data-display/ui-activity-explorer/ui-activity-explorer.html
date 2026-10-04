@@ -1,0 +1,74 @@
+@if (licensed()) {
+    <div class="nx-activity-explorer">
+        <div class="nx-activity-filters">
+            <input
+                type="text"
+                class="nx-activity-search"
+                placeholder="Search activity..."
+                [ngModel]="searchText()"
+                (ngModelChange)="searchText.set($event)" />
+
+            <select class="nx-activity-select" [ngModel]="userFilter()" (ngModelChange)="userFilter.set($event)">
+                <option value="all">All users</option>
+                @for (user of users(); track user) {
+                    <option [value]="user">{{ user }}</option>
+                }
+            </select>
+
+            <select class="nx-activity-select" [ngModel]="actionFilter()" (ngModelChange)="actionFilter.set($event)">
+                <option value="all">All actions</option>
+                @for (action of actions(); track action) {
+                    <option [value]="action">{{ action }}</option>
+                }
+            </select>
+
+            <select class="nx-activity-select" [ngModel]="entityFilter()" (ngModelChange)="entityFilter.set($event)">
+                <option value="all">All entities</option>
+                @for (entity of entities(); track entity) {
+                    <option [value]="entity">{{ entity }}</option>
+                }
+            </select>
+
+            <input type="date" class="nx-activity-date" [ngModel]="dateFrom()" (ngModelChange)="dateFrom.set($event)" />
+            <span class="nx-activity-date-sep">to</span>
+            <input type="date" class="nx-activity-date" [ngModel]="dateTo()" (ngModelChange)="dateTo.set($event)" />
+
+            <button type="button" class="nx-activity-reset" (click)="resetFilters()">Reset</button>
+        </div>
+
+        <div class="nx-activity-timeline">
+            @for (group of groups(); track group.dateLabel) {
+                <div class="nx-activity-group">
+                    <div class="nx-activity-date-header">{{ group.dateLabel }}</div>
+                    <div class="nx-activity-events">
+                        @for (event of group.events; track event.id) {
+                            <div class="nx-activity-event">
+                                <div class="nx-activity-dot">
+                                    <nx-icon [icon]="event.icon || 'nx-check-circle'" variant="svg" [size]="12"></nx-icon>
+                                </div>
+                                <div class="nx-activity-event-body">
+                                    <div class="nx-activity-event-line">
+                                        <strong>{{ event.user }}</strong>
+                                        {{ event.action }}
+                                        <span class="nx-activity-entity">{{ event.entity }}</span>
+                                        @if (event.entityName) {
+                                            <span class="nx-activity-entity-name">{{ event.entityName }}</span>
+                                        }
+                                        <span class="nx-activity-time">{{ timeLabel(event.date) }}</span>
+                                    </div>
+                                    @if (event.detail) {
+                                        <div class="nx-activity-detail">{{ event.detail }}</div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            } @empty {
+                <div class="nx-activity-empty">No activity matches these filters.</div>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Activity Explorer"></nx-pro-locked>
+}

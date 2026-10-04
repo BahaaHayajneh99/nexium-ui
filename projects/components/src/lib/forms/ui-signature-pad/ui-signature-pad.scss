@@ -1,0 +1,44 @@
+.nx-signature-pad {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-signature-canvas {
+    display: block;
+    max-width: 100%;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    touch-action: none;
+    cursor: crosshair;
+}
+
+.nx-signature-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.nx-signature-actions button {
+    padding: 6px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-signature-actions button:hover:not(:disabled) {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-signature-actions button:disabled {
+    opacity: .4;
+    cursor: default;
+}

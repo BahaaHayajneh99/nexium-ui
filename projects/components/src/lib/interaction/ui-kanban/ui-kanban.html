@@ -23,6 +23,24 @@
                             @if (card.description) {
                                 <div class="nx-kanban-card-description">{{ card.description }}</div>
                             }
+                            @if (hasAssigneeSupport()) {
+                                <div class="nx-kanban-card-footer">
+                                    <div class="nx-kanban-card-assignees">
+                                        @for (id of visibleAssignees(card); track id) {
+                                            <nx-avatar [name]="assigneeName(id)" size="small" bordered></nx-avatar>
+                                        }
+                                        @if ((card.assignees ?? []).length > 3) {
+                                            <span class="nx-kanban-card-assignee-more">+{{ (card.assignees ?? []).length - 3 }}</span>
+                                        }
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="nx-kanban-card-assign-btn"
+                                        (click)="$event.stopPropagation(); cardAssignClicked.emit(card)">
+                                        {{ card.assignees?.length ? 'Edit' : '+ Assign' }}
+                                    </button>
+                                </div>
+                            }
                         </div>
                     }
                 </div>

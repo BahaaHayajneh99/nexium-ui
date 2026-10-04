@@ -11,11 +11,26 @@
 
             <app-demo-section
                 header="Role x Permission Grid"
-                description="{{ commonService.appName }} Permission Matrix - click a cell to toggle it, or click a row/column header to toggle the whole row/column at once. This is a PRO component."
+                description="{{ commonService.appName }} Permission Matrix - roles are columns, permissions are rows. Click a cell to toggle it, or click a role/permission header to toggle the whole column/row at once. Use '+ Add role' or the 'x' on a role header to manage roles inline, and Export/Import JSON to save or load the whole grid. This is a PRO component."
                 [code]="basicCode"
                 [tsCode]="basicTs"
                 [hasSampleClass]="false">
-                <nx-permission-matrix [roles]="roles" [permissions]="permissions" [(value)]="value"></nx-permission-matrix>
+                <nx-permission-matrix [(roles)]="roles" [(permissions)]="permissions" [(value)]="value"></nx-permission-matrix>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Grouped rows, search, and inheritance"
+                description="permissionGroups renders permission rows under collapsible section headers, filterable with the search box. inheritance lets a role inherit another role's grants - an inherited (not directly granted) cell renders muted, and clicking it promotes the grant to an explicit one on that role."
+                [code]="groupedCode"
+                [tsCode]="groupedTs"
+                [hasSampleClass]="false">
+                <nx-permission-matrix
+                    [(roles)]="groupedRoles"
+                    [(permissions)]="groupedPermissions"
+                    [(value)]="groupedValue"
+                    [permissionGroups]="permissionGroups"
+                    [(inheritance)]="inheritance">
+                </nx-permission-matrix>
             </app-demo-section>
 
         </div>

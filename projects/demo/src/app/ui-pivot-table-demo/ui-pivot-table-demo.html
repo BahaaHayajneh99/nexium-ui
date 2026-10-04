@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Nested Row Groups + Column Pivot"
+                description="{{ commonService.appName }} Pivot Table - click a group's chevron to collapse/expand, type in the quick filter, or export the visible rows to CSV. Region groups by Rep, pivoted by Quarter, summed on Revenue. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-pivot-table [data]="salesRows" [config]="salesConfig" exportFilename="sales-by-region"></nx-pivot-table>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Flat Grouping with Count"
+                description="Omit columnField for a flat, single aggregated column per row group - here counting tickets per team with no column pivot."
+                [code]="countCode"
+                [tsCode]="countTs"
+                [hasSampleClass]="false">
+                <nx-pivot-table [data]="ticketRows" [config]="ticketConfig" valueLabel="Tickets"></nx-pivot-table>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

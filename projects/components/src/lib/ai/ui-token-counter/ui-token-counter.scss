@@ -1,0 +1,55 @@
+.nx-token-counter {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.nx-token-count {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.nx-token-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-token-label {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-token-limit {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-token-bar-track {
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .08));
+    overflow: hidden;
+}
+
+.nx-token-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width .2s ease, background-color .2s ease;
+}
+
+.nx-token-bar-normal {
+    background-color: var(--shell-primary, #3498db);
+}
+
+.nx-token-bar-warning {
+    background-color: #f39c12;
+}
+
+.nx-token-bar-danger {
+    background-color: var(--nx-color-danger, #e74c3c);
+}

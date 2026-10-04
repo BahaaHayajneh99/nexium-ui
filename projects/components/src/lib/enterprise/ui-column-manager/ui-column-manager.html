@@ -1,0 +1,61 @@
+@if (licensed()) {
+    <div class="nx-column-manager">
+        <button type="button" class="nx-column-manager-toggle" (click)="togglePanel()">
+            Columns
+            <span class="nx-column-manager-badge">{{ columns.length }}</span>
+        </button>
+
+        @if (panelOpen()) {
+            <div class="nx-column-manager-panel">
+                <div class="nx-column-manager-panel-header">
+                    <span>Manage columns</span>
+                    <button type="button" class="nx-column-manager-close" aria-label="Close" (click)="closePanel()">&#10005;</button>
+                </div>
+                @for (column of columns; track column.field) {
+                    <div
+                        class="nx-column-manager-row"
+                        draggable="true"
+                        (dragstart)="onDragStart(column, $event)"
+                        (dragover)="onDragOver($event)"
+                        (drop)="onDrop(column, $event)">
+                        <span class="nx-column-manager-handle" title="Drag to reorder">&#10021;</span>
+                        <label class="nx-column-manager-visibility">
+                            <input type="checkbox" [checked]="column.visible" (change)="toggleVisibility(column)" />
+                            {{ column.header }}
+                        </label>
+                        <div class="nx-column-manager-pin">
+                            <button
+                                type="button"
+                                class="nx-column-manager-pin-btn"
+                                [class.active]="column.pinned === 'left'"
+                                title="Pin left"
+                                (click)="setPinned(column, 'left')">
+                                &#8676;
+                            </button>
+                            <button
+                                type="button"
+                                class="nx-column-manager-pin-btn"
+                                [class.active]="!column.pinned"
+                                title="Unpin"
+                                (click)="setPinned(column, null)">
+                                &#8212;
+                            </button>
+                            <button
+                                type="button"
+                                class="nx-column-manager-pin-btn"
+                                [class.active]="column.pinned === 'right'"
+                                title="Pin right"
+                                (click)="setPinned(column, 'right')">
+                                &#8677;
+                            </button>
+                        </div>
+                    </div>
+                } @empty {
+                    <div class="nx-column-manager-empty">No columns</div>
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Column Manager"></nx-pro-locked>
+}

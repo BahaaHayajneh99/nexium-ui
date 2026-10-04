@@ -1,0 +1,13 @@
+@if (licensed()) {
+    <div class="nx-chat-stream" #scrollRef>
+        @for (message of messages; track $index; let i = $index) {
+            <div class="nx-chat-row" [class.nx-chat-row-user]="message.role === 'user'" [class.nx-chat-row-assistant]="message.role === 'assistant'">
+                <div class="nx-chat-bubble">{{ visibleContent(message, i) }}</div>
+            </div>
+        } @empty {
+            <div class="nx-chat-empty">No messages yet.</div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Chat Stream Viewer"></nx-pro-locked>
+}

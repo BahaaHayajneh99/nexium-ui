@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disk Usage by Folder"
+                description="{{ commonService.appName }} Treemap uses a squarified layout algorithm - rectangles are sized proportionally to value while staying as close to square as possible, instead of the thin slivers a naive slice-and-dice layout produces once values vary widely. Click a tile to select it. Last selected: {{ lastSelected || '(none yet)' }}"
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-treemap [data]="diskUsage" [height]="320" (selected)="onSelected($event)"></nx-treemap>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Revenue by Product Category"
+                description="This is a PRO component. Each item can supply its own color - text color is then computed for contrast automatically, falling back to a built-in palette (cycled by index) when no color is given."
+                [code]="revenueCode"
+                [tsCode]="revenueTs"
+                [hasSampleClass]="false">
+                <nx-treemap [data]="revenueByCategory" [height]="320" (selected)="onSelected($event)"></nx-treemap>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

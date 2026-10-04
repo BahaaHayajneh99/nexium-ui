@@ -1,0 +1,56 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Bottom Sheet</h4>
+                <p class="main-section-description">
+                    A panel that slides up from the bottom, with a draggable grab-handle at its top.
+                    Drag the handle down past the threshold to dismiss, or release early and it
+                    snaps back open. Clicking the backdrop closes it too.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Default"
+                description="Bind [(open)] to toggle the sheet. Try dragging the handle bar down - past about 30% of the sheet's height it dismisses, otherwise it animates back open."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-button (click)="basicOpen = true">Share</nx-button>
+
+                <nx-bottom-sheet [(open)]="basicOpen">
+                    <h4>Share via</h4>
+                    <ul class="sheet-options">
+                        <li>Copy link</li>
+                        <li>Send in Messages</li>
+                        <li>Send via Email</li>
+                        <li>More options...</li>
+                    </ul>
+                </nx-bottom-sheet>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom max-height"
+                description="maxHeight caps how tall the sheet can grow - useful for longer forms or lists."
+                [code]="tallCode"
+                [tsCode]="tallTs"
+                [hasSampleClass]="false">
+                <nx-button (click)="tallOpen = true">Open Filters</nx-button>
+
+                <nx-bottom-sheet [(open)]="tallOpen" maxHeight="85vh">
+                    <h4>Filters</h4>
+                    <p>A taller sheet via maxHeight - useful for longer forms or lists.</p>
+                </nx-bottom-sheet>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

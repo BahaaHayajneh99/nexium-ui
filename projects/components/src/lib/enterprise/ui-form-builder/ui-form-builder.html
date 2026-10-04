@@ -1,0 +1,311 @@
+@if (licensed()) {
+    <div class="nx-form-builder">
+        <div class="nx-form-builder-toolbar">
+            <input
+                type="text"
+                class="nx-form-builder-title-input"
+                placeholder="Form title"
+                [ngModel]="schema.title"
+                (ngModelChange)="updateTitle($event)" />
+
+            <div class="nx-form-builder-toolbar-actions">
+                <button type="button" class="nx-form-builder-btn" [class.active]="previewMode()" (click)="togglePreview()">
+                    <nx-icon [icon]="previewMode() ? 'nx-edit' : 'nx-eye'" variant="svg" [size]="14"></nx-icon>
+                    {{ previewMode() ? 'Edit' : 'Preview' }}
+                </button>
+                <button type="button" class="nx-form-builder-btn" (click)="exportJson()">
+                    <nx-icon icon="nx-download" variant="svg" [size]="14"></nx-icon> Export JSON
+                </button>
+                <button type="button" class="nx-form-builder-btn" (click)="importInput.click()">
+                    <nx-icon icon="nx-upload" variant="svg" [size]="14"></nx-icon> Import JSON
+                </button>
+                <input
+                    #importInput
+                    type="file"
+                    accept="application/json"
+                    hidden
+                    (change)="onImportFile($any($event.target).files); importInput.value = ''" />
+            </div>
+        </div>
+
+        @if (importError(); as err) {
+            <div class="nx-form-builder-import-error">{{ err }}</div>
+        }
+
+        <div class="nx-form-builder-body" [class.preview]="previewMode()">
+            @if (!previewMode()) {
+                <div class="nx-form-builder-palette">
+                    <div class="nx-form-builder-palette-title">Fields</div>
+                    @for (item of palette; track item.type) {
+                        <button
+                            type="button"
+                            class="nx-form-builder-palette-item"
+                            draggable="true"
+                            (dragstart)="onPaletteDragStart($event, item.type)"
+                            (dragend)="onDragEnd()"
+                            (click)="addFieldFromPalette(item.type)">
+                            <nx-icon [icon]="item.icon" variant="svg" [size]="14"></nx-icon>
+                            <span>{{ item.label }}</span>
+                        </button>
+                    }
+                    <div class="nx-form-builder-palette-hint">Drag onto the canvas, or click to append.</div>
+                </div>
+            }
+
+            <div class="nx-form-builder-canvas">
+                @if (!previewMode()) {
+                    @if (rows().length === 0) {
+                        <div
+                            class="nx-form-builder-root-drop"
+                            [class.active]="rootDropActive()"
+                            (dragover)="onRootDragOver($event)"
+                            (dragleave)="onRootDragLeave()"
+                            (drop)="onRootDrop($event)">
+                            Drag a field here to start building your form.
+                        </div>
+                    } @else {
+                        @for (row of rows(); track row.field.id) {
+                            <div
+                                class="nx-form-builder-row"
+                                [style.marginLeft.px]="row.depth * 20"
+                                [class.selected]="selectedFieldId() === row.field.id"
+                                [class.drop-before]="isDropIndicator(row.field.id, 'before')"
+                                [class.drop-after]="isDropIndicator(row.field.id, 'after')"
+                                [class.drop-inside]="isDropIndicator(row.field.id, 'inside')"
+                                draggable="true"
+                                (dragstart)="onRowDragStart($event, row)"
+                                (dragend)="onDragEnd()"
+                                (dragover)="onRowDragOver($event, row)"
+                                (dragleave)="onRowDragLeave()"
+                                (drop)="onRowDrop($event, row)"
+                                (click)="selectField(row.field.id)">
+                                <nx-icon icon="nx-more-vertical" variant="svg" [size]="14" class="nx-form-builder-drag-handle"></nx-icon>
+                                <span class="nx-form-builder-row-type">{{ row.field.type }}</span>
+                                <span class="nx-form-builder-row-label">{{ row.field.label }}</span>
+                                @if (row.field.visibleWhen) {
+                                    <nx-icon icon="nx-eye-off" variant="svg" [size]="12" class="nx-form-builder-conditional-badge"></nx-icon>
+                                }
+                                <button type="button" class="nx-form-builder-row-delete" (click)="deleteField(row.field.id); $event.stopPropagation()">
+                                    <nx-icon icon="nx-trash" variant="svg" [size]="12"></nx-icon>
+                                </button>
+                            </div>
+                            @if (row.field.type === 'section' && (row.field.fields?.length ?? 0) === 0) {
+                                <div
+                                    class="nx-form-builder-empty-section"
+                                    [style.marginLeft.px]="(row.depth + 1) * 20"
+                                    [class.active]="emptySectionDropActive() === row.field.id"
+                                    (dragover)="onSectionEmptyDragOver($event, row.field.id)"
+                                    (dragleave)="onSectionEmptyDragLeave()"
+                                    (drop)="onSectionEmptyDrop($event, row.field.id)">
+                                    Drop fields inside this section
+                                </div>
+                            }
+                        }
+                        <div
+                            class="nx-form-builder-root-drop nx-form-builder-root-drop-append"
+                            [class.active]="rootDropActive()"
+                            (dragover)="onRootDragOver($event)"
+                            (dragleave)="onRootDragLeave()"
+                            (drop)="onRootDrop($event)">
+                            Drop here to add to the end
+                        </div>
+                    }
+                } @else {
+                    <div class="nx-form-builder-preview">
+                        <h3 class="nx-form-builder-preview-title">{{ schema.title }}</h3>
+                        @for (row of rows(); track row.field.id) {
+                            @if (previewVisible(row.field.id)) {
+                                <div class="nx-form-builder-preview-row" [style.marginLeft.px]="row.depth * 16">
+                                    @if (row.field.type === 'section') {
+                                        <div class="nx-form-builder-preview-section-label">{{ row.field.label }}</div>
+                                    } @else {
+                                        <label class="nx-form-builder-preview-label">{{ row.field.label }}</label>
+
+                                        @switch (row.field.type) {
+                                            @case ('textarea') {
+                                                <textarea
+                                                    class="nx-form-builder-preview-input"
+                                                    [ngModel]="previewValues()[row.field.id]"
+                                                    (ngModelChange)="previewValueChange(row.field.id, $event)"
+                                                    (blur)="previewBlur(row.field.id)"
+                                                    [placeholder]="row.field.placeholder ?? ''"></textarea>
+                                            }
+                                            @case ('select') {
+                                                <select
+                                                    class="nx-form-builder-preview-input"
+                                                    [ngModel]="previewValues()[row.field.id]"
+                                                    (ngModelChange)="previewValueChange(row.field.id, $event)"
+                                                    (blur)="previewBlur(row.field.id)">
+                                                    <option value="">-- Select --</option>
+                                                    @for (opt of row.field.options ?? []; track opt.value) {
+                                                        <option [value]="opt.value">{{ opt.label }}</option>
+                                                    }
+                                                </select>
+                                            }
+                                            @case ('checkbox') {
+                                                <input
+                                                    type="checkbox"
+                                                    [ngModel]="previewValues()[row.field.id]"
+                                                    (ngModelChange)="previewValueChange(row.field.id, $event)"
+                                                    (blur)="previewBlur(row.field.id)" />
+                                            }
+                                            @case ('radio') {
+                                                <div class="nx-form-builder-preview-radio-group">
+                                                    @for (opt of row.field.options ?? []; track opt.value) {
+                                                        <label class="nx-form-builder-preview-radio-option">
+                                                            <input
+                                                                type="radio"
+                                                                [name]="row.field.id"
+                                                                [value]="opt.value"
+                                                                [checked]="previewValues()[row.field.id] === opt.value"
+                                                                (change)="previewValueChange(row.field.id, opt.value)"
+                                                                (blur)="previewBlur(row.field.id)" />
+                                                            {{ opt.label }}
+                                                        </label>
+                                                    }
+                                                </div>
+                                            }
+                                            @case ('date') {
+                                                <input
+                                                    type="date"
+                                                    class="nx-form-builder-preview-input"
+                                                    [ngModel]="previewValues()[row.field.id]"
+                                                    (ngModelChange)="previewValueChange(row.field.id, $event)"
+                                                    (blur)="previewBlur(row.field.id)" />
+                                            }
+                                            @case ('number') {
+                                                <input
+                                                    type="number"
+                                                    class="nx-form-builder-preview-input"
+                                                    [ngModel]="previewValues()[row.field.id]"
+                                                    (ngModelChange)="previewValueChange(row.field.id, $event)"
+                                                    (blur)="previewBlur(row.field.id)"
+                                                    [placeholder]="row.field.placeholder ?? ''" />
+                                            }
+                                            @default {
+                                                <input
+                                                    [type]="row.field.type === 'email' ? 'email' : 'text'"
+                                                    class="nx-form-builder-preview-input"
+                                                    [ngModel]="previewValues()[row.field.id]"
+                                                    (ngModelChange)="previewValueChange(row.field.id, $event)"
+                                                    (blur)="previewBlur(row.field.id)"
+                                                    [placeholder]="row.field.placeholder ?? ''" />
+                                            }
+                                        }
+
+                                        @if (previewFieldError(row.field.id); as err) {
+                                            <div class="nx-form-builder-preview-error">{{ err }}</div>
+                                        }
+                                    }
+                                </div>
+                            }
+                        }
+                        <button type="button" class="nx-form-builder-btn nx-form-builder-preview-submit" (click)="submitPreview()">
+                            Submit (preview only)
+                        </button>
+                        @if (previewSubmitResult(); as result) {
+                            <div class="nx-form-builder-preview-result">{{ result }}</div>
+                        }
+                    </div>
+                }
+            </div>
+
+            @if (!previewMode() && selectedField(); as field) {
+                <div class="nx-form-builder-inspector">
+                    <div class="nx-form-builder-inspector-title">Field settings</div>
+
+                    <label class="nx-form-builder-field-group">
+                        <span>Label</span>
+                        <input type="text" [ngModel]="field.label" (ngModelChange)="updateSelectedField({ label: $event })" />
+                    </label>
+
+                    @if (field.type !== 'section' && field.type !== 'checkbox' && field.type !== 'select' && field.type !== 'radio' && field.type !== 'date') {
+                        <label class="nx-form-builder-field-group">
+                            <span>Placeholder</span>
+                            <input type="text" [ngModel]="field.placeholder ?? ''" (ngModelChange)="updateSelectedField({ placeholder: $event })" />
+                        </label>
+                    }
+
+                    @if (field.type === 'select' || field.type === 'radio') {
+                        <div class="nx-form-builder-field-group">
+                            <span>Options</span>
+                            @for (opt of field.options ?? []; track $index; let i = $index) {
+                                <div class="nx-form-builder-option-row">
+                                    <input type="text" [ngModel]="opt.label" (ngModelChange)="updateOption(i, { label: $event })" placeholder="Label" />
+                                    <input type="text" [ngModel]="opt.value" (ngModelChange)="updateOption(i, { value: $event })" placeholder="Value" />
+                                    <button type="button" (click)="removeOption(i)">
+                                        <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                                    </button>
+                                </div>
+                            }
+                            <button type="button" class="nx-form-builder-btn-sm" (click)="addOption()">+ Add option</button>
+                        </div>
+                    }
+
+                    @if (field.type !== 'section') {
+                        <div class="nx-form-builder-field-group">
+                            <span>Validation rules</span>
+                            @for (rule of field.validations ?? []; track $index; let i = $index) {
+                                <div class="nx-form-builder-rule-row">
+                                    <span class="nx-form-builder-rule-type">{{ rule.type }}</span>
+                                    @if (ruleNeedsValue(rule.type)) {
+                                        <input
+                                            type="text"
+                                            class="nx-form-builder-rule-value"
+                                            [ngModel]="rule.value ?? ''"
+                                            (ngModelChange)="updateValidationRule(i, { value: $event })"
+                                            placeholder="Value" />
+                                    }
+                                    <input
+                                        type="text"
+                                        class="nx-form-builder-rule-message"
+                                        [ngModel]="rule.message ?? ''"
+                                        (ngModelChange)="updateValidationRule(i, { message: $event })"
+                                        placeholder="Custom message" />
+                                    <button type="button" (click)="removeValidationRule(i)">
+                                        <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                                    </button>
+                                </div>
+                            }
+                            <div class="nx-form-builder-add-rule">
+                                <select [ngModel]="newRuleType()" (ngModelChange)="newRuleType.set($event)">
+                                    @for (type of validationTypes; track type) {
+                                        <option [value]="type">{{ type }}</option>
+                                    }
+                                </select>
+                                <button type="button" class="nx-form-builder-btn-sm" (click)="addValidationRule()">+ Add rule</button>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="nx-form-builder-field-group">
+                        <span>Visible when</span>
+                        <select [ngModel]="field.visibleWhen?.fieldId ?? ''" (ngModelChange)="updateConditionField($event)">
+                            <option value="">Always visible</option>
+                            @for (ref of referenceableFields(); track ref.id) {
+                                <option [value]="ref.id">{{ ref.label }}</option>
+                            }
+                        </select>
+                        @if (field.visibleWhen; as cond) {
+                            <select [ngModel]="cond.operator" (ngModelChange)="updateConditionOperator($event)">
+                                @for (op of conditionOperators; track op) {
+                                    <option [value]="op">{{ op }}</option>
+                                }
+                            </select>
+                            @if (conditionNeedsValue(cond.operator)) {
+                                <input type="text" [ngModel]="cond.value ?? ''" (ngModelChange)="updateConditionValue($event)" placeholder="Value" />
+                            }
+                            <button type="button" class="nx-form-builder-btn-sm" (click)="clearCondition()">Clear condition</button>
+                        }
+                    </div>
+
+                    <button type="button" class="nx-form-builder-btn nx-form-builder-danger" (click)="deleteField(field.id)">
+                        <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon> Delete field
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Form Builder"></nx-pro-locked>
+}

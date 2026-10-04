@@ -1,0 +1,27 @@
+<div class="showcase-page">
+    <nx-page-header title="Projects" description="Drag cards between columns - real drag-and-drop, not a mockup."></nx-page-header>
+
+    <nx-kanban
+        [columns]="columns"
+        [memberNames]="memberNames"
+        (columnsChange)="columns = $event"
+        (cardAssignClicked)="openAssignPanel($event)">
+    </nx-kanban>
+</div>
+
+<nx-modal
+    [open]="assignPanelOpen()"
+    (openChange)="assignPanelOpen.set($event)"
+    [header]="selectedCard() ? 'Assign team - ' + selectedCard()!.title : 'Assign team members'">
+    <div nx-modal-body>
+        @if (selectedCard(); as card) {
+            <nx-transfer-box
+                [items]="teamRoster"
+                [selectedIds]="card.assignees ?? []"
+                (selectedIdsChange)="onAssigneesChange($event)">
+            </nx-transfer-box>
+        }
+    </div>
+</nx-modal>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

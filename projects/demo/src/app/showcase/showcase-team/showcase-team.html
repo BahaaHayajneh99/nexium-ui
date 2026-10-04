@@ -1,0 +1,48 @@
+<div class="showcase-page">
+    <nx-page-header title="Team" description="Everyone with access to Nova.">
+        <nx-button nxPageHeaderActions variant="primary" (click)="openModal()">+ Add member</nx-button>
+    </nx-page-header>
+
+    <div class="showcase-team-grid">
+        @for (member of members; track member.email) {
+            <div class="showcase-card showcase-team-card">
+                <nx-avatar [name]="member.name" size="medium"></nx-avatar>
+                <div class="showcase-team-info">
+                    <div class="showcase-team-name">{{ member.name }}</div>
+                    <div class="showcase-team-role">{{ member.role }}</div>
+                    <div class="showcase-team-email">{{ member.email }}</div>
+                    @if (member.tags?.length) {
+                        <div class="showcase-team-tags">
+                            @for (tag of member.tags; track tag) {
+                                <span class="showcase-team-tag">{{ tag }}</span>
+                            }
+                        </div>
+                    }
+                </div>
+                <nx-badge [variant]="statusVariant(member.status)" size="small">{{ member.status }}</nx-badge>
+            </div>
+        }
+    </div>
+</div>
+
+<nx-modal [open]="modalOpen()" (openChange)="modalOpen.set($event)" header="Add team member">
+    <div nx-modal-body class="showcase-add-member-form">
+        <nx-input label="Name" placeholder="Jane Doe" [(ngModel)]="newName"></nx-input>
+        <nx-input label="Email" type="email" placeholder="jane@nova.dev" [(ngModel)]="newEmail"></nx-input>
+        <nx-select label="Role" [options]="roleOptions" [(ngModel)]="newRole"></nx-select>
+        <div class="showcase-tags-field">
+            <label class="showcase-tags-label">Teams &amp; permissions</label>
+            <nx-tag-input
+                [(value)]="newMemberTags"
+                [suggestions]="teamSuggestions"
+                placeholder="e.g. Engineering, Billing admin...">
+            </nx-tag-input>
+        </div>
+    </div>
+    <div nx-modal-footer>
+        <nx-button variant="secondary" (click)="modalOpen.set(false)">Cancel</nx-button>
+        <nx-button variant="primary" (click)="addMember()">Send invite</nx-button>
+    </div>
+</nx-modal>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

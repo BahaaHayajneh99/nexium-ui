@@ -1,0 +1,39 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Full Chat Widget"
+                description="{{ commonService.appName }} AI Chat is a composed, ready-to-drop-in chat widget - it delegates message rendering to nx-chat-stream and the composer to nx-prompt-input internally, rather than reimplementing either. Passing a non-empty models list shows a model selector in the header. Submitting a message only emits (submit); this demo simulates a canned assistant reply shortly after to show the full loop."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-ai-chat
+                    [messages]="messages()"
+                    [streaming]="streaming()"
+                    [models]="models"
+                    [selectedModelId]="selectedModelId()"
+                    (selectedModelIdChange)="onModelChange($event)"
+                    (submit)="onSubmit($event)">
+                </nx-ai-chat>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without a Model Selector"
+                description="Leaving [models] empty (the default) hides the header's model picker entirely - a simpler shell for a single-model assistant."
+                [code]="minimalCode"
+                [tsCode]="minimalTs"
+                [hasSampleClass]="false">
+                <nx-ai-chat [messages]="minimalMessages" title="Quick Helper"></nx-ai-chat>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

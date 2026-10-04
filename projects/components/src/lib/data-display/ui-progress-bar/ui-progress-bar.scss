@@ -147,7 +147,7 @@
 
     .nx-progress-label {
 
-        color: var(--white-color, #ffffff);
+        color: var(--shell-text, var(--text-color, #1a1a1a));
 
         font-size: var(--nx-font-size-sm, 14px);
 

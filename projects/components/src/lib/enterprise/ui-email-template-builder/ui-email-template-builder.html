@@ -1,0 +1,130 @@
+@if (licensed()) {
+    <div class="nx-email-builder">
+        <aside class="nx-email-builder-palette">
+            <div class="nx-email-builder-palette-title">Add block</div>
+            @for (type of blockTypes; track type) {
+                <button type="button" class="nx-email-builder-add-btn" (click)="addBlock(type)">
+                    <nx-icon [icon]="blockIcons[type]" variant="svg" [size]="14"></nx-icon>
+                    {{ blockLabels[type] }}
+                </button>
+            }
+
+            <button type="button" class="nx-email-builder-export-toggle" (click)="showExport.set(!showExport())">
+                {{ showExport() ? 'Hide HTML' : 'Export HTML' }}
+            </button>
+        </aside>
+
+        <main class="nx-email-builder-canvas">
+            @for (block of blocks; track block.id) {
+                <div
+                    class="nx-email-builder-block"
+                    [class.selected]="selectedId() === block.id"
+                    (click)="selectBlock(block.id)">
+
+                    <div class="nx-email-builder-block-controls">
+                        <button type="button" (click)="moveUp(block.id); $event.stopPropagation()" aria-label="Move up">
+                            <nx-icon icon="nx-chevron-up" variant="svg" [size]="12"></nx-icon>
+                        </button>
+                        <button type="button" (click)="moveDown(block.id); $event.stopPropagation()" aria-label="Move down">
+                            <nx-icon icon="nx-chevron-down" variant="svg" [size]="12"></nx-icon>
+                        </button>
+                        <button type="button" class="nx-email-builder-remove" (click)="removeBlock(block.id); $event.stopPropagation()" aria-label="Remove">
+                            <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                        </button>
+                    </div>
+
+                    @switch (block.type) {
+                        @case ('heading') {
+                            <h2 class="nx-email-builder-heading" [style.text-align]="block.align">{{ block.text }}</h2>
+                        }
+                        @case ('text') {
+                            <p class="nx-email-builder-text" [style.text-align]="block.align">{{ block.text }}</p>
+                        }
+                        @case ('image') {
+                            <div class="nx-email-builder-image-wrap" [style.text-align]="block.align">
+                                <img [src]="block.src" [alt]="block.alt" class="nx-email-builder-image" />
+                            </div>
+                        }
+                        @case ('button') {
+                            <div [style.text-align]="block.align">
+                                <span class="nx-email-builder-button">{{ block.text }}</span>
+                            </div>
+                        }
+                        @case ('divider') {
+                            <hr class="nx-email-builder-divider" />
+                        }
+                        @case ('spacer') {
+                            <div class="nx-email-builder-spacer" [style.height.px]="block.height"></div>
+                        }
+                    }
+                </div>
+            } @empty {
+                <div class="nx-email-builder-empty">Add a block from the left to start your template.</div>
+            }
+        </main>
+
+        <aside class="nx-email-builder-props">
+            @if (selectedBlock(); as block) {
+                <div class="nx-email-builder-props-title">{{ blockLabels[block.type] }} properties</div>
+
+                @if (block.type === 'heading' || block.type === 'text' || block.type === 'button') {
+                    <label class="nx-email-builder-field">
+                        <span>{{ block.type === 'button' ? 'Label' : 'Text' }}</span>
+                        <textarea
+                            [ngModel]="block.text"
+                            (ngModelChange)="updateSelected({ text: $event })"
+                            rows="3">
+                        </textarea>
+                    </label>
+                }
+
+                @if (block.type === 'button') {
+                    <label class="nx-email-builder-field">
+                        <span>Link URL</span>
+                        <input type="text" [ngModel]="block.href" (ngModelChange)="updateSelected({ href: $event })" />
+                    </label>
+                }
+
+                @if (block.type === 'image') {
+                    <label class="nx-email-builder-field">
+                        <span>Image URL</span>
+                        <input type="text" [ngModel]="block.src" (ngModelChange)="updateSelected({ src: $event })" />
+                    </label>
+                    <label class="nx-email-builder-field">
+                        <span>Alt text</span>
+                        <input type="text" [ngModel]="block.alt" (ngModelChange)="updateSelected({ alt: $event })" />
+                    </label>
+                }
+
+                @if (block.type === 'spacer') {
+                    <label class="nx-email-builder-field">
+                        <span>Height (px)</span>
+                        <input type="number" [ngModel]="block.height" (ngModelChange)="updateSelected({ height: $event })" />
+                    </label>
+                }
+
+                @if (block.type !== 'divider' && block.type !== 'spacer') {
+                    <label class="nx-email-builder-field">
+                        <span>Align</span>
+                        <select [ngModel]="block.align" (ngModelChange)="updateSelected({ align: $event })">
+                            <option value="left">Left</option>
+                            <option value="center">Center</option>
+                            <option value="right">Right</option>
+                        </select>
+                    </label>
+                }
+            } @else {
+                <div class="nx-email-builder-props-empty">Select a block to edit its properties.</div>
+            }
+        </aside>
+    </div>
+
+    @if (showExport()) {
+        <div class="nx-email-builder-export">
+            <pre class="nx-email-builder-export-code">{{ exportHtml() }}</pre>
+            <button type="button" class="nx-email-builder-copy-btn" (click)="copyExport()">Copy</button>
+        </div>
+    }
+} @else {
+    <nx-pro-locked componentName="Email Template Builder"></nx-pro-locked>
+}

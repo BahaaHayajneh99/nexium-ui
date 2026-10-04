@@ -1,0 +1,38 @@
+@if (licensed()) {
+    <div class="nx-prompt-input">
+        @if (suggestions.length) {
+            <div class="nx-prompt-suggestions">
+                @for (suggestion of suggestions; track suggestion) {
+                    <button type="button" class="nx-prompt-chip" (click)="useSuggestion(suggestion)">{{ suggestion }}</button>
+                }
+            </div>
+        }
+
+        <div class="nx-prompt-composer">
+            <textarea
+                #textareaRef
+                class="nx-prompt-textarea"
+                rows="1"
+                [placeholder]="placeholder"
+                [style.max-height.px]="maxHeight"
+                [value]="value"
+                (input)="onInput($event)"
+                (keydown)="onKeydown($event)"></textarea>
+
+            <button
+                type="button"
+                class="nx-prompt-send"
+                [disabled]="isOverLimit || !value.trim()"
+                (click)="trySubmit()"
+                aria-label="Send">
+                <nx-icon icon="nx-send" variant="svg" [size]="16"></nx-icon>
+            </button>
+        </div>
+
+        @if (maxLength) {
+            <div class="nx-prompt-counter" [class.over]="isAtOrOverLimit">{{ value.length }}/{{ maxLength }}</div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Prompt Input"></nx-pro-locked>
+}

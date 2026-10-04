@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Free-form Cropping"
+                description="Drag the rectangle to move it, drag any corner or edge handle to resize it, use the toolbar to rotate in 90° steps, zoom in/out for finer selection, or reset back to the original image - then click Crop to extract the selected region as a PNG data URL."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-image-cropper [src]="sampleImage" (cropped)="onFreeformCropped($event)"></nx-image-cropper>
+                @if (freeformResult()) {
+                    <div class="cropper-result">
+                        <p>Cropped result:</p>
+                        <img [src]="freeformResult()" alt="Cropped result" />
+                    </div>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Locked Aspect Ratio (Avatar)"
+                description="Setting aspectRatio locks the crop rectangle's width:height ratio while resizing - useful for profile photo / avatar uploads that need a fixed square (or any fixed-ratio) output."
+                [code]="avatarCode"
+                [tsCode]="avatarTs"
+                [hasSampleClass]="false">
+                <nx-image-cropper [src]="sampleImage" [aspectRatio]="1" (cropped)="onAvatarCropped($event)"></nx-image-cropper>
+                @if (avatarResult()) {
+                    <div class="cropper-result">
+                        <p>Cropped result:</p>
+                        <img [src]="avatarResult()" class="avatar-preview" alt="Cropped avatar result" />
+                    </div>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+.nx-ai-response-viewer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 640px;
+    padding: 14px 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+}
+
+.nx-arv-body {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.nx-arv-body > :first-child {
+    margin-top: 0;
+}
+
+.nx-arv-body > :last-child {
+    margin-bottom: 0;
+}
+
+.nx-arv-body h1,
+.nx-arv-body h2,
+.nx-arv-body h3 {
+    margin: 10px 0 6px;
+    color: var(--shell-text);
+}
+
+.nx-arv-body p {
+    margin: 0 0 8px;
+}
+
+.nx-arv-body code {
+    padding: 1px 5px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .08));
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+}
+
+.nx-arv-body pre {
+    margin: 8px 0;
+    padding: 12px 14px;
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    overflow-x: auto;
+}
+
+.nx-arv-body pre code {
+    padding: 0;
+    background: none;
+    color: #e6e6e6;
+}
+
+.nx-arv-body strong {
+    font-weight: 700;
+}
+
+.nx-arv-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 8px;
+    border-top: 1px solid var(--shell-border);
+}
+
+.nx-arv-spacer {
+    flex: 1;
+}
+
+.nx-arv-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-arv-action:hover {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-arv-feedback-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-arv-feedback-down {
+    transform: scaleY(-1);
+}
+
+.nx-arv-feedback-btn:hover {
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-arv-feedback-btn.active {
+    border-color: var(--shell-primary, #3498db);
+    background-color: color-mix(in srgb, var(--shell-primary, #3498db) 12%, transparent);
+    color: var(--shell-primary, #3498db);
+}

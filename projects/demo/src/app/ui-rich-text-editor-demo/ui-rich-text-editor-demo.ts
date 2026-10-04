@@ -13,6 +13,27 @@ export class UiRichTextEditorDemo {
 
   content = '<p>Start typing to try <strong>bold</strong>, <em>italic</em>, lists and more.</p>';
 
+  enhancedContent = '<p>Type <strong>/</strong> for commands, or <strong>@</strong> to mention a teammate.</p>';
+  mentionUsers = ['Priya Nair', 'Marcus Webb', 'Elena Ruiz', 'Owen Bishop'];
+
+  onAutosave(html: string): void {
+    console.log('autosaved', html.length, 'chars');
+  }
+
+  enhancedCode = `<nx-rich-text-editor
+    [(ngModel)]="content"
+    [mentionUsers]="mentionUsers"
+    [autosaveInterval]="4000"
+    (autosave)="onAutosave($event)">
+</nx-rich-text-editor>`;
+
+  enhancedTs = `mentionUsers = ['Priya Nair', 'Marcus Webb', 'Elena Ruiz', 'Owen Bishop'];
+
+onAutosave(html: string): void {
+  // fires every 4s while there are unsaved changes
+  console.log('autosaved', html.length, 'chars');
+}`;
+
   private fb = new FormBuilder();
 
   contentForm = this.fb.group({

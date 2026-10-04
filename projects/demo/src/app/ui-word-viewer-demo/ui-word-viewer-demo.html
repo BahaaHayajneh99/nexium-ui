@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Headings, Lists &amp; Formatted Runs"
+                description="{{ commonService.appName }} Word Viewer - renders a structured document model (headings, paragraphs, bulleted/numbered lists, bold/italic/underline runs) as a page-like, zoomable, printable document. This is a viewer for already-parsed document data, not a .docx binary parser - pair it with a library like mammoth.js to get from a real Word file to this shape. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-word-viewer title="roadmap.docx" [blocks]="blocks"></nx-word-viewer>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

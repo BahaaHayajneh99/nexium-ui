@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Job Application Form"
+                description="{{ commonService.appName }} Form Renderer - the real, fillable end-user side of the schema authored in Form Builder. The nested 'References' section renders as a real <fieldset>. Change 'How did you hear about us?' to 'Other' and the 'Please specify' field appears live. Try hitting Submit with Email empty - a required-field error appears below it, and the hidden conditional field never blocks submission. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-form-renderer
+                    [schema]="jobApplicationSchema"
+                    (valuesChange)="onJobApplicationValuesChange($event)"
+                    (submit)="onJobApplicationSubmit($event)">
+                </nx-form-renderer>
+                @if (jobApplicationSubmitted) {
+                    <div class="nx-form-renderer-demo-result">
+                        <strong>Submitted:</strong>
+                        <pre>{{ jobApplicationSubmitted | json }}</pre>
+                    </div>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Event RSVP (more field types)"
+                description="A second schema showing checkbox/radio/date/number rendering, a radio-driven conditional field ('Number of guests' only appears once you choose 'Yes'), a checkbox-driven conditional field ('dietary restrictions' details), and min/max numeric validation."
+                [code]="rsvpCode"
+                [tsCode]="rsvpTs"
+                [hasSampleClass]="false">
+                <nx-form-renderer
+                    [schema]="rsvpSchema"
+                    (valuesChange)="onRsvpValuesChange($event)"
+                    (submit)="onRsvpSubmit($event)">
+                </nx-form-renderer>
+                @if (rsvpSubmitted) {
+                    <div class="nx-form-renderer-demo-result">
+                        <strong>Submitted:</strong>
+                        <pre>{{ rsvpSubmitted | json }}</pre>
+                    </div>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,225 @@
+.nx-image-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 640px;
+    padding: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.nx-editor-toolbar button,
+.nx-editor-panel button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nx-editor-toolbar button:hover:not(:disabled),
+.nx-editor-panel button:hover:not(:disabled) {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-editor-toolbar button:disabled,
+.nx-editor-panel button:disabled {
+    opacity: .4;
+    cursor: default;
+}
+
+.nx-editor-tool-btn.active {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+    background-color: var(--shell-surface-hover, rgba(52, 152, 219, .1));
+}
+
+.nx-editor-spacer {
+    flex: 1 1 auto;
+}
+
+.nx-editor-save-btn {
+    border-color: transparent !important;
+    background-color: var(--shell-primary, #3498db) !important;
+    color: var(--white-color, #ffffff) !important;
+    font-weight: 600 !important;
+}
+
+.nx-editor-save-btn:hover:not(:disabled) {
+    background-color: var(--primary-color-dark, #2980b9) !important;
+}
+
+.nx-editor-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    min-height: 32px;
+    padding: 8px 10px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+}
+
+.nx-editor-apply-btn {
+    margin-left: auto;
+    border-color: transparent !important;
+    background-color: var(--shell-primary, #3498db) !important;
+    color: var(--white-color, #ffffff) !important;
+    font-weight: 600 !important;
+}
+
+.nx-editor-apply-btn:hover:not(:disabled) {
+    background-color: var(--primary-color-dark, #2980b9) !important;
+}
+
+.nx-editor-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--shell-text-secondary);
+
+    input[type="number"] {
+        width: 64px;
+        padding: 4px 6px;
+        border: 1px solid var(--shell-border);
+        border-radius: var(--nx-radius-sm, 4px);
+        background-color: var(--shell-surface);
+        color: var(--shell-text);
+    }
+
+    input[type="color"] {
+        width: 28px;
+        height: 24px;
+        padding: 0;
+        border: 1px solid var(--shell-border);
+        border-radius: var(--nx-radius-sm, 4px);
+        background: none;
+        cursor: pointer;
+    }
+}
+
+.nx-editor-field-range {
+    min-width: 160px;
+}
+
+.nx-editor-range-value {
+    min-width: 28px;
+    text-align: right;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-editor-check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-editor-hint {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-editor-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 240px;
+    padding: 16px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    overflow: auto;
+}
+
+.nx-editor-canvas-wrap {
+    position: relative;
+    line-height: 0;
+}
+
+.nx-editor-canvas {
+    display: block;
+    border-radius: var(--nx-radius-sm, 4px);
+    touch-action: none;
+    cursor: default;
+}
+
+.nx-editor-canvas-hidden {
+    visibility: hidden;
+}
+
+.nx-editor-canvas-draw {
+    cursor: crosshair;
+}
+
+.nx-editor-canvas-crosshair {
+    cursor: crosshair;
+}
+
+.nx-editor-empty {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--shell-text-secondary, #999);
+    font-size: 13px;
+    text-align: center;
+}
+
+.nx-editor-crop-rect {
+    position: absolute;
+    border: 1.5px solid #ffffff;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, .55);
+    cursor: move;
+}
+
+.nx-editor-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    margin: -5px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1.5px solid var(--shell-primary, #3498db);
+}
+
+.nx-editor-handle-nw { left: 0; top: 0; cursor: nwse-resize; }
+.nx-editor-handle-n { left: 50%; top: 0; cursor: ns-resize; }
+.nx-editor-handle-ne { left: 100%; top: 0; cursor: nesw-resize; }
+.nx-editor-handle-e { left: 100%; top: 50%; cursor: ew-resize; }
+.nx-editor-handle-se { left: 100%; top: 100%; cursor: nwse-resize; }
+.nx-editor-handle-s { left: 50%; top: 100%; cursor: ns-resize; }
+.nx-editor-handle-sw { left: 0; top: 100%; cursor: nesw-resize; }
+.nx-editor-handle-w { left: 0; top: 50%; cursor: ew-resize; }
+
+.nx-editor-text-input {
+    position: absolute;
+    min-width: 120px;
+    padding: 2px 4px;
+    border: 1px dashed var(--shell-primary, #3498db);
+    border-radius: 2px;
+    background-color: rgba(0, 0, 0, .35);
+    font-family: sans-serif;
+    outline: none;
+    transform: translateY(-50%);
+}

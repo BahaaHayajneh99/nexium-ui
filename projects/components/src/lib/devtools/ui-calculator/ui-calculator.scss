@@ -1,0 +1,273 @@
+.nx-calculator {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 360px;
+    padding: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    outline: none;
+}
+
+.nx-calculator:focus-visible {
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--shell-primary, #3498db) 35%, transparent);
+}
+
+.nx-calc-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.nx-calc-mode-toggle,
+.nx-calc-angle-toggle {
+    display: flex;
+    gap: 2px;
+    padding: 2px;
+    border-radius: 999px;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-calc-mode-toggle button,
+.nx-calc-angle-toggle button {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 999px;
+    background-color: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-calc-mode-toggle button.active,
+.nx-calc-angle-toggle button.active {
+    background-color: var(--shell-primary, #3498db);
+    color: var(--white-color, #ffffff);
+}
+
+.nx-calc-history-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-calc-history-toggle:hover,
+.nx-calc-history-toggle.active {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-calc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-calc-display {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    min-height: 72px;
+    padding: 14px 12px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    overflow-wrap: anywhere;
+}
+
+.nx-calc-memory-indicator {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-calc-expression {
+    width: 100%;
+    text-align: right;
+    word-break: break-all;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #e6e6e6;
+}
+
+.nx-calc-expression.empty {
+    color: rgba(230, 230, 230, .4);
+}
+
+.nx-calc-preview {
+    width: 100%;
+    text-align: right;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    color: rgba(230, 230, 230, .6);
+}
+
+.nx-calc-error {
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-calc-pads {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-calc-pad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+
+.nx-calc-btn {
+    padding: 12px 0;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .15s ease, transform .1s ease;
+}
+
+.nx-calc-btn:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-calc-btn:active {
+    transform: scale(.96);
+}
+
+.nx-calc-btn-op {
+    border-color: transparent;
+    background-color: color-mix(in srgb, var(--shell-primary, #3498db) 12%, transparent);
+    color: var(--shell-primary, #3498db);
+    font-weight: 600;
+}
+
+.nx-calc-btn-equals {
+    border-color: transparent;
+    background-color: var(--shell-primary, #3498db);
+    color: var(--white-color, #ffffff);
+    font-weight: 600;
+}
+
+.nx-calc-btn-equals:hover {
+    background-color: var(--primary-color-dark, #2980b9);
+}
+
+.nx-calc-btn-clear {
+    color: var(--nx-color-danger, #e74c3c);
+    font-weight: 600;
+}
+
+.nx-calc-btn-mem {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 8px 0;
+    color: var(--shell-text-secondary);
+}
+
+.nx-calc-pad-sci .nx-calc-btn {
+    padding: 8px 0;
+    font-size: 12px;
+}
+
+.nx-calc-btn-func {
+    color: var(--shell-text-secondary);
+}
+
+.nx-calc-history {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 180px;
+    padding-top: 8px;
+    border-top: 1px solid var(--shell-border);
+    overflow-y: auto;
+}
+
+.nx-calc-history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-calc-history-clear {
+    display: flex;
+    padding: 2px;
+    border: none;
+    background: none;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-calc-history-clear:hover {
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-calc-history-empty {
+    margin: 0;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-calc-history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 8px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: transparent;
+    cursor: pointer;
+    text-align: left;
+}
+
+.nx-calc-history-row:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-calc-history-expr {
+    overflow: hidden;
+    max-width: 60%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-calc-history-result {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+}

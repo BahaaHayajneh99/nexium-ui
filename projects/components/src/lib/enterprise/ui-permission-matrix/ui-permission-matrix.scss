@@ -1,3 +1,74 @@
+.nx-permission-matrix-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-permission-matrix-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.nx-permission-matrix-search {
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    width: 200px;
+}
+
+.nx-permission-matrix-toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.nx-permission-matrix-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nx-permission-matrix-btn:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-permission-matrix-import {
+    position: relative;
+}
+
+.nx-permission-matrix-role-input {
+    padding: 6px 10px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    width: 120px;
+}
+
+.nx-permission-matrix-error {
+    padding: 8px 12px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: rgba(231, 76, 60, .1);
+    color: var(--nx-color-danger, #e74c3c);
+    font-size: 12px;
+}
+
 .nx-permission-matrix {
     border-collapse: collapse;
     width: 100%;
@@ -14,6 +85,44 @@
     padding: 0;
     border: 1px solid var(--shell-border);
     background-color: var(--shell-surface);
+}
+
+.nx-permission-matrix-role-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.nx-permission-matrix-role-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.nx-permission-matrix-role-remove:hover {
+    background-color: rgba(231, 76, 60, .15);
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-permission-matrix-inherit-select {
+    width: 100%;
+    padding: 3px 4px;
+    border: none;
+    border-top: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
 }
 
 .nx-permission-matrix-header-btn {
@@ -46,4 +155,44 @@
 
 .nx-permission-matrix-cell input {
     cursor: pointer;
+}
+
+.nx-permission-matrix-cell.inherited input {
+    accent-color: var(--shell-text-secondary);
+    opacity: .6;
+}
+
+.nx-permission-matrix-cell.inherited {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+}
+
+.nx-permission-matrix-group-row th {
+    border: 1px solid var(--shell-border);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+    padding: 0;
+}
+
+.nx-permission-matrix-group-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    text-align: left;
+    cursor: pointer;
+}
+
+.nx-permission-matrix-empty {
+    padding: 24px 12px;
+    text-align: center;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    border: 1px solid var(--shell-border);
 }

@@ -1,0 +1,32 @@
+@if (licensed()) {
+    <div class="nx-code-runner">
+        @for (block of blocks; track $index; let i = $index) {
+            <div class="nx-code-block">
+                <div class="nx-code-block-header">
+                    <span class="nx-code-lang">{{ block.language }}</span>
+                    @if (isRunnable(block.language)) {
+                        <button type="button" class="nx-code-run-btn" (click)="run(i, block.code)">Run</button>
+                    }
+                </div>
+
+                <pre class="nx-code-pre"><code>{{ block.code }}</code></pre>
+
+                @if (stateFor(i).ran) {
+                    <div class="nx-code-output" [class.has-error]="stateFor(i).error">
+                        @if (stateFor(i).error; as err) {
+                            <div class="nx-code-output-error">{{ err }}</div>
+                        } @else {
+                            @for (line of stateFor(i).output; track $index) {
+                                <div class="nx-code-output-line">{{ line }}</div>
+                            } @empty {
+                                <div class="nx-code-output-line nx-code-output-empty">(no output)</div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Markdown Code Runner"></nx-pro-locked>
+}

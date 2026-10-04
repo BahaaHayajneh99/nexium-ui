@@ -35,11 +35,54 @@
             [attr.aria-required]="isRequired ? true : null"
             [attr.aria-invalid]="displayError ? true : null"
             (input)="onInput()"
-            (blur)="onBlur()">
+            (keydown)="onKeydown($event)"
+            (blur)="onBlur()"
+            (drop)="onDrop($event)"
+            (dragover)="onDragOver($event)">
+        </div>
+
+        <input #fileInputRef type="file" accept="image/*" hidden (change)="onImageSelected($event)" />
+
+        <div class="nx-rte-footer">
+            <span class="nx-rte-count">{{ wordCount }} words · {{ charCount }} characters</span>
+            @if (autosaveInterval > 0) {
+                <span class="nx-rte-autosave">{{ lastSavedAt() ? 'Saved ' + (lastSavedAt() | date: 'shortTime') : 'Not saved yet' }}</span>
+            }
         </div>
 
         @if (displayError) {
             <span class="nx-rte-error">{{ displayError }}</span>
+        }
+
+        @if (slashMenuOpen() && filteredSlashCommands.length) {
+            <div class="nx-rte-popup" [style.left.px]="popupPos().x" [style.top.px]="popupPos().y">
+                @for (cmd of filteredSlashCommands; track cmd.id) {
+                    <button type="button" class="nx-rte-popup-item" (mousedown)="$event.preventDefault()" (click)="runSlashCommand(cmd)">
+                        <span class="nx-rte-popup-icon">{{ cmd.icon }}</span>
+                        {{ cmd.label }}
+                    </button>
+                }
+            </div>
+        }
+
+        @if (mentionMenuOpen() && filteredMentions.length) {
+            <div class="nx-rte-popup" [style.left.px]="popupPos().x" [style.top.px]="popupPos().y">
+                @for (name of filteredMentions; track name) {
+                    <button type="button" class="nx-rte-popup-item" (mousedown)="$event.preventDefault()" (click)="insertMention(name)">
+                        @{{ name }}
+                    </button>
+                }
+            </div>
+        }
+
+        @if (emojiMenuOpen()) {
+            <div class="nx-rte-emoji-popup">
+                @for (emoji of emojiList; track emoji) {
+                    <button type="button" class="nx-rte-emoji-item" (mousedown)="$event.preventDefault()" (click)="insertEmoji(emoji)">
+                        {{ emoji }}
+                    </button>
+                }
+            </div>
         }
 
     </div>

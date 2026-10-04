@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Orders Quick Filters"
+                description="{{ commonService.appName }} Advanced Filters is a compact quick-filter bar meant to sit above a table - a select for Status, a text box for Customer, a date range for Placed On, and a number range for Amount. Click 'More filters' to reveal an embedded nx-filter-builder for power-user rule construction; both sources merge into one emitted object, with the filter-builder's rules under the reserved _advanced key. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-advanced-filters [fields]="orderFields" (valuesChange)="onValuesChange($event)"></nx-advanced-filters>
+                @if (lastValues) {
+                    <pre class="demo-values-output">{{ lastValues | json }}</pre>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

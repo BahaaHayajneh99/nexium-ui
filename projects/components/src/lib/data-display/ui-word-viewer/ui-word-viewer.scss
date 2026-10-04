@@ -1,0 +1,126 @@
+.nx-word-viewer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-word-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-word-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-word-count {
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-word-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.nx-word-actions button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #fff);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-word-actions button:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-word-zoom-label {
+    min-width: 36px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-word-sep {
+    width: 1px;
+    height: 18px;
+    background-color: var(--shell-border);
+    margin: 0 2px;
+}
+
+.nx-word-canvas {
+    padding: 32px;
+    background-color: #525659;
+    max-height: 560px;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.nx-word-page {
+    width: 650px;
+    flex-shrink: 0;
+    padding: 56px 64px;
+    background-color: #fff;
+    color: #222;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 14px;
+    line-height: 1.7;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .3);
+    transform-origin: top center;
+}
+
+.nx-word-h1 {
+    font-size: 26px;
+    margin: 0 0 16px;
+}
+
+.nx-word-h2 {
+    font-size: 20px;
+    margin: 20px 0 12px;
+}
+
+.nx-word-h3 {
+    font-size: 16px;
+    margin: 16px 0 8px;
+}
+
+.nx-word-paragraph {
+    margin: 0 0 12px;
+}
+
+.nx-word-list {
+    margin: 0 0 12px;
+    padding-left: 24px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}

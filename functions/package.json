@@ -3,7 +3,7 @@
   "description": "Cloud Functions backing NexiumUI's PRO license pool - claims a token after a server-verified PayPal payment, and lets any consuming app verify a token live.",
   "private": true,
   "engines": {
-    "node": "20"
+    "node": "22"
   },
   "main": "index.js",
   "scripts": {

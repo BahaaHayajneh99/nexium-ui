@@ -1,0 +1,34 @@
+@if (licensed()) {
+    <div class="nx-text-stats">
+        <div class="nx-text-stat">
+            <span class="nx-text-stat-value">{{ words() }}</span>
+            <span class="nx-text-stat-label">Words</span>
+        </div>
+        <div class="nx-text-stat">
+            <span class="nx-text-stat-value">{{ characters() }}</span>
+            <span class="nx-text-stat-label">Characters</span>
+        </div>
+        <div class="nx-text-stat">
+            <span class="nx-text-stat-value">{{ charactersNoSpaces() }}</span>
+            <span class="nx-text-stat-label">Chars (no spaces)</span>
+        </div>
+        <div class="nx-text-stat">
+            <span class="nx-text-stat-value">{{ sentences() }}</span>
+            <span class="nx-text-stat-label">Sentences</span>
+        </div>
+        <div class="nx-text-stat">
+            <span class="nx-text-stat-value">{{ paragraphs() }}</span>
+            <span class="nx-text-stat-label">Paragraphs</span>
+        </div>
+        <div class="nx-text-stat">
+            <span class="nx-text-stat-value">{{ lines() }}</span>
+            <span class="nx-text-stat-label">Lines</span>
+        </div>
+        <div class="nx-text-stat nx-text-stat-reading">
+            <span class="nx-text-stat-value">{{ readingTimeLabel() }}</span>
+            <span class="nx-text-stat-label">Estimated reading time</span>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Text Statistics"></nx-pro-locked>
+}

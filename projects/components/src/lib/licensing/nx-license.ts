@@ -5,6 +5,13 @@ import { isPlatformBrowser } from '@angular/common';
 export const NX_LICENSE_TOKEN = new InjectionToken<string | undefined>('NX_LICENSE_TOKEN');
 
 /**
+ * Holds the enabled/disabled flag registered via `provideNxLicense()`. Missing (optional inject,
+ * no provider registered) is treated as enabled - this keeps every existing consumer's behavior
+ * unchanged, since they never provide this token at all.
+ */
+export const NX_LICENSE_ENABLED = new InjectionToken<boolean>('NX_LICENSE_ENABLED');
+
+/**
  * Registers a NexiumUI PRO license token, unlocking PRO-tier components
  * (e.g. `NxKanban`, `NxQueryBuilder`). Get a token from the "Get PRO License"
  * page after a one-time purchase, then add this to your app's providers:
@@ -14,9 +21,17 @@ export const NX_LICENSE_TOKEN = new InjectionToken<string | undefined>('NX_LICEN
  *   providers: [provideNxLicense('YOUR-TOKEN-HERE')],
  * });
  * ```
+ *
+ * `enabled` is a local kill switch, not a license check: pass `false` to make every PRO
+ * component render unlocked immediately with no network call at all (e.g. while your own
+ * license backend isn't live yet). Pass `true` (the default) to run the real check against the
+ * live license pool, exactly as before.
  */
-export function provideNxLicense(token: string): Provider {
-  return { provide: NX_LICENSE_TOKEN, useValue: token };
+export function provideNxLicense(token: string, enabled = true): Provider[] {
+  return [
+    { provide: NX_LICENSE_TOKEN, useValue: token },
+    { provide: NX_LICENSE_ENABLED, useValue: enabled },
+  ];
 }
 
 // Every consuming app calls this same public endpoint to check a token against the real,
@@ -83,13 +98,17 @@ function verifyTokenRemotely(token: string): Promise<boolean> {
  * confirmed against the live license pool - there's no synchronous/local check to forge, the
  * pool lookup is the only authority. Always `false` during server-side rendering; the real
  * check runs client-side after hydration.
+ *
+ * If `provideNxLicense(token, false)` was used, checking is disabled entirely and this returns
+ * an already-`true` signal with no network call made.
  */
 export function nxProLicenseGranted(): Signal<boolean> {
   const platformId = inject(PLATFORM_ID);
   const token = inject(NX_LICENSE_TOKEN, { optional: true });
-  const granted = signal(false);
+  const enabled = inject(NX_LICENSE_ENABLED, { optional: true }) ?? true;
+  const granted = signal(!enabled);
 
-  if (token && isPlatformBrowser(platformId)) {
+  if (enabled && token && isPlatformBrowser(platformId)) {
     verifyTokenRemotely(token).then((valid) => granted.set(valid));
   }
 

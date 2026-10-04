@@ -1,0 +1,111 @@
+.nx-image-cropper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+    padding: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-cropper-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.nx-cropper-toolbar button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nx-cropper-toolbar button:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-cropper-zoom-label {
+    min-width: 38px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-cropper-crop-btn {
+    margin-left: auto;
+    border-color: transparent !important;
+    background-color: var(--shell-primary, #3498db) !important;
+    color: var(--white-color, #ffffff) !important;
+    font-weight: 600 !important;
+}
+
+.nx-cropper-crop-btn:hover {
+    background-color: var(--primary-color-dark, #2980b9) !important;
+}
+
+.nx-cropper-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    padding: 16px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    overflow: auto;
+}
+
+.nx-cropper-canvas-wrap {
+    position: relative;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.nx-cropper-image {
+    display: block;
+    user-select: none;
+    pointer-events: none;
+}
+
+.nx-cropper-crop-rect {
+    position: absolute;
+    border: 1.5px solid #ffffff;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, .55);
+    cursor: move;
+}
+
+.nx-cropper-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    margin: -5px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1.5px solid var(--shell-primary, #3498db);
+}
+
+.nx-cropper-handle-nw { left: 0; top: 0; cursor: nwse-resize; }
+.nx-cropper-handle-n { left: 50%; top: 0; cursor: ns-resize; }
+.nx-cropper-handle-ne { left: 100%; top: 0; cursor: nesw-resize; }
+.nx-cropper-handle-e { left: 100%; top: 50%; cursor: ew-resize; }
+.nx-cropper-handle-se { left: 100%; top: 100%; cursor: nwse-resize; }
+.nx-cropper-handle-s { left: 50%; top: 100%; cursor: ns-resize; }
+.nx-cropper-handle-sw { left: 0; top: 100%; cursor: nesw-resize; }
+.nx-cropper-handle-w { left: 0; top: 50%; cursor: ew-resize; }
+
+.nx-cropper-empty {
+    padding: 40px;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}

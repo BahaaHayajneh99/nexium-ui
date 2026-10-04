@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Visual Form Builder"
+                description="{{ commonService.appName }} Form Builder - drag a field type from the palette onto the canvas, or click it to append. Drag existing canvas rows to reorder them, or drop onto the middle of a Section row to nest a field inside it (sections can nest other sections to any depth). Click a row to open its inspector: edit the label/placeholder, build an options list for Select/Radio, add validation rules, and wire up conditional 'visible when' logic against another field. Export/Import round-trip the schema as a JSON file. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-form-builder [schema]="schema" (schemaChange)="onSchemaChange($event)"></nx-form-builder>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Preview Mode"
+                description="Toggle 'Preview' in the toolbar to swap the editing canvas for a live, fillable rendering of the exact same schema - conditional fields appear and disappear as you fill the form in, respecting every 'visible when' rule you configured."
+                [code]="previewCode"
+                [tsCode]="previewTs"
+                [hasSampleClass]="false">
+                <nx-form-builder [schema]="previewSchema" (schemaChange)="onPreviewSchemaChange($event)"></nx-form-builder>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

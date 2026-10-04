@@ -1,0 +1,68 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Table of Contents</h4>
+                <p class="main-section-description">
+                    A scroll-spy table of contents. It renders a nested, indented list of links
+                    for headings, then watches the real DOM elements elsewhere on the page that
+                    share those ids with a native IntersectionObserver, highlighting whichever
+                    heading is currently most visible.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Scroll Spy"
+                description="Scroll the content on the right - the matching link on the left highlights automatically as each heading becomes the most visible one. Clicking a link smooth-scrolls to it."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+
+                <div class="toc-demo-layout">
+                    <aside class="toc-demo-nav">
+                        <nx-table-of-contents [headings]="headings"></nx-table-of-contents>
+                    </aside>
+
+                    <article class="toc-demo-content">
+                        <h2 id="toc-introduction">Introduction</h2>
+                        <p>NexiumUI is a standalone-component library for Angular. Every component ships with no NgModule dependency - just import the class you need and drop its selector into a template.</p>
+                        <p>This page doubles as both documentation and a live demo of the scroll-spy behavior that nx-table-of-contents provides.</p>
+
+                        <h2 id="toc-getting-started">Getting started</h2>
+                        <p>Most teams are up and running within a few minutes of installing the package. The steps below cover the two things you need before using any component.</p>
+
+                        <h3 id="toc-installation">Installation</h3>
+                        <p>Install the package from npm, then import whichever components you need directly into your standalone component's imports array. There is no root module registration step.</p>
+
+                        <h3 id="toc-configuration">Configuration</h3>
+                        <p>Most components work out of the box with sensible defaults. Design tokens (colors, radii, spacing) are exposed as CSS custom properties so you can retheme the whole library from one place.</p>
+
+                        <h2 id="toc-core-concepts">Core concepts</h2>
+                        <p>A handful of ideas recur across the library: standalone components, signal-backed inputs where reactivity matters, and a shared set of CSS variables for theming.</p>
+
+                        <h3 id="toc-components">Components</h3>
+                        <p>Components are grouped by category - forms, navigation, feedback, data display, and interaction - and each is independently importable, so your bundle only includes what you actually use.</p>
+
+                        <h3 id="toc-theming">Theming</h3>
+                        <p>Override the shell's CSS custom properties at any ancestor element to retheme everything beneath it, including dark mode, without touching component internals.</p>
+
+                        <h2 id="toc-advanced">Advanced usage</h2>
+                        <p>Beyond the basics, most components expose template-based extension points (custom templates, content projection) for cases the built-in rendering doesn't cover.</p>
+
+                        <h2 id="toc-faq">FAQ</h2>
+                        <p>Common questions about browser support, SSR compatibility, and bundle size are answered in the full documentation site.</p>
+                    </article>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

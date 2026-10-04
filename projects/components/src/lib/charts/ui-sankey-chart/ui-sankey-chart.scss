@@ -1,0 +1,31 @@
+@use '../chart-chrome' as *;
+
+.nx-sankey-link {
+    stroke-opacity: .35;
+    transition: stroke-opacity .15s ease;
+    cursor: pointer;
+
+    &:hover {
+        stroke-opacity: .65;
+    }
+}
+
+.nx-sankey-node {
+    stroke: var(--shell-surface);
+    stroke-width: 1;
+    cursor: pointer;
+    transition: opacity .15s ease;
+
+    &:hover {
+        opacity: .85;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--shell-primary, #3498db);
+        outline-offset: 2px;
+    }
+}
+
+.nx-sankey-node-label {
+    font-size: 11px;
+}

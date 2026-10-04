@@ -1,0 +1,76 @@
+.nx-pdf-viewer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-pdf-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-pdf-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nx-pdf-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.nx-pdf-actions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 6px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #fff);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-pdf-actions button:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-pdf-zoom-label {
+    min-width: 42px;
+}
+
+.nx-pdf-sep {
+    width: 1px;
+    height: 18px;
+    background-color: var(--shell-border);
+    margin: 0 2px;
+}
+
+.nx-pdf-frame-wrapper {
+    overflow: auto;
+    background-color: #525659;
+}
+
+.nx-pdf-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    transform-origin: top left;
+    background-color: #fff;
+}

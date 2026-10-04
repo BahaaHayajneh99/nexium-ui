@@ -27,7 +27,11 @@
             </div>
 
             @if (showExport) {
-                <button type="button" class="nx-advanced-data-grid-export" (click)="exportCSV()">Export CSV</button>
+                <div class="nx-advanced-data-grid-export-group">
+                    <button type="button" class="nx-advanced-data-grid-export" (click)="exportCSV()">Export CSV</button>
+                    <button type="button" class="nx-advanced-data-grid-export" (click)="exportExcel()">Export Excel</button>
+                    <button type="button" class="nx-advanced-data-grid-export" (click)="exportPDF()">Export PDF</button>
+                </div>
             }
         </div>
 
@@ -131,6 +135,76 @@
                     }
                 </thead>
                 <tbody>
+                    @if (isGrouped) {
+                        @for (group of groupedRows; track group.key) {
+                            <tr class="nx-advanced-data-grid-group-header-row" (click)="toggleGroup(group.key)">
+                                <td [attr.colspan]="totalColSpan">
+                                    <span class="nx-advanced-data-grid-group-chevron" [class.collapsed]="!isGroupExpanded(group.key)">▾</span>
+                                    <span class="nx-advanced-data-grid-group-label">{{ group.key }}</span>
+                                    <span class="nx-advanced-data-grid-group-count">({{ group.rows.length }})</span>
+                                </td>
+                            </tr>
+                            @if (isGroupExpanded(group.key)) {
+                                @for (row of group.rows; track $index) {
+                                    <tr [class.selected]="isSelected(row)" [style.height.px]="virtualScroll ? rowHeight : null" (click)="onRowClick(row)">
+                                        @if (selectionMode === 'multiple') {
+                                            <td class="nx-advanced-data-grid-select-col">
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="isSelected(row)"
+                                                    (click)="$event.stopPropagation()"
+                                                    (change)="toggleRowSelection(row)" />
+                                            </td>
+                                        } @else if (selectionMode === 'single') {
+                                            <td class="nx-advanced-data-grid-select-col">
+                                                <input
+                                                    type="radio"
+                                                    name="nx-advanced-data-grid-row-select"
+                                                    [checked]="isSelected(row)"
+                                                    (click)="$event.stopPropagation(); selectSingle(row)" />
+                                            </td>
+                                        }
+                                        @for (column of leftPinnedColumns; track column.id) {
+                                            <td
+                                                class="nx-advanced-data-grid-td pinned-left"
+                                                [attr.data-col]="column.id"
+                                                [style.width.px]="columnWidth(column)"
+                                                [style.min-width.px]="columnWidth(column)"
+                                                [style.left.px]="leftOffset(column)"
+                                                (dblclick)="startEdit(row, column)">
+                                                {{ row[column.field] }}
+                                            </td>
+                                        }
+                                        @for (column of scrollableColumns; track column.id) {
+                                            <td
+                                                class="nx-advanced-data-grid-td"
+                                                [attr.data-col]="column.id"
+                                                [style.width.px]="columnWidth(column)"
+                                                [style.min-width.px]="columnWidth(column)"
+                                                (dblclick)="startEdit(row, column)">
+                                                {{ row[column.field] }}
+                                            </td>
+                                        }
+                                        @for (column of rightPinnedColumns; track column.id) {
+                                            <td
+                                                class="nx-advanced-data-grid-td pinned-right"
+                                                [attr.data-col]="column.id"
+                                                [style.width.px]="columnWidth(column)"
+                                                [style.min-width.px]="columnWidth(column)"
+                                                [style.right.px]="rightOffset(column)"
+                                                (dblclick)="startEdit(row, column)">
+                                                {{ row[column.field] }}
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            }
+                        } @empty {
+                            <tr>
+                                <td [attr.colspan]="totalColSpan" class="nx-advanced-data-grid-empty">No data available</td>
+                            </tr>
+                        }
+                    } @else {
                     @if (virtualScroll && topSpacerHeight > 0) {
                         <tr class="nx-advanced-data-grid-spacer" [style.height.px]="topSpacerHeight">
                             <td [attr.colspan]="totalColSpan"></td>
@@ -236,6 +310,7 @@
                         <tr class="nx-advanced-data-grid-spacer" [style.height.px]="bottomSpacerHeight">
                             <td [attr.colspan]="totalColSpan"></td>
                         </tr>
+                    }
                     }
                 </tbody>
             </table>

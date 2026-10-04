@@ -1,0 +1,54 @@
+@if (licensed()) {
+    <div class="nx-token-gen">
+        <div class="nx-token-gen-controls">
+            <label class="nx-token-gen-color-label">
+                <input
+                    type="color"
+                    class="nx-token-gen-swatch-input"
+                    [value]="baseColor"
+                    (input)="setBaseColor($any($event.target).value)" />
+                Base color
+            </label>
+            <input
+                type="text"
+                class="nx-token-gen-hex-input"
+                [ngModel]="baseColor"
+                (ngModelChange)="setBaseColor($event)" />
+            <input
+                type="text"
+                class="nx-token-gen-prefix-input"
+                [(ngModel)]="tokenPrefix"
+                placeholder="token prefix" />
+            <button type="button" class="nx-token-gen-export-btn" (click)="showExport.set(!showExport())">
+                {{ showExport() ? 'Hide CSS' : 'Export CSS' }}
+            </button>
+        </div>
+
+        <div class="nx-token-gen-scale">
+            @for (token of tokens(); track token.step) {
+                <button
+                    type="button"
+                    class="nx-token-gen-step"
+                    [class.is-base]="token.isBase"
+                    [style.background]="token.hex"
+                    [style.color]="textColorFor(token.hex)"
+                    (click)="copyHex(token)">
+                    <span class="nx-token-gen-step-number">{{ token.step }}</span>
+                    <span class="nx-token-gen-step-hex">{{ copiedStep() === token.step ? 'Copied!' : token.hex }}</span>
+                    @if (token.isBase) {
+                        <span class="nx-token-gen-base-badge">base</span>
+                    }
+                </button>
+            }
+        </div>
+
+        @if (showExport()) {
+            <div class="nx-token-gen-export">
+                <pre class="nx-token-gen-export-code">{{ exportCss() }}</pre>
+                <button type="button" class="nx-token-gen-copy-btn" (click)="copyExport()">Copy</button>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Color Token Generator"></nx-pro-locked>
+}

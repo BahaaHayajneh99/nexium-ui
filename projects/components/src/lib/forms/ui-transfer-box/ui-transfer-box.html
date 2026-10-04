@@ -1,0 +1,54 @@
+<div class="nx-transfer-box">
+    <div class="nx-transfer-panel">
+        <div class="nx-transfer-panel-header">
+            <span>Available</span>
+            <span class="nx-transfer-count">{{ filteredAvailable().length }}/{{ availableItems().length }}</span>
+        </div>
+        <input
+            type="text"
+            class="nx-transfer-search"
+            placeholder="Search..."
+            [value]="availableSearch()"
+            (input)="onAvailableSearch($event)" />
+        <div class="nx-transfer-list">
+            @for (item of filteredAvailable(); track item.id) {
+                <label class="nx-transfer-item">
+                    <input type="checkbox" [checked]="isAvailableChecked(item.id)" (change)="toggleAvailableCheck(item.id)" />
+                    <span>{{ item.label }}</span>
+                </label>
+            } @empty {
+                <div class="nx-transfer-empty">No items.</div>
+            }
+        </div>
+    </div>
+
+    <div class="nx-transfer-controls">
+        <button type="button" (click)="moveCheckedRight()" [disabled]="availableCheckedCount() === 0" aria-label="Move selected right">&gt;</button>
+        <button type="button" (click)="moveAllRight()" [disabled]="availableItems().length === 0" aria-label="Move all right">&gt;&gt;</button>
+        <button type="button" (click)="moveCheckedLeft()" [disabled]="selectedCheckedCount() === 0" aria-label="Move selected left">&lt;</button>
+        <button type="button" (click)="moveAllLeft()" [disabled]="selectedItems().length === 0" aria-label="Move all left">&lt;&lt;</button>
+    </div>
+
+    <div class="nx-transfer-panel">
+        <div class="nx-transfer-panel-header">
+            <span>Selected</span>
+            <span class="nx-transfer-count">{{ filteredSelected().length }}/{{ selectedItems().length }}</span>
+        </div>
+        <input
+            type="text"
+            class="nx-transfer-search"
+            placeholder="Search..."
+            [value]="selectedSearch()"
+            (input)="onSelectedSearch($event)" />
+        <div class="nx-transfer-list">
+            @for (item of filteredSelected(); track item.id) {
+                <label class="nx-transfer-item">
+                    <input type="checkbox" [checked]="isSelectedChecked(item.id)" (change)="toggleSelectedCheck(item.id)" />
+                    <span>{{ item.label }}</span>
+                </label>
+            } @empty {
+                <div class="nx-transfer-empty">No items.</div>
+            }
+        </div>
+    </div>
+</div>

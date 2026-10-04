@@ -1,0 +1,60 @@
+.nx-ai-chat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 640px;
+    height: 520px;
+    padding: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-ai-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-ai-chat-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-ai-chat-model-selector {
+    max-width: 220px;
+}
+
+// nx-chat-stream and nx-prompt-input both ship with their own fixed/capped width+height
+// (meant for standalone use) - this composed shell needs them to fill the space it has
+// instead, so it reaches into their host elements the same way other components in this
+// library already do (see ui-chat.scss / ui-carousel.scss) rather than duplicating their
+// internal layout here.
+nx-chat-stream.nx-ai-chat-stream {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+nx-prompt-input.nx-ai-chat-composer {
+    display: block;
+    flex-shrink: 0;
+}
+
+::ng-deep nx-chat-stream.nx-ai-chat-stream .nx-chat-stream {
+    flex: 1;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 0;
+}
+
+::ng-deep nx-prompt-input.nx-ai-chat-composer .nx-prompt-input {
+    width: 100%;
+    max-width: none;
+}

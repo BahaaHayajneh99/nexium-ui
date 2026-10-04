@@ -1,0 +1,72 @@
+.nx-widget-grid {
+    position: relative;
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.nx-widget-grid-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    overflow: hidden;
+
+    &.is-active {
+        box-shadow: 0 0 0 2px var(--shell-primary, #3498db);
+        z-index: 2;
+    }
+}
+
+.nx-widget-grid-item-header {
+    display: flex;
+    align-items: center;
+    flex: none;
+    padding: 6px 10px;
+    background-color: var(--shell-border);
+    cursor: grab;
+    user-select: none;
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+.nx-widget-grid-item-handle {
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.nx-widget-grid-item-body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 10px;
+    color: var(--shell-text);
+}
+
+.nx-widget-grid-item-resize {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    cursor: nwse-resize;
+    background: linear-gradient(
+        135deg,
+        transparent 0 50%,
+        var(--shell-text-secondary) 50% 60%,
+        transparent 60% 100%
+    );
+    opacity: 0.55;
+
+    &:hover {
+        opacity: 1;
+    }
+}

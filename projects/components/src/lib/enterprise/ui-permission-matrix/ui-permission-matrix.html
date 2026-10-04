@@ -1,37 +1,136 @@
 @if (licensed()) {
-    <table class="nx-permission-matrix">
-        <thead>
-            <tr>
-                <th class="nx-permission-matrix-corner"></th>
-                @for (permission of permissions; track permission) {
-                    <th class="nx-permission-matrix-col-header">
-                        <button type="button" class="nx-permission-matrix-header-btn" (click)="toggleColumn(permission)">
-                            {{ permission }}
-                        </button>
-                    </th>
+    <div class="nx-permission-matrix-wrapper">
+        <div class="nx-permission-matrix-toolbar">
+            <input
+                type="text"
+                class="nx-permission-matrix-search"
+                placeholder="Search permissions..."
+                [ngModel]="searchText()"
+                (ngModelChange)="searchText.set($event)" />
+
+            <div class="nx-permission-matrix-toolbar-actions">
+                @if (addingRole()) {
+                    <input
+                        type="text"
+                        class="nx-permission-matrix-role-input"
+                        placeholder="Role name"
+                        [ngModel]="newRoleDraft()"
+                        (ngModelChange)="newRoleDraft.set($event)"
+                        (keydown.enter)="addRole()"
+                        (keydown.escape)="cancelAddRole()"
+                        (blur)="addRole()" />
+                } @else {
+                    <button type="button" class="nx-permission-matrix-btn" (click)="startAddRole()">
+                        <nx-icon icon="nx-plus" variant="svg" [size]="12"></nx-icon> Add role
+                    </button>
                 }
-            </tr>
-        </thead>
-        <tbody>
-            @for (role of roles; track role) {
+                <button type="button" class="nx-permission-matrix-btn" (click)="exportJson()">
+                    <nx-icon icon="nx-download" variant="svg" [size]="12"></nx-icon> Export JSON
+                </button>
+                <label class="nx-permission-matrix-btn nx-permission-matrix-import">
+                    <nx-icon icon="nx-upload" variant="svg" [size]="12"></nx-icon> Import JSON
+                    <input type="file" accept="application/json" hidden (change)="importJson($any($event.target).files)" />
+                </label>
+            </div>
+        </div>
+
+        @if (importError(); as err) {
+            <div class="nx-permission-matrix-error">{{ err }}</div>
+        }
+
+        <table class="nx-permission-matrix">
+            <thead>
                 <tr>
-                    <th class="nx-permission-matrix-row-header">
-                        <button type="button" class="nx-permission-matrix-header-btn" (click)="toggleRow(role)">
-                            {{ role }}
-                        </button>
-                    </th>
-                    @for (permission of permissions; track permission) {
-                        <td class="nx-permission-matrix-cell">
-                            <input
-                                type="checkbox"
-                                [checked]="isGranted(role, permission)"
-                                (change)="toggleCell(role, permission)" />
-                        </td>
+                    <th class="nx-permission-matrix-corner"></th>
+                    @for (role of roles; track role) {
+                        <th class="nx-permission-matrix-col-header">
+                            <div class="nx-permission-matrix-role-header">
+                                <button type="button" class="nx-permission-matrix-header-btn" (click)="toggleRoleColumn(role)">
+                                    {{ role }}
+                                </button>
+                                <button
+                                    type="button"
+                                    class="nx-permission-matrix-role-remove"
+                                    (click)="removeRole(role)"
+                                    [attr.aria-label]="'Remove role ' + role">
+                                    <nx-icon icon="nx-close" variant="svg" [size]="10"></nx-icon>
+                                </button>
+                            </div>
+                            <select
+                                class="nx-permission-matrix-inherit-select"
+                                [attr.aria-label]="role + ' inherits from'"
+                                [ngModel]="inheritance[role] ?? ''"
+                                (ngModelChange)="setInheritance(role, $event)">
+                                <option value="">No inheritance</option>
+                                @for (other of rolesExcept(role); track other) {
+                                    <option [value]="other">{{ other }}</option>
+                                }
+                            </select>
+                        </th>
                     }
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @if (groupedRows(); as groups) {
+                    @for (group of groups; track group.label) {
+                        <tr class="nx-permission-matrix-group-row">
+                            <th class="nx-permission-matrix-group-header" [attr.colspan]="roles.length + 1">
+                                <button type="button" class="nx-permission-matrix-group-toggle" (click)="toggleGroupCollapse(group.label)">
+                                    <nx-icon
+                                        [icon]="isGroupCollapsed(group.label) ? 'nx-chevron-right' : 'nx-chevron-down'"
+                                        variant="svg"
+                                        [size]="12">
+                                    </nx-icon>
+                                    {{ group.label }}
+                                </button>
+                            </th>
+                        </tr>
+                        @if (!isGroupCollapsed(group.label)) {
+                            @for (permission of group.permissions; track permission) {
+                                <tr>
+                                    <th class="nx-permission-matrix-row-header">
+                                        <button type="button" class="nx-permission-matrix-header-btn" (click)="togglePermissionRow(permission)">
+                                            {{ permission }}
+                                        </button>
+                                    </th>
+                                    @for (role of roles; track role) {
+                                        <td class="nx-permission-matrix-cell" [class.inherited]="isInheritedGranted(role, permission)">
+                                            <input
+                                                type="checkbox"
+                                                [checked]="isGranted(role, permission)"
+                                                (change)="toggleCell(role, permission)" />
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    } @empty {
+                        <tr><td [attr.colspan]="roles.length + 1" class="nx-permission-matrix-empty">No matching permissions.</td></tr>
+                    }
+                } @else {
+                    @for (permission of flatRows(); track permission) {
+                        <tr>
+                            <th class="nx-permission-matrix-row-header">
+                                <button type="button" class="nx-permission-matrix-header-btn" (click)="togglePermissionRow(permission)">
+                                    {{ permission }}
+                                </button>
+                            </th>
+                            @for (role of roles; track role) {
+                                <td class="nx-permission-matrix-cell" [class.inherited]="isInheritedGranted(role, permission)">
+                                    <input
+                                        type="checkbox"
+                                        [checked]="isGranted(role, permission)"
+                                        (change)="toggleCell(role, permission)" />
+                                </td>
+                            }
+                        </tr>
+                    } @empty {
+                        <tr><td [attr.colspan]="roles.length + 1" class="nx-permission-matrix-empty">No matching permissions.</td></tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
 } @else {
     <nx-pro-locked componentName="Permission Matrix"></nx-pro-locked>
 }

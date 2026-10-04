@@ -1,0 +1,15 @@
+<div class="showcase-page">
+    <nx-page-header title="Orders" description="Every order across Nova - filter, sort, and export as needed."></nx-page-header>
+
+    <nx-advanced-data-grid
+        [columns]="columns"
+        [rows]="rows"
+        [paginator]="true"
+        [pageSize]="10"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [showExport]="true"
+        exportFilename="nova-orders">
+    </nx-advanced-data-grid>
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

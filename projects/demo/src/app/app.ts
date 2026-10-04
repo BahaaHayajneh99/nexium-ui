@@ -17,9 +17,15 @@ export class App implements OnInit {
 
   mobileNavOpen = signal(false);
 
+  // The showcase app supplies its own full-page layout (see ShowcaseLayout) - it must not be
+  // wrapped in the docs site's own sidebar/chrome, so app.html hides that chrome on these routes.
+  isShowcaseRoute = signal(false);
+
   constructor(router: Router, private visitorTracking: VisitorTrackingService) {
-    router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+    this.isShowcaseRoute.set(router.url.startsWith('/showcase'));
+    router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event) => {
       this.mobileNavOpen.set(false);
+      this.isShowcaseRoute.set((event as NavigationEnd).urlAfterRedirects.startsWith('/showcase'));
     });
   }
 

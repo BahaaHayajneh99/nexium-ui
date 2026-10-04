@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Floating Action Button</h4>
+                <p class="main-section-description">
+                    A circular, fixed-position button. nx-fab is CSS position: fixed, so in a real
+                    page it docks to a corner of the viewport - below, it's wrapped in a bounded
+                    dashed preview box instead, just so it stays inside the docs page.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Plain FAB"
+                description="Without actions, a single click just emits (clicked). Last clicked: {{ lastClicked || '—' }}"
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div class="demo-fab-bounded">
+                    <nx-fab icon="nx-plus" position="bottom-right" (clicked)="onPlainClick()"></nx-fab>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Speed Dial"
+                description="When actions is non-empty, clicking the FAB toggles open a stack of secondary buttons, each revealing its label on hover. Picking one emits actionSelected and closes the stack. Last action: {{ lastAction || '—' }}"
+                [code]="speedDialCode"
+                [tsCode]="speedDialTs"
+                [hasSampleClass]="false">
+                <div class="demo-fab-bounded">
+                    <nx-fab icon="nx-plus" position="bottom-right" [actions]="speedDialActions" (actionSelected)="onActionSelected($event)"></nx-fab>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Free-text Tags"
+                description="Type anything and press Enter or ',' to commit it as a removable chip. Backspace on an empty input removes the last tag, and duplicate tags (case-insensitive) are ignored."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-tag-input [value]="keywords()" (valueChange)="onKeywordsChange($event)" placeholder="Add a keyword..."></nx-tag-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With Suggestions"
+                description="When suggestions is non-empty, a filtered dropdown of matching options appears below the input as you type - click one to commit it as a tag, or keep typing free text as before."
+                [code]="suggestionsCode"
+                [tsCode]="suggestionsTs"
+                [hasSampleClass]="false">
+                <nx-tag-input
+                    [value]="skills()"
+                    [suggestions]="skillSuggestions"
+                    (valueChange)="onSkillsChange($event)"
+                    placeholder="Add a skill...">
+                </nx-tag-input>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

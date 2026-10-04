@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Static Response"
+                description="{{ commonService.appName }} AI Response Viewer renders a SINGLE AI response as a one-off result card - for contexts like 'regenerate this field's content with AI' - rather than a full conversation. It supports headings, bold/italic, inline code, and fenced code blocks. Try the feedback thumbs and Regenerate button below.{{ lastFeedback() ? ' Last feedback: ' + lastFeedback() + '.' : '' }}{{ regenerateCount() ? ' Regenerate clicked ' + regenerateCount() + ' time(s).' : '' }}"
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-ai-response-viewer
+                    [content]="response"
+                    (feedback)="onFeedback($event)"
+                    (regenerate)="onRegenerate()">
+                </nx-ai-response-viewer>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Streaming Reveal"
+                description="With streaming set to true, the content is revealed progressively instead of appearing all at once - useful while a real response is still arriving."
+                [code]="streamingCode"
+                [tsCode]="streamingTs"
+                [hasSampleClass]="false">
+                <nx-ai-response-viewer [content]="response" [streaming]="true"></nx-ai-response-viewer>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

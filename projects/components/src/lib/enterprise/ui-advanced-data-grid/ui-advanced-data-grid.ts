@@ -53,7 +53,8 @@ export interface NxDataGridPageEvent {
 /**
  * The PRO data grid: sorting, pinned/reorderable/resizable/hideable columns,
  * scrolling, filtering (quick + per-column), row selection, inline editing,
- * column groups, CSV export, pagination, and virtual scrolling.
+ * column groups, row grouping (`groupByField`), CSV/Excel/PDF export, pagination,
+ * and virtual scrolling.
  */
 @Component({
   selector: 'nx-advanced-data-grid',
@@ -91,6 +92,15 @@ export class NxAdvancedDataGrid implements AfterViewInit {
   @Input({ transform: booleanAttribute }) showExport = false;
   @Input() exportFilename = 'data';
 
+  /** When set, rows render grouped into collapsible sections by this field's value instead of a flat list. */
+  private readonly groupByFieldSignal = signal<string | undefined>(undefined);
+  @Input() get groupByField(): string | undefined {
+    return this.groupByFieldSignal();
+  }
+  set groupByField(value: string | undefined) {
+    this.groupByFieldSignal.set(value);
+  }
+
   @ViewChild('scrollContainer') scrollContainerRef?: ElementRef<HTMLDivElement>;
 
   quickFilter = signal('');
@@ -98,6 +108,13 @@ export class NxAdvancedDataGrid implements AfterViewInit {
   columnFilters = signal<Record<string, string>>({});
   hiddenColumnIds = signal<Set<string>>(new Set());
   columnMenuOpen = signal(false);
+
+  /** Keys of groups currently expanded - new group keys default into this set as "open" the first time they're seen. */
+  // Tracks EXPLICITLY collapsed groups rather than expanded ones, so a newly-seen group key
+  // (the common case as `rows`/`groupByField` change) is expanded by default with no signal
+  // write needed - mutating a signal from a getter invoked during template rendering throws
+  // NG0600 ("Writing to signals is not allowed while Angular renders the template").
+  private collapsedGroups = signal<Set<string>>(new Set());
 
   editingCell: { row: Record<string, unknown>; field: string } | null = null;
   editValue = '';
@@ -298,6 +315,47 @@ export class NxAdvancedDataGrid implements AfterViewInit {
     const visibleCount = Math.ceil(containerHeight / this.rowHeight) + buffer * 2;
     this.virtualStart = Math.min(start, dataLength);
     this.virtualEnd = Math.min(dataLength, start + visibleCount);
+  }
+
+  // ---------- Row grouping ----------
+
+  get isGrouped(): boolean {
+    return !!this.groupByFieldSignal();
+  }
+
+  /** Builds { key, rows }[] from the currently rendered rows + `groupByField`. Pure read - no side effects, safe to call from the template. */
+  get groupedRows(): { key: string; rows: Record<string, unknown>[] }[] {
+    const field = this.groupByFieldSignal();
+    if (!field) {
+      return [];
+    }
+    const order: string[] = [];
+    const groups = new Map<string, Record<string, unknown>[]>();
+    for (const row of this.visibleRows) {
+      const key = String(row[field] ?? '—');
+      if (!groups.has(key)) {
+        groups.set(key, []);
+        order.push(key);
+      }
+      groups.get(key)!.push(row);
+    }
+
+    return order.map((key) => ({ key, rows: groups.get(key)! }));
+  }
+
+  /** A group is expanded unless explicitly collapsed, so a newly-seen group is expanded with no state write needed. */
+  isGroupExpanded(key: string): boolean {
+    return !this.collapsedGroups().has(key);
+  }
+
+  toggleGroup(key: string): void {
+    const next = new Set(this.collapsedGroups());
+    if (next.has(key)) {
+      next.delete(key);
+    } else {
+      next.add(key);
+    }
+    this.collapsedGroups.set(next);
   }
 
   // ---------- Pagination ----------
@@ -511,5 +569,65 @@ export class NxAdvancedDataGrid implements AfterViewInit {
       return `"${value.replace(/"/g, '""')}"`;
     }
     return value;
+  }
+
+  /**
+   * Not a real `.xlsx` binary - this writes a well-formed HTML `<table>` wrapped in an
+   * `application/vnd.ms-excel` Blob with a `.xls` extension, which Excel opens natively.
+   */
+  exportExcel(filename = this.exportFilename): void {
+    const header = this.visibleColumns.map((col) => `<th>${this.htmlEscape(col.header)}</th>`).join('');
+    const body = this.filteredRows
+      .map(
+        (row) =>
+          `<tr>${this.visibleColumns
+            .map((col) => `<td>${this.htmlEscape(String(row[col.field] ?? ''))}</td>`)
+            .join('')}</tr>`,
+      )
+      .join('');
+    const html = `<html><head><meta charset="UTF-8"></head><body><table border="1"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table></body></html>`;
+    const blob = new Blob([html], { type: 'application/vnd.ms-excel' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${filename}.xls`;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  /**
+   * Doesn't generate a PDF binary directly - opens a clean, print-optimized rendering of the
+   * current visible rows/columns in a new window and invokes the browser's native print dialog,
+   * so the user can "Save as PDF" from there.
+   */
+  exportPDF(filename = this.exportFilename): void {
+    const header = this.visibleColumns.map((col) => `<th>${this.htmlEscape(col.header)}</th>`).join('');
+    const body = this.filteredRows
+      .map(
+        (row) =>
+          `<tr>${this.visibleColumns
+            .map((col) => `<td>${this.htmlEscape(String(row[col.field] ?? ''))}</td>`)
+            .join('')}</tr>`,
+      )
+      .join('');
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      return;
+    }
+    printWindow.document.write(
+      `<html><head><title>${this.htmlEscape(filename)}</title><style>
+        body { font-family: sans-serif; padding: 16px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; font-size: 12px; }
+        th { background: #f3f3f3; }
+      </style></head><body><h3>${this.htmlEscape(filename)}</h3><table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table></body></html>`,
+    );
+    printWindow.document.close();
+    printWindow.focus();
+    setTimeout(() => printWindow.print(), 250);
+  }
+
+  private htmlEscape(value: string): string {
+    return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 }

@@ -1,0 +1,78 @@
+<div class="nx-chart">
+
+    <button type="button" class="nx-chart-table-toggle" (click)="toggleTable()">
+        {{ showTable ? 'View as chart' : 'View as table' }}
+    </button>
+
+    @if (!showTable) {
+        <div class="nx-chart-canvas nx-polar-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (radius of gridRadii; track radius) {
+                    <circle class="nx-chart-grid nx-polar-grid-ring" cx="150" cy="150" [attr.r]="radius" fill="none"></circle>
+                }
+                @for (grid of gridLabels; track grid.radius) {
+                    <text class="nx-chart-axis-label" x="154" [attr.y]="150 - grid.radius + 10">{{ grid.text }}</text>
+                }
+
+                @for (wedge of wedges; track wedge.datum.label) {
+                    <path
+                        class="nx-chart-slice"
+                        [class.nx-chart-slice-hovered]="hoveredIndex === wedge.index"
+                        [attr.d]="wedge.path"
+                        [attr.fill]="wedge.color"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="wedge.datum.label + ': ' + formatValue(wedge.datum.value)"
+                        (pointerenter)="onWedgeEnter(wedge.index)"
+                        (pointerleave)="onWedgeLeave()"
+                        (focus)="onWedgeEnter(wedge.index)"
+                        (blur)="onWedgeLeave()">
+                    </path>
+                }
+
+            </svg>
+
+            @if (hoveredWedge) {
+                <div class="nx-chart-tooltip" [style]="tooltipStyle">
+                    <div class="nx-chart-tooltip-row">
+                        <span class="nx-chart-tooltip-key" [style.background]="hoveredWedge.color"></span>
+                        <span class="nx-chart-tooltip-name">{{ hoveredWedge.datum.label }}</span>
+                        <strong class="nx-chart-tooltip-value">{{ formatValue(hoveredWedge.datum.value) }}</strong>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (hasLegend) {
+            <div class="nx-chart-legend">
+                @for (wedge of wedges; track wedge.datum.label) {
+                    <div class="nx-chart-legend-item">
+                        <span class="nx-chart-legend-swatch" [style.background]="wedge.color"></span>
+                        {{ wedge.datum.label }} ({{ formatValue(wedge.datum.value) }})
+                    </div>
+                }
+            </div>
+        }
+    } @else {
+        <div class="nx-chart-table-wrap">
+            <table class="nx-chart-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (wedge of wedges; track wedge.datum.label) {
+                        <tr>
+                            <th scope="row">{{ wedge.datum.label }}</th>
+                            <td>{{ formatValue(wedge.datum.value) }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>

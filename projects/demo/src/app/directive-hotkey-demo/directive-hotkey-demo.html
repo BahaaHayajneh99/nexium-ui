@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Hotkey</h4>
+                <p class="main-section-description">
+                    Binds a key combo spec like 'ctrl+k', 'ctrl+shift+p', 'escape' or '/' to a document-wide
+                    keydown listener, and emits (nxHotkeyTriggered) when it matches. 'ctrl' also matches
+                    Cmd/Meta, so the same spec works on both Windows/Linux and macOS.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Press Ctrl+K"
+                description="Press Ctrl+K (or Cmd+K on Mac) anywhere on this page - no need to click or focus anything first, nxHotkey listens on the whole document. It opens the panel below and increments the counter; with the panel open, press Escape to close it again."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <div [nxHotkey]="'ctrl+k'" (nxHotkeyTriggered)="openPanel()"></div>
+
+                <p class="template-form-note">Triggered {{ triggeredCount }} time(s).</p>
+
+                @if (panelOpen) {
+                    <div
+                        [nxHotkey]="'escape'"
+                        (nxHotkeyTriggered)="closePanel()"
+                        style="margin-top:0.5rem; padding:1rem 1.5rem; border:1px solid var(--shell-border); border-radius:8px; background:var(--shell-surface);">
+                        Panel opened via <strong>Ctrl+K</strong> - press <strong>Escape</strong> to close it.
+                    </div>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

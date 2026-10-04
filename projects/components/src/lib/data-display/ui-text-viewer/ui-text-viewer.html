@@ -1,0 +1,54 @@
+@if (licensed()) {
+    <div class="nx-text-viewer">
+        <div class="nx-text-viewer-toolbar">
+            <span class="nx-text-viewer-filename">{{ filename }}</span>
+
+            <div class="nx-text-viewer-search">
+                <input
+                    type="text"
+                    placeholder="Find in file..."
+                    [ngModel]="searchQuery()"
+                    (ngModelChange)="onSearchChange($event)" />
+                @if (searchQuery()) {
+                    <span class="nx-text-viewer-match-count">{{ totalMatches() ? activeMatch() + 1 : 0 }}/{{ totalMatches() }}</span>
+                    <button type="button" (click)="prevMatch()" aria-label="Previous match">
+                        <nx-icon icon="nx-chevron-up" variant="svg" [size]="12"></nx-icon>
+                    </button>
+                    <button type="button" (click)="nextMatch()" aria-label="Next match">
+                        <nx-icon icon="nx-chevron-down" variant="svg" [size]="12"></nx-icon>
+                    </button>
+                }
+            </div>
+
+            <div class="nx-text-viewer-actions">
+                <button type="button" class="nx-text-viewer-btn" [class.active]="wordWrap()" (click)="toggleWordWrap()">Wrap</button>
+                <button type="button" class="nx-text-viewer-btn" (click)="copy()">{{ copied() ? 'Copied!' : 'Copy' }}</button>
+                <button type="button" class="nx-text-viewer-btn" (click)="download()">Download</button>
+            </div>
+        </div>
+
+        <div class="nx-text-viewer-body" [class.wrap]="wordWrap()">
+            @for (line of lines(); track $index; let lineIndex = $index) {
+                <div class="nx-text-viewer-line">
+                    @if (showLineNumbers) {
+                        <span class="nx-text-viewer-line-number">{{ lineIndex + 1 }}</span>
+                    }
+                    <span class="nx-text-viewer-line-content">
+                        @for (segment of lineSegments(line); track $index) {
+                            @if (segment.match) {
+                                <mark class="nx-text-viewer-match" [class.active]="isActiveMatch(lineIndex, segment)">{{ segment.text }}</mark>
+                            } @else {
+                                <span>{{ segment.text }}</span>
+                            }
+                        }
+                        @if (line === '') {
+                            <wbr />
+                        }
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Text Viewer"></nx-pro-locked>
+}

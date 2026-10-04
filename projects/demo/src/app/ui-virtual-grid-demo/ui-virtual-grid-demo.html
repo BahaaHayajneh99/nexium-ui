@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Large Grid (5,000 x 30)"
+                description="The {{ commonService.appName }} Virtual Grid only renders the cells actually visible in the scrollable viewport, plus a small buffer - so a 150,000-cell grid scrolls just as smoothly as a tiny one. Scroll both vertically and horizontally; cell content comes from the getCellValue function you provide, called on demand for whatever cell is about to be shown."
+                [code]="bigGridCode"
+                [tsCode]="bigGridTs"
+                [hasSampleClass]="false">
+                <nx-virtual-grid
+                    [rowCount]="5000"
+                    [columnCount]="30"
+                    [rowHeight]="32"
+                    [columnWidth]="110"
+                    [height]="360"
+                    [width]="640"
+                    [getCellValue]="bigGridCellValue">
+                </nx-virtual-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Formatted Data Grid (50 x 10)"
+                description="A smaller grid showing that getCellValue can return meaningfully different, formatted content per cell - not just a repeated placeholder - making this suitable as the rendering core of a real data table."
+                [code]="tableGridCode"
+                [tsCode]="tableGridTs"
+                [hasSampleClass]="false">
+                <nx-virtual-grid
+                    [rowCount]="50"
+                    [columnCount]="10"
+                    [rowHeight]="36"
+                    [columnWidth]="130"
+                    [height]="320"
+                    [width]="640"
+                    [getCellValue]="salesCellValue">
+                </nx-virtual-grid>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

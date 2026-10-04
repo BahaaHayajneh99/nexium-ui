@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Live Estimate"
+                description="{{ commonService.appName }} Token Counter - estimates the token cost of a piece of text using a rough characters-per-token ratio (not a real model tokenizer; see the component's doc comment). Type or paste into the textarea to see the estimate update live."
+                [code]="liveCode"
+                [tsCode]="liveTs"
+                [hasSampleClass]="false">
+                <div class="token-counter-demo-wrap">
+                    <textarea class="token-counter-demo-textarea" rows="4" [(ngModel)]="liveText"></textarea>
+                    <nx-token-counter [text]="liveText"></nx-token-counter>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With a Limit"
+                description="Set limit to show a progress bar for estimatedTokens / limit. The bar shifts from the normal accent color to amber past 80% of the budget, and to red once it's met or exceeded."
+                [code]="limitedCode"
+                [tsCode]="limitedTs"
+                [hasSampleClass]="false">
+                <nx-token-counter [text]="limitedText" [limit]="40"></nx-token-counter>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

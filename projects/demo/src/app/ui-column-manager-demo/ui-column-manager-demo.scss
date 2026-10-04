@@ -1,0 +1,28 @@
+.demo-plain-table {
+    width: 100%;
+    margin-top: 16px;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.demo-plain-table th,
+.demo-plain-table td {
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    text-align: left;
+}
+
+.demo-plain-table th {
+    background-color: var(--shell-surface);
+    font-weight: 600;
+}
+
+.demo-pin-tag {
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: var(--shell-primary, #3498db);
+    color: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
+}

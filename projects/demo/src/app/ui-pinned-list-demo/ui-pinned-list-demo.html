@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Mixed Content Types"
+                description="{{ commonService.appName }} Pinned List - every item can be a different kind of content: text, an image, a video, a link, or (via customTemplate) anything at all. Use the up/down arrows to reorder, or the x to unpin. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-pinned-list [items]="mixedItems" [customTemplate]="memberTemplate" (itemsChange)="onItemsChange($event)" (unpinned)="onUnpinned($event)"></nx-pinned-list>
+
+                <ng-template #memberTemplate let-item>
+                    <nx-avatar [name]="item.data.name" size="small"></nx-avatar>
+                    <div class="pinned-demo-member">
+                        <strong>{{ item.data.name }}</strong>
+                        <span>{{ item.data.role }}</span>
+                    </div>
+                </ng-template>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

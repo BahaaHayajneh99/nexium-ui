@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Composer"
+                description="{{ commonService.appName }} Prompt Input - an auto-growing textarea (it grows with your content up to a max height, then scrolls) that submits on Enter and inserts a newline on Shift+Enter. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-prompt-input [(value)]="basicValue" (submit)="onBasicSubmit($event)"></nx-prompt-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Character Limit &amp; Quick Suggestions"
+                description="Set maxLength to show a live current/max character counter - it turns red once you're at or over the limit, and submit is blocked once you're over it. Set suggestions to render clickable quick-prompt chips above the composer; clicking one fills the textarea without auto-submitting."
+                [code]="limitedCode"
+                [tsCode]="limitedTs"
+                [hasSampleClass]="false">
+                <nx-prompt-input [(value)]="limitedValue" [maxLength]="280" [suggestions]="suggestions" (submit)="onLimitedSubmit($event)"></nx-prompt-input>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

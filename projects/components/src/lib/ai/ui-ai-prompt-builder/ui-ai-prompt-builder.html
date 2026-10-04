@@ -1,0 +1,97 @@
+@if (licensed()) {
+    <div class="nx-prompt-builder">
+        <div class="nx-pb-library">
+            <div class="nx-pb-library-header">
+                <span class="nx-pb-library-title">Templates</span>
+                <button type="button" class="nx-pb-btn nx-pb-btn-ghost" (click)="newTemplate()">
+                    <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                    New
+                </button>
+            </div>
+            <div class="nx-pb-library-list">
+                @for (template of templates; track template.id) {
+                    <div class="nx-pb-library-item" [class.active]="template.id === activeTemplateId()">
+                        <button type="button" class="nx-pb-library-item-name" (click)="loadTemplate(template)">
+                            {{ template.name }}
+                        </button>
+                        <button type="button" class="nx-pb-icon-btn" aria-label="Delete template" (click)="deleteTemplate(template)">
+                            <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon>
+                        </button>
+                    </div>
+                } @empty {
+                    <div class="nx-pb-library-empty">No saved templates yet.</div>
+                }
+            </div>
+        </div>
+
+        <div class="nx-pb-editor">
+            <label class="nx-pb-field">
+                <span class="nx-pb-field-label">Template name</span>
+                <input
+                    type="text"
+                    class="nx-pb-input"
+                    [value]="templateName()"
+                    (input)="templateName.set($any($event.target).value)" />
+            </label>
+
+            <label class="nx-pb-field">
+                <span class="nx-pb-field-label">System prompt (optional)</span>
+                <textarea
+                    class="nx-pb-textarea"
+                    rows="2"
+                    placeholder="e.g. You are an expert {{ '{{role}}' }}."
+                    [value]="systemText()"
+                    (input)="onSystemTextInput($any($event.target).value)"></textarea>
+            </label>
+
+            <label class="nx-pb-field">
+                <span class="nx-pb-field-label">User prompt</span>
+                <textarea
+                    class="nx-pb-textarea"
+                    rows="4"
+                    placeholder="Write your prompt, using {{ '{{variableName}}' }} for slots to fill in later."
+                    [value]="userText()"
+                    (input)="onUserTextInput($any($event.target).value)"></textarea>
+            </label>
+
+            <div class="nx-pb-actions">
+                <button type="button" class="nx-pb-btn" (click)="saveTemplate()">
+                    <nx-icon icon="nx-save" variant="svg" [size]="14"></nx-icon>
+                    Save template
+                </button>
+            </div>
+        </div>
+
+        <div class="nx-pb-preview">
+            <span class="nx-pb-preview-title">Fill &amp; Preview</span>
+
+            @if (variables().length) {
+                <div class="nx-pb-variables">
+                    @for (variable of variables(); track variable.name) {
+                        <label class="nx-pb-field">
+                            <span class="nx-pb-field-label">{{ '{{' + variable.name + '}}' }}</span>
+                            <input
+                                type="text"
+                                class="nx-pb-input"
+                                [placeholder]="variable.defaultValue || 'value...'"
+                                [value]="fillValues()[variable.name] ?? ''"
+                                (input)="setFillValue(variable.name, $any($event.target).value)" />
+                        </label>
+                    }
+                </div>
+            } @else {
+                <div class="nx-pb-no-variables">No {{ '{{variables}}' }} detected yet - add some in the prompt above.</div>
+            }
+
+            <pre class="nx-pb-rendered">{{ renderedPrompt() }}</pre>
+
+            <nx-token-counter [text]="renderedPrompt()"></nx-token-counter>
+
+            <button type="button" class="nx-pb-btn nx-pb-btn-primary" (click)="usePrompt()">
+                Use this prompt
+            </button>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="AI Prompt Builder"></nx-pro-locked>
+}

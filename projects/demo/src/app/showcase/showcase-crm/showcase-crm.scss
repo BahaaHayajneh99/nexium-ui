@@ -1,0 +1,91 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: var(--shell-bg, #0a0a0a);
+}
+
+.crm-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.crm-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+}
+
+.crm-card {
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.crm-card-title {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.crm-table-wrapper {
+    overflow-x: auto;
+}
+
+.crm-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.crm-table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+    border-bottom: 1px solid var(--shell-border);
+    white-space: nowrap;
+}
+
+.crm-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    white-space: nowrap;
+}
+
+.crm-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.crm-tags-cell {
+    white-space: normal;
+    min-width: 220px;
+}
+
+.crm-tags-cell nx-tag-input {
+    max-width: none;
+}
+
+.crm-contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.crm-contact-name {
+    font-weight: 600;
+}
+
+.crm-contact-company {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}

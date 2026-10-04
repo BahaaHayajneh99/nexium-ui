@@ -1,0 +1,21 @@
+.chat-stream-demo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.chat-stream-demo-btn {
+    padding: 6px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.chat-stream-demo-btn:hover {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}

@@ -1,0 +1,14 @@
+.demo-fab-bounded {
+    position: relative;
+    height: 280px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+// nx-fab is position: fixed by design (it's meant to dock to the real viewport corner).
+// For the preview box above to contain it instead of it escaping to the real page edge,
+// scope it to position: absolute only within this bounded demo wrapper.
+.demo-fab-bounded ::ng-deep .nx-fab-container {
+    position: absolute;
+}

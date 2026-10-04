@@ -1,0 +1,25 @@
+@if (licensed()) {
+    <div class="nx-ai-chat">
+        <div class="nx-ai-chat-header">
+            <span class="nx-ai-chat-title">{{ title }}</span>
+            @if (models.length) {
+                <nx-model-selector
+                    class="nx-ai-chat-model-selector"
+                    [models]="models"
+                    [selectedId]="selectedModelId"
+                    (selectedIdChange)="onModelChange($event)">
+                </nx-model-selector>
+            }
+        </div>
+
+        <nx-chat-stream class="nx-ai-chat-stream" [messages]="messages" [streaming]="streaming"></nx-chat-stream>
+
+        <nx-prompt-input
+            class="nx-ai-chat-composer"
+            [placeholder]="placeholder"
+            (submit)="onSubmit($event)">
+        </nx-prompt-input>
+    </div>
+} @else {
+    <nx-pro-locked componentName="AI Chat"></nx-pro-locked>
+}

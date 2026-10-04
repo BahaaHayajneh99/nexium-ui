@@ -1,0 +1,38 @@
+<div class="nx-dropzone">
+    <label
+        class="nx-dropzone-zone"
+        [class.dragging]="isDragging"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave()"
+        (drop)="onDrop($event)">
+
+        <input type="file" hidden [accept]="accept" [multiple]="multiple" (change)="onFileInputChange($event)" />
+
+        <nx-icon icon="nx-upload" variant="svg" [size]="28"></nx-icon>
+        <span class="nx-dropzone-text">Drag & drop files here, or click to browse</span>
+
+    </label>
+
+    @if (previews.length) {
+        <div class="nx-dropzone-grid">
+            @for (preview of previews; track preview.file.name + preview.file.size + $index; let i = $index) {
+                <div class="nx-dropzone-tile">
+                    <button type="button" class="nx-dropzone-remove" (click)="removeFile(i)" aria-label="Remove file">
+                        <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                    </button>
+
+                    @if (preview.isImage && preview.previewUrl) {
+                        <img class="nx-dropzone-thumb" [src]="preview.previewUrl" [alt]="preview.file.name" />
+                    } @else {
+                        <div class="nx-dropzone-thumb nx-dropzone-thumb-generic">
+                            <nx-icon icon="nx-file" variant="svg" [size]="28"></nx-icon>
+                        </div>
+                    }
+
+                    <span class="nx-dropzone-tile-name">{{ preview.file.name }}</span>
+                    <span class="nx-dropzone-tile-size">{{ preview.file.size | nxFileSize }}</span>
+                </div>
+            }
+        </div>
+    }
+</div>

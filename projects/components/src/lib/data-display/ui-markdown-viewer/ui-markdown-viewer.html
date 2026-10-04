@@ -1,0 +1,5 @@
+@if (licensed()) {
+    <div class="nx-markdown-viewer" [innerHTML]="renderedHtml()"></div>
+} @else {
+    <nx-pro-locked componentName="Markdown Viewer"></nx-pro-locked>
+}

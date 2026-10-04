@@ -1,0 +1,33 @@
+@use '../chart-chrome' as *;
+
+.nx-sunburst-canvas {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.nx-sunburst-arc {
+    stroke: var(--shell-surface);
+    stroke-width: 1.5;
+    cursor: pointer;
+    transition: opacity .15s ease;
+
+    &:hover {
+        opacity: .85;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--shell-primary, #3498db);
+        outline-offset: 1px;
+    }
+}
+
+.nx-chart-donut-total {
+    fill: var(--shell-text);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.nx-chart-donut-caption {
+    fill: var(--shell-text-muted);
+    font-size: 11px;
+}

@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Drag-and-resize canvas"
+                description="{{ commonService.appName }}'s Widget Grid is a generic positioning engine - drag a widget's header to move it, or its bottom-right handle to resize it. Both snap to whole grid cells, and a widget left overlapping another after a drop gets pushed straight down below it. Content per widget is projected through a single ng-template, given each NxWidgetLayoutItem as context so you can look up your own widget data by item.id."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:960px;">
+                    <nx-widget-grid [layout]="layout" [columns]="12" [rowHeight]="80" [gap]="12" (layoutChange)="onLayoutChange($event)">
+                        <ng-template let-item>
+                            <div style="display:flex; flex-direction:column; gap:4px; height:100%;">
+                                <strong style="font-size:13px;">{{ widgetFor(item.id)?.title }}</strong>
+                                <span style="font-size:11px; color:var(--shell-text-secondary); text-transform:uppercase;">
+                                    {{ widgetFor(item.id)?.kind }}
+                                </span>
+                            </div>
+                        </ng-template>
+                    </nx-widget-grid>
+                    @if (lastChange) {
+                        <p style="margin-top:12px; color:var(--shell-text-secondary); font-size:0.85rem;">{{ lastChange }}</p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

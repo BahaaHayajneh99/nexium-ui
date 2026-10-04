@@ -1,0 +1,106 @@
+<div class="ecom-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="ecom-brand">
+            <nx-icon icon="nx-home" variant="svg" [size]="18"></nx-icon>
+            <span>Fernway</span>
+        </div>
+        <div nx-navbar-links>
+            <a href="#shop">Shop</a>
+            <a href="#" routerLink="/getting-started/introduction">← Docs</a>
+        </div>
+        <div nx-navbar-actions>
+            <button type="button" class="ecom-cart-btn" (click)="cartOpen.set(true)">
+                <nx-icon icon="nx-shopping-cart" variant="svg" [size]="18"></nx-icon>
+                Cart
+                @if (cartCount() > 0) {
+                    <span class="ecom-cart-count">{{ cartCount() }}</span>
+                }
+            </button>
+        </div>
+    </nx-navbar>
+
+    <section class="ecom-hero">
+        <h1>Furnish a home that feels like you</h1>
+        <p>Fernway is a fictional home goods store built entirely with NexiumUI - browse, filter, and add to cart, all real interactions.</p>
+    </section>
+
+    <section id="shop" class="ecom-shop">
+        <div class="ecom-categories">
+            @for (cat of categories; track cat) {
+                <button
+                    type="button"
+                    class="ecom-category-chip"
+                    [class.active]="activeCategory() === cat"
+                    (click)="activeCategory.set(cat)">
+                    {{ cat }}
+                </button>
+            }
+        </div>
+
+        <div class="ecom-product-grid">
+            @for (product of filteredProducts(); track product.id) {
+                <div class="ecom-product-card">
+                    <div class="ecom-product-image" [style.background]="product.swatch">
+                        <nx-icon [icon]="product.icon" variant="svg" [size]="32"></nx-icon>
+                        @if (product.badge) {
+                            <nx-badge [variant]="product.badge === 'Sale' ? 'danger' : 'info'" class="ecom-product-badge">{{ product.badge }}</nx-badge>
+                        }
+                    </div>
+                    <div class="ecom-product-info">
+                        <div class="ecom-product-category">{{ product.category }}</div>
+                        <div class="ecom-product-name">{{ product.name }}</div>
+                        <nx-rating [value]="product.rating" [readonly]="true"></nx-rating>
+                        <div class="ecom-product-footer">
+                            <span class="ecom-product-price">${{ product.price }}</span>
+                            <nx-button variant="primary" size="small" (click)="addToCart(product)">Add to cart</nx-button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+</div>
+
+<nx-fab icon="nx-shopping-cart" position="bottom-right" (clicked)="cartOpen.set(true)"></nx-fab>
+
+<nx-drawer [open]="cartOpen()" (openChange)="cartOpen.set($event)" side="right" size="360px">
+    <div class="ecom-cart">
+        <h3>Your cart</h3>
+
+        @if (orderPlaced()) {
+            <div class="ecom-cart-success">
+                <nx-icon icon="nx-check-circle" variant="svg" [size]="28"></nx-icon>
+                <p>Order placed! Thanks for shopping with Fernway.</p>
+            </div>
+        } @else if (cart().length === 0) {
+            <p class="ecom-cart-empty">Your cart is empty.</p>
+        } @else {
+            <div class="ecom-cart-lines">
+                @for (line of cart(); track line.product.id) {
+                    <div class="ecom-cart-line">
+                        <div class="ecom-cart-swatch" [style.background]="line.product.swatch">
+                            <nx-icon [icon]="line.product.icon" variant="svg" [size]="16"></nx-icon>
+                        </div>
+                        <div class="ecom-cart-line-info">
+                            <div class="ecom-cart-line-name">{{ line.product.name }}</div>
+                            <div class="ecom-cart-line-meta">Qty {{ line.qty }} · ${{ line.product.price }}</div>
+                        </div>
+                        <button type="button" class="ecom-cart-remove" (click)="removeLine(line.product.id)">
+                            <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+                        </button>
+                    </div>
+                }
+            </div>
+
+            <div class="ecom-cart-total">
+                <span>Total</span>
+                <span>${{ cartTotal() }}</span>
+            </div>
+            <nx-button variant="primary" [fullWidth]="true" (click)="checkout()">Checkout</nx-button>
+        }
+    </div>
+</nx-drawer>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

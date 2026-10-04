@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Mixed Snippets"
+                description="{{ commonService.appName }} Markdown Code Runner - renders fenced code blocks with monospace styling; blocks with language 'javascript' or 'js' get a Run button. Running executes the snippet in the page's own JS context (the same trust model as the devtools console - see the component's doc comment) and shows captured console.log output, or a caught error, beneath the block. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-markdown-code-runner [blocks]="blocks"></nx-markdown-code-runner>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Single Runnable Snippet"
+                description="A minimal usage with just one JavaScript block."
+                [code]="minimalCode"
+                [tsCode]="minimalTs"
+                [hasSampleClass]="false">
+                <nx-markdown-code-runner [blocks]="minimalBlocks"></nx-markdown-code-runner>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

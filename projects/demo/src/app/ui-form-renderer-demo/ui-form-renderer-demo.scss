@@ -1,0 +1,14 @@
+.nx-form-renderer-demo-result {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    font-size: 12px;
+
+    pre {
+        margin: 6px 0 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+}

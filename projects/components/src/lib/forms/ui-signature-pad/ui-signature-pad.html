@@ -1,0 +1,20 @@
+@if (licensed()) {
+    <div class="nx-signature-pad">
+        <canvas
+            #canvasEl
+            class="nx-signature-canvas"
+            (pointerdown)="onPointerDown($event)"
+            (pointermove)="onPointerMove($event)"
+            (pointerup)="onPointerUp($event)"
+            (pointerleave)="onPointerUp($event)"
+            (pointercancel)="onPointerUp($event)">
+        </canvas>
+
+        <div class="nx-signature-actions">
+            <button type="button" (click)="undo()" [disabled]="!hasContent">Undo</button>
+            <button type="button" (click)="clear()" [disabled]="!hasContent">Clear</button>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Signature Pad"></nx-pro-locked>
+}

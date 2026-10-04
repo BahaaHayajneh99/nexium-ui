@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">In View</h4>
+                <p class="main-section-description">
+                    Emits true/false as the host enters/exits the viewport (or a scrollable ancestor), backed by a
+                    native IntersectionObserver - the basis for scroll-reveal animations, lazy-rendering triggers,
+                    or "mark as seen on scroll" patterns.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Scroll reveal"
+                description="Scroll the bounded container below. Each block uses [nxInView] together with (nxInViewChange) to fade and slide in the first time it crosses the 30% visibility threshold - [nxInViewOnce]=&quot;true&quot; stops the observer right after that first reveal, so scrolling back up and down again doesn't replay the animation."
+                [code]="code"
+                [tsCode]="ts"
+                [hasSampleClass]="false">
+
+                <div style="max-width:420px; max-height:320px; overflow-y:auto; border:1px solid var(--shell-border); border-radius:8px; padding:16px;">
+                    <div style="height:140px; display:flex; align-items:center; justify-content:center; color:var(--shell-text-muted); font-size:0.85rem;">
+                        Scroll down &#8595;
+                    </div>
+
+                    @for (block of blocks; track block.id) {
+                        <div
+                            nxInView
+                            [nxInViewOnce]="true"
+                            [nxInViewThreshold]="0.3"
+                            (nxInViewChange)="onVisible(block, $event)"
+                            [style.opacity]="block.visible ? 1 : 0"
+                            [style.transform]="block.visible ? 'translateY(0)' : 'translateY(24px)'"
+                            style="transition: opacity 0.5s ease, transform 0.5s ease; padding:24px; margin-bottom:180px; background:var(--shell-surface); border:1px solid var(--shell-border); border-radius:8px; text-align:center;">
+                            {{ block.label }}
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

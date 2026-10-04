@@ -1,0 +1,40 @@
+.nx-description-list {
+    display: grid;
+    grid-template-columns: repeat(var(--nx-dl-columns, 1), 1fr);
+    gap: 0;
+    margin: 0;
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-description-list.bordered {
+    border: 1px solid var(--shell-border);
+}
+
+.nx-description-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-description-list.bordered .nx-description-row {
+    border-inline-end: 1px solid var(--shell-border);
+}
+
+.nx-description-row:nth-last-child(-n+1) {
+    border-bottom: none;
+}
+
+.nx-description-term {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-description-definition {
+    margin: 0;
+    font-size: 14px;
+    color: var(--shell-text);
+}

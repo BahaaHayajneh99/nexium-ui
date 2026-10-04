@@ -1,0 +1,248 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: var(--shell-bg, #0a0a0a);
+}
+
+.ecom-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.ecom-cart-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.ecom-cart-btn:hover {
+    border-color: var(--shell-primary);
+}
+
+.ecom-cart-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background-color: var(--shell-primary);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.ecom-hero {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 70px 20px 40px;
+    text-align: center;
+}
+
+.ecom-hero h1 {
+    margin: 0 0 12px;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--shell-text);
+}
+
+.ecom-hero p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 15px;
+}
+
+.ecom-shop {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 20px 80px;
+}
+
+.ecom-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.ecom-category-chip {
+    padding: 8px 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.ecom-category-chip.active {
+    border-color: var(--shell-primary);
+    background-color: rgba(52, 152, 219, .12);
+    color: var(--shell-primary);
+}
+
+.ecom-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.ecom-product-card {
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    overflow: hidden;
+}
+
+.ecom-product-image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 140px;
+    color: rgba(255, 255, 255, .85);
+}
+
+.ecom-product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.ecom-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px;
+}
+
+.ecom-product-category {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--shell-text-secondary);
+}
+
+.ecom-product-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.ecom-product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.ecom-product-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.ecom-cart {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+
+.ecom-cart h3 {
+    margin: 0;
+    color: var(--shell-text);
+}
+
+.ecom-cart-empty {
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}
+
+.ecom-cart-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--shell-success, #2ecc71);
+}
+
+.ecom-cart-success p {
+    margin: 0;
+    color: var(--shell-text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.ecom-cart-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.ecom-cart-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ecom-cart-swatch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, .85);
+}
+
+.ecom-cart-line-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ecom-cart-line-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.ecom-cart-line-meta {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.ecom-cart-remove {
+    border: none;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.ecom-cart-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--shell-border);
+    font-weight: 700;
+    color: var(--shell-text);
+}

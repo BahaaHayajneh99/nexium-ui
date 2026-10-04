@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Full File Browser"
+                description="{{ commonService.appName }} File Manager - double-click a folder to open it, click a file to open a full-screen preview (Prev/Next cycle through the folder's files), drag a file onto a folder to move it, right-click for rename/copy/cut/delete, upload real files, search the current folder, sort by clicking a column, and multi-select with ctrl/cmd-click. The toolbar's storage widget sums every file's size across the whole tree against the 10GB quota given here. Entirely client-side over the data you give it. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-file-manager [root]="root" [storageQuotaBytes]="10 * 1024 * 1024 * 1024" (rootChange)="onRootChange($event)"></nx-file-manager>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

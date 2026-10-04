@@ -1,0 +1,158 @@
+.nx-pivot {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.nx-pivot-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nx-pivot-filter {
+    flex: 1;
+    min-width: 160px;
+    max-width: 280px;
+    padding: 8px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 6px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-pivot-toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-pivot-btn {
+    padding: 7px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 6px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nx-pivot-btn:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-pivot-btn-primary {
+    background-color: var(--shell-primary);
+    border-color: var(--shell-primary);
+    color: #fff;
+}
+
+.nx-pivot-btn-primary:hover {
+    opacity: .9;
+    color: #fff;
+}
+
+.nx-pivot-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+}
+
+.nx-pivot-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.nx-pivot-group-header,
+.nx-pivot-col-header {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+    background-color: var(--shell-surface);
+    border-bottom: 1px solid var(--shell-border);
+    white-space: nowrap;
+}
+
+.nx-pivot-col-header {
+    text-align: right;
+}
+
+.nx-pivot-total-header {
+    color: var(--shell-text);
+}
+
+.nx-pivot-row-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    color: var(--shell-text);
+    white-space: nowrap;
+}
+
+.nx-pivot-row td {
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-pivot-row:last-child td {
+    border-bottom: none;
+}
+
+.nx-pivot-indent {
+    flex-shrink: 0;
+}
+
+.nx-pivot-toggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: none;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.nx-pivot-toggle-spacer {
+    flex-shrink: 0;
+    display: inline-block;
+    width: 16px;
+}
+
+.nx-pivot-cell {
+    padding: 8px 12px;
+    text-align: right;
+    color: var(--shell-text-secondary);
+    white-space: nowrap;
+}
+
+.nx-pivot-cell-total {
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-pivot-empty {
+    padding: 24px 12px;
+    text-align: center;
+    color: var(--shell-text-secondary);
+}
+
+.nx-pivot-grand-total td {
+    padding: 10px 12px;
+    font-weight: 700;
+    color: var(--shell-text);
+    background-color: var(--shell-surface);
+    border-top: 2px solid var(--shell-border);
+}

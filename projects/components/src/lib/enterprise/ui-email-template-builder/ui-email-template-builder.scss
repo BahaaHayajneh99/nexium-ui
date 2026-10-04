@@ -1,0 +1,227 @@
+.nx-email-builder {
+    display: grid;
+    grid-template-columns: 160px 1fr 240px;
+    gap: 16px;
+    min-height: 400px;
+}
+
+@media (max-width: 860px) {
+    .nx-email-builder {
+        grid-template-columns: 1fr;
+    }
+}
+
+.nx-email-builder-palette {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nx-email-builder-palette-title,
+.nx-email-builder-props-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--shell-text-secondary);
+    margin-bottom: 4px;
+}
+
+.nx-email-builder-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.nx-email-builder-add-btn:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-email-builder-export-toggle {
+    margin-top: 10px;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-email-builder-canvas {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 20px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: #fff;
+}
+
+.nx-email-builder-block {
+    position: relative;
+    padding: 6px;
+    border: 1px dashed transparent;
+    border-radius: var(--nx-radius-sm, 4px);
+    cursor: pointer;
+}
+
+.nx-email-builder-block:hover {
+    border-color: var(--shell-border);
+}
+
+.nx-email-builder-block.selected {
+    border-color: var(--shell-primary);
+    background-color: rgba(52, 152, 219, .06);
+}
+
+.nx-email-builder-block-controls {
+    position: absolute;
+    top: -10px;
+    right: 2px;
+    display: none;
+    gap: 2px;
+    z-index: 1;
+}
+
+.nx-email-builder-block:hover .nx-email-builder-block-controls,
+.nx-email-builder-block.selected .nx-email-builder-block-controls {
+    display: flex;
+}
+
+.nx-email-builder-block-controls button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--shell-border);
+    border-radius: 4px;
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-email-builder-remove:hover {
+    color: var(--danger-color, #e74c3c);
+}
+
+.nx-email-builder-heading {
+    margin: 0;
+    font-size: 20px;
+    color: #1a1a1a;
+}
+
+.nx-email-builder-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #4a4a4a;
+}
+
+.nx-email-builder-image {
+    max-width: 100%;
+    border-radius: 6px;
+}
+
+.nx-email-builder-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nx-email-builder-divider {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 8px 0;
+}
+
+.nx-email-builder-spacer {
+    background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, .04) 0, rgba(0, 0, 0, .04) 4px, transparent 4px, transparent 8px);
+    border-radius: 4px;
+}
+
+.nx-email-builder-empty,
+.nx-email-builder-props-empty {
+    padding: 24px 12px;
+    text-align: center;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}
+
+.nx-email-builder-props {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nx-email-builder-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-email-builder-field input,
+.nx-email-builder-field textarea,
+.nx-email-builder-field select {
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.nx-email-builder-export {
+    position: relative;
+    margin-top: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+}
+
+.nx-email-builder-export-code {
+    margin: 0;
+    padding: 14px;
+    max-height: 300px;
+    overflow: auto;
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    white-space: pre;
+}
+
+.nx-email-builder-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: rgba(255, 255, 255, .08);
+    color: #fff;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-email-builder-copy-btn:hover {
+    background-color: rgba(255, 255, 255, .16);
+}

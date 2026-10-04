@@ -1,0 +1,147 @@
+@if (licensed()) {
+    <div class="nx-image-editor">
+        <div class="nx-editor-toolbar">
+            <button type="button" class="nx-editor-tool-btn" [class.active]="activeTool() === 'crop'" (click)="selectTool('crop')">Crop</button>
+            <button type="button" class="nx-editor-tool-btn" [class.active]="activeTool() === 'resize'" (click)="selectTool('resize')">Resize</button>
+            <button type="button" class="nx-editor-tool-btn" [class.active]="activeTool() === 'rotate'" (click)="selectTool('rotate')">Rotate</button>
+            <button type="button" class="nx-editor-tool-btn" [class.active]="activeTool() === 'flip'" (click)="selectTool('flip')">Flip</button>
+            <button type="button" class="nx-editor-tool-btn" [class.active]="activeTool() === 'adjust'" (click)="selectTool('adjust')">Adjust</button>
+            <button type="button" class="nx-editor-tool-btn" [class.active]="activeTool() === 'filters'" (click)="selectTool('filters')">Filters</button>
+            <button type="button" class="nx-editor-tool-btn" [class.active]="activeTool() === 'draw'" (click)="selectTool('draw')">
+                <nx-icon icon="nx-edit" variant="svg" [size]="14"></nx-icon> Draw
+            </button>
+            <button type="button" class="nx-editor-tool-btn" [class.active]="activeTool() === 'text'" (click)="selectTool('text')">Text</button>
+            <button type="button" class="nx-editor-tool-btn" [class.active]="activeTool() === 'shapes'" (click)="selectTool('shapes')">Shapes</button>
+
+            <span class="nx-editor-spacer"></span>
+
+            <button type="button" (click)="undo()" [disabled]="!canUndo()" aria-label="Undo">
+                <nx-icon icon="nx-arrow-left" variant="svg" [size]="14"></nx-icon> Undo
+            </button>
+            <button type="button" (click)="redo()" [disabled]="!canRedo()" aria-label="Redo">
+                Redo <nx-icon icon="nx-arrow-right" variant="svg" [size]="14"></nx-icon>
+            </button>
+            <button type="button" class="nx-editor-save-btn" (click)="save()" [disabled]="!hasImage()">
+                <nx-icon icon="nx-save" variant="svg" [size]="14"></nx-icon> Save
+            </button>
+        </div>
+
+        <div class="nx-editor-panel">
+            @switch (activeTool()) {
+                @case ('crop') {
+                    <span class="nx-editor-hint">Drag the rectangle to move it, drag a handle to resize it.</span>
+                    <button type="button" class="nx-editor-apply-btn" (click)="applyCrop()" [disabled]="!hasImage()">Apply Crop</button>
+                }
+                @case ('resize') {
+                    <label class="nx-editor-field">W
+                        <input type="number" min="1" [value]="resizeWidth()" (input)="onResizeWidthChange($any($event.target).value)" />
+                    </label>
+                    <label class="nx-editor-field">H
+                        <input type="number" min="1" [value]="resizeHeight()" (input)="onResizeHeightChange($any($event.target).value)" />
+                    </label>
+                    <label class="nx-editor-check">
+                        <input type="checkbox" [checked]="aspectLocked()" (change)="toggleAspectLock($any($event.target).checked)" />
+                        Lock aspect ratio
+                    </label>
+                    <button type="button" class="nx-editor-apply-btn" (click)="applyResize()" [disabled]="!hasImage()">Apply</button>
+                }
+                @case ('rotate') {
+                    <button type="button" (click)="rotateLeft()" [disabled]="!hasImage()">Rotate Left 90&deg;</button>
+                    <button type="button" (click)="rotateRight()" [disabled]="!hasImage()">Rotate Right 90&deg;</button>
+                }
+                @case ('flip') {
+                    <button type="button" (click)="flipHorizontal()" [disabled]="!hasImage()">Flip Horizontal</button>
+                    <button type="button" (click)="flipVertical()" [disabled]="!hasImage()">Flip Vertical</button>
+                }
+                @case ('adjust') {
+                    <label class="nx-editor-field nx-editor-field-range">
+                        Brightness
+                        <input type="range" min="-100" max="100" [value]="brightness()" (input)="onBrightnessChange($any($event.target).value)" />
+                        <span class="nx-editor-range-value">{{ brightness() }}</span>
+                    </label>
+                    <label class="nx-editor-field nx-editor-field-range">
+                        Contrast
+                        <input type="range" min="-100" max="100" [value]="contrast()" (input)="onContrastChange($any($event.target).value)" />
+                        <span class="nx-editor-range-value">{{ contrast() }}</span>
+                    </label>
+                    <button type="button" class="nx-editor-apply-btn" (click)="applyAdjust()" [disabled]="!hasImage()">Apply</button>
+                }
+                @case ('filters') {
+                    <button type="button" (click)="applyFilter('grayscale')" [disabled]="!hasImage()">Grayscale</button>
+                    <button type="button" (click)="applyFilter('sepia')" [disabled]="!hasImage()">Sepia</button>
+                    <button type="button" (click)="applyFilter('invert')" [disabled]="!hasImage()">Invert</button>
+                }
+                @case ('draw') {
+                    <label class="nx-editor-field">Color <input type="color" [value]="strokeColor()" (input)="setStrokeColor($any($event.target).value)" /></label>
+                    <label class="nx-editor-field">Width <input type="range" min="1" max="40" [value]="strokeWidth()" (input)="setStrokeWidth($any($event.target).value)" /></label>
+                    <span class="nx-editor-hint">Draw directly on the image.</span>
+                }
+                @case ('text') {
+                    <label class="nx-editor-field">Color <input type="color" [value]="textColor()" (input)="setTextColor($any($event.target).value)" /></label>
+                    <label class="nx-editor-field">Size <input type="number" min="8" max="200" [value]="textFontSize()" (input)="setTextFontSize($any($event.target).value)" /></label>
+                    <span class="nx-editor-hint">Click anywhere on the image to place a text box, then type and press Enter.</span>
+                }
+                @case ('shapes') {
+                    <button type="button" class="nx-editor-tool-btn" [class.active]="shapeType() === 'rectangle'" (click)="setShapeType('rectangle')">Rectangle</button>
+                    <button type="button" class="nx-editor-tool-btn" [class.active]="shapeType() === 'ellipse'" (click)="setShapeType('ellipse')">Ellipse</button>
+                    <label class="nx-editor-field">Color <input type="color" [value]="strokeColor()" (input)="setStrokeColor($any($event.target).value)" /></label>
+                    <label class="nx-editor-field">Width <input type="range" min="1" max="40" [value]="strokeWidth()" (input)="setStrokeWidth($any($event.target).value)" /></label>
+                }
+            }
+        </div>
+
+        <div class="nx-editor-stage">
+            <div class="nx-editor-canvas-wrap" [style.width.px]="displaySize().w || 320" [style.height.px]="displaySize().h || 220">
+                <canvas
+                    #displayCanvas
+                    class="nx-editor-canvas"
+                    [class.nx-editor-canvas-hidden]="!hasImage()"
+                    [class.nx-editor-canvas-draw]="activeTool() === 'draw'"
+                    [class.nx-editor-canvas-crosshair]="activeTool() === 'shapes' || activeTool() === 'text'"
+                    [style.width.px]="displaySize().w || 320"
+                    [style.height.px]="displaySize().h || 220"
+                    (pointerdown)="onCanvasPointerDown($event)"
+                    (pointermove)="onCanvasPointerMove($event)"
+                    (pointerup)="onCanvasPointerUp($event)"
+                    (pointerleave)="onCanvasPointerUp($event)"
+                    (pointercancel)="onCanvasPointerUp($event)">
+                </canvas>
+
+                @if (!hasImage()) {
+                    <div class="nx-editor-empty">No image provided.</div>
+                }
+
+                @if (hasImage() && activeTool() === 'crop') {
+                    <div
+                        class="nx-editor-crop-rect"
+                        [style.left.px]="cropPx().left"
+                        [style.top.px]="cropPx().top"
+                        [style.width.px]="cropPx().width"
+                        [style.height.px]="cropPx().height"
+                        (mousedown)="onCropBodyDown($event)">
+                        @for (h of handles; track h) {
+                            <span class="nx-editor-handle nx-editor-handle-{{ h }}" (mousedown)="onCropHandleDown($event, h)"></span>
+                        }
+                    </div>
+                }
+
+                @if (textEditor(); as te) {
+                    <input
+                        #textInputEl
+                        type="text"
+                        class="nx-editor-text-input"
+                        [style.left.px]="te.displayX"
+                        [style.top.px]="te.displayY"
+                        [style.color]="textColor()"
+                        [style.fontSize.px]="textFontSize()"
+                        [value]="te.value"
+                        (input)="onTextEditorInput($any($event.target).value)"
+                        (keydown)="onTextEditorKeydown($event)"
+                        (blur)="commitTextIfPending()" />
+                }
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Image Editor"></nx-pro-locked>
+}

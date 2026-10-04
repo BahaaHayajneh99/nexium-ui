@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Full Editing Toolkit"
+                description="{{ commonService.appName }} Image Editor - a full toolbar (Crop, Resize, Rotate, Flip, Adjust, Filters, Draw, Text, Shapes) built around a real in-memory canvas, plus Undo/Redo and Save. This is a PRO component. Try cropping the sample photo, rotating it, nudging brightness/contrast, applying a filter, then click Save to see the exported PNG below."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-image-editor [src]="sampleImage" (saved)="onSaved($event)"></nx-image-editor>
+                @if (savedResult()) {
+                    <div class="editor-result">
+                        <p>Saved result:</p>
+                        <img [src]="savedResult()" alt="Saved edited result" />
+                    </div>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Draw, Text &amp; Shapes"
+                description="Switch to the Draw tool to paint freehand strokes in a chosen color/width directly onto the image, the Text tool to click-and-type a caption that bakes in with ctx.fillText, or the Shapes tool to drag out a stroked rectangle or ellipse. Every one of these pushes an undo snapshot first, so Undo always walks back one committed change at a time."
+                [code]="toolsCode"
+                [tsCode]="toolsTs"
+                [hasSampleClass]="false">
+                <nx-image-editor [src]="secondSampleImage" (saved)="onSecondSaved($event)"></nx-image-editor>
+                @if (secondSavedResult()) {
+                    <div class="editor-result">
+                        <p>Saved result:</p>
+                        <img [src]="secondSavedResult()" alt="Saved edited result" />
+                    </div>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

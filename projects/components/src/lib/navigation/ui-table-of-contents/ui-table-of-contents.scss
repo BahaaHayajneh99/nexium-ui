@@ -1,0 +1,33 @@
+.nx-toc {
+    font-size: 14px;
+}
+
+.nx-toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nx-toc-link {
+    display: block;
+    padding: 6px 10px;
+    border-left: 2px solid transparent;
+    color: var(--shell-text-secondary);
+    text-decoration: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+}
+
+.nx-toc-link:hover {
+    color: var(--shell-text);
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-toc-link.active {
+    color: var(--shell-primary, #3498db);
+    border-left-color: var(--shell-primary, #3498db);
+    font-weight: var(--nx-font-weight-semibold, 600);
+}

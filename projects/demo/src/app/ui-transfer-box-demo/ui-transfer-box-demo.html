@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Project Team"
+                description="Two panels - Available and Selected - each with its own search box and per-item checkboxes. Check items in either panel and use '>'/'<' to move just those, or '>>'/'<<' to move everything at once."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-transfer-box [items]="members" [selectedIds]="projectTeam()" (selectedIdsChange)="onSelectedIdsChange($event)"></nx-transfer-box>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Permission Grants"
+                description="A second instance with a different item set and nothing selected yet - a common pattern for assigning permissions or roles from scratch."
+                [code]="permissionsCode"
+                [tsCode]="permissionsTs"
+                [hasSampleClass]="false">
+                <nx-transfer-box [items]="permissions" [selectedIds]="grantedPermissions()" (selectedIdsChange)="onPermissionsChange($event)"></nx-transfer-box>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

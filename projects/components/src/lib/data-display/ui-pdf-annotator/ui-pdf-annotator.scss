@@ -1,0 +1,234 @@
+.nx-pdf-annotator {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+    background-color: var(--shell-surface);
+}
+
+.nx-annot-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-annot-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+}
+
+.nx-annot-tools {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nx-annot-tool-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #fff);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nx-annot-tool-btn:hover {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-annot-tool-btn.active {
+    border-color: var(--shell-primary, #3498db);
+    background-color: var(--shell-primary, #3498db);
+    color: #ffffff;
+}
+
+.nx-annot-colors {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-left: 4px;
+    border-left: 1px solid var(--shell-border);
+}
+
+.nx-annot-color-swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nx-annot-color-swatch.active {
+    border-color: var(--shell-text);
+    box-shadow: 0 0 0 1px var(--shell-surface);
+}
+
+.nx-annot-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.nx-annot-actions button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #fff);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-annot-actions button:hover:not(:disabled) {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-annot-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.nx-annot-export-btn {
+    background-color: var(--shell-primary, #3498db) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+}
+
+.nx-annot-export-btn:disabled {
+    background-color: var(--shell-border) !important;
+    color: var(--shell-text-secondary) !important;
+}
+
+.nx-annot-stage {
+    position: relative;
+    overflow: hidden;
+    background-color: #525659;
+    user-select: none;
+}
+
+.nx-annot-stage.tool-active {
+    cursor: crosshair;
+}
+
+.nx-annot-stage.tool-active .nx-annot-frame {
+    pointer-events: none;
+}
+
+.nx-annot-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #fff;
+}
+
+.nx-annot-overlay-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.nx-annot-text {
+    position: absolute;
+    transform: translate(-2px, -2px);
+    max-width: 60%;
+    padding: 2px 5px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: rgba(255, 255, 255, 0.92);
+    border: 1px solid currentColor;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: pre-wrap;
+    word-break: break-word;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.nx-annot-text-input {
+    position: absolute;
+    min-width: 140px;
+    padding: 3px 6px;
+    border: 1px solid var(--shell-primary, #3498db);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.nx-annot-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 12px;
+    border-top: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-annot-list-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 6px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: 11px;
+    color: var(--shell-text);
+}
+
+.nx-annot-list-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.nx-annot-list-label {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nx-annot-list-item button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    padding: 0;
+}
+
+.nx-annot-list-item button:hover {
+    color: #e74c3c;
+}

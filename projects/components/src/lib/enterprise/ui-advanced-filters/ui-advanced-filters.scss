@@ -1,0 +1,91 @@
+.nx-advanced-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-advanced-filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-advanced-filters-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-advanced-filters-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+
+.nx-advanced-filters-input,
+.nx-advanced-filters-select {
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 13px;
+    min-width: 140px;
+}
+
+.nx-advanced-filters-input-sm {
+    min-width: 80px;
+}
+
+.nx-advanced-filters-range {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nx-advanced-filters-range-sep {
+    color: var(--shell-text-secondary);
+}
+
+.nx-advanced-filters-more,
+.nx-advanced-filters-clear {
+    padding: 6px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.nx-advanced-filters-more:hover,
+.nx-advanced-filters-clear:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+}
+
+.nx-advanced-filters-more {
+    color: var(--shell-primary, #3498db);
+    border-color: var(--shell-primary, #3498db);
+}
+
+.nx-advanced-filters-advanced {
+    padding: 10px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-bg, #ffffff);
+}
+
+.nx-advanced-filters-advanced-header {
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}

@@ -1,0 +1,15 @@
+.editor-result {
+    margin-top: 12px;
+
+    p {
+        margin: 0 0 6px;
+        font-size: 12px;
+        color: var(--shell-text-secondary);
+    }
+
+    img {
+        max-width: 240px;
+        border: 1px solid var(--shell-border);
+        border-radius: var(--nx-radius-sm, 4px);
+    }
+}

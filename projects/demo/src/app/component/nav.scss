@@ -68,6 +68,27 @@
                 transform: rotate(90deg);
             }
         }
+
+        // Shared by both the top-level flat nav item's badge (directly under .nav-item > a) and
+        // the nested sub-nav link's badge (.sub-nav .sub-nav-child a.nav-link) below, so a NEW/PRO
+        // chip is the same size everywhere in the sidebar, not just inside expanded sub-menus.
+        .nav-link-badges {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .nav-badge-chip {
+            --nx-font-size-sm: 9px;
+            --nx-spacing-xs: 0px;
+            --nx-spacing-md: 6px;
+            --nx-font-weight-medium: 700;
+            letter-spacing: .04em;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
     }
 
     .sub-nav {
@@ -147,23 +168,6 @@
                 }
             }
 
-            .nav-link-badges {
-                margin-left: auto;
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                flex-shrink: 0;
-            }
-
-            .nav-badge-chip {
-                --nx-font-size-sm: 9px;
-                --nx-spacing-xs: 0px;
-                --nx-spacing-md: 6px;
-                --nx-font-weight-medium: 700;
-                letter-spacing: .04em;
-                line-height: 1.4;
-                flex-shrink: 0;
-            }
         }
     }
 }

@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Line Numbers, Find, Copy &amp; Download"
+                description="{{ commonService.appName }} Text Viewer - toggle word-wrap, search the file with match navigation (highlighted, current match emphasized), copy the whole file, or download it. Try searching 'WARN' or 'ERROR'. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-text-viewer [content]="content" filename="server.log"></nx-text-viewer>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="recipes-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="recipes-brand">
+            <nx-icon icon="nx-heart" variant="svg" [size]="18"></nx-icon>
+            <span>Harvest Table</span>
+        </div>
+        <div nx-navbar-links>
+            <a routerLink="/getting-started/introduction">← Docs</a>
+        </div>
+    </nx-navbar>
+
+    @if (!selectedRecipe()) {
+        <div class="recipes-catalog">
+            <h1>What are we cooking?</h1>
+            <p class="recipes-sub">Harvest Table is a fictional recipe site built entirely with NexiumUI.</p>
+
+            <nx-search
+                placeholder="Search recipes..."
+                [ngModel]="search()"
+                (ngModelChange)="search.set($event)"
+                class="recipes-search">
+            </nx-search>
+
+            <div class="recipes-categories">
+                @for (cat of categories; track cat) {
+                    <button type="button" class="recipes-cat-chip" [class.active]="activeCategory() === cat" (click)="activeCategory.set(cat)">
+                        {{ cat }}
+                    </button>
+                }
+            </div>
+
+            <div class="recipes-grid">
+                @for (recipe of filteredRecipes(); track recipe.id) {
+                    <button type="button" class="recipes-card" (click)="openRecipe(recipe)">
+                        <div class="recipes-card-image" [style.background]="recipe.swatch">
+                            <nx-icon [icon]="recipe.icon" variant="svg" [size]="28"></nx-icon>
+                            <nx-badge [variant]="difficultyVariant(recipe.difficulty)" class="recipes-card-badge">{{ recipe.difficulty }}</nx-badge>
+                        </div>
+                        <div class="recipes-card-info">
+                            <div class="recipes-card-category">{{ recipe.category }}</div>
+                            <div class="recipes-card-title">{{ recipe.title }}</div>
+                            <nx-rating [value]="recipe.rating" [readonly]="true"></nx-rating>
+                            <div class="recipes-card-time">
+                                <nx-icon icon="nx-clock" variant="svg" [size]="12"></nx-icon>
+                                {{ recipe.time }}
+                            </div>
+                        </div>
+                    </button>
+                } @empty {
+                    <p class="recipes-empty">No recipes match your search.</p>
+                }
+            </div>
+        </div>
+    } @else {
+        <div class="recipes-detail">
+            <button type="button" class="recipes-back" (click)="backToRecipes()">
+                <nx-icon icon="nx-chevron-left" variant="svg" [size]="14"></nx-icon>
+                All recipes
+            </button>
+
+            <div class="recipes-detail-image" [style.background]="selectedRecipe()!.swatch">
+                <nx-icon [icon]="selectedRecipe()!.icon" variant="svg" [size]="48"></nx-icon>
+            </div>
+
+            <div class="recipes-detail-body">
+                <div class="recipes-detail-main">
+                    <nx-badge [variant]="difficultyVariant(selectedRecipe()!.difficulty)">{{ selectedRecipe()!.difficulty }}</nx-badge>
+                    <h2>{{ selectedRecipe()!.title }}</h2>
+                    <nx-rating [value]="selectedRecipe()!.rating" [readonly]="true"></nx-rating>
+                    <p class="recipes-detail-description">{{ selectedRecipe()!.description }}</p>
+
+                    <h3 id="steps">Steps</h3>
+                    <ol class="recipes-steps">
+                        @for (step of selectedRecipe()!.steps; track $index) {
+                            <li [class.done]="completedSteps().has($index)" (click)="toggleStep($index)">
+                                <nx-icon [icon]="completedSteps().has($index) ? 'nx-check-circle' : 'nx-clock'" variant="svg" [size]="16"></nx-icon>
+                                <span>{{ step }}</span>
+                            </li>
+                        }
+                    </ol>
+
+                    <h3 id="notes">Notes</h3>
+                    <p class="recipes-detail-notes">{{ selectedRecipe()!.notes }}</p>
+                </div>
+
+                <div class="recipes-sidebar">
+                    <nx-table-of-contents [headings]="recipeHeadings" class="recipes-toc"></nx-table-of-contents>
+
+                    <div class="recipes-ingredients-card">
+                        <div class="recipes-servings-row">
+                            <span><nx-icon icon="nx-users" variant="svg" [size]="14"></nx-icon> Servings</span>
+                            <div class="recipes-servings-stepper">
+                                <button type="button" (click)="adjustServings(-1)">
+                                    <nx-icon icon="nx-minus" variant="svg" [size]="12"></nx-icon>
+                                </button>
+                                <span>{{ servings() }}</span>
+                                <button type="button" (click)="adjustServings(1)">
+                                    <nx-icon icon="nx-plus" variant="svg" [size]="12"></nx-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                        <h3 id="ingredients">Ingredients</h3>
+                        <ul class="recipes-ingredients">
+                            @for (ingredient of scaledIngredients(); track ingredient.name) {
+                                <li>
+                                    <span class="recipes-ingredient-amount">{{ ingredient.amount }} {{ ingredient.unit }}</span>
+                                    {{ ingredient.name }}
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

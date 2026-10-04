@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Single Select"
+                description="The {{ commonService.appName }} Tree Select is a dropdown trigger whose panel holds a tree picker instead of a flat list - useful for hierarchical data like this org chart. Click the trigger to open the panel, use the chevrons to expand/collapse a branch independently of selection, and click any node (at any depth) to pick it - the panel closes immediately in single mode."
+                [code]="singleCode"
+                [tsCode]="singleTs"
+                [hasSampleClass]="false">
+                <nx-tree-select
+                    [nodes]="orgNodes"
+                    [selectedIds]="singleSelectedIds"
+                    (selectedIdsChange)="onSingleChange($event)"
+                    placeholder="Assign to a team...">
+                </nx-tree-select>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Multiple Select"
+                description="Set multiple to true to get a checkbox per node instead of a single-pick action - the panel stays open across picks so several teams can be selected in one pass. The trigger shows the first selected label plus a '+N more' summary once more than one is selected."
+                [code]="multiCode"
+                [tsCode]="multiTs"
+                [hasSampleClass]="false">
+                <nx-tree-select
+                    [nodes]="orgNodes"
+                    [multiple]="true"
+                    [selectedIds]="multiSelectedIds"
+                    (selectedIdsChange)="onMultiChange($event)"
+                    placeholder="Select teams...">
+                </nx-tree-select>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

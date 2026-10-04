@@ -1,0 +1,51 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Focus Trap</h4>
+                <p class="main-section-description">
+                    While nxFocusTrap is true, Tab/Shift+Tab cycling is kept within the host's focusable
+                    descendants - Tab from the last one wraps back to the first, and Shift+Tab from the first
+                    wraps to the last. Focus is restored to whatever was focused beforehand once the trap
+                    deactivates.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Trapped fake modal"
+                description="Enable the trap, then click into the box below and press Tab repeatedly - focus cycles through the two fields and two buttons but can never escape to this paragraph, the toggle button, or anything else outside the box. Disable the trap and Tab again to see it escape normally, and notice focus returns to the toggle button once disabled."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <nx-button (click)="toggle()">{{ trapActive ? 'Disable' : 'Enable' }} focus trap</nx-button>
+
+                <div
+                    [nxFocusTrap]="trapActive"
+                    style="margin-top:1rem; padding:1.5rem; max-width:360px; border:2px solid var(--shell-border); border-radius:8px; display:flex; flex-direction:column; gap:0.75rem;"
+                    [style.border-color]="trapActive ? 'var(--shell-primary, #3498db)' : 'var(--shell-border)'">
+
+                    <p class="template-form-note" style="margin:0;">
+                        {{ trapActive ? 'Trap is ON - Tab cannot leave this box.' : 'Trap is OFF - Tab behaves normally.' }}
+                    </p>
+
+                    <input placeholder="First name" style="padding:8px; border:1px solid var(--shell-border); border-radius:4px;" />
+                    <input placeholder="Last name" style="padding:8px; border:1px solid var(--shell-border); border-radius:4px;" />
+
+                    <div style="display:flex; gap:0.5rem;">
+                        <nx-button>Cancel</nx-button>
+                        <nx-button>Save</nx-button>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

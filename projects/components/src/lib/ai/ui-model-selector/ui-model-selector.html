@@ -1,0 +1,26 @@
+<div class="nx-model-selector">
+    <button type="button" class="nx-model-trigger" [class.open]="open" (click)="toggleOpen()">
+        <span class="nx-model-trigger-label" [class.placeholder]="!selectedModel">{{ selectedModel?.label || placeholder }}</span>
+        <nx-icon icon="nx-chevron-down" variant="svg" [size]="14"></nx-icon>
+    </button>
+
+    @if (open) {
+        <div class="nx-model-panel">
+            @for (model of models; track model.id) {
+                <button type="button" class="nx-model-option" [class.selected]="model.id === selectedId" (click)="selectModel(model)">
+                    <div class="nx-model-option-header">
+                        <span class="nx-model-option-label">{{ model.label }}</span>
+                        @if (model.badge) {
+                            <span class="nx-model-badge">{{ model.badge }}</span>
+                        }
+                    </div>
+                    @if (model.description) {
+                        <span class="nx-model-option-desc">{{ model.description }}</span>
+                    }
+                </button>
+            } @empty {
+                <div class="nx-model-empty">No models available.</div>
+            }
+        </div>
+    }
+</div>

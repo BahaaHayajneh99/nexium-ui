@@ -1,0 +1,19 @@
+.sheet-options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sheet-options li {
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--shell-border);
+    cursor: pointer;
+}
+
+.sheet-options li:last-child {
+    border-bottom: none;
+}
+
+.sheet-options li:hover {
+    color: var(--shell-primary, #3498db);
+}

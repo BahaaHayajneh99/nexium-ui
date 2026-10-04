@@ -1,0 +1,132 @@
+<div class="jobs-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="jobs-brand">
+            <nx-icon icon="nx-folder" variant="svg" [size]="18"></nx-icon>
+            <span>Compass Careers</span>
+        </div>
+        <div nx-navbar-links>
+            <a routerLink="/getting-started/introduction">← Docs</a>
+        </div>
+    </nx-navbar>
+
+    @if (!selectedJob()) {
+        <div class="jobs-listings">
+            <h1>Open roles</h1>
+            <p class="jobs-sub">Compass is a fictional company - this careers page is built entirely with NexiumUI.</p>
+
+            <div class="jobs-departments">
+                @for (dept of departments; track dept) {
+                    <button type="button" class="jobs-dept-chip" [class.active]="activeDepartment() === dept" (click)="activeDepartment.set(dept)">
+                        {{ dept }}
+                    </button>
+                }
+            </div>
+
+            <div class="jobs-list">
+                @for (job of filteredJobs(); track job.id) {
+                    <button type="button" class="jobs-card" (click)="openJob(job)">
+                        <div class="jobs-card-main">
+                            <div class="jobs-card-title">{{ job.title }}</div>
+                            <div class="jobs-card-meta">
+                                <nx-badge variant="secondary" size="small">{{ job.department }}</nx-badge>
+                                <span><nx-icon icon="nx-map-pin" variant="svg" [size]="12"></nx-icon> {{ job.location }}</span>
+                                <span><nx-icon icon="nx-clock" variant="svg" [size]="12"></nx-icon> {{ job.type }}</span>
+                            </div>
+                        </div>
+                        <div class="jobs-card-posted">{{ job.posted }}</div>
+                    </button>
+                }
+            </div>
+        </div>
+    } @else if (!applying()) {
+        <div class="jobs-detail">
+            <button type="button" class="jobs-back" (click)="backToListings()">
+                <nx-icon icon="nx-chevron-left" variant="svg" [size]="14"></nx-icon>
+                All roles
+            </button>
+
+            <div class="jobs-detail-header">
+                <h2>{{ selectedJob()!.title }}</h2>
+                <div class="jobs-card-meta">
+                    <nx-badge variant="secondary" size="small">{{ selectedJob()!.department }}</nx-badge>
+                    <span><nx-icon icon="nx-map-pin" variant="svg" [size]="12"></nx-icon> {{ selectedJob()!.location }}</span>
+                    <span><nx-icon icon="nx-clock" variant="svg" [size]="12"></nx-icon> {{ selectedJob()!.type }}</span>
+                </div>
+            </div>
+
+            <p class="jobs-detail-description">{{ selectedJob()!.description }}</p>
+
+            <h3>What we're looking for</h3>
+            <ul class="jobs-requirements">
+                @for (req of selectedJob()!.requirements; track req) {
+                    <li>
+                        <nx-icon icon="nx-check" variant="svg" [size]="14"></nx-icon>
+                        {{ req }}
+                    </li>
+                }
+            </ul>
+
+            <nx-button variant="primary" (click)="startApplication()">Apply now</nx-button>
+        </div>
+    } @else if (!submitted()) {
+        <div class="jobs-apply">
+            <nx-stepper [steps]="steps" [activeIndex]="activeIndex()" (activeIndexChange)="activeIndex.set($event)"></nx-stepper>
+
+            <div class="jobs-apply-card">
+                <h3 class="jobs-apply-title">Apply - {{ selectedJob()!.title }}</h3>
+
+                @switch (activeIndex()) {
+                    @case (0) {
+                        <div class="jobs-apply-form">
+                            <nx-input label="Full name" placeholder="Jane Doe" [(ngModel)]="name"></nx-input>
+                            <nx-input label="Email" type="email" placeholder="jane@example.com" [(ngModel)]="email"></nx-input>
+                            <nx-input label="Phone (optional)" placeholder="+1 555 000 0000" [(ngModel)]="phone"></nx-input>
+                        </div>
+                    }
+                    @case (1) {
+                        <div class="jobs-apply-form">
+                            <label class="jobs-apply-label">Resume</label>
+                            <nx-dropzone accept=".pdf,.doc,.docx" [multiple]="false" (filesChange)="onResumeChange($event)"></nx-dropzone>
+                            <nx-input label="Portfolio / LinkedIn (optional)" placeholder="https://..." [(ngModel)]="portfolioUrl"></nx-input>
+                            <nx-textarea label="Cover note (optional)" placeholder="Anything you'd like us to know?" [(ngModel)]="coverNote" [rows]="4"></nx-textarea>
+                        </div>
+                    }
+                    @case (2) {
+                        <div class="jobs-review">
+                            <div class="jobs-review-row"><span>Name</span><strong>{{ name }}</strong></div>
+                            <div class="jobs-review-row"><span>Email</span><strong>{{ email }}</strong></div>
+                            <div class="jobs-review-row"><span>Resume</span><strong>{{ resumeFile()?.name }}</strong></div>
+                            @if (portfolioUrl) {
+                                <div class="jobs-review-row"><span>Portfolio</span><strong>{{ portfolioUrl }}</strong></div>
+                            }
+                        </div>
+                    }
+                }
+
+                <div class="jobs-apply-actions">
+                    @if (activeIndex() > 0) {
+                        <nx-button variant="secondary" (click)="back()">Back</nx-button>
+                    }
+                    @if (activeIndex() < 2) {
+                        <nx-button variant="primary" [disabled]="!canContinue" (click)="next()">Continue</nx-button>
+                    } @else {
+                        <nx-button variant="primary" (click)="submitApplication()">Submit application</nx-button>
+                    }
+                </div>
+            </div>
+        </div>
+    } @else {
+        <div class="jobs-apply">
+            <div class="jobs-apply-card jobs-success">
+                <nx-badge variant="success" rounded>Submitted</nx-badge>
+                <h2>Thanks, {{ name }}!</h2>
+                <p>Your application for {{ selectedJob()!.title }} has been received. We'll be in touch at {{ email }}.</p>
+                <nx-button variant="secondary" (click)="backToListings()">Back to open roles</nx-button>
+            </div>
+        </div>
+    }
+
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

@@ -1,0 +1,26 @@
+<button type="button" class="showcase-source-toggle" (click)="toggle()">
+    &lt;/&gt; View Source
+</button>
+
+@if (open()) {
+    <div class="showcase-source-backdrop" (click)="close()"></div>
+    <div class="showcase-source-panel" role="dialog" aria-label="Page source">
+        <div class="showcase-source-header">
+            <div class="showcase-source-tabs">
+                <button type="button" class="showcase-source-tab" [class.active]="activeTab() === 'html'" (click)="setTab('html')">HTML</button>
+                <button type="button" class="showcase-source-tab" [class.active]="activeTab() === 'ts'" (click)="setTab('ts')">TS</button>
+            </div>
+            <div class="showcase-source-actions">
+                <button type="button" class="showcase-source-copy" (click)="copy()">{{ copied() ? 'Copied!' : 'Copy' }}</button>
+                <button type="button" class="showcase-source-close" (click)="close()" aria-label="Close">×</button>
+            </div>
+        </div>
+        <div class="showcase-source-body">
+            @if (activeTab() === 'html') {
+                <code class="language-html-selector" [innerHTML]="highlightedHtml"></code>
+            } @else {
+                <code class="language-ts-selector" [innerHTML]="highlightedTs"></code>
+            }
+        </div>
+    </div>
+}

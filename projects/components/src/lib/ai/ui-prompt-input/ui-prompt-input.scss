@@ -1,0 +1,99 @@
+.nx-prompt-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.nx-prompt-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.nx-prompt-chip {
+    padding: 5px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: 999px;
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color .15s ease, color .15s ease;
+}
+
+.nx-prompt-chip:hover {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-prompt-composer {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-prompt-composer:focus-within {
+    border-color: var(--shell-primary, #3498db);
+}
+
+.nx-prompt-textarea {
+    flex: 1;
+    min-height: 24px;
+    max-height: 200px;
+    padding: 6px 8px;
+    border: none;
+    background: none;
+    color: var(--shell-text);
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+    overflow-y: auto;
+}
+
+.nx-prompt-textarea::placeholder {
+    color: var(--shell-text-secondary);
+}
+
+.nx-prompt-send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary, #3498db);
+    color: var(--white-color, #ffffff);
+    cursor: pointer;
+    transition: background-color .15s ease, opacity .15s ease;
+}
+
+.nx-prompt-send:hover:not(:disabled) {
+    background-color: var(--primary-color-dark, #2980b9);
+}
+
+.nx-prompt-send:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.nx-prompt-counter {
+    align-self: flex-end;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-prompt-counter.over {
+    color: var(--nx-color-danger, #e74c3c);
+    font-weight: 600;
+}

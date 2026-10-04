@@ -1,0 +1,32 @@
+.nx-text-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 1px;
+    background-color: var(--shell-border);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-text-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px;
+    background-color: var(--shell-surface);
+}
+
+.nx-text-stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-text-stat-label {
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-text-stat-reading .nx-text-stat-value {
+    font-size: 15px;
+}

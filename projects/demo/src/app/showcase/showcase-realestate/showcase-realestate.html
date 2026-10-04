@@ -1,0 +1,108 @@
+<div class="realestate-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="realestate-brand">
+            <nx-icon icon="nx-home" variant="svg" [size]="18"></nx-icon>
+            <span>Haven Realty</span>
+        </div>
+        <div nx-navbar-links>
+            <a routerLink="/getting-started/introduction">← Docs</a>
+        </div>
+    </nx-navbar>
+
+    @if (!selectedProperty()) {
+        <div class="realestate-listings">
+            <h1>Find your next home</h1>
+            <p class="realestate-sub">Haven Realty is a fictional listings site built entirely with NexiumUI.</p>
+
+            <div class="realestate-types">
+                @for (type of types; track type) {
+                    <button type="button" class="realestate-type-chip" [class.active]="activeType() === type" (click)="activeType.set(type)">
+                        {{ type }}
+                    </button>
+                }
+            </div>
+
+            <div class="realestate-grid">
+                @for (property of filteredProperties(); track property.id) {
+                    <button type="button" class="realestate-card" (click)="openProperty(property)">
+                        <div class="realestate-card-image" [style.background]="property.swatch">
+                            <nx-icon icon="nx-home" variant="svg" [size]="28"></nx-icon>
+                            @if (property.badge) {
+                                <nx-badge [variant]="property.badge === 'New' ? 'info' : 'warning'" class="realestate-card-badge">{{ property.badge }}</nx-badge>
+                            }
+                        </div>
+                        <div class="realestate-card-info">
+                            <div class="realestate-card-price">${{ property.price | number }}</div>
+                            <div class="realestate-card-title">{{ property.title }}</div>
+                            <div class="realestate-card-address">
+                                <nx-icon icon="nx-map-pin" variant="svg" [size]="12"></nx-icon>
+                                {{ property.address }}
+                            </div>
+                            <div class="realestate-card-specs">{{ property.beds }} bd · {{ property.baths }} ba · {{ property.sqft | number }} sqft</div>
+                        </div>
+                    </button>
+                }
+            </div>
+        </div>
+    } @else {
+        <div class="realestate-detail">
+            <button type="button" class="realestate-back" (click)="backToListings()">
+                <nx-icon icon="nx-chevron-left" variant="svg" [size]="14"></nx-icon>
+                All listings
+            </button>
+
+            <div class="realestate-detail-image" [style.background]="selectedProperty()!.swatch">
+                <nx-icon icon="nx-home" variant="svg" [size]="48"></nx-icon>
+            </div>
+
+            <div class="realestate-detail-body">
+                <div class="realestate-detail-main">
+                    <div class="realestate-detail-price">${{ selectedProperty()!.price | number }}</div>
+                    <h2>{{ selectedProperty()!.title }}</h2>
+                    <div class="realestate-detail-address">
+                        <nx-icon icon="nx-map-pin" variant="svg" [size]="14"></nx-icon>
+                        {{ selectedProperty()!.address }}
+                    </div>
+
+                    <div class="realestate-detail-specs">
+                        <div><strong>{{ selectedProperty()!.beds }}</strong><span>Beds</span></div>
+                        <div><strong>{{ selectedProperty()!.baths }}</strong><span>Baths</span></div>
+                        <div><strong>{{ selectedProperty()!.sqft | number }}</strong><span>Sqft</span></div>
+                        <div><strong>{{ selectedProperty()!.type }}</strong><span>Type</span></div>
+                    </div>
+
+                    <p class="realestate-detail-description">{{ selectedProperty()!.description }}</p>
+                </div>
+
+                <div class="realestate-agent-card">
+                    <h3>Listing agent</h3>
+                    <div class="realestate-agent-row">
+                        <nx-avatar [name]="selectedProperty()!.agent.name" size="medium"></nx-avatar>
+                        <div>
+                            <div class="realestate-agent-name">{{ selectedProperty()!.agent.name }}</div>
+                            <div class="realestate-agent-contact">{{ selectedProperty()!.agent.phone }}</div>
+                            <div class="realestate-agent-contact">{{ selectedProperty()!.agent.email }}</div>
+                        </div>
+                    </div>
+                    <nx-button variant="secondary" [fullWidth]="true">Schedule a tour</nx-button>
+
+                    <div class="realestate-agent-message">
+                        <h4>Send a message</h4>
+                        <nx-prompt-input
+                            placeholder="Ask about this property..."
+                            [maxLength]="500"
+                            (submit)="onSendMessage($event)">
+                        </nx-prompt-input>
+                        @if (justSent()) {
+                            <p class="realestate-agent-sent">✓ Message sent to {{ selectedProperty()!.agent.name }}</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

@@ -1,0 +1,79 @@
+@if (licensed()) {
+    <div class="nx-pivot">
+        <div class="nx-pivot-toolbar">
+            <input
+                type="text"
+                class="nx-pivot-filter"
+                placeholder="Quick filter..."
+                [ngModel]="quickFilter()"
+                (ngModelChange)="quickFilter.set($event)" />
+            <div class="nx-pivot-toolbar-actions">
+                <button type="button" class="nx-pivot-btn" (click)="expandAll()">Expand all</button>
+                <button type="button" class="nx-pivot-btn" (click)="collapseAll()">Collapse all</button>
+                <button type="button" class="nx-pivot-btn nx-pivot-btn-primary" (click)="exportCSV()">Export CSV</button>
+            </div>
+        </div>
+
+        <div class="nx-pivot-table-wrapper">
+            <table class="nx-pivot-table">
+                <thead>
+                    <tr>
+                        <th class="nx-pivot-group-header">{{ config.rowFields.join(' / ') }}</th>
+                        @if (columnValues().length) {
+                            @for (col of columnValues(); track col) {
+                                <th class="nx-pivot-col-header">{{ col }}</th>
+                            }
+                            <th class="nx-pivot-col-header nx-pivot-total-header">Total</th>
+                        } @else {
+                            <th class="nx-pivot-col-header nx-pivot-total-header">{{ valueLabel }}</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (node of visibleRows(); track node.path) {
+                        <tr class="nx-pivot-row" [style.--nx-pivot-depth]="node.depth">
+                            <td class="nx-pivot-row-label">
+                                <span class="nx-pivot-indent" [style.width.px]="node.depth * 20"></span>
+                                @if (node.children.length) {
+                                    <button type="button" class="nx-pivot-toggle" (click)="toggleNode(node.path)">
+                                        {{ isCollapsed(node.path) ? '▸' : '▾' }}
+                                    </button>
+                                } @else {
+                                    <span class="nx-pivot-toggle-spacer"></span>
+                                }
+                                {{ node.key }}
+                            </td>
+                            @if (columnValues().length) {
+                                @for (col of columnValues(); track col) {
+                                    <td class="nx-pivot-cell">{{ formatValue(cellValue(node, col)) }}</td>
+                                }
+                                <td class="nx-pivot-cell nx-pivot-cell-total">{{ formatValue(cellValue(node, null)) }}</td>
+                            } @else {
+                                <td class="nx-pivot-cell nx-pivot-cell-total">{{ formatValue(cellValue(node, null)) }}</td>
+                            }
+                        </tr>
+                    } @empty {
+                        <tr>
+                            <td class="nx-pivot-empty" [attr.colspan]="(columnValues().length || 1) + 1">No data available</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr class="nx-pivot-grand-total">
+                        <td class="nx-pivot-row-label">Grand Total</td>
+                        @if (columnValues().length) {
+                            @for (col of columnValues(); track col) {
+                                <td class="nx-pivot-cell">{{ formatValue(grandTotalForColumn(col)) }}</td>
+                            }
+                            <td class="nx-pivot-cell nx-pivot-cell-total">{{ formatValue(grandTotal()) }}</td>
+                        } @else {
+                            <td class="nx-pivot-cell nx-pivot-cell-total">{{ formatValue(grandTotal()) }}</td>
+                        }
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Pivot Table"></nx-pro-locked>
+}

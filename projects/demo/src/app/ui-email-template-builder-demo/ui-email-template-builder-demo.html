@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Block-Based Email Builder"
+                description="{{ commonService.appName }} Email Template Builder - add Heading, Text, Image, Button, Divider, or Spacer blocks, click a block to edit its properties on the right, reorder with the up/down arrows, and Export HTML for production-ready, inline-styled markup. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-email-template-builder [blocks]="blocks" (blocksChange)="onBlocksChange($event)"></nx-email-template-builder>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

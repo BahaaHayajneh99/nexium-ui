@@ -1,0 +1,11 @@
+.pinned-demo-member {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    font-size: 13px;
+}
+
+.pinned-demo-member span {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}

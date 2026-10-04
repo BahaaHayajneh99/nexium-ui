@@ -1,0 +1,68 @@
+@if (licensed()) {
+    <div class="nx-advanced-filters">
+        <div class="nx-advanced-filters-bar">
+            @for (field of fields; track field.field) {
+                <div class="nx-advanced-filters-field">
+                    <label class="nx-advanced-filters-label">{{ field.label }}</label>
+                    @switch (field.type) {
+                        @case ('text') {
+                            <input
+                                type="text"
+                                class="nx-advanced-filters-input"
+                                [placeholder]="field.label"
+                                (input)="onTextInput(field, $event)" />
+                        }
+                        @case ('select') {
+                            <select class="nx-advanced-filters-select" (change)="onSelectChange(field, $event)">
+                                <option value="">All</option>
+                                @for (opt of field.options; track opt) {
+                                    <option [value]="opt">{{ opt }}</option>
+                                }
+                            </select>
+                        }
+                        @case ('dateRange') {
+                            <div class="nx-advanced-filters-range">
+                                <input type="date" class="nx-advanced-filters-input" (input)="onRangeInput(field, 'from', $event)" />
+                                <span class="nx-advanced-filters-range-sep">&ndash;</span>
+                                <input type="date" class="nx-advanced-filters-input" (input)="onRangeInput(field, 'to', $event)" />
+                            </div>
+                        }
+                        @case ('numberRange') {
+                            <div class="nx-advanced-filters-range">
+                                <input
+                                    type="number"
+                                    class="nx-advanced-filters-input nx-advanced-filters-input-sm"
+                                    placeholder="Min"
+                                    (input)="onRangeInput(field, 'from', $event)" />
+                                <span class="nx-advanced-filters-range-sep">&ndash;</span>
+                                <input
+                                    type="number"
+                                    class="nx-advanced-filters-input nx-advanced-filters-input-sm"
+                                    placeholder="Max"
+                                    (input)="onRangeInput(field, 'to', $event)" />
+                            </div>
+                        }
+                    }
+                </div>
+            }
+
+            <button type="button" class="nx-advanced-filters-more" (click)="toggleMoreFilters()">
+                {{ moreFiltersOpen() ? 'Hide filters' : 'More filters' }}
+            </button>
+            <button type="button" class="nx-advanced-filters-clear" (click)="clearAll()">Clear</button>
+        </div>
+
+        @if (moreFiltersOpen()) {
+            <div class="nx-advanced-filters-advanced">
+                <div class="nx-advanced-filters-advanced-header">Advanced rules</div>
+                <nx-filter-builder
+                    [fields]="advancedFields"
+                    [conditions]="advancedConditions"
+                    (conditionsChange)="onAdvancedConditionsChange($event)">
+                </nx-filter-builder>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Advanced Filters"></nx-pro-locked>
+}

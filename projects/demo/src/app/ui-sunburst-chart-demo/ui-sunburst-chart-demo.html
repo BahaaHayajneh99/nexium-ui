@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Company → Department → Team Headcount"
+                description="{{ commonService.appName }} Sunburst Chart renders concentric rings: the root's direct children form the innermost ring, their children the next ring out. Within a ring, each arc's angular span is proportional to its value as a fraction of its PARENT's total (not the whole circle), so the hierarchy nests visually. This is a PRO component - hover an arc for its label and value."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-sunburst-chart [data]="headcount"></nx-sunburst-chart>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disk Usage by Folder → Subfolder"
+                description="A parent node with no value of its own (like node_modules here) gets an effective value equal to the sum of its children's effective values, computed recursively."
+                [code]="diskCode"
+                [tsCode]="diskTs"
+                [hasSampleClass]="false">
+                <nx-sunburst-chart [data]="diskUsage"></nx-sunburst-chart>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

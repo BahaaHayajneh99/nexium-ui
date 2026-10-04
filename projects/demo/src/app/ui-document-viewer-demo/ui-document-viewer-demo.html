@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="PDF via src"
+                description="{{ commonService.appName }} Document Viewer auto-detects the document type from the filename's extension and delegates to the matching inner viewer - here '.pdf' routes to NxPdfViewer. This is a PRO component."
+                [code]="pdfCode"
+                [tsCode]="pdfTs"
+                [hasSampleClass]="false">
+                <nx-document-viewer filename="company-handbook.pdf" [src]="pdfUrl"></nx-document-viewer>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Word via wordBlocks (no extension)"
+                description="When the filename has no recognizable extension, detection falls back to whichever parsed-data input is actually populated - here wordBlocks is set, so it renders as a Word document."
+                [code]="wordCode"
+                [tsCode]="wordTs"
+                [hasSampleClass]="false">
+                <nx-document-viewer filename="onboarding" [wordBlocks]="wordBlocks"></nx-document-viewer>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Markdown via markdownSource"
+                description="'.md' is auto-detected as markdown and delegates to NxMarkdownViewer."
+                [code]="markdownCode"
+                [tsCode]="markdownTs"
+                [hasSampleClass]="false">
+                <nx-document-viewer filename="release-notes.md" [markdownSource]="markdownSource"></nx-document-viewer>
+            </app-demo-section>
+
+            <app-demo-section
+                header="No matching data"
+                description="The detected type (Word, from the '.docx' extension) has no data to render - a clear empty state is shown instead of a blank or broken viewer."
+                [code]="missingCode"
+                [tsCode]="missingTs"
+                [hasSampleClass]="false">
+                <nx-document-viewer filename="quarterly-report.docx"></nx-document-viewer>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

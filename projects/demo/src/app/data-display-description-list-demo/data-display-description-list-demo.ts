@@ -1,58 +1,50 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CommonService } from '../services/common.service';
-import { highlightTs } from '../shared/demo-section/ts-highlight';
+import { NxDescriptionList, NxDescriptionItem } from '../../../../../dist/components';
 import { DemoSection } from '../shared/demo-section/demo-section';
-
-interface DescriptionItem {
-  term: string;
-  definition: string;
-}
 
 @Component({
   selector: 'app-data-display-description-list-demo',
   standalone: true,
-  imports: [CommonModule, DemoSection],
+  imports: [NxDescriptionList, DemoSection],
   templateUrl: './data-display-description-list-demo.html',
-  styleUrls: ['./data-display-description-list-demo.scss'],
+  styleUrl: './data-display-description-list-demo.scss',
 })
 export class DataDisplayDescriptionListDemo {
-  commonService = inject(CommonService);
+  importCode = `import { NxDescriptionList } from 'nexium-ui';`;
 
-  productDetails: DescriptionItem[] = [
-    { term: 'Product', definition: 'Premium Angular UI Component Library' },
-    { term: 'Version', definition: '1.0.0' },
+  public commonService = inject(CommonService);
+
+  productDetails: NxDescriptionItem[] = [
+    { term: 'Product', definition: `${this.commonService.appName} Component Library` },
+    { term: 'Version', definition: '0.1.8' },
     { term: 'License', definition: 'MIT' },
-    { term: 'Repository', definition: 'github.com/nexium/nexaui' },
-    { term: 'Package', definition: '@nexium/ui' },
-    { term: 'Published', definition: 'January 2024' },
+    { term: 'Package', definition: 'nexium-ui' },
   ];
 
-  basicCode = highlightTs(`
-<dl class="description-list">
-  <dt>Term</dt>
-  <dd>Definition</dd>
-  
-  <dt>Another Term</dt>
-  <dd>Another Definition</dd>
-</dl>
-  `);
+  basicCode = `<nx-description-list [items]="productDetails"></nx-description-list>`;
 
-  features = [
-    { name: 'Semantic HTML', description: 'Uses <dl>, <dt>, <dd> elements' },
-    { name: 'Key-Value Pairs', description: 'Display structured data' },
-    { name: 'Term Grouping', description: 'Group related definitions' },
-    { name: 'Accessibility', description: 'Screen reader friendly' },
-    { name: 'Flexible Layout', description: 'Multiple display options' },
-    { name: 'Multiple Definitions', description: 'One term, many definitions' },
+  basicTs = `items: NxDescriptionItem[] = [
+  { term: 'Product', definition: 'NexiumUI Component Library' },
+  { term: 'Version', definition: '0.1.8' },
+  { term: 'License', definition: 'MIT' },
+  { term: 'Package', definition: 'nexium-ui' },
+];`;
+
+  specDetails: NxDescriptionItem[] = [
+    { term: 'CPU', definition: '8-core, 3.2GHz' },
+    { term: 'Memory', definition: '32GB DDR5' },
+    { term: 'Storage', definition: '1TB NVMe SSD' },
+    { term: 'Notes', definition: 'Configuration shipped to the EU warehouse only - lead time is 2-3 weeks for other regions.', span: 2 },
   ];
 
-  useCases = [
-    { title: 'Product Info', description: 'Display product details' },
-    { title: 'FAQ', description: 'Questions and answers' },
-    { title: 'Glossary', description: 'Terms and definitions' },
-    { title: 'Specifications', description: 'Technical specifications' },
-    { title: 'Metadata', description: 'Document information' },
-    { title: 'Profile', description: 'User or company profile' },
-  ];
+  columnsCode = `<nx-description-list [items]="specDetails" [columns]="2"></nx-description-list>`;
+
+  columnsTs = `items: NxDescriptionItem[] = [
+  { term: 'CPU', definition: '8-core, 3.2GHz' },
+  { term: 'Memory', definition: '32GB DDR5' },
+  { term: 'Storage', definition: '1TB NVMe SSD' },
+  // 'span' makes one item's row stretch across multiple columns, e.g. a trailing note
+  { term: 'Notes', definition: 'Shipped to the EU warehouse only.', span: 2 },
+];`;
 }

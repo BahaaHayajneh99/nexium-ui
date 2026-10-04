@@ -6,9 +6,11 @@
                 <h4 class="main-section-header">Rich Text Editor</h4>
                 <p class="main-section-description">
                     A hand-rolled WYSIWYG editor built on <code>contenteditable</code> - covers bold,
-                    italic, underline, strikethrough, headings, quotes, lists, links and undo/redo. It's
-                    not a structured-document editor with a custom schema or collaborative editing; for
-                    that, reach for a dedicated library.
+                    italic, underline, strikethrough, headings, quotes, lists, links, undo/redo, slash
+                    commands, @-mentions, an emoji picker, tables, image upload (picker or drag-drop),
+                    code blocks, live markdown shortcuts, optional autosave, and a word/character count.
+                    It's not a structured-document editor with a custom schema or real-time collaborative
+                    editing; for that, reach for a dedicated library.
                 </p>
             </section>
 
@@ -17,6 +19,20 @@
                 description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
                 [codeLang]="'ts'"
                 [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Slash Commands, Mentions, Tables &amp; More"
+                description="Type / to open a command menu (heading, lists, quote, code block, table, image), or @ to mention a teammate from mentionUsers. Use the toolbar for a table, an image (file picker or drag a file onto the editor), or an emoji. Try '## ', '- ', or '> ' at the start of a line for live markdown shortcuts. autosaveInterval enables the save indicator in the footer."
+                [code]="enhancedCode"
+                [tsCode]="enhancedTs"
+                [hasSampleClass]="false">
+                <nx-rich-text-editor
+                    [(ngModel)]="enhancedContent"
+                    [mentionUsers]="mentionUsers"
+                    [autosaveInterval]="4000"
+                    (autosave)="onAutosave($event)">
+                </nx-rich-text-editor>
             </app-demo-section>
 
             <app-demo-section

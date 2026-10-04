@@ -1,0 +1,162 @@
+@if (licensed()) {
+    <div class="nx-calendar">
+        <div class="nx-calendar-toolbar">
+            <div class="nx-calendar-nav">
+                <button type="button" class="nx-calendar-nav-btn" (click)="prev()" aria-label="Previous">
+                    <nx-icon icon="nx-chevron-left" variant="svg" [size]="16"></nx-icon>
+                </button>
+                <button type="button" class="nx-calendar-today-btn" (click)="today()">Today</button>
+                <button type="button" class="nx-calendar-nav-btn" (click)="next()" aria-label="Next">
+                    <nx-icon icon="nx-chevron-right" variant="svg" [size]="16"></nx-icon>
+                </button>
+                <span class="nx-calendar-label">{{ headerLabel() }}</span>
+            </div>
+            <div class="nx-calendar-view-switch">
+                @for (v of views; track v) {
+                    <button type="button" class="nx-calendar-view-btn" [class.active]="view === v" (click)="setView(v)">
+                        {{ v }}
+                    </button>
+                }
+            </div>
+        </div>
+
+        @switch (view) {
+            @case ('month') {
+                <div class="nx-calendar-month">
+                    <div class="nx-calendar-month-header">
+                        @for (name of dayNames; track name) {
+                            <div class="nx-calendar-day-name">{{ name }}</div>
+                        }
+                    </div>
+                    @for (week of monthWeeks(); track $index) {
+                        <div class="nx-calendar-week">
+                            @for (day of week; track day.getTime()) {
+                                <div
+                                    class="nx-calendar-day"
+                                    [class.outside]="!isCurrentMonth(day, current())"
+                                    [class.today]="isToday(day)"
+                                    (click)="onDayClick(day)">
+                                    <span class="nx-calendar-day-number">{{ day.getDate() }}</span>
+                                    <div class="nx-calendar-day-events">
+                                        @for (event of eventsForDay(day).slice(0, 3); track event.id) {
+                                            <button
+                                                type="button"
+                                                class="nx-calendar-event-pill"
+                                                [style.background]="event.color || 'var(--shell-primary)'"
+                                                (click)="onEventClick(event, $event)">
+                                                {{ event.title }}
+                                            </button>
+                                        }
+                                        @if (eventsForDay(day).length > 3) {
+                                            <span class="nx-calendar-more">+{{ eventsForDay(day).length - 3 }} more</span>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+            @case ('week') {
+                <div class="nx-calendar-time-view">
+                    <div class="nx-calendar-time-header">
+                        <div class="nx-calendar-gutter"></div>
+                        @for (day of weekDaysList(); track day.getTime()) {
+                            <div class="nx-calendar-time-col-header" [class.today]="isToday(day)">
+                                {{ dayNames[day.getDay()] }} {{ day.getDate() }}
+                            </div>
+                        }
+                    </div>
+                    <div class="nx-calendar-time-body">
+                        <div class="nx-calendar-gutter">
+                            @for (hour of hours; track hour) {
+                                <div class="nx-calendar-hour-label">{{ hour === 0 ? '12am' : hour < 12 ? hour + 'am' : hour === 12 ? '12pm' : (hour - 12) + 'pm' }}</div>
+                            }
+                        </div>
+                        @for (day of weekDaysList(); track day.getTime()) {
+                            <div class="nx-calendar-time-col" (click)="onDayClick(day)">
+                                @for (hour of hours; track hour) {
+                                    <div class="nx-calendar-hour-row"></div>
+                                }
+                                @for (event of eventsForDay(day); track event.id) {
+                                    <button
+                                        type="button"
+                                        class="nx-calendar-time-event"
+                                        [style.top.%]="eventTop(event)"
+                                        [style.height.%]="eventHeight(event)"
+                                        [style.background]="event.color || 'var(--shell-primary)'"
+                                        (click)="onEventClick(event, $event)">
+                                        <strong>{{ event.title }}</strong>
+                                        <span>{{ eventTimeLabel(event) }}</span>
+                                    </button>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            @case ('day') {
+                <div class="nx-calendar-time-view nx-calendar-day-view">
+                    <div class="nx-calendar-time-header">
+                        <div class="nx-calendar-gutter"></div>
+                        <div class="nx-calendar-time-col-header today">{{ dayNames[current().getDay()] }} {{ current().getDate() }}</div>
+                    </div>
+                    <div class="nx-calendar-time-body">
+                        <div class="nx-calendar-gutter">
+                            @for (hour of hours; track hour) {
+                                <div class="nx-calendar-hour-label">{{ hour === 0 ? '12am' : hour < 12 ? hour + 'am' : hour === 12 ? '12pm' : (hour - 12) + 'pm' }}</div>
+                            }
+                        </div>
+                        <div class="nx-calendar-time-col" (click)="onDayClick(current())">
+                            @for (hour of hours; track hour) {
+                                <div class="nx-calendar-hour-row"></div>
+                            }
+                            @for (event of eventsForDay(current()); track event.id) {
+                                <button
+                                    type="button"
+                                    class="nx-calendar-time-event"
+                                    [style.top.%]="eventTop(event)"
+                                    [style.height.%]="eventHeight(event)"
+                                    [style.background]="event.color || 'var(--shell-primary)'"
+                                    (click)="onEventClick(event, $event)">
+                                    <strong>{{ event.title }}</strong>
+                                    <span>{{ eventTimeLabel(event) }}</span>
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+            @case ('year') {
+                <div class="nx-calendar-year">
+                    @for (entry of yearMonths(); track $index) {
+                        <div class="nx-calendar-mini-month">
+                            <button type="button" class="nx-calendar-mini-month-title" (click)="jumpToMonth(entry.month)">
+                                {{ monthName(entry.month) }}
+                            </button>
+                            <div class="nx-calendar-mini-grid">
+                                @for (week of entry.weeks; track $index) {
+                                    @for (day of week; track day.getTime()) {
+                                        <button
+                                            type="button"
+                                            class="nx-calendar-mini-day"
+                                            [class.outside]="!isCurrentMonth(day, entry.month)"
+                                            [class.today]="isToday(day)"
+                                            (click)="jumpToMonth(day)">
+                                            {{ day.getDate() }}
+                                            @if (hasEvents(day)) {
+                                                <span class="nx-calendar-mini-dot"></span>
+                                            }
+                                        </button>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Calendar"></nx-pro-locked>
+}

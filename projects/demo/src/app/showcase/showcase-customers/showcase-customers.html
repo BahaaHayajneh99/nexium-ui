@@ -1,0 +1,77 @@
+<div class="showcase-page">
+    <nx-page-header title="Customers" description="Everyone paying for Nova, and everyone about to.">
+        <nx-button nxPageHeaderActions variant="primary" (click)="openModal()">+ Add customer</nx-button>
+    </nx-page-header>
+
+    <nx-metric-grid [minColumnWidth]="200">
+        <nx-metric-card label="Customers" [value]="customers().length"></nx-metric-card>
+        <nx-metric-card label="Active" [value]="activeCount()"></nx-metric-card>
+        <nx-metric-card label="Trialing" [value]="trialCount()"></nx-metric-card>
+        <nx-metric-card label="Total MRR" [value]="totalMrr()" prefix="$"></nx-metric-card>
+    </nx-metric-grid>
+
+    <div class="showcase-card">
+        <nx-search
+            placeholder="Search customers or companies..."
+            [ngModel]="search()"
+            (ngModelChange)="search.set($event)">
+        </nx-search>
+
+        <div class="showcase-table-wrapper">
+            <table class="showcase-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Plan</th>
+                        <th>MRR</th>
+                        <th>Status</th>
+                        <th>Joined</th>
+                        <th>Tags</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (customer of filteredCustomers(); track customer.name) {
+                        <tr>
+                            <td>
+                                <div class="showcase-table-customer">
+                                    <nx-avatar [name]="customer.name" size="small"></nx-avatar>
+                                    <div>
+                                        <div class="showcase-table-name">{{ customer.name }}</div>
+                                        <div class="showcase-table-company">{{ customer.company }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><nx-badge [variant]="planVariant(customer.plan)" size="small">{{ customer.plan }}</nx-badge></td>
+                            <td>${{ customer.mrr }}</td>
+                            <td><nx-badge [variant]="statusVariant(customer.status)" size="small">{{ customer.status }}</nx-badge></td>
+                            <td>{{ customer.joined }}</td>
+                            <td class="showcase-table-tags">
+                                <nx-tag-input
+                                    [(value)]="customer.tags"
+                                    [suggestions]="tagSuggestions"
+                                    placeholder="Add tag...">
+                                </nx-tag-input>
+                            </td>
+                        </tr>
+                    } @empty {
+                        <tr><td colspan="6" class="showcase-table-empty">No customers match your search.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<nx-modal [open]="modalOpen()" (openChange)="modalOpen.set($event)" header="Add customer">
+    <div nx-modal-body class="showcase-add-form">
+        <nx-input label="Name" placeholder="Jane Doe" [(ngModel)]="newName"></nx-input>
+        <nx-input label="Company" placeholder="Acme Corp" [(ngModel)]="newCompany"></nx-input>
+        <nx-select label="Plan" [options]="planOptions" [(ngModel)]="newPlan"></nx-select>
+    </div>
+    <div nx-modal-footer>
+        <nx-button variant="secondary" (click)="modalOpen.set(false)">Cancel</nx-button>
+        <nx-button variant="primary" (click)="addCustomer()">Add customer</nx-button>
+    </div>
+</nx-modal>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

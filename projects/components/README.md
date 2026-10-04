@@ -2,8 +2,8 @@
 
 Standalone Angular components for the NexiumUI library — data display, forms, feedback,
 navigation, panels, media, uploads, layout, charts, directives, advanced interaction,
-collaboration & activity, design tools, dashboard, developer tools, and enterprise-tier
-components. Every component is a standalone Angular component or directive; the library also
+collaboration & activity, design tools, dashboard, developer tools, AI & machine learning, and
+enterprise-tier components. Every component is a standalone Angular component or directive; the library also
 ships `NexiumUiModule`, which aggregates all of them into a single `@NgModule` for apps that
 prefer that style. A subset of components are 🔒 PRO-tier - see
 [PRO / Licensed components](#pro--licensed-components).
@@ -213,6 +213,15 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Not Found | `nx-not-found` |
 | Permission Denied | `nx-permission-denied` |
 | Maintenance State | `nx-maintenance-state` |
+| Description List | `nx-description-list` |
+| Pinned Item List 🔒 PRO | `nx-pinned-list` |
+| Tree Select 🔒 PRO | `nx-tree-select` |
+| Text Viewer 🔒 PRO | `nx-text-viewer` |
+| PDF Viewer 🔒 PRO | `nx-pdf-viewer` |
+| Word Viewer 🔒 PRO | `nx-word-viewer` |
+| Excel Viewer 🔒 PRO | `nx-excel-viewer` |
+| Markdown Viewer 🔒 PRO | `nx-markdown-viewer` |
+| Text Statistics 🔒 PRO | `nx-text-statistics` |
 
 ### Forms
 
@@ -226,6 +235,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Datepicker | `nx-datepicker` |
 | Date Range Picker | `nx-date-range-picker` |
 | Time Picker | `nx-time-picker` |
+| Event Calendar 🔒 PRO | `nx-calendar` |
 | Input | `nx-input` |
 | Number Input | `nx-number` |
 | Input Mask 🔒 PRO | `nx-mask` |
@@ -246,6 +256,9 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Switch | `nx-switch` |
 | Textarea | `nx-textarea` |
 | Toggle | `nx-toggle` |
+| Signature Pad 🔒 PRO | `nx-signature-pad` |
+| Transfer Box | `nx-transfer-box` |
+| Tag Input | `nx-tag-input` |
 
 ### Feedback
 
@@ -253,6 +266,8 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | --- | --- |
 | Alert | `nx-alert` |
 | Banner | `nx-banner` |
+| Bottom Sheet | `nx-bottom-sheet` |
+| Cookie Banner | `nx-cookie-banner` |
 | Command Palette 🔒 PRO | `nx-command-palette` |
 | Connection Status | `nx-connection-status` |
 | Dialog | `nx-dialog` |
@@ -282,6 +297,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Command Bar | `nx-command-bar` |
 | Context Menu | `nx-context-menu` |
 | Dropdown Menu | `nx-dropdown-menu` |
+| Floating Action Button | `nx-fab` |
 | Mega Menu | `nx-mega-menu` |
 | Menu | `nx-menu` |
 | Menubar | `nx-menubar` |
@@ -292,6 +308,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Pagination | `nx-pagination` |
 | Sidebar | `nx-sidebar`, `nx-sidebar-item` |
 | Stepper | `nx-stepper` |
+| Table of Contents | `nx-table-of-contents` |
 
 ### Panels
 
@@ -310,6 +327,8 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Gallery 🔒 PRO | `nx-gallery` |
 | Preview | `nx-preview` |
 | File Upload | `nx-file-upload` |
+| Image Cropper 🔒 PRO | `nx-image-cropper` |
+| Dropzone | `nx-dropzone` |
 
 ### Layout
 
@@ -348,6 +367,12 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Radar Chart | `nx-radar-chart` |
 | Scatter Chart | `nx-scatter-chart` |
 | Sparkline | `nx-sparkline` |
+| Candlestick Chart 🔒 PRO | `nx-candlestick-chart` |
+| Contribution Graph 🔒 PRO | `nx-contribution-graph` |
+| Polar Area Chart | `nx-polar-area-chart` |
+| Sankey Chart 🔒 PRO | `nx-sankey-chart` |
+| Sunburst Chart 🔒 PRO | `nx-sunburst-chart` |
+| Treemap 🔒 PRO | `nx-treemap` |
 
 `nx-bar-chart` also renders a stacked layout via its `stacked` input - there's no separate
 "Stacked Bar" component/selector, just a different configuration of the same one.
@@ -357,6 +382,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Component | Selector |
 | --- | --- |
 | Virtual Scroll 🔒 PRO | `nx-virtual-scroll` |
+| Virtual Grid 🔒 PRO | `nx-virtual-grid` |
 | Sortable List 🔒 PRO | `nx-sortable-list` |
 | Kanban Board 🔒 PRO | `nx-kanban` |
 | Resizable Panels | `nx-resizable-panels`, `nx-resizable-panel` |
@@ -372,6 +398,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Command History 🔒 PRO | `nx-command-history` |
 | Version Timeline 🔒 PRO | `nx-version-timeline` |
 | Audit Log 🔒 PRO | `nx-audit-log` |
+| Activity Explorer 🔒 PRO | `nx-activity-explorer` |
 
 ### Design Tools
 
@@ -387,6 +414,7 @@ Every component below is 🔒 PRO.
 | Spacing Editor | `nx-spacing-editor` |
 | Property Editor | `nx-property-editor` |
 | Theme Editor | `nx-theme-editor` |
+| Color Token Generator | `nx-color-token-generator` |
 
 ### Dashboard
 
@@ -416,6 +444,7 @@ Every component below is 🔒 PRO.
 | Regex Tester 🔒 PRO | `nx-regex-tester` |
 | Cron Builder 🔒 PRO | `nx-cron-builder` |
 | Code Editor | `nx-code-editor` |
+| Calculator 🔒 PRO | `nx-calculator` |
 
 ### Enterprise / PRO
 
@@ -428,6 +457,20 @@ Every component below is 🔒 PRO.
 | Gantt Chart | `nx-gantt-chart` |
 | Workflow Builder | `nx-workflow-builder` |
 | Permission Matrix | `nx-permission-matrix` |
+| Pivot Table | `nx-pivot-table` |
+| Email Template Builder | `nx-email-template-builder` |
+| File Manager | `nx-file-manager` |
+| Spreadsheet | `nx-spreadsheet` |
+
+### AI & Machine Learning
+
+| Component | Selector |
+| --- | --- |
+| Prompt Input 🔒 PRO | `nx-prompt-input` |
+| Chat Stream Viewer 🔒 PRO | `nx-chat-stream` |
+| Token Counter | `nx-token-counter` |
+| Model Selector | `nx-model-selector` |
+| Markdown Code Runner 🔒 PRO | `nx-markdown-code-runner` |
 
 ### Directives
 
@@ -442,10 +485,14 @@ or component.
 | Debounce Click | `[nxDebounceClick]` | Ignores repeat clicks within a time window - a guard against double-submit. |
 | Drag & Drop | `[nxDraggable]`, `[nxDropZone]` | A pair of attribute directives implementing native HTML5 drag-and-drop between a draggable host and a drop zone. |
 | Feature Flag | `nx-feature-flag` | Component wrapper - shows its projected content only when `enabled` is true, otherwise shows the `[nxFeatureFlagFallback]` slot. |
+| Focus Trap | `[nxFocusTrap]` | Traps Tab/Shift+Tab cycling within the host's focusable descendants while active, and restores focus to whatever was focused beforehand on deactivation. |
 | Has Permission | `*nxHasPermission` | Structural directive - renders its content only when an injectable `NxPermissionChecker` grants the given permission(s). |
+| Hotkey | `[nxHotkey]` | Emits when a given key combo (e.g. `'ctrl+k'`) is pressed anywhere in the document. |
+| In-View | `[nxInView]` | Emits `true`/`false` as the host enters/exits the viewport, via a native `IntersectionObserver` - handy for scroll-reveal animations. |
 | Infinite Scroll | `[nxInfiniteScroll]` | Emits when the host is scrolled near its end, for loading more data. |
 | Long Press | `[nxLongPress]` | Emits after the pointer is held down on the host for a set duration. |
 | Permission Gate | `nx-permission-gate` | Like `*nxHasPermission`, but a component with an explicit `[nxPermissionGateFallback]` slot instead of just removing the content. |
+| Scroll Lock | `[nxScrollLock]` | Locks/restores page scrolling while a bound condition is true - handy for modals and drawers. |
 
 For full input/output reference and live examples, see the hosted demo at
 [nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started), or run it locally with

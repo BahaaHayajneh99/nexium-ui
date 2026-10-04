@@ -1,0 +1,248 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: var(--shell-bg, #0a0a0a);
+}
+
+.jobs-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.jobs-listings,
+.jobs-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+.jobs-listings h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--shell-text);
+}
+
+.jobs-sub {
+    margin: 0 0 20px;
+    color: var(--shell-text-secondary);
+    font-size: 14px;
+}
+
+.jobs-departments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.jobs-dept-chip {
+    padding: 8px 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.jobs-dept-chip.active {
+    border-color: var(--shell-primary);
+    background-color: rgba(52, 152, 219, .12);
+    color: var(--shell-primary);
+}
+
+.jobs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.jobs-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    text-align: left;
+    cursor: pointer;
+}
+
+.jobs-card:hover {
+    border-color: var(--shell-primary);
+}
+
+.jobs-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shell-text);
+    margin-bottom: 6px;
+}
+
+.jobs-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.jobs-card-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.jobs-card-posted {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+    white-space: nowrap;
+}
+
+.jobs-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 16px;
+    border: none;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.jobs-back:hover {
+    color: var(--shell-primary);
+}
+
+.jobs-detail-header h2 {
+    margin: 0 0 8px;
+    color: var(--shell-text);
+}
+
+.jobs-detail-description {
+    margin: 20px 0;
+    color: var(--shell-text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.jobs-detail h3 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--shell-text);
+}
+
+.jobs-requirements {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.jobs-requirements li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.jobs-requirements nx-icon {
+    color: var(--nx-color-success, #27ae60);
+    flex-shrink: 0;
+}
+
+.jobs-apply {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+.jobs-apply-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.jobs-apply-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.jobs-apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.jobs-apply-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+    margin-bottom: -6px;
+}
+
+.jobs-review {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.jobs-review-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--shell-border);
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.jobs-review-row strong {
+    color: var(--shell-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.jobs-apply-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.jobs-success {
+    align-items: center;
+    text-align: center;
+    padding: 48px 24px;
+}
+
+.jobs-success h2 {
+    margin: 8px 0 0;
+    color: var(--shell-text);
+}
+
+.jobs-success p {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 14px;
+}

@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Filterable Activity Timeline"
+                description="{{ commonService.appName }} Activity Explorer - events grouped by day on a vertical timeline. Filter by user, action, entity, a date range, or free-text search - every filter recomputes the groups live. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-activity-explorer [events]="events"></nx-activity-explorer>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,147 @@
+.nx-activity-explorer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.nx-activity-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-activity-search {
+    flex: 1;
+    min-width: 160px;
+    padding: 7px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-activity-select,
+.nx-activity-date {
+    padding: 7px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+}
+
+.nx-activity-date-sep {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-activity-reset {
+    padding: 7px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-activity-reset:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-activity-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-activity-date-header {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--shell-text-secondary);
+}
+
+.nx-activity-events {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-left: 4px;
+}
+
+.nx-activity-events::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 4px;
+    bottom: 4px;
+    width: 1px;
+    background-color: var(--shell-border);
+}
+
+.nx-activity-event {
+    position: relative;
+    display: flex;
+    gap: 12px;
+}
+
+.nx-activity-dot {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    color: var(--shell-primary);
+}
+
+.nx-activity-event-body {
+    flex: 1;
+    min-width: 0;
+    padding-top: 2px;
+}
+
+.nx-activity-event-line {
+    font-size: 13px;
+    color: var(--shell-text);
+}
+
+.nx-activity-entity {
+    margin-left: 4px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-activity-entity-name {
+    margin-left: 4px;
+    font-weight: 600;
+    color: var(--shell-primary);
+}
+
+.nx-activity-time {
+    margin-left: 8px;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-activity-detail {
+    margin-top: 2px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-activity-empty {
+    padding: 24px 12px;
+    text-align: center;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}

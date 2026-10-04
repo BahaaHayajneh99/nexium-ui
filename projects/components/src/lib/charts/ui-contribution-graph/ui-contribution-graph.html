@@ -1,0 +1,30 @@
+@if (licensed()) {
+    <div class="nx-contribution-graph">
+        <div class="nx-contribution-months" [style.grid-template-columns]="gridTemplateColumns()">
+            @for (week of weeksGrid(); track $index) {
+                <span class="nx-contribution-month-label">{{ week.month }}</span>
+            }
+        </div>
+
+        <div class="nx-contribution-body">
+            <div class="nx-contribution-day-labels">
+                @for (label of dayLabels; track label.row) {
+                    <span class="nx-contribution-day-label" [style.grid-row]="label.row + 1">{{ label.text }}</span>
+                }
+            </div>
+
+            <div class="nx-contribution-grid" [style.grid-template-columns]="gridTemplateColumns()">
+                @for (cell of allCells(); track cell.date) {
+                    <div
+                        class="nx-contribution-cell"
+                        [class.nx-contribution-cell-padding]="cell.level < 0"
+                        [style.background-color]="cell.level < 0 ? 'transparent' : colorForLevel(cell.level)"
+                        [attr.title]="tooltipFor(cell)">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Contribution Graph"></nx-pro-locked>
+}

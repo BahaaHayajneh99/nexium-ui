@@ -1,0 +1,33 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Scan a document"
+                description="{{ commonService.appName }} Document Scanner - capture (live camera or upload), adjust 4 corner handles to frame the document, crop, then apply a grayscale/contrast 'scanned look' before emitting the final PNG via (scanned). Live camera requires a real device/browser permission grant, which most demo/CI environments don't have - use 'Upload a Photo' below to try the full crop + enhance flow with any image you have handy; if camera access is denied or unavailable, the component shows a clear message and falls back to the same upload path automatically. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-document-scanner (scanned)="onScanned($event)"></nx-document-scanner>
+            </app-demo-section>
+
+            @if (lastScan) {
+                <app-demo-section
+                    header="Last emitted scan"
+                    description="The PNG data URL emitted via (scanned) from the section above."
+                    [code]="resultCode"
+                    [hasSampleClass]="false">
+                    <img [src]="lastScan" alt="Last scan result" class="nx-scanner-demo-result" />
+                </app-demo-section>
+            }
+
+        </div>
+    </div>
+</div>
