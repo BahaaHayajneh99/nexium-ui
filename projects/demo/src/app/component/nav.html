@@ -41,22 +41,32 @@
                             @for (group of item.groups; track group.heading ?? $index) {
                                 <div class="sub-nav-child">
                                     @if (group.heading) {
-                                        <h4>{{ group.heading }}</h4>
-                                    }
-                                    @for (link of group.links; track link.path) {
-                                        <a class="nav-link" [routerLink]="link.path" routerLinkActive="active">
-                                            {{ link.label }}
-                                            @if (link.isNew || link.isPro) {
-                                                <span class="nav-link-badges">
-                                                    @if (link.isNew) {
-                                                        <nx-chip class="nav-badge-chip" variant="success" rounded>NEW</nx-chip>
-                                                    }
-                                                    @if (link.isPro) {
-                                                        <nx-chip class="nav-badge-chip" variant="warning" rounded>PRO</nx-chip>
-                                                    }
-                                                </span>
+                                        <button type="button" class="sub-nav-heading" (click)="toggleGroup(item.key, group.heading)" [title]="group.heading">
+                                            @if (group.icon) {
+                                                <nx-icon class="sub-nav-heading-icon" [icon]="group.icon" variant="svg" [size]="14"></nx-icon>
                                             }
-                                        </a>
+                                            <h4>{{ group.heading }}</h4>
+                                            <span class="sub-nav-heading-count">{{ group.links.length }}</span>
+                                            <nx-icon class="sub-nav-chevron" [class.expanded]="isGroupExpanded(item.key, group.heading)"
+                                                icon="nx-chevron-right" variant="svg" [size]="12"></nx-icon>
+                                        </button>
+                                    }
+                                    @if (!group.heading || isGroupExpanded(item.key, group.heading)) {
+                                        @for (link of group.links; track link.path) {
+                                            <a class="nav-link" [routerLink]="link.path" routerLinkActive="active">
+                                                {{ link.label }}
+                                                @if (link.isNew || link.isPro) {
+                                                    <span class="nav-link-badges">
+                                                        @if (link.isNew) {
+                                                            <nx-chip class="nav-badge-chip" variant="success" rounded>NEW</nx-chip>
+                                                        }
+                                                        @if (link.isPro) {
+                                                            <nx-chip class="nav-badge-chip" variant="warning" rounded>PRO</nx-chip>
+                                                        }
+                                                    </span>
+                                                }
+                                            </a>
+                                        }
                                     }
                                 </div>
                             }

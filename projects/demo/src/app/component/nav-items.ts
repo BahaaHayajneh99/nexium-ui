@@ -10,6 +10,8 @@ export interface NxNavLink {
 export interface NxNavGroup {
   /** Omit for a flat list of links with no sub-heading. */
   heading?: string;
+  /** An `nx-icon` name shown next to `heading` - ignored when `heading` is omitted. */
+  icon?: string;
   links: NxNavLink[];
 }
 
@@ -74,6 +76,7 @@ export const NAV_ITEMS: NxNavItem[] = [
     groups: [
       {
         heading: 'Forms',
+        icon: 'nx-edit',
         links: [
           { label: 'Input', path: '/input' },
           { label: 'Textarea', path: '/textarea' },
@@ -101,6 +104,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Date & Time',
+        icon: 'nx-calendar',
         links: [
           { label: 'DatePicker', path: '/datepicker' },
           { label: 'Date Range Picker', path: '/date-range-picker' },
@@ -110,6 +114,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Advanced Inputs',
+        icon: 'nx-filter',
         links: [
           { label: 'Number Input', path: '/number-input' },
           { label: 'Input Mask', path: '/input-mask', isPro: true },
@@ -124,6 +129,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Data Display',
+        icon: 'nx-list',
         links: [
           { label: 'Table', path: '/table' },
           { label: 'Tree Table', path: '/tree-table', isPro: true, isNew: true },
@@ -171,6 +177,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Feedback',
+        icon: 'nx-message',
         links: [
           { label: 'Alert', path: '/alert' },
           { label: 'Toast', path: '/toast' },
@@ -197,6 +204,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Overlay / Interaction',
+        icon: 'nx-monitor',
         links: [
           { label: 'Popover Menu', path: '/popover-menu', isNew: true },
           { label: 'Hover Card', path: '/hover-card', isNew: true },
@@ -210,6 +218,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Navigation',
+        icon: 'nx-compass',
         links: [
           { label: 'Breadcrumb', path: '/breadcrumb' },
           { label: 'Pagination', path: '/pagination' },
@@ -233,6 +242,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Panels',
+        icon: 'nx-folder',
         links: [
           { label: 'Accordion', path: '/accordion' },
           { label: 'Tabs', path: '/tabs' },
@@ -243,6 +253,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Layout',
+        icon: 'nx-grid',
         links: [
           { label: 'Container', path: '/layout/container' },
           { label: 'Grid', path: '/layout/grid' },
@@ -264,6 +275,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Uploads',
+        icon: 'nx-upload',
         links: [
           { label: 'File Upload', path: '/file-upload' },
           { label: 'Image Upload', path: '/image-upload' },
@@ -275,6 +287,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Media',
+        icon: 'nx-image',
         links: [
           { label: 'Gallery', path: '/gallery', isPro: true },
           { label: 'Preview', path: '/preview' },
@@ -285,6 +298,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Advanced Interaction',
+        icon: 'nx-refresh',
         links: [
           { label: 'Virtual Scroll', path: '/virtual-scroll', isPro: true, isNew: true },
           { label: 'Virtual Grid', path: '/virtual-grid', isPro: true, isNew: true },
@@ -298,6 +312,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Collaboration & Activity',
+        icon: 'nx-users',
         links: [
           { label: 'Chat', path: '/chat', isPro: true, isNew: true },
           { label: 'Command History', path: '/command-history', isPro: true, isNew: true },
@@ -308,6 +323,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Design Tools',
+        icon: 'nx-palette',
         links: [
           { label: 'Color Gradient', path: '/design-tools/color-gradient', isPro: true, isNew: true },
           { label: 'Color Gradient Editor', path: '/design-tools/color-gradient-editor', isPro: true, isNew: true },
@@ -322,6 +338,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Dashboard',
+        icon: 'nx-chart-bar',
         links: [
           { label: 'Metric Card', path: '/dashboard/metric-card', isNew: true },
           { label: 'Metric Grid', path: '/dashboard/metric-grid', isNew: true },
@@ -337,6 +354,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Developer Tools',
+        icon: 'nx-settings',
         links: [
           { label: 'HTTP Status', path: '/devtools/http-status', isNew: true },
           { label: 'Environment Switcher', path: '/devtools/environment-switcher', isNew: true },
@@ -352,6 +370,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Enterprise / Pro',
+        icon: 'nx-rocket',
         links: [
           { label: 'Advanced Data Grid', path: '/enterprise/advanced-data-grid', isPro: true, isNew: true },
           { label: 'Scheduler', path: '/enterprise/scheduler', isPro: true, isNew: true },
@@ -368,6 +387,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Dashboard Builder',
+        icon: 'nx-layout',
         links: [
           { label: 'Dashboard Builder', path: '/dashboard/dashboard-builder', isPro: true, isNew: true },
           { label: 'Widget Grid', path: '/dashboard/widget-grid', isPro: true, isNew: true },
@@ -376,6 +396,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'AI & Machine Learning',
+        icon: 'nx-fire',
         links: [
           { label: 'Prompt Input', path: '/ai/prompt-input', isPro: true, isNew: true },
           { label: 'Chat Stream Viewer', path: '/ai/chat-stream', isPro: true, isNew: true },
@@ -391,6 +412,7 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
       {
         heading: 'Other',
+        icon: 'nx-more-horizontal',
         links: [{ label: 'Button', path: '/button' }],
       },
     ],
