@@ -24,6 +24,11 @@ functions/.secret.local
 service-account*.json
 /emulator-data
 
+# Vercel (api/*.js local dev secrets - PAYPAL_CLIENT_SECRET, RESEND_API_KEY, FIREBASE_PRIVATE_KEY, etc.)
+.vercel
+/.env
+/.env.local
+
 # IDEs and editors
 .idea/
 .project

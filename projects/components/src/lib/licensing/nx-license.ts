@@ -36,8 +36,9 @@ export function provideNxLicense(token: string, enabled = true): Provider[] {
 
 // Every consuming app calls this same public endpoint to check a token against the real,
 // server-side pool - there is no local algorithm to recompute or forge here anymore. See
-// functions/index.js (verifyLicenseToken) for the implementation.
-const VERIFY_ENDPOINT = 'https://us-central1-nexium-ui.cloudfunctions.net/verifyLicenseToken';
+// api/verifyLicenseToken.js (a Vercel serverless function, not a Firebase Cloud Function - that
+// would require Firebase's paid Blaze plan for no benefit here) for the implementation.
+const VERIFY_ENDPOINT = 'https://nexium-ui.vercel.app/api/verifyLicenseToken';
 const CACHE_KEY_PREFIX = 'nx-license-verified:';
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 

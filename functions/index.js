@@ -1,3 +1,7 @@
+// SUPERSEDED - no longer deployed (firebase.json has no "functions" entry anymore). These three
+// endpoints now live at api/verifyLicenseToken.js, api/claimLicenseToken.js, api/sendLicenseEmail.js
+// as Vercel serverless functions instead, so the license-pool backend works without ever needing
+// Firebase's paid Blaze plan. Kept here only as reference for the ported logic; safe to delete.
 const { onRequest } = require('firebase-functions/v2/https');
 const { defineSecret, defineString } = require('firebase-functions/params');
 const logger = require('firebase-functions/logger');

@@ -20,15 +20,19 @@ interface PaypalOrderActions {
 }
 
 /**
- * Must be the SAME PayPal app's Client ID as the PAYPAL_CLIENT_ID secret the Cloud Function
- * verifies orders with (functions/.secret.local for local testing, or
- * `firebase functions:secrets:set PAYPAL_CLIENT_ID` for a real deploy) - orders created under a
- * different app/account (e.g. PayPal's generic "sb" placeholder) aren't visible to our server's
- * REST API lookup, which fails the claim with "order lookup failed (404)". Currently a sandbox
- * Client ID; swap both this and the server secret to your live app's credentials together to
- * accept real payments.
+ * Must be the SAME PayPal app's Client ID as the PAYPAL_CLIENT_ID env var the api/claimLicenseToken
+ * Vercel function verifies orders with - orders created under a different app/account (e.g.
+ * PayPal's generic "sb" placeholder) aren't visible to our server's REST API lookup, which fails
+ * the claim with "order lookup failed (404)".
+ *
+ * Sandbox on localhost (so local dev never touches real money), the real live app's Client ID on
+ * the deployed site - matching api/claimLicenseToken.js's PAYPAL_API_BASE split between
+ * api-m.sandbox.paypal.com (local/.env.local) and api-m.paypal.com (Vercel production env var).
  */
-const PAYPAL_CLIENT_ID = 'AVY9yInizkzznTcIrCEzsNZk4W8lFvmMcrXnB6Eusejmc2Tx43SZwDJ1zXrVshkHVG3yhIjqd5gKWTM4';
+const PAYPAL_CLIENT_ID =
+  typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'AVY9yInizkzznTcIrCEzsNZk4W8lFvmMcrXnB6Eusejmc2Tx43SZwDJ1zXrVshkHVG3yhIjqd5gKWTM4'
+    : 'BAAI4KU4z3WNW51eywudLwGBCUoIVtotmgTGpfcAKzIfKKzGp7XedHwNR3Zv8A2Gp9Mu9UVXGqT432UikA';
 
 // Must stay in sync with PLAN_PRICES in functions/index.js - the server derives which plan was
 // bought purely from the amount PayPal confirms was paid, never from anything the client asserts.
@@ -40,24 +44,25 @@ const PLAN_PRICES: Record<NxPlan, string> = { lifetime: '199.00', yearly: '59.00
 // gradually over time just by shrinking the discount, without ever touching checkout/verification.
 const DISPLAY_ORIGINAL_PRICES: Record<NxPlan, string> = { lifetime: '299.00', yearly: '99.00' };
 
-// The Cloud Function that server-side-verifies the PayPal order and hands out a real token from
-// the license pool - see functions/index.js (claimLicenseToken). No token generation happens in
-// the browser anymore; the client never sees anything it could forge or replay.
+// The Vercel serverless function that server-side-verifies the PayPal order and hands out a real
+// token from the license pool - see api/claimLicenseToken.js. No token generation happens in the
+// browser anymore; the client never sees anything it could forge or replay.
 //
-// This file is demo-only (never published to npm), so it's safe to auto-switch to the local
-// Firebase emulator during `ng serve` - run `firebase emulators:start` alongside it to test the
-// whole PayPal-sandbox-to-token flow without touching production or needing the Blaze plan.
+// This file is demo-only (never published to npm), so it's safe to auto-switch to a local
+// `vercel dev` server during `ng serve` - run `vercel dev` alongside it (reads api/.env.local,
+// api/.env.local for sandbox PayPal secrets) to test the whole checkout-to-token flow without
+// touching production.
 const CLAIM_LICENSE_ENDPOINT =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    ? 'http://127.0.0.1:5001/nexium-ui/us-central1/claimLicenseToken'
-    : 'https://us-central1-nexium-ui.cloudfunctions.net/claimLicenseToken';
+    ? 'http://localhost:3000/api/claimLicenseToken'
+    : 'https://nexium-ui.vercel.app/api/claimLicenseToken';
 
 // Emails an already-claimed token to an address the buyer types in themselves - a backup, since
 // the token above is only ever shown once and a page refresh would otherwise lose it.
 const SEND_EMAIL_ENDPOINT =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    ? 'http://127.0.0.1:5001/nexium-ui/us-central1/sendLicenseEmail'
-    : 'https://us-central1-nexium-ui.cloudfunctions.net/sendLicenseEmail';
+    ? 'http://localhost:3000/api/sendLicenseEmail'
+    : 'https://nexium-ui.vercel.app/api/sendLicenseEmail';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
