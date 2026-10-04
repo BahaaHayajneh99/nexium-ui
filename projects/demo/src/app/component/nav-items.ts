@@ -4,7 +4,7 @@ export interface NxNavLink {
   /** Marks this component as a paid/licensed feature - renders a small "PRO" badge and gates the route behind checkout. */
   isPro?: boolean;
   /** Marks this component as newly added since the last major release - renders a small "NEW" badge. */
-  isNew?: boolean;
+  isNew?: boolean; 
 }
 
 export interface NxNavGroup {
