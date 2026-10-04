@@ -1,0 +1,52 @@
+.nx-fullscreen-dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--shell-surface);
+}
+
+.nx-fullscreen-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    padding: var(--nx-spacing-md, 16px) var(--nx-spacing-lg, 24px);
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-fullscreen-dialog-title {
+    font-size: 18px;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.nx-fullscreen-dialog-close {
+    border: none;
+    background: none;
+    font-size: var(--nx-h2-font-size, 2rem);
+    line-height: 1;
+    cursor: pointer;
+    color: var(--shell-text-secondary);
+}
+
+.nx-fullscreen-dialog-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--nx-spacing-lg, 24px);
+    color: var(--shell-text);
+}
+
+.nx-fullscreen-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--nx-spacing-sm, 8px);
+    flex-shrink: 0;
+    padding: var(--nx-spacing-md, 16px) var(--nx-spacing-lg, 24px);
+    border-top: 1px solid var(--shell-border);
+
+    &:empty {
+        display: none;
+    }
+}

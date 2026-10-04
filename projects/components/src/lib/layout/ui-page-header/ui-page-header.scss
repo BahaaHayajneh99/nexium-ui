@@ -1,0 +1,48 @@
+.nx-page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-page-header-breadcrumb:empty {
+    display: none;
+}
+
+.nx-page-header-main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.nx-page-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-page-header-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-page-header-description {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 14px;
+}
+
+.nx-page-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.nx-page-header-tabs:empty {
+    display: none;
+}

@@ -1,0 +1,53 @@
+@if (licensed()) {
+    <div class="nx-chart">
+        <div class="nx-chart-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (tick of yTicks; track tick.value) {
+                    <line class="nx-chart-grid" [attr.x1]="56" [attr.x2]="680 - 16" [attr.y1]="tick.y" [attr.y2]="tick.y"></line>
+                    <text class="nx-chart-axis-label" text-anchor="end" x="50" [attr.y]="tick.y + 4">
+                        {{ formatTick(tick.value) }}
+                    </text>
+                }
+
+                @for (candle of candles(); track candle.date + '-' + candle.index) {
+                    <g
+                        class="nx-candle"
+                        [class.nx-candle-up]="candle.isUp"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="candle.date + ': open ' + formatTick(candle.open) + ', high ' + formatTick(candle.high) + ', low ' + formatTick(candle.low) + ', close ' + formatTick(candle.close)">
+                        <title>{{ candle.date }} · O {{ formatTick(candle.open) }} · H {{ formatTick(candle.high) }} · L {{ formatTick(candle.low) }} · C {{ formatTick(candle.close) }}</title>
+                        <line
+                            class="nx-candle-wick"
+                            [attr.x1]="candle.wickX"
+                            [attr.x2]="candle.wickX"
+                            [attr.y1]="candle.yHigh"
+                            [attr.y2]="candle.yLow"
+                            [attr.stroke]="candle.color">
+                        </line>
+                        <rect
+                            class="nx-candle-body"
+                            [attr.x]="candle.bodyX"
+                            [attr.y]="candle.bodyY"
+                            [attr.width]="candle.bodyWidth"
+                            [attr.height]="candle.bodyHeight"
+                            [attr.fill]="candle.color">
+                        </rect>
+                    </g>
+                }
+
+                @for (candle of candles(); track candle.index; let i = $index) {
+                    @if (showLabel(i)) {
+                        <text class="nx-chart-axis-label" text-anchor="middle" [attr.x]="candle.wickX" [attr.y]="height - 16">
+                            {{ candle.date }}
+                        </text>
+                    }
+                }
+
+            </svg>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Candlestick Chart"></nx-pro-locked>
+}

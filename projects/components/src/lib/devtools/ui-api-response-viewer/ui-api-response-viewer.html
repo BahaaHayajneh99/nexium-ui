@@ -1,0 +1,40 @@
+@if (licensed()) {
+    <div class="nx-api-response-viewer">
+        <div class="nx-api-response-viewer-header">
+            <nx-http-status [code]="response.status" [statusText]="response.statusText ?? ''"></nx-http-status>
+            @if (response.durationMs !== undefined) {
+                <span class="nx-api-response-viewer-duration">{{ response.durationMs }}ms</span>
+            }
+        </div>
+
+        <div class="nx-api-response-viewer-tabs">
+            <button type="button" class="nx-api-response-viewer-tab" [class.active]="activeTab() === 'body'" (click)="activeTab.set('body')">
+                Body
+            </button>
+            <button type="button" class="nx-api-response-viewer-tab" [class.active]="activeTab() === 'headers'" (click)="activeTab.set('headers')">
+                Headers ({{ headerEntries.length }})
+            </button>
+        </div>
+
+        <div class="nx-api-response-viewer-content">
+            @if (activeTab() === 'body') {
+                @if (bodyIsObject) {
+                    <nx-json-viewer [value]="response.body"></nx-json-viewer>
+                } @else {
+                    <pre class="nx-api-response-viewer-raw">{{ response.body }}</pre>
+                }
+            } @else {
+                <table class="nx-api-response-viewer-headers-table">
+                    @for (entry of headerEntries; track entry[0]) {
+                        <tr>
+                            <td class="nx-api-response-viewer-header-key">{{ entry[0] }}</td>
+                            <td>{{ entry[1] }}</td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="API Response Viewer"></nx-pro-locked>
+}

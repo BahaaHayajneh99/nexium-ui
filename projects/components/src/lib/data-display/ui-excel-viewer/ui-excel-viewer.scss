@@ -1,0 +1,116 @@
+.nx-excel-viewer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-excel-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-excel-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-excel-export {
+    margin-left: auto;
+    padding: 5px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #fff);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-excel-export:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-excel-grid-wrapper {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.nx-excel-grid {
+    border-collapse: collapse;
+    font-size: 12px;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-excel-grid th,
+.nx-excel-grid td {
+    border: 1px solid var(--shell-border);
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+.nx-excel-grid thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-weight: 700;
+    min-width: 72px;
+}
+
+.nx-excel-corner {
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 3;
+}
+
+.nx-excel-row-header {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-weight: 700;
+    text-align: center;
+}
+
+.nx-excel-grid td {
+    color: var(--shell-text);
+    background-color: var(--shell-bg, #fff);
+}
+
+.nx-excel-tabs {
+    display: flex;
+    gap: 2px;
+    padding: 6px 8px;
+    border-top: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+    overflow-x: auto;
+}
+
+.nx-excel-tab {
+    padding: 6px 14px;
+    border: 1px solid transparent;
+    border-radius: var(--nx-radius-sm, 4px) var(--nx-radius-sm, 4px) 0 0;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nx-excel-tab.active {
+    background-color: var(--shell-bg, #fff);
+    border-color: var(--shell-border);
+    border-bottom-color: var(--shell-bg, #fff);
+    color: var(--shell-text);
+    font-weight: 600;
+}

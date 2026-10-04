@@ -1,0 +1,28 @@
+.nx-loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface-hover);
+    font-family: var(--font-family, "Roboto", sans-serif);
+}
+
+.nx-loading-state-spinner {
+    margin-bottom: var(--nx-spacing-md, 16px);
+}
+
+.nx-loading-state-title {
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+    margin: 0 0 var(--nx-spacing-sm, 8px);
+}
+
+.nx-loading-state-description {
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}

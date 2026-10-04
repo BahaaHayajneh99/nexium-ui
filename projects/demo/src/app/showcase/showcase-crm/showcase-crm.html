@@ -1,0 +1,67 @@
+<div class="crm-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="crm-brand">
+            <nx-icon icon="nx-chart-bar" variant="svg" [size]="18"></nx-icon>
+            <span>Forge CRM</span>
+        </div>
+        <div nx-navbar-links>
+            <a routerLink="/getting-started/introduction">← Docs</a>
+        </div>
+    </nx-navbar>
+
+    <div class="crm-body">
+        <nx-metric-grid [minColumnWidth]="200">
+            <nx-metric-card label="Pipeline value" [value]="148000" prefix="$" delta="+14%"></nx-metric-card>
+            <nx-metric-card label="Deals won (MTD)" [value]="36500" prefix="$" delta="+8%"></nx-metric-card>
+            <nx-metric-card label="Win rate" [value]="38" suffix="%" delta="+3%"></nx-metric-card>
+            <nx-metric-card label="Avg. deal size" [value]="21300" prefix="$"></nx-metric-card>
+        </nx-metric-grid>
+
+        <div class="crm-card">
+            <h3 class="crm-card-title">Pipeline</h3>
+            <nx-kanban [columns]="columns" (columnsChange)="columns = $event"></nx-kanban>
+        </div>
+
+        <div class="crm-card">
+            <h3 class="crm-card-title">Recent contacts</h3>
+            <div class="crm-table-wrapper">
+                <table class="crm-table">
+                    <thead>
+                        <tr>
+                            <th>Contact</th>
+                            <th>Stage</th>
+                            <th>Deal value</th>
+                            <th>Last contact</th>
+                            <th>Tags</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (contact of contacts; track contact.name) {
+                            <tr>
+                                <td>
+                                    <div class="crm-contact">
+                                        <nx-avatar [name]="contact.name" size="small"></nx-avatar>
+                                        <div>
+                                            <div class="crm-contact-name">{{ contact.name }}</div>
+                                            <div class="crm-contact-company">{{ contact.company }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><nx-badge [variant]="stageVariant(contact.stage)" size="small">{{ contact.stage }}</nx-badge></td>
+                                <td>${{ contact.dealValue }}</td>
+                                <td>{{ contact.lastContact }}</td>
+                                <td class="crm-tags-cell">
+                                    <nx-tag-input [(value)]="contact.tags" [suggestions]="tagSuggestions" placeholder="Add a tag..."></nx-tag-input>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

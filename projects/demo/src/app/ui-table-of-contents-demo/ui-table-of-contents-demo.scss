@@ -1,0 +1,42 @@
+.toc-demo-layout {
+    display: flex;
+    gap: 32px;
+    max-height: 420px;
+    overflow-y: auto;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.toc-demo-nav {
+    flex: 0 0 200px;
+    align-self: flex-start;
+    position: sticky;
+    top: 0;
+}
+
+.toc-demo-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.toc-demo-content h2 {
+    margin-top: 32px;
+    margin-bottom: 8px;
+}
+
+.toc-demo-content h2:first-child {
+    margin-top: 0;
+}
+
+.toc-demo-content h3 {
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.toc-demo-content p {
+    color: var(--shell-text-secondary);
+    line-height: 1.6;
+    margin: 0 0 12px;
+}

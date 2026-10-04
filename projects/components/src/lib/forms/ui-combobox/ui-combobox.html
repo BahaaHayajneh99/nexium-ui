@@ -1,0 +1,73 @@
+<div class="nx-combobox-wrapper">
+    @if (label) {
+        <label class="nx-combobox-label">{{ label }}@if (isRequired) {<span class="nx-combobox-required">*</span>}</label>
+    }
+
+    <div class="nx-combobox-field">
+        <div class="nx-combobox" [class.error]="!!displayError" [class.disabled]="disabled">
+            <input
+                #inputRef
+                type="text"
+                class="nx-combobox-input"
+                role="combobox"
+                aria-autocomplete="list"
+                [attr.aria-expanded]="open"
+                [attr.aria-required]="isRequired ? true : null"
+                [attr.aria-invalid]="displayError ? true : null"
+                [placeholder]="placeholder"
+                [disabled]="disabled"
+                [value]="query"
+                (input)="onInput($event)"
+                (focus)="onFocus()"
+                (blur)="onBlur()"
+                (keydown)="onKeydown($event)" />
+
+            @if (showClear && !!value) {
+                <button
+                    type="button"
+                    class="nx-combobox-clear"
+                    tabindex="-1"
+                    aria-label="Clear selection"
+                    (mousedown)="$event.preventDefault(); clear($event)">
+                    &times;
+                </button>
+            }
+
+            <button
+                type="button"
+                class="nx-combobox-toggle"
+                tabindex="-1"
+                [disabled]="disabled"
+                aria-label="Toggle options"
+                (mousedown)="$event.preventDefault(); toggleList()">
+                <span class="nx-combobox-chevron" [class.open]="open"></span>
+            </button>
+        </div>
+
+        @if (open) {
+            <div class="nx-combobox-panel" role="listbox">
+                @if (filteredOptions.length === 0) {
+                    <div class="nx-combobox-empty">No matches</div>
+                }
+                @for (option of filteredOptions; track option.value; let i = $index) {
+                    <button
+                        type="button"
+                        class="nx-combobox-option"
+                        role="option"
+                        [class.active]="i === activeIndex"
+                        [class.selected]="option.value === value"
+                        [class.disabled]="option.disabled"
+                        [attr.aria-selected]="option.value === value"
+                        [disabled]="option.disabled"
+                        (mousedown)="$event.preventDefault(); selectOption(option)">
+                        {{ option.label }}
+                    </button>
+                }
+            </div>
+        }
+    </div>
+
+    @if (displayError) {
+        <span class="nx-combobox-error">{{ displayError }}</span>
+    }
+</div>

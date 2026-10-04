@@ -1,0 +1,92 @@
+.nx-shadow-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nx-shadow-editor-preview-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+}
+
+.nx-shadow-editor-preview {
+    width: 96px;
+    height: 96px;
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-bg, #ffffff);
+}
+
+.nx-shadow-editor-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-shadow-editor-field {
+    display: grid;
+    grid-template-columns: 70px 1fr 48px;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-shadow-editor-field input[type="text"] {
+    grid-column: 2 / span 2;
+    padding: 5px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+}
+
+.nx-shadow-editor-value {
+    text-align: right;
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-shadow-editor-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--shell-text);
+}
+
+.nx-shadow-editor-css-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+}
+
+.nx-shadow-editor-css {
+    flex: 1;
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    overflow-x: auto;
+}
+
+.nx-shadow-editor-copy {
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: #e6e6e6;
+    font-size: 12px;
+    padding: 2px 10px;
+    cursor: pointer;
+}
+
+.nx-shadow-editor-copy:hover {
+    background: rgba(255, 255, 255, .08);
+}

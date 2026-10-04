@@ -1,4 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, Output, booleanAttribute, numberAttribute } from '@angular/core';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export type NxResizeHandle = 'right' | 'bottom' | 'corner';
 
@@ -10,11 +12,12 @@ export interface NxResizeEvent {
 @Component({
   selector: 'nx-resizable',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-resizable.html',
   styleUrl: './ui-resizable.scss',
 })
 export class NxResizable {
+  protected readonly licensed = nxProLicenseGranted();
   @Input({ transform: numberAttribute }) width = 320;
   @Input({ transform: numberAttribute }) height = 200;
   @Input({ transform: numberAttribute }) minWidth = 120;

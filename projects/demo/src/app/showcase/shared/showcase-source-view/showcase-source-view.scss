@@ -1,0 +1,118 @@
+:host {
+    display: contents;
+}
+
+.showcase-source-toggle {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 500;
+    padding: 8px 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: var(--shell-primary);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "JetBrains Mono", monospace;
+    box-shadow: var(--nx-shadow-lg, 0 8px 20px rgba(0, 0, 0, .25));
+    cursor: pointer;
+}
+
+.showcase-source-toggle:hover {
+    filter: brightness(1.08);
+}
+
+.showcase-source-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 600;
+    background: rgba(0, 0, 0, .5);
+}
+
+.showcase-source-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 601;
+    display: flex;
+    flex-direction: column;
+    width: min(640px, 100vw);
+    background-color: var(--shell-surface);
+    border-left: 1px solid var(--shell-border);
+    box-shadow: var(--nx-shadow-lg, -8px 0 20px rgba(0, 0, 0, .25));
+}
+
+.showcase-source-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.showcase-source-tabs {
+    display: flex;
+    gap: 4px;
+}
+
+.showcase-source-tab {
+    padding: 5px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.showcase-source-tab.active {
+    background-color: var(--shell-primary);
+    border-color: var(--shell-primary);
+    color: #fff;
+}
+
+.showcase-source-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.showcase-source-copy {
+    padding: 5px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: transparent;
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.showcase-source-copy:hover {
+    background-color: var(--shell-surface-hover, rgba(255, 255, 255, .05));
+}
+
+.showcase-source-close {
+    border: none;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.showcase-source-body {
+    flex: 1;
+    overflow: auto;
+    padding: 16px;
+}
+
+.showcase-source-body code {
+    display: block;
+    white-space: pre;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    line-height: 1.6;
+}

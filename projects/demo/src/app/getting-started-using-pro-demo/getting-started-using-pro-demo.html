@@ -1,0 +1,121 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Using PRO Components</h4>
+                <p class="main-section-description">
+                    A subset of {{ commonService.appName }} components - marked <strong>PRO</strong> in the
+                    sidebar (Design Tools, Enterprise, Advanced Interaction, and more) - are gated behind a
+                    one-time-purchase license token. Nothing breaks if you don't have one: a PRO component
+                    just renders a locked placeholder instead of its real content until you configure a
+                    valid token.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">What a gated component looks like</h4>
+                <p class="main-section-description">
+                    No special markup on your end - use a PRO component exactly like any other one:
+                </p>
+                <app-demo-section
+                    header="Just a normal component"
+                    description="Whether it renders locked or unlocked depends entirely on the license token configured in your app, not on anything in this template."
+                    [code]="gatedTemplateCode"
+                    [codeLang]="'html'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">Live example - locked vs. unlocked</h4>
+                <p class="main-section-description">
+                    This docs site itself is licensed, so PRO components normally render fully unlocked here.
+                    The box on the left forces the same component to render as if <em>no</em> license were
+                    configured, so you can see both real states side by side - this isn't a mockup, it's the
+                    actual <code>nx-rich-text-editor</code> PRO component rendering twice on this page.
+                </p>
+                <div class="pro-demo-columns">
+                    <div class="pro-demo-column">
+                        <h5>Without a license</h5>
+                        <app-force-unlicensed>
+                            <nx-rich-text-editor></nx-rich-text-editor>
+                        </app-force-unlicensed>
+                    </div>
+                    <div class="pro-demo-column">
+                        <h5>With a license (this site's)</h5>
+                        <nx-rich-text-editor></nx-rich-text-editor>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">1. Get a license token</h4>
+                <p class="main-section-description">
+                    Pick a plan on the <a routerLink="/pro-upgrade">Get PRO License</a> page - a one-time
+                    lifetime license, or a cheaper yearly license that you renew manually once a year.
+                    Either way, PayPal checkout hands you back a real, unique token tied to your purchase.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h4 class="main-section-header">2. Configure it once, at your app's root</h4>
+                <p class="main-section-description">
+                    Add <code>provideNxLicense()</code> to your bootstrap providers - every PRO component
+                    anywhere in your app picks it up automatically, no per-component setup needed:
+                </p>
+                <app-demo-section
+                    header="app.config.ts"
+                    description="One provider, unlocks every PRO component in your app."
+                    [code]="providerCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section>
+
+            <!-- <section class="main-section">
+                <h4 class="main-section-header">How the check works</h4>
+                <p class="main-section-description">
+                    Your token is checked live against the license pool over the network the first time it's
+                    needed, then cached - it's not a local algorithm that could be recomputed or forged. Every
+                    PRO component calls the same exported helper internally, so you'd only need this yourself
+                    if you want to gate your <em>own</em> code the same way:
+                </p>
+                <app-demo-section
+                    header="nxProLicenseGranted()"
+                    description="Returns a Signal<boolean> - starts false, flips true once verification resolves."
+                    [code]="checkTokenCode"
+                    [codeLang]="'ts'"
+                    [hasSampleClass]="false">
+                </app-demo-section>
+            </section> -->
+
+            <section class="main-section">
+                <app-demo-section
+                    header="Worth knowing"
+                    description="A few honest notes about how the PRO tier is enforced."
+                    code=""
+                    [hasSampleClass]="false">
+                    <div class="nx-auto-fit-grid nx-auto-fit-grid-250">
+                        <div class="use-case-item">
+                            <h3>One license, one project</h3>
+                            <p>A token unlocks PRO components for the app you configure it in. It's a
+                                per-project license, not a per-developer seat.</p>
+                        </div>
+                        <div class="use-case-item">
+                            <h3>Nothing breaks without one</h3>
+                            <p>Free components work exactly the same with or without a license. Only the
+                                components explicitly marked PRO in the sidebar are affected.</p>
+                        </div>
+                        <div class="use-case-item">
+                            <h3>Server-verified, not a local trick</h3>
+                            <p>Tokens are checked against a real server-side pool tied to verified payments -
+                                there's no client-side algorithm to reverse-engineer a valid one from.</p>
+                        </div>
+                    </div>
+                </app-demo-section>
+            </section>
+
+        </div>
+    </div>
+</div>

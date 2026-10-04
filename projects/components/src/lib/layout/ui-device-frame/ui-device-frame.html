@@ -1,0 +1,26 @@
+<div class="nx-device-frame" [class.phone]="kind === 'phone'" [class.tablet]="kind === 'tablet'" [class.browser]="kind === 'browser'">
+    @switch (kind) {
+        @case ('browser') {
+            <div class="nx-device-frame-browser-bar">
+                <span class="nx-device-frame-dot red"></span>
+                <span class="nx-device-frame-dot yellow"></span>
+                <span class="nx-device-frame-dot green"></span>
+                <span class="nx-device-frame-url">{{ url }}</span>
+            </div>
+        }
+        @case ('tablet') {
+            <div class="nx-device-frame-camera"></div>
+        }
+        @default {
+            <div class="nx-device-frame-notch"></div>
+        }
+    }
+
+    <div class="nx-device-frame-screen">
+        <ng-content></ng-content>
+    </div>
+
+    @if (kind === 'phone') {
+        <div class="nx-device-frame-home-bar"></div>
+    }
+</div>

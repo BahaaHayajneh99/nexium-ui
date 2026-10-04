@@ -1,0 +1,207 @@
+@if (licensed()) {
+    <div class="nx-file-manager" (click)="closeContextMenu()">
+        <div class="nx-file-manager-toolbar">
+            <div class="nx-file-manager-breadcrumb">
+                @for (crumb of breadcrumb(); track crumb.id; let i = $index; let last = $last) {
+                    <button type="button" class="nx-file-manager-crumb" [class.active]="last" (click)="navigateToBreadcrumb(i)">
+                        {{ crumb.name }}
+                    </button>
+                    @if (!last) {
+                        <span class="nx-file-manager-crumb-sep">/</span>
+                    }
+                }
+            </div>
+
+            <input
+                type="text"
+                class="nx-file-manager-search"
+                placeholder="Search this folder..."
+                [ngModel]="searchText()"
+                (ngModelChange)="searchText.set($event)" />
+
+            <div class="nx-file-manager-toolbar-actions">
+                <button type="button" class="nx-file-manager-btn" (click)="createFolder()">
+                    <nx-icon icon="nx-folder" variant="svg" [size]="14"></nx-icon> New folder
+                </button>
+                <label class="nx-file-manager-btn nx-file-manager-upload">
+                    <nx-icon icon="nx-upload" variant="svg" [size]="14"></nx-icon> Upload
+                    <input type="file" multiple hidden (change)="uploadFiles($any($event.target).files)" />
+                </label>
+                @if (clipboard()) {
+                    <button type="button" class="nx-file-manager-btn" (click)="paste()">
+                        <nx-icon icon="nx-copy" variant="svg" [size]="14"></nx-icon> Paste
+                    </button>
+                }
+                @if (selectedIds().size > 0) {
+                    <button type="button" class="nx-file-manager-btn nx-file-manager-danger" (click)="deleteSelected()">
+                        <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon> Delete
+                    </button>
+                }
+                <div class="nx-file-manager-view-toggle">
+                    <button type="button" [class.active]="view() === 'grid'" (click)="view.set('grid')" aria-label="Grid view">
+                        <nx-icon icon="nx-grid" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                    <button type="button" [class.active]="view() === 'list'" (click)="view.set('list')" aria-label="List view">
+                        <nx-icon icon="nx-list" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="nx-file-manager-storage">
+            <nx-icon icon="nx-cloud" variant="svg" [size]="14"></nx-icon>
+            <span class="nx-file-manager-storage-text">
+                @if (storageQuotaBytes) {
+                    {{ formatSize(storageUsedBytes()) }} of {{ formatSize(storageQuotaBytes) }} used
+                } @else {
+                    {{ formatSize(storageUsedBytes()) }} used
+                }
+            </span>
+            @if (storagePercent(); as percent) {
+                <div class="nx-file-manager-storage-bar">
+                    <div class="nx-file-manager-storage-bar-fill" [style.width.%]="percent"></div>
+                </div>
+                <span class="nx-file-manager-storage-percent">{{ percent }}%</span>
+            }
+        </div>
+
+        @if (view() === 'grid') {
+            <div class="nx-file-manager-grid">
+                @for (node of visibleChildren(); track node.id) {
+                    <div
+                        class="nx-file-manager-tile"
+                        [class.selected]="isSelected(node.id)"
+                        [class.drag-over]="dragOverId() === node.id"
+                        draggable="true"
+                        (click)="handleItemClick(node, $event); $event.stopPropagation()"
+                        (dblclick)="navigateInto(node)"
+                        (contextmenu)="openContextMenu($event, node)"
+                        (dragstart)="onDragStart($event, node)"
+                        (dragover)="onDragOver($event, node)"
+                        (dragleave)="onDragLeave()"
+                        (drop)="onDrop($event, node)">
+                        <div class="nx-file-manager-tile-icon">
+                            @if (node.type === 'file' && node.previewUrl) {
+                                <img [src]="node.previewUrl" [alt]="node.name" />
+                            } @else {
+                                <nx-icon [icon]="node.type === 'folder' ? 'nx-folder' : 'nx-file'" variant="svg" [size]="28"></nx-icon>
+                            }
+                        </div>
+                        @if (renamingId() === node.id) {
+                            <input
+                                type="text"
+                                class="nx-file-manager-rename-input"
+                                [(ngModel)]="renameDraft"
+                                (click)="$event.stopPropagation()"
+                                (keydown.enter)="commitRename()"
+                                (keydown.escape)="cancelRename()"
+                                (blur)="commitRename()" />
+                        } @else {
+                            <div class="nx-file-manager-tile-name">{{ node.name }}</div>
+                        }
+                    </div>
+                } @empty {
+                    <div class="nx-file-manager-empty">This folder is empty.</div>
+                }
+            </div>
+        } @else {
+            <table class="nx-file-manager-table">
+                <thead>
+                    <tr>
+                        <th (click)="toggleSort('name')">Name</th>
+                        <th (click)="toggleSort('size')">Size</th>
+                        <th (click)="toggleSort('modified')">Modified</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (node of visibleChildren(); track node.id) {
+                        <tr
+                            [class.selected]="isSelected(node.id)"
+                            [class.drag-over]="dragOverId() === node.id"
+                            draggable="true"
+                            (click)="handleItemClick(node, $event)"
+                            (dblclick)="navigateInto(node)"
+                            (contextmenu)="openContextMenu($event, node)"
+                            (dragstart)="onDragStart($event, node)"
+                            (dragover)="onDragOver($event, node)"
+                            (dragleave)="onDragLeave()"
+                            (drop)="onDrop($event, node)">
+                            <td class="nx-file-manager-table-name">
+                                <nx-icon [icon]="node.type === 'folder' ? 'nx-folder' : 'nx-file'" variant="svg" [size]="16"></nx-icon>
+                                @if (renamingId() === node.id) {
+                                    <input
+                                        type="text"
+                                        class="nx-file-manager-rename-input"
+                                        [(ngModel)]="renameDraft"
+                                        (click)="$event.stopPropagation()"
+                                        (keydown.enter)="commitRename()"
+                                        (keydown.escape)="cancelRename()"
+                                        (blur)="commitRename()" />
+                                } @else {
+                                    {{ node.name }}
+                                }
+                            </td>
+                            <td>{{ node.type === 'file' ? formatSize(node.size) : '—' }}</td>
+                            <td>{{ node.modified ? (node.modified | slice: 0:10) : '—' }}</td>
+                        </tr>
+                    } @empty {
+                        <tr><td colspan="3" class="nx-file-manager-empty">This folder is empty.</td></tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+        @if (contextMenu(); as menu) {
+            <div class="nx-file-manager-context-menu" [style.left.px]="menu.x" [style.top.px]="menu.y" (click)="$event.stopPropagation()">
+                <button type="button" (click)="startRename(menu.nodeId)">Rename</button>
+                <button type="button" (click)="copy(menu.nodeId)">Copy</button>
+                <button type="button" (click)="cut(menu.nodeId)">Cut</button>
+                <button type="button" class="nx-file-manager-danger" (click)="deleteSelected()">Delete</button>
+            </div>
+        }
+
+        @if (previewingNode(); as node) {
+            <div class="nx-file-manager-preview-overlay" (click)="closePreview()">
+                <div class="nx-file-manager-preview-modal" (click)="$event.stopPropagation()">
+                    <button type="button" class="nx-file-manager-preview-close" (click)="closePreview()" aria-label="Close preview">
+                        <nx-icon icon="nx-close" variant="svg" [size]="16"></nx-icon>
+                    </button>
+
+                    @if (previewableFiles().length > 1) {
+                        <button type="button" class="nx-file-manager-preview-nav nx-file-manager-preview-prev" (click)="previewPrev()" aria-label="Previous file">
+                            <nx-icon icon="nx-chevron-left" variant="svg" [size]="20"></nx-icon>
+                        </button>
+                    }
+
+                    <div class="nx-file-manager-preview-body">
+                        @if (node.previewUrl) {
+                            <img class="nx-file-manager-preview-image" [src]="node.previewUrl" [alt]="node.name" />
+                        } @else {
+                            <div class="nx-file-manager-preview-placeholder">
+                                <nx-icon icon="nx-file" variant="svg" [size]="56"></nx-icon>
+                                <span>No preview available</span>
+                            </div>
+                        }
+                        <div class="nx-file-manager-preview-meta">
+                            <div class="nx-file-manager-preview-name">{{ node.name }}</div>
+                            <div class="nx-file-manager-preview-details">
+                                <span>{{ formatSize(node.size) }}</span>
+                                @if (node.modified) {
+                                    <span>{{ node.modified | slice: 0:10 }}</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (previewableFiles().length > 1) {
+                        <button type="button" class="nx-file-manager-preview-nav nx-file-manager-preview-next" (click)="previewNext()" aria-label="Next file">
+                            <nx-icon icon="nx-chevron-right" variant="svg" [size]="20"></nx-icon>
+                        </button>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="File Manager"></nx-pro-locked>
+}

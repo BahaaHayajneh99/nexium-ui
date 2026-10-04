@@ -1,0 +1,62 @@
+@if (licensed()) {
+    <div class="nx-pinned-list">
+        @for (item of items; track item.id; let i = $index) {
+            <div class="nx-pinned-item" [class]="'nx-pinned-item-' + item.type">
+                <button type="button" class="nx-pinned-item-body" (click)="onActivate(item)">
+                    @switch (item.type) {
+                        @case ('image') {
+                            <div class="nx-pinned-thumb">
+                                <img [src]="item.content" [alt]="item.title" />
+                            </div>
+                        }
+                        @case ('video') {
+                            <div class="nx-pinned-thumb nx-pinned-thumb-video">
+                                <img [src]="item.content" [alt]="item.title" />
+                                <nx-icon icon="nx-video" variant="svg" [size]="20" class="nx-pinned-play-icon"></nx-icon>
+                            </div>
+                        }
+                        @case ('link') {
+                            <nx-icon [icon]="item.icon || 'nx-link'" variant="svg" [size]="18" class="nx-pinned-icon"></nx-icon>
+                        }
+                        @case ('custom') {
+                            @if (customTemplate) {
+                                <ng-container *ngTemplateOutlet="customTemplate; context: { $implicit: item }"></ng-container>
+                            }
+                        }
+                        @default {
+                            <nx-icon [icon]="item.icon || 'nx-file'" variant="svg" [size]="18" class="nx-pinned-icon"></nx-icon>
+                        }
+                    }
+
+                    @if (item.type !== 'custom') {
+                        <div class="nx-pinned-text">
+                            <div class="nx-pinned-title">{{ item.title }}</div>
+                            @if (item.subtitle) {
+                                <div class="nx-pinned-subtitle">{{ item.subtitle }}</div>
+                            }
+                            @if (item.type === 'text' && item.content) {
+                                <div class="nx-pinned-snippet">{{ item.content }}</div>
+                            }
+                        </div>
+                    }
+                </button>
+
+                <div class="nx-pinned-actions">
+                    <button type="button" class="nx-pinned-action" [disabled]="i === 0" (click)="moveUp(i)" aria-label="Move up">
+                        <nx-icon icon="nx-chevron-up" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                    <button type="button" class="nx-pinned-action" [disabled]="i === items.length - 1" (click)="moveDown(i)" aria-label="Move down">
+                        <nx-icon icon="nx-chevron-down" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                    <button type="button" class="nx-pinned-action nx-pinned-unpin" (click)="unpin(item)" aria-label="Unpin">
+                        <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                </div>
+            </div>
+        } @empty {
+            <div class="nx-pinned-empty">{{ emptyMessage }}</div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Pinned Item List"></nx-pro-locked>
+}

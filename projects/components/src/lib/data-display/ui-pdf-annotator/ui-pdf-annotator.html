@@ -1,0 +1,167 @@
+@if (licensed()) {
+    <div class="nx-pdf-annotator">
+        <div class="nx-annot-toolbar">
+            <span class="nx-annot-title">{{ title }}</span>
+
+            <div class="nx-annot-tools">
+                @for (t of tools; track t.tool) {
+                    <button
+                        type="button"
+                        class="nx-annot-tool-btn"
+                        [class.active]="activeTool() === t.tool"
+                        [attr.aria-pressed]="activeTool() === t.tool"
+                        [title]="t.label"
+                        (click)="selectTool(t.tool)">
+                        <nx-icon [icon]="t.icon" variant="svg" [size]="14"></nx-icon>
+                        <span>{{ t.label }}</span>
+                    </button>
+                }
+            </div>
+
+            <div class="nx-annot-colors">
+                @for (c of colors; track c) {
+                    <button
+                        type="button"
+                        class="nx-annot-color-swatch"
+                        [class.active]="activeColor() === c"
+                        [style.background-color]="c"
+                        [attr.aria-label]="'Color ' + c"
+                        (click)="selectColor(c)">
+                    </button>
+                }
+            </div>
+
+            <div class="nx-annot-actions">
+                <button type="button" (click)="clearAll()" [disabled]="annotations.length === 0" title="Clear all annotations">
+                    <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon>
+                </button>
+                <button type="button" (click)="exportOverlayImage()" [disabled]="annotations.length === 0" title="Export overlay as transparent PNG">
+                    <nx-icon icon="nx-image" variant="svg" [size]="14"></nx-icon>
+                </button>
+                <button type="button" class="nx-annot-export-btn" (click)="exportAnnotations()" [disabled]="annotations.length === 0" title="Export annotations as JSON">
+                    <nx-icon icon="nx-download" variant="svg" [size]="14"></nx-icon>
+                    Export
+                </button>
+            </div>
+        </div>
+
+        <div
+            #stageEl
+            class="nx-annot-stage"
+            [class.tool-active]="overlayActive"
+            [style.height.px]="height"
+            (pointerdown)="onPointerDown($event)"
+            (pointermove)="onPointerMove($event)"
+            (pointerup)="onPointerUp()"
+            (pointerleave)="onPointerUp()">
+
+            <iframe class="nx-annot-frame" [src]="safeSrc()" title="{{ title }}"></iframe>
+
+            <svg class="nx-annot-overlay-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                @for (a of annotations; track a.id) {
+                    @if (a.tool === 'draw' && a.points && a.points.length > 0) {
+                        <polyline
+                            [attr.points]="toSvgPoints(a.points)"
+                            fill="none"
+                            [attr.stroke]="a.color"
+                            stroke-width="2"
+                            vector-effect="non-scaling-stroke"
+                            stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    }
+                    @if (a.tool === 'highlight' && a.points && a.points.length === 2) {
+                        <rect
+                            [attr.x]="rectX(a.points)"
+                            [attr.y]="rectY(a.points)"
+                            [attr.width]="rectW(a.points)"
+                            [attr.height]="rectH(a.points)"
+                            [attr.fill]="a.color"
+                            fill-opacity="0.35" />
+                    }
+                    @if (a.tool === 'rectangle' && a.points && a.points.length === 2) {
+                        <rect
+                            [attr.x]="rectX(a.points)"
+                            [attr.y]="rectY(a.points)"
+                            [attr.width]="rectW(a.points)"
+                            [attr.height]="rectH(a.points)"
+                            fill="none"
+                            [attr.stroke]="a.color"
+                            stroke-width="2"
+                            vector-effect="non-scaling-stroke" />
+                    }
+                }
+
+                @if (draftPoints(); as draft) {
+                    @if (activeTool() === 'draw') {
+                        <polyline
+                            [attr.points]="toSvgPoints(draft)"
+                            fill="none"
+                            [attr.stroke]="activeColor()"
+                            stroke-width="2"
+                            vector-effect="non-scaling-stroke"
+                            stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    }
+                    @if ((activeTool() === 'highlight' || activeTool() === 'rectangle') && draft.length === 2) {
+                        <rect
+                            [attr.x]="rectX(draft)"
+                            [attr.y]="rectY(draft)"
+                            [attr.width]="rectW(draft)"
+                            [attr.height]="rectH(draft)"
+                            [attr.fill]="activeTool() === 'highlight' ? activeColor() : 'none'"
+                            [attr.fill-opacity]="activeTool() === 'highlight' ? 0.35 : null"
+                            [attr.stroke]="activeTool() === 'rectangle' ? activeColor() : null"
+                            stroke-width="2"
+                            vector-effect="non-scaling-stroke"
+                            stroke-dasharray="2,1.5" />
+                    }
+                }
+            </svg>
+
+            @for (a of annotations; track a.id) {
+                @if (a.tool === 'text' && a.points && a.points.length > 0) {
+                    <div
+                        class="nx-annot-text"
+                        [style.left.%]="a.points[0].x * 100"
+                        [style.top.%]="a.points[0].y * 100"
+                        [style.color]="a.color"
+                        title="Double-click to delete"
+                        (dblclick)="removeAnnotation(a.id)">
+                        {{ a.text }}
+                    </div>
+                }
+            }
+
+            @if (textEditor(); as draftText) {
+                <input
+                    class="nx-annot-text-input"
+                    [style.left.%]="draftText.x * 100"
+                    [style.top.%]="draftText.y * 100"
+                    [style.color]="activeColor()"
+                    [value]="draftText.value"
+                    placeholder="Type, then Enter"
+                    autofocus
+                    (input)="onTextInput($event, draftText)"
+                    (keydown.enter)="confirmText()"
+                    (keydown.escape)="cancelText()"
+                    (blur)="confirmText()" />
+            }
+        </div>
+
+        @if (annotations.length > 0) {
+            <div class="nx-annot-list">
+                @for (a of annotations; track a.id) {
+                    <div class="nx-annot-list-item">
+                        <span class="nx-annot-list-dot" [style.background-color]="a.color"></span>
+                        <span class="nx-annot-list-label">{{ a.tool }}{{ a.text ? ': ' + a.text : '' }}</span>
+                        <button type="button" (click)="removeAnnotation(a.id)" aria-label="Remove annotation">
+                            <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                        </button>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="PDF Annotator"></nx-pro-locked>
+}

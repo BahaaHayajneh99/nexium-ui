@@ -1,0 +1,30 @@
+<div
+    class="nx-fab-container"
+    [class.bottom-right]="position === 'bottom-right'"
+    [class.bottom-left]="position === 'bottom-left'"
+    [class.top-right]="position === 'top-right'"
+    [class.top-left]="position === 'top-left'">
+
+    @if (hasActions && open()) {
+        <div class="nx-fab-actions">
+            @for (action of actions; track action.label) {
+                <button type="button" class="nx-fab-action" (click)="selectAction(action)">
+                    <span class="nx-fab-action-label">{{ action.label }}</span>
+                    <span class="nx-fab-action-circle">
+                        <nx-icon [icon]="action.icon" variant="svg" [size]="18"></nx-icon>
+                    </span>
+                </button>
+            }
+        </div>
+    }
+
+    <button
+        type="button"
+        class="nx-fab-main"
+        [class.open]="hasActions && open()"
+        [attr.aria-expanded]="hasActions ? open() : null"
+        (click)="onMainClick()">
+        <nx-icon [icon]="hasActions && open() ? 'nx-close' : icon" variant="svg" [size]="22"></nx-icon>
+    </button>
+
+</div>

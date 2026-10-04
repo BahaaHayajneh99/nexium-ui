@@ -1,0 +1,38 @@
+.nx-copyable-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 4px 2px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    font-size: 13px;
+    color: var(--shell-text);
+}
+
+.nx-copyable-text-label {
+    color: var(--shell-text-secondary);
+}
+
+.nx-copyable-text-value.mono {
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-copyable-text-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.nx-copyable-text-btn:hover {
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text);
+}

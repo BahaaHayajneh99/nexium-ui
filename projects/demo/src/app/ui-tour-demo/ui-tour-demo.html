@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Tour"
+                description="The {{ commonService.appName }} Tour is a guided, multi-step walkthrough: each step highlights one element on the page (by CSS selector) with a callout and Back/Next/Skip controls, advancing through steps in order. Same highlight mechanism as Spotlight, sequenced into a full flow."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <div style="display:flex; gap:8px; margin-bottom:12px;">
+                    <button id="tour-search" class="demo-btn" type="button">Search</button>
+                    <button id="tour-new" class="demo-btn" type="button">New</button>
+                    <button id="tour-profile" class="demo-btn" type="button">Profile</button>
+                </div>
+
+                <button class="demo-btn" type="button" (click)="open = true">Start tour</button>
+
+                <nx-tour [steps]="steps" [(open)]="open"></nx-tour>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

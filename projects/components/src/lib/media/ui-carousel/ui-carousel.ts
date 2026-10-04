@@ -2,6 +2,8 @@ import { AfterContentInit, booleanAttribute, Component, ContentChildren, Input, 
 import { NgTemplateOutlet } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxCarouselSlideDirective } from './nx-carousel-slide';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxCarouselSlide {
   src: string;
@@ -12,11 +14,12 @@ export interface NxCarouselSlide {
 @Component({
   selector: 'nx-carousel',
   standalone: true,
-  imports: [NxIcon, NgTemplateOutlet],
+  imports: [NxIcon, NgTemplateOutlet, NxProLocked],
   templateUrl: './ui-carousel.html',
   styleUrl: './ui-carousel.scss',
 })
 export class NxCarousel implements AfterContentInit, OnDestroy {
+  protected readonly licensed = nxProLicenseGranted();
   @Input() slides: NxCarouselSlide[] = [];
   @Input({ transform: booleanAttribute }) autoplay = false;
   @Input({ transform: numberAttribute }) interval = 4000;

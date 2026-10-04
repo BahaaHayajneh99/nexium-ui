@@ -1,0 +1,79 @@
+.nx-command-history {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    padding: 10px;
+}
+
+.nx-command-history-toolbar {
+    display: flex;
+    gap: 8px;
+}
+
+.nx-command-history-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-command-history-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.nx-command-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.nx-command-history-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: 13px;
+    color: var(--shell-text);
+    cursor: pointer;
+}
+
+.nx-command-history-item:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+}
+
+.nx-command-history-item.current {
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .1));
+    font-weight: 600;
+}
+
+.nx-command-history-item.future {
+    color: var(--shell-text-secondary);
+}
+
+.nx-command-history-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--shell-text-secondary);
+    flex-shrink: 0;
+}
+
+.nx-command-history-item.current .nx-command-history-dot {
+    background-color: var(--shell-primary);
+}

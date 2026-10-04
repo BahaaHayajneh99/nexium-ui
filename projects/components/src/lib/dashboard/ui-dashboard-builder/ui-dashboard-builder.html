@@ -1,0 +1,76 @@
+@if (licensed()) {
+    <div class="nx-dashboard-builder" [attr.data-theme]="activeLayout().theme ?? 'light'">
+        <div class="nx-dashboard-builder-toolbar">
+            <div class="nx-dashboard-builder-tabs">
+                @for (layout of layouts; track $index) {
+                    <button
+                        type="button"
+                        class="nx-dashboard-builder-tab"
+                        [class.active]="$index === activeIndex()"
+                        (click)="selectDashboard($index)">
+                        {{ layout.name }}
+                    </button>
+                }
+                <button type="button" class="nx-dashboard-builder-tab nx-dashboard-builder-tab-add" (click)="addDashboard()">
+                    <nx-icon icon="nx-plus" [size]="14"></nx-icon>
+                    New dashboard
+                </button>
+            </div>
+
+            <div class="nx-dashboard-builder-actions">
+                <select
+                    class="nx-dashboard-builder-theme"
+                    [value]="activeLayout().theme ?? 'light'"
+                    (change)="setTheme($any($event.target).value)">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="auto">Auto</option>
+                </select>
+                <button type="button" class="nx-dashboard-builder-btn" (click)="saveLayout()">
+                    <nx-icon icon="nx-save" [size]="14"></nx-icon>
+                    Save layout
+                </button>
+                <button type="button" class="nx-dashboard-builder-btn" (click)="exportLayout()">
+                    <nx-icon icon="nx-download" [size]="14"></nx-icon>
+                    Export
+                </button>
+            </div>
+        </div>
+
+        <div class="nx-dashboard-builder-palette">
+            <span class="nx-dashboard-builder-palette-label">Add widget:</span>
+            @for (type of widgetTypes; track type) {
+                <button type="button" class="nx-dashboard-builder-palette-btn" (click)="addWidget(type)">
+                    <nx-icon icon="nx-plus" [size]="12"></nx-icon>
+                    {{ type }}
+                </button>
+            }
+        </div>
+
+        <nx-widget-grid
+            class="nx-dashboard-builder-canvas"
+            [layout]="activeLayout().layoutItems"
+            [columns]="effectiveColumns()"
+            (layoutChange)="onLayoutChange($event)">
+            <ng-template let-item>
+                @if (widgetFor(item.id); as widget) {
+                    <div class="nx-dashboard-builder-widget" [attr.data-type]="widget.type">
+                        <div class="nx-dashboard-builder-widget-head">
+                            <span class="nx-dashboard-builder-widget-title">{{ widget.title }}</span>
+                            <button
+                                type="button"
+                                class="nx-dashboard-builder-widget-remove"
+                                (mousedown)="$event.stopPropagation()"
+                                (click)="removeWidget(widget.id)">
+                                <nx-icon icon="nx-close" [size]="12"></nx-icon>
+                            </button>
+                        </div>
+                        <div class="nx-dashboard-builder-widget-type">{{ widget.type }}</div>
+                    </div>
+                }
+            </ng-template>
+        </nx-widget-grid>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Dashboard Builder"></nx-pro-locked>
+}

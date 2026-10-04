@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Markdown Source → Formatted HTML"
+                description="{{ commonService.appName }} Markdown Viewer - headings, bold/italic/inline code, links, lists, blockquotes, and fenced code blocks, rendered read-only. Handles a practical common subset of markdown (not full CommonMark) - a natural fit for READMEs, changelogs, and comment bodies. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-markdown-viewer [source]="source"></nx-markdown-viewer>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

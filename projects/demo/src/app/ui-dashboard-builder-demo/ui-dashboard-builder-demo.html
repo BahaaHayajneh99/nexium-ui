@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Builder"
+                description="{{ commonService.appName }}'s Dashboard Builder composes Widget Grid internally: use the palette to drop in a demo metric/chart/text widget, drag and resize it on the canvas, switch between multiple dashboards with the tabs (or start a new one), pick a theme, and Save or Export (downloads the current layout as JSON) the result. Widgets here are styled placeholders - the real value is the builder mechanics, not a charting engine."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:1100px;">
+                    <nx-dashboard-builder [layouts]="layouts" (layoutSaved)="onLayoutSaved($event)"></nx-dashboard-builder>
+
+                    @if (savedLayouts.length) {
+                        <div style="margin-top:12px;">
+                            <p style="color:var(--shell-text-secondary); font-size:0.85rem; margin-bottom:6px;">
+                                Saved layouts ({{ savedLayouts.length }}):
+                            </p>
+                            <ul style="margin:0; padding-left:18px; font-size:0.85rem; color:var(--shell-text-secondary);">
+                                @for (saved of savedLayouts; track $index) {
+                                    <li>{{ saved.name }} - {{ saved.widgets.length }} widget(s), theme: {{ saved.theme }}</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

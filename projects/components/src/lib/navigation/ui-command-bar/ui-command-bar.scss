@@ -1,0 +1,47 @@
+.nx-command-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    overflow-x: auto;
+}
+
+.nx-command-bar-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.nx-command-bar-separator {
+    width: 1px;
+    height: 20px;
+    margin: 0 6px;
+    background-color: var(--shell-border);
+    flex-shrink: 0;
+}
+
+.nx-command-bar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.nx-command-bar-item:hover:not(:disabled) {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+}
+
+.nx-command-bar-item:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}

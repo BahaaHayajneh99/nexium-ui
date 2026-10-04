@@ -1,0 +1,70 @@
+.nx-theme-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.nx-theme-editor-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-theme-editor-field {
+    display: grid;
+    grid-template-columns: 90px 1fr 48px;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-theme-editor-field select,
+.nx-theme-editor-field input[type="color"] {
+    grid-column: 2 / span 2;
+    padding: 5px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-theme-editor-value {
+    text-align: right;
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-theme-editor-preview {
+    padding: 20px;
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+}
+
+.nx-theme-editor-preview-card {
+    padding: 16px;
+    background-color: var(--shell-bg, #ffffff);
+    border: 1px solid var(--shell-border);
+}
+
+.nx-theme-editor-preview-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-theme-editor-preview-text {
+    margin: 6px 0 12px;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-theme-editor-preview-button {
+    padding: 8px 16px;
+    border: none;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}

@@ -1,0 +1,72 @@
+<div class="nx-query-builder-group" [class.root]="isRoot">
+    <div class="nx-query-builder-group-header">
+        <select
+            class="nx-query-builder-combinator"
+            [value]="group.combinator"
+            (change)="setCombinator($any($event.target).value)">
+            <option value="and">AND</option>
+            <option value="or">OR</option>
+        </select>
+        <button type="button" class="nx-query-builder-action" (click)="addRule()">+ Rule</button>
+        <button type="button" class="nx-query-builder-action" (click)="addGroup()">+ Group</button>
+    </div>
+
+    <div class="nx-query-builder-rules">
+        @for (node of group.rules; track node.id; let i = $index) {
+            @if (isGroup(node)) {
+                <div class="nx-query-builder-nested">
+                    <nx-query-builder-group
+                        [group]="asGroup(node)"
+                        [fields]="fields"
+                        [operators]="operators"
+                        (groupChange)="updateNode(i, $event)">
+                    </nx-query-builder-group>
+                    <button
+                        type="button"
+                        class="nx-query-builder-remove"
+                        aria-label="Remove group"
+                        (click)="removeNode(i)">
+                        &#10005;
+                    </button>
+                </div>
+            } @else {
+                <div class="nx-query-builder-rule">
+                    <select
+                        class="nx-query-builder-select"
+                        [value]="asRule(node).field"
+                        (change)="updateNode(i, { ...asRule(node), field: $any($event.target).value })">
+                        @for (field of fields; track field.id) {
+                            <option [value]="field.id">{{ field.label }}</option>
+                        }
+                    </select>
+
+                    <select
+                        class="nx-query-builder-select"
+                        [value]="asRule(node).operator"
+                        (change)="updateNode(i, { ...asRule(node), operator: $any($event.target).value })">
+                        @for (operator of operators; track operator.value) {
+                            <option [value]="operator.value">{{ operator.label }}</option>
+                        }
+                    </select>
+
+                    @if (needsValue(asRule(node).operator)) {
+                        <input
+                            type="text"
+                            class="nx-query-builder-input"
+                            placeholder="Value"
+                            [value]="asRule(node).value"
+                            (input)="updateNode(i, { ...asRule(node), value: $any($event.target).value })" />
+                    }
+
+                    <button
+                        type="button"
+                        class="nx-query-builder-remove"
+                        aria-label="Remove rule"
+                        (click)="removeNode(i)">
+                        &#10005;
+                    </button>
+                </div>
+            }
+        }
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="nx-app-shell" [class.sidebar-collapsed]="collapsed()">
+    <header class="nx-app-shell-header">
+        <ng-content select="[nxAppShellHeader]"></ng-content>
+    </header>
+
+    <aside class="nx-app-shell-sidebar">
+        <ng-content select="[nxAppShellSidebar]"></ng-content>
+    </aside>
+
+    <main class="nx-app-shell-content">
+        <ng-content></ng-content>
+    </main>
+
+    <footer class="nx-app-shell-footer">
+        <ng-content select="[nxAppShellFooter]"></ng-content>
+    </footer>
+</div>

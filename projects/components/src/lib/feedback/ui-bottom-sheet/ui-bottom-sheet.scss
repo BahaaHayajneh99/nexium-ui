@@ -1,0 +1,65 @@
+.nx-bottom-sheet-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, .45);
+    animation: nx-bottom-sheet-fade .2s ease;
+}
+
+.nx-bottom-sheet-panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--shell-surface);
+    border-top-left-radius: var(--nx-radius-md, 16px);
+    border-top-right-radius: var(--nx-radius-md, 16px);
+    box-shadow: 0 0 32px rgba(0, 0, 0, .25);
+    transform: translateY(0);
+    transition: transform .25s ease;
+    animation: nx-bottom-sheet-in .25s ease both;
+    touch-action: none;
+}
+
+.nx-bottom-sheet-panel.dragging {
+    transition: none;
+}
+
+.nx-bottom-sheet-handle {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 10px 0 6px;
+    cursor: grab;
+    touch-action: none;
+}
+
+.nx-bottom-sheet-handle:active {
+    cursor: grabbing;
+}
+
+.nx-bottom-sheet-grip {
+    width: 36px;
+    height: 4px;
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: var(--shell-border);
+}
+
+.nx-bottom-sheet-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 20px 20px;
+}
+
+@keyframes nx-bottom-sheet-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes nx-bottom-sheet-in {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}

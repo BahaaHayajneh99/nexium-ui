@@ -1,0 +1,77 @@
+.showcase-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.showcase-card {
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.showcase-table-wrapper {
+    overflow-x: auto;
+}
+
+.showcase-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.showcase-table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+    border-bottom: 1px solid var(--shell-border);
+    white-space: nowrap;
+}
+
+.showcase-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    white-space: nowrap;
+}
+
+.showcase-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.showcase-table-mono {
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.showcase-table-muted {
+    color: var(--shell-text-secondary);
+}
+
+.showcase-receipt-confirm {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-success, #16a34a);
+}
+
+.showcase-table-expanded-row td {
+    background-color: var(--shell-bg, #f8fafc);
+    white-space: normal;
+}
+
+.showcase-attach-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 420px;
+    padding: 8px 4px;
+}
+
+.showcase-attach-hint {
+    margin: 0;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}

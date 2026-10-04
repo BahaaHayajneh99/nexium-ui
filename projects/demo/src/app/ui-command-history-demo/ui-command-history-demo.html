@@ -1,0 +1,46 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Command History"
+                description="The {{ commonService.appName }} Command History renders an undo/redo toolbar plus a clickable list of past actions - click any entry to jump straight back to it."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-command-history
+                    [entries]="entries()"
+                    [currentIndex]="currentIndex()"
+                    (undo)="undo()"
+                    (redo)="redo()"
+                    (restore)="onRestore($event)">
+                </nx-command-history>
+            </app-demo-section>
+
+            <app-demo-section
+                header="In Context"
+                description="A typical use case - a command history panel next to an editor's step counter."
+                [code]="contextCode"
+                [tsCode]="contextTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:10px; max-width:320px; padding:16px; border:1px solid var(--nx-border-color, #e2e8f0); border-radius:12px;">
+                    <span style="font-size:13px; color:#64748b;">Step {{ currentIndex() + 1 }} of {{ entries().length }}</span>
+                    <nx-command-history
+                        [entries]="entries()"
+                        [currentIndex]="currentIndex()"
+                        (undo)="undo()"
+                        (redo)="redo()"
+                        (restore)="onRestore($event)">
+                    </nx-command-history>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

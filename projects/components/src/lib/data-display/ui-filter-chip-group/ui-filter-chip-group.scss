@@ -1,0 +1,52 @@
+.nx-filter-chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: 999px;
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.nx-filter-chip:hover {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-filter-chip.active {
+    background-color: var(--shell-primary);
+    border-color: var(--shell-primary);
+    color: #ffffff;
+}
+
+.nx-filter-chip-count {
+    padding: 0 6px;
+    border-radius: 999px;
+    background-color: color-mix(in srgb, currentColor 15%, transparent);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.nx-filter-chip-clear {
+    border: none;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nx-filter-chip-clear:hover {
+    color: var(--shell-text);
+}

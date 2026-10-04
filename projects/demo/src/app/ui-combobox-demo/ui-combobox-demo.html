@@ -1,0 +1,80 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Combobox"
+                description="The {{ commonService.appName }} Combobox pairs a searchable text box with a dropdown list - type to filter, or open the full list with the chevron button. Unlike Autocomplete, the value is always one of the listed options: unmatched typed text reverts to the current selection on blur."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-combobox
+                    label="Country"
+                    placeholder="Search countries..."
+                    [options]="countryOptions"
+                    [(value)]="country">
+                </nx-combobox>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reactive Form"
+                description="Combobox implements ControlValueAccessor, so it works with formControlName inside a reactive form."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs">
+                <div [formGroup]="countryForm">
+                    <nx-combobox
+                        label="Country"
+                        [options]="countryOptions"
+                        formControlName="country">
+                    </nx-combobox>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template-Driven Form"
+                description="It also works with [(ngModel)] for template-driven forms."
+                [code]="templateCode"
+                [tsCode]="templateTs">
+                <nx-combobox
+                    label="Country"
+                    [options]="countryOptions"
+                    [(ngModel)]="country">
+                </nx-combobox>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Clearable"
+                description="Set showClear to true to show a clear button once a value is selected."
+                [code]="clearCode"
+                [tsCode]="clearTs">
+                <nx-combobox
+                    label="Country"
+                    [options]="countryOptions"
+                    [showClear]="true"
+                    [(value)]="clearable">
+                </nx-combobox>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the combobox mandatory - a validation message shows once the field is blurred while still empty."
+                [code]="requiredCode"
+                [tsCode]="requiredTs">
+                <nx-combobox
+                    label="Country"
+                    placeholder="Select a country"
+                    [options]="countryOptions"
+                    [isRequired]="true"
+                    [(ngModel)]="required">
+                </nx-combobox>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

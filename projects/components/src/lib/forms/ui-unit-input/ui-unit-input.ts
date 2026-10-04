@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export type NxUnitPosition = 'prefix' | 'suffix';
 
 @Component({
   selector: 'nx-unit-input',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-unit-input.html',
   styleUrl: './ui-unit-input.scss',
   providers: [
@@ -23,6 +25,7 @@ export type NxUnitPosition = 'prefix' | 'suffix';
   ],
 })
 export class NxUnitInput implements ControlValueAccessor, Validator {
+  protected readonly licensed = nxProLicenseGranted();
   @Input() label = '';
   @Input() placeholder = '';
   /** The list of selectable units, e.g. ['$', '%', 'kg'] - fully driven by the consumer, not hardcoded. */

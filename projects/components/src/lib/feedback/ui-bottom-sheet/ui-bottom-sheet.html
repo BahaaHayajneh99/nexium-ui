@@ -1,0 +1,24 @@
+@if (open) {
+    <div class="nx-bottom-sheet-backdrop" (click)="onBackdropClick()"></div>
+
+    <div
+        class="nx-bottom-sheet-panel"
+        [class.dragging]="dragging"
+        [style.max-height]="maxHeight"
+        [style.transform]="dragOffset ? 'translateY(' + dragOffset + 'px)' : null">
+
+        <div
+            class="nx-bottom-sheet-handle"
+            (pointerdown)="onHandlePointerDown($event)"
+            (pointermove)="onHandlePointerMove($event)"
+            (pointerup)="onHandlePointerUp($event)"
+            (pointercancel)="onHandlePointerUp($event)">
+            <span class="nx-bottom-sheet-grip"></span>
+        </div>
+
+        <div class="nx-bottom-sheet-content">
+            <ng-content></ng-content>
+        </div>
+
+    </div>
+}

@@ -1,0 +1,64 @@
+<div class="nx-data-grid">
+    <div class="nx-data-grid-toolbar">
+        <input
+            type="text"
+            class="nx-data-grid-search"
+            placeholder="Search..."
+            [value]="searchTerm()"
+            (input)="onSearchInput($event)" />
+        <span class="nx-data-grid-count">{{ sortedRows.length }} rows</span>
+    </div>
+
+    <div class="nx-data-grid-scroll">
+        <table class="nx-data-grid-table">
+            <thead>
+                <tr>
+                    @for (column of columns; track column.field) {
+                        <th
+                            [class.sortable]="column.sortable"
+                            (click)="onHeaderClick(column)">
+                            {{ column.header }}
+                            @if (column.sortable && sortIndicator(column.field)) {
+                                <span class="nx-data-grid-sort-icon">{{ sortIndicator(column.field) }}</span>
+                            }
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (row of pagedRows; track $index) {
+                    <tr>
+                        @for (column of columns; track column.field) {
+                            <td>{{ row[column.field] }}</td>
+                        }
+                    </tr>
+                } @empty {
+                    <tr>
+                        <td [attr.colspan]="columns.length" class="nx-data-grid-empty">No data available</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (totalPages > 1) {
+        <div class="nx-data-grid-paginator">
+            <div class="nx-data-grid-paginator-info">
+                {{ sortedRows.length === 0 ? 0 : pageStart + 1 }}-{{ pageEnd }} of {{ sortedRows.length }}
+            </div>
+            <div class="nx-data-grid-pagination">
+                <button type="button" class="nx-data-grid-page-btn" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">‹</button>
+                @for (pageNum of pageNumbers; track pageNum) {
+                    <button
+                        type="button"
+                        class="nx-data-grid-page-btn"
+                        [class.active]="pageNum === currentPage"
+                        (click)="goToPage(pageNum)">
+                        {{ pageNum }}
+                    </button>
+                }
+                <button type="button" class="nx-data-grid-page-btn" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">›</button>
+            </div>
+        </div>
+    }
+</div>

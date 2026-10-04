@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Back Button"
+                description="The {{ commonService.appName }} Back Button is a labeled back-arrow button that navigates via browser history by default."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-back-button></nx-back-button>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Label & Event"
+                description="Pass a custom label and listen for backClick to run your own logic alongside (or instead of) history navigation."
+                [code]="customCode"
+                [tsCode]="customTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-start;">
+                    <nx-back-button label="Back to results" [preventNavigation]="true" (backClick)="onBackClick()"></nx-back-button>
+                    <p>Clicks: {{ clickCount }}</p>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Prevent Navigation"
+                description="Set preventNavigation to true when you want backClick to fully own the behavior instead of the default browser-history navigation - e.g. closing a modal or resetting a wizard step."
+                [code]="preventCode"
+                [tsCode]="preventTs">
+                <nx-back-button label="Cancel" [preventNavigation]="true" (backClick)="onCancel()"></nx-back-button>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

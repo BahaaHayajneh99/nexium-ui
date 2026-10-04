@@ -1,0 +1,46 @@
+.nx-comparison-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-comparison-card-label {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-comparison-card-main {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.nx-comparison-card-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-comparison-card-delta {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.nx-comparison-card-delta.good {
+    color: #2ecc71;
+}
+
+.nx-comparison-card-delta.bad {
+    color: #e74c3c;
+}
+
+.nx-comparison-card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}

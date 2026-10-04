@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Copyable Text"
+                description="The {{ commonService.appName }} Copyable Text shows an inline value - an API key, a command, an id - with a one-click copy button. mono defaults to true."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:10px; max-width:420px;">
+                    <nx-copyable-text label="API Key" text="sk_demo_8f3a2b1c9d0e4f5a6b7c8d9e"></nx-copyable-text>
+                    <nx-copyable-text label="Webhook URL" text="https://api.example.com/hooks/8f3a2b1c"></nx-copyable-text>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Non-monospace"
+                description="Set mono to false for regular text instead of a monospace font."
+                [code]="plainCode"
+                [tsCode]="plainTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-copyable-text label="Invite link" text="https://app.example.com/invite/xh92kd" [mono]="false"></nx-copyable-text>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="In Context"
+                description="A typical use case - a list of account details each with their own copy button."
+                [code]="contextCode"
+                [tsCode]="contextTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:10px; max-width:420px;">
+                    @for (field of fields; track field.label) {
+                        <nx-copyable-text [label]="field.label" [text]="field.value"></nx-copyable-text>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

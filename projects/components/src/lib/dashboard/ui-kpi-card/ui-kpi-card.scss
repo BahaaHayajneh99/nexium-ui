@@ -1,0 +1,52 @@
+.nx-kpi-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-kpi-card-label {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-kpi-card-values {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.nx-kpi-card-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-kpi-card-target {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-kpi-card-track {
+    height: 6px;
+    border-radius: 999px;
+    background-color: var(--shell-border);
+    overflow: hidden;
+}
+
+.nx-kpi-card-fill {
+    height: 100%;
+    border-radius: 999px;
+    background-color: var(--shell-primary);
+    transition: width .2s ease;
+}
+
+.nx-kpi-card-percent {
+    align-self: flex-end;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}

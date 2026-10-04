@@ -1,0 +1,24 @@
+@if (licensed()) {
+    <div class="nx-treemap" [style.aspect-ratio]="aspectRatio">
+        @for (tile of tiles(); track tile.datum.label + '-' + tile.index) {
+            <div
+                class="nx-treemap-tile"
+                [style.left.%]="tile.leftPct"
+                [style.top.%]="tile.topPct"
+                [style.width.%]="tile.widthPct"
+                [style.height.%]="tile.heightPct"
+                [style.background]="tile.color"
+                [style.color]="tile.textColor"
+                tabindex="0"
+                role="button"
+                [attr.aria-label]="tile.datum.label + ': ' + formatValue(tile.datum.value)"
+                (click)="select(tile)"
+                (keydown.enter)="select(tile)">
+                <span class="nx-treemap-tile-label">{{ tile.datum.label }}</span>
+                <span class="nx-treemap-tile-value">{{ formatValue(tile.datum.value) }}</span>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Treemap"></nx-pro-locked>
+}

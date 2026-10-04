@@ -1,0 +1,82 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Cells, Formulas, Freeze Panes &amp; Undo/Redo"
+                description="{{ commonService.appName }} Spreadsheet - click a cell to select it, drag or shift-click to select a range, double-click (or press Enter/F2, or just type) to edit, Ctrl/Cmd+C and Ctrl/Cmd+V to copy a range, Ctrl/Cmd+Z to undo and Ctrl/Cmd+Y to redo (or use the toolbar's arrows), arrow keys to navigate, and drag a column/row header's edge to resize. Row 1 and column A are frozen. Formulas support SUM/AVERAGE/COUNT/MIN/MAX over a range plus +-*/ arithmetic, and reference other formula cells (see row 6 summing row totals from column E, which are themselves SUM formulas). This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-spreadsheet [rows]="12" [cols]="6" [frozenRows]="1" [frozenCols]="1" [data]="data" (dataChange)="onDataChange($event)" exportFilename="monthly-budget"></nx-spreadsheet>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Required Fields &amp; Validation"
+                description="Give any column a schema with columnDefs: required: true shows a red * next to its header and enforces a required rule automatically, and validations covers email, number, integer, min/max, minLength/maxLength, a regex pattern, or your own custom function - each with an optional custom message. A cell that fails gets a red outline and the message as its hover tooltip. Row 2 below starts with a bad email and an under-age value so you can see the invalid state immediately. Click the '+' at the end of the header row to add a column on demand."
+                [code]="validationCode"
+                [tsCode]="validationTs"
+                [hasSampleClass]="false">
+                <nx-spreadsheet
+                    [rows]="6"
+                    [cols]="5"
+                    [frozenRows]="0"
+                    [columnDefs]="employeeColumns"
+                    (columnDefsChange)="onEmployeeColumnsChange($event)"
+                    [data]="employeeData"
+                    (dataChange)="onEmployeeDataChange($event)">
+                </nx-spreadsheet>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Column Grouping"
+                description="Give consecutive columns the same groupLabel and they're merged under one spanning header cell - here Jan/Feb/Mar group under 'Q1' and Apr/May/Jun under 'Q2', while 'Region' (no groupLabel) renders with no group cell above it."
+                [code]="groupedCode"
+                [tsCode]="groupedTs"
+                [hasSampleClass]="false">
+                <nx-spreadsheet
+                    [rows]="4"
+                    [cols]="7"
+                    [frozenCols]="1"
+                    [columnDefs]="groupedColumns"
+                    [data]="groupedData"
+                    (dataChange)="onGroupedDataChange($event)">
+                </nx-spreadsheet>
+            </app-demo-section>
+
+            <app-demo-section
+                header="RTL &amp; Arabic Labels"
+                description="Set direction=&quot;rtl&quot; to mirror the whole grid for right-to-left languages - column order, the frozen-pane edge, and the column-resize handles all flip to the correct side. Column labels and cell contents here are Arabic; any script works regardless of direction."
+                [code]="rtlCode"
+                [tsCode]="rtlTs"
+                [hasSampleClass]="false">
+                <nx-spreadsheet
+                    direction="rtl"
+                    [rows]="4"
+                    [cols]="5"
+                    [frozenCols]="1"
+                    [columnDefs]="arabicColumns"
+                    [data]="arabicData"
+                    (dataChange)="onArabicDataChange($event)">
+                </nx-spreadsheet>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Theming"
+                description="Pass a theme object to override the header background, accent color (active cell outline, selection tint, hovered controls), border color, and whether rows are striped - every property is optional and falls back to the surrounding app's own theme tokens when omitted."
+                [code]="themeCode"
+                [tsCode]="themeTs"
+                [hasSampleClass]="false">
+                <nx-spreadsheet [rows]="8" [cols]="5" [frozenRows]="1" [theme]="customTheme" [data]="data" (dataChange)="onDataChange($event)"></nx-spreadsheet>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

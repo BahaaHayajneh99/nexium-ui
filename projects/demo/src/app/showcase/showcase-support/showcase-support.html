@@ -1,0 +1,72 @@
+<div class="support-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="support-brand">
+            <nx-icon icon="nx-help-circle" variant="svg" [size]="18"></nx-icon>
+            <span>Pulse Support</span>
+        </div>
+        <div nx-navbar-links>
+            <a routerLink="/getting-started/introduction">← Docs</a>
+        </div>
+    </nx-navbar>
+
+    <div class="support-body">
+        <aside class="support-list">
+            <div class="support-filters">
+                @for (status of statuses; track status) {
+                    <button
+                        type="button"
+                        class="support-filter-chip"
+                        [class.active]="statusFilter() === status"
+                        (click)="statusFilter.set(status)">
+                        {{ status }}
+                    </button>
+                }
+            </div>
+
+            <div class="support-tickets">
+                @for (ticket of filteredTickets(); track ticket.id) {
+                    <button
+                        type="button"
+                        class="support-ticket-card"
+                        [class.active]="selectedTicket().id === ticket.id"
+                        (click)="selectTicket(ticket.id)">
+                        <div class="support-ticket-top">
+                            <span class="support-ticket-subject">{{ ticket.subject }}</span>
+                            <nx-badge [variant]="priorityVariant(ticket.priority)" size="small">{{ ticket.priority }}</nx-badge>
+                        </div>
+                        <div class="support-ticket-meta">
+                            <nx-avatar [name]="ticket.requester" size="small"></nx-avatar>
+                            <span>{{ ticket.requester }}</span>
+                            <span class="support-ticket-dot">·</span>
+                            <span>{{ ticket.updated }}</span>
+                        </div>
+                    </button>
+                }
+            </div>
+        </aside>
+
+        <main class="support-conversation">
+            <div class="support-conversation-header">
+                <div>
+                    <h2>{{ selectedTicket().subject }}</h2>
+                    <div class="support-conversation-sub">
+                        Requested by {{ selectedTicket().requester }} · {{ selectedTicket().updated }}
+                    </div>
+                </div>
+                <nx-badge [variant]="statusVariant(selectedTicket().status)">{{ selectedTicket().status }}</nx-badge>
+            </div>
+
+            <div class="support-thread">
+                <nx-chat-stream [messages]="chatMessages()" [streaming]="false"></nx-chat-stream>
+            </div>
+
+            <div class="support-reply">
+                <nx-prompt-input placeholder="Type your reply..." (submit)="onReply($event)"></nx-prompt-input>
+            </div>
+        </main>
+    </div>
+
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

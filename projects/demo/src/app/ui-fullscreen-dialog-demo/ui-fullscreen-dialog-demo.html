@@ -1,0 +1,33 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Fullscreen Dialog"
+                description="The {{ commonService.appName }} Fullscreen Dialog is like Modal, but the panel fills the whole viewport instead of a centered box - for flows that need real room (a wizard, an editor, a detail view) rather than a small confirmation. It shares Modal's focus trap and Escape-to-close behavior."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <button type="button" class="demo-btn" (click)="open = true">Open editor</button>
+
+                <nx-fullscreen-dialog header="Edit Profile" [(open)]="open">
+                    <div nx-fullscreen-dialog-body>
+                        Full-viewport content goes here - a form, a wizard, anything that needs real room instead of
+                        a small centered box.
+                    </div>
+                    <div nx-fullscreen-dialog-footer>
+                        <button type="button" class="demo-btn" (click)="open = false">Cancel</button>
+                        <button type="button" class="demo-btn" (click)="open = false">Save</button>
+                    </div>
+                </nx-fullscreen-dialog>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

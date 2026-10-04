@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Image Dropzone (multiple)"
+                description="{{ commonService.appName }} Dropzone accepts drag-and-drop or click-to-browse and renders a thumbnail grid for every selected file - images get a real preview, other file types get a generic icon. Each tile has a small remove button. Click the button below to add a few sample images programmatically (built from inline SVGs, not fetched from anywhere)."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <button type="button" class="dropzone-demo-seed-btn" (click)="loadSampleImages()">Add sample images</button>
+                <nx-dropzone #multiZone accept="image/*" [multiple]="true" (filesChange)="onFilesChange($event)"></nx-dropzone>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Single Document Pick"
+                description="With multiple set to false, the dropzone holds exactly one file - a new pick or drop replaces the current selection rather than adding to it."
+                [code]="singleCode"
+                [tsCode]="singleTs"
+                [hasSampleClass]="false">
+                <button type="button" class="dropzone-demo-seed-btn" (click)="loadSampleDocument()">Add sample document</button>
+                <nx-dropzone #singleZone accept=".pdf,.doc,.docx,.txt" [multiple]="false" (filesChange)="onFilesChange($event)"></nx-dropzone>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

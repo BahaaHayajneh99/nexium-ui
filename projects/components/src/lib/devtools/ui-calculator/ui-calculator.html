@@ -1,0 +1,79 @@
+@if (licensed()) {
+    <div class="nx-calculator" tabindex="0" (keydown)="onKeyDown($event)">
+        <div class="nx-calc-toolbar">
+            <div class="nx-calc-mode-toggle">
+                <button type="button" [class.active]="mode() === 'standard'" (click)="setMode('standard')">Standard</button>
+                <button type="button" [class.active]="mode() === 'scientific'" (click)="setMode('scientific')">Scientific</button>
+            </div>
+
+            @if (mode() === 'scientific') {
+                <div class="nx-calc-angle-toggle">
+                    <button type="button" [class.active]="angleMode() === 'deg'" (click)="setAngleMode('deg')">DEG</button>
+                    <button type="button" [class.active]="angleMode() === 'rad'" (click)="setAngleMode('rad')">RAD</button>
+                </div>
+            }
+
+            <button
+                type="button"
+                class="nx-calc-history-toggle"
+                [class.active]="showHistory()"
+                (click)="toggleHistory()"
+                aria-label="Toggle history">
+                <nx-icon icon="nx-clock" variant="svg" [size]="16"></nx-icon>
+            </button>
+        </div>
+
+        <div class="nx-calc-body">
+            <div class="nx-calc-display">
+                @if (hasMemory()) {
+                    <span class="nx-calc-memory-indicator">M</span>
+                }
+                <div class="nx-calc-expression" [class.empty]="!expression()">{{ expression() || '0' }}</div>
+                @if (preview(); as p) {
+                    <div class="nx-calc-preview">= {{ p }}</div>
+                }
+                @if (error(); as err) {
+                    <div class="nx-calc-error">{{ err }}</div>
+                }
+            </div>
+
+            <div class="nx-calc-pads">
+                @if (mode() === 'scientific') {
+                    <div class="nx-calc-pad nx-calc-pad-sci">
+                        @for (button of scientificButtons; track button.label) {
+                            <button type="button" [class]="'nx-calc-btn nx-calc-btn-' + button.variant" (click)="press(button)">{{ button.label }}</button>
+                        }
+                    </div>
+                }
+                <div class="nx-calc-pad nx-calc-pad-standard">
+                    @for (button of standardButtons; track button.label) {
+                        <button type="button" [class]="'nx-calc-btn nx-calc-btn-' + button.variant" (click)="press(button)">{{ button.label }}</button>
+                    }
+                </div>
+            </div>
+        </div>
+
+        @if (showHistory()) {
+            <div class="nx-calc-history">
+                <div class="nx-calc-history-header">
+                    <span>History</span>
+                    <button type="button" class="nx-calc-history-clear" (click)="clearHistory()" aria-label="Clear history">
+                        <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                </div>
+                @if (history().length === 0) {
+                    <p class="nx-calc-history-empty">No calculations yet.</p>
+                } @else {
+                    @for (entry of history(); track entry.timestamp) {
+                        <button type="button" class="nx-calc-history-row" (click)="useHistoryEntry(entry)">
+                            <span class="nx-calc-history-expr">{{ entry.expression }}</span>
+                            <span class="nx-calc-history-result">= {{ entry.result }}</span>
+                        </button>
+                    }
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Calculator"></nx-pro-locked>
+}

@@ -1,0 +1,51 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Theme Editor"
+                description="The {{ commonService.appName }} Theme Editor edits a small set of theme tokens - primary color, radius and font - against a self-contained live preview panel. Bind [value] and handle (valueChange) to persist the tokens."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-theme-editor [value]="theme" (valueChange)="onThemeChange($event)"></nx-theme-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Preset Brand Theme"
+                description="Pass an initial NxThemeTokens value to start the editor with a brand's own tokens - the preview card and controls both reflect it immediately."
+                [code]="presetCode"
+                [tsCode]="presetTs"
+                [hasSampleClass]="false">
+                <nx-theme-editor [value]="brandTheme" (valueChange)="onBrandThemeChange($event)"></nx-theme-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reusing The Tokens Elsewhere"
+                description="Since NxThemeTokens is just plain data, the same values can drive other elements on the page - keeping a whole panel of components in sync with one editor."
+                [code]="applyCode"
+                [tsCode]="applyTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:16px; max-width:420px;">
+                    <nx-theme-editor [value]="theme" (valueChange)="onThemeChange($event)"></nx-theme-editor>
+                    <button
+                        type="button"
+                        style="color:#fff; border:none; padding:10px 16px; cursor:pointer;"
+                        [style.background]="theme.primaryColor"
+                        [style.border-radius.px]="theme.radius"
+                        [style.font-family]="theme.fontFamily">
+                        Uses the same tokens
+                    </button>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

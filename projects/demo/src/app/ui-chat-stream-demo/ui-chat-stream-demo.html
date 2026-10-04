@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Static Conversation"
+                description="{{ commonService.appName }} Chat Stream Viewer - renders a scrollable list of chat messages, with user messages right-aligned and assistant messages left-aligned in distinct bubble colors. This is a PRO component."
+                [code]="staticCode"
+                [tsCode]="staticTs"
+                [hasSampleClass]="false">
+                <nx-chat-stream [messages]="staticMessages"></nx-chat-stream>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Streaming Reply"
+                description="With streaming set, the last message (assumed to be the assistant's in-progress reply) is revealed progressively, a few characters at a time, and the list auto-scrolls to follow it. Click 'Ask a follow-up' to append a brand new assistant reply and watch the reveal restart for it."
+                [code]="liveCode"
+                [tsCode]="liveTs"
+                [hasSampleClass]="false">
+                <div class="chat-stream-demo-wrap">
+                    <nx-chat-stream [messages]="liveMessages" [streaming]="liveStreaming"></nx-chat-stream>
+                    <button type="button" class="chat-stream-demo-btn" (click)="askFollowUp()">Ask a follow-up</button>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

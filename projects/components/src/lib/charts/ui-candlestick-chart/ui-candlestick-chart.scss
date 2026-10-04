@@ -1,0 +1,22 @@
+@use '../chart-chrome' as *;
+
+.nx-candle {
+    cursor: pointer;
+}
+
+.nx-candle-wick {
+    stroke-width: 1.5;
+}
+
+.nx-candle-body {
+    transition: opacity .1s ease;
+}
+
+.nx-candle:hover .nx-candle-body {
+    opacity: .8;
+}
+
+.nx-candle:focus-visible {
+    outline: 2px solid var(--shell-primary, #3498db);
+    outline-offset: 2px;
+}

@@ -1,0 +1,43 @@
+@if (licensed()) {
+    <div class="nx-excel-viewer">
+        <div class="nx-excel-toolbar">
+            <span class="nx-excel-title">{{ activeSheet()?.name }}</span>
+            <button type="button" class="nx-excel-export" (click)="exportCSV()">Export CSV</button>
+        </div>
+
+        <div class="nx-excel-grid-wrapper">
+            @if (activeSheet(); as sheet) {
+                <table class="nx-excel-grid">
+                    <thead>
+                        <tr>
+                            <th class="nx-excel-corner"></th>
+                            @for (col of columnIndexes(); track col) {
+                                <th>{{ colLetter(col) }}</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (row of sheet.rows; track $index) {
+                            <tr>
+                                <th class="nx-excel-row-header">{{ $index + 1 }}</th>
+                                @for (col of columnIndexes(); track col) {
+                                    <td>{{ cell(row, col) }}</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+
+        <div class="nx-excel-tabs">
+            @for (sheet of sheets; track $index) {
+                <button type="button" class="nx-excel-tab" [class.active]="activeIndex() === $index" (click)="selectSheet($index)">
+                    {{ sheet.name }}
+                </button>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Excel Viewer"></nx-pro-locked>
+}

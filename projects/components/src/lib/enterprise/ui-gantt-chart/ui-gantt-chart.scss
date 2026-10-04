@@ -1,0 +1,114 @@
+.nx-gantt-chart {
+    display: flex;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-gantt-chart-labels {
+    flex-shrink: 0;
+    width: 160px;
+    border-right: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-gantt-chart-labels-header {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--shell-border);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--shell-text-secondary);
+}
+
+.nx-gantt-chart-label {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--shell-border);
+    font-size: 13px;
+    color: var(--shell-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nx-gantt-chart-timeline {
+    overflow-x: auto;
+    flex: 1;
+}
+
+.nx-gantt-chart-header {
+    position: relative;
+    height: 36px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+}
+
+.nx-gantt-chart-tick {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 6px;
+    border-left: 1px solid var(--shell-border);
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+    white-space: nowrap;
+}
+
+.nx-gantt-chart-body {
+    position: relative;
+    background-image: linear-gradient(to right, var(--shell-border) 1px, transparent 1px);
+}
+
+.nx-gantt-chart-row {
+    position: relative;
+    height: 40px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-gantt-chart-bar {
+    position: absolute;
+    top: 6px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--nx-radius-sm, 4px);
+    overflow: hidden;
+    cursor: grab;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+}
+
+.nx-gantt-chart-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .3);
+}
+
+.nx-gantt-chart-bar-label {
+    position: relative;
+    padding: 0 8px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nx-gantt-chart-resize-handle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    cursor: ew-resize;
+    background-color: rgba(255, 255, 255, .3);
+}

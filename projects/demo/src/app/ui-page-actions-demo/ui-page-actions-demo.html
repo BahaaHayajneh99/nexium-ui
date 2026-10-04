@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Page Actions"
+                description="The {{ commonService.appName }} Page Actions is a right-aligned action toolbar, with separate secondary/primary slots so primary CTAs always render last."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-page-actions>
+                    <nx-button nxPageActionsSecondary variant="secondary">Cancel</nx-button>
+                    <nx-button nxPageActionsPrimary variant="primary">Save changes</nx-button>
+                </nx-page-actions>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Multiple Secondary Actions"
+                description="Any number of secondary actions can be projected alongside a single primary CTA - useful in a page header's actions slot."
+                [code]="multiCode"
+                [tsCode]="multiTs">
+                <nx-page-actions>
+                    <nx-button nxPageActionsSecondary variant="secondary">Discard</nx-button>
+                    <nx-button nxPageActionsSecondary variant="secondary">Preview</nx-button>
+                    <nx-button nxPageActionsPrimary variant="primary">Publish</nx-button>
+                </nx-page-actions>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

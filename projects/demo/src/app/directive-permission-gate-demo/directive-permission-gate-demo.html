@@ -1,0 +1,57 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="String Permission Key, with Fallback"
+                description="Like *nxHasPermission, but a component rather than a structural directive, so it can show an explicit [nxPermissionGateFallback] slot - a lock icon or 'no access' message - instead of just removing the content. This demo provides its own NxPermissionChecker scoped to the page. Toggle the checkbox to see it react."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:12px; align-items:flex-start;">
+                    <nx-checkbox label="VW_AUDT granted" [checked]="canViewAudit" (checkedChange)="onViewAuditChange($event)"></nx-checkbox>
+                    <nx-permission-gate [permission]="'VW_AUDT'">
+                        <nx-button variant="secondary">View audit log</nx-button>
+                        <span nxPermissionGateFallback>
+                            <nx-badge variant="secondary">Locked - ask an admin for access</nx-badge>
+                        </span>
+                    </nx-permission-gate>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Numeric Role, with Fallback"
+                description="permission also accepts a numeric role/code (or a mixed array of roles and string keys). Switch roles to see it react."
+                [code]="roleCode"
+                [tsCode]="roleTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:12px; align-items:flex-start;">
+                    <div style="display:flex; gap:0.5rem;">
+                        @for (role of roles; track role.value) {
+                            <nx-button
+                                [variant]="currentRole === role.value ? 'primary' : 'secondary'"
+                                size="small"
+                                (click)="setRole(role.value)">
+                                {{ role.label }}
+                            </nx-button>
+                        }
+                    </div>
+                    <nx-permission-gate [permission]="Role.Admin">
+                        <nx-button variant="danger">Delete workspace</nx-button>
+                        <span nxPermissionGateFallback>
+                            <nx-badge variant="secondary">Admins only</nx-badge>
+                        </span>
+                    </nx-permission-gate>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

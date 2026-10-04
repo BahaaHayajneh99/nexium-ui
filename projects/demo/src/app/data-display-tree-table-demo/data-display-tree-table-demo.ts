@@ -1,78 +1,153 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CommonService } from '../services/common.service';
-import { highlightTs } from '../shared/demo-section/ts-highlight';
-
-interface TreeNode {
-  id: string;
-  name: string;
-  size?: string;
-  children?: TreeNode[];
-  expanded?: boolean;
-}
+import { NxTreeTable, NxTreeTableColumn, NxTreeTableNode } from '../../../../../dist/components';
+import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-data-display-tree-table-demo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NxTreeTable, DemoSection],
   templateUrl: './data-display-tree-table-demo.html',
-  styleUrls: ['./data-display-tree-table-demo.scss'],
+  styleUrl: './data-display-tree-table-demo.scss',
 })
 export class DataDisplayTreeTableDemo {
   commonService = inject(CommonService);
 
-  treeData: TreeNode[] = [
+  importCode = `import { NxTreeTable } from 'nexium-ui';`;
+
+  columns: NxTreeTableColumn[] = [
+    { field: 'name', header: 'Name' },
+    { field: 'size', header: 'Size', width: '120px' },
+  ];
+
+  fileData: NxTreeTableNode[] = [
     {
       id: '1',
       name: 'Project Folder',
       size: '2.5 GB',
-      expanded: true,
       children: [
         {
           id: '1.1',
           name: 'src',
           size: '1.2 GB',
-          expanded: true,
           children: [
             { id: '1.1.1', name: 'app.ts', size: '45 KB' },
             { id: '1.1.2', name: 'styles.scss', size: '28 KB' },
-            { id: '1.1.3', name: 'main.ts', size: '12 KB' },
+            {
+              id: '1.1.3',
+              name: 'components',
+              size: '980 MB',
+              children: [
+                { id: '1.1.3.1', name: 'button.ts', size: '12 KB' },
+                { id: '1.1.3.2', name: 'input.ts', size: '18 KB' },
+              ],
+            },
           ],
         },
-        {
-          id: '1.2',
-          name: 'node_modules',
-          size: '1.2 GB',
-          expanded: false,
-        },
+        { id: '1.2', name: 'node_modules', size: '1.2 GB' },
         { id: '1.3', name: 'package.json', size: '3.2 KB' },
       ],
     },
   ];
 
-  basicCode = highlightTs(`
-<table class="tree-table">
-  <tbody *ngFor="let node of treeData">
-    <tr [ngClass]="{ 'level-' + getLevel(node) }">
-      <td>
-        <button (click)="toggleNode(node)">
-          {{ node.expanded ? '▼' : '▶' }}
-        </button>
-        {{ node.name }}
-      </td>
-      <td>{{ node.size }}</td>
-    </tr>
-  </tbody>
-</table>
-  `);
+  expandedIds: Array<string | number> = ['1', '1.1'];
+
+  basicCode = `<nx-tree-table
+    [columns]="columns"
+    [data]="fileData"
+    [(expandedIds)]="expandedIds">
+</nx-tree-table>`;
+
+  basicTs = `columns: NxTreeTableColumn[] = [
+  { field: 'name', header: 'Name' },
+  { field: 'size', header: 'Size', width: '120px' },
+];
+
+fileData: NxTreeTableNode[] = [
+  {
+    id: '1',
+    name: 'Project Folder',
+    size: '2.5 GB',
+    children: [
+      {
+        id: '1.1',
+        name: 'src',
+        size: '1.2 GB',
+        children: [
+          { id: '1.1.1', name: 'app.ts', size: '45 KB' },
+          { id: '1.1.2', name: 'styles.scss', size: '28 KB' },
+          {
+            id: '1.1.3',
+            name: 'components',
+            size: '980 MB',
+            children: [
+              { id: '1.1.3.1', name: 'button.ts', size: '12 KB' },
+              { id: '1.1.3.2', name: 'input.ts', size: '18 KB' },
+            ],
+          },
+        ],
+      },
+      { id: '1.2', name: 'node_modules', size: '1.2 GB' },
+      { id: '1.3', name: 'package.json', size: '3.2 KB' },
+    ],
+  },
+];
+
+// Nesting is arbitrarily deep - rows are flattened from expandedIds,
+// not hand-written per level.
+expandedIds: Array<string | number> = ['1', '1.1'];`;
+
+  orgData: NxTreeTableNode[] = [
+    {
+      id: 'ceo',
+      name: 'Ava Whitfield',
+      role: 'CEO',
+      children: [
+        {
+          id: 'cto',
+          name: 'Marcus Lee',
+          role: 'CTO',
+          children: [
+            { id: 'eng1', name: 'Priya Nair', role: 'Engineering Manager' },
+            { id: 'eng2', name: 'Sam Okafor', role: 'Staff Engineer' },
+          ],
+        },
+        { id: 'cfo', name: 'Elena Ruiz', role: 'CFO' },
+      ],
+    },
+  ];
+
+  orgColumns: NxTreeTableColumn[] = [
+    { field: 'name', header: 'Name' },
+    { field: 'role', header: 'Role' },
+  ];
+
+  orgExpandedIds: Array<string | number> = ['ceo'];
+  selectedPersonId: string | number | null = null;
+
+  selectableCode = `<nx-tree-table
+    [columns]="orgColumns"
+    [data]="orgData"
+    [(expandedIds)]="orgExpandedIds"
+    [selectable]="true"
+    [(selectedId)]="selectedPersonId">
+</nx-tree-table>`;
+
+  selectableTs = `orgColumns: NxTreeTableColumn[] = [
+  { field: 'name', header: 'Name' },
+  { field: 'role', header: 'Role' },
+];
+
+orgExpandedIds: Array<string | number> = ['ceo'];
+selectedPersonId: string | number | null = null;`;
 
   features = [
-    { name: 'Hierarchical Display', description: 'Show nested data structures' },
-    { name: 'Expand/Collapse', description: 'Toggle node visibility' },
-    { name: 'Sorting', description: 'Sort by columns' },
-    { name: 'Selection', description: 'Select rows and branches' },
-    { name: 'Lazy Loading', description: 'Load children on demand' },
-    { name: 'Keyboard Navigation', description: 'Navigate with arrow keys' },
+    { name: 'Hierarchical Display', description: 'Any depth of nesting via a plain children array - no hand-written levels' },
+    { name: 'Expand/Collapse', description: 'Two-way expandedIds, or drive it yourself with nodeExpand/nodeCollapse' },
+    { name: 'Row Selection', description: 'Optional single-row selection with selectedId' },
+    { name: 'Custom Columns', description: 'Any field on your data, with an optional fixed width' },
+    { name: 'Custom Indent', description: 'indentSize controls the per-level indent in pixels' },
+    { name: 'Keyboard Accessible', description: 'The expand toggle is a real <button> with aria-expanded' },
   ];
 
   useCases = [
@@ -83,12 +158,4 @@ export class DataDisplayTreeTableDemo {
     { title: 'Menu Navigation', description: 'Nested menus' },
     { title: 'Comments & Replies', description: 'Threaded discussions' },
   ];
-
-  toggleNode(node: TreeNode) {
-    node.expanded = !node.expanded;
-  }
-
-  getLevel(node: TreeNode): number {
-    return 0;
-  }
 }

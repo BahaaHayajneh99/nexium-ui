@@ -68,6 +68,27 @@
                 transform: rotate(90deg);
             }
         }
+
+        // Shared by both the top-level flat nav item's badge (directly under .nav-item > a) and
+        // the nested sub-nav link's badge (.sub-nav .sub-nav-child a.nav-link) below, so a NEW/PRO
+        // chip is the same size everywhere in the sidebar, not just inside expanded sub-menus.
+        .nav-link-badges {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .nav-badge-chip {
+            --nx-font-size-sm: 9px;
+            --nx-spacing-xs: 0px;
+            --nx-spacing-md: 6px;
+            --nx-font-weight-medium: 700;
+            letter-spacing: .04em;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
     }
 
     .sub-nav {
@@ -79,17 +100,66 @@
 
         .sub-nav-child {
 
-            margin-bottom: var(--nx-spacing-lg, 24px);
+            margin-bottom: var(--nx-spacing-xs, 4px);
 
-            h4 {
-                margin: 0 0 var(--nx-spacing-sm, 8px);
-                padding-left: 12px;
+            &:has(.sub-nav-chevron.expanded) {
+                margin-bottom: var(--nx-spacing-lg, 24px);
+            }
 
-                font-size: var(--nx-font-size-sm, 14px);
-                text-transform: uppercase;
-                letter-spacing: .05em;
+            .sub-nav-heading {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                width: 100%;
+                padding: 6px 12px;
+                border: none;
+                border-radius: var(--nx-radius-sm, 4px);
+                background: none;
+                cursor: pointer;
+                color: var(--shell-text);
+                transition: background var(--nx-transition-fast, .15s ease);
 
-                font-weight: var(--nx-font-weight-bold, 700);
+                &:hover {
+                    background: var(--shell-surface-hover);
+                }
+
+                .sub-nav-heading-icon {
+                    flex-shrink: 0;
+                    color: var(--shell-text-muted);
+                }
+
+                h4 {
+                    margin: 0;
+                    flex: 1;
+                    min-width: 0;
+                    text-align: left;
+
+                    font-size: var(--nx-font-size-xs, 12px);
+                    text-transform: uppercase;
+                    letter-spacing: .05em;
+
+                    font-weight: var(--nx-font-weight-bold, 700);
+
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .sub-nav-heading-count {
+                font-size: 11px;
+                font-weight: var(--nx-font-weight-semibold, 600);
+                color: var(--shell-text-muted);
+            }
+
+            .sub-nav-chevron {
+                flex-shrink: 0;
+                color: var(--shell-text-muted);
+                transition: transform var(--nx-transition-fast, .15s ease);
+
+                &.expanded {
+                    transform: rotate(90deg);
+                }
             }
 
             .nav-link {
@@ -146,6 +216,7 @@
                     }
                 }
             }
+
         }
     }
 }

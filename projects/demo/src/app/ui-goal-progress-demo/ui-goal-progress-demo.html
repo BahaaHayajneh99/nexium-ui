@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Bar Variant"
+                description="The default variant renders a linear progress bar toward a goal, with a label and percent header."
+                [code]="barCode"
+                [tsCode]="barTs">
+                <nx-goal-progress label="Monthly Signups" [value]="720" [goal]="1000"></nx-goal-progress>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Ring Variant"
+                description="Set variant to 'ring' to render the same percent as an SVG circular gauge instead of a bar."
+                [code]="ringCode"
+                [tsCode]="ringTs">
+                <nx-goal-progress label="Storage" [value]="68" [goal]="100" variant="ring"></nx-goal-progress>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Multiple Ring Gauges"
+                description="Several ring gauges side by side - a common layout for an at-a-glance goals panel."
+                [code]="gridCode"
+                [tsCode]="gridTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-wrap:wrap; gap:24px;">
+                    <nx-goal-progress label="Onboarding" [value]="7" [goal]="10" variant="ring"></nx-goal-progress>
+                    <nx-goal-progress label="Q3 Revenue" [value]="82000" [goal]="100000" variant="ring"></nx-goal-progress>
+                    <nx-goal-progress label="Tickets Closed" [value]="45" [goal]="60" variant="ring"></nx-goal-progress>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

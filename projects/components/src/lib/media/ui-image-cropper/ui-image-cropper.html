@@ -1,0 +1,50 @@
+@if (licensed()) {
+    <div class="nx-image-cropper">
+        <div class="nx-cropper-toolbar">
+            <button type="button" (click)="rotate()" aria-label="Rotate 90 degrees">
+                <nx-icon icon="nx-refresh" variant="svg" [size]="14"></nx-icon>
+                Rotate
+            </button>
+            <button type="button" (click)="zoomOut()" aria-label="Zoom out">
+                <nx-icon icon="nx-minus" variant="svg" [size]="14"></nx-icon>
+            </button>
+            <span class="nx-cropper-zoom-label">{{ zoomLabel() }}</span>
+            <button type="button" (click)="zoomIn()" aria-label="Zoom in">
+                <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+            </button>
+            <button type="button" (click)="reset()">Reset</button>
+            <button type="button" class="nx-cropper-crop-btn" (click)="crop()">Crop</button>
+        </div>
+
+        <div class="nx-cropper-stage">
+            @if (workingSrc()) {
+                <div class="nx-cropper-canvas-wrap" [style.width.px]="displaySize().w" [style.height.px]="displaySize().h">
+                    <img
+                        #imgEl
+                        class="nx-cropper-image"
+                        [src]="workingSrc()"
+                        (load)="onImgLoad()"
+                        [style.width.px]="displaySize().w"
+                        [style.height.px]="displaySize().h"
+                        alt="Image to crop" />
+
+                    <div
+                        class="nx-cropper-crop-rect"
+                        [style.left.px]="cropPx().left"
+                        [style.top.px]="cropPx().top"
+                        [style.width.px]="cropPx().width"
+                        [style.height.px]="cropPx().height"
+                        (mousedown)="onBodyDown($event)">
+                        @for (h of handles; track h) {
+                            <span class="nx-cropper-handle nx-cropper-handle-{{ h }}" (mousedown)="onHandleDown($event, h)"></span>
+                        }
+                    </div>
+                </div>
+            } @else {
+                <div class="nx-cropper-empty">No image provided.</div>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Image Cropper"></nx-pro-locked>
+}

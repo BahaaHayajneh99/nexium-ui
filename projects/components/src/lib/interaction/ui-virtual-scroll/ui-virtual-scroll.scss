@@ -1,0 +1,24 @@
+.nx-virtual-scroll-viewport {
+    position: relative;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.nx-virtual-scroll-spacer {
+    position: relative;
+    width: 100%;
+}
+
+.nx-virtual-scroll-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.nx-virtual-scroll-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}

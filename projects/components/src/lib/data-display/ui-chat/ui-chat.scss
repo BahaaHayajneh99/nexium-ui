@@ -1,0 +1,174 @@
+.nx-chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    overflow: hidden;
+}
+
+.nx-chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.nx-chat-message {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 80%;
+}
+
+.nx-chat-message.user {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.nx-chat-message.assistant {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.nx-chat-bubble {
+    padding: 10px 14px;
+    border-radius: var(--nx-radius-md, 8px);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.nx-chat-bubble :first-child {
+    margin-top: 0;
+}
+
+.nx-chat-bubble :last-child {
+    margin-bottom: 0;
+}
+
+/* innerHTML-injected markdown output bypasses Angular's template compiler, so it
+   never gets the component's scoping attribute - ::ng-deep is required here. */
+::ng-deep .nx-chat-code-block {
+    margin: 6px 0;
+    padding: 10px 12px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    overflow-x: auto;
+}
+
+::ng-deep .nx-chat-inline-code {
+    padding: 1px 5px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, .12);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+}
+
+.nx-chat-message.user .nx-chat-bubble {
+    background-color: var(--shell-primary);
+    color: #ffffff;
+}
+
+.nx-chat-message.assistant .nx-chat-bubble {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+    color: var(--shell-text);
+}
+
+.nx-chat-message-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.nx-chat-action {
+    padding: 2px 6px;
+    border: none;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-chat-action:hover {
+    color: var(--shell-primary);
+}
+
+.nx-chat-typing {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 12px 14px;
+}
+
+.nx-chat-typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--shell-text-secondary);
+    animation: nx-chat-typing-bounce 1s infinite ease-in-out;
+}
+
+.nx-chat-typing span:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.nx-chat-typing span:nth-child(3) {
+    animation-delay: .3s;
+}
+
+@keyframes nx-chat-typing-bounce {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: .5;
+    }
+    30% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}
+
+.nx-chat-composer {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid var(--shell-border);
+}
+
+.nx-chat-input {
+    flex: 1;
+    min-height: 40px;
+    max-height: 140px;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.nx-chat-send {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: #ffffff;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nx-chat-send:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}

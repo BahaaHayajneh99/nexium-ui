@@ -1,0 +1,142 @@
+.nx-token-gen {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nx-token-gen-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nx-token-gen-color-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-token-gen-swatch-input {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: none;
+    cursor: pointer;
+}
+
+.nx-token-gen-hex-input,
+.nx-token-gen-prefix-input {
+    padding: 7px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    width: 110px;
+}
+
+.nx-token-gen-export-btn {
+    margin-left: auto;
+    padding: 7px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-token-gen-export-btn:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-token-gen-scale {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0;
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+    border: 1px solid var(--shell-border);
+}
+
+.nx-token-gen-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 16px 8px;
+    border: none;
+    cursor: pointer;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-token-gen-step.is-base {
+    outline: 2px solid var(--shell-primary);
+    outline-offset: -2px;
+}
+
+.nx-token-gen-step-number {
+    font-size: 11px;
+    font-weight: 700;
+    opacity: .8;
+}
+
+.nx-token-gen-step-hex {
+    font-size: 10px;
+    opacity: .85;
+}
+
+.nx-token-gen-base-badge {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    opacity: .7;
+}
+
+.nx-token-gen-export {
+    position: relative;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+}
+
+.nx-token-gen-export-code {
+    margin: 0;
+    padding: 14px;
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.nx-token-gen-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: rgba(255, 255, 255, .08);
+    color: #fff;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-token-gen-copy-btn:hover {
+    background-color: rgba(255, 255, 255, .16);
+}

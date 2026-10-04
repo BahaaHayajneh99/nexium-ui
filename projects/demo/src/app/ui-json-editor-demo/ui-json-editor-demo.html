@@ -1,0 +1,53 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic JSON Editor"
+                description="The {{ commonService.appName }} JSON Editor is a raw-text JSON editor with live parse validation and a pretty-print 'Format' action. It implements ControlValueAccessor, so it works with ngModel or reactive forms."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-json-editor [(ngModel)]="settings" (valueChange)="onValueChange($event)"></nx-json-editor>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Placeholder & Indent"
+                description="placeholder shows when the editor is empty, and indent controls the spacing used by the 'Format' action."
+                [code]="optionsCode"
+                [tsCode]="optionsTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-json-editor
+                        placeholder='{
+  &quot;key&quot;: &quot;value&quot;
+}'
+                        [indent]="4"
+                        [(ngModel)]="payload">
+                    </nx-json-editor>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Set disabled to true for a read-only preview."
+                [code]="disabledCode"
+                [tsCode]="disabledTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-json-editor [disabled]="true" [ngModel]="readonlyValue"></nx-json-editor>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+.nx-status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text);
+}
+
+.nx-status-indicator-dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: var(--shell-text-muted);
+}
+
+.nx-status-indicator-dot.success { background-color: #2ecc71; }
+.nx-status-indicator-dot.danger { background-color: #e74c3c; }
+.nx-status-indicator-dot.warning { background-color: #f39c12; }
+.nx-status-indicator-dot.info { background-color: #3498db; }
+.nx-status-indicator-dot.neutral { background-color: var(--shell-text-muted); }
+
+.nx-status-indicator-dot.pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: inherit;
+    animation: nx-status-indicator-pulse 1.6s ease-out infinite;
+}
+
+@keyframes nx-status-indicator-pulse {
+    0% {
+        transform: scale(1);
+        opacity: .6;
+    }
+    100% {
+        transform: scale(2.6);
+        opacity: 0;
+    }
+}
+
+.nx-status-indicator-label {
+    line-height: 1;
+}

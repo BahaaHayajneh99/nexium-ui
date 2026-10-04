@@ -1,0 +1,84 @@
+.nx-color-gradient-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-color-gradient-editor-track {
+    position: relative;
+    height: 24px;
+    margin: 0 8px;
+}
+
+.nx-color-gradient-editor-track::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--shell-border);
+    transform: translateY(-50%);
+}
+
+.nx-color-gradient-editor-handle {
+    position: absolute;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--shell-border), 0 2px 4px rgba(0, 0, 0, .25);
+    transform: translate(-50%, -50%);
+    cursor: grab;
+}
+
+.nx-color-gradient-editor-handle.selected {
+    box-shadow: 0 0 0 2px var(--shell-primary), 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+.nx-color-gradient-editor-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-color-gradient-editor-select,
+.nx-color-gradient-editor-number {
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-color-gradient-editor-number {
+    width: 64px;
+}
+
+.nx-color-gradient-editor-color {
+    width: 36px;
+    height: 32px;
+    padding: 2px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: none;
+    cursor: pointer;
+}
+
+.nx-color-gradient-editor-remove {
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-color-gradient-editor-remove:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}

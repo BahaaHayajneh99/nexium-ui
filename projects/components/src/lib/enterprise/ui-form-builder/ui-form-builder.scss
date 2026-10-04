@@ -1,0 +1,456 @@
+.nx-form-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--shell-text);
+}
+
+.nx-form-builder-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.nx-form-builder-title-input {
+    flex: 1;
+    min-width: 160px;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nx-form-builder-toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nx-form-builder-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nx-form-builder-btn:hover {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-form-builder-btn.active {
+    border-color: var(--shell-primary, #3498db);
+    background-color: var(--shell-primary, #3498db);
+    color: #fff;
+}
+
+.nx-form-builder-btn-sm {
+    align-self: flex-start;
+    padding: 4px 8px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-form-builder-btn-sm:hover {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-form-builder-danger {
+    border-color: var(--nx-color-danger, #e74c3c);
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-form-builder-danger:hover {
+    background-color: var(--nx-color-danger, #e74c3c);
+    color: #fff;
+}
+
+.nx-form-builder-import-error {
+    padding: 8px 12px;
+    border: 1px solid var(--nx-color-danger, #e74c3c);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: rgba(231, 76, 60, 0.08);
+    color: var(--nx-color-danger, #e74c3c);
+    font-size: 12px;
+}
+
+.nx-form-builder-body {
+    display: grid;
+    grid-template-columns: 180px 1fr 280px;
+    gap: 14px;
+    align-items: start;
+}
+
+.nx-form-builder-body.preview {
+    grid-template-columns: 1fr;
+}
+
+.nx-form-builder-palette {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-form-builder-palette-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--shell-text-secondary);
+    margin-bottom: 2px;
+}
+
+.nx-form-builder-palette-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: grab;
+    text-align: left;
+}
+
+.nx-form-builder-palette-item:hover {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-form-builder-palette-hint {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-form-builder-canvas {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 240px;
+    padding: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-form-builder-root-drop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    padding: 16px;
+    border: 2px dashed var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    text-align: center;
+}
+
+.nx-form-builder-root-drop-append {
+    min-height: 36px;
+    margin-top: 4px;
+}
+
+.nx-form-builder-root-drop.active {
+    border-color: var(--shell-primary, #3498db);
+    background-color: rgba(52, 152, 219, 0.08);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-form-builder-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    cursor: pointer;
+    position: relative;
+}
+
+.nx-form-builder-row:hover {
+    border-color: var(--shell-primary, #3498db);
+}
+
+.nx-form-builder-row.selected {
+    border-color: var(--shell-primary, #3498db);
+    background-color: rgba(52, 152, 219, 0.08);
+}
+
+.nx-form-builder-row.drop-before::before,
+.nx-form-builder-row.drop-after::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--shell-primary, #3498db);
+}
+
+.nx-form-builder-row.drop-before::before {
+    top: -3px;
+}
+
+.nx-form-builder-row.drop-after::after {
+    bottom: -3px;
+}
+
+.nx-form-builder-row.drop-inside {
+    outline: 2px solid var(--shell-primary, #3498db);
+    outline-offset: -2px;
+    background-color: rgba(52, 152, 219, 0.12);
+}
+
+.nx-form-builder-drag-handle {
+    color: var(--shell-text-secondary);
+    cursor: grab;
+}
+
+.nx-form-builder-row-type {
+    padding: 1px 6px;
+    border-radius: 3px;
+    background-color: var(--shell-border);
+    color: var(--shell-text-secondary);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.nx-form-builder-row-label {
+    flex: 1;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nx-form-builder-conditional-badge {
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-form-builder-row-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-form-builder-row-delete:hover {
+    background-color: rgba(231, 76, 60, 0.12);
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-form-builder-empty-section {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    margin-bottom: 2px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+}
+
+.nx-form-builder-empty-section.active {
+    border-color: var(--shell-primary, #3498db);
+    background-color: rgba(52, 152, 219, 0.08);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-form-builder-inspector {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-form-builder-inspector-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--shell-text-secondary);
+}
+
+.nx-form-builder-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-form-builder-field-group input[type='text'],
+.nx-form-builder-field-group select {
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+}
+
+.nx-form-builder-option-row,
+.nx-form-builder-rule-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nx-form-builder-option-row input,
+.nx-form-builder-rule-value,
+.nx-form-builder-rule-message {
+    flex: 1;
+    min-width: 0;
+    padding: 5px 6px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 11px;
+}
+
+.nx-form-builder-rule-type {
+    padding: 2px 6px;
+    border-radius: 3px;
+    background-color: var(--shell-border);
+    color: var(--shell-text-secondary);
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.nx-form-builder-option-row button,
+.nx-form-builder-rule-row button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-form-builder-option-row button:hover,
+.nx-form-builder-rule-row button:hover {
+    background-color: rgba(231, 76, 60, 0.12);
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-form-builder-add-rule {
+    display: flex;
+    gap: 6px;
+}
+
+.nx-form-builder-add-rule select {
+    flex: 1;
+}
+
+.nx-form-builder-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-form-builder-preview-title {
+    margin: 0 0 4px;
+    font-size: 16px;
+}
+
+.nx-form-builder-preview-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-form-builder-preview-section-label {
+    padding: 6px 0 4px;
+    border-bottom: 1px solid var(--shell-border);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.nx-form-builder-preview-label {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.nx-form-builder-preview-input {
+    padding: 7px 9px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    max-width: 320px;
+}
+
+.nx-form-builder-preview-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.nx-form-builder-preview-radio-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nx-form-builder-preview-error {
+    font-size: 11px;
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-form-builder-preview-submit {
+    align-self: flex-start;
+    margin-top: 6px;
+}
+
+.nx-form-builder-preview-result {
+    padding: 8px 12px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-border);
+    font-size: 12px;
+}

@@ -1,0 +1,100 @@
+<div class="lms-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="lms-brand">
+            <nx-icon icon="nx-book" variant="svg" [size]="18"></nx-icon>
+            <span>Brightpath</span>
+        </div>
+        <div nx-navbar-links>
+            <a routerLink="/getting-started/introduction">← Docs</a>
+        </div>
+    </nx-navbar>
+
+    @if (!selectedCourse()) {
+        <div class="lms-catalog">
+            <h1>Keep learning</h1>
+            <p class="lms-catalog-sub">A fictional course catalog - real progress tracking, built entirely with NexiumUI.</p>
+
+            <div class="lms-course-grid">
+                @for (course of courses; track course.id) {
+                    <button type="button" class="lms-course-card" (click)="openCourse(course)">
+                        <div class="lms-course-banner" [style.background]="course.swatch">
+                            <nx-icon [icon]="course.icon" variant="svg" [size]="28"></nx-icon>
+                        </div>
+                        <div class="lms-course-info">
+                            <nx-badge variant="secondary" size="small">{{ course.category }}</nx-badge>
+                            <div class="lms-course-title">{{ course.title }}</div>
+                            <div class="lms-course-instructor">{{ course.instructor }} · {{ course.lessons.length }} lessons</div>
+                            <nx-progress-bar [value]="courseProgress(course)" size="small" [showLabel]="true"></nx-progress-bar>
+                        </div>
+                    </button>
+                }
+            </div>
+        </div>
+    } @else {
+        <div class="lms-player">
+            <button type="button" class="lms-back" (click)="backToCatalog()">
+                <nx-icon icon="nx-chevron-left" variant="svg" [size]="14"></nx-icon>
+                All courses
+            </button>
+
+            <div class="lms-player-header">
+                <h2>{{ selectedCourse()!.title }}</h2>
+                <nx-progress-bar [value]="courseProgress(selectedCourse()!)" size="small" [showLabel]="true"></nx-progress-bar>
+            </div>
+
+            <div class="lms-player-body">
+                <aside class="lms-lesson-list">
+                    @for (lesson of selectedCourse()!.lessons; track lesson.id) {
+                        <button
+                            type="button"
+                            class="lms-lesson-item"
+                            [class.active]="activeLesson()?.id === lesson.id"
+                            (click)="selectLesson(lesson)">
+                            <nx-icon [icon]="lesson.completed ? 'nx-check-circle' : 'nx-clock'" variant="svg" [size]="16"></nx-icon>
+                            <div>
+                                <div class="lms-lesson-title">{{ lesson.title }}</div>
+                                <div class="lms-lesson-duration">{{ lesson.duration }}</div>
+                            </div>
+                        </button>
+                    }
+                </aside>
+
+                <main class="lms-lesson-main">
+                    <div class="lms-video-placeholder">
+                        <nx-icon icon="nx-video" variant="svg" [size]="40"></nx-icon>
+                    </div>
+                    <h3>{{ activeLesson()?.title }}</h3>
+                    <p class="lms-lesson-meta">{{ selectedCourse()!.instructor }} · {{ activeLesson()?.duration }}</p>
+                    <nx-button variant="primary" (click)="completeAndContinue()">Mark complete &amp; continue</nx-button>
+
+                    <div class="lms-notes">
+                        <h4 class="lms-notes-heading">Lesson notes</h4>
+                        <div class="lms-notes-layout">
+                            <aside class="lms-notes-toc">
+                                <nx-table-of-contents [headings]="lessonHeadings"></nx-table-of-contents>
+                            </aside>
+
+                            <article class="lms-notes-content">
+                                <h3 id="lms-notes-overview">Overview</h3>
+                                <p>This lesson walks through how Angular signals model state as explicit, trackable values instead of relying on zone-based change detection to notice updates on its own.</p>
+
+                                <h3 id="lms-notes-concepts">Key concepts</h3>
+                                <p>A signal wraps a value and notifies its consumers when it changes; <code>computed()</code> derives new state reactively, and <code>effect()</code> reruns a side effect whenever the signals it reads update.</p>
+
+                                <h3 id="lms-notes-mistakes">Common mistakes</h3>
+                                <p>A frequent pitfall is reading <code>mySignal</code> instead of <code>mySignal()</code> - the former is just the accessor function, not its current value, so templates and comparisons silently stop updating.</p>
+
+                                <h3 id="lms-notes-reading">Further reading</h3>
+                                <p>Check the official Angular signals guide for migration tips, and the RxJS interop package if you need to bridge signals with existing observable-based code.</p>
+                            </article>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    }
+
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

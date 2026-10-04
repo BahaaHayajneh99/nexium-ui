@@ -1,0 +1,34 @@
+<div class="showcase-index-page">
+
+    <header class="showcase-index-header">
+        <a class="showcase-index-back" routerLink="/getting-started/introduction">← Docs</a>
+        <h1>NexiumUI Showcase</h1>
+        <p>Real, multi-page apps and sites built entirely with NexiumUI components - not isolated snippets. Pick one below to click around in it.</p>
+    </header>
+
+    <div class="showcase-index-grid">
+        @for (item of cases; track item.title) {
+            @if (item.comingSoon) {
+                <div class="showcase-index-card is-soon">
+                    <nx-icon [icon]="item.icon" variant="svg" [size]="24"></nx-icon>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
+                    <nx-badge variant="light" rounded>Coming soon</nx-badge>
+                </div>
+            } @else {
+                <a class="showcase-index-card" [routerLink]="item.path">
+                    <div class="showcase-index-card-top">
+                        <nx-icon [icon]="item.icon" variant="svg" [size]="24"></nx-icon>
+                        @if (item.isNew) {
+                            <nx-badge variant="info" rounded>New</nx-badge>
+                        }
+                    </div>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
+                    <span class="showcase-index-card-cta">Open showcase →</span>
+                </a>
+            }
+        }
+    </div>
+
+</div>

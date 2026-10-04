@@ -1,0 +1,35 @@
+@if (licensed()) {
+    <div class="nx-dashboard-filters">
+        <div class="nx-dashboard-filters-field">
+            <label>From</label>
+            <input type="date" [value]="dateFrom()" (change)="onDateFromChange($any($event.target).value)" />
+        </div>
+
+        <div class="nx-dashboard-filters-field">
+            <label>To</label>
+            <input type="date" [value]="dateTo()" (change)="onDateToChange($any($event.target).value)" />
+        </div>
+
+        @for (filter of extraFilters; track filter.key) {
+            <div class="nx-dashboard-filters-field">
+                <label>{{ filter.label }}</label>
+                <select (change)="onExtraChange(filter.key, $any($event.target).value)">
+                    <option value="">All</option>
+                    @for (opt of filter.options; track opt) {
+                        <option [value]="opt">{{ opt }}</option>
+                    }
+                </select>
+            </div>
+        }
+
+        <div class="nx-dashboard-filters-actions">
+            @if (applyMode === 'button') {
+                <button type="button" class="nx-dashboard-filters-apply" [disabled]="!dirty()" (click)="apply()">Apply</button>
+            }
+            <button type="button" class="nx-dashboard-filters-reset" (click)="reset()">Reset</button>
+            <span class="nx-dashboard-filters-count">{{ activeFilterCount() }} filter(s) applied</span>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Dashboard Filters"></nx-pro-locked>
+}

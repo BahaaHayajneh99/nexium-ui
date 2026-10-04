@@ -1,0 +1,112 @@
+.nx-audit-log {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-audit-log-filters {
+    display: flex;
+    gap: 8px;
+}
+
+.nx-audit-log-search {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-audit-log-action-filter {
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-audit-log-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.nx-audit-log-table th {
+    padding: 8px 10px;
+    text-align: left;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-audit-log-row {
+    cursor: pointer;
+}
+
+.nx-audit-log-row:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-audit-log-row td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--shell-border);
+    color: var(--shell-text);
+}
+
+.nx-audit-log-expand-cell {
+    width: 20px;
+}
+
+.nx-audit-log-chevron {
+    color: var(--shell-text-secondary);
+    transition: transform .15s ease;
+}
+
+.nx-audit-log-chevron.open {
+    transform: rotate(90deg);
+}
+
+.nx-audit-log-action-badge {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background-color: var(--shell-border);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.nx-audit-log-details-row td {
+    padding: 0 10px 12px 34px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-audit-log-changes {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+    border-radius: var(--nx-radius-sm, 4px);
+    overflow: hidden;
+}
+
+.nx-audit-log-changes th {
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+.nx-audit-log-changes td {
+    padding: 4px 8px;
+    font-size: 12px;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-audit-log-before {
+    color: #e74c3c;
+    text-decoration: line-through;
+}
+
+.nx-audit-log-after {
+    color: #2ecc71;
+}

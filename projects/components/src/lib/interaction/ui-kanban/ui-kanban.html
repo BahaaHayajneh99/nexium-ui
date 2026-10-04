@@ -1,0 +1,52 @@
+@if (licensed()) {
+    <div class="nx-kanban">
+        @for (column of columns; track column.id) {
+            <div
+                class="nx-kanban-column"
+                [class.drag-over]="dragOverColumnId() === column.id"
+                (dragover)="onColumnDragOver(column.id, $event)"
+                (dragleave)="onColumnDragLeave()"
+                (drop)="onColumnDrop(column.id, $event)">
+                <div class="nx-kanban-column-header">
+                    <span class="nx-kanban-column-title">{{ column.title }}</span>
+                    <span class="nx-kanban-column-count">{{ column.cards.length }}</span>
+                </div>
+
+                <div class="nx-kanban-column-cards">
+                    @for (card of column.cards; track card.id) {
+                        <div
+                            class="nx-kanban-card"
+                            draggable="true"
+                            (dragstart)="onCardDragStart(card, column.id, $event)"
+                            (dragend)="onCardDragEnd()">
+                            <div class="nx-kanban-card-title">{{ card.title }}</div>
+                            @if (card.description) {
+                                <div class="nx-kanban-card-description">{{ card.description }}</div>
+                            }
+                            @if (hasAssigneeSupport()) {
+                                <div class="nx-kanban-card-footer">
+                                    <div class="nx-kanban-card-assignees">
+                                        @for (id of visibleAssignees(card); track id) {
+                                            <nx-avatar [name]="assigneeName(id)" size="small" bordered></nx-avatar>
+                                        }
+                                        @if ((card.assignees ?? []).length > 3) {
+                                            <span class="nx-kanban-card-assignee-more">+{{ (card.assignees ?? []).length - 3 }}</span>
+                                        }
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="nx-kanban-card-assign-btn"
+                                        (click)="$event.stopPropagation(); cardAssignClicked.emit(card)">
+                                        {{ card.assignees?.length ? 'Edit' : '+ Assign' }}
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Kanban Board"></nx-pro-locked>
+}

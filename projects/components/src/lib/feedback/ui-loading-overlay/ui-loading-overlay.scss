@@ -1,0 +1,29 @@
+.nx-loading-overlay-container {
+    position: relative;
+}
+
+.nx-loading-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 12px);
+    background-color: color-mix(in srgb, var(--shell-surface) 75%, transparent);
+}
+
+.nx-loading-overlay.blur {
+    backdrop-filter: blur(2px);
+}
+
+.nx-loading-overlay.fullscreen {
+    position: fixed;
+    z-index: 1000;
+}
+
+.nx-loading-overlay-message {
+    font-size: 14px;
+    color: var(--shell-text);
+}

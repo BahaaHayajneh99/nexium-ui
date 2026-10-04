@@ -1,0 +1,16 @@
+<div class="nx-responsive-preview">
+    <div class="nx-responsive-preview-tabs">
+        @for (bp of breakpoints; track bp.id) {
+            <button type="button" class="nx-responsive-preview-tab" [class.active]="bp.id === activeId" (click)="select(bp.id)">
+                {{ bp.label }}
+                <span class="nx-responsive-preview-tab-width">{{ bp.width }}px</span>
+            </button>
+        }
+    </div>
+
+    <div class="nx-responsive-preview-viewport-wrap">
+        <div class="nx-responsive-preview-viewport" [style.width.px]="activeBreakpoint?.width">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

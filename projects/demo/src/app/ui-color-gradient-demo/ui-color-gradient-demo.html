@@ -1,0 +1,46 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Linear Gradient"
+                description="The {{ commonService.appName }} Color Gradient is a read-only swatch built from a list of color stops - pass type, angle and stops. Pair it with NxColorGradientEditor for an editable version."
+                [code]="linearCode"
+                [tsCode]="linearTs">
+                <nx-color-gradient type="linear" [angle]="90" [stops]="linearStops"></nx-color-gradient>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Radial Gradient"
+                description="Set type to radial for a circular gradient - angle is ignored in this mode."
+                [code]="radialCode"
+                [tsCode]="radialTs">
+                <nx-color-gradient type="radial" [stops]="radialStops"></nx-color-gradient>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Angle Variations"
+                description="angle (0-360) controls the direction of a linear gradient."
+                [code]="anglesCode"
+                [tsCode]="anglesTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-direction:column; gap:10px; max-width:360px;">
+                    @for (angle of angles; track angle) {
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <span style="width:40px; flex-shrink:0;">{{ angle }}°</span>
+                            <nx-color-gradient type="linear" [angle]="angle" [stops]="anglesStops" style="flex:1;"></nx-color-gradient>
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

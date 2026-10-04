@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Statistic Group"
+                description="A row of NxStatistic items separated by vertical dividers - the classic dashboard header stat strip, driven by an NxStatisticGroupItem[] array."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-statistic-group [items]="items"></nx-statistic-group>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without Dividers"
+                description="Set bordered to false to render the same row without the vertical dividers between stats."
+                [code]="unborderedCode"
+                [tsCode]="unborderedTs"
+                [hasSampleClass]="false">
+                <nx-statistic-group [items]="items" [bordered]="false"></nx-statistic-group>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

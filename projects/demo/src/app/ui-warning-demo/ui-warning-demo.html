@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="{{ commonService.appName }} doesn't ship a dedicated 'Warning' component - it's nx-banner (full-width, page-level) or nx-alert (inline, section-level) used with variant=&quot;warning&quot;."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Warning Banner"
+                description="A full-width, dismissible notice for something that affects the whole page."
+                [code]="bannerCode"
+                [tsCode]="bannerTs"
+                [hasSampleClass]="false">
+                <nx-banner variant="warning" message="Scheduled maintenance this Sunday, 2-4 AM UTC.">
+                </nx-banner>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With an Action"
+                description="actionLabel adds a button; actionClick fires when it's pressed."
+                [code]="actionCode"
+                [tsCode]="actionTs"
+                [hasSampleClass]="false">
+                <nx-banner
+                    variant="warning"
+                    message="Your trial ends in 3 days."
+                    actionLabel="Upgrade now"
+                    (actionClick)="upgrade()">
+                </nx-banner>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Inline Warning"
+                description="For a warning scoped to one section or form rather than the whole page, use nx-alert instead."
+                [code]="inlineCode"
+                [tsCode]="inlineTs"
+                [hasSampleClass]="false">
+                <nx-alert variant="warning" title="Heads up">
+                    This action can't be undone.
+                </nx-alert>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

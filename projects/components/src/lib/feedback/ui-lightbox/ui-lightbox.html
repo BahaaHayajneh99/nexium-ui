@@ -1,0 +1,40 @@
+@if (open && activeImage) {
+    <div class="nx-lightbox" role="dialog" aria-modal="true" [attr.aria-label]="activeImage.alt || 'Image viewer'">
+        <button type="button" class="nx-lightbox-close" aria-label="Close" (click)="close()">×</button>
+
+        <div class="nx-lightbox-stage" (click)="close()">
+            @if (hasMultiple) {
+                <button type="button" class="nx-lightbox-nav prev" aria-label="Previous image" (click)="$event.stopPropagation(); prev()">‹</button>
+            }
+
+            <img
+                class="nx-lightbox-image"
+                [src]="activeImage.src"
+                [alt]="activeImage.alt || ''"
+                (click)="$event.stopPropagation()" />
+
+            @if (hasMultiple) {
+                <button type="button" class="nx-lightbox-nav next" aria-label="Next image" (click)="$event.stopPropagation(); next()">›</button>
+            }
+        </div>
+
+        @if (activeImage.caption) {
+            <p class="nx-lightbox-caption">{{ activeImage.caption }}</p>
+        }
+
+        @if (showThumbnails && hasMultiple) {
+            <div class="nx-lightbox-thumbnails">
+                @for (image of images; track $index; let i = $index) {
+                    <button
+                        type="button"
+                        class="nx-lightbox-thumbnail"
+                        [class.active]="i === activeIndex"
+                        [attr.aria-label]="'Go to image ' + (i + 1)"
+                        (click)="setIndex(i)">
+                        <img [src]="image.src" [alt]="image.alt || ''" />
+                    </button>
+                }
+            </div>
+        }
+    </div>
+}

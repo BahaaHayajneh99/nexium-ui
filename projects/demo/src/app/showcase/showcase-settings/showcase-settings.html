@@ -1,0 +1,49 @@
+<div class="showcase-page">
+    <nx-page-header title="Settings" description="Manage your Nova workspace."></nx-page-header>
+
+    <div class="showcase-card">
+        <nx-tabs variant="line" [(activeIndex)]="activeTab">
+            <nx-tab label="Profile">
+                <div class="showcase-settings-form">
+                    <div class="showcase-logo-section">
+                        <div class="showcase-logo-label">Company logo</div>
+                        <div class="showcase-logo-row">
+                            @if (savedLogoUrl()) {
+                                <img class="showcase-logo-preview" [src]="savedLogoUrl()" alt="Company logo preview" />
+                            }
+                            <input #logoFileInput type="file" accept="image/*" hidden (change)="onLogoFileSelected($event)" />
+                            <nx-button variant="secondary" size="small" (click)="logoFileInput.click()">Upload logo</nx-button>
+                        </div>
+                        @if (logoSrc()) {
+                            <nx-image-cropper [src]="logoSrc()" [aspectRatio]="1" (cropped)="onLogoCropped($event)"></nx-image-cropper>
+                        }
+                    </div>
+
+                    <nx-input label="Company name" [(ngModel)]="companyName"></nx-input>
+                    <nx-textarea label="Bio" [(ngModel)]="companyBio"></nx-textarea>
+                    <nx-color-picker label="Brand color" [(ngModel)]="brandColor"></nx-color-picker>
+                    <nx-button variant="primary" class="showcase-settings-save">Save changes</nx-button>
+                </div>
+            </nx-tab>
+
+            <nx-tab label="Notifications">
+                <div class="showcase-settings-form">
+                    <nx-switch label="Email notifications" [(checked)]="emailNotifications"></nx-switch>
+                    <nx-switch label="Weekly digest" [(checked)]="weeklyDigest"></nx-switch>
+                    <nx-switch label="Product updates" [(checked)]="productUpdates"></nx-switch>
+                    <nx-button variant="primary" class="showcase-settings-save">Save changes</nx-button>
+                </div>
+            </nx-tab>
+
+            <nx-tab label="Security">
+                <div class="showcase-settings-form">
+                    <nx-switch label="Two-factor authentication" [(checked)]="twoFactorEnabled"></nx-switch>
+                    <nx-switch label="Auto sign-out after 30 minutes idle" [(checked)]="sessionTimeout"></nx-switch>
+                    <nx-button variant="primary" class="showcase-settings-save">Save changes</nx-button>
+                </div>
+            </nx-tab>
+        </nx-tabs>
+    </div>
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

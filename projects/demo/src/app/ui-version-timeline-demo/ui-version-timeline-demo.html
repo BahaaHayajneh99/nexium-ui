@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Version Timeline"
+                description="The {{ commonService.appName }} Version Timeline renders a horizontal version history strip, with a branch callout under whichever entry is marked current."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-version-timeline [entries]="entries"></nx-version-timeline>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without Dates"
+                description="date is optional on each entry - omit it for a plainer, version-only strip."
+                [code]="noDatesCode"
+                [tsCode]="noDatesTs"
+                [hasSampleClass]="false">
+                <nx-version-timeline [entries]="releases"></nx-version-timeline>
+            </app-demo-section>
+
+            <app-demo-section
+                header="In Context"
+                description="A typical use case - a release history strip inside a changelog panel."
+                [code]="contextCode"
+                [tsCode]="contextTs"
+                [hasSampleClass]="false">
+                <div style="max-width:640px; padding:16px; border:1px solid var(--nx-border-color, #e2e8f0); border-radius:12px;">
+                    <h4 style="margin:0 0 16px;">Release history</h4>
+                    <nx-version-timeline [entries]="entries"></nx-version-timeline>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

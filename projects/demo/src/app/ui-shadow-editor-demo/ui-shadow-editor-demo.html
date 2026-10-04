@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Shadow Editor"
+                description="The {{ commonService.appName }} Shadow Editor is a visual box-shadow builder - offset/blur/spread sliders and a color field, with a live preview and generated CSS output."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-shadow-editor style="max-width:420px; display:block;" [value]="shadow" (valueChange)="onShadowChange($event)"></nx-shadow-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Inset Shadow"
+                description="Toggle the inset checkbox in the editor to switch between an outer drop shadow and an inner (inset) shadow."
+                [code]="insetCode"
+                [tsCode]="insetTs"
+                [hasSampleClass]="false">
+                <nx-shadow-editor style="max-width:420px; display:block;" [value]="insetShadow" (valueChange)="onInsetShadowChange($event)"></nx-shadow-editor>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+@if (licensed()) {
+    <div class="nx-terminal">
+        <div class="nx-terminal-output">
+            @for (line of lines; track $index) {
+                <div class="nx-terminal-line" [class]="line.type">
+                    @if (line.type === 'input') {
+                        <span class="nx-terminal-prompt">{{ prompt }}</span>
+                    }
+                    <span class="nx-terminal-text">{{ line.text }}</span>
+                </div>
+            }
+        </div>
+
+        @if (interactive) {
+            <div class="nx-terminal-input-row">
+                <span class="nx-terminal-prompt">{{ prompt }}</span>
+                <input
+                    type="text"
+                    class="nx-terminal-input"
+                    [value]="draft()"
+                    (input)="draft.set($any($event.target).value)"
+                    (keydown.enter)="onEnter()" />
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Terminal"></nx-pro-locked>
+}

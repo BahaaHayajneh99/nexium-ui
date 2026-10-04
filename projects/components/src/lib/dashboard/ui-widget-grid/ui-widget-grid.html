@@ -1,0 +1,30 @@
+@if (licensed()) {
+    <div
+        class="nx-widget-grid"
+        #gridEl
+        [style.grid-template-columns]="'repeat(' + columns + ', 1fr)'"
+        [style.grid-auto-rows.px]="rowHeight"
+        [style.gap.px]="gap">
+        @for (item of items(); track item.id) {
+            <div
+                class="nx-widget-grid-item"
+                [class.is-active]="activeId() === item.id"
+                [style.grid-column]="styleFor(item).gridColumn"
+                [style.grid-row]="styleFor(item).gridRow">
+                <div class="nx-widget-grid-item-header" (mousedown)="startMove(item, $event)">
+                    <span class="nx-widget-grid-item-handle">::</span>
+                </div>
+
+                <div class="nx-widget-grid-item-body">
+                    @if (itemTemplate) {
+                        <ng-container *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"></ng-container>
+                    }
+                </div>
+
+                <div class="nx-widget-grid-item-resize" (mousedown)="startResize(item, $event)"></div>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Widget Grid"></nx-pro-locked>
+}

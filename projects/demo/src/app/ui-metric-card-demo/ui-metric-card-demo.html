@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Metric Card"
+                description="NxMetricCard wraps NxStatistic in a bordered, padded card - the standard single-KPI dashboard tile."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-metric-card label="Revenue" prefix="$" [value]="48290" delta="+12.4%"></nx-metric-card>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Multiple Cards"
+                description="A row of metric cards side by side - a typical dashboard summary strip."
+                [code]="rowCode"
+                [tsCode]="rowTs"
+                [hasSampleClass]="false">
+                <div style="display:flex; flex-wrap:wrap; gap:16px;">
+                    <nx-metric-card label="Revenue" prefix="$" [value]="48290" delta="+12.4%"></nx-metric-card>
+                    <nx-metric-card label="Active Users" [value]="2431" delta="+3.1%"></nx-metric-card>
+                    <nx-metric-card label="Churn Rate" [value]="2.6" suffix="%" delta="+0.4%" [upIsGood]="false"></nx-metric-card>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Explicit Direction"
+                description="Force the arrow/color independently of the delta text by setting direction explicitly."
+                [code]="directionCode"
+                [tsCode]="directionTs">
+                <nx-metric-card label="Signups" [value]="812" delta="-4.2%" direction="down" [upIsGood]="false"></nx-metric-card>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

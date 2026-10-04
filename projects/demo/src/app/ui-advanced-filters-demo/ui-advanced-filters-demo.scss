@@ -1,0 +1,10 @@
+.demo-values-output {
+    margin-top: 12px;
+    padding: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    overflow-x: auto;
+}

@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Skill Proficiency"
+                description="{{ commonService.appName }} Polar Area Chart gives every wedge an equal angular slice, while the RADIUS scales with each item's value relative to the dataset max - unlike a pie chart, where angle carries the data and radius is fixed. The dashed rings mark 25/50/75/100% of the max value for scale reference."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-polar-area-chart [data]="skillData"></nx-polar-area-chart>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Monthly Rainfall"
+                description="A seasonal rainfall dataset, where the wide swing between dry and wet months is immediately visible as radius - every month still gets the same 45-degree slice of the circle."
+                [code]="rainfallCode"
+                [tsCode]="rainfallTs"
+                [hasSampleClass]="false">
+                <nx-polar-area-chart [data]="rainfallData"></nx-polar-area-chart>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

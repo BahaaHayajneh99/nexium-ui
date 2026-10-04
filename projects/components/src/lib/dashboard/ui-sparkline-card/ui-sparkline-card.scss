@@ -1,0 +1,44 @@
+.nx-sparkline-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-sparkline-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nx-sparkline-card-label {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-sparkline-card-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-sparkline-card-delta {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.nx-sparkline-card-delta.up {
+    color: #2ecc71;
+}
+
+.nx-sparkline-card-delta.down {
+    color: #e74c3c;
+}
+
+.nx-sparkline-card-delta.neutral {
+    color: var(--shell-text-secondary);
+}

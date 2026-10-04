@@ -1,0 +1,54 @@
+.nx-chat-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 480px;
+    height: 360px;
+    padding: 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    overflow-y: auto;
+}
+
+.nx-chat-row {
+    display: flex;
+    width: 100%;
+}
+
+.nx-chat-row-user {
+    justify-content: flex-end;
+}
+
+.nx-chat-row-assistant {
+    justify-content: flex-start;
+}
+
+.nx-chat-bubble {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: var(--nx-radius-md, 8px);
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.nx-chat-row-user .nx-chat-bubble {
+    border-bottom-right-radius: 2px;
+    background-color: var(--shell-primary, #3498db);
+    color: var(--white-color, #ffffff);
+}
+
+.nx-chat-row-assistant .nx-chat-bubble {
+    border-bottom-left-radius: 2px;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .06));
+    color: var(--shell-text);
+}
+
+.nx-chat-empty {
+    margin: auto;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}

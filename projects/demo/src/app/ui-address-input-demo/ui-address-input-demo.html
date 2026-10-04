@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Address"
+                description="A compound street/city/state/postal-code/country field group that emits one structured NxAddress object on every change."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:520px;">
+                    <nx-address-input (valueChange)="address = $event"></nx-address-input>
+                </div>
+                <pre style="margin-top:12px; font-size:12px;">{{ address | json }}</pre>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Required Fields"
+                description="Set isRequired to mark street/city/postalCode/country as mandatory - a validation message appears once a field has been touched."
+                [code]="requiredCode"
+                [tsCode]="requiredTs"
+                [hasSampleClass]="false">
+                <div style="max-width:520px;">
+                    <nx-address-input [isRequired]="true" (valueChange)="requiredAddress = $event"></nx-address-input>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pre-filled and Disabled"
+                description="NxAddressInput implements ControlValueAccessor, so it also works with [(ngModel)] or a reactive FormGroup - and can be disabled like any other form control."
+                [code]="disabledCode"
+                [tsCode]="disabledTs"
+                [hasSampleClass]="false">
+                <div style="max-width:520px;">
+                    <nx-address-input [(ngModel)]="prefilledAddress" [disabled]="true"></nx-address-input>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

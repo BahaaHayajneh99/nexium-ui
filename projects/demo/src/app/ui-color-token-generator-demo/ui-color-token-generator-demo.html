@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Generate a Tonal Scale"
+                description="{{ commonService.appName }} Color Token Generator - pick a base color (swatch or hex) and get a full 50-950 scale, each step held to a fixed lightness so the spread stays consistent. Click any swatch to copy its hex, or export the whole scale as CSS custom properties. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-color-token-generator [baseColor]="baseColor" (baseColorChange)="onBaseColorChange($event)" tokenPrefix="brand"></nx-color-token-generator>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Any Base Color"
+                description="A different base color and token prefix produce a completely independent scale."
+                [code]="successCode"
+                [tsCode]="successTs"
+                [hasSampleClass]="false">
+                <nx-color-token-generator [baseColor]="successColor" (baseColorChange)="onSuccessColorChange($event)" tokenPrefix="success"></nx-color-token-generator>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

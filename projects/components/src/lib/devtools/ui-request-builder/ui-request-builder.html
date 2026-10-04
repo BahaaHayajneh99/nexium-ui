@@ -1,0 +1,55 @@
+@if (licensed()) {
+    <div class="nx-request-builder">
+        <div class="nx-request-builder-url-row">
+            <select class="nx-request-builder-method" [value]="value.method" (change)="setMethod($any($event.target).value)">
+                @for (method of methods; track method) {
+                    <option [value]="method">{{ method }}</option>
+                }
+            </select>
+            <input
+                type="text"
+                class="nx-request-builder-url"
+                placeholder="https://api.example.com/resource"
+                [value]="value.url"
+                (input)="setUrl($any($event.target).value)" />
+            <button type="button" class="nx-request-builder-send" (click)="send.emit(value)">Send</button>
+        </div>
+
+        <div class="nx-request-builder-section">
+            <div class="nx-request-builder-section-header">
+                <span>Headers</span>
+                <button type="button" class="nx-request-builder-add" (click)="addHeader()">+ Add</button>
+            </div>
+            @for (header of value.headers; track $index; let i = $index) {
+                <div class="nx-request-builder-header-row">
+                    <input
+                        type="text"
+                        placeholder="Key"
+                        [value]="header.key"
+                        (input)="updateHeader(i, { key: $any($event.target).value })" />
+                    <input
+                        type="text"
+                        placeholder="Value"
+                        [value]="header.value"
+                        (input)="updateHeader(i, { value: $any($event.target).value })" />
+                    <button type="button" class="nx-request-builder-remove" (click)="removeHeader(i)">&#10005;</button>
+                </div>
+            }
+        </div>
+
+        @if (showBody) {
+            <div class="nx-request-builder-section">
+                <div class="nx-request-builder-section-header">
+                    <span>Body</span>
+                </div>
+                <textarea
+                    class="nx-request-builder-body"
+                    placeholder="Request body (JSON, etc.)"
+                    [value]="value.body"
+                    (input)="setBody($any($event.target).value)"></textarea>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Request Builder"></nx-pro-locked>
+}

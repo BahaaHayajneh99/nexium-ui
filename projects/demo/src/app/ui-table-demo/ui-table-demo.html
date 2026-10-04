@@ -15,7 +15,7 @@
                 [code]="basicCode"
                 [tsCode]="basicTs"
                 [hasSampleClass]="false">
-                
+
                 <nx-table [columns]="columns" [data]="data"></nx-table>
             </app-demo-section>
 
@@ -87,48 +87,12 @@
             </app-demo-section>
 
             <app-demo-section
-                header="Filter"
-                description="Set col.filterable for per-column filters, and showGlobalFilter for a search box."
-                [code]="filterCode"
-                [tsCode]="filterTs"
-                [hasSampleClass]="false">
-                <nx-table [columns]="filterColumns" [data]="employees" bordered showGlobalFilter paginator [rows]="5" (filter)="onFilter($event)"></nx-table>
-            </app-demo-section>
-
-            <app-demo-section
-                header="Row Selection - Single (Radio)"
-                description="Use selectionMode=&quot;single&quot; to select one row at a time via radio button."
-                [code]="selectionSingleCode"
-                [tsCode]="selectionSingleTs"
-                [hasSampleClass]="false">
-                <nx-table [columns]="columns" [data]="employees" bordered selectionMode="single" [(selection)]="selectedEmployee" paginator [rows]="5"></nx-table>
-            </app-demo-section>
-
-            <app-demo-section
-                header="Row Selection - Multiple (Checkbox)"
-                description="Use selectionMode=&quot;multiple&quot; to select many rows via checkbox, including a select-all header checkbox."
-                [code]="selectionMultipleCode"
-                [tsCode]="selectionMultipleTs"
-                [hasSampleClass]="false">
-                <nx-table [columns]="columns" [data]="employees" bordered selectionMode="multiple" [(selection)]="selectedEmployees" paginator [rows]="5"></nx-table>
-            </app-demo-section>
-
-            <app-demo-section
-                header="Edit Cell"
-                description="Set col.editable and double-click a cell to edit its value inline."
-                [code]="editCode"
-                [tsCode]="editTs"
-                [hasSampleClass]="false">
-                <nx-table [columns]="editableColumns" [data]="employees" bordered paginator [rows]="5" (cellEditComplete)="onCellEditComplete($event)"></nx-table>
-            </app-demo-section>
-
-            <app-demo-section
                 header="Scroll (Vertical & Horizontal)"
                 description="Use scrollable with scrollHeight for a sticky header and vertical scroll; horizontal scroll is automatic when content overflows."
                 [code]="scrollCode"
                 [tsCode]="scrollTs"
                 [hasSampleClass]="false">
-                <nx-table [columns]="resizableColumns" [data]="employees" bordered scrollable scrollHeight="320px"></nx-table>
+                <nx-table [columns]="scrollColumns" [data]="employees" bordered scrollable scrollHeight="320px"></nx-table>
             </app-demo-section>
 
             <app-demo-section
@@ -140,41 +104,11 @@
                 <nx-table [columns]="frozenColumns" [data]="employees" bordered scrollable scrollHeight="320px"></nx-table>
             </app-demo-section>
 
-            <app-demo-section
-                header="Virtual Scroll - Preload"
-                description="virtualScroll with mode 'preload' virtualizes an already in-memory dataset for smooth scrolling of large lists."
-                [code]="virtualPreloadCode"
-                [tsCode]="virtualPreloadTs"
-                [hasSampleClass]="false">
-                <nx-table [columns]="columns" [data]="employees" bordered virtualScroll virtualScrollMode="preload" scrollHeight="320px"></nx-table>
-            </app-demo-section>
-
-            <app-demo-section
-                header="Virtual Scroll - Lazy"
-                description="virtualScroll with mode 'lazy' emits (lazyLoad) with the visible window so data can be fetched on demand."
-                [code]="virtualLazyCode"
-                [tsCode]="virtualLazyTs"
-                [hasSampleClass]="false">
-                <nx-table [columns]="columns" [data]="lazyData" bordered virtualScroll virtualScrollMode="lazy" [totalRecords]="employees.length" scrollHeight="320px" (lazyLoad)="onLazyLoad($event)"></nx-table>
-            </app-demo-section>
-
-            <app-demo-section
-                header="Column Group"
-                description="Provide columnGroups to render a grouped header row spanning multiple columns."
-                [code]="groupCode"
-                [tsCode]="groupTs"
-                [hasSampleClass]="false">
-                <nx-table [columns]="groupColumns" [columnGroups]="columnGroups" [data]="employees" bordered paginator [rows]="5"></nx-table>
-            </app-demo-section>
-
-            <app-demo-section
-                header="Column Resize"
-                description="Set col.resizable to allow dragging the column edge to resize it."
-                [code]="resizeCode"
-                [tsCode]="resizeTs"
-                [hasSampleClass]="false">
-                <nx-table [columns]="resizableColumns" [data]="employees" bordered paginator [rows]="5"></nx-table>
-            </app-demo-section>
+            <p class="nx-table-demo-note">
+                Need filtering, row selection, inline editing, column groups, resizable columns, CSV export, or huge
+                datasets? All of that now lives on the
+                <a routerLink="/enterprise/advanced-data-grid">Advanced Data Grid</a> (a PRO component).
+            </p>
 
             <app-demo-section
                 header="Paginator"
@@ -183,15 +117,6 @@
                 [tsCode]="paginatorTs"
                 [hasSampleClass]="false">
                 <nx-table [columns]="columns" [data]="employees" bordered paginator [rows]="10" [rowsPerPageOptions]="[10, 25, 50]"></nx-table>
-            </app-demo-section>
-
-            <app-demo-section
-                header="Export"
-                description="Enable showExport to render a button that exports the currently displayed data to CSV."
-                [code]="exportCode"
-                [tsCode]="exportTs"
-                [hasSampleClass]="false">
-                <nx-table [columns]="columns" [data]="employees" bordered showExport></nx-table>
             </app-demo-section>
 
         </div>

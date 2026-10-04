@@ -1,0 +1,25 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Log Stream"
+                description="The {{ commonService.appName }} Log Viewer renders a scrollable, level-colored log stream with a built-in text search box and level filter."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:640px;">
+                    <nx-log-viewer [entries]="entries"></nx-log-viewer>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

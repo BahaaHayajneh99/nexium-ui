@@ -1,0 +1,13 @@
+{
+  "name": "nexium-ui-functions",
+  "description": "SUPERSEDED - index.js is no longer deployed (see api/*.js at the repo root for the live Vercel-hosted endpoints). This package.json only remains to give scripts/*.js (the one-off Admin SDK token pool scripts) their firebase-admin dependency.",
+  "private": true,
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1"
+  }
+}

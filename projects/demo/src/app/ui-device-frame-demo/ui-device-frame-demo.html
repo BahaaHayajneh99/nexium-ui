@@ -1,0 +1,69 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Phone"
+                description="Wraps projected content in a phone bezel with a notch and home bar - the default kind."
+                [code]="phoneCode"
+                [hasSampleClass]="false">
+                <nx-device-frame kind="phone">
+                    <div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:13px;">
+                        Phone screen content
+                    </div>
+                </nx-device-frame>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Tablet"
+                description="A wider bezel with a front camera dot instead of a notch."
+                [code]="tabletCode"
+                [hasSampleClass]="false">
+                <nx-device-frame kind="tablet">
+                    <div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:13px;">
+                        Tablet screen content
+                    </div>
+                </nx-device-frame>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Browser"
+                description="A desktop browser chrome with traffic-light dots and a fake address bar showing the url input."
+                [code]="browserCode"
+                [tsCode]="browserTs"
+                [hasSampleClass]="false">
+                <nx-device-frame kind="browser" url="https://nexium-ui.dev">
+                    <div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:13px;">
+                        Browser page content
+                    </div>
+                </nx-device-frame>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Side by Side"
+                description="All three kinds shown together, for comparing their bezels at a glance."
+                [code]="sideBySideCode"
+                [hasSampleClass]="false">
+                <div style="display:flex; align-items:flex-start; gap:32px; flex-wrap:wrap;">
+                    <nx-device-frame kind="phone">
+                        <div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:12px;">Phone</div>
+                    </nx-device-frame>
+                    <nx-device-frame kind="tablet">
+                        <div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:12px;">Tablet</div>
+                    </nx-device-frame>
+                    <nx-device-frame kind="browser" url="https://nexium-ui.dev">
+                        <div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:12px;">Browser</div>
+                    </nx-device-frame>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

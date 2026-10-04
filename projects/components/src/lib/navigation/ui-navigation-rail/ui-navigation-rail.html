@@ -1,0 +1,19 @@
+<nav class="nx-navigation-rail">
+    @for (item of items; track item.id) {
+        <button
+            type="button"
+            class="nx-navigation-rail-item"
+            [class.active]="item.id === active"
+            (click)="select(item)">
+            <span class="nx-navigation-rail-icon-wrap">
+                <nx-icon [icon]="item.icon" variant="svg" [size]="20"></nx-icon>
+                @if (item.badge !== undefined) {
+                    <span class="nx-navigation-rail-badge">{{ item.badge }}</span>
+                }
+            </span>
+            @if (showLabels) {
+                <span class="nx-navigation-rail-label">{{ item.label }}</span>
+            }
+        </button>
+    }
+</nav>

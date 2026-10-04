@@ -1,0 +1,71 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Cookie Banner</h4>
+                <p class="main-section-description">
+                    A fixed-position consent banner. It checks localStorage on init and stays
+                    hidden entirely once a choice has been recorded for storageKey - the "Reset
+                    consent" buttons below are demo-only, so you can try it more than once.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="With Customize"
+                description="showCustomize (default true) adds a step with per-category toggles (Analytics, Marketing) before an inner 'Save preferences' confirms. Last choice: {{ lastChoice || 'none yet' }}"
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+
+                <nx-button (click)="resetConsent()">Reset consent (demo only)</nx-button>
+
+                @if (showBanner) {
+                    <nx-cookie-banner
+                        [storageKey]="storageKey"
+                        message="We use cookies to improve your experience."
+                        [showCustomize]="true"
+                        (accepted)="onAccepted()"
+                        (declined)="onDeclined()">
+                    </nx-cookie-banner>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without Customize"
+                description="Setting showCustomize to false keeps it to a simple Accept / Decline choice. Last choice: {{ lastChoiceSimple || 'none yet' }}"
+                [code]="simpleCode"
+                [tsCode]="simpleTs"
+                [hasSampleClass]="false">
+
+                <nx-button (click)="resetConsentSimple()">Reset consent (demo only)</nx-button>
+
+                <p class="cookie-demo-note">
+                    nx-cookie-banner is position: fixed to the real viewport bottom - this second
+                    instance is shown inside a bounded preview box instead, so it doesn't overlap
+                    the first section's live banner above.
+                </p>
+
+                <div class="cookie-demo-bounded">
+                    @if (showBannerSimple) {
+                        <nx-cookie-banner
+                            [storageKey]="storageKeySimple"
+                            message="This site uses essential cookies only."
+                            [showCustomize]="false"
+                            (accepted)="onAcceptedSimple()"
+                            (declined)="onDeclinedSimple()">
+                        </nx-cookie-banner>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

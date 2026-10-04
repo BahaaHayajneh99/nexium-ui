@@ -1,0 +1,117 @@
+.nx-kanban {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.nx-kanban-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 260px;
+    flex-shrink: 0;
+    padding: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-kanban-column.drag-over {
+    border-color: var(--shell-primary);
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .06));
+}
+
+.nx-kanban-column-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
+}
+
+.nx-kanban-column-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-kanban-column-count {
+    padding: 1px 8px;
+    border-radius: 999px;
+    background-color: var(--shell-border);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.nx-kanban-column-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 40px;
+}
+
+.nx-kanban-card {
+    padding: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 6px);
+    background-color: var(--shell-bg, #ffffff);
+    cursor: grab;
+}
+
+.nx-kanban-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-kanban-card-description {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-kanban-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.nx-kanban-card-assignees {
+    display: flex;
+    align-items: center;
+}
+
+.nx-kanban-card-assignees nx-avatar {
+    margin-left: -6px;
+}
+
+.nx-kanban-card-assignees nx-avatar:first-child {
+    margin-left: 0;
+}
+
+.nx-kanban-card-assignee-more {
+    margin-left: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-kanban-card-assign-btn {
+    padding: 2px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: 999px;
+    background-color: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-kanban-card-assign-btn:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}

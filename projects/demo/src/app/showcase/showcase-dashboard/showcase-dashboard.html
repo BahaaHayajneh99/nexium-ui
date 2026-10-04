@@ -1,0 +1,53 @@
+<div class="showcase-page">
+    <nx-page-header title="Dashboard" description="Welcome back, Amelia - here's how Nova is doing this month.">
+        <nx-button nxPageHeaderActions variant="primary">+ New Order</nx-button>
+    </nx-page-header>
+
+    <nx-metric-grid [minColumnWidth]="220">
+        <nx-metric-card label="Revenue" [value]="63400" prefix="$" delta="+12.4%"></nx-metric-card>
+        <nx-metric-card label="Orders" [value]="314" delta="+8.1%"></nx-metric-card>
+        <nx-metric-card label="Active Users" [value]="2481" delta="+3.6%"></nx-metric-card>
+        <nx-metric-card label="Churn Rate" [value]="2.1" suffix="%" delta="-0.4%"></nx-metric-card>
+    </nx-metric-grid>
+
+    <div class="showcase-charts-row">
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">Revenue</h3>
+            <nx-area-chart [categories]="months" [series]="revenueSeries" [height]="260"></nx-area-chart>
+        </div>
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">Orders by type</h3>
+            <nx-bar-chart [categories]="months" [series]="ordersBySeries" [height]="260"></nx-bar-chart>
+        </div>
+    </div>
+
+    <div class="showcase-charts-row">
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">Revenue by plan</h3>
+            <nx-pie-chart [data]="revenueByPlan"></nx-pie-chart>
+        </div>
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">Active users</h3>
+            <nx-line-chart [categories]="months" [series]="activeUsersSeries" [height]="260"></nx-line-chart>
+        </div>
+    </div>
+
+    <div class="showcase-card">
+        <h3 class="showcase-card-title">Platform activity</h3>
+        <p class="showcase-card-subtitle">Engagement over the last year, by day.</p>
+        <nx-contribution-graph [data]="activityHeatmapData"></nx-contribution-graph>
+    </div>
+
+    <div class="showcase-lower-row">
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">Recent activity</h3>
+            <nx-activity-feed [items]="activity"></nx-activity-feed>
+        </div>
+        <div class="showcase-card">
+            <h3 class="showcase-card-title">Top products</h3>
+            <nx-leaderboard [items]="topProducts"></nx-leaderboard>
+        </div>
+    </div>
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Audit Timeline"
+                description="A dense, scannable log of who-did-what-when for compliance/security review - each row surfaces the actor, action, target, IP address and a severity badge. Denser and more literal than nx-activity-timeline, which is tuned for a friendly, avatar-led view."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:520px;">
+                    <nx-audit-timeline [entries]="entries"></nx-audit-timeline>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Empty State"
+                description="With no entries, the timeline shows a plain 'No audit entries.' message."
+                [code]="emptyCode"
+                [tsCode]="emptyTs"
+                [hasSampleClass]="false">
+                <div style="max-width:520px;">
+                    <nx-audit-timeline [entries]="[]"></nx-audit-timeline>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Drag to reorder"
+                description="Drag a row by its grip handle to reorder the list. {{ commonService.appName }}'s Sortable List emits the new order on both itemsChange, so [(items)] two-way binding works out of the box, and reordered."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:360px;">
+                    <nx-sortable-list [(items)]="items" (reordered)="onReordered($event)"></nx-sortable-list>
+                    @if (lastOrder) {
+                        <p style="margin-top:12px; color:var(--shell-text-secondary); font-size:0.85rem;">
+                            New order: {{ lastOrder }}
+                        </p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

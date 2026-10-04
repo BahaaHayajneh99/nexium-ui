@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Playground"
+                description="{{ commonService.appName }} AI Model Playground combines a model selector, temperature/max-tokens/top-P sliders, a prompt box, and a Run button with a response area (rendered via nx-ai-response-viewer). It never calls a real API itself - clicking Run only emits (run) with the full parameter set. This demo simulates a short delay, then feeds back a canned response through [response]/[isRunning] to show the whole loop working. (A side-by-side 'Compare' mode was out of scope for this pass - this is a single-run playground.)"
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-ai-model-playground
+                    [models]="models"
+                    [response]="response()"
+                    [isRunning]="isRunning()"
+                    (run)="onRun($event)">
+                </nx-ai-model-playground>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pre-filled Response"
+                description="Feeding [response] directly (with no (run) handler) shows a result immediately - useful for a read-only showcase or restoring a prior session's last answer."
+                [code]="prefilledCode"
+                [tsCode]="prefilledTs"
+                [hasSampleClass]="false">
+                <nx-ai-model-playground [models]="models" [response]="prefilledResponse"></nx-ai-model-playground>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

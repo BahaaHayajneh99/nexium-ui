@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Not Found"
+                description="{{ commonService.appName }}'s Not Found is a preset of Result with sensible 404 defaults - icon, title, description and actionLabel are all overridable, so there's nothing duplicated between the two."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-not-found (actionClick)="goBack()"></nx-not-found>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Copy"
+                description="Override any of the defaults to fit your own copy."
+                [code]="customCode"
+                [tsCode]="customTs"
+                [hasSampleClass]="false">
+                <nx-not-found
+                    title="We couldn't find that project"
+                    description="It may have been deleted, or you may not have access to it."
+                    actionLabel="Back to projects">
+                </nx-not-found>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

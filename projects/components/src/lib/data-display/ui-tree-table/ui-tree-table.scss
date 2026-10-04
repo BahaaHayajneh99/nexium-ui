@@ -1,0 +1,80 @@
+.nx-tree-table-wrapper {
+    overflow-x: auto;
+}
+
+.nx-tree-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text);
+    background-color: var(--shell-bg);
+
+    th,
+    td {
+        padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
+        text-align: left;
+        border-bottom: 1px solid var(--shell-border);
+    }
+
+    th {
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text-secondary);
+        white-space: nowrap;
+    }
+
+    td:first-child {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+}
+
+.nx-tree-table.striped tbody tr:nth-child(even) {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-tree-table.hoverable tbody tr:hover {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-tree-table-row.selectable {
+    cursor: pointer;
+}
+
+.nx-tree-table-row.selected {
+    background-color: color-mix(in srgb, var(--shell-primary) 10%, transparent);
+}
+
+.nx-tree-table-indent {
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.nx-tree-table-toggle,
+.nx-tree-table-toggle-spacer {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.nx-tree-table-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-tree-table-toggle:hover {
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text);
+}
+
+.nx-tree-table-empty-row td {
+    text-align: center;
+    color: var(--shell-text-secondary);
+    padding: var(--nx-spacing-lg, 24px);
+}

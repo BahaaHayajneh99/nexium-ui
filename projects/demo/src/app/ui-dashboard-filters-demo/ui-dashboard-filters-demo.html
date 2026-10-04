@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Instant apply"
+                description="{{ commonService.appName }}'s Dashboard Filters bar combines a built-in date range with any number of extra dropdown filters. In instant mode (the default) filtersChange fires on every change - the metric cards and JSON below update live to prove the emitted NxDashboardFilterState is correct. Reset clears everything back to defaults."
+                [code]="instantCode"
+                [tsCode]="instantTs"
+                [hasSampleClass]="false">
+                <div style="max-width:900px; display:flex; flex-direction:column; gap:16px;">
+                    <nx-dashboard-filters
+                        [extraFilters]="extraFilters"
+                        applyMode="instant"
+                        (filtersChange)="onInstantFiltersChange($event)">
+                    </nx-dashboard-filters>
+
+                    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                        <nx-metric-card label="Filters applied" [value]="instantFilterCount"></nx-metric-card>
+                        <nx-metric-card label="Date range set" [value]="instantState.dateRange ? 'Yes' : 'No'"></nx-metric-card>
+                    </div>
+
+                    <pre style="margin:0; padding:10px 12px; background:var(--shell-surface); border:1px solid var(--shell-border); border-radius:var(--nx-radius-sm, 4px); font-size:12px; color:var(--shell-text-secondary); overflow:auto;">{{ instantState | json }}</pre>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Button apply"
+                description="With applyMode='button', changes to the date range or any dropdown are staged locally - nothing is emitted until Apply is clicked (Reset is still immediate). Useful when you don't want every keystroke/selection to trigger a refetch of the underlying dashboard data."
+                [code]="buttonCode"
+                [hasSampleClass]="false">
+                <div style="max-width:900px; display:flex; flex-direction:column; gap:16px;">
+                    <nx-dashboard-filters
+                        [extraFilters]="extraFilters"
+                        applyMode="button"
+                        (filtersChange)="onButtonFiltersChange($event)">
+                    </nx-dashboard-filters>
+
+                    <pre style="margin:0; padding:10px 12px; background:var(--shell-surface); border:1px solid var(--shell-border); border-radius:var(--nx-radius-sm, 4px); font-size:12px; color:var(--shell-text-secondary); overflow:auto;">{{ buttonState | json }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

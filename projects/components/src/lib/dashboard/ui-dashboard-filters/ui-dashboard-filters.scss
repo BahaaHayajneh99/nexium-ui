@@ -1,0 +1,71 @@
+.nx-dashboard-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 14px;
+    padding: 12px 16px;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+}
+
+.nx-dashboard-filters-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--shell-text-secondary);
+    }
+
+    input,
+    select {
+        padding: 6px 8px;
+        font-size: 13px;
+        color: var(--shell-text);
+        background-color: var(--shell-surface);
+        border: 1px solid var(--shell-border);
+        border-radius: var(--nx-radius-sm, 4px);
+        min-width: 130px;
+    }
+}
+
+.nx-dashboard-filters-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.nx-dashboard-filters-apply,
+.nx-dashboard-filters-reset {
+    padding: 7px 14px;
+    font-size: 13px;
+    border-radius: var(--nx-radius-sm, 4px);
+    cursor: pointer;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.nx-dashboard-filters-apply {
+    color: #fff;
+    background-color: var(--shell-primary, #3498db);
+    border: 1px solid var(--shell-primary, #3498db);
+}
+
+.nx-dashboard-filters-reset {
+    color: var(--shell-text);
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.nx-dashboard-filters-count {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}

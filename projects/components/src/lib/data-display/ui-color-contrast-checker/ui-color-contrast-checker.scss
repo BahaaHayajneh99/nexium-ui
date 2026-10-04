@@ -1,0 +1,80 @@
+.nx-contrast-checker {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 360px;
+}
+
+.nx-contrast-inputs {
+    display: flex;
+    gap: 16px;
+}
+
+.nx-contrast-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-contrast-swatch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-contrast-swatch input[type="color"] {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--shell-border);
+    border-radius: 6px;
+    cursor: pointer;
+    background: none;
+}
+
+.nx-contrast-preview {
+    padding: 20px;
+    border-radius: var(--nx-radius-md, 8px);
+    border: 1px solid var(--shell-border);
+    font-size: 16px;
+    text-align: center;
+}
+
+.nx-contrast-result {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-contrast-ratio {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--shell-text);
+    margin-right: 4px;
+}
+
+.nx-contrast-badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.nx-contrast-badge.pass {
+    background-color: color-mix(in srgb, var(--success-color, #28a745) 15%, transparent);
+    color: var(--success-color, #28a745);
+}
+
+.nx-contrast-badge.fail {
+    background-color: color-mix(in srgb, var(--danger-color, #e74c3c) 15%, transparent);
+    color: var(--danger-color, #e74c3c);
+}

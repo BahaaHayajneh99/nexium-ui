@@ -1,0 +1,51 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Day-Grouped Feed"
+                description="A flat, day-grouped activity list - the feed-shaped sibling of nx-activity-timeline, which draws a connected vertical line instead of grouping by day."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-activity-feed [items]="items"></nx-activity-feed>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Flat List"
+                description="Set groupByDay to false for one flat list with no day headers."
+                [code]="flatCode"
+                [tsCode]="flatTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-activity-feed [items]="items" [groupByDay]="false"></nx-activity-feed>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Load More"
+                description="showLoadMore renders a 'Load more' button and emits loadMore on click - wire it up to fetch and append the next page."
+                [code]="loadMoreCode"
+                [tsCode]="loadMoreTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-activity-feed
+                        [items]="visibleItems"
+                        [showLoadMore]="visibleItems.length < items.length"
+                        (loadMore)="onLoadMore()">
+                    </nx-activity-feed>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

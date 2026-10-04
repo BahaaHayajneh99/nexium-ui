@@ -1,0 +1,40 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Grid"
+                description="Project several nx-metric-card (or nx-kpi-card/nx-sparkline-card) tiles inside nx-metric-grid for a responsive, auto-wrapping layout."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-metric-grid>
+                    <nx-metric-card label="Revenue" prefix="$" [value]="48290" delta="+12.4%"></nx-metric-card>
+                    <nx-metric-card label="Active Users" [value]="2431" delta="+3.1%"></nx-metric-card>
+                    <nx-metric-card label="Churn Rate" [value]="2.6" suffix="%" delta="+0.4%" [upIsGood]="false"></nx-metric-card>
+                    <nx-metric-card label="Avg. Session" [value]="4.8" suffix="m" delta="+0.6%"></nx-metric-card>
+                </nx-metric-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Column Width"
+                description="minColumnWidth (default 200) sets the minimum track width per tile - raise it for fewer, wider columns per row."
+                [code]="wideCode"
+                [tsCode]="wideTs"
+                [hasSampleClass]="false">
+                <nx-metric-grid [minColumnWidth]="260">
+                    <nx-metric-card label="Revenue" prefix="$" [value]="48290" delta="+12.4%"></nx-metric-card>
+                    <nx-metric-card label="Active Users" [value]="2431" delta="+3.1%"></nx-metric-card>
+                </nx-metric-grid>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

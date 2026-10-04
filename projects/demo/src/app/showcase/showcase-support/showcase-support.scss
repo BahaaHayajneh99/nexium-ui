@@ -1,0 +1,154 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: var(--shell-bg, #0a0a0a);
+}
+
+.support-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.support-body {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 65px);
+}
+
+@media (max-width: 800px) {
+    .support-body {
+        grid-template-columns: 1fr;
+    }
+}
+
+.support-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 16px;
+    border-right: 1px solid var(--shell-border);
+}
+
+.support-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.support-filter-chip {
+    padding: 6px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.support-filter-chip.active {
+    border-color: var(--shell-primary);
+    background-color: rgba(52, 152, 219, .12);
+    color: var(--shell-primary);
+}
+
+.support-tickets {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.support-ticket-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    text-align: left;
+    cursor: pointer;
+}
+
+.support-ticket-card.active {
+    border-color: var(--shell-primary);
+}
+
+.support-ticket-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.support-ticket-subject {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.support-ticket-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.support-ticket-dot {
+    opacity: .5;
+}
+
+.support-conversation {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 24px;
+}
+
+.support-conversation-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.support-conversation-header h2 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    color: var(--shell-text);
+}
+
+.support-conversation-sub {
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.support-thread {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    flex: 1;
+}
+
+.support-thread nx-chat-stream {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+}
+
+.support-reply {
+    padding-top: 16px;
+    border-top: 1px solid var(--shell-border);
+}
+
+.support-reply nx-prompt-input {
+    max-width: none;
+}

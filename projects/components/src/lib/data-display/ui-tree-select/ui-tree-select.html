@@ -1,0 +1,54 @@
+@if (licensed()) {
+    <div class="nx-tree-select">
+        <button
+            type="button"
+            class="nx-tree-select-trigger"
+            [class.open]="open()"
+            [attr.aria-expanded]="open()"
+            (click)="toggleOpen()">
+            <span class="nx-tree-select-trigger-text" [class.placeholder]="!selectedLabels().length">
+                {{ triggerText() }}
+            </span>
+            <nx-icon class="nx-tree-select-chevron-icon" icon="nx-chevron-down" variant="svg" [size]="16"></nx-icon>
+        </button>
+
+        @if (open()) {
+            <div class="nx-tree-select-panel">
+                @if (!flatNodes().length) {
+                    <div class="nx-tree-select-empty">No options</div>
+                }
+                @for (row of flatNodes(); track row.node.id) {
+                    <div class="nx-tree-select-row" [style.padding-left.px]="row.depth * 16 + 8">
+                        @if (row.hasChildren) {
+                            <button
+                                type="button"
+                                class="nx-tree-select-expand"
+                                [class.open]="isExpanded(row.node.id)"
+                                (click)="toggleExpand(row.node.id, $event)">
+                                <nx-icon icon="nx-chevron-right" variant="svg" [size]="14"></nx-icon>
+                            </button>
+                        } @else {
+                            <span class="nx-tree-select-expand-placeholder"></span>
+                        }
+
+                        @if (multiple) {
+                            <label class="nx-tree-select-checkbox-row">
+                                <input
+                                    type="checkbox"
+                                    [checked]="isSelected(row.node.id)"
+                                    (change)="toggleMultiple(row.node.id)">
+                                <span>{{ row.node.label }}</span>
+                            </label>
+                        } @else {
+                            <button type="button" class="nx-tree-select-option" (click)="selectSingle(row.node.id)">
+                                {{ row.node.label }}
+                            </button>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Tree Select"></nx-pro-locked>
+}

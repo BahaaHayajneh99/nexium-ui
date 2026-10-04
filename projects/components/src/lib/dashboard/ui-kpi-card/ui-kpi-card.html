@@ -1,0 +1,11 @@
+<div class="nx-kpi-card">
+    <span class="nx-kpi-card-label">{{ label }}</span>
+    <div class="nx-kpi-card-values">
+        <span class="nx-kpi-card-value">{{ value }}{{ unit }}</span>
+        <span class="nx-kpi-card-target">of {{ target }}{{ unit }}</span>
+    </div>
+    <div class="nx-kpi-card-track">
+        <div class="nx-kpi-card-fill" [style.width.%]="percent"></div>
+    </div>
+    <span class="nx-kpi-card-percent">{{ roundedPercent }}%</span>
+</div>

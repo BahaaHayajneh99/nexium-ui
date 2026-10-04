@@ -1,3 +1,4 @@
+@if (licensed()) {
 <div class="nx-chart">
 
     <div class="nx-chart-canvas nx-gauge-canvas">
@@ -52,3 +53,6 @@
     }
 
 </div>
+} @else {
+    <nx-pro-locked componentName="Gauge Chart"></nx-pro-locked>
+}

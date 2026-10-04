@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Chat"
+                description="The {{ commonService.appName }} Chat renders a scrollable message list with markdown and fenced code-block support, plus a composer. Send a message below - a simulated assistant reply (with a typing indicator) arrives shortly after."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px; height:480px; border:1px solid var(--nx-border-color, #e2e8f0); border-radius:12px; overflow:hidden;">
+                    <nx-chat
+                        [messages]="messages()"
+                        [typing]="typing()"
+                        (messageSend)="onMessageSend($event)"
+                        (regenerate)="onRegenerate($event)">
+                    </nx-chat>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Placeholder"
+                description="placeholder replaces the composer's default 'Send a message...' hint text."
+                [code]="placeholderCode"
+                [tsCode]="placeholderTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px; height:220px; border:1px solid var(--nx-border-color, #e2e8f0); border-radius:12px; overflow:hidden;">
+                    <nx-chat [messages]="[]" placeholder="Ask me anything..."></nx-chat>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled"
+                description="Set disabled to true to lock the composer - useful while waiting on a connection or once a conversation has been closed."
+                [code]="disabledCode"
+                [tsCode]="disabledTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px; height:260px; border:1px solid var(--nx-border-color, #e2e8f0); border-radius:12px; overflow:hidden;">
+                    <nx-chat [messages]="messages()" [disabled]="true" placeholder="Connecting..."></nx-chat>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="{{ commonService.appName }} doesn't ship a dedicated 'Success' component - which one to use depends on scope: nx-banner for a page-level notice, nx-alert for an inline section, or nx-result for a full success page."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Success Banner"
+                description="A full-width, dismissible strip for a page-level success message."
+                [code]="bannerCode"
+                [tsCode]="bannerTs"
+                [hasSampleClass]="false">
+                <nx-banner variant="success" message="Your changes have been saved.">
+                </nx-banner>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Inline Success"
+                description="For a success message scoped to one section or form, use nx-alert instead."
+                [code]="inlineCode"
+                [tsCode]="inlineTs">
+                <nx-alert variant="success" title="Success">
+                    Your profile has been updated.
+                </nx-alert>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Success Page"
+                description="For a full success PAGE (after a checkout, a signup flow, ...), use nx-result instead."
+                [code]="resultCode"
+                [tsCode]="resultTs"
+                [hasSampleClass]="false">
+                <nx-result
+                    status="success"
+                    title="Payment complete"
+                    description="A receipt has been emailed to you."
+                    actionLabel="Back to dashboard">
+                </nx-result>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

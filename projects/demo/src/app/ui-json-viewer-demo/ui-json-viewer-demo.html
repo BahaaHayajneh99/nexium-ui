@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic JSON Viewer"
+                description="The {{ commonService.appName }} JSON Viewer is a read-only, collapsible tree view of any JSON value - click a row with children to collapse or expand it."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-json-viewer [value]="user"></nx-json-viewer>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Nested Data"
+                description="Rows are flattened from the value regardless of depth, so deeply nested arrays and objects render correctly."
+                [code]="responseCode"
+                [tsCode]="responseTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-json-viewer [value]="apiResponse"></nx-json-viewer>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

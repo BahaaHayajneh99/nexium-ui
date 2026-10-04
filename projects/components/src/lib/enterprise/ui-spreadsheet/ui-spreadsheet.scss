@@ -1,0 +1,256 @@
+.nx-spreadsheet {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    outline: none;
+    user-select: none;
+}
+
+.nx-spreadsheet-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nx-spreadsheet-toolbar-spacer {
+    flex: 1;
+}
+
+.nx-spreadsheet-tool-btn {
+    padding: 5px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.nx-spreadsheet-tool-btn:hover:not(:disabled) {
+    border-color: var(--nx-ss-accent, var(--shell-primary));
+    color: var(--nx-ss-accent, var(--shell-primary));
+}
+
+.nx-spreadsheet-tool-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.nx-spreadsheet-export {
+    padding: 6px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-spreadsheet-export:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-spreadsheet-scroll {
+    max-height: 420px;
+    overflow: auto;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+}
+
+.nx-spreadsheet-grid {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    font-size: 12px;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-spreadsheet-row {
+    display: flex;
+}
+
+.nx-spreadsheet-header-row {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+
+.nx-spreadsheet-corner {
+    position: sticky;
+    inset-inline-start: 0;
+    top: 0;
+    z-index: 4;
+    width: 48px;
+    height: 28px;
+    flex-shrink: 0;
+    background-color: var(--nx-ss-header-bg, var(--shell-surface));
+    border-inline-end: 1px solid var(--nx-ss-border, var(--shell-border));
+    border-bottom: 1px solid var(--nx-ss-border, var(--shell-border));
+}
+
+.nx-spreadsheet-group-row {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+
+.nx-spreadsheet-group-header {
+    flex-shrink: 0;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--nx-ss-header-bg, var(--shell-surface));
+    color: var(--shell-text);
+    font-weight: 700;
+    border-inline-end: 1px solid var(--nx-ss-border, var(--shell-border));
+    border-bottom: 1px solid var(--nx-ss-border, var(--shell-border));
+}
+
+.nx-spreadsheet-col-header {
+    position: relative;
+    flex-shrink: 0;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background-color: var(--nx-ss-header-bg, var(--shell-surface));
+    color: var(--shell-text-secondary);
+    font-weight: 700;
+    border-inline-end: 1px solid var(--nx-ss-border, var(--shell-border));
+    border-bottom: 1px solid var(--nx-ss-border, var(--shell-border));
+}
+
+.nx-spreadsheet-required-mark {
+    color: var(--nx-color-danger, #e74c3c);
+    font-weight: 700;
+}
+
+.nx-spreadsheet-add-col {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-bottom: 1px solid var(--nx-ss-border, var(--shell-border));
+    background-color: var(--nx-ss-header-bg, var(--shell-surface));
+    color: var(--shell-text-secondary);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.nx-spreadsheet-add-col:hover {
+    color: var(--nx-ss-accent, var(--shell-primary));
+}
+
+.nx-spreadsheet-col-header.frozen {
+    position: sticky;
+    z-index: 3;
+}
+
+.nx-spreadsheet-col-resize {
+    position: absolute;
+    top: 0;
+    inset-inline-end: -2px;
+    width: 4px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 1;
+}
+
+.nx-spreadsheet-row-header {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: 2;
+    width: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--nx-ss-header-bg, var(--shell-surface));
+    color: var(--shell-text-secondary);
+    font-weight: 700;
+    border-inline-end: 1px solid var(--nx-ss-border, var(--shell-border));
+    border-bottom: 1px solid var(--nx-ss-border, var(--shell-border));
+}
+
+.nx-spreadsheet-row-header.frozen {
+    z-index: 3;
+}
+
+.nx-spreadsheet-row-resize {
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 4px;
+    cursor: row-resize;
+    z-index: 1;
+}
+
+.nx-spreadsheet-cell {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    background-color: var(--shell-bg, #fff);
+    color: var(--shell-text);
+    border-inline-end: 1px solid var(--nx-ss-border, var(--shell-border));
+    border-bottom: 1px solid var(--nx-ss-border, var(--shell-border));
+    cursor: cell;
+    overflow: hidden;
+}
+
+.nx-spreadsheet-grid.striped .nx-spreadsheet-row:nth-child(odd) .nx-spreadsheet-cell {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .02));
+}
+
+.nx-spreadsheet-cell.frozen-col,
+.nx-spreadsheet-cell.frozen-row {
+    position: sticky;
+    z-index: 1;
+    background-color: var(--shell-surface);
+}
+
+.nx-spreadsheet-cell.frozen-col.frozen-row {
+    z-index: 2;
+}
+
+.nx-spreadsheet-cell.active {
+    outline: 2px solid var(--nx-ss-accent, var(--shell-primary));
+    outline-offset: -2px;
+    z-index: 2;
+}
+
+.nx-spreadsheet-cell.selected {
+    background-color: color-mix(in srgb, var(--nx-ss-accent, #3498db) 12%, transparent);
+}
+
+.nx-spreadsheet-cell.invalid {
+    background-color: color-mix(in srgb, var(--nx-color-danger, #e74c3c) 8%, transparent);
+    box-shadow: inset 0 0 0 1px var(--nx-color-danger, #e74c3c);
+}
+
+.nx-spreadsheet-cell-value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nx-spreadsheet-cell-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 6px;
+    border: none;
+    outline: 2px solid var(--nx-ss-accent, var(--shell-primary));
+    background-color: var(--shell-bg, #fff);
+    color: var(--shell-text);
+    font-family: inherit;
+    font-size: 12px;
+}

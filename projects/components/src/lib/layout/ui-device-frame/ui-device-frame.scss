@@ -1,0 +1,111 @@
+.nx-device-frame {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+    border-radius: 24px;
+    padding: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .25);
+}
+
+.nx-device-frame.phone {
+    width: 320px;
+    height: 640px;
+}
+
+.nx-device-frame.tablet {
+    width: 520px;
+    height: 680px;
+    border-radius: 18px;
+}
+
+.nx-device-frame.browser {
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+    padding: 0;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.nx-device-frame-notch {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 100px;
+    height: 20px;
+    border-radius: 0 0 12px 12px;
+    background-color: #1a1a1a;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.nx-device-frame-camera {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #333333;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.nx-device-frame-home-bar {
+    align-self: center;
+    width: 100px;
+    height: 4px;
+    margin-top: 8px;
+    border-radius: 999px;
+    background-color: #555555;
+}
+
+.nx-device-frame-screen {
+    flex: 1;
+    min-height: 200px;
+    overflow: hidden;
+    border-radius: 14px;
+    background-color: var(--shell-bg, #ffffff);
+}
+
+.nx-device-frame.browser .nx-device-frame-screen {
+    border-radius: 0 0 10px 10px;
+}
+
+.nx-device-frame-browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-device-frame-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.nx-device-frame-dot.red {
+    background-color: #ff5f56;
+}
+
+.nx-device-frame-dot.yellow {
+    background-color: #ffbd2e;
+}
+
+.nx-device-frame-dot.green {
+    background-color: #27c93f;
+}
+
+.nx-device-frame-url {
+    margin-left: 8px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    flex: 1;
+}

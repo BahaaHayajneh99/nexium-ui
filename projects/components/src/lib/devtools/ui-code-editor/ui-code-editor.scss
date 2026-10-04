@@ -1,0 +1,41 @@
+.nx-code-editor {
+    display: flex;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    overflow: hidden;
+}
+
+.nx-code-editor-gutter {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 10px;
+    border-right: 1px solid rgba(255, 255, 255, .1);
+    background-color: rgba(255, 255, 255, .03);
+    overflow: hidden;
+}
+
+.nx-code-editor-line-number {
+    color: #6e7681;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: right;
+    user-select: none;
+}
+
+.nx-code-editor-textarea {
+    flex: 1;
+    min-height: 220px;
+    padding: 12px;
+    border: none;
+    resize: vertical;
+    background: transparent;
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    outline: none;
+    white-space: pre;
+}

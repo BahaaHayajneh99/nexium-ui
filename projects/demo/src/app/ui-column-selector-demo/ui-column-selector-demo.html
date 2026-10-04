@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Toggle table columns"
+                description="A 'Columns' dropdown for toggling table/grid column visibility. Open it and toggle a column - the mock table header below reacts live via [(columns)] two-way binding."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:520px;">
+                    <div style="margin-bottom:16px;">
+                        <nx-column-selector [(columns)]="columns"></nx-column-selector>
+                    </div>
+                    <div style="border:1px solid var(--shell-border); border-radius:8px; overflow:hidden;">
+                        <div style="display:flex; background:var(--shell-surface); border-bottom:1px solid var(--shell-border); padding:10px 16px; gap:16px; font-weight:600; font-size:0.85rem;">
+                            @for (column of visibleColumns; track column.id) {
+                                <span style="flex:1;">{{ column.label }}</span>
+                            }
+                        </div>
+                        <div style="padding:16px; color:var(--shell-text-muted); font-size:0.85rem;">
+                            {{ visibleColumns.length }} of {{ columns.length }} columns visible
+                        </div>
+                    </div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

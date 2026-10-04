@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Scroll Lock</h4>
+                <p class="main-section-description">
+                    Sets the page's own <code>overflow: hidden</code> for as long as nxScrollLock is true, and
+                    restores whatever the original value was once it flips back off - the directive behind
+                    "lock body scroll while a modal/drawer is open".
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every directive is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Toggle page scroll"
+                description="Heads up: this applies to the WHOLE page, not just this box - that's by design (the directive locks document.body itself), not a bug. Click Lock, then try scrolling this page: it won't move until you click Unlock again. There's filler content further down so the page is tall enough to actually demonstrate it."
+                [code]="code"
+                [hasSampleClass]="false">
+
+                <div [nxScrollLock]="locked" style="padding:16px; border:1px solid var(--shell-border); border-radius:8px;">
+                    <nx-button (click)="toggle()">{{ locked ? 'Unlock page scroll' : 'Lock page scroll' }}</nx-button>
+                    <p class="template-form-note mt-2">
+                        Page scroll is currently <strong>{{ locked ? 'LOCKED' : 'unlocked' }}</strong>.
+                    </p>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Filler content"
+                description="Just here so the page is tall enough to scroll - scroll down, toggle the lock above (you may need to scroll back up first), and notice this content stops responding to scroll while locked."
+                [code]="'<!-- filler content so the page is scrollable -->'"
+                [hasSampleClass]="false">
+
+                @for (n of filler; track n) {
+                    <p style="padding:12px 0; border-bottom:1px solid var(--shell-border); color:var(--shell-text-muted);">
+                        Filler paragraph {{ n }} - scroll past a few of these, then try the lock toggle above.
+                    </p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+@if (licensed()) {
+    <div class="nx-chart nx-sankey-chart">
+        <div class="nx-chart-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (link of layout().links; track link.key) {
+                    <path
+                        class="nx-sankey-link"
+                        [attr.d]="link.path"
+                        fill="none"
+                        [attr.stroke]="link.color"
+                        [attr.stroke-width]="link.strokeWidth">
+                        <title>{{ link.sourceLabel }} → {{ link.targetLabel }}: {{ formatValue(link.value) }}</title>
+                    </path>
+                }
+
+                @for (node of layout().nodes; track node.id) {
+                    <rect
+                        class="nx-sankey-node"
+                        [attr.x]="node.x"
+                        [attr.y]="node.y"
+                        [attr.width]="node.width"
+                        [attr.height]="node.height"
+                        [attr.fill]="node.color"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="node.label + ': ' + formatValue(node.total)">
+                        <title>{{ node.label }}: {{ formatValue(node.total) }}</title>
+                    </rect>
+                    <text
+                        class="nx-chart-axis-label nx-sankey-node-label"
+                        [attr.x]="nodeLabelX(node, layout().maxLayer)"
+                        [attr.y]="node.y + node.height / 2 + 4"
+                        [attr.text-anchor]="nodeLabelAnchor(node, layout().maxLayer)">
+                        {{ node.label }}
+                    </text>
+                }
+
+            </svg>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Sankey Chart"></nx-pro-locked>
+}

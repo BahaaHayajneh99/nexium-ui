@@ -1,0 +1,28 @@
+<div class="nx-tag-input">
+    <div class="nx-tag-input-field" (click)="focusInput()">
+        @for (tag of value; track $index; let i = $index) {
+            <span class="nx-tag-chip">
+                {{ tag }}
+                <button type="button" class="nx-tag-remove" (click)="$event.stopPropagation(); removeTag(i)" aria-label="Remove tag">&times;</button>
+            </span>
+        }
+        <input
+            #inputEl
+            type="text"
+            class="nx-tag-input-control"
+            [placeholder]="value.length === 0 ? placeholder : ''"
+            [value]="draft()"
+            (input)="onInputChange($event)"
+            (keydown)="onKeyDown($event)"
+            (focus)="onFocus()"
+            (blur)="onBlur()" />
+    </div>
+
+    @if (showSuggestions() && filteredSuggestions().length > 0) {
+        <div class="nx-tag-suggestions">
+            @for (s of filteredSuggestions(); track s) {
+                <button type="button" class="nx-tag-suggestion" (mousedown)="$event.preventDefault()" (click)="selectSuggestion(s)">{{ s }}</button>
+            }
+        </div>
+    }
+</div>

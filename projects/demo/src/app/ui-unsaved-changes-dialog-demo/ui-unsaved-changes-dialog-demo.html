@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Unsaved Changes Dialog"
+                description="The {{ commonService.appName }} Unsaved Changes Dialog is a three-way confirmation for leaving a form or editor with unsaved work - Save, Discard, or Cancel (stay). nx-dialog covers the general confirm/cancel case; this covers the specific three-choice one."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <button type="button" class="demo-btn" (click)="open = true">Leave page</button>
+
+                <nx-unsaved-changes-dialog
+                    [(open)]="open"
+                    (save)="onSave()"
+                    (discard)="onDiscard()"
+                    (cancel)="onCancel()">
+                </nx-unsaved-changes-dialog>
+
+                @if (lastAction) {
+                    <p class="main-section-description" style="margin-top: 12px;">
+                        Result: {{ lastAction }}
+                    </p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

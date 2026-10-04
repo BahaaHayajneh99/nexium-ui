@@ -1,0 +1,22 @@
+@if (licensed()) {
+    <div
+        class="nx-virtual-grid-viewport"
+        [style.height.px]="height"
+        [style.width.px]="width"
+        (scroll)="onScroll($event)">
+        <div class="nx-virtual-grid-spacer" [style.height.px]="totalHeight()" [style.width.px]="totalWidth()">
+            @for (cell of visibleCells(); track cell.row + '-' + cell.col) {
+                <div
+                    class="nx-virtual-grid-cell"
+                    [style.top.px]="cell.y"
+                    [style.left.px]="cell.x"
+                    [style.height.px]="rowHeight"
+                    [style.width.px]="columnWidth">
+                    {{ getCellValue(cell.row, cell.col) }}
+                </div>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Virtual Grid"></nx-pro-locked>
+}

@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Changelog Widget"
+                description="A compact, embeddable 'what's new' list - e.g. inside a popover behind a version badge, rather than a full changelog page."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-changelog-widget [entries]="entries"></nx-changelog-widget>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Limited to One Version"
+                description="maxVersions caps how many version groups render, so the widget stays short in a compact space."
+                [code]="limitedCode"
+                [tsCode]="limitedTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-changelog-widget [entries]="entries" [maxVersions]="1"></nx-changelog-widget>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Empty State"
+                description="With an empty entries array, the widget falls back to a plain message."
+                [code]="emptyCode"
+                [tsCode]="emptyTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-changelog-widget [entries]="[]"></nx-changelog-widget>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

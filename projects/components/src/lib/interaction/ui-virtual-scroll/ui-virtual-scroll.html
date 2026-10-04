@@ -1,0 +1,19 @@
+@if (licensed()) {
+    <div class="nx-virtual-scroll-viewport" [style.height.px]="height" (scroll)="onScroll($event)">
+        <div class="nx-virtual-scroll-spacer" [style.height.px]="totalHeight">
+            <div class="nx-virtual-scroll-content" [style.transform]="'translateY(' + offsetY + 'px)'">
+                @for (row of visibleRows; track row.index) {
+                    <div class="nx-virtual-scroll-row" [style.height.px]="itemHeight">
+                        @if (itemTemplate) {
+                            <ng-container
+                                *ngTemplateOutlet="itemTemplate; context: { $implicit: row.item, index: row.index }">
+                            </ng-container>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Virtual Scroll"></nx-pro-locked>
+}

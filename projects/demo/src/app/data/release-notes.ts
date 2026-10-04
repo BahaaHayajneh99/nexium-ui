@@ -14,6 +14,30 @@ export interface ReleaseNote {
 /** Single source of truth for the Changelog and What's New pages - add new entries to the top. */
 export const RELEASE_NOTES: ReleaseNote[] = [
   {
+    version: '0.1.8',
+    date: '26-09-2026',
+    changes: [
+      { type: 'feature', description: 'Added a new Try It page - a live playground where you write a real Angular component (an HTML template plus a TypeScript class, including your own imports, helper functions/interfaces, and constructor or functional inject() dependency injection) and see it rendered instantly, compiled right in the browser.' },
+      { type: 'feature', description: 'Added three new form components: Combobox (a searchable single-select dropdown that, unlike Autocomplete, always resolves to one of the listed options), Segmented Control (a compact connected-button alternative to Radio Group), and Formula Input (a single-line expression field with {{field}} token autocomplete, custom delimiters, and inline flagging of unknown references).' },
+      { type: 'feature', description: 'Added seven new overlay/interaction components: Popover Menu, Hover Card, Lightbox, Fullscreen Dialog, Loading Overlay, Spotlight and Tour - covering full 8-way-placement floating menus, rich hover previews, a full-viewport image viewer, full-screen dialogs, section-blocking loading states, and guided onboarding (a single highlighted element, or a full multi-step walkthrough).' },
+      { type: 'feature', description: 'Added a real Tree Table component (NxTreeTable) - hierarchical rows of any depth driven by an expandedIds list rather than hand-written nesting levels, with optional single-row selection and custom columns.' },
+      { type: 'feature', description: 'Added new Feedback/Status pages: Loading (NxLoadingState, a full-section placeholder for an initial fetch), Loading Button (a loading input on NxButton itself), Status Indicator (NxStatusIndicator, a small colored dot with an optional pulse), Offline State and Connection Status (both NxConnectionStatus, which auto-detects via navigator.onLine or can be driven manually).' },
+      { type: 'feature', description: 'Added NxBanner - a full-width, dismissible page-level announcement strip (info/success/warning/danger), for notices that span the whole page rather than one section.' },
+      { type: 'feature', description: 'Added Error State, Warning and Success pages - rather than new components, these show the already-existing Result/Alert/Banner components used in that specific mode, so there\'s nothing duplicated.' },
+      { type: 'feature', description: 'Added Not Found and Permission Denied - presets of nx-result with sensible 404/403 defaults (icon, title, description, action) that stay fully overridable, so there\'s nothing duplicated against Result itself.' },
+      { type: 'feature', description: 'Added Maintenance State (NxMaintenanceState) - another nx-result preset, for a temporarily-unavailable page with an optional action (e.g. a status page link).' },
+      { type: 'feature', description: 'Added Unsaved Changes Dialog (NxUnsavedChangesDialog) - a three-way confirmation (Save / Discard / Cancel) for leaving a form or editor with in-progress work, complementing nx-dialog\'s simple confirm/cancel case.' },
+      { type: 'feature', description: 'Added a catch-all "**" wildcard route so any unmatched URL now renders a real 404 page (built on the new Not Found component) instead of a blank screen, with a link back to the homepage.' },
+      { type: 'fix', description: 'Added Data Grid and Tree Table links to the sidebar navigation - both pages already existed but weren\'t reachable from the nav.' },
+      { type: 'fix', description: 'Fixed Formula Input occasionally inserting a duplicated closing delimiter when picking a suggestion, by resolving the insertion point from the live cursor position instead of a value cached from the previous keystroke.' },
+      { type: 'fix', description: 'Fixed Hover Card never opening, and Combobox/Popover Menu/Spotlight/Tour not reliably rendering position or state changes driven by a timer or async callback - the app runs zoneless, so these now explicitly notify change detection instead of relying on an unrelated click to happen to pick up the change.' },
+      { type: 'fix', description: 'Fixed Connection Status not showing its "back online" flash when driven manually via the status input - only auto-detection got the reconnect animation before.' },
+      { type: 'fix', description: 'Rebuilt the Data Grid demo page: it previously referenced an nx-data-grid component that never existed in the library. It\'s now backed by the real nx-table component, showcasing sorting, global search, pagination, row selection, inline editing and CSV export together on a realistic dataset.' },
+      { type: 'fix', description: 'Rewrote the Tree Table demo page to use live, working examples of the new NxTreeTable component instead of static placeholder markup.' },
+      { type: 'fix', description: 'Visitor tracking now also deduplicates by IP address, not just the per-browser id - clearing storage or opening a private window no longer counts the same visitor twice.' },
+    ],
+  },
+  {
     version: '0.1.7',
     date: '14-09-2026',
     changes: [

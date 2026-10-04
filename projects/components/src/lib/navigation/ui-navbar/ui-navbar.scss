@@ -60,6 +60,10 @@ nx-navbar {
     align-items: center;
     gap: 20px;
 
+    > [nx-navbar-links] {
+        display: contents;
+    }
+
     a {
         color: var(--shell-text-secondary);
         text-decoration: none;
@@ -77,6 +81,10 @@ nx-navbar {
     display: flex;
     align-items: center;
     gap: 12px;
+
+    > [nx-navbar-actions] {
+        display: contents;
+    }
 }
 
 @media (max-width: 768px) {

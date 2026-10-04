@@ -1,0 +1,55 @@
+.nx-spotlight-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.nx-spotlight-cutout {
+    position: fixed;
+    z-index: 1000;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, .65);
+    pointer-events: none;
+    transition: top .2s ease, left .2s ease, width .2s ease, height .2s ease;
+}
+
+.nx-spotlight-callout {
+    position: fixed;
+    z-index: 1001;
+    width: 280px;
+    max-width: calc(100vw - 32px);
+    padding: var(--nx-spacing-md, 16px);
+    background-color: var(--shell-surface);
+    border-radius: var(--nx-radius-md, 8px);
+    box-shadow: var(--nx-shadow-lg, 0 10px 20px rgba(0, 0, 0, .25));
+    transition: top .2s ease, left .2s ease;
+}
+
+.nx-spotlight-title {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+    margin-bottom: 4px;
+}
+
+.nx-spotlight-description {
+    margin: 0;
+    font-size: 14px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-spotlight-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--nx-spacing-sm, 12px);
+}
+
+.nx-spotlight-close {
+    padding: 6px 14px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}

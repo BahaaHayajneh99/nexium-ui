@@ -1,0 +1,70 @@
+:host {
+    display: block;
+    height: 100vh;
+}
+
+.showcase-root {
+    height: 100%;
+
+    nx-app-shell {
+        display: block;
+        height: 100%;
+    }
+}
+
+.showcase-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.showcase-back-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.showcase-back-link.collapsed {
+    justify-content: center;
+}
+
+.showcase-back-link:hover {
+    color: var(--shell-primary);
+}
+
+.showcase-back-icon {
+    flex-shrink: 0;
+    transform: rotate(180deg);
+}
+
+.showcase-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.showcase-topbar-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.showcase-topbar-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.showcase-topbar-user-name {
+    font-size: 13px;
+    color: var(--shell-text);
+}

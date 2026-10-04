@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="24-Day Synthetic Price Series"
+                description="{{ commonService.appName }} Candlestick Chart draws a wick from high to low and a filled body from open to close per candle - green when the close is at or above the open, red otherwise. The y-axis scale is derived from the overall min/max across the series. Hover a candle for its full OHLC values. This is a PRO component. Data here is a clearly-synthetic seeded random walk, not a real ticker."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-candlestick-chart [data]="monthSeries" [height]="340"></nx-candlestick-chart>
+            </app-demo-section>
+
+            <app-demo-section
+                header="30-Day Series with Abbreviated Labels"
+                description="With more candles than can fit legibly along the x-axis, only every Nth date label is shown."
+                [code]="longCode"
+                [tsCode]="longTs"
+                [hasSampleClass]="false">
+                <nx-candlestick-chart [data]="quarterSeries" [height]="340"></nx-candlestick-chart>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

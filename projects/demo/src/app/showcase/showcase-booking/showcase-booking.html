@@ -1,0 +1,108 @@
+<div class="booking-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="booking-brand">
+            <nx-icon icon="nx-calendar" variant="svg" [size]="18"></nx-icon>
+            <span>Solstice Studio</span>
+        </div>
+        <div nx-navbar-links>
+            <a routerLink="/getting-started/introduction">← Docs</a>
+        </div>
+    </nx-navbar>
+
+    <div class="booking-body">
+        @if (!confirmed()) {
+            <nx-stepper [steps]="steps" [activeIndex]="activeIndex()" (activeIndexChange)="activeIndex.set($event)"></nx-stepper>
+
+            <div class="booking-card">
+                @switch (activeIndex()) {
+                    @case (0) {
+                        <h3 class="booking-step-title">Choose a class</h3>
+                        <div class="booking-class-grid">
+                            @for (cls of classes; track cls.id) {
+                                <button
+                                    type="button"
+                                    class="booking-class-card"
+                                    [class.active]="selectedClassId() === cls.id"
+                                    (click)="selectedClassId.set(cls.id)">
+                                    <nx-icon [icon]="cls.icon" variant="svg" [size]="24"></nx-icon>
+                                    <div class="booking-class-name">{{ cls.name }}</div>
+                                    <div class="booking-class-meta">{{ cls.instructor }} · {{ cls.duration }}</div>
+                                </button>
+                            }
+                        </div>
+                    }
+                    @case (1) {
+                        <h3 class="booking-step-title">Choose a date</h3>
+                        <div class="booking-chip-row">
+                            @for (day of days; track day) {
+                                <button type="button" class="booking-chip" [class.active]="selectedDay() === day" (click)="selectedDay.set(day)">
+                                    {{ day }}
+                                </button>
+                            }
+                        </div>
+
+                        <h3 class="booking-step-title">Choose a time</h3>
+                        <div class="booking-time-grid">
+                            @for (time of timeSlots; track time) {
+                                <button type="button" class="booking-chip" [class.active]="selectedTime() === time" (click)="selectedTime.set(time)">
+                                    {{ time }}
+                                </button>
+                            }
+                        </div>
+                    }
+                    @case (2) {
+                        <h3 class="booking-step-title">Your details</h3>
+                        <div class="booking-form">
+                            <nx-input label="Full name" placeholder="Jane Doe" [(ngModel)]="name"></nx-input>
+                            <nx-input label="Email" type="email" placeholder="jane@example.com" [(ngModel)]="email"></nx-input>
+                            <nx-input label="Phone (optional)" placeholder="+1 555 000 0000" [(ngModel)]="phone"></nx-input>
+                        </div>
+
+                        <div class="booking-waiver">
+                            <h3 class="booking-step-title">Liability waiver</h3>
+                            <p class="booking-waiver-text">
+                                I acknowledge that physical exercise carries an inherent risk of injury, and I voluntarily
+                                assume that risk in choosing to participate in this class at Solstice Studio.
+                            </p>
+                            <label class="booking-waiver-label">Sign to acknowledge</label>
+                            <nx-signature-pad [strokeColor]="'#1a1a1a'" (signatureChange)="onSignature($event)"></nx-signature-pad>
+                        </div>
+                    }
+                    @case (3) {
+                        <h3 class="booking-step-title">Confirm your booking</h3>
+                        <div class="booking-summary">
+                            <div class="booking-summary-row"><span>Class</span><strong>{{ selectedClass()?.name }}</strong></div>
+                            <div class="booking-summary-row"><span>Instructor</span><strong>{{ selectedClass()?.instructor }}</strong></div>
+                            <div class="booking-summary-row"><span>When</span><strong>{{ selectedDay() }} at {{ selectedTime() }}</strong></div>
+                            <div class="booking-summary-row"><span>Name</span><strong>{{ name }}</strong></div>
+                            <div class="booking-summary-row"><span>Email</span><strong>{{ email }}</strong></div>
+                        </div>
+                    }
+                }
+
+                <div class="booking-actions">
+                    @if (activeIndex() > 0) {
+                        <nx-button variant="secondary" (click)="back()">Back</nx-button>
+                    }
+                    @if (activeIndex() < 3) {
+                        <nx-button variant="primary" [disabled]="!canContinue" (click)="next()">Continue</nx-button>
+                    } @else {
+                        <nx-button variant="primary" (click)="confirmBooking()">Confirm booking</nx-button>
+                    }
+                </div>
+            </div>
+        } @else {
+            <div class="booking-card booking-success">
+                <nx-badge variant="success" rounded>Booked</nx-badge>
+                <h2>You're all set, {{ name }}!</h2>
+                <p>{{ selectedClass()?.name }} with {{ selectedClass()?.instructor }} on {{ selectedDay() }} at {{ selectedTime() }}.</p>
+                <p class="booking-success-note">A confirmation was sent to {{ email }}.</p>
+                <nx-button variant="secondary" (click)="startOver()">Book another class</nx-button>
+            </div>
+        }
+    </div>
+
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

@@ -2,14 +2,12 @@
 
     <div class="nx-progress-bar" [ngClass]="progressClasses">
 
-        <div class="nx-progress-value" [ngClass]="progressValueClass" [ngStyle]="{ width: value + '%' }">
-
-            <span *ngIf="showLabel" class="nx-progress-label">
-                {{ label || value + '%' }}
-            </span>
-
-        </div>
+        <div class="nx-progress-value" [ngClass]="progressValueClass" [ngStyle]="{ width: value + '%' }"></div>
 
     </div>
+
+    <span *ngIf="showLabel" class="nx-progress-label">
+        {{ label || value + '%' }}
+    </span>
 
 </div>

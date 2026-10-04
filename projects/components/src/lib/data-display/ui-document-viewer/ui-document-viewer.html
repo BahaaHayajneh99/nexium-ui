@@ -1,0 +1,39 @@
+@if (licensed()) {
+    <div class="nx-document-viewer">
+        <div class="nx-document-viewer-toolbar">
+            <nx-icon [icon]="typeIcon()" variant="svg" [size]="16"></nx-icon>
+            <span class="nx-document-viewer-type">{{ typeLabel() }}</span>
+            <span class="nx-document-viewer-filename">{{ filename }}</span>
+        </div>
+
+        <div class="nx-document-viewer-body">
+            @if (hasData()) {
+                @switch (detectedType()) {
+                    @case ('pdf') {
+                        <nx-pdf-viewer [src]="src!" [title]="filename"></nx-pdf-viewer>
+                    }
+                    @case ('word') {
+                        <nx-word-viewer [blocks]="wordBlocks!" [title]="filename"></nx-word-viewer>
+                    }
+                    @case ('excel') {
+                        <nx-excel-viewer [sheets]="excelSheets!" [exportFilename]="filename"></nx-excel-viewer>
+                    }
+                    @case ('markdown') {
+                        <nx-markdown-viewer [source]="markdownSource!"></nx-markdown-viewer>
+                    }
+                    @case ('text') {
+                        <nx-text-viewer [content]="textContent!" [filename]="filename"></nx-text-viewer>
+                    }
+                }
+            } @else {
+                <nx-empty-state
+                    icon="nx-file"
+                    title="No preview available"
+                    [description]="'No preview available for ' + filename + '.'">
+                </nx-empty-state>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Document Viewer"></nx-pro-locked>
+}

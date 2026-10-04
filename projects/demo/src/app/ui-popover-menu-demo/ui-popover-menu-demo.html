@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Popover Menu"
+                description="The {{ commonService.appName }} Popover Menu is a click-triggered floating panel combining nx-popover's free-form placement with nx-dropdown-menu's structured items - pass items for a menu list, or project arbitrary content instead."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-popover-menu [items]="items" (itemSelect)="onSelect($event)">
+                    <button nx-popover-menu-trigger class="demo-btn" type="button">Actions</button>
+                </nx-popover-menu>
+                @if (selected) {
+                    <p style="margin-top: 12px; font-size: 14px; color: var(--shell-text-secondary);">
+                        Selected: {{ selected }}
+                    </p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Placement"
+                description="placement accepts 8 positions - top(-start|-end), bottom(-start|-end), left, right - and auto-flips vertically if the panel would overflow the viewport."
+                [code]="placementCode"
+                [tsCode]="placementTs">
+                <div style="display:flex; gap:16px; padding: 20px 0;">
+                    <nx-popover-menu [items]="items" placement="bottom-end">
+                        <button nx-popover-menu-trigger class="demo-btn" type="button">bottom-end</button>
+                    </nx-popover-menu>
+
+                    <nx-popover-menu [items]="items" placement="right">
+                        <button nx-popover-menu-trigger class="demo-btn" type="button">right</button>
+                    </nx-popover-menu>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Content"
+                description="Omit items (or leave it empty) and project whatever you like instead of a menu list."
+                [code]="customCode"
+                [tsCode]="customTs">
+                <nx-popover-menu>
+                    <button nx-popover-menu-trigger class="demo-btn" type="button">Custom content</button>
+                    <div style="padding: 8px 12px; width: 200px;">
+                        Any projected content works too, not just a menu list.
+                    </div>
+                </nx-popover-menu>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+@if (licensed()) {
+    <div class="nx-shadow-editor">
+        <div class="nx-shadow-editor-preview-wrap">
+            <div class="nx-shadow-editor-preview" [style.box-shadow]="cssValue"></div>
+        </div>
+
+        <div class="nx-shadow-editor-fields">
+            <label class="nx-shadow-editor-field">
+                <span>Offset X</span>
+                <input
+                    type="range"
+                    min="-50"
+                    max="50"
+                    [value]="value.x"
+                    (input)="update({ x: $any($event.target).valueAsNumber })" />
+                <span class="nx-shadow-editor-value">{{ value.x }}px</span>
+            </label>
+
+            <label class="nx-shadow-editor-field">
+                <span>Offset Y</span>
+                <input
+                    type="range"
+                    min="-50"
+                    max="50"
+                    [value]="value.y"
+                    (input)="update({ y: $any($event.target).valueAsNumber })" />
+                <span class="nx-shadow-editor-value">{{ value.y }}px</span>
+            </label>
+
+            <label class="nx-shadow-editor-field">
+                <span>Blur</span>
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    [value]="value.blur"
+                    (input)="update({ blur: $any($event.target).valueAsNumber })" />
+                <span class="nx-shadow-editor-value">{{ value.blur }}px</span>
+            </label>
+
+            <label class="nx-shadow-editor-field">
+                <span>Spread</span>
+                <input
+                    type="range"
+                    min="-50"
+                    max="50"
+                    [value]="value.spread"
+                    (input)="update({ spread: $any($event.target).valueAsNumber })" />
+                <span class="nx-shadow-editor-value">{{ value.spread }}px</span>
+            </label>
+
+            <label class="nx-shadow-editor-field">
+                <span>Color</span>
+                <input type="text" [value]="value.color" (input)="update({ color: $any($event.target).value })" />
+            </label>
+
+            <label class="nx-shadow-editor-checkbox">
+                <input type="checkbox" [checked]="value.inset" (change)="update({ inset: $any($event.target).checked })" />
+                <span>Inset</span>
+            </label>
+        </div>
+
+        <div class="nx-shadow-editor-css-row">
+            <code class="nx-shadow-editor-css">{{ cssDeclaration }}</code>
+            @if (showCopyButton) {
+                <button type="button" class="nx-shadow-editor-copy" (click)="copyCss()">
+                    {{ copied() ? 'Copied!' : 'Copy' }}
+                </button>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Shadow Editor"></nx-pro-locked>
+}

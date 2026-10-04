@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Border Editor"
+                description="The {{ commonService.appName }} Border Editor is a per-side border width/radius editor with linked (all-sides) toggles, a style select, a color field, and a live preview."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-border-editor style="max-width:420px; display:block;" [value]="border" (valueChange)="onBorderChange($event)"></nx-border-editor>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Independent Sides"
+                description="Unlink the width or radius toggles to set each side or corner independently - useful for asymmetric shapes like a speech bubble or a tab."
+                [code]="mixedCode"
+                [tsCode]="mixedTs"
+                [hasSampleClass]="false">
+                <nx-border-editor style="max-width:420px; display:block;" [value]="mixedBorder" (valueChange)="onMixedBorderChange($event)"></nx-border-editor>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

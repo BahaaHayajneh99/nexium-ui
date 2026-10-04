@@ -1,0 +1,25 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Leaderboard"
+                description="A leaderboard variant of NxRankingList, with gold/silver/bronze medal styling applied automatically to ranks 1-3."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:380px;">
+                    <nx-leaderboard [items]="items"></nx-leaderboard>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

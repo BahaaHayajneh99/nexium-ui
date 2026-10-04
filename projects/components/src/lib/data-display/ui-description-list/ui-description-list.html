@@ -1,0 +1,8 @@
+<dl class="nx-description-list" [class.bordered]="bordered" [style.--nx-dl-columns]="columns">
+    @for (item of items; track item.term) {
+        <div class="nx-description-row" [style.grid-column]="'span ' + (item.span ?? 1)">
+            <dt class="nx-description-term">{{ item.term }}</dt>
+            <dd class="nx-description-definition">{{ item.definition }}</dd>
+        </div>
+    }
+</dl>

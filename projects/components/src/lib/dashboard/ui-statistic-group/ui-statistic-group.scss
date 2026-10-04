@@ -1,0 +1,23 @@
+.nx-statistic-group {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nx-statistic-group.bordered {
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-statistic-group-item {
+    flex: 1;
+    min-width: 120px;
+}
+
+.nx-statistic-group-divider {
+    width: 1px;
+    background-color: var(--shell-border);
+}

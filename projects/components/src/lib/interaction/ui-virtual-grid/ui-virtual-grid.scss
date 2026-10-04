@@ -1,0 +1,26 @@
+.nx-virtual-grid-viewport {
+    position: relative;
+    overflow: auto;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-virtual-grid-spacer {
+    position: relative;
+}
+
+.nx-virtual-grid-cell {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border-bottom: 1px solid var(--shell-border);
+    border-right: 1px solid var(--shell-border);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    color: var(--shell-text);
+}

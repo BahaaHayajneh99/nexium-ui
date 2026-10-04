@@ -1,0 +1,20 @@
+.cookie-demo-note {
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.cookie-demo-bounded {
+    position: relative;
+    height: 140px;
+    margin-top: 12px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+// Scoped override so this second preview instance docks to the bounded box above
+// instead of the real viewport edge, avoiding an overlap with the first section's banner.
+.cookie-demo-bounded ::ng-deep .nx-cookie-banner {
+    position: absolute;
+}

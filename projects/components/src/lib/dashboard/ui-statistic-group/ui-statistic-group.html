@@ -1,0 +1,22 @@
+@if (licensed()) {
+    <div class="nx-statistic-group" [class.bordered]="bordered">
+        @for (item of items; track item.label; let last = $last) {
+            <div class="nx-statistic-group-item">
+                <nx-statistic
+                    [label]="item.label"
+                    [value]="item.value"
+                    [prefix]="item.prefix ?? ''"
+                    [suffix]="item.suffix ?? ''"
+                    [delta]="item.delta ?? ''"
+                    [direction]="item.direction"
+                    [upIsGood]="item.upIsGood ?? true">
+                </nx-statistic>
+            </div>
+            @if (!last) {
+                <span class="nx-statistic-group-divider"></span>
+            }
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Statistic Group"></nx-pro-locked>
+}

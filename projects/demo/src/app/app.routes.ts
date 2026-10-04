@@ -1,4 +1,138 @@
 import { Routes } from '@angular/router';
+import { NotFoundPage } from './not-found-page/not-found-page';
+import { ShowcaseLayout } from './showcase/showcase-layout/showcase-layout';
+import { ShowcaseIndex } from './showcase/showcase-index/showcase-index';
+import { ShowcaseDashboard } from './showcase/showcase-dashboard/showcase-dashboard';
+import { ShowcaseAnalytics } from './showcase/showcase-analytics/showcase-analytics';
+import { ShowcaseOrders } from './showcase/showcase-orders/showcase-orders';
+import { ShowcaseCustomers } from './showcase/showcase-customers/showcase-customers';
+import { ShowcaseInvoices } from './showcase/showcase-invoices/showcase-invoices';
+import { ShowcaseProjects } from './showcase/showcase-projects/showcase-projects';
+import { ShowcaseTeam } from './showcase/showcase-team/showcase-team';
+import { ShowcaseSettings } from './showcase/showcase-settings/showcase-settings';
+import { ShowcaseMarketing } from './showcase/showcase-marketing/showcase-marketing';
+import { ShowcaseEcommerce } from './showcase/showcase-ecommerce/showcase-ecommerce';
+import { ShowcaseSupport } from './showcase/showcase-support/showcase-support';
+import { ShowcaseCrm } from './showcase/showcase-crm/showcase-crm';
+import { ShowcaseBooking } from './showcase/showcase-booking/showcase-booking';
+import { ShowcaseLms } from './showcase/showcase-lms/showcase-lms';
+import { ShowcaseRealestate } from './showcase/showcase-realestate/showcase-realestate';
+import { ShowcaseJobs } from './showcase/showcase-jobs/showcase-jobs';
+import { ShowcaseEvents } from './showcase/showcase-events/showcase-events';
+import { ShowcaseRecipes } from './showcase/showcase-recipes/showcase-recipes';
+import { ProUpgrade } from './pro-upgrade/pro-upgrade';
+import { UiPermissionMatrixDemo } from './ui-permission-matrix-demo/ui-permission-matrix-demo';
+import { UiPivotTableDemo } from './ui-pivot-table-demo/ui-pivot-table-demo';
+import { UiEmailTemplateBuilderDemo } from './ui-email-template-builder-demo/ui-email-template-builder-demo';
+import { UiFileManagerDemo } from './ui-file-manager-demo/ui-file-manager-demo';
+import { UiSpreadsheetDemo } from './ui-spreadsheet-demo/ui-spreadsheet-demo';
+import { UiAdvancedDataGridDemo } from './ui-advanced-data-grid-demo/ui-advanced-data-grid-demo';
+import { UiGanttChartDemo } from './ui-gantt-chart-demo/ui-gantt-chart-demo';
+import { UiSchedulerDemo } from './ui-scheduler-demo/ui-scheduler-demo';
+import { UiWorkflowBuilderDemo } from './ui-workflow-builder-demo/ui-workflow-builder-demo';
+import { UiHttpStatusDemo } from './ui-http-status-demo/ui-http-status-demo';
+import { UiEnvironmentSwitcherDemo } from './ui-environment-switcher-demo/ui-environment-switcher-demo';
+import { UiTerminalDemo } from './ui-terminal-demo/ui-terminal-demo';
+import { UiLogViewerDemo } from './ui-log-viewer-demo/ui-log-viewer-demo';
+import { UiApiResponseViewerDemo } from './ui-api-response-viewer-demo/ui-api-response-viewer-demo';
+import { UiRequestBuilderDemo } from './ui-request-builder-demo/ui-request-builder-demo';
+import { UiRegexTesterDemo } from './ui-regex-tester-demo/ui-regex-tester-demo';
+import { UiCronBuilderDemo } from './ui-cron-builder-demo/ui-cron-builder-demo';
+import { UiCalculatorDemo } from './ui-calculator-demo/ui-calculator-demo';
+import { UiImageCropperDemo } from './ui-image-cropper-demo/ui-image-cropper-demo';
+import { UiSignaturePadDemo } from './ui-signature-pad-demo/ui-signature-pad-demo';
+import { UiTransferBoxDemo } from './ui-transfer-box-demo/ui-transfer-box-demo';
+import { UiTagInputDemo } from './ui-tag-input-demo/ui-tag-input-demo';
+import { UiVirtualGridDemo } from './ui-virtual-grid-demo/ui-virtual-grid-demo';
+import { UiContributionGraphDemo } from './ui-contribution-graph-demo/ui-contribution-graph-demo';
+import { UiTreeSelectDemo } from './ui-tree-select-demo/ui-tree-select-demo';
+import { UiBottomSheetDemo } from './ui-bottom-sheet-demo/ui-bottom-sheet-demo';
+import { UiFabDemo } from './ui-fab-demo/ui-fab-demo';
+import { UiTableOfContentsDemo } from './ui-table-of-contents-demo/ui-table-of-contents-demo';
+import { UiCookieBannerDemo } from './ui-cookie-banner-demo/ui-cookie-banner-demo';
+import { UiPromptInputDemo } from './ui-prompt-input-demo/ui-prompt-input-demo';
+import { UiChatStreamDemo } from './ui-chat-stream-demo/ui-chat-stream-demo';
+import { UiTokenCounterDemo } from './ui-token-counter-demo/ui-token-counter-demo';
+import { UiModelSelectorDemo } from './ui-model-selector-demo/ui-model-selector-demo';
+import { UiMarkdownCodeRunnerDemo } from './ui-markdown-code-runner-demo/ui-markdown-code-runner-demo';
+import { UiDropzoneDemo } from './ui-dropzone-demo/ui-dropzone-demo';
+import { UiSankeyChartDemo } from './ui-sankey-chart-demo/ui-sankey-chart-demo';
+import { UiTreemapDemo } from './ui-treemap-demo/ui-treemap-demo';
+import { UiCandlestickChartDemo } from './ui-candlestick-chart-demo/ui-candlestick-chart-demo';
+import { UiPolarAreaChartDemo } from './ui-polar-area-chart-demo/ui-polar-area-chart-demo';
+import { UiSunburstChartDemo } from './ui-sunburst-chart-demo/ui-sunburst-chart-demo';
+import { DirectiveInViewDemo } from './directive-in-view-demo/directive-in-view-demo';
+import { DirectiveScrollLockDemo } from './directive-scroll-lock-demo/directive-scroll-lock-demo';
+import { DirectiveFocusTrapDemo } from './directive-focus-trap-demo/directive-focus-trap-demo';
+import { DirectiveHotkeyDemo } from './directive-hotkey-demo/directive-hotkey-demo';
+import { UiCodeEditorDemo } from './ui-code-editor-demo/ui-code-editor-demo';
+import { UiResponsivePreviewDemo } from './ui-responsive-preview-demo/ui-responsive-preview-demo';
+import { UiDeviceFrameDemo } from './ui-device-frame-demo/ui-device-frame-demo';
+import { UiLayoutPreviewDemo } from './ui-layout-preview-demo/ui-layout-preview-demo';
+import { UiAddressInputDemo } from './ui-address-input-demo/ui-address-input-demo';
+import { UiFilterChipGroupDemo } from './ui-filter-chip-group-demo/ui-filter-chip-group-demo';
+import { UiColorContrastCheckerDemo } from './ui-color-contrast-checker-demo/ui-color-contrast-checker-demo';
+import { UiVersionBadgeDemo } from './ui-version-badge-demo/ui-version-badge-demo';
+import { UiChangelogWidgetDemo } from './ui-changelog-widget-demo/ui-changelog-widget-demo';
+import { DirectiveFeatureFlagDemo } from './directive-feature-flag-demo/directive-feature-flag-demo';
+import { DirectivePermissionGateDemo } from './directive-permission-gate-demo/directive-permission-gate-demo';
+import { UiActivityTimelineDemo } from './ui-activity-timeline-demo/ui-activity-timeline-demo';
+import { UiActivityFeedDemo } from './ui-activity-feed-demo/ui-activity-feed-demo';
+import { UiAuditTimelineDemo } from './ui-audit-timeline-demo/ui-audit-timeline-demo';
+import { UiVirtualScrollDemo } from './ui-virtual-scroll-demo/ui-virtual-scroll-demo';
+import { UiSortableListDemo } from './ui-sortable-list-demo/ui-sortable-list-demo';
+import { UiKanbanDemo } from './ui-kanban-demo/ui-kanban-demo';
+import { UiResizablePanelsDemo } from './ui-resizable-panels-demo/ui-resizable-panels-demo';
+import { UiColumnSelectorDemo } from './ui-column-selector-demo/ui-column-selector-demo';
+import { UiFilterBuilderDemo } from './ui-filter-builder-demo/ui-filter-builder-demo';
+import { UiQueryBuilderDemo } from './ui-query-builder-demo/ui-query-builder-demo';
+import { DirectiveDragDropDemo } from './directive-drag-drop-demo/directive-drag-drop-demo';
+import { DirectiveInfiniteScrollDemo } from './directive-infinite-scroll-demo/directive-infinite-scroll-demo';
+import { UiChatDemo } from './ui-chat-demo/ui-chat-demo';
+import { UiCommandHistoryDemo } from './ui-command-history-demo/ui-command-history-demo';
+import { UiVersionTimelineDemo } from './ui-version-timeline-demo/ui-version-timeline-demo';
+import { UiAuditLogDemo } from './ui-audit-log-demo/ui-audit-log-demo';
+import { UiActivityExplorerDemo } from './ui-activity-explorer-demo/ui-activity-explorer-demo';
+import { UiColorGradientDemo } from './ui-color-gradient-demo/ui-color-gradient-demo';
+import { UiColorGradientEditorDemo } from './ui-color-gradient-editor-demo/ui-color-gradient-editor-demo';
+import { UiShadowEditorDemo } from './ui-shadow-editor-demo/ui-shadow-editor-demo';
+import { UiBorderEditorDemo } from './ui-border-editor-demo/ui-border-editor-demo';
+import { UiTransformEditorDemo } from './ui-transform-editor-demo/ui-transform-editor-demo';
+import { UiSpacingEditorDemo } from './ui-spacing-editor-demo/ui-spacing-editor-demo';
+import { UiPropertyEditorDemo } from './ui-property-editor-demo/ui-property-editor-demo';
+import { UiThemeEditorDemo } from './ui-theme-editor-demo/ui-theme-editor-demo';
+import { UiColorTokenGeneratorDemo } from './ui-color-token-generator-demo/ui-color-token-generator-demo';
+import { UiMetricCardDemo } from './ui-metric-card-demo/ui-metric-card-demo';
+import { UiMetricGridDemo } from './ui-metric-grid-demo/ui-metric-grid-demo';
+import { UiSparklineCardDemo } from './ui-sparkline-card-demo/ui-sparkline-card-demo';
+import { UiKpiCardDemo } from './ui-kpi-card-demo/ui-kpi-card-demo';
+import { UiComparisonCardDemo } from './ui-comparison-card-demo/ui-comparison-card-demo';
+import { UiGoalProgressDemo } from './ui-goal-progress-demo/ui-goal-progress-demo';
+import { UiRankingListDemo } from './ui-ranking-list-demo/ui-ranking-list-demo';
+import { UiLeaderboardDemo } from './ui-leaderboard-demo/ui-leaderboard-demo';
+import { UiStatisticGroupDemo } from './ui-statistic-group-demo/ui-statistic-group-demo';
+import { UiDashboardWidgetDemo } from './ui-dashboard-widget-demo/ui-dashboard-widget-demo';
+import { UiCodeBlockDemo } from './ui-code-block-demo/ui-code-block-demo';
+import { UiCopyableTextDemo } from './ui-copyable-text-demo/ui-copyable-text-demo';
+import { UiKeyboardShortcutDemo } from './ui-keyboard-shortcut-demo/ui-keyboard-shortcut-demo';
+import { UiJsonViewerDemo } from './ui-json-viewer-demo/ui-json-viewer-demo';
+import { UiDiffViewerDemo } from './ui-diff-viewer-demo/ui-diff-viewer-demo';
+import { UiTextViewerDemo } from './ui-text-viewer-demo/ui-text-viewer-demo';
+import { UiPdfViewerDemo } from './ui-pdf-viewer-demo/ui-pdf-viewer-demo';
+import { UiWordViewerDemo } from './ui-word-viewer-demo/ui-word-viewer-demo';
+import { UiExcelViewerDemo } from './ui-excel-viewer-demo/ui-excel-viewer-demo';
+import { UiMarkdownViewerDemo } from './ui-markdown-viewer-demo/ui-markdown-viewer-demo';
+import { UiTextStatisticsDemo } from './ui-text-statistics-demo/ui-text-statistics-demo';
+import { UiBeforeAfterDemo } from './ui-before-after-demo/ui-before-after-demo';
+import { UiJsonEditorDemo } from './ui-json-editor-demo/ui-json-editor-demo';
+import { UiNavigationRailDemo } from './ui-navigation-rail-demo/ui-navigation-rail-demo';
+import { UiBackButtonDemo } from './ui-back-button-demo/ui-back-button-demo';
+import { UiNavGroupDemo } from './ui-nav-group-demo/ui-nav-group-demo';
+import { UiCommandBarDemo } from './ui-command-bar-demo/ui-command-bar-demo';
+import { UiNavigationProgressDemo } from './ui-navigation-progress-demo/ui-navigation-progress-demo';
+import { UiAppShellDemo } from './ui-app-shell-demo/ui-app-shell-demo';
+import { UiPageHeaderDemo } from './ui-page-header-demo/ui-page-header-demo';
+import { UiPageActionsDemo } from './ui-page-actions-demo/ui-page-actions-demo';
 import { GettingStartedDemo } from './getting-started-demo/getting-started-demo';
 import { DirectiveClickOutsideDemo } from './directive-click-outside-demo/directive-click-outside-demo';
 import { DirectiveAutofocusDemo } from './directive-autofocus-demo/directive-autofocus-demo';
@@ -27,17 +161,38 @@ import { UiPanelDemo } from './ui-panel-demo/ui-panel-demo';
 import { UiTooltipDemo } from './ui-tooltip-demo/ui-tooltip-demo';
 import { UiPopoverDemo } from './ui-popover-demo/ui-popover-demo';
 import { UiModalDemo } from './ui-modal-demo/ui-modal-demo';
+import { UiFullscreenDialogDemo } from './ui-fullscreen-dialog-demo/ui-fullscreen-dialog-demo';
+import { UiPopoverMenuDemo } from './ui-popover-menu-demo/ui-popover-menu-demo';
+import { UiHoverCardDemo } from './ui-hover-card-demo/ui-hover-card-demo';
+import { UiLightboxDemo } from './ui-lightbox-demo/ui-lightbox-demo';
+import { UiLoadingOverlayDemo } from './ui-loading-overlay-demo/ui-loading-overlay-demo';
+import { UiSpotlightDemo } from './ui-spotlight-demo/ui-spotlight-demo';
+import { UiTourDemo } from './ui-tour-demo/ui-tour-demo';
 import { UiToastDemo } from './ui-toast-demo/ui-toast-demo';
 import { UiDialogDemo } from './ui-dialog-demo/ui-dialog-demo';
 import { UiAlertDemo } from './ui-alert-demo/ui-alert-demo';
+import { UiLoadingDemo } from './ui-loading-demo/ui-loading-demo';
+import { UiLoadingButtonDemo } from './ui-loading-button-demo/ui-loading-button-demo';
+import { UiStatusIndicatorDemo } from './ui-status-indicator-demo/ui-status-indicator-demo';
+import { UiErrorStateDemo } from './ui-error-state-demo/ui-error-state-demo';
+import { UiNotFoundDemo } from './ui-not-found-demo/ui-not-found-demo';
+import { UiPermissionDeniedDemo } from './ui-permission-denied-demo/ui-permission-denied-demo';
+import { UiMaintenanceStateDemo } from './ui-maintenance-state-demo/ui-maintenance-state-demo';
+import { UiUnsavedChangesDialogDemo } from './ui-unsaved-changes-dialog-demo/ui-unsaved-changes-dialog-demo';
+import { UiWarningDemo } from './ui-warning-demo/ui-warning-demo';
+import { UiSuccessDemo } from './ui-success-demo/ui-success-demo';
+import { UiOfflineStateDemo } from './ui-offline-state-demo/ui-offline-state-demo';
+import { UiConnectionStatusDemo } from './ui-connection-status-demo/ui-connection-status-demo';
 import { UiInputDemo } from './ui-input-demo/ui-input-demo';
 import { UiTextareaDemo } from './ui-textarea-demo/ui-textarea-demo';
 import { UiSelectDemo } from './ui-select-demo/ui-select-demo';
 import { UiAutocompleteDemo } from './ui-autocomplete-demo/ui-autocomplete-demo';
+import { UiComboboxDemo } from './ui-combobox-demo/ui-combobox-demo';
 import { UiCheckboxDemo } from './ui-checkbox-demo/ui-checkbox-demo';
 import { UiRadioDemo } from './ui-radio-demo/ui-radio-demo';
 import { UiSwitchDemo } from './ui-switch-demo/ui-switch-demo';
 import { UiToggleDemo } from './ui-toggle-demo/ui-toggle-demo';
+import { UiSegmentedControlDemo } from './ui-segmented-control-demo/ui-segmented-control-demo';
 import { HowToPortfolioGalleryDemo } from './how-to-portfolio-gallery-demo/how-to-portfolio-gallery-demo';
 import { HowToBuyProductDemo } from './how-to-buy-product-demo/how-to-buy-product-demo';
 import { HowToBlogPostDemo } from './how-to-blog-post-demo/how-to-blog-post-demo';
@@ -55,6 +210,7 @@ import { HowToPlanComparisonDemo } from './how-to-plan-comparison-demo/how-to-pl
 import { HowToMediaPlayerDemo } from './how-to-media-player-demo/how-to-media-player-demo';
 import { UiSliderDemo } from './ui-slider-demo/ui-slider-demo';
 import { UiDatepickerDemo } from './ui-datepicker-demo/ui-datepicker-demo';
+import { UiCalendarDemo } from './ui-calendar-demo/ui-calendar-demo';
 import { UiColorPickerDemo } from './ui-color-picker-demo/ui-color-picker-demo';
 import { UiRatingDemo } from './ui-rating-demo/ui-rating-demo';
 import { UiOtpInputDemo } from './ui-otp-input-demo/ui-otp-input-demo';
@@ -62,12 +218,14 @@ import { UiStatisticDemo } from './ui-statistic-demo/ui-statistic-demo';
 import { UiKeyValueListDemo } from './ui-key-value-list-demo/ui-key-value-list-demo';
 import { UiTodoListDemo } from './ui-todo-list-demo/ui-todo-list-demo';
 import { UiNotesAppDemo } from './ui-notes-app-demo/ui-notes-app-demo';
+import { UiPinnedListDemo } from './ui-pinned-list-demo/ui-pinned-list-demo';
 import { UiBackToTopDemo } from './ui-back-to-top-demo/ui-back-to-top-demo';
 import { UiResizableDemo } from './ui-resizable-demo/ui-resizable-demo';
 import { UiUnitInputDemo } from './ui-unit-input-demo/ui-unit-input-demo';
 import { HowToMapNotesDemo } from './how-to-map-notes-demo/how-to-map-notes-demo';
 import { UiNotificationCenterDemo } from './ui-notification-center-demo/ui-notification-center-demo';
 import { UiMentionDemo } from './ui-mention-demo/ui-mention-demo';
+import { UiFormulaInputDemo } from './ui-formula-input-demo/ui-formula-input-demo';
 import { UiRichTextEditorDemo } from './ui-rich-text-editor-demo/ui-rich-text-editor-demo';
 import { UiMenuDemo } from './ui-menu-demo/ui-menu-demo';
 import { UiDropdownMenuDemo } from './ui-dropdown-menu-demo/ui-dropdown-menu-demo';
@@ -78,8 +236,23 @@ import { UiNavbarDemo } from './ui-navbar-demo/ui-navbar-demo';
 import { UiBottomNavigationDemo } from './ui-bottom-navigation-demo/ui-bottom-navigation-demo';
 import { UiDrawerDemo } from './ui-drawer-demo/ui-drawer-demo';
 import { UiCommandPaletteDemo } from './ui-command-palette-demo/ui-command-palette-demo';
-import { FormBuilderDemo } from './form-builder-demo/form-builder-demo';
-import { FormBuilderAdvancedDemo } from './form-builder-advanced-demo/form-builder-advanced-demo';
+import { UiFormBuilderDemo } from './ui-form-builder-demo/ui-form-builder-demo';
+import { UiFormRendererDemo } from './ui-form-renderer-demo/ui-form-renderer-demo';
+import { UiDataGridDemo } from './ui-data-grid-demo/ui-data-grid-demo';
+import { UiColumnManagerDemo } from './ui-column-manager-demo/ui-column-manager-demo';
+import { UiAdvancedFiltersDemo } from './ui-advanced-filters-demo/ui-advanced-filters-demo';
+import { UiDocumentViewerDemo } from './ui-document-viewer-demo/ui-document-viewer-demo';
+import { UiWidgetGridDemo } from './ui-widget-grid-demo/ui-widget-grid-demo';
+import { UiDashboardBuilderDemo } from './ui-dashboard-builder-demo/ui-dashboard-builder-demo';
+import { UiDashboardFiltersDemo } from './ui-dashboard-filters-demo/ui-dashboard-filters-demo';
+import { UiImageEditorDemo } from './ui-image-editor-demo/ui-image-editor-demo';
+import { UiPdfAnnotatorDemo } from './ui-pdf-annotator-demo/ui-pdf-annotator-demo';
+import { UiDocumentScannerDemo } from './ui-document-scanner-demo/ui-document-scanner-demo';
+import { UiAiChatDemo } from './ui-ai-chat-demo/ui-ai-chat-demo';
+import { UiAiPromptBuilderDemo } from './ui-ai-prompt-builder-demo/ui-ai-prompt-builder-demo';
+import { UiAiResponseViewerDemo } from './ui-ai-response-viewer-demo/ui-ai-response-viewer-demo';
+import { UiAiTokenUsageDemo } from './ui-ai-token-usage-demo/ui-ai-token-usage-demo';
+import { UiAiModelPlaygroundDemo } from './ui-ai-model-playground-demo/ui-ai-model-playground-demo';
 import { FileUploadDemo } from './file-upload-demo/file-upload-demo';
 import { ImageUploadDemo } from './image-upload-demo/image-upload-demo';
 import { VideoUploadDemo } from './video-upload-demo/video-upload-demo';
@@ -125,6 +298,7 @@ import { GettingStartedQuickStartDemo } from './getting-started-quick-start-demo
 import { GettingStartedConfigurationDemo } from './getting-started-configuration-demo/getting-started-configuration-demo';
 import { GettingStartedFirstComponentDemo } from './getting-started-first-component-demo/getting-started-first-component-demo';
 import { GettingStartedMigrationGuideDemo } from './getting-started-migration-guide-demo/getting-started-migration-guide-demo';
+import { GettingStartedUsingProDemo } from './getting-started-using-pro-demo/getting-started-using-pro-demo';
 import { DesignSystemOverviewDemo } from './design-system-overview-demo/design-system-overview-demo';
 import { DesignSystemDesignTokensDemo } from './design-system-design-tokens-demo/design-system-design-tokens-demo';
 import { DesignSystemBorderRadiusDemo } from './design-system-border-radius-demo/design-system-border-radius-demo';
@@ -257,6 +431,70 @@ export const routes: Routes = [
         redirectTo: 'getting-started'
     },
     {
+        path: 'showcase-marketing',
+        component: ShowcaseMarketing
+    },
+    {
+        path: 'showcase-ecommerce',
+        component: ShowcaseEcommerce
+    },
+    {
+        path: 'showcase-support',
+        component: ShowcaseSupport
+    },
+    {
+        path: 'showcase-crm',
+        component: ShowcaseCrm
+    },
+    {
+        path: 'showcase-booking',
+        component: ShowcaseBooking
+    },
+    {
+        path: 'showcase-lms',
+        component: ShowcaseLms
+    },
+    {
+        path: 'showcase-realestate',
+        component: ShowcaseRealestate
+    },
+    {
+        path: 'showcase-jobs',
+        component: ShowcaseJobs
+    },
+    {
+        path: 'showcase-events',
+        component: ShowcaseEvents
+    },
+    {
+        path: 'showcase-recipes',
+        component: ShowcaseRecipes
+    },
+    {
+        path: 'showcase',
+        pathMatch: 'full',
+        component: ShowcaseIndex
+    },
+    {
+        path: 'showcase',
+        component: ShowcaseLayout,
+        children: [
+            { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+            { path: 'dashboard', component: ShowcaseDashboard },
+            { path: 'analytics', component: ShowcaseAnalytics },
+            { path: 'orders', component: ShowcaseOrders },
+            { path: 'customers', component: ShowcaseCustomers },
+            { path: 'invoices', component: ShowcaseInvoices },
+            { path: 'projects', component: ShowcaseProjects },
+            { path: 'team', component: ShowcaseTeam },
+            { path: 'settings', component: ShowcaseSettings },
+        ]
+    },
+    {
+        path: 'pro-upgrade',
+        component: ProUpgrade
+    },
+    {
         path: 'getting-started',
         component: GettingStartedDemo
     },
@@ -271,6 +509,10 @@ export const routes: Routes = [
     {
         path: 'getting-started/configuration',
         component: GettingStartedConfigurationDemo
+    },
+    {
+        path: 'getting-started/using-pro',
+        component: GettingStartedUsingProDemo
     },
     {
         path: 'getting-started/first-component',
@@ -315,6 +557,10 @@ export const routes: Routes = [
     {
         path: 'mention',
         component: UiMentionDemo
+    },
+    {
+        path: 'formula-input',
+        component: UiFormulaInputDemo
     },
     {
         path: 'unit-input',
@@ -379,6 +625,10 @@ export const routes: Routes = [
     {
         path: 'notes-app',
         component: UiNotesAppDemo
+    },
+    {
+        path: 'pinned-list',
+        component: UiPinnedListDemo
     },
     {
         path: 'notification-center',
@@ -557,6 +807,54 @@ export const routes: Routes = [
         component: UiAlertDemo
     },
     {
+        path: 'loading',
+        component: UiLoadingDemo
+    },
+    {
+        path: 'loading-button',
+        component: UiLoadingButtonDemo
+    },
+    {
+        path: 'status-indicator',
+        component: UiStatusIndicatorDemo
+    },
+    {
+        path: 'error-state',
+        component: UiErrorStateDemo
+    },
+    {
+        path: 'not-found',
+        component: UiNotFoundDemo
+    },
+    {
+        path: 'permission-denied',
+        component: UiPermissionDeniedDemo
+    },
+    {
+        path: 'maintenance-state',
+        component: UiMaintenanceStateDemo
+    },
+    {
+        path: 'unsaved-changes-dialog',
+        component: UiUnsavedChangesDialogDemo
+    },
+    {
+        path: 'warning',
+        component: UiWarningDemo
+    },
+    {
+        path: 'success',
+        component: UiSuccessDemo
+    },
+    {
+        path: 'offline',
+        component: UiOfflineStateDemo
+    },
+    {
+        path: 'connection-status',
+        component: UiConnectionStatusDemo
+    },
+    {
         path: 'tooltip',
         component: UiTooltipDemo
     },
@@ -565,8 +863,36 @@ export const routes: Routes = [
         component: UiPopoverDemo
     },
     {
+        path: 'popover-menu',
+        component: UiPopoverMenuDemo
+    },
+    {
+        path: 'hover-card',
+        component: UiHoverCardDemo
+    },
+    {
         path: 'modal',
         component: UiModalDemo
+    },
+    {
+        path: 'fullscreen-dialog',
+        component: UiFullscreenDialogDemo
+    },
+    {
+        path: 'lightbox',
+        component: UiLightboxDemo
+    },
+    {
+        path: 'loading-overlay',
+        component: UiLoadingOverlayDemo
+    },
+    {
+        path: 'spotlight',
+        component: UiSpotlightDemo
+    },
+    {
+        path: 'tour',
+        component: UiTourDemo
     },
     {
         path: 'toast',
@@ -593,6 +919,10 @@ export const routes: Routes = [
         component: UiAutocompleteDemo
     },
     {
+        path: 'combobox',
+        component: UiComboboxDemo
+    },
+    {
         path: 'checkbox',
         component: UiCheckboxDemo
     },
@@ -609,12 +939,20 @@ export const routes: Routes = [
         component: UiToggleDemo
     },
     {
+        path: 'segmented-control',
+        component: UiSegmentedControlDemo
+    },
+    {
         path: 'slider',
         component: UiSliderDemo
     },
     {
         path: 'datepicker',
         component: UiDatepickerDemo
+    },
+    {
+        path: 'event-calendar',
+        component: UiCalendarDemo
     },
     {
         path: 'date-range-picker',
@@ -646,11 +984,71 @@ export const routes: Routes = [
     },
     {
         path: 'form-builder',
-        component: FormBuilderDemo
+        component: UiFormBuilderDemo
     },
     {
         path: 'form-builder-advanced',
-        component: FormBuilderAdvancedDemo
+        component: UiFormRendererDemo
+    },
+    {
+        path: 'enterprise/data-grid',
+        component: UiDataGridDemo
+    },
+    {
+        path: 'enterprise/column-manager',
+        component: UiColumnManagerDemo
+    },
+    {
+        path: 'enterprise/advanced-filters',
+        component: UiAdvancedFiltersDemo
+    },
+    {
+        path: 'document-viewer',
+        component: UiDocumentViewerDemo
+    },
+    {
+        path: 'dashboard/widget-grid',
+        component: UiWidgetGridDemo
+    },
+    {
+        path: 'dashboard/dashboard-builder',
+        component: UiDashboardBuilderDemo
+    },
+    {
+        path: 'dashboard/dashboard-filters',
+        component: UiDashboardFiltersDemo
+    },
+    {
+        path: 'image-editor',
+        component: UiImageEditorDemo
+    },
+    {
+        path: 'pdf-annotator',
+        component: UiPdfAnnotatorDemo
+    },
+    {
+        path: 'document-scanner',
+        component: UiDocumentScannerDemo
+    },
+    {
+        path: 'ai/chat',
+        component: UiAiChatDemo
+    },
+    {
+        path: 'ai/prompt-builder',
+        component: UiAiPromptBuilderDemo
+    },
+    {
+        path: 'ai/response-viewer',
+        component: UiAiResponseViewerDemo
+    },
+    {
+        path: 'ai/token-usage',
+        component: UiAiTokenUsageDemo
+    },
+    {
+        path: 'ai/model-playground',
+        component: UiAiModelPlaygroundDemo
     },
     {
         path: 'file-upload',
@@ -949,6 +1347,30 @@ export const routes: Routes = [
         component: ChartsPieDemo
     },
     {
+        path: 'charts/contribution-graph',
+        component: UiContributionGraphDemo
+    },
+    {
+        path: 'charts/sankey',
+        component: UiSankeyChartDemo
+    },
+    {
+        path: 'charts/treemap',
+        component: UiTreemapDemo
+    },
+    {
+        path: 'charts/candlestick',
+        component: UiCandlestickChartDemo
+    },
+    {
+        path: 'charts/polar-area',
+        component: UiPolarAreaChartDemo
+    },
+    {
+        path: 'charts/sunburst',
+        component: UiSunburstChartDemo
+    },
+    {
         path: 'layout/container',
         component: LayoutContainerDemo
     },
@@ -1193,6 +1615,22 @@ export const routes: Routes = [
         component: DirectiveHasPermissionDemo
     },
     {
+        path: 'directives/in-view',
+        component: DirectiveInViewDemo
+    },
+    {
+        path: 'directives/scroll-lock',
+        component: DirectiveScrollLockDemo
+    },
+    {
+        path: 'directives/focus-trap',
+        component: DirectiveFocusTrapDemo
+    },
+    {
+        path: 'directives/hotkey',
+        component: DirectiveHotkeyDemo
+    },
+    {
         path: 'how-to/portfolio-gallery',
         component: HowToPortfolioGalleryDemo
     },
@@ -1255,5 +1693,417 @@ export const routes: Routes = [
     {
         path: 'how-to/map-notes',
         component: HowToMapNotesDemo
+    },
+    {
+        path: 'devtools/http-status',
+        component: UiHttpStatusDemo
+    },
+    {
+        path: 'devtools/environment-switcher',
+        component: UiEnvironmentSwitcherDemo
+    },
+    {
+        path: 'devtools/terminal',
+        component: UiTerminalDemo
+    },
+    {
+        path: 'devtools/log-viewer',
+        component: UiLogViewerDemo
+    },
+    {
+        path: 'devtools/api-response-viewer',
+        component: UiApiResponseViewerDemo
+    },
+    {
+        path: 'devtools/request-builder',
+        component: UiRequestBuilderDemo
+    },
+    {
+        path: 'devtools/regex-tester',
+        component: UiRegexTesterDemo
+    },
+    {
+        path: 'devtools/cron-builder',
+        component: UiCronBuilderDemo
+    },
+    {
+        path: 'devtools/calculator',
+        component: UiCalculatorDemo
+    },
+    {
+        path: 'image-cropper',
+        component: UiImageCropperDemo
+    },
+    {
+        path: 'signature-pad',
+        component: UiSignaturePadDemo
+    },
+    {
+        path: 'transfer-box',
+        component: UiTransferBoxDemo
+    },
+    {
+        path: 'tag-input',
+        component: UiTagInputDemo
+    },
+    {
+        path: 'virtual-grid',
+        component: UiVirtualGridDemo
+    },
+    {
+        path: 'tree-select',
+        component: UiTreeSelectDemo
+    },
+    {
+        path: 'bottom-sheet',
+        component: UiBottomSheetDemo
+    },
+    {
+        path: 'fab',
+        component: UiFabDemo
+    },
+    {
+        path: 'table-of-contents',
+        component: UiTableOfContentsDemo
+    },
+    {
+        path: 'cookie-banner',
+        component: UiCookieBannerDemo
+    },
+    {
+        path: 'ai/prompt-input',
+        component: UiPromptInputDemo
+    },
+    {
+        path: 'ai/chat-stream',
+        component: UiChatStreamDemo
+    },
+    {
+        path: 'ai/token-counter',
+        component: UiTokenCounterDemo
+    },
+    {
+        path: 'ai/model-selector',
+        component: UiModelSelectorDemo
+    },
+    {
+        path: 'ai/code-runner',
+        component: UiMarkdownCodeRunnerDemo
+    },
+    {
+        path: 'dropzone',
+        component: UiDropzoneDemo
+    },
+    {
+        path: 'devtools/code-editor',
+        component: UiCodeEditorDemo
+    },
+    {
+        path: 'layout/responsive-preview',
+        component: UiResponsivePreviewDemo
+    },
+    {
+        path: 'layout/device-frame',
+        component: UiDeviceFrameDemo
+    },
+    {
+        path: 'layout/layout-preview',
+        component: UiLayoutPreviewDemo
+    },
+    {
+        path: 'address-input',
+        component: UiAddressInputDemo
+    },
+    {
+        path: 'filter-chip-group',
+        component: UiFilterChipGroupDemo
+    },
+    {
+        path: 'color-contrast-checker',
+        component: UiColorContrastCheckerDemo
+    },
+    {
+        path: 'version-badge',
+        component: UiVersionBadgeDemo
+    },
+    {
+        path: 'changelog-widget',
+        component: UiChangelogWidgetDemo
+    },
+    {
+        path: 'directives/feature-flag',
+        component: DirectiveFeatureFlagDemo
+    },
+    {
+        path: 'directives/permission-gate',
+        component: DirectivePermissionGateDemo
+    },
+    {
+        path: 'activity-timeline',
+        component: UiActivityTimelineDemo
+    },
+    {
+        path: 'activity-feed',
+        component: UiActivityFeedDemo
+    },
+    {
+        path: 'audit-timeline',
+        component: UiAuditTimelineDemo
+    },
+    {
+        path: 'virtual-scroll',
+        component: UiVirtualScrollDemo
+    },
+    {
+        path: 'sortable-list',
+        component: UiSortableListDemo
+    },
+    {
+        path: 'kanban',
+        component: UiKanbanDemo
+    },
+    {
+        path: 'resizable-panels',
+        component: UiResizablePanelsDemo
+    },
+    {
+        path: 'column-selector',
+        component: UiColumnSelectorDemo
+    },
+    {
+        path: 'filter-builder',
+        component: UiFilterBuilderDemo
+    },
+    {
+        path: 'query-builder',
+        component: UiQueryBuilderDemo
+    },
+    {
+        path: 'directives/drag-drop',
+        component: DirectiveDragDropDemo
+    },
+    {
+        path: 'directives/infinite-scroll',
+        component: DirectiveInfiniteScrollDemo
+    },
+    {
+        path: 'chat',
+        component: UiChatDemo
+    },
+    {
+        path: 'command-history',
+        component: UiCommandHistoryDemo
+    },
+    {
+        path: 'version-timeline',
+        component: UiVersionTimelineDemo
+    },
+    {
+        path: 'audit-log',
+        component: UiAuditLogDemo
+    },
+    {
+        path: 'activity-explorer',
+        component: UiActivityExplorerDemo
+    },
+    {
+        path: 'design-tools/color-gradient',
+        component: UiColorGradientDemo
+    },
+    {
+        path: 'design-tools/color-gradient-editor',
+        component: UiColorGradientEditorDemo
+    },
+    {
+        path: 'design-tools/shadow-editor',
+        component: UiShadowEditorDemo
+    },
+    {
+        path: 'design-tools/border-editor',
+        component: UiBorderEditorDemo
+    },
+    {
+        path: 'design-tools/transform-editor',
+        component: UiTransformEditorDemo
+    },
+    {
+        path: 'design-tools/spacing-editor',
+        component: UiSpacingEditorDemo
+    },
+    {
+        path: 'design-tools/property-editor',
+        component: UiPropertyEditorDemo
+    },
+    {
+        path: 'design-tools/theme-editor',
+        component: UiThemeEditorDemo
+    },
+    {
+        path: 'design-tools/color-token-generator',
+        component: UiColorTokenGeneratorDemo
+    },
+    {
+        path: 'dashboard/metric-card',
+        component: UiMetricCardDemo
+    },
+    {
+        path: 'dashboard/metric-grid',
+        component: UiMetricGridDemo
+    },
+    {
+        path: 'dashboard/sparkline-card',
+        component: UiSparklineCardDemo
+    },
+    {
+        path: 'dashboard/kpi-card',
+        component: UiKpiCardDemo
+    },
+    {
+        path: 'dashboard/comparison-card',
+        component: UiComparisonCardDemo
+    },
+    {
+        path: 'dashboard/goal-progress',
+        component: UiGoalProgressDemo
+    },
+    {
+        path: 'dashboard/ranking-list',
+        component: UiRankingListDemo
+    },
+    {
+        path: 'dashboard/leaderboard',
+        component: UiLeaderboardDemo
+    },
+    {
+        path: 'dashboard/statistic-group',
+        component: UiStatisticGroupDemo
+    },
+    {
+        path: 'dashboard/dashboard-widget',
+        component: UiDashboardWidgetDemo
+    },
+    {
+        path: 'code-block',
+        component: UiCodeBlockDemo
+    },
+    {
+        path: 'copyable-text',
+        component: UiCopyableTextDemo
+    },
+    {
+        path: 'keyboard-shortcut',
+        component: UiKeyboardShortcutDemo
+    },
+    {
+        path: 'json-viewer',
+        component: UiJsonViewerDemo
+    },
+    {
+        path: 'diff-viewer',
+        component: UiDiffViewerDemo
+    },
+    {
+        path: 'text-viewer',
+        component: UiTextViewerDemo
+    },
+    {
+        path: 'pdf-viewer',
+        component: UiPdfViewerDemo
+    },
+    {
+        path: 'word-viewer',
+        component: UiWordViewerDemo
+    },
+    {
+        path: 'excel-viewer',
+        component: UiExcelViewerDemo
+    },
+    {
+        path: 'markdown-viewer',
+        component: UiMarkdownViewerDemo
+    },
+    {
+        path: 'text-statistics',
+        component: UiTextStatisticsDemo
+    },
+    {
+        path: 'before-after',
+        component: UiBeforeAfterDemo
+    },
+    {
+        path: 'json-editor',
+        component: UiJsonEditorDemo
+    },
+    {
+        path: 'navigation-rail',
+        component: UiNavigationRailDemo
+    },
+    {
+        path: 'back-button',
+        component: UiBackButtonDemo
+    },
+    {
+        path: 'nav-group',
+        component: UiNavGroupDemo
+    },
+    {
+        path: 'command-bar',
+        component: UiCommandBarDemo
+    },
+    {
+        path: 'navigation-progress',
+        component: UiNavigationProgressDemo
+    },
+    {
+        path: 'layout/app-shell',
+        component: UiAppShellDemo
+    },
+    {
+        path: 'layout/page-header',
+        component: UiPageHeaderDemo
+    },
+    {
+        path: 'layout/page-actions',
+        component: UiPageActionsDemo
+    },
+    {
+        path: 'enterprise/advanced-data-grid',
+        component: UiAdvancedDataGridDemo
+    },
+    {
+        path: 'enterprise/scheduler',
+        component: UiSchedulerDemo
+    },
+    {
+        path: 'enterprise/gantt-chart',
+        component: UiGanttChartDemo
+    },
+    {
+        path: 'enterprise/permission-matrix',
+        component: UiPermissionMatrixDemo
+    },
+    {
+        path: 'enterprise/pivot-table',
+        component: UiPivotTableDemo
+    },
+    {
+        path: 'enterprise/email-template-builder',
+        component: UiEmailTemplateBuilderDemo
+    },
+    {
+        path: 'enterprise/file-manager',
+        component: UiFileManagerDemo
+    },
+    {
+        path: 'enterprise/spreadsheet',
+        component: UiSpreadsheetDemo
+    },
+    {
+        path: 'enterprise/workflow-builder',
+        component: UiWorkflowBuilderDemo
+    },
+    {
+        path: '**',
+        component: NotFoundPage
     }
 ];

@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Usage Dashboard"
+                description="{{ commonService.appName }} AI Token Usage is a HISTORICAL/aggregate usage dashboard - distinct from nx-token-counter, which only estimates tokens for the text currently being typed. It shows a daily usage bar row, a usage-vs-limit progress bar (coloring shifts to warning/danger as you approach monthlyLimit), a per-model breakdown, and a total estimated cost summed from each day's costUsd."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-ai-token-usage [dailyUsage]="dailyUsage" [byModel]="byModel" [monthlyLimit]="monthlyLimit"></nx-ai-token-usage>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without a Monthly Limit"
+                description="When monthlyLimit is left unset, the progress bar section is skipped - only the daily chart, cost total, and per-model breakdown are shown."
+                [code]="noLimitCode"
+                [tsCode]="noLimitTs"
+                [hasSampleClass]="false">
+                <nx-ai-token-usage [dailyUsage]="dailyUsage" [byModel]="byModel"></nx-ai-token-usage>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

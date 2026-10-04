@@ -1,0 +1,34 @@
+<div class="showcase-root">
+    <nx-app-shell [sidebarCollapsed]="sidebarCollapsed()">
+        <div nxAppShellSidebar>
+            <nx-sidebar [items]="sidebarItems" [(collapsed)]="sidebarCollapsed">
+                <div nx-sidebar-header class="showcase-brand">
+                    <nx-icon icon="nx-grid" variant="svg" [size]="18"></nx-icon>
+                    <span>Nova</span>
+                </div>
+                <div nx-sidebar-footer>
+                    <a
+                        class="showcase-back-link"
+                        [class.collapsed]="sidebarCollapsed()"
+                        routerLink="/getting-started/introduction"
+                        [title]="sidebarCollapsed() ? 'Back to NexiumUI Docs' : ''">
+                        <nx-icon icon="nx-chevron-right" variant="svg" [size]="14" class="showcase-back-icon"></nx-icon>
+                        @if (!sidebarCollapsed()) {
+                            <span>Back to NexiumUI Docs</span>
+                        }
+                    </a>
+                </div>
+            </nx-sidebar>
+        </div>
+
+        <div nxAppShellHeader class="showcase-topbar">
+            <span class="showcase-topbar-title">Nova Analytics</span>
+            <div class="showcase-topbar-user">
+                <span class="showcase-topbar-user-name">Amelia Stone</span>
+                <nx-avatar name="Amelia Stone" size="small"></nx-avatar>
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+    </nx-app-shell>
+</div>

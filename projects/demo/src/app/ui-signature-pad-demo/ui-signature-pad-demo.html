@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Signature Pad"
+                description="Sign with a mouse, touch, or a pen - Pointer Events unify all three. Each stroke is tracked separately so Undo removes only the last one, redrawing everything before it from a cleared canvas; Clear wipes the whole pad."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-signature-pad></nx-signature-pad>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Exporting the Signature"
+                description="strokeColor, strokeWidth, and backgroundColor are all customizable. signatureChange emits a PNG data URL after every completed stroke - draw a signature above to see it render live below."
+                [code]="exportCode"
+                [tsCode]="exportTs"
+                [hasSampleClass]="false">
+                <nx-signature-pad
+                    strokeColor="#1b2559"
+                    [strokeWidth]="3"
+                    backgroundColor="#f4f6fb"
+                    (signatureChange)="onSignatureChange($event)">
+                </nx-signature-pad>
+                @if (liveDataUrl()) {
+                    <div class="signature-export">
+                        <p>Live export:</p>
+                        <img [src]="liveDataUrl()" alt="Exported signature" />
+                    </div>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

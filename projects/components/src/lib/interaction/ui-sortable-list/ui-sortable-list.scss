@@ -1,0 +1,31 @@
+.nx-sortable-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nx-sortable-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    cursor: grab;
+}
+
+.nx-sortable-list-item.drag-over {
+    border-color: var(--shell-primary);
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .08));
+}
+
+.nx-sortable-list-grip {
+    color: var(--shell-text-secondary);
+    flex-shrink: 0;
+}
+
+.nx-sortable-list-label {
+    font-size: 14px;
+    color: var(--shell-text);
+}

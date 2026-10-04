@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Terminal Output"
+                description="The {{ commonService.appName }} Terminal renders a prompt-prefixed sequence of input/output/error lines - useful for showing command history or build logs."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:560px;">
+                    <nx-terminal [lines]="lines" prompt="$"></nx-terminal>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Interactive Terminal"
+                description="Set interactive to true to show a live input row - the (command) output fires on Enter, letting the parent append the response to the lines array."
+                [code]="interactiveCode"
+                [tsCode]="interactiveTs"
+                [hasSampleClass]="false">
+                <div style="max-width:560px;">
+                    <nx-terminal
+                        [lines]="interactiveLines()"
+                        [interactive]="true"
+                        prompt="$"
+                        (command)="onCommand($event)">
+                    </nx-terminal>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

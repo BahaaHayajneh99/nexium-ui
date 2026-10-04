@@ -1,0 +1,76 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode"
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Formula Input"
+                [description]="basicDescription"
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-formula-input
+                    [fields]="fields"
+                    [(value)]="formula"
+                    (tokensChange)="tokens = $event">
+                </nx-formula-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Unknown References"
+                description="A token that doesn't match any of the given fields is still parsed, but its chip is flagged - handy for catching typos in a referenced field name."
+                [code]="unknownCode"
+                [tsCode]="unknownTs"
+                [hasSampleClass]="false">
+                <nx-formula-input [fields]="fields" [(value)]="unknownFormula"></nx-formula-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Reactive Form"
+                description="Formula Input implements ControlValueAccessor, so it works with formControlName inside a reactive form."
+                [code]="reactiveCode"
+                [tsCode]="reactiveTs"
+                [hasSampleClass]="false">
+                <div [formGroup]="formulaForm">
+                    <nx-formula-input [fields]="fields" formControlName="formula"></nx-formula-input>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Required Field"
+                description="Set isRequired to true to mark the field mandatory - a validation message shows once the field is blurred while still empty."
+                [code]="requiredCode"
+                [tsCode]="requiredTs"
+                [hasSampleClass]="false">
+                <nx-formula-input
+                    [fields]="fields"
+                    [isRequired]="true"
+                    [(ngModel)]="required">
+                </nx-formula-input>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Delimiters"
+                [description]="customDescription"
+                [code]="customCode"
+                [tsCode]="customTs"
+                [hasSampleClass]="false">
+                <nx-formula-input
+                    triggerOpen="[["
+                    triggerClose="]]"
+                    placeholder="Type [[ to insert a field..."
+                    [fields]="fields"
+                    [(value)]="customFormula">
+                </nx-formula-input>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

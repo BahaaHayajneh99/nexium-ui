@@ -1,0 +1,41 @@
+@if (visible()) {
+    <div class="nx-cookie-banner" role="dialog" aria-live="polite">
+
+        @if (!customizing()) {
+            <p class="nx-cookie-banner-message">{{ message }}</p>
+
+            <div class="nx-cookie-banner-actions">
+                @if (showCustomize) {
+                    <button type="button" class="nx-cookie-banner-btn nx-cookie-banner-btn-ghost" (click)="openCustomize()">Customize</button>
+                }
+                <button type="button" class="nx-cookie-banner-btn nx-cookie-banner-btn-ghost" (click)="decline()">Decline</button>
+                <button type="button" class="nx-cookie-banner-btn nx-cookie-banner-btn-primary" (click)="accept()">Accept</button>
+            </div>
+        } @else {
+            <div class="nx-cookie-banner-customize">
+                <p class="nx-cookie-banner-message">Choose which cookies you're comfortable with. Required cookies are always on.</p>
+
+                <div class="nx-cookie-banner-category">
+                    <span>Required</span>
+                    <nx-switch [checked]="true" [disabled]="true"></nx-switch>
+                </div>
+
+                <div class="nx-cookie-banner-category">
+                    <span>Analytics</span>
+                    <nx-switch [(checked)]="categories.analytics"></nx-switch>
+                </div>
+
+                <div class="nx-cookie-banner-category">
+                    <span>Marketing</span>
+                    <nx-switch [(checked)]="categories.marketing"></nx-switch>
+                </div>
+
+                <div class="nx-cookie-banner-actions">
+                    <button type="button" class="nx-cookie-banner-btn nx-cookie-banner-btn-ghost" (click)="decline()">Decline all</button>
+                    <button type="button" class="nx-cookie-banner-btn nx-cookie-banner-btn-primary" (click)="savePreferences()">Save preferences</button>
+                </div>
+            </div>
+        }
+
+    </div>
+}

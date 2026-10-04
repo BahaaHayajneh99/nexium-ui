@@ -1,0 +1,195 @@
+.nx-prompt-builder {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 14px;
+    width: 100%;
+    max-width: 960px;
+    padding: 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+@media (max-width: 860px) {
+    .nx-prompt-builder {
+        grid-template-columns: 1fr;
+    }
+}
+
+.nx-pb-library,
+.nx-pb-editor,
+.nx-pb-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.nx-pb-library-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nx-pb-library-title,
+.nx-pb-preview-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-pb-library-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-pb-library-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    border-radius: var(--nx-radius-sm, 4px);
+    padding: 2px;
+}
+
+.nx-pb-library-item.active {
+    background-color: color-mix(in srgb, var(--shell-primary, #3498db) 12%, transparent);
+}
+
+.nx-pb-library-item-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 6px 8px;
+    border: none;
+    background: none;
+    color: var(--shell-text);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.nx-pb-library-empty,
+.nx-pb-no-variables {
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-style: italic;
+}
+
+.nx-pb-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-pb-field-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-pb-input,
+.nx-pb-textarea {
+    width: 100%;
+    padding: 7px 9px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-family: inherit;
+}
+
+.nx-pb-textarea {
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.nx-pb-input:focus,
+.nx-pb-textarea:focus {
+    outline: none;
+    border-color: var(--shell-primary, #3498db);
+}
+
+.nx-pb-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nx-pb-variables {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-pb-rendered {
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12.5px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.nx-pb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-pb-btn:hover {
+    border-color: var(--shell-primary, #3498db);
+    color: var(--shell-primary, #3498db);
+}
+
+.nx-pb-btn-ghost {
+    border: none;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.nx-pb-btn-primary {
+    border: none;
+    background-color: var(--shell-primary, #3498db);
+    color: var(--white-color, #ffffff);
+    justify-content: center;
+}
+
+.nx-pb-btn-primary:hover {
+    background-color: var(--primary-color-dark, #2980b9);
+    color: var(--white-color, #ffffff);
+}
+
+.nx-pb-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: none;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-pb-icon-btn:hover {
+    color: var(--nx-color-danger, #e74c3c);
+}

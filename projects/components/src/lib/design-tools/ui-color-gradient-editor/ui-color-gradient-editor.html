@@ -1,0 +1,53 @@
+@if (licensed()) {
+    <div class="nx-color-gradient-editor">
+        <nx-color-gradient [type]="type" [angle]="angle" [stops]="stops"></nx-color-gradient>
+
+        <div
+            class="nx-color-gradient-editor-track"
+            (dblclick)="onTrackDoubleClick($event)"
+            (pointermove)="onHandlePointerMove($event)"
+            (pointerup)="onHandlePointerUp()">
+            @for (stop of stops; track $index; let i = $index) {
+                <button
+                    type="button"
+                    class="nx-color-gradient-editor-handle"
+                    [class.selected]="i === selectedIndex()"
+                    [style.left.%]="stop.offset"
+                    [style.background]="stop.color"
+                    (pointerdown)="onHandlePointerDown(i, $event)"
+                    (click)="select(i)"></button>
+            }
+        </div>
+
+        <div class="nx-color-gradient-editor-controls">
+            <select class="nx-color-gradient-editor-select" [value]="type" (change)="setType($any($event.target).value)">
+                <option value="linear">Linear</option>
+                <option value="radial">Radial</option>
+            </select>
+
+            @if (type === 'linear') {
+                <input
+                    type="number"
+                    class="nx-color-gradient-editor-number"
+                    min="0"
+                    max="360"
+                    [value]="angle"
+                    (input)="setAngle($any($event.target).valueAsNumber)" />
+            }
+
+            @if (selectedStop) {
+                <input
+                    type="color"
+                    class="nx-color-gradient-editor-color"
+                    [value]="selectedStop.color"
+                    (input)="setSelectedColor($any($event.target).value)" />
+            }
+
+            <button type="button" class="nx-color-gradient-editor-remove" [disabled]="stops.length <= 2" (click)="removeSelected()">
+                Remove stop
+            </button>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Color Gradient Editor"></nx-pro-locked>
+}

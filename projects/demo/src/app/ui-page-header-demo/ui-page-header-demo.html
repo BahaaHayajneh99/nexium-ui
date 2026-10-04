@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Page Header"
+                description="The {{ commonService.appName }} Page Header is a page-level title/description block, with slots for a breadcrumb above it, actions to the right, and a tab strip below it."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-page-header title="Projects" description="Manage every project in your workspace."></nx-page-header>
+            </app-demo-section>
+
+            <app-demo-section
+                header="With Breadcrumb, Actions & Tabs"
+                description="nxPageHeaderBreadcrumb renders above the title, nxPageHeaderActions to the right of it, and nxPageHeaderTabs below it as a tab strip."
+                [code]="fullCode"
+                [tsCode]="fullTs"
+                [hasSampleClass]="false">
+                <nx-page-header title="Invoice #1042" description="Issued to Acme Corp on Mar 3, 2026.">
+                    <span nxPageHeaderBreadcrumb>Billing / Invoices / #1042</span>
+
+                    <div nxPageHeaderActions style="display:flex; gap:8px;">
+                        <button class="demo-btn" type="button">Export</button>
+                        <button class="demo-btn" type="button">Send reminder</button>
+                    </div>
+
+                    <div nxPageHeaderTabs style="display:flex; gap:16px;">
+                        <a href="javascript:void(0)">Details</a>
+                        <a href="javascript:void(0)">Activity</a>
+                        <a href="javascript:void(0)">Payments</a>
+                    </div>
+                </nx-page-header>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

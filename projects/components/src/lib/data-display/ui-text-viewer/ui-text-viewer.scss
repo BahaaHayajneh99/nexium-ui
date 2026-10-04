@@ -1,0 +1,134 @@
+.nx-text-viewer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-text-viewer-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+    flex-wrap: wrap;
+}
+
+.nx-text-viewer-filename {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text);
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-text-viewer-search {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.nx-text-viewer-search input {
+    padding: 5px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #fff);
+    color: var(--shell-text);
+    font-size: 12px;
+    width: 160px;
+}
+
+.nx-text-viewer-search button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-text-viewer-match-count {
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+    white-space: nowrap;
+}
+
+.nx-text-viewer-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.nx-text-viewer-btn {
+    padding: 5px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #fff);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-text-viewer-btn.active {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-text-viewer-btn:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-text-viewer-body {
+    max-height: 420px;
+    overflow: auto;
+    background-color: var(--shell-code-bg, #1e1e1e);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.nx-text-viewer-line {
+    display: flex;
+    padding: 0 12px;
+}
+
+.nx-text-viewer-line:hover {
+    background-color: rgba(255, 255, 255, .03);
+}
+
+.nx-text-viewer-line-number {
+    flex-shrink: 0;
+    width: 40px;
+    margin-right: 12px;
+    text-align: right;
+    color: rgba(255, 255, 255, .3);
+    user-select: none;
+}
+
+.nx-text-viewer-line-content {
+    flex: 1;
+    min-width: 0;
+    color: #e6e6e6;
+    white-space: pre;
+}
+
+.nx-text-viewer-body.wrap .nx-text-viewer-line-content {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.nx-text-viewer-match {
+    background-color: rgba(241, 196, 15, .35);
+    color: inherit;
+    border-radius: 2px;
+}
+
+.nx-text-viewer-match.active {
+    background-color: rgba(241, 196, 15, .75);
+}

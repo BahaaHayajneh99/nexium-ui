@@ -1,0 +1,11 @@
+@if (display === 'pill') {
+    <span class="nx-connection-status-pill" [class]="currentStatus()">
+        <span class="nx-connection-status-dot"></span>
+        {{ currentStatus() === 'offline' ? 'Offline' : 'Online' }}
+    </span>
+} @else if (bannerVisible) {
+    <div class="nx-connection-status-banner" [class]="bannerVariant" role="status">
+        <nx-icon [icon]="currentStatus() === 'offline' ? 'nx-wifi' : 'nx-check-circle'" variant="svg" [size]="16"></nx-icon>
+        <span>{{ bannerMessage }}</span>
+    </div>
+}

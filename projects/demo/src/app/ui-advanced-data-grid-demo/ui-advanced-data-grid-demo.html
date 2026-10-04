@@ -1,0 +1,138 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pinned Columns, Sort & Quick Filter"
+                description="{{ commonService.appName }} Advanced Data Grid - drag a column border to resize, click a sortable header to sort (shift-click to multi-sort), and type in the filter box. Name is pinned left, Status is pinned right. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="columns" [rows]="rows"></nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Virtual Scroll"
+                description="Set virtualScroll to render only the rows within the visible scroll window - smooth scrolling even with 5,000 rows. This is where the PRO grid picks up where nx-table's plain scrollable option leaves off."
+                [code]="virtualCode"
+                [tsCode]="virtualTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="largeColumns" [rows]="largeRows" [virtualScroll]="true" [rowHeight]="36"></nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Per-Column Filter"
+                description="Set column.filterable to render a per-column filter row beneath the headers, in addition to the toolbar's quick filter."
+                [code]="filterCode"
+                [tsCode]="filterTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="filterColumns" [rows]="rows"></nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Row Selection - Single (Radio)"
+                description="Use selectionMode=&quot;single&quot; to select one row at a time via radio button."
+                [code]="selectionSingleCode"
+                [tsCode]="selectionSingleTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="columns" [rows]="rows" [selectionMode]="'single'" [(selection)]="selectedEmployee"></nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Row Selection - Multiple (Checkbox)"
+                description="Use selectionMode=&quot;multiple&quot; to select many rows via checkbox, including a select-all header checkbox."
+                [code]="selectionMultipleCode"
+                [tsCode]="selectionMultipleTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="columns" [rows]="rows" [selectionMode]="'multiple'" [(selection)]="selectedEmployees"></nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Edit Cell"
+                description="Set column.editable and double-click a cell to edit its value inline."
+                [code]="editCode"
+                [tsCode]="editTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="editColumns" [rows]="rows" (cellEditComplete)="onCellEdit($event)"></nx-advanced-data-grid>
+                @if (lastEdit) {
+                    <p class="main-section-description" style="margin-top: 12px;">
+                        Last edit: {{ lastEdit.field }} changed from "{{ lastEdit.oldValue }}" to "{{ lastEdit.value }}"
+                    </p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Column Group"
+                description="Provide columnGroups to render a grouped header row spanning multiple columns."
+                [code]="groupCode"
+                [tsCode]="groupTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="groupColumns" [columnGroups]="columnGroups" [rows]="rows"></nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Export"
+                description="Set showExport to render toolbar buttons for the current (filtered/sorted) rows: CSV, an Excel-openable .xls (an HTML table in a vnd.ms-excel Blob - not a real .xlsx binary), and PDF (opens a clean printable view and calls the browser's print dialog, so 'Save as PDF' is a manual step)."
+                [code]="exportCode"
+                [tsCode]="exportTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="columns" [rows]="rows" [showExport]="true" exportFilename="rows"></nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Row Grouping"
+                description="Set groupByField to a field name to render rows grouped into collapsible sections by that field's value, with a group header showing the value and row count. Groups default to expanded; click a group header to collapse/expand it."
+                [code]="groupByFieldCode"
+                [tsCode]="groupByFieldTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="groupColumns" [rows]="rows" [groupByField]="'department'"></nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pagination"
+                description="Set paginator to page the (filtered/sorted) rows, with a configurable rows-per-page select and a page listener."
+                [code]="paginationCode"
+                [tsCode]="paginationTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid
+                    [columns]="largeColumns"
+                    [rows]="largeRows"
+                    [paginator]="true"
+                    [pageSize]="10"
+                    [rowsPerPageOptions]="[10, 25, 50]">
+                </nx-advanced-data-grid>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Column Reordering"
+                description="Every header is draggable - drag a column header and drop it on another to reorder columns. Listen for columnsChange to persist the new order."
+                [code]="reorderCode"
+                [tsCode]="reorderTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="columns" [rows]="rows" (columnsChange)="onColumnsReordered($event)"></nx-advanced-data-grid>
+                @if (lastReorder.length) {
+                    <p class="main-section-description" style="margin-top: 12px;">
+                        New order: {{ lastReorder.join(', ') }}
+                    </p>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Column Visibility"
+                description="Click the toolbar's &quot;Columns&quot; button to show/hide columns on the fly."
+                [code]="visibilityCode"
+                [tsCode]="visibilityTs"
+                [hasSampleClass]="false">
+                <nx-advanced-data-grid [columns]="columns" [rows]="rows"></nx-advanced-data-grid>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

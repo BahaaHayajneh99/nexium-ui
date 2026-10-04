@@ -1,0 +1,42 @@
+.nx-connection-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text);
+    font-size: var(--nx-font-size-sm, 13px);
+    font-weight: 500;
+}
+
+.nx-connection-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--shell-text-muted);
+}
+
+.nx-connection-status-pill.online .nx-connection-status-dot {
+    background-color: var(--success-color, #28a745);
+}
+
+.nx-connection-status-pill.offline .nx-connection-status-dot {
+    background-color: var(--danger-color, #e74c3c);
+}
+
+.nx-connection-status-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 8px);
+    width: 100%;
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-lg, 24px);
+    box-sizing: border-box;
+    color: #ffffff;
+    font-size: var(--nx-font-size-sm, 14px);
+    font-family: var(--font-family, "Roboto", sans-serif);
+
+    &.danger { background-color: var(--danger-color, #e74c3c); }
+    &.success { background-color: var(--success-color, #28a745); }
+}

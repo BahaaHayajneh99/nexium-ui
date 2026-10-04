@@ -1,0 +1,28 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Order Fulfillment Flow"
+                description="{{ commonService.appName }} Workflow Builder - drag a node to reposition it, drag from its right-edge handle onto another node to connect them. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-workflow-builder
+                    [nodes]="nodes"
+                    [edges]="edges"
+                    (nodesChange)="onNodesChange($event)"
+                    (edgesChange)="onEdgesChange($event)">
+                </nx-workflow-builder>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+@if (licensed()) {
+    <div class="nx-cron-builder">
+        <div class="nx-cron-builder-presets">
+            @for (preset of presets; track preset.label) {
+                <button type="button" class="nx-cron-builder-preset" (click)="applyPreset(preset)">{{ preset.label }}</button>
+            }
+        </div>
+
+        <div class="nx-cron-builder-fields">
+            <label class="nx-cron-builder-field" [class.invalid]="fieldError('minute')">
+                <span>Minute</span>
+                <input type="text" [value]="value.minute" (input)="setField('minute', $any($event.target).value)" />
+            </label>
+            <label class="nx-cron-builder-field" [class.invalid]="fieldError('hour')">
+                <span>Hour</span>
+                <input type="text" [value]="value.hour" (input)="setField('hour', $any($event.target).value)" />
+            </label>
+            <label class="nx-cron-builder-field" [class.invalid]="fieldError('dayOfMonth')">
+                <span>Day</span>
+                <input type="text" [value]="value.dayOfMonth" (input)="setField('dayOfMonth', $any($event.target).value)" />
+            </label>
+            <label class="nx-cron-builder-field" [class.invalid]="fieldError('month')">
+                <span>Month</span>
+                <input type="text" [value]="value.month" (input)="setField('month', $any($event.target).value)" />
+            </label>
+            <label class="nx-cron-builder-field" [class.invalid]="fieldError('dayOfWeek')">
+                <span>Weekday</span>
+                <input type="text" [value]="value.dayOfWeek" (input)="setField('dayOfWeek', $any($event.target).value)" />
+            </label>
+        </div>
+
+        <code class="nx-cron-builder-expression">{{ expression }}</code>
+        <p class="nx-cron-builder-description" [class.error]="!isValid">{{ description }}</p>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Cron Builder"></nx-pro-locked>
+}

@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Spotlight"
+                description="The {{ commonService.appName }} Spotlight dims the whole page except for a rectangle drawn around one target element, with a caption callout next to it - the single-step building block behind onboarding coachmarks. nx-tour composes several of these into a guided walkthrough."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <button id="save-btn" class="demo-btn" type="button" (click)="open = true">
+                    Highlight the Save button
+                </button>
+
+                <nx-spotlight
+                    target="#save-btn"
+                    title="Save your work"
+                    description="This button saves your changes at any time - try Ctrl+S too."
+                    [(open)]="open">
+                </nx-spotlight>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

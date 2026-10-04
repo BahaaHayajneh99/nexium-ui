@@ -1,0 +1,144 @@
+.nx-column-manager {
+    position: relative;
+    display: inline-block;
+}
+
+.nx-column-manager-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-column-manager-toggle:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+}
+
+.nx-column-manager-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: var(--shell-primary, #3498db);
+    color: #fff;
+    font-size: 10px;
+}
+
+.nx-column-manager-panel {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    min-width: 260px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .14);
+    overflow: hidden;
+}
+
+.nx-column-manager-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--shell-border);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-column-manager-close {
+    border: none;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.nx-column-manager-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--shell-border);
+    background-color: var(--shell-bg, #ffffff);
+    cursor: grab;
+}
+
+.nx-column-manager-row:last-of-type {
+    border-bottom: none;
+}
+
+.nx-column-manager-row:active {
+    cursor: grabbing;
+}
+
+.nx-column-manager-handle {
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.nx-column-manager-visibility {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--shell-text);
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nx-column-manager-pin {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.nx-column-manager-pin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nx-column-manager-pin-btn:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+}
+
+.nx-column-manager-pin-btn.active {
+    background-color: var(--shell-primary, #3498db);
+    border-color: var(--shell-primary, #3498db);
+    color: #fff;
+}
+
+.nx-column-manager-empty {
+    padding: 16px;
+    text-align: center;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+}

@@ -1,0 +1,35 @@
+<div class="nx-ai-response-viewer">
+    <div class="nx-arv-body" [innerHTML]="renderedHtml()"></div>
+
+    <div class="nx-arv-actions">
+        <button type="button" class="nx-arv-action" (click)="copy()">
+            <nx-icon [icon]="copied() ? 'nx-check' : 'nx-copy'" variant="svg" [size]="14"></nx-icon>
+            {{ copied() ? 'Copied' : 'Copy' }}
+        </button>
+
+        <button type="button" class="nx-arv-action" (click)="onRegenerate()">
+            <nx-icon icon="nx-refresh" variant="svg" [size]="14"></nx-icon>
+            Regenerate
+        </button>
+
+        <span class="nx-arv-spacer"></span>
+
+        <button
+            type="button"
+            class="nx-arv-feedback-btn"
+            [class.active]="feedbackState() === 'up'"
+            aria-label="Good response"
+            (click)="toggleFeedback('up')">
+            <nx-icon icon="nx-thumbs-up" variant="svg" [size]="14"></nx-icon>
+        </button>
+
+        <button
+            type="button"
+            class="nx-arv-feedback-btn nx-arv-feedback-down"
+            [class.active]="feedbackState() === 'down'"
+            aria-label="Bad response"
+            (click)="toggleFeedback('down')">
+            <nx-icon icon="nx-thumbs-up" variant="svg" [size]="14"></nx-icon>
+        </button>
+    </div>
+</div>

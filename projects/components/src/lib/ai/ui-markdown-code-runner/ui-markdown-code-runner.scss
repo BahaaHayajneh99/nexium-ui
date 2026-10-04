@@ -1,0 +1,83 @@
+.nx-code-runner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 560px;
+}
+
+.nx-code-block {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-code-lang {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color: var(--shell-text-secondary);
+}
+
+.nx-code-run-btn {
+    padding: 4px 12px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary, #3498db);
+    color: var(--white-color, #ffffff);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-code-run-btn:hover {
+    background-color: var(--primary-color-dark, #2980b9);
+}
+
+.nx-code-pre {
+    margin: 0;
+    padding: 12px 14px;
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.nx-code-output {
+    padding: 10px 14px;
+    border-top: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12.5px;
+}
+
+.nx-code-output-line {
+    color: var(--shell-text);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.nx-code-output-empty {
+    color: var(--shell-text-secondary);
+    font-style: italic;
+}
+
+.nx-code-output-error {
+    color: var(--nx-color-danger, #e74c3c);
+    white-space: pre-wrap;
+    word-break: break-word;
+}

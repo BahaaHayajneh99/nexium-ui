@@ -1,10 +1,11 @@
 .nx-rte {
+    position: relative;
     display: flex;
     flex-direction: column;
     border: 1px solid var(--shell-border);
     border-radius: 8px;
     background-color: var(--shell-surface);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .nx-rte.disabled {
@@ -104,4 +105,123 @@
     a {
         color: var(--shell-primary);
     }
+}
+
+.nx-rte-editor .nx-rte-mention {
+    color: var(--shell-primary);
+    font-weight: 600;
+}
+
+.nx-rte-editor pre.nx-rte-code {
+    margin: 0 0 8px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    overflow-x: auto;
+}
+
+.nx-rte-editor table.nx-rte-table {
+    margin: 0 0 8px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.nx-rte-editor table.nx-rte-table td {
+    border: 1px solid var(--shell-border);
+    padding: 6px 8px;
+    min-width: 40px;
+}
+
+.nx-rte-editor img.nx-rte-image {
+    max-width: 100%;
+    border-radius: 6px;
+    margin: 0 0 8px;
+}
+
+.nx-rte-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 14px;
+    border-top: 1px solid var(--shell-border);
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-rte-popup {
+    position: fixed;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 4px;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background-color: var(--shell-surface);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+}
+
+.nx-rte-popup-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.nx-rte-popup-item:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .06));
+}
+
+.nx-rte-popup-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--shell-text-secondary);
+}
+
+.nx-rte-emoji-popup {
+    position: absolute;
+    top: 40px;
+    left: 6px;
+    z-index: 200;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    padding: 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: 8px;
+    background-color: var(--shell-surface);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+}
+
+.nx-rte-emoji-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nx-rte-emoji-item:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .06));
 }

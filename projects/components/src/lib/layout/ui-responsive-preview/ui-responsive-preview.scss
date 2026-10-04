@@ -1,0 +1,53 @@
+.nx-responsive-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nx-responsive-preview-tabs {
+    display: flex;
+    gap: 6px;
+}
+
+.nx-responsive-preview-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-responsive-preview-tab.active {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .08));
+}
+
+.nx-responsive-preview-tab-width {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--shell-text-secondary);
+}
+
+.nx-responsive-preview-viewport-wrap {
+    overflow-x: auto;
+    padding: 16px;
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+}
+
+.nx-responsive-preview-viewport {
+    margin: 0 auto;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 6px);
+    background-color: var(--shell-bg, #ffffff);
+    overflow: hidden;
+    transition: width .2s ease;
+}

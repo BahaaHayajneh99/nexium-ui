@@ -1,0 +1,83 @@
+.nx-cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--nx-z-sticky, 1010);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+    background-color: var(--shell-surface);
+    border-top: 1px solid var(--shell-border);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, .12);
+    animation: nx-cookie-banner-in .25s ease both;
+    box-sizing: border-box;
+}
+
+.nx-cookie-banner-message {
+    flex: 1;
+    min-width: 200px;
+    margin: 0;
+    color: var(--shell-text);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.nx-cookie-banner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.nx-cookie-banner-btn {
+    padding: 8px 16px;
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: 14px;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.nx-cookie-banner-btn-ghost {
+    background: transparent;
+    border-color: var(--shell-border);
+    color: var(--shell-text);
+}
+
+.nx-cookie-banner-btn-ghost:hover {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-cookie-banner-btn-primary {
+    background-color: var(--shell-primary, #3498db);
+    color: var(--white-color, #ffffff);
+}
+
+.nx-cookie-banner-btn-primary:hover {
+    opacity: .9;
+}
+
+.nx-cookie-banner-customize {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nx-cookie-banner-category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--shell-border);
+    font-size: 14px;
+    color: var(--shell-text);
+}
+
+@keyframes nx-cookie-banner-in {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}

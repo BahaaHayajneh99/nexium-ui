@@ -1,0 +1,107 @@
+.nx-playground {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 760px;
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+@media (max-width: 680px) {
+    .nx-playground {
+        grid-template-columns: 1fr;
+    }
+}
+
+.nx-playground-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nx-pg-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nx-pg-field-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-pg-field-value {
+    color: var(--shell-text);
+    font-weight: 700;
+}
+
+.nx-pg-field input[type="range"] {
+    width: 100%;
+    accent-color: var(--shell-primary, #3498db);
+}
+
+.nx-playground-main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.nx-pg-prompt {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+.nx-pg-prompt:focus {
+    outline: none;
+    border-color: var(--shell-primary, #3498db);
+}
+
+.nx-pg-run-btn {
+    align-self: flex-start;
+    padding: 8px 20px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary, #3498db);
+    color: var(--white-color, #ffffff);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.nx-pg-run-btn:hover:not(:disabled) {
+    background-color: var(--primary-color-dark, #2980b9);
+}
+
+.nx-pg-run-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.nx-pg-response {
+    min-height: 60px;
+}
+
+.nx-pg-running,
+.nx-pg-empty {
+    padding: 14px 16px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    font-style: italic;
+}

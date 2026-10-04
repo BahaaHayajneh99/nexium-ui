@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Template Library"
+                description="{{ commonService.appName }} AI Prompt Builder builds reusable prompt TEMPLATES with {{ '{{variable}}' }} slots - distinct from a plain chat composer. Load a starter template from the list on the left, edit its system/user text, and watch the Fill & Preview panel pick up every {{ '{{token}}' }} automatically. Click 'Use this prompt' to emit the fully rendered text."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-ai-prompt-builder
+                    [templates]="templates()"
+                    (templatesChange)="onTemplatesChange($event)"
+                    (promptGenerated)="onPromptGenerated($event)">
+                </nx-ai-prompt-builder>
+            </app-demo-section>
+
+            @if (generatedPrompt()) {
+                <div class="main-sample">
+                    <h3>Last Generated Prompt</h3>
+                    <p>The text emitted by (promptGenerated) the last time "Use this prompt" was clicked above.</p>
+                    <pre style="white-space:pre-wrap; font-family:inherit; margin:0;">{{ generatedPrompt() }}</pre>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

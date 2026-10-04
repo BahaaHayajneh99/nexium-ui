@@ -1,0 +1,90 @@
+.nx-border-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nx-border-editor-preview-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+}
+
+.nx-border-editor-preview {
+    width: 96px;
+    height: 96px;
+    background-color: var(--shell-bg, #ffffff);
+    box-sizing: border-box;
+}
+
+.nx-border-editor-row {
+    display: flex;
+    gap: 16px;
+}
+
+.nx-border-editor-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-border-editor-field select,
+.nx-border-editor-field input {
+    padding: 5px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-border-editor-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-border-editor-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-border-editor-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    color: var(--shell-text-secondary);
+}
+
+.nx-border-editor-sides {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.nx-border-editor-sides label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-border-editor-sides input {
+    padding: 5px 6px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+}

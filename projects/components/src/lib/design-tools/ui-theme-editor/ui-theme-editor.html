@@ -1,0 +1,46 @@
+@if (licensed()) {
+    <div class="nx-theme-editor">
+        <div class="nx-theme-editor-controls">
+            <label class="nx-theme-editor-field">
+                <span>Primary color</span>
+                <input type="color" [value]="value.primaryColor" (input)="update({ primaryColor: $any($event.target).value })" />
+            </label>
+
+            <label class="nx-theme-editor-field">
+                <span>Radius</span>
+                <input
+                    type="range"
+                    min="0"
+                    max="24"
+                    [value]="value.radius"
+                    (input)="update({ radius: $any($event.target).valueAsNumber })" />
+                <span class="nx-theme-editor-value">{{ value.radius }}px</span>
+            </label>
+
+            <label class="nx-theme-editor-field">
+                <span>Font</span>
+                <select [value]="value.fontFamily" (change)="update({ fontFamily: $any($event.target).value })">
+                    @for (font of fontOptions; track font) {
+                        <option [value]="font">{{ font.split(',')[0] }}</option>
+                    }
+                </select>
+            </label>
+        </div>
+
+        <div class="nx-theme-editor-preview" [style.font-family]="value.fontFamily">
+            <div class="nx-theme-editor-preview-card" [style.border-radius.px]="value.radius">
+                <span class="nx-theme-editor-preview-title">Preview card</span>
+                <p class="nx-theme-editor-preview-text">This text updates live as tokens change.</p>
+                <button
+                    type="button"
+                    class="nx-theme-editor-preview-button"
+                    [style.background-color]="value.primaryColor"
+                    [style.border-radius.px]="value.radius">
+                    Primary action
+                </button>
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Theme Editor"></nx-pro-locked>
+}

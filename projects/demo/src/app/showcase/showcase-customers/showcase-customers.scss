@@ -1,0 +1,78 @@
+.showcase-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.showcase-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.showcase-table-wrapper {
+    overflow-x: auto;
+}
+
+.showcase-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.showcase-table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+    border-bottom: 1px solid var(--shell-border);
+    white-space: nowrap;
+}
+
+.showcase-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    white-space: nowrap;
+}
+
+.showcase-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.showcase-table-customer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.showcase-table-name {
+    font-weight: 600;
+}
+
+.showcase-table-company {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.showcase-table-tags {
+    white-space: normal;
+    min-width: 220px;
+}
+
+.showcase-table-empty {
+    text-align: center;
+    color: var(--shell-text-secondary);
+    padding: 24px 12px;
+}
+
+.showcase-add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 320px;
+}

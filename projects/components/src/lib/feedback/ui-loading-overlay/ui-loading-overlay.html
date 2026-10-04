@@ -1,0 +1,12 @@
+<div class="nx-loading-overlay-container">
+    <ng-content></ng-content>
+
+    @if (loading) {
+        <div class="nx-loading-overlay" [class.fullscreen]="fullscreen" [class.blur]="blur">
+            <nx-spinner [variant]="spinnerVariant" size="large"></nx-spinner>
+            @if (message) {
+                <span class="nx-loading-overlay-message">{{ message }}</span>
+            }
+        </div>
+    }
+</div>

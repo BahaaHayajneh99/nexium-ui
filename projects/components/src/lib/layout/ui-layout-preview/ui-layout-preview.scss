@@ -1,0 +1,87 @@
+.nx-layout-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+    border: 2px solid transparent;
+    border-radius: var(--nx-radius-md, 8px);
+}
+
+.nx-layout-preview.selected {
+    border-color: var(--shell-primary);
+}
+
+.nx-layout-preview-diagram {
+    display: grid;
+    gap: 3px;
+    width: 100px;
+    height: 72px;
+    padding: 6px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 6px);
+    background-color: var(--shell-surface);
+}
+
+.nx-layout-preview-diagram.sidebar-left,
+.nx-layout-preview-diagram.sidebar-right {
+    grid-template-columns: 22px 1fr;
+}
+
+.nx-layout-preview-diagram.sidebar-right {
+    direction: rtl;
+}
+
+.nx-layout-preview-diagram.header-content {
+    grid-template-rows: 16px 1fr;
+}
+
+.nx-layout-preview-diagram.holy-grail {
+    grid-template-columns: 18px 1fr 18px;
+    grid-template-rows: 12px 1fr 10px;
+    grid-template-areas:
+        "header header header"
+        "sidebar content aside"
+        "footer footer footer";
+}
+
+.nx-layout-preview-diagram.blank {
+    grid-template-columns: 1fr;
+}
+
+.nx-layout-preview-box {
+    border-radius: 3px;
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .18));
+}
+
+.nx-layout-preview-box.sidebar {
+    background-color: var(--shell-primary);
+}
+
+.nx-layout-preview-diagram.holy-grail .nx-layout-preview-box.header {
+    grid-area: header;
+    background-color: var(--shell-primary);
+}
+
+.nx-layout-preview-diagram.holy-grail .nx-layout-preview-box.sidebar {
+    grid-area: sidebar;
+}
+
+.nx-layout-preview-diagram.holy-grail .nx-layout-preview-box.content {
+    grid-area: content;
+}
+
+.nx-layout-preview-diagram.holy-grail .nx-layout-preview-box.aside {
+    grid-area: aside;
+    background-color: var(--shell-primary);
+}
+
+.nx-layout-preview-diagram.holy-grail .nx-layout-preview-box.footer {
+    grid-area: footer;
+    background-color: var(--shell-primary);
+}
+
+.nx-layout-preview-label {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}

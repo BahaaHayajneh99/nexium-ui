@@ -1,0 +1,131 @@
+.nx-tree-select {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    max-width: 320px;
+}
+
+.nx-tree-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+
+    &:hover,
+    &.open {
+        border-color: var(--shell-primary, #3498db);
+    }
+}
+
+.nx-tree-select-trigger-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &.placeholder {
+        color: var(--shell-text-secondary);
+    }
+}
+
+.nx-tree-select-chevron-icon {
+    flex-shrink: 0;
+    color: var(--shell-text-secondary);
+    transition: transform .15s ease;
+}
+
+.nx-tree-select-trigger.open .nx-tree-select-chevron-icon {
+    transform: rotate(180deg);
+}
+
+.nx-tree-select-panel {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 280px;
+    padding: 4px;
+    overflow-y: auto;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.nx-tree-select-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: var(--nx-radius-sm, 4px);
+
+    &:hover {
+        background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+    }
+}
+
+.nx-tree-select-expand,
+.nx-tree-select-expand-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.nx-tree-select-expand {
+    border: none;
+    background: none;
+    padding: 0;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+
+    nx-icon {
+        transition: transform .15s ease;
+    }
+
+    &.open nx-icon {
+        transform: rotate(90deg);
+    }
+}
+
+.nx-tree-select-checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    padding: 6px 4px;
+    font-size: 13px;
+    color: var(--shell-text);
+    cursor: pointer;
+}
+
+.nx-tree-select-option {
+    flex: 1;
+    padding: 6px 4px;
+    border: none;
+    background: none;
+    font-size: 13px;
+    color: var(--shell-text);
+    text-align: left;
+    cursor: pointer;
+}
+
+.nx-tree-select-empty {
+    padding: 10px 8px;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+    text-align: center;
+}

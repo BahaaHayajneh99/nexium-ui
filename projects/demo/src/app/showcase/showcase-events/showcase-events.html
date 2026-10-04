@@ -1,0 +1,164 @@
+<div class="events-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="events-brand">
+            <nx-icon icon="nx-calendar" variant="svg" [size]="18"></nx-icon>
+            <span>Marquee</span>
+        </div>
+        <div nx-navbar-links>
+            <a routerLink="/getting-started/introduction">← Docs</a>
+        </div>
+    </nx-navbar>
+
+    @if (!selectedEvent()) {
+        <div class="events-listings">
+            <h1>Upcoming events</h1>
+            <p class="events-sub">Marquee is a fictional ticketing site built entirely with NexiumUI.</p>
+
+            <div class="events-toolbar">
+                <div class="events-categories">
+                    @for (cat of categories; track cat) {
+                        <button type="button" class="events-cat-chip" [class.active]="activeCategory() === cat" (click)="activeCategory.set(cat)">
+                            {{ cat }}
+                        </button>
+                    }
+                </div>
+
+                <div class="events-view-toggle">
+                    <button type="button" [class.active]="viewMode() === 'grid'" (click)="viewMode.set('grid')">
+                        <nx-icon icon="nx-grid" variant="svg" [size]="14"></nx-icon>
+                        Grid
+                    </button>
+                    <button type="button" [class.active]="viewMode() === 'calendar'" (click)="viewMode.set('calendar')">
+                        <nx-icon icon="nx-calendar" variant="svg" [size]="14"></nx-icon>
+                        Calendar
+                    </button>
+                </div>
+            </div>
+
+            @if (viewMode() === 'grid') {
+                <div class="events-grid">
+                    @for (event of filteredEvents(); track event.id) {
+                        <button type="button" class="events-card" (click)="openEvent(event)">
+                            <div class="events-card-image" [style.background]="event.swatch">
+                                <nx-icon [icon]="event.icon" variant="svg" [size]="28"></nx-icon>
+                                <nx-badge variant="secondary" class="events-card-badge">{{ event.category }}</nx-badge>
+                            </div>
+                            <div class="events-card-info">
+                                <div class="events-card-date">{{ event.date }} · {{ event.time }}</div>
+                                <div class="events-card-title">{{ event.title }}</div>
+                                <div class="events-card-venue">
+                                    <nx-icon icon="nx-map-pin" variant="svg" [size]="12"></nx-icon>
+                                    {{ event.venue }}
+                                </div>
+                                <div class="events-card-price">From ${{ event.tiers[0].price }}</div>
+                            </div>
+                        </button>
+                    }
+                </div>
+            } @else {
+                <nx-calendar
+                    class="events-calendar"
+                    [events]="calendarEvents()"
+                    [(view)]="calView"
+                    [(currentDate)]="calDate"
+                    (eventClick)="onCalendarEventClick($event)">
+                </nx-calendar>
+            }
+        </div>
+    } @else if (!checkingOut()) {
+        <div class="events-detail">
+            <button type="button" class="events-back" (click)="backToEvents()">
+                <nx-icon icon="nx-chevron-left" variant="svg" [size]="14"></nx-icon>
+                All events
+            </button>
+
+            <div class="events-detail-image" [style.background]="selectedEvent()!.swatch">
+                <nx-icon [icon]="selectedEvent()!.icon" variant="svg" [size]="48"></nx-icon>
+            </div>
+
+            <div class="events-detail-body">
+                <div class="events-detail-main">
+                    <nx-badge variant="secondary">{{ selectedEvent()!.category }}</nx-badge>
+                    <h2>{{ selectedEvent()!.title }}</h2>
+                    <div class="events-detail-meta">
+                        <span><nx-icon icon="nx-calendar" variant="svg" [size]="14"></nx-icon> {{ selectedEvent()!.date }} · {{ selectedEvent()!.time }}</span>
+                        <span><nx-icon icon="nx-map-pin" variant="svg" [size]="14"></nx-icon> {{ selectedEvent()!.venue }}</span>
+                    </div>
+                    <p class="events-detail-description">{{ selectedEvent()!.description }}</p>
+                </div>
+
+                <div class="events-tiers-card">
+                    <h3>Select tickets</h3>
+                    @for (tier of selectedEvent()!.tiers; track tier.id) {
+                        <div class="events-tier-row">
+                            <div class="events-tier-info">
+                                <div class="events-tier-name">{{ tier.name }}</div>
+                                <div class="events-tier-desc">{{ tier.description }}</div>
+                                <div class="events-tier-price">${{ tier.price }}</div>
+                            </div>
+                            <div class="events-tier-stepper">
+                                <button type="button" (click)="decrementQty(tier.id)" [disabled]="qtyFor(tier.id) === 0">
+                                    <nx-icon icon="nx-minus" variant="svg" [size]="12"></nx-icon>
+                                </button>
+                                <span>{{ qtyFor(tier.id) }}</span>
+                                <button type="button" (click)="incrementQty(tier.id)">
+                                    <nx-icon icon="nx-plus" variant="svg" [size]="12"></nx-icon>
+                                </button>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="events-tiers-total">
+                        <span>{{ totalTickets() }} ticket(s)</span>
+                        <strong>${{ orderTotal() }}</strong>
+                    </div>
+
+                    <nx-button variant="primary" [fullWidth]="true" [disabled]="totalTickets() === 0" (click)="goToCheckout()">Checkout</nx-button>
+                </div>
+            </div>
+        </div>
+    } @else if (!confirmed()) {
+        <div class="events-checkout">
+            <button type="button" class="events-back" (click)="backToTiers()">
+                <nx-icon icon="nx-chevron-left" variant="svg" [size]="14"></nx-icon>
+                Back
+            </button>
+
+            <h2>Checkout</h2>
+
+            <div class="events-checkout-summary">
+                @for (line of selectedTierLines(); track line.tier.id) {
+                    <div class="events-checkout-row">
+                        <span>{{ line.qty }}× {{ line.tier.name }}</span>
+                        <span>${{ line.tier.price * line.qty }}</span>
+                    </div>
+                }
+                <div class="events-checkout-row events-checkout-total">
+                    <span>Total</span>
+                    <span>${{ orderTotal() }}</span>
+                </div>
+            </div>
+
+            <div class="events-checkout-form">
+                <nx-input label="Full name" placeholder="Jane Doe" [(ngModel)]="name"></nx-input>
+                <nx-input label="Email" type="email" placeholder="jane@example.com" [(ngModel)]="email"></nx-input>
+            </div>
+
+            <nx-button variant="primary" [fullWidth]="true" [disabled]="!name.trim() || !email.trim()" (click)="confirmOrder()">
+                Confirm order
+            </nx-button>
+        </div>
+    } @else {
+        <div class="events-checkout events-success">
+            <nx-badge variant="success" rounded>Confirmed</nx-badge>
+            <h2>You're going, {{ name }}!</h2>
+            <p>{{ totalTickets() }} ticket(s) for {{ selectedEvent()!.title }} on {{ selectedEvent()!.date }}.</p>
+            <p class="events-success-note">A confirmation was sent to {{ email }}.</p>
+            <nx-button variant="secondary" (click)="backToEvents()">Browse more events</nx-button>
+        </div>
+    }
+
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

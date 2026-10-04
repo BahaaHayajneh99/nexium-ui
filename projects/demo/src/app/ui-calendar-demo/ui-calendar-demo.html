@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Day / Week / Month / Year Views"
+                description="{{ commonService.appName }} Calendar - switch views with the tabs, navigate with the arrows or jump back to Today, click an event pill to select it, and in Year view click any day or month name to jump straight to Month view at that date. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-calendar
+                    [events]="events"
+                    [view]="view"
+                    (viewChange)="onViewChange($event)"
+                    [currentDate]="currentDate"
+                    (currentDateChange)="onCurrentDateChange($event)"
+                    (eventClick)="onEventClick($event)"
+                    (dayClick)="onDayClick($event)">
+                </nx-calendar>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

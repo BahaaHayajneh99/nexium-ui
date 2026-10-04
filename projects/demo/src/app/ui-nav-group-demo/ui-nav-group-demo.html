@@ -1,0 +1,61 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Nav Group"
+                description="The {{ commonService.appName }} Nav Group is a collapsible, labeled group of nav links - typically nested inside a sidebar. Links are projected via the default content slot."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:260px;">
+                    <nx-nav-group label="Workspace" icon="nx-folder">
+                        <a href="javascript:void(0)">Overview</a>
+                        <a href="javascript:void(0)">Members</a>
+                        <a href="javascript:void(0)">Settings</a>
+                    </nx-nav-group>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Collapsed by Default"
+                description="Set defaultExpanded to false to start the group collapsed - click the header to expand it."
+                [code]="collapsedCode"
+                [tsCode]="collapsedTs"
+                [hasSampleClass]="false">
+                <div style="max-width:260px;">
+                    <nx-nav-group label="Archived" icon="nx-folder-open" [defaultExpanded]="false">
+                        <a href="javascript:void(0)">2023 projects</a>
+                        <a href="javascript:void(0)">2022 projects</a>
+                    </nx-nav-group>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Sidebar Section"
+                description="A typical use case - stacking several groups to build a sidebar section."
+                [code]="sidebarCode"
+                [tsCode]="sidebarTs"
+                [hasSampleClass]="false">
+                <div style="max-width:260px; display:flex; flex-direction:column; gap:4px;">
+                    <nx-nav-group label="Workspace" icon="nx-folder">
+                        <a href="javascript:void(0)">Overview</a>
+                        <a href="javascript:void(0)">Members</a>
+                    </nx-nav-group>
+                    <nx-nav-group label="Reports" icon="nx-chart-bar" [defaultExpanded]="false">
+                        <a href="javascript:void(0)">Weekly summary</a>
+                        <a href="javascript:void(0)">Exports</a>
+                    </nx-nav-group>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

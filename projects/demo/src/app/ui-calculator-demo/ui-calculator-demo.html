@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Calculator"
+                description="The {{ commonService.appName }} Calculator is an expression-based scientific calculator - type a full expression and it respects operator precedence and parentheses, rather than evaluating button presses one at a time. It supports +, -, ×, ÷, %, powers, parentheses, a memory bank (MC/MR/M+/M-), and keeps a run history you can click back into. Switch to Scientific mode for sin/cos/tan and their inverses, log/ln, square root, factorial, π/e constants, and a DEG/RAD switch that affects every trig function. Both mouse/touch and keyboard input work - try typing directly."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-calculator></nx-calculator>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

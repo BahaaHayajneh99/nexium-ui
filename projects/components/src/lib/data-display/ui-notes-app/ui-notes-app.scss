@@ -38,6 +38,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: var(--nx-spacing-md, 16px);
+    margin-top: var(--nx-spacing-md, 16px);
 }
 
 .nx-note-card {

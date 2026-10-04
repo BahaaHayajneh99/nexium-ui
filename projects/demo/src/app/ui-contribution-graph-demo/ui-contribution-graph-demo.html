@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Year of Activity"
+                description="The {{ commonService.appName }} Contribution Graph renders a GitHub-style activity heatmap: one square per day, grouped into week columns, bucketed into 5 intensity levels of a base color. Hover any square for the exact date and count - this example generates ~365 days of randomized synthetic activity, including plenty of zero-activity days."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-contribution-graph [data]="activityData"></nx-contribution-graph>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Window & Color Scale"
+                description="Both weeks (how many week-columns to render) and colorScale (the 5 intensity colors) are overridable - here a shorter 12-week window with a blue palette instead of the default green."
+                [code]="customCode"
+                [tsCode]="customTs"
+                [hasSampleClass]="false">
+                <nx-contribution-graph
+                    [data]="recentData"
+                    [weeks]="12"
+                    [colorScale]="customColorScale">
+                </nx-contribution-graph>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

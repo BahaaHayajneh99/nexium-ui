@@ -1,0 +1,8 @@
+<div class="nx-environment-switcher">
+    @for (env of environments; track env.id) {
+        <button type="button" class="nx-environment-switcher-item" [class.active]="env.id === activeId" (click)="select(env.id)">
+            <span class="nx-environment-switcher-dot" [style.background-color]="env.color ?? 'var(--shell-text-secondary)'"></span>
+            {{ env.label }}
+        </button>
+    }
+</div>

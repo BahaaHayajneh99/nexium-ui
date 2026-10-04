@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Flat AND-ed conditions"
+                description="Add, edit and remove field/operator/value rows - every row is implicitly AND-ed together. {{ commonService.appName }}'s Filter Builder emits the updated list via conditionsChange, so [(conditions)] two-way binding just works."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:640px;">
+                    <nx-filter-builder [fields]="fields" [(conditions)]="conditions"></nx-filter-builder>
+                    <pre style="margin-top:16px; padding:12px; background:var(--shell-surface); border:1px solid var(--shell-border); border-radius:8px; font-size:0.8rem; overflow:auto;">{{ conditions | json }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

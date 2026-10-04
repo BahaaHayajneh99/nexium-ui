@@ -1,0 +1,78 @@
+.nx-api-response-viewer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    overflow: hidden;
+}
+
+.nx-api-response-viewer-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px 0;
+}
+
+.nx-api-response-viewer-duration {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-api-response-viewer-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 0 14px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-api-response-viewer-tab {
+    padding: 8px 4px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-api-response-viewer-tab.active {
+    color: var(--shell-primary);
+    border-bottom-color: var(--shell-primary);
+}
+
+.nx-api-response-viewer-content {
+    padding: 0 14px 14px;
+}
+
+.nx-api-response-viewer-raw {
+    margin: 0;
+    padding: 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+}
+
+.nx-api-response-viewer-headers-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-api-response-viewer-headers-table td {
+    padding: 5px 0;
+    border-bottom: 1px solid var(--shell-border);
+    color: var(--shell-text);
+}
+
+.nx-api-response-viewer-header-key {
+    width: 200px;
+    color: var(--shell-text-secondary);
+}

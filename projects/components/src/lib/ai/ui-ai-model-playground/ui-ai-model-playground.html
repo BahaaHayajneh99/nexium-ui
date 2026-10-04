@@ -1,0 +1,72 @@
+@if (licensed()) {
+    <div class="nx-playground">
+        <div class="nx-playground-controls">
+            <label class="nx-pg-field">
+                <span class="nx-pg-field-label">Model</span>
+                <nx-model-selector
+                    [models]="models"
+                    [selectedId]="selectedModelId()"
+                    (selectedIdChange)="onModelChange($event)">
+                </nx-model-selector>
+            </label>
+
+            <label class="nx-pg-field">
+                <span class="nx-pg-field-label">Temperature <span class="nx-pg-field-value">{{ temperature() }}</span></span>
+                <input
+                    type="range"
+                    min="0"
+                    max="2"
+                    step="0.1"
+                    [value]="temperature()"
+                    (input)="onTemperatureInput($any($event.target).value)" />
+            </label>
+
+            <label class="nx-pg-field">
+                <span class="nx-pg-field-label">Max tokens <span class="nx-pg-field-value">{{ maxTokens() }}</span></span>
+                <input
+                    type="range"
+                    min="1"
+                    max="4096"
+                    step="1"
+                    [value]="maxTokens()"
+                    (input)="onMaxTokensInput($any($event.target).value)" />
+            </label>
+
+            <label class="nx-pg-field">
+                <span class="nx-pg-field-label">Top P <span class="nx-pg-field-value">{{ topP() }}</span></span>
+                <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    [value]="topP()"
+                    (input)="onTopPInput($any($event.target).value)" />
+            </label>
+        </div>
+
+        <div class="nx-playground-main">
+            <textarea
+                class="nx-pg-prompt"
+                rows="4"
+                placeholder="Write a prompt to test..."
+                [value]="prompt()"
+                (input)="onPromptInput($any($event.target).value)"></textarea>
+
+            <button type="button" class="nx-pg-run-btn" [disabled]="!canRun" (click)="onRun()">
+                {{ isRunning ? 'Running...' : 'Run' }}
+            </button>
+
+            <div class="nx-pg-response">
+                @if (isRunning) {
+                    <div class="nx-pg-running">Running against the selected model's simulated parameters...</div>
+                } @else if (response) {
+                    <nx-ai-response-viewer [content]="response"></nx-ai-response-viewer>
+                } @else {
+                    <div class="nx-pg-empty">Run the prompt to see a response here.</div>
+                }
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="AI Model Playground"></nx-pro-locked>
+}

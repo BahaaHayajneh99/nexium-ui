@@ -1,0 +1,83 @@
+@if (licensed()) {
+    <div class="nx-word-viewer">
+        <div class="nx-word-toolbar">
+            <span class="nx-word-title">{{ title }}</span>
+            <span class="nx-word-count">{{ wordCount() }} words</span>
+            <div class="nx-word-actions">
+                <button type="button" (click)="zoomOut()" aria-label="Zoom out">
+                    <nx-icon icon="nx-minus" variant="svg" [size]="14"></nx-icon>
+                </button>
+                <span class="nx-word-zoom-label">{{ zoom() }}%</span>
+                <button type="button" (click)="zoomIn()" aria-label="Zoom in">
+                    <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                </button>
+                <span class="nx-word-sep"></span>
+                <button type="button" (click)="print()" aria-label="Print">
+                    <nx-icon icon="nx-file" variant="svg" [size]="14"></nx-icon>
+                    Print
+                </button>
+            </div>
+        </div>
+
+        <div class="nx-word-canvas">
+            <div class="nx-word-page" [style.transform]="'scale(' + zoom() / 100 + ')'">
+                @for (group of renderGroups(); track $index) {
+                    @switch (group.type) {
+                        @case ('heading1') {
+                            <h1 class="nx-word-h1">
+                                @for (run of group.items[0].runs; track $index) {
+                                    <span [class.bold]="run.bold" [class.italic]="run.italic" [class.underline]="run.underline">{{ run.text }}</span>
+                                }
+                            </h1>
+                        }
+                        @case ('heading2') {
+                            <h2 class="nx-word-h2">
+                                @for (run of group.items[0].runs; track $index) {
+                                    <span [class.bold]="run.bold" [class.italic]="run.italic" [class.underline]="run.underline">{{ run.text }}</span>
+                                }
+                            </h2>
+                        }
+                        @case ('heading3') {
+                            <h3 class="nx-word-h3">
+                                @for (run of group.items[0].runs; track $index) {
+                                    <span [class.bold]="run.bold" [class.italic]="run.italic" [class.underline]="run.underline">{{ run.text }}</span>
+                                }
+                            </h3>
+                        }
+                        @case ('bullet') {
+                            <ul class="nx-word-list">
+                                @for (item of group.items; track $index) {
+                                    <li>
+                                        @for (run of item.runs; track $index) {
+                                            <span [class.bold]="run.bold" [class.italic]="run.italic" [class.underline]="run.underline">{{ run.text }}</span>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        @case ('numbered') {
+                            <ol class="nx-word-list">
+                                @for (item of group.items; track $index) {
+                                    <li>
+                                        @for (run of item.runs; track $index) {
+                                            <span [class.bold]="run.bold" [class.italic]="run.italic" [class.underline]="run.underline">{{ run.text }}</span>
+                                        }
+                                    </li>
+                                }
+                            </ol>
+                        }
+                        @default {
+                            <p class="nx-word-paragraph">
+                                @for (run of group.items[0].runs; track $index) {
+                                    <span [class.bold]="run.bold" [class.italic]="run.italic" [class.underline]="run.underline">{{ run.text }}</span>
+                                }
+                            </p>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Word Viewer"></nx-pro-locked>
+}

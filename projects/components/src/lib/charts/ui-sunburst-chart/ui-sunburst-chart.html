@@ -1,0 +1,29 @@
+@if (licensed()) {
+    <div class="nx-chart nx-sunburst-chart">
+        <div class="nx-chart-canvas nx-sunburst-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (arc of arcs(); track arc.key) {
+                    <path
+                        class="nx-sunburst-arc"
+                        [attr.d]="arc.path"
+                        [attr.fill]="arc.color"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="arc.label + ': ' + formatValue(arc.value)">
+                        <title>{{ arc.label }}: {{ formatValue(arc.value) }}</title>
+                    </path>
+                }
+
+                <text class="nx-chart-donut-total" text-anchor="middle" x="150" y="146">
+                    {{ formatValue(rootTotal()) }}
+                </text>
+                <text class="nx-chart-donut-caption" text-anchor="middle" x="150" y="164">
+                    {{ data.label }}
+                </text>
+            </svg>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Sunburst Chart"></nx-pro-locked>
+}

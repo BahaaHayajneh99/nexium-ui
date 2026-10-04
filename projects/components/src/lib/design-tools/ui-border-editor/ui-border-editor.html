@@ -1,0 +1,90 @@
+@if (licensed()) {
+    <div class="nx-border-editor">
+        <div class="nx-border-editor-preview-wrap">
+            <div
+                class="nx-border-editor-preview"
+                [style.border-top]="value.width.top + 'px ' + value.style + ' ' + value.color"
+                [style.border-right]="value.width.right + 'px ' + value.style + ' ' + value.color"
+                [style.border-bottom]="value.width.bottom + 'px ' + value.style + ' ' + value.color"
+                [style.border-left]="value.width.left + 'px ' + value.style + ' ' + value.color"
+                [style.border-top-left-radius.px]="value.radius.topLeft"
+                [style.border-top-right-radius.px]="value.radius.topRight"
+                [style.border-bottom-right-radius.px]="value.radius.bottomRight"
+                [style.border-bottom-left-radius.px]="value.radius.bottomLeft"></div>
+        </div>
+
+        <div class="nx-border-editor-row">
+            <label class="nx-border-editor-field">
+                <span>Style</span>
+                <select [value]="value.style" (change)="setStyle($any($event.target).value)">
+                    <option value="solid">Solid</option>
+                    <option value="dashed">Dashed</option>
+                    <option value="dotted">Dotted</option>
+                    <option value="double">Double</option>
+                </select>
+            </label>
+            <label class="nx-border-editor-field">
+                <span>Color</span>
+                <input type="color" [value]="value.color" (input)="setColor($any($event.target).value)" />
+            </label>
+        </div>
+
+        <div class="nx-border-editor-group">
+            <div class="nx-border-editor-group-header">
+                <span>Width</span>
+                <label class="nx-border-editor-link">
+                    <input type="checkbox" [checked]="linkWidths()" (change)="linkWidths.set($any($event.target).checked)" />
+                    Link sides
+                </label>
+            </div>
+            <div class="nx-border-editor-sides">
+                <label>
+                    Top
+                    <input type="number" min="0" [value]="value.width.top" (input)="setWidth('top', $any($event.target).valueAsNumber)" />
+                </label>
+                <label>
+                    Right
+                    <input type="number" min="0" [value]="value.width.right" (input)="setWidth('right', $any($event.target).valueAsNumber)" />
+                </label>
+                <label>
+                    Bottom
+                    <input type="number" min="0" [value]="value.width.bottom" (input)="setWidth('bottom', $any($event.target).valueAsNumber)" />
+                </label>
+                <label>
+                    Left
+                    <input type="number" min="0" [value]="value.width.left" (input)="setWidth('left', $any($event.target).valueAsNumber)" />
+                </label>
+            </div>
+        </div>
+
+        <div class="nx-border-editor-group">
+            <div class="nx-border-editor-group-header">
+                <span>Radius</span>
+                <label class="nx-border-editor-link">
+                    <input type="checkbox" [checked]="linkRadius()" (change)="linkRadius.set($any($event.target).checked)" />
+                    Link corners
+                </label>
+            </div>
+            <div class="nx-border-editor-sides">
+                <label>
+                    Top left
+                    <input type="number" min="0" [value]="value.radius.topLeft" (input)="setRadius('topLeft', $any($event.target).valueAsNumber)" />
+                </label>
+                <label>
+                    Top right
+                    <input type="number" min="0" [value]="value.radius.topRight" (input)="setRadius('topRight', $any($event.target).valueAsNumber)" />
+                </label>
+                <label>
+                    Bottom right
+                    <input type="number" min="0" [value]="value.radius.bottomRight" (input)="setRadius('bottomRight', $any($event.target).valueAsNumber)" />
+                </label>
+                <label>
+                    Bottom left
+                    <input type="number" min="0" [value]="value.radius.bottomLeft" (input)="setRadius('bottomLeft', $any($event.target).valueAsNumber)" />
+                </label>
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Border Editor"></nx-pro-locked>
+}

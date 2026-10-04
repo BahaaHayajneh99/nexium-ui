@@ -1,0 +1,147 @@
+@if (licensed()) {
+    <div class="nx-doc-scanner">
+
+        @switch (step()) {
+            @case ('capture') {
+                <div class="nx-scan-capture">
+                    @if (cameraActive()) {
+                        <div class="nx-scan-video-wrap">
+                            <video #videoEl class="nx-scan-video" autoplay playsinline muted></video>
+                        </div>
+                        <div class="nx-scan-capture-actions">
+                            <button type="button" class="nx-scan-primary-btn" (click)="capturePhoto()">
+                                <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+                                Capture
+                            </button>
+                            <button type="button" (click)="stopCamera()">Cancel</button>
+                        </div>
+                    } @else {
+                        <div class="nx-scan-intro">
+                            <nx-icon icon="nx-image" variant="svg" [size]="34"></nx-icon>
+                            <p>Scan a physical document using your camera, or upload a photo you already have.</p>
+                            @if (cameraError()) {
+                                <div class="nx-scan-error">
+                                    <nx-icon icon="nx-alert-triangle" variant="svg" [size]="14"></nx-icon>
+                                    {{ cameraError() }}
+                                </div>
+                            }
+                        </div>
+                        <div class="nx-scan-capture-actions">
+                            <button type="button" class="nx-scan-primary-btn" (click)="startCamera()">
+                                <nx-icon icon="nx-video" variant="svg" [size]="14"></nx-icon>
+                                Use Camera
+                            </button>
+                            <label class="nx-scan-upload-btn">
+                                <nx-icon icon="nx-upload" variant="svg" [size]="14"></nx-icon>
+                                Upload a Photo
+                                <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+                            </label>
+                        </div>
+                    }
+                </div>
+            }
+
+            @case ('crop') {
+                <div class="nx-scan-crop">
+                    <p class="nx-scan-hint">Drag the 4 corner handles to frame the document. The dashed box shows the actual crop region that will be used (an axis-aligned bounding box, not a full perspective de-skew).</p>
+
+                    <div
+                        class="nx-scan-crop-wrap"
+                        [style.width.px]="displaySize().w"
+                        [style.height.px]="displaySize().h"
+                        (pointermove)="onCropPointerMove($event)"
+                        (pointerup)="onCropPointerUp()"
+                        (pointerleave)="onCropPointerUp()">
+
+                        <img
+                            #stillImgEl
+                            class="nx-scan-still"
+                            [src]="capturedImage()"
+                            [style.width.px]="displaySize().w"
+                            [style.height.px]="displaySize().h"
+                            alt="Captured document" />
+
+                        <svg class="nx-scan-overlay-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <rect
+                                [attr.x]="bbox().x" [attr.y]="bbox().y" [attr.width]="bbox().w" [attr.height]="bbox().h"
+                                fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="2,1.5" vector-effect="non-scaling-stroke" />
+                            <polygon [attr.points]="quadPoints()" fill="rgba(52,152,219,0.18)" stroke="#3498db" stroke-width="2" vector-effect="non-scaling-stroke" />
+                        </svg>
+
+                        @for (c of corners(); track $index) {
+                            <span
+                                class="nx-scan-corner-handle"
+                                [style.left.%]="c.x * 100"
+                                [style.top.%]="c.y * 100"
+                                (pointerdown)="onCornerPointerDown($event, $index)">
+                            </span>
+                        }
+                    </div>
+
+                    <div class="nx-scan-capture-actions">
+                        <button type="button" (click)="backToCapture()">
+                            <nx-icon icon="nx-arrow-left" variant="svg" [size]="14"></nx-icon>
+                            Back
+                        </button>
+                        <button type="button" (click)="resetCorners()">
+                            <nx-icon icon="nx-refresh" variant="svg" [size]="14"></nx-icon>
+                            Reset Corners
+                        </button>
+                        <button type="button" class="nx-scan-primary-btn" (click)="confirmCrop()">
+                            <nx-icon icon="nx-check" variant="svg" [size]="14"></nx-icon>
+                            Confirm Crop
+                        </button>
+                    </div>
+                </div>
+            }
+
+            @case ('enhance') {
+                <div class="nx-scan-enhance">
+                    <div class="nx-scan-enhance-preview">
+                        <img [src]="enhancedImage() ?? croppedImage()" alt="Enhanced preview" />
+                    </div>
+
+                    <div class="nx-scan-enhance-controls">
+                        <label class="nx-scan-toggle">
+                            <input type="checkbox" [checked]="grayscale()" (change)="setGrayscale($any($event.target).checked)" />
+                            Grayscale
+                        </label>
+
+                        <label class="nx-scan-slider">
+                            Contrast
+                            <input type="range" min="0" max="100" [value]="contrastAmount()" (input)="setContrast(+$any($event.target).value)" />
+                            <span>{{ contrastAmount() }}</span>
+                        </label>
+                    </div>
+
+                    <div class="nx-scan-capture-actions">
+                        <button type="button" (click)="backToCrop()">
+                            <nx-icon icon="nx-arrow-left" variant="svg" [size]="14"></nx-icon>
+                            Back
+                        </button>
+                        <button type="button" class="nx-scan-primary-btn" (click)="useThisScan()">
+                            <nx-icon icon="nx-check" variant="svg" [size]="14"></nx-icon>
+                            Use This Scan
+                        </button>
+                    </div>
+                </div>
+            }
+
+            @case ('result') {
+                <div class="nx-scan-result">
+                    <div class="nx-scan-result-preview">
+                        <img [src]="finalImage()" alt="Final scanned document" />
+                    </div>
+                    <div class="nx-scan-capture-actions">
+                        <button type="button" class="nx-scan-primary-btn" (click)="scanAnother()">
+                            <nx-icon icon="nx-refresh" variant="svg" [size]="14"></nx-icon>
+                            Scan Another
+                        </button>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Document Scanner"></nx-pro-locked>
+}

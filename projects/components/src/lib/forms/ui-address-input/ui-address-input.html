@@ -1,0 +1,56 @@
+<div class="nx-address-input">
+    <nx-input
+        label="Street address"
+        [value]="value.street"
+        [disabled]="disabled"
+        [isRequired]="isRequired"
+        (valueChange)="updateField('street', $event)">
+    </nx-input>
+
+    <nx-input
+        label="Apartment, suite, etc. (optional)"
+        [value]="value.street2"
+        [disabled]="disabled"
+        (valueChange)="updateField('street2', $event)">
+    </nx-input>
+
+    <div class="nx-address-input-row">
+        <nx-input
+            label="City"
+            [value]="value.city"
+            [disabled]="disabled"
+            [isRequired]="isRequired"
+            (valueChange)="updateField('city', $event)">
+        </nx-input>
+
+        <nx-input
+            label="State / Province"
+            [value]="value.state"
+            [disabled]="disabled"
+            (valueChange)="updateField('state', $event)">
+        </nx-input>
+    </div>
+
+    <div class="nx-address-input-row">
+        <nx-input
+            label="Postal code"
+            [value]="value.postalCode"
+            [disabled]="disabled"
+            [isRequired]="isRequired"
+            (valueChange)="updateField('postalCode', $event)">
+        </nx-input>
+
+        <nx-select
+            label="Country"
+            [options]="countries"
+            [value]="value.country"
+            [disabled]="disabled"
+            [isRequired]="isRequired"
+            (valueChange)="updateField('country', $event)">
+        </nx-select>
+    </div>
+
+    @if (displayError) {
+        <span class="nx-address-input-error">{{ displayError }}</span>
+    }
+</div>

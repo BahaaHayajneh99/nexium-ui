@@ -1,0 +1,9 @@
+<span class="nx-copyable-text">
+    @if (label) {
+        <span class="nx-copyable-text-label">{{ label }}</span>
+    }
+    <span class="nx-copyable-text-value" [class.mono]="mono">{{ text }}</span>
+    <button type="button" class="nx-copyable-text-btn" [attr.aria-label]="copied() ? 'Copied' : 'Copy'" (click)="copy()">
+        {{ copied() ? '✓' : '⧉' }}
+    </button>
+</span>

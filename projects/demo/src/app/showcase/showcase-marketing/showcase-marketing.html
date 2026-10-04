@@ -1,0 +1,129 @@
+<div class="marketing-page">
+
+    <nx-navbar [sticky]="true">
+        <div nx-navbar-brand class="marketing-brand">
+            <nx-icon icon="nx-grid" variant="svg" [size]="18"></nx-icon>
+            <span>Nova</span>
+        </div>
+        <div nx-navbar-links>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#testimonials">Testimonials</a>
+        </div>
+        <div nx-navbar-actions class="marketing-nav-actions">
+            <a class="marketing-docs-link" routerLink="/getting-started/introduction">← Docs</a>
+            <nx-button variant="primary" size="small">Start free trial</nx-button>
+        </div>
+    </nx-navbar>
+
+    <section class="marketing-hero">
+        <nx-badge variant="info" rounded>Built entirely with NexiumUI</nx-badge>
+        <h1>Analytics that actually help you grow</h1>
+        <p>Nova turns raw product data into decisions your whole team can act on - live dashboards, no data team required.</p>
+        <div class="marketing-hero-actions">
+            <nx-button variant="primary" size="large">Start free trial</nx-button>
+            <nx-button variant="secondary" size="large">View live demo</nx-button>
+        </div>
+
+        <div class="marketing-hero-stats">
+            <nx-statistic label="Teams" [value]="10000" suffix="+"></nx-statistic>
+            <nx-statistic label="Uptime" [value]="99.9" suffix="%"></nx-statistic>
+            <nx-statistic label="Rating" [value]="4.9" suffix="/5"></nx-statistic>
+        </div>
+    </section>
+
+    <section id="features" class="marketing-section">
+        <h2>Everything your team needs</h2>
+        <p class="marketing-section-subtitle">One workspace, every metric that matters.</p>
+        <div class="marketing-features-grid">
+            @for (feature of features; track feature.title) {
+                <div class="marketing-card marketing-feature-card">
+                    <nx-icon [icon]="feature.icon" variant="svg" [size]="22" class="marketing-feature-icon"></nx-icon>
+                    <h3>{{ feature.title }}</h3>
+                    <p>{{ feature.description }}</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section id="testimonials" class="marketing-section marketing-section-alt">
+        <h2>Loved by fast-moving teams</h2>
+        <div class="marketing-testimonials-grid">
+            @for (testimonial of testimonials; track testimonial.name) {
+                <div class="marketing-card marketing-testimonial-card">
+                    <p class="marketing-testimonial-quote">"{{ testimonial.quote }}"</p>
+                    <div class="marketing-testimonial-author">
+                        <nx-avatar [name]="testimonial.name" size="small"></nx-avatar>
+                        <div>
+                            <div class="marketing-testimonial-name">{{ testimonial.name }}</div>
+                            <div class="marketing-testimonial-role">{{ testimonial.role }}</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section id="pricing" class="marketing-section">
+        <h2>Simple, transparent pricing</h2>
+        <p class="marketing-section-subtitle">Start free. Upgrade when you're ready.</p>
+        <div class="marketing-pricing-grid">
+            @for (plan of plans; track plan.name) {
+                <div class="marketing-card marketing-plan-card" [class.highlighted]="plan.highlighted">
+                    @if (plan.highlighted) {
+                        <nx-badge variant="primary" rounded class="marketing-plan-badge">Most popular</nx-badge>
+                    }
+                    <h3>{{ plan.name }}</h3>
+                    <p class="marketing-plan-description">{{ plan.description }}</p>
+                    <div class="marketing-plan-price">{{ plan.price }}<span>{{ plan.period }}</span></div>
+                    <ul class="marketing-plan-features">
+                        @for (feature of plan.features; track feature) {
+                            <li>
+                                <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+                                {{ feature }}
+                            </li>
+                        }
+                    </ul>
+                    <nx-button [variant]="plan.highlighted ? 'primary' : 'secondary'" [fullWidth]="true">Choose {{ plan.name }}</nx-button>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="marketing-cta">
+        <h2>Ready to see it in action?</h2>
+        <p>No credit card required. Set up your first dashboard in minutes.</p>
+        <nx-button variant="primary" size="large">Start free trial</nx-button>
+    </section>
+
+    <footer class="marketing-footer">
+        <div class="marketing-footer-columns">
+            <div>
+                <div class="marketing-brand">
+                    <nx-icon icon="nx-grid" variant="svg" [size]="16"></nx-icon>
+                    <span>Nova</span>
+                </div>
+                <p>Analytics for growing SaaS teams.</p>
+            </div>
+            <div>
+                <h4>Product</h4>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <a href="#testimonials">Customers</a>
+                <a routerLink="/getting-started/introduction">Built with NexiumUI</a>
+            </div>
+        </div>
+        <p class="marketing-footer-copyright">© 2026 Nova Analytics - a fictional demo product built entirely with NexiumUI components.</p>
+    </footer>
+
+    <nx-cookie-banner
+        message="We use cookies to analyze traffic and improve your experience."
+        storageKey="nova-marketing-consent">
+    </nx-cookie-banner>
+
+</div>
+
+<app-showcase-source-view [tsSource]="tsSource" [htmlSource]="htmlSource"></app-showcase-source-view>

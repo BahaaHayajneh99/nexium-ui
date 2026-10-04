@@ -1,0 +1,23 @@
+@if (licensed()) {
+    <div class="nx-spacing-editor">
+        <div class="nx-spacing-editor-ring margin">
+            <span class="nx-spacing-editor-ring-label">margin</span>
+            <input class="nx-spacing-editor-input top" type="number" min="0" [value]="value.margin.top" (input)="setMargin('top', $any($event.target).valueAsNumber)" />
+            <input class="nx-spacing-editor-input right" type="number" min="0" [value]="value.margin.right" (input)="setMargin('right', $any($event.target).valueAsNumber)" />
+            <input class="nx-spacing-editor-input bottom" type="number" min="0" [value]="value.margin.bottom" (input)="setMargin('bottom', $any($event.target).valueAsNumber)" />
+            <input class="nx-spacing-editor-input left" type="number" min="0" [value]="value.margin.left" (input)="setMargin('left', $any($event.target).valueAsNumber)" />
+
+            <div class="nx-spacing-editor-ring padding">
+                <span class="nx-spacing-editor-ring-label">padding</span>
+                <input class="nx-spacing-editor-input top" type="number" min="0" [value]="value.padding.top" (input)="setPadding('top', $any($event.target).valueAsNumber)" />
+                <input class="nx-spacing-editor-input right" type="number" min="0" [value]="value.padding.right" (input)="setPadding('right', $any($event.target).valueAsNumber)" />
+                <input class="nx-spacing-editor-input bottom" type="number" min="0" [value]="value.padding.bottom" (input)="setPadding('bottom', $any($event.target).valueAsNumber)" />
+                <input class="nx-spacing-editor-input left" type="number" min="0" [value]="value.padding.left" (input)="setPadding('left', $any($event.target).valueAsNumber)" />
+
+                <div class="nx-spacing-editor-content">content</div>
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Spacing Editor"></nx-pro-locked>
+}

@@ -1,0 +1,33 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Connection Status"
+                description="The {{ commonService.appName }} Connection Status is a small inline pill reporting the browser's connectivity - drop it in a navbar or status bar."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+                <nx-connection-status></nx-connection-status>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Manually Controlled"
+                description="Pass status to drive it yourself instead of auto-detecting."
+                [code]="manualCode"
+                [tsCode]="manualTs">
+                <nx-connection-status [status]="demoStatus"></nx-connection-status>
+                <button type="button" class="demo-btn" style="margin-left: 12px;" (click)="toggle()">
+                    Toggle
+                </button>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>
