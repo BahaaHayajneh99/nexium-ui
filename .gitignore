@@ -8,8 +8,26 @@
 
 # Node
 /node_modules
+functions/node_modules
 npm-debug.log
 yarn-error.log
+
+# Firebase
+.firebase/
+firebase-debug.log
+database-debug.log
+ui-debug.log
+functions/.env
+functions/.env.*
+functions/.secret.local
+*serviceAccountKey*.json
+service-account*.json
+/emulator-data
+
+# Vercel (api/*.js local dev secrets - PAYPAL_CLIENT_SECRET, RESEND_API_KEY, FIREBASE_PRIVATE_KEY, etc.)
+.vercel
+/.env
+/.env.local
 
 # IDEs and editors
 .idea/
