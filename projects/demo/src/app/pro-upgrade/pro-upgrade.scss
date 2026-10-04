@@ -131,6 +131,29 @@
     letter-spacing: .03em;
 }
 
+.pro-upgrade-plan-discount {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--shell-success, #16a34a);
+    background-color: color-mix(in srgb, var(--shell-success, #16a34a) 15%, transparent);
+    padding: 1px 6px;
+    border-radius: var(--nx-radius-full, 999px);
+    letter-spacing: .02em;
+}
+
+.pro-upgrade-plan-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.pro-upgrade-plan-price-original {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--shell-text-secondary);
+    text-decoration: line-through;
+}
+
 .pro-upgrade-plan-price {
     font-size: 26px;
     font-weight: 800;

@@ -35,6 +35,11 @@ const PAYPAL_CLIENT_ID = 'AVY9yInizkzznTcIrCEzsNZk4W8lFvmMcrXnB6Eusejmc2Tx43SZwD
 export type NxPlan = 'lifetime' | 'yearly';
 const PLAN_PRICES: Record<NxPlan, string> = { lifetime: '199.00', yearly: '59.00' };
 
+// Display-only "was" price for the strikethrough/discount badge - purely cosmetic, never sent to
+// PayPal or checked by the server. Lets the real charged price (PLAN_PRICES above) be raised
+// gradually over time just by shrinking the discount, without ever touching checkout/verification.
+const DISPLAY_ORIGINAL_PRICES: Record<NxPlan, string> = { lifetime: '299.00', yearly: '99.00' };
+
 // The Cloud Function that server-side-verifies the PayPal order and hands out a real token from
 // the license pool - see functions/index.js (claimLicenseToken). No token generation happens in
 // the browser anymore; the client never sees anything it could forge or replay.
@@ -67,6 +72,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export class ProUpgrade implements OnInit {
   selectedPlan = signal<NxPlan>('lifetime');
   plans = PLAN_PRICES;
+  originalPlans = DISPLAY_ORIGINAL_PRICES;
   checkoutFailed = signal(false);
   claimFailed = signal(false);
   licenseToken = signal<string | null>(null);
@@ -77,6 +83,13 @@ export class ProUpgrade implements OnInit {
 
   get price(): string {
     return this.plans[this.selectedPlan()];
+  }
+
+  /** Whole-number discount badge (e.g. 33 for "33% OFF"), derived from the two display prices. */
+  discountPercent(plan: NxPlan): number {
+    const original = Number(this.originalPlans[plan]);
+    const current = Number(this.plans[plan]);
+    return Math.round((1 - current / original) * 100);
   }
 
   selectPlan(plan: NxPlan): void {

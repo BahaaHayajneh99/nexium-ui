@@ -61,7 +61,11 @@
                     [class.selected]="selectedPlan() === 'lifetime'"
                     (click)="selectPlan('lifetime')">
                     <span class="pro-upgrade-plan-name">One-time</span>
-                    <span class="pro-upgrade-plan-price">${{ plans.lifetime }}</span>
+                    <span class="pro-upgrade-plan-discount">{{ discountPercent('lifetime') }}% OFF</span>
+                    <span class="pro-upgrade-plan-price-row">
+                        <span class="pro-upgrade-plan-price-original">${{ originalPlans.lifetime }}</span>
+                        <span class="pro-upgrade-plan-price">${{ plans.lifetime }}</span>
+                    </span>
                     <span class="pro-upgrade-plan-note">pay once, use forever</span>
                 </button>
                 <button
@@ -70,7 +74,11 @@
                     [class.selected]="selectedPlan() === 'yearly'"
                     (click)="selectPlan('yearly')">
                     <span class="pro-upgrade-plan-name">Yearly</span>
-                    <span class="pro-upgrade-plan-price">${{ plans.yearly }}<span class="pro-upgrade-plan-suffix">/year</span></span>
+                    <span class="pro-upgrade-plan-discount">{{ discountPercent('yearly') }}% OFF</span>
+                    <span class="pro-upgrade-plan-price-row">
+                        <span class="pro-upgrade-plan-price-original">${{ originalPlans.yearly }}</span>
+                        <span class="pro-upgrade-plan-price">${{ plans.yearly }}<span class="pro-upgrade-plan-suffix">/year</span></span>
+                    </span>
                     <span class="pro-upgrade-plan-note">renews manually each year</span>
                 </button>
             </div>

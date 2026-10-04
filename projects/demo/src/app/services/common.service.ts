@@ -57,7 +57,7 @@ export class CommonService {
    * immediately, with no network call - useful while the license backend isn't deployed yet.
    * Flip to `true` to run the real check against the live license pool.
    */
-  readonly isEnablePro = false;
+  readonly isEnablePro = true;
 
 //Theme Colors - reference the CSS custom properties defined in styles.scss
 // (`:root { --primary-color: ...; }`), so TS stays in sync with the SCSS
