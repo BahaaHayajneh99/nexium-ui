@@ -32,7 +32,7 @@ interface PaypalOrderActions {
 const PAYPAL_CLIENT_ID =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
     ? 'AVY9yInizkzznTcIrCEzsNZk4W8lFvmMcrXnB6Eusejmc2Tx43SZwDJ1zXrVshkHVG3yhIjqd5gKWTM4'
-    : 'BAAI4KU4z3WNW51eywudLwGBCUoIVtotmgTGpfcAKzIfKKzGp7XedHwNR3Zv8A2Gp9Mu9UVXGqT432UikA';
+    : 'BAAl4KU4z3WNW51eywudLwGBCUolVtotmgTGpfcAKzIfKKzGp7XedHwNR3Zv8A2Gp9Mu9UVXGqT432UikA';
 
 // Must stay in sync with PLAN_PRICES in functions/index.js - the server derives which plan was
 // bought purely from the amount PayPal confirms was paid, never from anything the client asserts.
