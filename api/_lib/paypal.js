@@ -3,7 +3,7 @@
 // actually confirms was paid, never trusted from the client.
 // TEMP-TEST-PRICE: yearly dropped to $1 to validate the live checkout end-to-end cheaply -
 // revert to '59.00' right after the test purchase is confirmed working.
-const PLAN_PRICES = { lifetime: '199.00', yearly: '1.00' };
+const PLAN_PRICES = { lifetime: '199.00', yearly: '0.10' };
 
 /** OAuth2 client-credentials token for PayPal's REST API - never exposed to any client. */
 async function getPaypalAccessToken(apiBase, clientId, clientSecret) {
