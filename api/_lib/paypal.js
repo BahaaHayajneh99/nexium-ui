@@ -1,7 +1,9 @@
 // Must stay in sync with PLAN_PRICES in projects/demo/src/app/pro-upgrade/pro-upgrade.ts - the
 // client renders these same two prices, but the PLAN is always derived here from what PayPal
 // actually confirms was paid, never trusted from the client.
-const PLAN_PRICES = { lifetime: '199.00', yearly: '59.00' };
+// TEMP-TEST-PRICE: yearly dropped to $1 to validate the live checkout end-to-end cheaply -
+// revert to '59.00' right after the test purchase is confirmed working.
+const PLAN_PRICES = { lifetime: '199.00', yearly: '1.00' };
 
 /** OAuth2 client-credentials token for PayPal's REST API - never exposed to any client. */
 async function getPaypalAccessToken(apiBase, clientId, clientSecret) {
