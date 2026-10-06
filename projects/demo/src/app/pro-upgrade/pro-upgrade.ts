@@ -156,7 +156,11 @@ export class ProUpgrade implements OnInit {
     }
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=USD`;
+      // disable-funding hides the PayPal-wallet-login button (and other alt wallets), leaving
+      // only the "Debit or Credit Card" button rendered - temporary, while the live PayPal
+      // account's own verification/self-payment issues get sorted out. Remove this param to
+      // bring the PayPal button back once that's resolved.
+      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=USD&disable-funding=paypal,venmo,paylater,credit`;
       script.onload = () => resolve();
       script.onerror = () => reject(new Error('Failed to load the PayPal SDK'));
       document.body.appendChild(script);
