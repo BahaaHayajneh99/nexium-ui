@@ -1,5 +1,6 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CommonService } from '../services/common.service';
 
 declare const paypal: {
   FUNDING: { CARD: string };
@@ -79,6 +80,8 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   styleUrl: './pro-upgrade.scss',
 })
 export class ProUpgrade implements OnInit {
+  private readonly commonService = inject(CommonService);
+
   selectedPlan = signal<NxPlan>('lifetime');
   plans = PLAN_PRICES;
   originalPlans = DISPLAY_ORIGINAL_PRICES;
@@ -171,10 +174,10 @@ export class ProUpgrade implements OnInit {
   private renderButtons(): void {
     paypal
       .Buttons({
-        // Card-only for now, temporarily - the live account's verification hold and
-        // self-payment restriction make the PayPal-wallet-login path untestable. Remove this
-        // to bring the normal PayPal button back once those are resolved.
-        fundingSource: paypal.FUNDING.CARD,
+        // CommonService.showPaypalWalletButton is the kill switch - card-only while it's
+        // false (live account verification hold / self-payment restriction make the
+        // PayPal-wallet-login path untestable), normal PayPal button once it's flipped back on.
+        ...(this.commonService.showPaypalWalletButton ? {} : { fundingSource: paypal.FUNDING.CARD }),
         createOrder: (_data, actions) =>
           actions.order.create({
             purchase_units: [{ amount: { value: this.price } }],

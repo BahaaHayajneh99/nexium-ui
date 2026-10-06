@@ -61,6 +61,15 @@ export class CommonService {
    */
   readonly isEnablePro = false;
 
+  /**
+   * Kill switch for the PayPal-wallet-login button on /pro-upgrade. `false` renders a
+   * card-only checkout (fundingSource: paypal.FUNDING.CARD) - set while the live PayPal
+   * business account has an open verification hold and the self-payment restriction makes the
+   * wallet-login path untestable. Flip to `true` to bring the normal PayPal button back once
+   * those are resolved.
+   */
+  readonly showPaypalWalletButton = false;
+
 //Theme Colors - reference the CSS custom properties defined in styles.scss
 // (`:root { --primary-color: ...; }`), so TS stays in sync with the SCSS
 // palette instead of duplicating raw hex values.
