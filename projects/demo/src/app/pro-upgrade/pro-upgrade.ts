@@ -2,7 +2,9 @@ import { Component, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 declare const paypal: {
+  FUNDING: { CARD: string };
   Buttons: (config: {
+    fundingSource?: string;
     createOrder: (data: unknown, actions: PaypalOrderActions) => Promise<string>;
     onApprove: (data: unknown, actions: PaypalOrderActions) => Promise<void>;
   }) => { render: (selector: string) => void };
@@ -156,11 +158,10 @@ export class ProUpgrade implements OnInit {
     }
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      // disable-funding hides the PayPal-wallet-login button (and other alt wallets), leaving
-      // only the "Debit or Credit Card" button rendered - temporary, while the live PayPal
-      // account's own verification/self-payment issues get sorted out. Remove this param to
-      // bring the PayPal button back once that's resolved.
-      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=USD&disable-funding=paypal,venmo,paylater,credit`;
+      // disable-funding only accepts secondary funding sources (venmo/paylater/credit, not
+      // "paypal" itself - the SDK script 400s if you try) - the main PayPal wallet button is
+      // hidden separately below via fundingSource: paypal.FUNDING.CARD on the Buttons() call.
+      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=USD&disable-funding=venmo,paylater,credit`;
       script.onload = () => resolve();
       script.onerror = () => reject(new Error('Failed to load the PayPal SDK'));
       document.body.appendChild(script);
@@ -170,6 +171,10 @@ export class ProUpgrade implements OnInit {
   private renderButtons(): void {
     paypal
       .Buttons({
+        // Card-only for now, temporarily - the live account's verification hold and
+        // self-payment restriction make the PayPal-wallet-login path untestable. Remove this
+        // to bring the normal PayPal button back once those are resolved.
+        fundingSource: paypal.FUNDING.CARD,
         createOrder: (_data, actions) =>
           actions.order.create({
             purchase_units: [{ amount: { value: this.price } }],
