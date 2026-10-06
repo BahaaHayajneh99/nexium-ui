@@ -68,7 +68,7 @@ export class CommonService {
    * wallet-login path untestable. Flip to `true` to bring the normal PayPal button back once
    * those are resolved.
    */
-  readonly showPaypalWalletButton = false;
+  readonly showPaypalWalletButton = true;
 
 //Theme Colors - reference the CSS custom properties defined in styles.scss
 // (`:root { --primary-color: ...; }`), so TS stays in sync with the SCSS
