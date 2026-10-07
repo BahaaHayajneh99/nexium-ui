@@ -195,6 +195,7 @@ export const SEARCH_INDEX: NxSearchItem[] = [
   { label: 'Dropzone', path: '/dropzone', group: 'Components' },
   { label: 'Gallery', path: '/gallery', group: 'Components' },
   { label: 'Preview', path: '/preview', group: 'Components' },
+  { label: 'QR Code', path: '/qr-code', group: 'Components' },
   { label: 'Carousel', path: '/carousel', group: 'Components' },
   { label: 'Image Editor', path: '/image-editor', group: 'Components' },
   { label: 'Document Scanner', path: '/document-scanner', group: 'Components' },

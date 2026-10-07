@@ -260,6 +260,7 @@ import { AudioUploadDemo } from './audio-upload-demo/audio-upload-demo';
 import { DocumentUploadDemo } from './document-upload-demo/document-upload-demo';
 import { UiGalleryDemo } from './ui-gallery-demo/ui-gallery-demo';
 import { UiPreviewDemo } from './ui-preview-demo/ui-preview-demo';
+import { UiQrCodeDemo } from './ui-qr-code-demo/ui-qr-code-demo';
 import { UiCarouselDemo } from './ui-carousel-demo/ui-carousel-demo';
 import { UiBreadcrumbDemo } from './ui-breadcrumb-demo/ui-breadcrumb-demo';
 import { UiPaginationDemo } from './ui-pagination-demo/ui-pagination-demo';
@@ -1077,6 +1078,10 @@ export const routes: Routes = [
     {
         path: 'preview',
         component: UiPreviewDemo
+    },
+    {
+        path: 'qr-code',
+        component: UiQrCodeDemo
     },
     {
         path: 'carousel',

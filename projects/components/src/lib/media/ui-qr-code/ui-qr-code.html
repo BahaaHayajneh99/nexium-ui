@@ -1,0 +1,14 @@
+<div
+    class="nx-qr-code"
+    [style.width.px]="size"
+    [style.height.px]="size"
+    role="img"
+    [attr.aria-label]="value ? ('QR code for ' + value) : 'QR code (no data)'">
+
+    <canvas #canvasEl class="nx-qr-code-canvas"></canvas>
+
+    @if (errorMessage) {
+        <span class="nx-qr-code-error">{{ errorMessage }}</span>
+    }
+
+</div>

@@ -1,0 +1,40 @@
+.nx-qr-code {
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    line-height: 0;
+
+}
+
+.nx-qr-code-canvas {
+
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+
+}
+
+.nx-qr-code-error {
+
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px;
+
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--danger-color, #e74c3c);
+    text-align: center;
+
+    background: var(--shell-surface-hover);
+
+}

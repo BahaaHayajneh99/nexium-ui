@@ -1,0 +1,105 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic QR Code"
+                description="{{ commonService.appName }} encodes the value as a real, scannable QR Code entirely on the client - the ISO/IEC 18004 encoding (Reed-Solomon error correction, module placement, mask selection) runs in plain TypeScript, no server round-trip and no external dependency."
+                [code]="basicCode">
+
+                <nx-qr-code value="https://nexium-ui.dev"></nx-qr-code>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Error Correction Levels"
+                description="errorCorrectionLevel controls how much of the symbol can be damaged (or covered by a logo) and still scan - from L (~7% recovery) up to H (~30% recovery). Higher levels need more modules for the same data, so the rendered symbol gets denser."
+                [code]="errorCorrectionCode">
+
+                <div class="qr-row">
+                    <div class="qr-swatch">
+                        <nx-qr-code value="NexiumUI" errorCorrectionLevel="L"></nx-qr-code>
+                        <span>L</span>
+                    </div>
+                    <div class="qr-swatch">
+                        <nx-qr-code value="NexiumUI" errorCorrectionLevel="M"></nx-qr-code>
+                        <span>M</span>
+                    </div>
+                    <div class="qr-swatch">
+                        <nx-qr-code value="NexiumUI" errorCorrectionLevel="Q"></nx-qr-code>
+                        <span>Q</span>
+                    </div>
+                    <div class="qr-swatch">
+                        <nx-qr-code value="NexiumUI" errorCorrectionLevel="H"></nx-qr-code>
+                        <span>H</span>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Colors"
+                description="foreground and background control the module colors - useful for matching a brand palette. Keep enough contrast between the two so cameras can still find the finder patterns."
+                [code]="colorsCode">
+
+                <div class="qr-row">
+                    <nx-qr-code
+                        value="https://nexium-ui.dev"
+                        foreground="#1b2559"
+                        background="#f4f6fb">
+                    </nx-qr-code>
+
+                    <nx-qr-code
+                        value="https://nexium-ui.dev"
+                        foreground="#ffffff"
+                        background="#0f766e">
+                    </nx-qr-code>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Long Text (Automatic Version Scaling)"
+                description="There's no need to pick a QR 'version' by hand - the component automatically selects the smallest version (1-40) that fits the data at the chosen error correction level, so arbitrarily long text still produces a single valid, scannable symbol."
+                [code]="longTextCode">
+
+                <nx-qr-code
+                    [value]="longTextValue"
+                    [size]="260"
+                    errorCorrectionLevel="Q">
+                </nx-qr-code>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Quiet Zone (Margin)"
+                description="margin sets the quiet-zone width in modules around the symbol. QR readers rely on this blank border to detect the finder patterns reliably - shrinking it too far can make the code harder to scan."
+                [code]="marginCode">
+
+                <div class="qr-row">
+                    <div class="qr-swatch">
+                        <nx-qr-code value="NexiumUI" [size]="120" [margin]="1"></nx-qr-code>
+                        <span>margin = 1</span>
+                    </div>
+                    <div class="qr-swatch">
+                        <nx-qr-code value="NexiumUI" [size]="120" [margin]="4"></nx-qr-code>
+                        <span>margin = 4</span>
+                    </div>
+                    <div class="qr-swatch">
+                        <nx-qr-code value="NexiumUI" [size]="120" [margin]="8"></nx-qr-code>
+                        <span>margin = 8</span>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

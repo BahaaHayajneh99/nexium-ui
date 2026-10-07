@@ -187,6 +187,7 @@ export * from './lib/forms/ui-json-editor';
 export * from './lib/uploads/ui-file-upload';
 export * from './lib/media/ui-gallery';
 export * from './lib/media/ui-preview';
+export * from './lib/media/ui-qr-code';
 export * from './lib/media/ui-carousel';
 export * from './lib/navigation/ui-breadcrumb';
 export * from './lib/navigation/ui-pagination';

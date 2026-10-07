@@ -291,6 +291,7 @@ export const NAV_ITEMS: NxNavItem[] = [
         links: [
           { label: 'Gallery', path: '/gallery', isPro: true },
           { label: 'Preview', path: '/preview' },
+          { label: 'QR Code', path: '/qr-code', isNew: true },
           { label: 'Carousel', path: '/carousel', isPro: true },
           { label: 'Image Editor', path: '/image-editor', isPro: true, isNew: true },
           { label: 'Document Scanner', path: '/document-scanner', isPro: true, isNew: true },
