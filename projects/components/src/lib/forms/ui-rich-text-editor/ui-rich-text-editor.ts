@@ -210,7 +210,12 @@ export class NxRichTextEditor implements AfterViewInit, OnChanges, OnInit, OnDes
   }
 
   ngAfterViewInit(): void {
-    this.editorRef.nativeElement.innerHTML = this.value;
+    // `editorRef` only exists when `licensed()` is true - the template's unlicensed branch
+    // renders `<nx-pro-locked>` instead, with no `#editorRef` in it at all - but this lifecycle
+    // hook still runs unconditionally either way.
+    if (this.editorRef) {
+      this.editorRef.nativeElement.innerHTML = this.value;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
