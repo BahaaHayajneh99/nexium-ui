@@ -1,0 +1,121 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Basic Presence Indicator"
+                description="The {{ commonService.appName }} Presence Indicator is a small colored dot for user online/presence status - green (online), yellow (away), red (busy/do-not-disturb), gray (offline)."
+                [code]="basicCode"
+                [tsCode]="basicTs">
+
+                <nx-presence-indicator status="online"></nx-presence-indicator>
+                <nx-presence-indicator status="away"></nx-presence-indicator>
+                <nx-presence-indicator status="busy"></nx-presence-indicator>
+                <nx-presence-indicator status="offline"></nx-presence-indicator>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="With Label"
+                description="Set showLabel to render the status text next to the dot."
+                [code]="labelCode"
+                [tsCode]="labelTs">
+
+                <nx-presence-indicator status="online" showLabel></nx-presence-indicator>
+                <nx-presence-indicator status="away" showLabel></nx-presence-indicator>
+                <nx-presence-indicator status="busy" showLabel></nx-presence-indicator>
+                <nx-presence-indicator status="offline" showLabel></nx-presence-indicator>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Pulse"
+                description="Set pulse to true for a subtle animated ring - handy for drawing attention to an online state."
+                [code]="pulseCode"
+                [tsCode]="pulseTs">
+
+                <nx-presence-indicator status="online" [pulse]="true" showLabel></nx-presence-indicator>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Avatar Overlay"
+                description="Set mode to 'avatar' to overlay the dot in the bottom-right corner of an avatar. Pass avatarName and/or avatarUrl and an internal <nx-avatar> is rendered for you."
+                [code]="avatarCode"
+                [tsCode]="avatarTs">
+
+                <nx-presence-indicator mode="avatar" status="online" avatarName="Jane Doe"></nx-presence-indicator>
+                <nx-presence-indicator mode="avatar" status="away" avatarName="John Doe"></nx-presence-indicator>
+                <nx-presence-indicator mode="avatar" status="busy" avatarName="Amy Lee"></nx-presence-indicator>
+                <nx-presence-indicator mode="avatar" status="offline" avatarName="Max Roy"></nx-presence-indicator>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Avatar Overlay - Image"
+                description="Works the same way with a real image avatar."
+                [code]="avatarImageCode"
+                [tsCode]="avatarImageTs">
+
+                <nx-presence-indicator mode="avatar" status="online" avatarUrl="../../assets/images/anonymous.png" avatarAlt="Jane Doe">
+                </nx-presence-indicator>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="Avatar Overlay - Projected Content"
+                description="Skip avatarUrl/avatarName and project your own avatar markup instead - the dot is still positioned in the bottom-right corner."
+                [code]="projectedCode"
+                [tsCode]="projectedTs">
+
+                <nx-presence-indicator mode="avatar" status="online">
+                    <nx-avatar name="AB" variant="info"></nx-avatar>
+                </nx-presence-indicator>
+
+            </app-demo-section>
+
+
+            <app-demo-section
+                header="In Context"
+                description="A typical use case - a list of team members with their avatar presence and a text status."
+                [code]="contextCode"
+                [tsCode]="contextTs"
+                [hasSampleClass]="false">
+
+                <div style="display:flex; flex-direction:column; gap:14px; max-width:280px;">
+                    @for (member of members; track member.name) {
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <nx-presence-indicator mode="avatar" [status]="member.status" [avatarName]="member.name" avatarSize="small">
+                                </nx-presence-indicator>
+                                <span>{{ member.name }}</span>
+                            </div>
+                            <nx-presence-indicator [status]="member.status" showLabel></nx-presence-indicator>
+                        </div>
+                    }
+                </div>
+
+            </app-demo-section>
+
+
+        </div>
+
+    </div>
+
+</div>

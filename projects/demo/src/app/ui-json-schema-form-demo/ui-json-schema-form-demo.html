@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Signup form"
+                description="{{ commonService.appName }} JSON Schema Form - give it a plain field-definition object (name -> { type, label, required, ... }) and it renders a real, usable form: a text input, an email input, a number input and a select dropdown here. Required fields (Name, Email, Role) show an inline error once touched or once Submit is attempted. valueChange emits the assembled { name, email, age, role } object on every keystroke. This is a PRO component."
+                [code]="signupCode"
+                [tsCode]="signupTs"
+                [hasSampleClass]="false">
+                <nx-json-schema-form
+                    [schema]="signupSchema"
+                    (valueChange)="onSignupValueChange($event)"
+                    (submit)="onSignupSubmit($event)">
+                </nx-json-schema-form>
+                <div class="nx-json-schema-form-demo-result">
+                    <strong>Current value:</strong>
+                    <pre>{{ signupValue | json }}</pre>
+                </div>
+                @if (signupSubmitted) {
+                    <div class="nx-json-schema-form-demo-result">
+                        <strong>Submitted:</strong>
+                        <pre>{{ signupSubmitted | json }}</pre>
+                    </div>
+                }
+            </app-demo-section>
+
+            <app-demo-section
+                header="Feedback form (boolean, textarea, initial value)"
+                description="A second, richer schema exercising the boolean (checkbox) and textarea field types, a custom submitLabel, and an initialValue input that pre-populates 'Category' and the subscribe checkbox before the user touches anything."
+                [code]="feedbackCode"
+                [tsCode]="feedbackTs"
+                [hasSampleClass]="false">
+                <nx-json-schema-form
+                    [schema]="feedbackSchema"
+                    [initialValue]="feedbackInitialValue"
+                    submitLabel="Send feedback"
+                    (valueChange)="onFeedbackValueChange($event)"
+                    (submit)="onFeedbackSubmit($event)">
+                </nx-json-schema-form>
+                @if (feedbackSubmitted) {
+                    <div class="nx-json-schema-form-demo-result">
+                        <strong>Submitted:</strong>
+                        <pre>{{ feedbackSubmitted | json }}</pre>
+                    </div>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

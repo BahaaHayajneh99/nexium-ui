@@ -1,0 +1,40 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Documentation Versions"
+                description="{{ commonService.appName }} Version Selector - built on nx-dropdown-menu, so outside-click handling and positioning are shared with the rest of the dropdown family. Each version can carry a 'latest' / 'stable' / 'beta' / 'deprecated' tag. Last change: {{ lastChange || '—' }}"
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-version-selector
+                    [versions]="docVersions"
+                    [(selected)]="selectedDocVersion"
+                    (selectedChange)="onDocVersionChange($event)">
+                </nx-version-selector>
+            </app-demo-section>
+
+            <app-demo-section
+                header="API Versions"
+                description="Any value/label/tag combination works - here the values are dated API versions instead of semver."
+                [code]="apiCode"
+                [tsCode]="apiTs"
+                [hasSampleClass]="false">
+                <nx-version-selector
+                    [versions]="apiVersions"
+                    [(selected)]="selectedApiVersion"
+                    (selectedChange)="onApiVersionChange($event)">
+                </nx-version-selector>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

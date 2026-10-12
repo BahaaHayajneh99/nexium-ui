@@ -1,9 +1,14 @@
 const { applyCors } = require('./_lib/cors');
 const { getDb } = require('./_lib/firebase-admin');
 const { PLAN_PRICES, getPaypalAccessToken, verifyPaypalOrder } = require('./_lib/paypal');
+const { isValidPaypalOrderId } = require('./_lib/validate');
 
 const YEAR_MS = 365 * 24 * 60 * 60 * 1000;
 const MAX_CLAIM_ATTEMPTS = 5;
+// How long a repeat request for an already-claimed order still gets the token back. Long enough
+// to cover the buyer's own network retries, short enough that an order id seen later (receipts,
+// screenshots, support emails) can't be replayed to fetch someone else's license.
+const IDEMPOTENT_REPLAY_WINDOW_MS = 15 * 60 * 1000;
 
 /**
  * Claims one 'available' token, retrying a few times if it loses a race to another claim.
@@ -54,8 +59,8 @@ module.exports = async (req, res) => {
   }
 
   const orderId = req.body?.orderId;
-  if (!orderId || typeof orderId !== 'string') {
-    res.status(400).json({ error: 'Missing orderId' });
+  if (!isValidPaypalOrderId(orderId)) {
+    res.status(400).json({ error: 'Missing or invalid orderId' });
     return;
   }
 
@@ -63,10 +68,17 @@ module.exports = async (req, res) => {
 
   try {
     // Idempotency: a retried/duplicate request for an order that already claimed a token
-    // gets the same token back instead of claiming a second one.
+    // gets the same token back instead of claiming a second one - but only shortly after the
+    // capture, so a leaked order id can't be used later to fetch the buyer's token.
     const existingPurchase = await db.ref(`purchases/${orderId}`).get();
     if (existingPurchase.exists()) {
-      res.status(200).json({ token: existingPurchase.val().token });
+      const purchase = existingPurchase.val();
+      const capturedAtMs = new Date(purchase.capturedAt).getTime();
+      if (Date.now() - capturedAtMs <= IDEMPOTENT_REPLAY_WINDOW_MS) {
+        res.status(200).json({ token: purchase.token });
+      } else {
+        res.status(409).json({ error: 'This order was already claimed - check your email or contact support.' });
+      }
       return;
     }
 

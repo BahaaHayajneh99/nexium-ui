@@ -1,0 +1,27 @@
+@use '../chart-chrome' as *;
+
+.nx-chart-waterfall-bar {
+    transition: opacity .15s ease;
+    cursor: pointer;
+
+    &:focus-visible {
+        outline: 2px solid var(--shell-primary, #3498db);
+        outline-offset: 2px;
+    }
+}
+
+.nx-chart-waterfall-bar-hovered {
+    opacity: .85;
+}
+
+.nx-chart-waterfall-connector {
+    stroke: var(--shell-text-muted);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+}
+
+.nx-chart-waterfall-value {
+    font-size: 11px;
+    font-weight: 600;
+    fill: var(--shell-text);
+}

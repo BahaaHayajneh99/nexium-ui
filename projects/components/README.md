@@ -200,8 +200,14 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Version Badge | `nx-version-badge` |
 | Changelog Widget | `nx-changelog-widget` |
 | Activity Timeline | `nx-activity-timeline` |
-| Activity Feed | `nx-activity-feed` |
+| Activity Feed 🔒 PRO | `nx-activity-feed` |
 | Audit Timeline | `nx-audit-timeline` |
+| Comments 🔒 PRO | `nx-comments` |
+| Timeline Editor 🔒 PRO | `nx-timeline-editor` |
+| Comparison Table | `nx-comparison-table` |
+| Presence Indicator | `nx-presence-indicator` |
+| Reactions | `nx-reactions` |
+| Emoji Picker | `nx-emoji-picker` |
 | Code Block | `nx-code-block` |
 | Copyable Text | `nx-copyable-text` |
 | Keyboard Shortcut | `nx-keyboard-shortcut` |
@@ -214,6 +220,9 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Permission Denied | `nx-permission-denied` |
 | Maintenance State | `nx-maintenance-state` |
 | Description List | `nx-description-list` |
+| Data Grid | `nx-data-grid` |
+| Document Viewer 🔒 PRO | `nx-document-viewer` |
+| PDF Annotator 🔒 PRO | `nx-pdf-annotator` |
 | Pinned Item List 🔒 PRO | `nx-pinned-list` |
 | Tree Select 🔒 PRO | `nx-tree-select` |
 | Text Viewer 🔒 PRO | `nx-text-viewer` |
@@ -222,6 +231,9 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Excel Viewer 🔒 PRO | `nx-excel-viewer` |
 | Markdown Viewer 🔒 PRO | `nx-markdown-viewer` |
 | Text Statistics 🔒 PRO | `nx-text-statistics` |
+| Text Scramble 🔒 PRO | `nx-text-scramble` |
+| Number Ticker 🔒 PRO | `nx-number-ticker` |
+| Integration Card 🔒 PRO | `nx-integration-card` |
 
 ### Forms
 
@@ -259,6 +271,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Signature Pad 🔒 PRO | `nx-signature-pad` |
 | Transfer Box | `nx-transfer-box` |
 | Tag Input | `nx-tag-input` |
+| Inline Edit 🔒 PRO | `nx-inline-edit` |
 
 ### Feedback
 
@@ -278,6 +291,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Loading Overlay | `nx-loading-overlay` |
 | Modal | `nx-modal` |
 | Notification Center | `nx-notification-center` |
+| Notification Inbox 🔒 PRO | `nx-notification-inbox` |
 | Popover | `nx-popover` |
 | Popover Menu | `nx-popover-menu` |
 | Spotlight | `nx-spotlight` |
@@ -285,6 +299,9 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Tooltip | `[nxTooltip]` (directive) |
 | Tour | `nx-tour` |
 | Unsaved Changes Dialog | `nx-unsaved-changes-dialog` |
+| Session Timeout 🔒 PRO | `nx-session-timeout` |
+| Coachmark 🔒 PRO | `nx-coachmark` |
+| Share Popover 🔒 PRO | `nx-share-popover` |
 
 ### Navigation
 
@@ -309,6 +326,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Sidebar | `nx-sidebar`, `nx-sidebar-item` |
 | Stepper | `nx-stepper` |
 | Table of Contents | `nx-table-of-contents` |
+| Version Selector 🔒 PRO | `nx-version-selector` |
 
 ### Panels
 
@@ -329,6 +347,10 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | File Upload | `nx-file-upload` |
 | Image Cropper 🔒 PRO | `nx-image-cropper` |
 | Dropzone | `nx-dropzone` |
+| QR Code | `nx-qr-code` |
+| HTML Preview | `nx-html-preview` |
+| Document Scanner 🔒 PRO | `nx-document-scanner` |
+| Image Editor 🔒 PRO | `nx-image-editor` |
 
 ### Layout
 
@@ -350,6 +372,10 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Spacer | `nx-spacer` |
 | Splitter | `nx-splitter` |
 | Stack | `nx-stack` |
+| Dock Layout 🔒 PRO | `nx-dock-layout`, `[nxDockPanelContent]` |
+| Marquee 🔒 PRO | `nx-marquee` |
+| Gradient Border 🔒 PRO | `nx-gradient-border` |
+| Glow 🔒 PRO | `nx-glow` |
 
 ### Charts
 
@@ -373,6 +399,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Sankey Chart 🔒 PRO | `nx-sankey-chart` |
 | Sunburst Chart 🔒 PRO | `nx-sunburst-chart` |
 | Treemap 🔒 PRO | `nx-treemap` |
+| Waterfall Chart | `nx-waterfall-chart` |
 
 `nx-bar-chart` also renders a stacked layout via its `stacked` input - there's no separate
 "Stacked Bar" component/selector, just a different configuration of the same one.
@@ -389,6 +416,9 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Column Selector 🔒 PRO | `nx-column-selector` |
 | Filter Builder 🔒 PRO | `nx-filter-builder` |
 | Query Builder 🔒 PRO | `nx-query-builder`, `nx-query-builder-group` |
+| Bulk Actions 🔒 PRO | `nx-bulk-actions` |
+| Magnetic Button 🔒 PRO | `nx-magnetic-button` |
+| Quick Create 🔒 PRO | `nx-quick-create` |
 
 ### Collaboration & Activity
 
@@ -399,6 +429,9 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Version Timeline 🔒 PRO | `nx-version-timeline` |
 | Audit Log 🔒 PRO | `nx-audit-log` |
 | Activity Explorer 🔒 PRO | `nx-activity-explorer` |
+| Security Event Log 🔒 PRO | `nx-security-event-log` |
+| Login Activity 🔒 PRO | `nx-login-activity` |
+| Device Sessions 🔒 PRO | `nx-device-sessions` |
 
 ### Design Tools
 
@@ -430,6 +463,9 @@ Every component below is 🔒 PRO.
 | Leaderboard | `nx-leaderboard` |
 | Statistic Group 🔒 PRO | `nx-statistic-group` |
 | Dashboard Widget | `nx-dashboard-widget` |
+| Dashboard Builder 🔒 PRO | `nx-dashboard-builder` |
+| Dashboard Filters 🔒 PRO | `nx-dashboard-filters` |
+| Widget Grid 🔒 PRO | `nx-widget-grid` |
 
 ### Developer Tools
 
@@ -445,6 +481,8 @@ Every component below is 🔒 PRO.
 | Cron Builder 🔒 PRO | `nx-cron-builder` |
 | Code Editor | `nx-code-editor` |
 | Calculator 🔒 PRO | `nx-calculator` |
+| API Key Manager 🔒 PRO | `nx-api-key-manager` |
+| Webhook Manager 🔒 PRO | `nx-webhook-manager` |
 
 ### Enterprise / PRO
 
@@ -461,6 +499,15 @@ Every component below is 🔒 PRO.
 | Email Template Builder | `nx-email-template-builder` |
 | File Manager | `nx-file-manager` |
 | Spreadsheet | `nx-spreadsheet` |
+| Approval Workflow | `nx-approval-workflow` |
+| JSON Schema Form | `nx-json-schema-form` |
+| Advanced Filters | `nx-advanced-filters` |
+| Column Manager | `nx-column-manager` |
+| Form Builder | `nx-form-builder` |
+| Form Renderer | `nx-form-renderer` |
+| Bulk Editor | `nx-bulk-editor` |
+| Access Control | `nx-access-control` |
+| Role Editor | `nx-role-editor` |
 
 ### AI & Machine Learning
 
@@ -471,6 +518,12 @@ Every component below is 🔒 PRO.
 | Token Counter | `nx-token-counter` |
 | Model Selector | `nx-model-selector` |
 | Markdown Code Runner 🔒 PRO | `nx-markdown-code-runner` |
+| AI Chat 🔒 PRO | `nx-ai-chat` |
+| AI Prompt Builder 🔒 PRO | `nx-ai-prompt-builder` |
+| AI Response Viewer | `nx-ai-response-viewer` |
+| AI Token Usage | `nx-ai-token-usage` |
+| AI Model Playground 🔒 PRO | `nx-ai-model-playground` |
+| AI Command Bar 🔒 PRO | `nx-ai-command-bar` |
 
 ### Directives
 
@@ -492,6 +545,7 @@ or component.
 | Infinite Scroll | `[nxInfiniteScroll]` | Emits when the host is scrolled near its end, for loading more data. |
 | Long Press | `[nxLongPress]` | Emits after the pointer is held down on the host for a set duration. |
 | Permission Gate | `nx-permission-gate` | Like `*nxHasPermission`, but a component with an explicit `[nxPermissionGateFallback]` slot instead of just removing the content. |
+| Reveal 🔒 PRO | `[nxReveal]` | Fade/slide/zoom-reveals the host as it enters the viewport - composes `[nxInView]` internally via `hostDirectives`. Without a license, this directive is inert - the host just renders normally with no reveal animation. |
 | Scroll Lock | `[nxScrollLock]` | Locks/restores page scrolling while a bound condition is true - handy for modals and drawers. |
 
 For full input/output reference and live examples, see the hosted demo at

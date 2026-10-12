@@ -1,0 +1,24 @@
+.html-preview-demo-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.html-preview-demo-textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    resize: vertical;
+}
+
+.html-preview-demo-textarea:focus {
+    outline: none;
+    border-color: var(--shell-primary, #3498db);
+}

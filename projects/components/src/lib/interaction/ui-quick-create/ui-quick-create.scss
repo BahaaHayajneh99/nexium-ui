@@ -1,0 +1,100 @@
+:host {
+    display: inline-block;
+    max-width: 100%;
+}
+
+.nx-quick-create-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: transparent;
+    color: var(--shell-primary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color .15s ease, background-color .15s ease;
+}
+
+.nx-quick-create-trigger:hover {
+    border-color: var(--shell-primary);
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-quick-create-trigger-default {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nx-quick-create-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+}
+
+.nx-quick-create-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 140px;
+}
+
+.nx-quick-create-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-quick-create-input {
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 13px;
+    outline: none;
+}
+
+.nx-quick-create-input:focus {
+    border-color: var(--shell-primary);
+}
+
+.nx-quick-create-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-quick-create-save,
+.nx-quick-create-cancel {
+    padding: 8px 14px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-quick-create-save {
+    background-color: var(--shell-primary);
+    color: #ffffff;
+}
+
+.nx-quick-create-cancel {
+    background-color: transparent;
+    border: 1px solid var(--shell-border);
+    color: var(--shell-text-secondary);
+}
+
+.nx-quick-create-cancel:hover {
+    color: var(--shell-text);
+    border-color: var(--shell-text-secondary);
+}

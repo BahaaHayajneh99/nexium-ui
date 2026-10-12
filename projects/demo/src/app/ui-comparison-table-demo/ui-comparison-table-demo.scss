@@ -1,0 +1,21 @@
+.comparison-table-stack {
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+
+}
+
+.comparison-table-swatch {
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .comparison-table-swatch-label {
+        font-size: var(--nx-font-size-xs, 12px);
+        color: var(--shell-text-secondary);
+    }
+
+}

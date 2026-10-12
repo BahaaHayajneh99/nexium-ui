@@ -1,0 +1,23 @@
+.scramble-sample {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.scramble-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.scramble-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}

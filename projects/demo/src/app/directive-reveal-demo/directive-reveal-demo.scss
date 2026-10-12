@@ -1,0 +1,46 @@
+.reveal-scroll-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 360px;
+    overflow-y: auto;
+    padding: 24px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+}
+
+.reveal-scroll-area-tall {
+    max-height: 420px;
+}
+
+.reveal-card {
+    flex-shrink: 0;
+    padding: 20px 24px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+
+    h5 {
+        margin: 0 0 6px;
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: 13px;
+    }
+}
+
+.reveal-card-repeat {
+    margin: 240px 0;
+}
+
+.reveal-spacer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}

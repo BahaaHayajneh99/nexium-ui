@@ -35,20 +35,7 @@ export class App implements OnInit {
   }
 
   private trackVisitor(): void {
-    // Get or create unique visitor ID from localStorage
-    let visitorId = localStorage.getItem('nexaui_visitor_id');
-    
-    if (!visitorId) {
-      // Generate unique ID for new visitor (in production, use user ID after login)
-      visitorId = `guest_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      localStorage.setItem('nexaui_visitor_id', visitorId);
-    }
-
-    // Track as unique visitor in Firebase with location data
-    this.visitorTracking.trackUniqueVisitor(visitorId).then(() => {
-      // Get visitors by country/location
-      this.visitorTracking.getVisitorsByCountry();
-    });
+    this.visitorTracking.trackUniqueVisitor();
   }
 
   toggleMobileNav(): void {

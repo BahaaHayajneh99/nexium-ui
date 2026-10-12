@@ -1,0 +1,46 @@
+.glow-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    width: 100%;
+    padding: 24px 0;
+}
+
+.cta-button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 10px;
+    background: #7c3aed;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.hero-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 72px;
+    border-radius: 12px;
+    background: var(--shell-bg);
+    border: 1px solid var(--shell-border, #e9ecef);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 36px;
+    border-radius: 999px;
+    background: var(--shell-bg);
+    border: 1px solid var(--shell-border, #e9ecef);
+    font-size: 12px;
+    font-weight: 600;
+}

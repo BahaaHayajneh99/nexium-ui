@@ -1,0 +1,11 @@
+.nx-json-schema-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 480px;
+}
+
+.nx-json-schema-form-field {
+    display: flex;
+    flex-direction: column;
+}

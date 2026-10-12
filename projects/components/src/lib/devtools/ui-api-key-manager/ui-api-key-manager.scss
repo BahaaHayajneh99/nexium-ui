@@ -1,0 +1,170 @@
+.nx-api-key-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nx-api-key-manager-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--nx-color-warning, #f0ad4e);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: rgba(240, 173, 78, .1);
+}
+
+.nx-api-key-manager-banner-icon {
+    display: flex;
+    align-items: center;
+    color: var(--nx-color-warning, #f0ad4e);
+    flex: 0 0 auto;
+}
+
+.nx-api-key-manager-banner-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 12px;
+    color: var(--shell-text);
+}
+
+.nx-api-key-manager-banner-key {
+    display: inline-block;
+    width: fit-content;
+    max-width: 100%;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    font-family: var(--nx-font-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
+    font-size: 12px;
+    word-break: break-all;
+}
+
+.nx-api-key-manager-banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 0 0 auto;
+}
+
+.nx-api-key-manager-banner-dismiss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-api-key-manager-banner-dismiss:hover {
+    background-color: rgba(0, 0, 0, .08);
+    color: var(--shell-text);
+}
+
+.nx-api-key-manager-toolbar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nx-api-key-manager-btn,
+.nx-api-key-manager-create,
+.nx-api-key-manager-revoke {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nx-api-key-manager-btn:hover,
+.nx-api-key-manager-create:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-api-key-manager-revoke {
+    border-color: var(--nx-color-danger, #e74c3c);
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-api-key-manager-revoke:hover {
+    background-color: rgba(231, 76, 60, .1);
+}
+
+.nx-api-key-manager-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+.nx-api-key-manager-table th {
+    padding: 8px 12px;
+    border: 1px solid var(--shell-border);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    text-align: left;
+}
+
+.nx-api-key-manager-table td {
+    padding: 10px 12px;
+    border: 1px solid var(--shell-border);
+    vertical-align: middle;
+}
+
+.nx-api-key-manager-name {
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-api-key-manager-masked {
+    font-family: var(--nx-font-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-api-key-manager-scopes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.nx-api-key-manager-badge {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .06));
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.nx-api-key-manager-date {
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.nx-api-key-manager-empty {
+    padding: 24px 12px;
+    text-align: center;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}

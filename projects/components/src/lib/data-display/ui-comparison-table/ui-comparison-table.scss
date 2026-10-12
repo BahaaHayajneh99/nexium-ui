@@ -1,0 +1,160 @@
+.nx-comparison-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.nx-comparison-table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text);
+    background-color: var(--shell-bg);
+
+    &.bordered {
+        border: 1px solid var(--shell-border);
+        border-radius: var(--nx-radius-md, 8px);
+
+        th,
+        td {
+            border-bottom: 1px solid var(--shell-border);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+    }
+}
+
+// =========================
+// Header
+// =========================
+
+.nx-comparison-table-feature-head {
+    text-align: left;
+    vertical-align: bottom;
+    padding: var(--nx-spacing-md, 16px);
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-xs, 12px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.nx-comparison-table-col-head {
+    position: relative;
+    text-align: center;
+    vertical-align: bottom;
+    padding: var(--nx-spacing-md, 16px);
+    min-width: 120px;
+
+    &.highlighted {
+        background-color: color-mix(in srgb, var(--shell-primary) 6%, transparent);
+        border-top: 2px solid var(--shell-primary);
+    }
+}
+
+.nx-comparison-table-badge {
+    display: inline-block;
+    margin-bottom: var(--nx-spacing-xs, 4px);
+    padding: 2px var(--nx-spacing-sm, 8px);
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: var(--shell-primary);
+    color: var(--text-white, #ffffff);
+    font-size: 10px;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    white-space: nowrap;
+}
+
+.nx-comparison-table-col-name {
+    display: block;
+    font-size: var(--nx-font-size-md, 16px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.nx-comparison-table-col-description {
+    display: block;
+    margin-top: 2px;
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-secondary);
+    font-weight: var(--nx-font-weight-regular, 400);
+}
+
+// =========================
+// Section headers
+// =========================
+
+.nx-comparison-table-section-row {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-comparison-table-section-title {
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
+    text-align: left;
+    font-size: var(--nx-font-size-xs, 12px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+// =========================
+// Rows / cells
+// =========================
+
+.nx-comparison-table-row:hover {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-comparison-table-feature-label {
+    display: table-cell;
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
+    text-align: left;
+    color: var(--shell-text);
+    white-space: nowrap;
+
+    span {
+        vertical-align: middle;
+    }
+}
+
+.nx-comparison-table-info-icon {
+    display: inline-flex;
+    margin-left: var(--nx-spacing-xs, 4px);
+    color: var(--shell-text-secondary);
+    cursor: help;
+    vertical-align: middle;
+}
+
+.nx-comparison-table-cell {
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
+    text-align: center;
+    vertical-align: middle;
+
+    &.highlighted {
+        background-color: color-mix(in srgb, var(--shell-primary) 4%, transparent);
+    }
+}
+
+.nx-comparison-table-bool-icon {
+    display: inline-flex;
+}
+
+.nx-comparison-table-dash {
+    color: var(--shell-text-secondary);
+    opacity: .6;
+}
+
+.nx-comparison-table-text {
+    color: var(--shell-text);
+
+    &.emphasis {
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-primary);
+    }
+}

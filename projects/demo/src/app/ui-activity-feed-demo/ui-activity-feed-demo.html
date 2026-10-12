@@ -46,6 +46,46 @@
                 </div>
             </app-demo-section>
 
+            <app-demo-section
+                header="Expandable Metadata (PRO)"
+                description="Give any item a metadata array of label/value pairs and a small chevron appears, expanding into a detail row - handy for billing, security or audit-style entries. Consecutive entries within a day are joined by a chained connector line."
+                [code]="metadataCode"
+                [tsCode]="metadataTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-activity-feed [items]="richItems"></nx-activity-feed>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Actor & Type Filters (PRO)"
+                description="Set showFilters to true and a filter bar appears automatically whenever there's more than one actor, or any item defines a category - narrow the feed down to one person or one type of event."
+                [code]="filtersCode"
+                [tsCode]="filtersTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-activity-feed [items]="richItems" [showFilters]="true"></nx-activity-feed>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Per-Item Actions (PRO)"
+                description="itemActions is the fallback action set applied to every item; an item can define its own actions array instead to override it (e.g. only offering Undo on a destructive entry). Clicking a button emits actionInvoked with the item and the action that was triggered."
+                [code]="actionsCode"
+                [tsCode]="actionsTs"
+                [hasSampleClass]="false">
+                <div style="max-width:480px;">
+                    <nx-activity-feed
+                        [items]="richItems"
+                        [itemActions]="defaultActions"
+                        (actionInvoked)="onActionInvoked($event)">
+                    </nx-activity-feed>
+                    @if (lastAction) {
+                        <p class="activity-feed-demo-last-action">Last action: {{ lastAction }}</p>
+                    }
+                </div>
+            </app-demo-section>
+
         </div>
     </div>
 </div>

@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic (flat rows)"
+                description="{{ commonService.appName }}'s nx-comparison-table takes an arbitrary list of columns (plan names) and a flat list of rows - each row carries one typed cell per column: a boolean cell renders as a checkmark or a dash/cross, a text cell renders as-is. The 'Pro' column is marked highlighted to draw the eye to the recommended plan."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+
+                <nx-comparison-table [columns]="flatColumns" [rows]="flatRows"></nx-comparison-table>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Full pricing comparison (grouped sections)"
+                description="Rows can instead be grouped into named sections - handy for a long feature list split into categories like Core, AI, Analytics and Security. Hover the info icon next to a feature name for more explanation via the existing nxTooltip directive."
+                [code]="pricingCode"
+                [tsCode]="pricingTs"
+                [hasSampleClass]="false">
+
+                <nx-comparison-table [columns]="pricingColumns" [sections]="pricingSections"></nx-comparison-table>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Missing-feature style"
+                description="missingStyle controls how a false boolean cell renders when a feature isn't included: a subtle dash (default) or a red cross icon."
+                [code]="missingStyleCode"
+                [hasSampleClass]="false">
+
+                <div class="comparison-table-stack">
+                    <div class="comparison-table-swatch">
+                        <span class="comparison-table-swatch-label">missingStyle = "dash"</span>
+                        <nx-comparison-table [columns]="flatColumns" [rows]="flatRows" missingStyle="dash"></nx-comparison-table>
+                    </div>
+                    <div class="comparison-table-swatch">
+                        <span class="comparison-table-swatch-label">missingStyle = "cross"</span>
+                        <nx-comparison-table [columns]="flatColumns" [rows]="flatRows" missingStyle="cross"></nx-comparison-table>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

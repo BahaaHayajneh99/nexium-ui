@@ -1,0 +1,155 @@
+.nx-bulk-editor {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.nx-bulk-editor-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+}
+
+.nx-bulk-editor-preview-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--shell-text-secondary);
+}
+
+.nx-bulk-editor-preview-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-height: 90px;
+    overflow-y: auto;
+}
+
+.nx-bulk-editor-chip {
+    padding: 2px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: 999px;
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.nx-bulk-editor-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-bulk-editor-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    transition: border-color .15s ease, background-color .15s ease;
+}
+
+.nx-bulk-editor-field.active {
+    border-color: var(--shell-primary);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+}
+
+.nx-bulk-editor-apply {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    width: fit-content;
+}
+
+.nx-bulk-editor-field.active .nx-bulk-editor-apply {
+    color: var(--shell-primary);
+}
+
+.nx-bulk-editor-control {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-bulk-editor-field-label {
+    font-size: 12px;
+    color: var(--shell-text);
+}
+
+.nx-bulk-editor-input {
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    width: 100%;
+
+    &:disabled {
+        opacity: .55;
+        cursor: not-allowed;
+        background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+    }
+}
+
+.nx-bulk-editor-empty {
+    padding: 20px 12px;
+    text-align: center;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}
+
+.nx-bulk-editor-applied-count {
+    margin-right: auto;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-bulk-editor-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.nx-bulk-editor-btn:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-bulk-editor-btn-primary {
+    border-color: var(--shell-primary);
+    background-color: var(--shell-primary);
+    color: var(--nx-color-on-primary, #fff);
+}
+
+.nx-bulk-editor-btn-primary:hover {
+    opacity: .9;
+    color: var(--nx-color-on-primary, #fff);
+}
+
+.nx-bulk-editor-btn-primary:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    border-color: var(--shell-border);
+    background-color: var(--shell-border);
+    color: var(--shell-text-secondary);
+}

@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic reaction bar"
+                description="{{ commonService.appName }}'s nx-reactions renders a row of emoji pills (each reusing nx-emoji for the glyph) with counts. Click an existing pill to toggle your own reaction - the component never mutates its reactions input itself, it just emits reactionToggled so the host can update the list (shown here: hover a pill with reactors for the who-reacted tooltip). Use the + button to pick a brand-new reaction type."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+
+                <nx-reactions [reactions]="messageReactions" (reactionToggled)="onMessageToggle($event)"></nx-reactions>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="No reactions yet"
+                description="With an empty reactions list, only the + add-reaction button shows - the first pill appears once someone reacts."
+                [code]="emptyCode"
+                [hasSampleClass]="false">
+
+                <nx-reactions [reactions]="emptyReactions" (reactionToggled)="onEmptyToggle($event)"></nx-reactions>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled (read-only)"
+                description="Set disabled to true for a read-only context, like an archived or locked thread - pills and the add button stop responding and dim slightly."
+                [code]="disabledCode"
+                [hasSampleClass]="false">
+
+                <nx-reactions [reactions]="disabledReactions" [disabled]="true"></nx-reactions>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without the add-reaction button"
+                description="Set showAddButton to false to show only the existing pills - useful for a compact summary view where adding a new reaction type isn't offered, while toggling an existing one still is."
+                [code]="noAddCode"
+                [hasSampleClass]="false">
+
+                <nx-reactions [reactions]="noAddReactions" [showAddButton]="false" (reactionToggled)="onNoAddToggle($event)"></nx-reactions>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

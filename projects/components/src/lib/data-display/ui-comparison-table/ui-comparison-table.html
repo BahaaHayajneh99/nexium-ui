@@ -1,0 +1,88 @@
+<div class="nx-comparison-table-wrapper">
+    <table class="nx-comparison-table" [class.bordered]="bordered">
+        <thead>
+            <tr>
+                <th class="nx-comparison-table-feature-head">{{ featureHeader }}</th>
+                @for (col of columns; track col.name) {
+                    <th class="nx-comparison-table-col-head" [class.highlighted]="col.highlighted">
+                        @if (col.badge) {
+                            <span class="nx-comparison-table-badge">{{ col.badge }}</span>
+                        }
+                        <span class="nx-comparison-table-col-name">{{ col.name }}</span>
+                        @if (col.description) {
+                            <span class="nx-comparison-table-col-description">{{ col.description }}</span>
+                        }
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (section of displaySections; track trackBySectionIndex($index)) {
+                @if (section.title) {
+                    <tr class="nx-comparison-table-section-row">
+                        <td class="nx-comparison-table-section-title" [attr.colspan]="columns.length + 1">
+                            {{ section.title }}
+                        </td>
+                    </tr>
+                }
+                @for (row of section.rows; track row.label) {
+                    <tr class="nx-comparison-table-row">
+                        <td class="nx-comparison-table-feature-label">
+                            <span>{{ row.label }}</span>
+                            @if (row.tooltip) {
+                                <nx-icon
+                                    icon="nx-help-circle"
+                                    variant="svg"
+                                    [size]="14"
+                                    class="nx-comparison-table-info-icon"
+                                    [nxTooltip]="row.tooltip">
+                                </nx-icon>
+                            }
+                        </td>
+                        @for (col of columns; track col.name; let colIndex = $index) {
+                            <td class="nx-comparison-table-cell" [class.highlighted]="col.highlighted">
+                                @if (cellAt(row, colIndex); as cell) {
+                                    @switch (cell.type) {
+                                        @case ('boolean') {
+                                            @if (cell.value) {
+                                                <nx-icon
+                                                    icon="nx-check"
+                                                    variant="svg"
+                                                    [size]="18"
+                                                    color="var(--success-color, #28a745)"
+                                                    class="nx-comparison-table-bool-icon"
+                                                    [nxTooltip]="cell.tooltip ?? ''">
+                                                </nx-icon>
+                                            } @else if (missingStyle === 'cross') {
+                                                <nx-icon
+                                                    icon="nx-close"
+                                                    variant="svg"
+                                                    [size]="18"
+                                                    color="var(--danger-color, #e74c3c)"
+                                                    class="nx-comparison-table-bool-icon"
+                                                    [nxTooltip]="cell.tooltip ?? ''">
+                                                </nx-icon>
+                                            } @else {
+                                                <span class="nx-comparison-table-dash" [nxTooltip]="cell.tooltip ?? ''">&#8212;</span>
+                                            }
+                                        }
+                                        @case ('text') {
+                                            <span
+                                                class="nx-comparison-table-text"
+                                                [class.emphasis]="cell.emphasis"
+                                                [nxTooltip]="cell.tooltip ?? ''">
+                                                {{ cell.value }}
+                                            </span>
+                                        }
+                                    }
+                                } @else {
+                                    <span class="nx-comparison-table-dash">&#8212;</span>
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

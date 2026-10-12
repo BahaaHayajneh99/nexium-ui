@@ -1,0 +1,25 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Security Event Log"
+                description="{{ commonService.appName }} Security Event Log renders a chronological timeline of auth-related security events - password changes, MFA toggles, failed logins, suspicious IPs and API key activity - each with a severity-driven dot and badge. Filter by severity or search by label, IP address or location. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:640px;">
+                    <nx-security-event-log [events]="events"></nx-security-event-log>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

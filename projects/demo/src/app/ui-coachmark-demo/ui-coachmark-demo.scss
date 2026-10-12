@@ -1,0 +1,24 @@
+.demo-btn {
+    padding: 8px 16px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #ffffff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.demo-btn-ghost {
+    background: transparent;
+}
+
+.coachmark-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 40px 24px;
+}
+
+.coachmark-row-spaced {
+    gap: 48px;
+    flex-wrap: wrap;
+}

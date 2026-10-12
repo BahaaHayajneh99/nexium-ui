@@ -1,0 +1,110 @@
+.nx-bulk-actions-bar {
+    position: fixed;
+    left: 50%;
+    bottom: var(--nx-spacing-lg, 24px);
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-md, 16px);
+    padding: 10px 12px 10px 20px;
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: var(--shell-surface-inverse, #1f2430);
+    color: #ffffff;
+    box-shadow: var(--nx-shadow-md, 0 8px 24px rgba(0, 0, 0, .25));
+
+    // Kept mounted at all times (see the component's doc comment) and toggled purely
+    // through this transform/opacity pair, so `selectedCount` crossing zero in either
+    // direction always gets the same smooth slide-and-fade instead of an abrupt
+    // mount/unmount.
+    transform: translate(-50%, calc(100% + 24px));
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .25s ease, opacity .2s ease;
+}
+
+.nx-bulk-actions-bar-visible {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nx-bulk-actions-count {
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.nx-bulk-actions-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nx-bulk-actions-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: rgba(255, 255, 255, .12);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color .15s ease;
+}
+
+.nx-bulk-actions-btn:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, .22);
+}
+
+.nx-bulk-actions-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.nx-bulk-actions-btn-danger {
+    background-color: var(--shell-danger, #d92d20);
+}
+
+.nx-bulk-actions-btn-danger:hover:not(:disabled) {
+    background-color: var(--shell-danger, #d92d20);
+    opacity: .85;
+}
+
+.nx-bulk-actions-clear {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 10px;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, .2);
+    background: transparent;
+    color: rgba(255, 255, 255, .75);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.nx-bulk-actions-clear:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 640px) {
+    .nx-bulk-actions-bar {
+        left: var(--nx-spacing-md, 16px);
+        right: var(--nx-spacing-md, 16px);
+        bottom: var(--nx-spacing-md, 16px);
+        transform: translateY(calc(100% + 24px));
+        flex-wrap: wrap;
+    }
+
+    .nx-bulk-actions-bar-visible {
+        transform: translateY(0);
+    }
+}

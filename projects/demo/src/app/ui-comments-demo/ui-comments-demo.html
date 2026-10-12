@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Threaded Comments"
+                description="{{ commonService.appName }} Comments - a threaded comment list with an inline editor for posting replies, suitable for a blog post, support ticket, or document. Click Reply on any comment to open a scoped reply box, or use the composer at the top to post a new root-level comment. 'Bahaa' is signed in as the current user here, so his own comments show Edit/Delete controls - everyone else's don't. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-comments
+                    [comments]="comments()"
+                    [currentUserId]="currentUserId"
+                    (commentAdded)="onCommentAdded($event)"
+                    (commentEdited)="onCommentEdited($event)"
+                    (commentDeleted)="onCommentDeleted($event)">
+                </nx-comments>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Empty State"
+                description="With no comments yet, the list shows a simple placeholder under the composer instead of an empty gap."
+                [code]="emptyCode"
+                [tsCode]="emptyTs"
+                [hasSampleClass]="false">
+                <nx-comments [comments]="[]" [currentUserId]="currentUserId" (commentAdded)="onCommentAdded($event)"></nx-comments>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

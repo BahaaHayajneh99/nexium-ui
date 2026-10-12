@@ -1,0 +1,54 @@
+@if (!licensed()) {
+    <nx-pro-locked componentName="Quick Create"></nx-pro-locked>
+} @else if (!expanded) {
+    <button type="button" class="nx-quick-create-trigger" (click)="open()">
+        <ng-content select="[trigger]">
+            <span class="nx-quick-create-trigger-default">
+                <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                {{ triggerLabel }}
+            </span>
+        </ng-content>
+    </button>
+} @else {
+    <div class="nx-quick-create-row">
+        @for (field of fields; track field.key) {
+            <div class="nx-quick-create-field">
+                <label class="nx-quick-create-label">{{ field.label }}</label>
+
+                @switch (field.type) {
+                    @case ('number') {
+                        <nx-number
+                            [ngModel]="numberValue(field.key)"
+                            (ngModelChange)="setField(field.key, $event)"
+                            [placeholder]="field.label"
+                            [showStepButtons]="false">
+                        </nx-number>
+                    }
+                    @case ('select') {
+                        <nx-select
+                            [value]="textValue(field.key)"
+                            [options]="field.options ?? []"
+                            [placeholder]="field.label"
+                            (valueChange)="setField(field.key, $event)">
+                        </nx-select>
+                    }
+                    @default {
+                        <input
+                            type="text"
+                            class="nx-quick-create-input"
+                            [value]="textValue(field.key)"
+                            [placeholder]="field.label"
+                            (input)="setField(field.key, $any($event.target).value)"
+                            (keydown.enter)="save()"
+                            (keydown.escape)="onCancel()" />
+                    }
+                }
+            </div>
+        }
+
+        <div class="nx-quick-create-actions">
+            <button type="button" class="nx-quick-create-save" (click)="save()">Save</button>
+            <button type="button" class="nx-quick-create-cancel" (click)="onCancel()">Cancel</button>
+        </div>
+    </div>
+}

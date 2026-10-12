@@ -1,0 +1,57 @@
+@property --nx-gradient-border-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+:host {
+    display: inline-block;
+    width: 100%;
+}
+
+.nx-gradient-border {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    isolation: isolate;
+}
+
+.nx-gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    padding: var(--nx-gradient-border-width, 2px);
+    background: conic-gradient(from var(--nx-gradient-border-angle, 0deg), var(--nx-gradient-border-colors));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.nx-gradient-border-animated::before {
+    animation: nx-gradient-border-rotate var(--nx-gradient-border-speed, 4s) linear infinite;
+}
+
+.nx-gradient-border-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+}
+
+@keyframes nx-gradient-border-rotate {
+    from {
+        --nx-gradient-border-angle: 0deg;
+    }
+    to {
+        --nx-gradient-border-angle: 360deg;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nx-gradient-border-animated::before {
+        animation: none;
+    }
+}

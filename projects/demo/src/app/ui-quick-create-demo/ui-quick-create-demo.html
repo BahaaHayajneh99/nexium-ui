@@ -1,0 +1,68 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Task List"
+                description="{{ commonService.appName }} Quick Create - the '+ Add' trigger expands in place into a mini-form, so a new row can be added to a list without leaving the page. Save/Cancel collapses it back."
+                [code]="taskCode"
+                [tsCode]="taskTs"
+                [hasSampleClass]="false">
+                <ul class="quick-create-demo-list">
+                    @for (task of tasks(); track task.title) {
+                        <li>
+                            <span>{{ task.title }}</span>
+                            <span class="quick-create-demo-tag">{{ task.priority }}</span>
+                        </li>
+                    }
+                </ul>
+                <nx-quick-create [fields]="taskFields" (create)="onTaskCreated($event)"></nx-quick-create>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Contact Table"
+                description="fields can mix text, number and select inputs in any combination - each key in the emitted create record matches a field's key."
+                [code]="contactCode"
+                [tsCode]="contactTs"
+                [hasSampleClass]="false">
+                <table class="quick-create-demo-table">
+                    <thead>
+                        <tr><th>Name</th><th>Email</th><th>Age</th></tr>
+                    </thead>
+                    <tbody>
+                        @for (contact of contacts(); track contact.email) {
+                            <tr>
+                                <td>{{ contact.name }}</td>
+                                <td>{{ contact.email }}</td>
+                                <td>{{ contact.age ?? '—' }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <nx-quick-create [fields]="contactFields" (create)="onContactCreated($event)"></nx-quick-create>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Trigger"
+                description="Projecting content into the [trigger] slot replaces the default button entirely, and [(expanded)] two-way binds the open/collapsed state. {{ customLog || 'Nothing created yet.' }}"
+                [code]="customCode"
+                [tsCode]="customTs"
+                [hasSampleClass]="false">
+                <nx-quick-create
+                    [fields]="taskFields"
+                    [(expanded)]="customExpanded"
+                    (create)="onCustomCreated($event)">
+                    <span trigger class="custom-trigger">New task +</span>
+                </nx-quick-create>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

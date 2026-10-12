@@ -1,0 +1,39 @@
+<span class="nx-presence-indicator" [class.avatar-mode]="mode === 'avatar'">
+
+    @if (mode === 'avatar') {
+        <span class="nx-presence-indicator-avatar">
+            @if (hasAvatarInputs) {
+                <nx-avatar
+                    [src]="avatarUrl"
+                    [alt]="avatarAlt"
+                    [name]="avatarName"
+                    [size]="avatarSize"
+                    [shape]="avatarShape"
+                    [variant]="avatarVariant">
+                </nx-avatar>
+            } @else {
+                <ng-content></ng-content>
+            }
+            <span
+                class="nx-presence-indicator-dot overlay"
+                [class]="status"
+                [class.pulse]="pulse && status === 'online'"
+                [attr.aria-label]="displayLabel"
+                role="img">
+            </span>
+        </span>
+    } @else {
+        <span
+            class="nx-presence-indicator-dot"
+            [class]="status"
+            [class.pulse]="pulse && status === 'online'"
+            [attr.aria-label]="displayLabel"
+            role="img">
+        </span>
+    }
+
+    @if (showLabel) {
+        <span class="nx-presence-indicator-label">{{ displayLabel }}</span>
+    }
+
+</span>

@@ -1,0 +1,79 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Text &amp; Textarea"
+                description="{{ commonService.appName }} Inline Edit - click the text (or the pencil icon on hover) to swap it for an editable control. Enter or clicking away saves, Escape or the cancel button discards the change. Last event: {{ lastEvent || '—' }}"
+                [code]="textCode"
+                [tsCode]="textTs"
+                [hasSampleClass]="false">
+                <div class="inline-edit-demo-row">
+                    <div>
+                        <span class="inline-edit-demo-label">Name</span>
+                        <nx-inline-edit
+                            [(value)]="profileName"
+                            placeholder="Enter a name"
+                            (save)="onSave('name', $event)"
+                            (cancel)="onCancel('name')">
+                        </nx-inline-edit>
+                    </div>
+                    <div>
+                        <span class="inline-edit-demo-label">Bio</span>
+                        <nx-inline-edit
+                            type="textarea"
+                            [(value)]="bio"
+                            placeholder="Add a short bio"
+                            (save)="onSave('bio', $event)"
+                            (cancel)="onCancel('bio')">
+                        </nx-inline-edit>
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Number"
+                description="type=&quot;number&quot; reuses nx-number for the editing control, so stepping/min/max behave exactly like any other numeric field."
+                [code]="numberCode"
+                [tsCode]="numberTs"
+                [hasSampleClass]="false">
+                <div>
+                    <span class="inline-edit-demo-label">Price</span>
+                    <nx-inline-edit
+                        type="number"
+                        [(value)]="price"
+                        placeholder="0.00"
+                        (save)="onSave('price', $event)"
+                        (cancel)="onCancel('price')">
+                    </nx-inline-edit>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Select"
+                description="type=&quot;select&quot; reuses nx-select for the editing control and shows the matching option's label - not its raw value - in display mode."
+                [code]="selectCode"
+                [tsCode]="selectTs"
+                [hasSampleClass]="false">
+                <div>
+                    <span class="inline-edit-demo-label">Status</span>
+                    <nx-inline-edit
+                        type="select"
+                        [(value)]="status"
+                        [options]="statusOptions"
+                        (save)="onSave('status', $event)"
+                        (cancel)="onCancel('status')">
+                    </nx-inline-edit>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

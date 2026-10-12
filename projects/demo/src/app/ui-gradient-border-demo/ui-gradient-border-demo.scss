@@ -1,0 +1,36 @@
+.gb-demo-wrap {
+    max-width: 280px;
+}
+
+.gb-demo-wrap-inline {
+    width: auto;
+}
+
+.card {
+    padding: 20px;
+    border-radius: inherit;
+    background: var(--shell-bg);
+
+    h4 {
+        margin: 0 0 8px;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--shell-text-muted, #6c757d);
+    }
+}
+
+.pill-button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: inherit;
+    background: var(--shell-bg);
+    color: var(--shell-primary);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}

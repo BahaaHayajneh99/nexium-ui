@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Session Timeout Warning"
+                description="{{ commonService.appName }} Session Timeout - stays invisible while the user is active, then shows a modal countdown warning after a period of inactivity. This demo uses a SHORTENED idle timeout of 8 seconds and a 10 second warning countdown (instead of the real 15 minute / 60 second defaults) so you can see the full flow play out quickly: stop moving your mouse/keyboard over the preview below and wait 8 seconds for the warning to appear, then either click 'Stay signed in' to reset the timer, click 'Sign out', or let the countdown hit zero to see it auto-expire. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-session-timeout
+                    [idleTimeoutMs]="demoIdleTimeoutMs"
+                    [warningDurationMs]="demoWarningDurationMs"
+                    (sessionExpired)="onSessionExpired()"
+                    (extended)="onExtended()"
+                    (signedOut)="onSignedOut()">
+                </nx-session-timeout>
+
+                <div class="session-timeout-demo-log">
+                    <div class="session-timeout-demo-log-title">Event log</div>
+                    @if (eventLog().length) {
+                        <ul class="session-timeout-demo-log-list">
+                            @for (entry of eventLog(); track entry) {
+                                <li>{{ entry }}</li>
+                            }
+                        </ul>
+                    } @else {
+                        <p class="session-timeout-demo-log-empty">No events yet - stay idle for 8 seconds to trigger the warning.</p>
+                    }
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disabled (active = false)"
+                description="Set [active]=&quot;false&quot; to fully disable idle-tracking, for example on a login page where there's no session yet to protect. No listeners are bound and no timers run, so the warning never appears."
+                [code]="inactiveCode"
+                [tsCode]="inactiveTs"
+                [hasSampleClass]="false">
+                <nx-session-timeout [active]="false"></nx-session-timeout>
+                <p class="session-timeout-demo-note">Nothing renders here - the component is idle and inert while <code>active</code> is false.</p>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

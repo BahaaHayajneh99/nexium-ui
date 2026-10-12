@@ -1,0 +1,28 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="API Key Manager"
+                description="{{ commonService.appName }} API Key Manager - a table of issued keys with masked values, scope badges, creation/last-used dates, and a per-row Revoke action. Click 'Create new key' to simulate generating one: a new masked row is added immediately, and the real (one-time) plaintext value appears in a dismissible banner above the table - exactly as it would in a real app, it is never shown again afterward. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-api-key-manager
+                    [apiKeys]="apiKeys()"
+                    [newlyCreatedKey]="newlyCreatedKey()"
+                    (createKey)="onCreateKey()"
+                    (revokeKey)="onRevokeKey($event)">
+                </nx-api-key-manager>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

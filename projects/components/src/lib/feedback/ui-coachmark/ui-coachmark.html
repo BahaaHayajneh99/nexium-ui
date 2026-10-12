@@ -1,0 +1,33 @@
+@if (licensed()) {
+    <ng-content></ng-content>
+
+    @if (!dismissed) {
+        <button
+            type="button"
+            class="nx-coachmark-dot"
+            [class.nx-coachmark-dot-pulse]="showPulse && !open()"
+            [attr.aria-expanded]="open()"
+            [attr.aria-label]="dotLabel"
+            (click)="toggleOpen()">
+            <span class="nx-coachmark-dot-core"></span>
+        </button>
+
+        @if (open()) {
+            <div
+                class="nx-coachmark-popover"
+                role="dialog"
+                [attr.aria-label]="title || 'Feature hint'"
+                [attr.data-placement]="placement">
+                @if (title) {
+                    <div class="nx-coachmark-popover-title">{{ title }}</div>
+                }
+                @if (description) {
+                    <p class="nx-coachmark-popover-description">{{ description }}</p>
+                }
+                <button type="button" class="nx-coachmark-popover-dismiss" (click)="dismiss()">Got it</button>
+            </div>
+        }
+    }
+} @else {
+    <nx-pro-locked componentName="Coachmark"></nx-pro-locked>
+}

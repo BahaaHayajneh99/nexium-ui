@@ -1,0 +1,50 @@
+<div class="nx-emoji-picker">
+    <div class="nx-emoji-picker-search">
+        <nx-search
+            [value]="search"
+            [placeholder]="searchPlaceholder"
+            [showResultsPanel]="false"
+            (valueChange)="onSearchChange($event)">
+        </nx-search>
+    </div>
+
+    @if (showCategories && !isSearching) {
+        <div class="nx-emoji-picker-tabs" role="tablist" aria-label="Emoji categories">
+            @for (tab of tabs; track tab) {
+                <button
+                    type="button"
+                    class="nx-emoji-picker-tab"
+                    role="tab"
+                    [class.active]="tab === activeCategory"
+                    [attr.aria-selected]="tab === activeCategory"
+                    (click)="selectCategory(tab)">
+                    {{ tab }}
+                </button>
+            }
+        </div>
+    }
+
+    <div class="nx-emoji-picker-grid" role="listbox" aria-label="Emoji">
+        @if (filteredNames.length) {
+            @for (name of filteredNames; track trackByName($index, name)) {
+                <button
+                    type="button"
+                    class="nx-emoji-picker-cell"
+                    role="option"
+                    [attr.aria-label]="name"
+                    [title]="name"
+                    (click)="selectEmoji(name)">
+                    <nx-emoji [emoji]="name" [size]="emojiSize"></nx-emoji>
+                </button>
+            }
+        } @else {
+            <div class="nx-emoji-picker-empty">
+                <nx-icon icon="nx-search" variant="svg" [size]="20"></nx-icon>
+                <p>{{ noResultsText }}</p>
+                @if (isSearching) {
+                    <p class="nx-emoji-picker-empty-hint">Try a different search term</p>
+                }
+            </div>
+        }
+    </div>
+</div>

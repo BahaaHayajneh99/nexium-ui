@@ -1,0 +1,101 @@
+@if (licensed()) {
+    <div class="nx-webhook-manager">
+        <div class="nx-webhook-manager-toolbar">
+            @if (!addingWebhook()) {
+                <button type="button" class="nx-webhook-manager-btn" (click)="startAdd()">
+                    <nx-icon icon="nx-plus" variant="svg" [size]="12"></nx-icon> Add webhook
+                </button>
+            }
+        </div>
+
+        @if (addingWebhook()) {
+            <div class="nx-webhook-manager-form">
+                <input
+                    type="text"
+                    class="nx-webhook-manager-url-input"
+                    placeholder="https://example.com/webhooks/incoming"
+                    [ngModel]="draftUrl()"
+                    (ngModelChange)="draftUrl.set($event)"
+                    [ngModelOptions]="{standalone: true}" />
+
+                <div class="nx-webhook-manager-events-checklist">
+                    @for (event of availableEvents; track event.value) {
+                        <label class="nx-webhook-manager-event-option">
+                            <input
+                                type="checkbox"
+                                [checked]="isDraftEventSelected(event.value)"
+                                (change)="toggleDraftEvent(event.value)" />
+                            {{ event.label }}
+                        </label>
+                    }
+                </div>
+
+                <div class="nx-webhook-manager-form-actions">
+                    <button type="button" class="nx-webhook-manager-save" [disabled]="!canSubmitAdd" (click)="submitAdd()">Save webhook</button>
+                    <button type="button" class="nx-webhook-manager-btn" (click)="cancelAdd()">Cancel</button>
+                </div>
+            </div>
+        }
+
+        <div class="nx-webhook-manager-list">
+            @for (webhook of webhooks; track webhook.id) {
+                <div class="nx-webhook-manager-row">
+                    <div class="nx-webhook-manager-row-main">
+                        <div class="nx-webhook-manager-url">{{ webhook.url }}</div>
+
+                        <div class="nx-webhook-manager-events">
+                            @for (event of webhook.events; track event) {
+                                <span class="nx-webhook-manager-badge">{{ eventLabel(event) }}</span>
+                            }
+                        </div>
+
+                        <div class="nx-webhook-manager-delivery">
+                            @if (webhook.lastDeliveryStatus === 'success') {
+                                <span class="nx-webhook-manager-status success">
+                                    <nx-icon icon="nx-check-circle" variant="svg" [size]="12"></nx-icon> Success
+                                </span>
+                            } @else if (webhook.lastDeliveryStatus === 'failed') {
+                                <span class="nx-webhook-manager-status failed">
+                                    <nx-icon icon="nx-x-circle" variant="svg" [size]="12"></nx-icon> Failed
+                                </span>
+                            } @else {
+                                <span class="nx-webhook-manager-status none">No deliveries yet</span>
+                            }
+                            @if (webhook.lastDeliveryAt) {
+                                <span class="nx-webhook-manager-delivery-time">{{ formatDate(webhook.lastDeliveryAt) }}</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="nx-webhook-manager-row-actions">
+                        <label class="nx-webhook-manager-toggle">
+                            <input type="checkbox" [checked]="webhook.enabled" (change)="onToggle(webhook)" />
+                            <span>{{ webhook.enabled ? 'Enabled' : 'Disabled' }}</span>
+                        </label>
+
+                        <button
+                            type="button"
+                            class="nx-webhook-manager-btn"
+                            [disabled]="pingingId() === webhook.id"
+                            (click)="onTestPing(webhook.id)">
+                            <nx-icon icon="nx-send" variant="svg" [size]="12"></nx-icon>
+                            {{ pingingId() === webhook.id ? 'Sending...' : 'Send test ping' }}
+                        </button>
+
+                        <button
+                            type="button"
+                            class="nx-webhook-manager-delete"
+                            (click)="deleteWebhook.emit(webhook.id)"
+                            aria-label="Delete webhook">
+                            <nx-icon icon="nx-trash" variant="svg" [size]="12"></nx-icon>
+                        </button>
+                    </div>
+                </div>
+            } @empty {
+                <div class="nx-webhook-manager-empty">No webhooks configured yet.</div>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Webhook Manager"></nx-pro-locked>
+}

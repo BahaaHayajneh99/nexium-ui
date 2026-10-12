@@ -1,0 +1,28 @@
+:host {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nx-magnetic-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-primary);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    will-change: transform;
+}
+
+.nx-magnetic-button-disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}

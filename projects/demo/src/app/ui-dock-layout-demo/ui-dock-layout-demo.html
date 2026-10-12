@@ -1,0 +1,90 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="IDE-style Docking Layout"
+                description="A VS Code-like layout - a left file tree, a right properties panel, a bottom console, and a center editor area. Drag any divider to resize its neighbors, or close a panel with its x button to collapse its space back into the layout. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+
+                <nx-dock-layout
+                    class="dock-layout-demo"
+                    [panels]="idePanels()"
+                    (panelClosed)="onPanelClosed($event)"
+                    (layoutChange)="onLayoutChange($event)">
+
+                    <div nxDockPanelContent="explorer" class="dock-file-tree">
+                        @for (file of files; track file.name) {
+                            <div class="dock-file-row" [style.padding-left.px]="(file.depth ?? 0) * 14 + 8">
+                                <nx-icon [icon]="file.type === 'folder' ? 'nx-folder' : 'nx-file'" variant="svg" [size]="13"></nx-icon>
+                                <span>{{ file.name }}</span>
+                            </div>
+                        }
+                    </div>
+
+                    <div nxDockPanelContent="properties" class="dock-properties">
+                        <label>
+                            <span>Name</span>
+                            <input type="text" value="ui-dock-layout.ts" readonly />
+                        </label>
+                        <label>
+                            <span>Type</span>
+                            <input type="text" value="TypeScript" readonly />
+                        </label>
+                        <label>
+                            <span>Size</span>
+                            <input type="text" value="6.2 KB" readonly />
+                        </label>
+                        <label>
+                            <span>Modified</span>
+                            <input type="text" value="2026-10-08" readonly />
+                        </label>
+                    </div>
+
+                    <div nxDockPanelContent="console" class="dock-console">
+                        @for (line of consoleLines; track $index) {
+                            <div class="dock-console-line" [class]="'level-' + line.level">
+                                <nx-icon
+                                    [icon]="line.level === 'error' ? 'nx-x-circle' : line.level === 'warn' ? 'nx-alert-triangle' : 'nx-info-circle'"
+                                    variant="svg"
+                                    [size]="12">
+                                </nx-icon>
+                                <span>{{ line.text }}</span>
+                            </div>
+                        }
+                    </div>
+
+                    <div nxDockPanelContent="editor" class="dock-editor">
+                        <pre><code>export class NxDockLayout &#123;
+  protected readonly licensed = nxProLicenseGranted();
+
+  &#64;Input() panels: NxDockPanel[] = [];
+  &#64;Output() panelClosed = new EventEmitter&lt;string&gt;();
+  &#64;Output() layoutChange = new EventEmitter&lt;Record&lt;string, number&gt;&gt;();
+&#125;</code></pre>
+                    </div>
+                </nx-dock-layout>
+
+                <div class="dock-layout-status">
+                    <button type="button" class="dock-layout-reset" (click)="resetLayout()">Reset layout</button>
+                    @if (lastClosedPanel(); as closed) {
+                        <span>Last closed panel: <strong>{{ closed }}</strong></span>
+                    }
+                    @if (lastLayoutChange(); as sizes) {
+                        <span>Last layoutChange: <code>{{ sizes | json }}</code></span>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

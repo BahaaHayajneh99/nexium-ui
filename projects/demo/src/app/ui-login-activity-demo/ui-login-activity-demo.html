@@ -1,0 +1,25 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Login Activity"
+                description="{{ commonService.appName }} Login Activity lists raw login attempts - one row per attempt, success and failure both - newest first. Toggle between All, Successful and Failed to filter the table; failed rows show their failure reason inline. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:720px;">
+                    <nx-login-activity [entries]="entries"></nx-login-activity>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

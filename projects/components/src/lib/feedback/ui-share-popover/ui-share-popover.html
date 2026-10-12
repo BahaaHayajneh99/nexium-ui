@@ -1,0 +1,39 @@
+@if (licensed()) {
+    <nx-popover [position]="position">
+        <button type="button" class="nx-share-trigger" nx-popover-trigger>
+            <nx-icon icon="nx-share" variant="svg" [size]="16"></nx-icon>
+            Share
+        </button>
+
+        <div class="nx-share-panel">
+            <div class="nx-share-link-row">
+                <input
+                    type="text"
+                    class="nx-share-link-input"
+                    [value]="url"
+                    readonly
+                    (click)="$any($event.target).select()" />
+                <button type="button" class="nx-share-copy" [nxCopyToClipboard]="url" (nxCopied)="onCopied($event)">
+                    <nx-icon [icon]="copiedJustNow ? 'nx-check' : 'nx-copy'" variant="svg" [size]="14"></nx-icon>
+                    {{ copiedJustNow ? 'Copied' : 'Copy' }}
+                </button>
+            </div>
+
+            <div class="nx-share-channels">
+                @for (channel of visibleChannels; track channel.key) {
+                    <a
+                        class="nx-share-channel"
+                        [href]="shareHref(channel)"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        [attr.aria-label]="'Share on ' + channel.label">
+                        <nx-icon [icon]="channel.icon" variant="svg" [size]="20"></nx-icon>
+                        <span>{{ channel.label }}</span>
+                    </a>
+                }
+            </div>
+        </div>
+    </nx-popover>
+} @else {
+    <nx-pro-locked componentName="Share Popover"></nx-pro-locked>
+}

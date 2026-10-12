@@ -522,13 +522,19 @@ function computeFormatBits(ecLevel: NxQrErrorCorrectionLevel, mask: number): num
 
 function writeFormatInfo(matrix: boolean[][], size: number, ecLevel: NxQrErrorCorrectionLevel, mask: number): void {
   const bits = computeFormatBits(ecLevel, mask);
+  // Bit-index-to-position mapping verified against a real, independently-trusted QR
+  // implementation (bit i=0 is the LSB of `bits`) - an earlier version of this mapping was
+  // internally self-consistent (our own reader agreed with our own writer) but used a
+  // different bit order than real decoders expect, so every real-world scanner misread which
+  // mask was used and failed to decode, even though every other part of the symbol (finder
+  // patterns, timing, data codewords, Reed-Solomon) was independently verified correct.
   const copyA: Array<[number, number]> = [
-    [8, 0], [8, 1], [8, 2], [8, 3], [8, 4], [8, 5], [8, 7], [8, 8],
-    [7, 8], [5, 8], [4, 8], [3, 8], [2, 8], [1, 8], [0, 8],
+    [0, 8], [1, 8], [2, 8], [3, 8], [4, 8], [5, 8], [7, 8], [8, 8],
+    [size - 7, 8], [size - 6, 8], [size - 5, 8], [size - 4, 8], [size - 3, 8], [size - 2, 8], [size - 1, 8],
   ];
   const copyB: Array<[number, number]> = [
-    [size - 1, 8], [size - 2, 8], [size - 3, 8], [size - 4, 8], [size - 5, 8], [size - 6, 8], [size - 7, 8],
-    [8, size - 8], [8, size - 7], [8, size - 6], [8, size - 5], [8, size - 4], [8, size - 3], [8, size - 2], [8, size - 1],
+    [8, size - 1], [8, size - 2], [8, size - 3], [8, size - 4], [8, size - 5], [8, size - 6], [8, size - 7], [8, size - 8],
+    [8, 7], [8, 5], [8, 4], [8, 3], [8, 2], [8, 1], [8, 0],
   ];
   for (let i = 0; i < 15; i++) {
     const bit = (bits >> i) & 1;

@@ -59,22 +59,11 @@ export class NxQrCode implements AfterViewInit, OnChanges {
       return;
     }
 
-    const dpr = window.devicePixelRatio || 1;
-    const renderSize = Math.max(1, this.size);
-    canvas.width = renderSize * dpr;
-    canvas.height = renderSize * dpr;
-    canvas.style.width = `${renderSize}px`;
-    canvas.style.height = `${renderSize}px`;
-
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
-    ctx.clearRect(0, 0, renderSize, renderSize);
-    ctx.fillStyle = this.background;
-    ctx.fillRect(0, 0, renderSize, renderSize);
-
     this.errorMessage = null;
 
     if (!this.value) {
+      canvas.width = canvas.height = 0;
+      canvas.style.width = canvas.style.height = '0px';
       return;
     }
 
@@ -88,16 +77,38 @@ export class NxQrCode implements AfterViewInit, OnChanges {
 
     const quietZone = Math.max(0, this.margin);
     const totalModules = qr.size + quietZone * 2;
-    const moduleSize = renderSize / totalModules;
+
+    // Snap to a WHOLE-PIXEL module size (both in CSS pixels and in device pixels) rather than
+    // dividing the requested `size` evenly and rounding each module edge independently - a
+    // fractional module size always leaves some rounding error, which blurs edges at low DPI
+    // and, at small-enough module sizes, can wobble adjacent module boundaries by a pixel
+    // relative to each other. A real scanner (jsQR included) can fail outright on that, even
+    // though every module is still individually crisp and the module data itself is correct -
+    // confirmed by testing this same symbol at several sizes, where sizes that didn't divide
+    // cleanly failed intermittently while whole-pixel-per-module sizes always succeeded. The
+    // rendered size is therefore the nearest whole-module-size fit to `size`, not `size` itself.
+    const dpr = window.devicePixelRatio || 1;
+    const cssModuleSize = Math.max(1, Math.round(this.size / totalModules));
+    const deviceModuleSize = Math.max(1, Math.round(cssModuleSize * dpr));
+    const cssRenderSize = cssModuleSize * totalModules;
+    const deviceRenderSize = deviceModuleSize * totalModules;
+
+    canvas.width = deviceRenderSize;
+    canvas.height = deviceRenderSize;
+    canvas.style.width = `${cssRenderSize}px`;
+    canvas.style.height = `${cssRenderSize}px`;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = this.background;
+    ctx.fillRect(0, 0, deviceRenderSize, deviceRenderSize);
 
     ctx.fillStyle = this.foreground;
     for (let row = 0; row < qr.size; row++) {
       for (let col = 0; col < qr.size; col++) {
         if (qr.modules[row][col]) {
-          const x = (col + quietZone) * moduleSize;
-          const y = (row + quietZone) * moduleSize;
-          // Rounding up avoids thin anti-aliased seams between adjacent modules.
-          ctx.fillRect(x, y, Math.ceil(moduleSize), Math.ceil(moduleSize));
+          const x = (col + quietZone) * deviceModuleSize;
+          const y = (row + quietZone) * deviceModuleSize;
+          ctx.fillRect(x, y, deviceModuleSize, deviceModuleSize);
         }
       }
     }

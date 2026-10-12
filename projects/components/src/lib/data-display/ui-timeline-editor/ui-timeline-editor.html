@@ -1,0 +1,152 @@
+@if (licensed()) {
+    <div class="nx-te">
+        <div class="nx-te-toolbar">
+            <div class="nx-te-search-wrap">
+                <nx-icon icon="nx-search" variant="svg" [size]="14"></nx-icon>
+                <input
+                    type="text"
+                    class="nx-te-search"
+                    placeholder="Search events..."
+                    [ngModel]="searchText()"
+                    (ngModelChange)="searchText.set($event)" />
+            </div>
+
+            <select class="nx-te-select" [ngModel]="groupFilter()" (ngModelChange)="groupFilter.set($event)">
+                <option value="all">All groups</option>
+                @for (group of groups; track group.id) {
+                    <option [value]="group.id">{{ group.label }}</option>
+                }
+            </select>
+
+            <div class="nx-te-zoom">
+                <button
+                    type="button"
+                    class="nx-te-icon-btn"
+                    [disabled]="isMinZoom()"
+                    title="Zoom out"
+                    (click)="zoomOut()">
+                    <nx-icon icon="nx-minus" variant="svg" [size]="14"></nx-icon>
+                </button>
+                <button type="button" class="nx-te-zoom-label" title="Reset zoom" (click)="resetZoom()">
+                    {{ zoomLabel() }}
+                </button>
+                <button
+                    type="button"
+                    class="nx-te-icon-btn"
+                    [disabled]="isMaxZoom()"
+                    title="Zoom in"
+                    (click)="zoomIn()">
+                    <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                </button>
+            </div>
+
+            <button type="button" class="nx-te-add-btn" (click)="addEventAtNow()">
+                <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                Add event
+            </button>
+        </div>
+
+        <div class="nx-te-body">
+            <div class="nx-te-labels">
+                <div class="nx-te-label-spacer"></div>
+                @for (row of rows(); track row.group.id) {
+                    <div class="nx-te-label" [style.background]="row.group.color || null">
+                        {{ row.group.label }}
+                    </div>
+                } @empty {
+                    <div class="nx-te-label-empty">No groups</div>
+                }
+            </div>
+
+            <div class="nx-te-scroll">
+                <div class="nx-te-canvas" #canvasEl [style.width.px]="timelineWidth()">
+                    <div class="nx-te-ruler">
+                        @for (tick of ticks(); track tick.x) {
+                            <div class="nx-te-tick" [style.left.px]="tick.x">
+                                <span class="nx-te-tick-label">{{ tick.label }}</span>
+                            </div>
+                        }
+                    </div>
+
+                    @for (row of rows(); track row.group.id) {
+                        <div class="nx-te-row" (click)="onRowClick(row.group.id, $event)">
+                            @for (evt of row.events; track evt.id) {
+                                <div
+                                    class="nx-te-event"
+                                    [class.dragging]="isDragging(evt)"
+                                    [class.selected]="editingId() === evt.id"
+                                    [style.left.px]="chipLeft(evt)"
+                                    [style.width.px]="chipWidth(evt)"
+                                    [style.border-left-color]="evt.color || row.group.color || null"
+                                    (click)="onEventClick($event)"
+                                    (pointerdown)="onEventPointerDown(evt, $event)"
+                                    (pointermove)="onEventPointerMove($event)"
+                                    (pointerup)="onEventPointerUp(evt, $event)"
+                                    (pointercancel)="onEventPointerCancel()">
+                                    <span class="nx-te-event-label">{{ evt.label }}</span>
+                                </div>
+                            }
+                        </div>
+                    } @empty {
+                        <div class="nx-te-empty">No groups to display - add a group or clear the group filter.</div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        @if (editingEvent(); as evt) {
+            <div class="nx-te-edit-panel">
+                <div class="nx-te-edit-header">
+                    <span>Edit event</span>
+                    <button type="button" class="nx-te-edit-close" title="Close" (click)="closeEditor()">
+                        <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                </div>
+
+                <div class="nx-te-edit-grid">
+                    <label class="nx-te-field">
+                        <span>Label</span>
+                        <input type="text" [ngModel]="draftLabel()" (ngModelChange)="draftLabel.set($event)" />
+                    </label>
+
+                    <label class="nx-te-field">
+                        <span>Group</span>
+                        <select [ngModel]="draftGroupId()" (ngModelChange)="draftGroupId.set($event)">
+                            @for (group of groups; track group.id) {
+                                <option [value]="group.id">{{ group.label }}</option>
+                            }
+                        </select>
+                    </label>
+
+                    <label class="nx-te-field">
+                        <span>Start</span>
+                        <input type="datetime-local" [ngModel]="draftStart()" (ngModelChange)="draftStart.set($event)" />
+                    </label>
+
+                    <label class="nx-te-field">
+                        <span>End (optional)</span>
+                        <input type="datetime-local" [ngModel]="draftEnd()" (ngModelChange)="draftEnd.set($event)" />
+                    </label>
+
+                    <label class="nx-te-field nx-te-field-wide">
+                        <span>Details</span>
+                        <textarea rows="2" [ngModel]="draftDetail()" (ngModelChange)="draftDetail.set($event)"></textarea>
+                    </label>
+                </div>
+
+                <div class="nx-te-edit-actions">
+                    <button type="button" class="nx-te-delete-btn" (click)="deleteEditing()">
+                        <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon>
+                        Delete
+                    </button>
+                    <div class="nx-te-edit-actions-right">
+                        <button type="button" class="nx-te-cancel-btn" (click)="closeEditor()">Cancel</button>
+                        <button type="button" class="nx-te-save-btn" (click)="saveEdit()">Save</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Timeline Editor"></nx-pro-locked>
+}

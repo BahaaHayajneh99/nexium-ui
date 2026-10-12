@@ -1,0 +1,19 @@
+@if (licensed()) {
+    <div
+        class="nx-marquee"
+        [class.nx-marquee-vertical]="isVertical"
+        [class.nx-marquee-pause-hover]="pauseOnHover">
+        <div
+            #track
+            class="nx-marquee-track"
+            [class.nx-marquee-track-reverse]="isReversed"
+            [style.gap]="gapPx"
+            [style.animation-duration.s]="durationSeconds()">
+            <div #segment class="nx-marquee-segment" [style.gap]="gapPx">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Marquee"></nx-pro-locked>
+}

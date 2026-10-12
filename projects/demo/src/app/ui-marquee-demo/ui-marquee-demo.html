@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Scrolling Ticker"
+                description="A left-scrolling text ticker, like a stock ticker or status strip. Content is projected via ng-content and loops seamlessly - no visible jump, no JS animation-frame loop."
+                [code]="tickerCode"
+                [hasSampleClass]="false">
+                <nx-marquee [speed]="80" direction="left" class="marquee-demo-strip">
+                    @for (item of tickerItems; track item) {
+                        <span class="ticker-item">{{ item }}</span>
+                    }
+                </nx-marquee>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Logo Wall"
+                description="A logo wall with pauseOnHover enabled - hover over the strip to freeze it in place, handy for letting someone read a specific logo."
+                [code]="logoWallCode"
+                [hasSampleClass]="false">
+                <nx-marquee [speed]="50" direction="left" [pauseOnHover]="true" [gap]="48" class="marquee-demo-strip">
+                    @for (logo of logos; track logo.icon) {
+                        <span class="logo-item" [attr.aria-label]="logo.label">
+                            <nx-icon [icon]="logo.icon" variant="svg" [size]="28"></nx-icon>
+                        </span>
+                    }
+                </nx-marquee>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Vertical Direction"
+                description="direction=&quot;up&quot; scrolls the content bottom-to-top inside a fixed-height box - useful for an announcements feed or activity rail. pauseOnHover is disabled here so it never stalls."
+                [code]="verticalCode"
+                [hasSampleClass]="false">
+                <nx-marquee direction="up" [speed]="30" [pauseOnHover]="false" [gap]="16" class="marquee-demo-vertical">
+                    @for (row of announcements; track row) {
+                        <div class="announcement-row">{{ row }}</div>
+                    }
+                </nx-marquee>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

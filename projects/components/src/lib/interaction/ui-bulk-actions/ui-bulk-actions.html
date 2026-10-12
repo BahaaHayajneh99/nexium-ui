@@ -1,0 +1,33 @@
+@if (licensed()) {
+    <div class="nx-bulk-actions-bar" [class.nx-bulk-actions-bar-visible]="isVisible" role="toolbar" [attr.aria-hidden]="!isVisible">
+        <span class="nx-bulk-actions-count">{{ selectionLabel }}</span>
+
+        <div class="nx-bulk-actions-buttons">
+            @for (action of actions; track action.key) {
+                <button
+                    type="button"
+                    class="nx-bulk-actions-btn"
+                    [class.nx-bulk-actions-btn-danger]="action.variant === 'danger'"
+                    [disabled]="action.disabled"
+                    [tabindex]="isVisible ? 0 : -1"
+                    (click)="onActionClick(action)">
+                    @if (action.icon) {
+                        <nx-icon [icon]="action.icon" variant="svg" [size]="16"></nx-icon>
+                    }
+                    {{ action.label }}
+                </button>
+            }
+        </div>
+
+        <button
+            type="button"
+            class="nx-bulk-actions-clear"
+            [tabindex]="isVisible ? 0 : -1"
+            (click)="onClear()">
+            <nx-icon icon="nx-close" variant="svg" [size]="16"></nx-icon>
+            Clear selection
+        </button>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Bulk Actions"></nx-pro-locked>
+}

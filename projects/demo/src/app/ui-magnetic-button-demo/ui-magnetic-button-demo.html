@@ -1,0 +1,57 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Magnetic Button</h4>
+                <p class="main-section-description">
+                    A button wrapper whose content subtly translates toward the cursor as it hovers nearby,
+                    then springs back to center on mouseleave - the "magnetic" micro-interaction popular on
+                    premium landing pages. No animation library involved: just an inline
+                    <code>transform: translate(x, y)</code> recomputed on <code>mousemove</code>, with a CSS
+                    transition for the spring-back. Move your cursor over the buttons below.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic"
+                description="Default strength of 0.3 - hover anywhere over the button to feel the pull."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <div class="magnetic-demo-row">
+                    <nx-magnetic-button>Hover me</nx-magnetic-button>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Strength"
+                description="`strength` (0-1) controls how far the button is pulled toward the cursor."
+                [code]="strengthCode"
+                [hasSampleClass]="false">
+                <div class="magnetic-demo-row">
+                    <nx-magnetic-button [strength]="0.15">Subtle pull</nx-magnetic-button>
+                    <nx-magnetic-button [strength]="0.5">Strong pull</nx-magnetic-button>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Activation Radius &amp; Disabled"
+                description="`radius` pads the hit area (in px) so the magnetic pull starts reacting before the cursor actually reaches the button - try approaching it from a few pixels away. A `disabled` button ignores the cursor entirely."
+                [code]="radiusCode"
+                [hasSampleClass]="false">
+                <div class="magnetic-demo-row">
+                    <nx-magnetic-button [strength]="0.3" [radius]="40">Magnetic zone</nx-magnetic-button>
+                    <nx-magnetic-button [disabled]="true">Disabled</nx-magnetic-button>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

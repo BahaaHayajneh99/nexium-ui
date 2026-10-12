@@ -1,0 +1,74 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Bulk Edit Selected Tickets"
+                description="{{ commonService.appName }} Bulk Editor - select some rows below, then click Bulk Edit Selected to set one or more fields across all of them in a single pass. Each field's input control stays disabled until its own 'Apply this field' toggle is checked, so a field never gets overwritten by accident. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div class="bulk-editor-demo-table">
+                    <table class="bulk-editor-demo-grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Ticket</th>
+                                <th>Status</th>
+                                <th>Assignee</th>
+                                <th>Priority</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (ticket of tickets(); track ticket.id) {
+                                <tr>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            [checked]="isSelected(ticket.id)"
+                                            (change)="toggleSelected(ticket.id, $any($event.target).checked)" />
+                                    </td>
+                                    <td>{{ ticket.name }}</td>
+                                    <td>{{ ticket.status }}</td>
+                                    <td>{{ ticket.assignee }}</td>
+                                    <td>{{ ticket.priority }}</td>
+                                    <td>{{ ticket.dueDate }}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <button class="demo-btn" [disabled]="selectedRecords.length === 0" (click)="openBulkEditor()">
+                    Bulk Edit Selected ({{ selectedRecords.length }})
+                </button>
+
+                <nx-bulk-editor
+                    [records]="selectedRecords"
+                    recordLabelKey="name"
+                    [fields]="bulkFields"
+                    [open]="bulkEditorOpen()"
+                    (openChange)="bulkEditorOpen.set($event)"
+                    (apply)="onApply($event)"
+                    (cancel)="onCancel()">
+                </nx-bulk-editor>
+
+                @if (lastPayload(); as payload) {
+                    <div class="bulk-editor-demo-payload">
+                        <strong>Last apply payload:</strong>
+                        <pre>{{ payload | json }}</pre>
+                    </div>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

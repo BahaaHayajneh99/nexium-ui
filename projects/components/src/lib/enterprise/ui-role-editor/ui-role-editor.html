@@ -1,0 +1,82 @@
+@if (licensed()) {
+    <div class="nx-role-editor-wrapper">
+        <div class="nx-role-editor-field">
+            <label class="nx-role-editor-label" for="nx-role-editor-name">Role name</label>
+            <input
+                id="nx-role-editor-name"
+                type="text"
+                class="nx-role-editor-input"
+                placeholder="e.g. Content Editor"
+                [ngModel]="roleName"
+                (ngModelChange)="onNameInput($event)" />
+        </div>
+
+        <div class="nx-role-editor-field">
+            <label class="nx-role-editor-label" for="nx-role-editor-description">Description</label>
+            <textarea
+                id="nx-role-editor-description"
+                class="nx-role-editor-textarea"
+                rows="2"
+                placeholder="What this role is for..."
+                [ngModel]="roleDescription"
+                (ngModelChange)="onDescriptionInput($event)">
+            </textarea>
+        </div>
+
+        <div class="nx-role-editor-permissions-header">
+            <span class="nx-role-editor-permissions-title">Permissions</span>
+            <span class="nx-role-editor-permissions-count">{{ grantedCount() }} / {{ totalPermissionCount() }} granted</span>
+        </div>
+
+        <div class="nx-role-editor-groups">
+            @for (group of permissionGroups; track group.label) {
+                <div class="nx-role-editor-group">
+                    <div class="nx-role-editor-group-header">
+                        <button
+                            type="button"
+                            class="nx-role-editor-group-toggle"
+                            (click)="toggleGroupCollapse(group.label)">
+                            <nx-icon
+                                [icon]="isGroupCollapsed(group.label) ? 'nx-chevron-right' : 'nx-chevron-down'"
+                                variant="svg"
+                                [size]="12">
+                            </nx-icon>
+                            {{ group.label }}
+                        </button>
+                        <div class="nx-role-editor-group-actions">
+                            <span class="nx-role-editor-group-count">{{ groupGrantedCount(group) }}/{{ group.permissions.length }}</span>
+                            <button type="button" class="nx-role-editor-group-select-all" (click)="toggleGroup(group)">
+                                {{ isGroupFullyGranted(group) ? 'Clear all' : 'Select all' }}
+                            </button>
+                        </div>
+                    </div>
+
+                    @if (!isGroupCollapsed(group.label)) {
+                        <div class="nx-role-editor-checklist">
+                            @for (permission of group.permissions; track permission.key) {
+                                <label class="nx-role-editor-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        [checked]="isGranted(permission.key)"
+                                        (change)="togglePermission(permission.key)" />
+                                    {{ permission.label }}
+                                </label>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="nx-role-editor-actions">
+            <button type="button" class="nx-role-editor-btn nx-role-editor-btn-secondary" (click)="onCancel()">
+                <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon> Cancel
+            </button>
+            <button type="button" class="nx-role-editor-btn nx-role-editor-btn-primary" (click)="onSave()">
+                <nx-icon icon="nx-save" variant="svg" [size]="12"></nx-icon> Save role
+            </button>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Role Editor"></nx-pro-locked>
+}

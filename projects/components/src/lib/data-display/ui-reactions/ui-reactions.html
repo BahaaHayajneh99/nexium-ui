@@ -1,0 +1,47 @@
+<div class="nx-reactions" [class.disabled]="disabled">
+
+    @for (reaction of reactions; track trackByEmoji($index, reaction)) {
+        <button
+            type="button"
+            class="nx-reactions-pill"
+            [class.active]="reaction.reactedByMe"
+            [disabled]="disabled"
+            [nxTooltip]="tooltipFor(reaction)"
+            [attr.aria-pressed]="reaction.reactedByMe"
+            (click)="toggleReaction(reaction)">
+            <nx-emoji [emoji]="reaction.emoji" [size]="emojiSize"></nx-emoji>
+            <span class="nx-reactions-count">{{ reaction.count }}</span>
+        </button>
+    }
+
+    @if (showAddButton) {
+        <div class="nx-reactions-add-wrapper" (nxClickOutside)="closePicker()">
+            <button
+                type="button"
+                class="nx-reactions-add"
+                [disabled]="disabled"
+                [class.active]="pickerOpen"
+                [attr.aria-expanded]="pickerOpen"
+                aria-label="Add reaction"
+                (click)="togglePicker()">
+                <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+            </button>
+
+            @if (pickerOpen) {
+                <div class="nx-reactions-picker">
+                    @for (emoji of quickEmojis; track emoji) {
+                        <button
+                            type="button"
+                            class="nx-reactions-picker-item"
+                            [class.active]="isReactedQuick(emoji)"
+                            [attr.aria-label]="emoji"
+                            (click)="pickEmoji(emoji)">
+                            <nx-emoji [emoji]="emoji" [size]="18"></nx-emoji>
+                        </button>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+</div>

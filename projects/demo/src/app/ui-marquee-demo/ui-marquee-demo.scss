@@ -1,0 +1,43 @@
+.marquee-demo-strip {
+    display: block;
+    width: 100%;
+    padding: 16px 0;
+    border-radius: 12px;
+    background: var(--shell-bg);
+    border: 1px solid var(--shell-border, #e9ecef);
+}
+
+.ticker-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--shell-primary);
+}
+
+.logo-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--shell-text-muted, #6c757d);
+}
+
+.marquee-demo-vertical {
+    display: block;
+    height: 180px;
+    width: 100%;
+    max-width: 360px;
+    padding: 4px 0;
+    border-radius: 12px;
+    background: var(--shell-bg);
+    border: 1px solid var(--shell-border, #e9ecef);
+}
+
+.announcement-row {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+}

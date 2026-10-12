@@ -1,0 +1,86 @@
+@if (licensed()) {
+    <div class="nx-access-control-wrapper">
+        <div class="nx-access-control-toolbar">
+            <div class="nx-access-control-search">
+                <nx-icon icon="nx-search" variant="svg" [size]="14"></nx-icon>
+                <input
+                    type="text"
+                    placeholder="Search by name or email..."
+                    [ngModel]="searchText()"
+                    (ngModelChange)="searchText.set($event)" />
+            </div>
+
+            <div class="nx-access-control-role-filter">
+                <nx-icon icon="nx-filter" variant="svg" [size]="14"></nx-icon>
+                <select
+                    aria-label="Filter by role"
+                    [ngModel]="roleFilter()"
+                    (ngModelChange)="roleFilter.set($event)">
+                    <option value="">All roles</option>
+                    @for (role of roles; track role.value) {
+                        <option [value]="role.value">{{ role.label }}</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <table class="nx-access-control-table">
+            <thead>
+                <tr>
+                    <th class="nx-access-control-user-col">User</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (user of filteredUsers(); track user.id) {
+                    <tr>
+                        <td class="nx-access-control-user-col">
+                            <div class="nx-access-control-user">
+                                <nx-avatar [src]="user.avatarUrl" [name]="user.name" size="small"></nx-avatar>
+                                <div class="nx-access-control-user-info">
+                                    <span class="nx-access-control-user-name">{{ user.name }}</span>
+                                    <span class="nx-access-control-user-email">{{ user.email }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <select
+                                class="nx-access-control-role-select"
+                                [class.primary]="roleVariant(user.role) === 'primary'"
+                                [class.success]="roleVariant(user.role) === 'success'"
+                                [class.warning]="roleVariant(user.role) === 'warning'"
+                                [class.info]="roleVariant(user.role) === 'info'"
+                                [class.danger]="roleVariant(user.role) === 'danger'"
+                                [class.secondary]="roleVariant(user.role) === 'secondary'"
+                                [attr.aria-label]="'Role for ' + user.name"
+                                [ngModel]="user.role"
+                                (ngModelChange)="onRoleSelect(user, $event)">
+                                @for (role of roles; track role.value) {
+                                    <option [value]="role.value">{{ role.label }}</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <div class="nx-access-control-status">
+                                <nx-switch
+                                    [checked]="user.status === 'active'"
+                                    (checkedChange)="onStatusToggle(user, $event)">
+                                </nx-switch>
+                                <span class="nx-access-control-status-label" [class.suspended]="user.status === 'suspended'">
+                                    {{ user.status === 'active' ? 'Active' : 'Suspended' }}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                } @empty {
+                    <tr>
+                        <td colspan="3" class="nx-access-control-empty">No users match your search.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Access Control"></nx-pro-locked>
+}

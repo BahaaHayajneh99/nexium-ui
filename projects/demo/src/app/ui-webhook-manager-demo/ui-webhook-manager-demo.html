@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Webhook Manager"
+                description="{{ commonService.appName }} Webhook Manager - configured endpoints with their subscribed event badges, an enabled/disabled toggle, last delivery status, and per-row 'Send test ping'/delete actions. Click 'Add webhook' to register a new endpoint with a URL and a checklist of event types, or 'Send test ping' on an existing row to simulate a delivery attempt (randomly succeeds or fails, purely local - no real network call). This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-webhook-manager
+                    [webhooks]="webhooks()"
+                    [availableEvents]="availableEvents"
+                    (addWebhook)="onAddWebhook($event)"
+                    (toggleEnabled)="onToggleEnabled($event)"
+                    (testPing)="onTestPing($event)"
+                    (deleteWebhook)="onDeleteWebhook($event)">
+                </nx-webhook-manager>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

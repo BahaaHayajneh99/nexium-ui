@@ -1,0 +1,124 @@
+.nx-device-sessions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nx-ds-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.nx-ds-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-ds-revoke-all {
+    padding: 6px 12px;
+    border: 1px solid var(--danger-color, #e74c3c);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: transparent;
+    color: var(--danger-color, #e74c3c);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-ds-revoke-all:hover {
+    background-color: rgba(231, 76, 60, .1);
+}
+
+.nx-ds-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-ds-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-ds-row:last-child {
+    border-bottom: none;
+}
+
+.nx-ds-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+    color: var(--shell-text-secondary);
+}
+
+.nx-ds-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nx-ds-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nx-ds-name {
+    font-size: 14px;
+    color: var(--shell-text);
+}
+
+.nx-ds-current-badge {
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    background-color: rgba(46, 204, 113, .15);
+    color: var(--success-color, #2ecc71);
+}
+
+.nx-ds-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-ds-revoke-btn {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--danger-color, #e74c3c);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-ds-revoke-btn:hover {
+    background-color: rgba(231, 76, 60, .1);
+}
+
+.nx-ds-empty {
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+    padding: 12px 0;
+}

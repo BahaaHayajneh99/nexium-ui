@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Number Ticker</h4>
+                <p class="main-section-description">
+                    Displays a number that smoothly counts up/down from its previous value to a newly bound
+                    <code>value</code>, instead of just snapping to it - a reusable counting-animation
+                    primitive for any number that updates live (a running total, a price, a progress
+                    percentage, ...). This is distinct from <code>NxStatistic</code>, which is a labeled stat
+                    card that renders its value as-is with no animation.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic"
+                description="Click the button to assign a new random value - the ticker eases from the old number to the new one rather than jumping."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <div class="ticker-row">
+                    <nx-number-ticker [value]="revenue" class="ticker-sample"></nx-number-ticker>
+                    <button class="ticker-button" (click)="randomizeRevenue()">Randomize</button>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Prefix, Suffix &amp; Decimals"
+                description="prefix/suffix add fixed text around the number, decimals controls fixed-point precision, and easing picks between 'linear' and the default 'ease-out'."
+                [code]="formattedCode"
+                [hasSampleClass]="false">
+                <div class="ticker-row">
+                    <nx-number-ticker [value]="price" prefix="$" [decimals]="2" class="ticker-sample"></nx-number-ticker>
+                    <nx-number-ticker [value]="completion" suffix="%" [easing]="'linear'" class="ticker-sample"></nx-number-ticker>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Thousands Separator"
+                description="Large values are grouped with the separator input (',' by default). Each click bumps the count and animates over 1.5s."
+                [code]="bigNumberCode"
+                [hasSampleClass]="false">
+                <div class="ticker-row">
+                    <nx-number-ticker [value]="downloads" [duration]="1500" separator="," class="ticker-sample"></nx-number-ticker>
+                    <button class="ticker-button" (click)="bumpDownloads()">+ New download</button>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

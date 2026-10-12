@@ -1,0 +1,93 @@
+.nx-session-timeout-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.nx-session-timeout-panel {
+    width: 380px;
+    max-width: calc(100vw - var(--nx-spacing-lg, 24px) * 2);
+    box-sizing: border-box;
+    background-color: var(--shell-surface);
+    border-radius: var(--nx-radius-md, 8px);
+    box-shadow: var(--nx-shadow-lg, 0 10px 20px rgba(0, 0, 0, .15));
+    padding: var(--nx-spacing-lg, 24px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.nx-session-timeout-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(231, 76, 60, .12);
+    color: var(--nx-color-danger, #e74c3c);
+    margin-bottom: 4px;
+}
+
+.nx-session-timeout-title {
+    margin: 0;
+    color: var(--shell-text);
+    font-size: 16px;
+    font-weight: var(--nx-font-weight-semibold, 600);
+}
+
+.nx-session-timeout-message {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.nx-session-timeout-countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--nx-radius-pill, 999px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .05));
+    color: var(--shell-text);
+    font-size: 15px;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    font-variant-numeric: tabular-nums;
+    margin: 6px 0;
+}
+
+.nx-session-timeout-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.nx-session-timeout-btn {
+    padding: 8px 18px;
+    border-radius: var(--nx-radius-sm, 4px);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.nx-session-timeout-btn.sign-out {
+    background: transparent;
+    border-color: var(--shell-border);
+    color: var(--shell-text);
+}
+
+.nx-session-timeout-btn.stay {
+    background: var(--shell-primary);
+    color: #ffffff;
+}

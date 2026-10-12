@@ -1,0 +1,137 @@
+:host {
+    display: inline-block;
+    max-width: 100%;
+}
+
+.nx-inline-edit-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 28px;
+    padding: 2px 6px;
+    border: 1px solid transparent;
+    border-radius: var(--nx-radius-sm, 4px);
+    cursor: pointer;
+    max-width: 100%;
+
+    &:hover,
+    &:focus-visible {
+        border-color: var(--shell-border);
+        background-color: var(--shell-surface-hover);
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &.disabled {
+        cursor: default;
+        opacity: .65;
+
+        &:hover {
+            border-color: transparent;
+            background-color: transparent;
+        }
+    }
+}
+
+.nx-inline-edit-value {
+    color: var(--shell-text);
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nx-inline-edit-placeholder {
+    color: var(--shell-text-muted, var(--shell-text-secondary));
+    font-size: 14px;
+    font-style: italic;
+}
+
+.nx-inline-edit-pencil {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .15s ease, color .15s ease;
+}
+
+.nx-inline-edit-display:hover .nx-inline-edit-pencil,
+.nx-inline-edit-display:focus-visible .nx-inline-edit-pencil {
+    opacity: 1;
+}
+
+.nx-inline-edit-pencil:hover {
+    color: var(--shell-primary);
+}
+
+.nx-inline-edit-editor {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 6px;
+    max-width: 100%;
+}
+
+.nx-inline-edit-control {
+    min-width: 160px;
+    max-width: 100%;
+}
+
+.nx-inline-edit-input,
+.nx-inline-edit-textarea {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.nx-inline-edit-textarea {
+    min-height: 64px;
+    resize: vertical;
+}
+
+.nx-inline-edit-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-top: 2px;
+}
+
+.nx-inline-edit-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+    transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+}
+
+.nx-inline-edit-save:hover {
+    border-color: var(--success-color, #28a745);
+    color: var(--success-color, #28a745);
+}
+
+.nx-inline-edit-cancel:hover {
+    border-color: var(--danger-color, #e74c3c);
+    color: var(--danger-color, #e74c3c);
+}

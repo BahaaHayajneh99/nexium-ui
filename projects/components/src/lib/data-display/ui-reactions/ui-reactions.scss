@@ -1,0 +1,156 @@
+.nx-reactions {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--nx-spacing-xs, 4px);
+
+    &.disabled {
+        opacity: .6;
+        pointer-events: none;
+    }
+
+}
+
+// =========================
+// Reaction pills
+// =========================
+
+.nx-reactions-pill {
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--nx-spacing-xs, 4px);
+
+    padding: calc(var(--nx-spacing-xs, 4px) - 1px) var(--nx-spacing-sm, 8px);
+
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-round, 999px);
+
+    background: var(--shell-surface, transparent);
+    color: var(--shell-text-secondary);
+
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: var(--nx-font-size-xs, 12px);
+    font-weight: var(--nx-font-weight-medium, 500);
+    line-height: 1;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition: var(--nx-transition-fast, .15s ease);
+
+    &:hover:not(:disabled) {
+        background: var(--shell-surface-hover);
+        border-color: var(--shell-text-secondary);
+    }
+
+    &.active {
+        background: color-mix(in srgb, var(--shell-primary) 14%, transparent);
+        border-color: var(--shell-primary);
+        color: var(--shell-primary);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+}
+
+.nx-reactions-count {
+    min-width: 1ch;
+    text-align: center;
+}
+
+// =========================
+// Add-reaction button + picker
+// =========================
+
+.nx-reactions-add-wrapper {
+    position: relative;
+    display: inline-flex;
+}
+
+.nx-reactions-add {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+    padding: 0;
+
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-round, 999px);
+
+    background: transparent;
+    color: var(--shell-text-secondary);
+
+    cursor: pointer;
+
+    transition: var(--nx-transition-fast, .15s ease);
+
+    &:hover:not(:disabled),
+    &.active {
+        background: var(--shell-surface-hover);
+        border-color: var(--shell-primary);
+        color: var(--shell-primary);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+}
+
+.nx-reactions-picker {
+
+    position: absolute;
+    bottom: calc(100% + var(--nx-spacing-xs, 4px));
+    left: 0;
+    z-index: 20;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+
+    padding: var(--nx-spacing-xs, 4px);
+
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+
+    background: var(--shell-bg);
+    box-shadow: var(--nx-shadow-md, 0 4px 12px rgba(0, 0, 0, .12));
+
+}
+
+.nx-reactions-picker-item {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+    padding: 0;
+
+    border: 1px solid transparent;
+    border-radius: var(--nx-radius-sm, 4px);
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        background: var(--shell-surface-hover);
+    }
+
+    &.active {
+        background: color-mix(in srgb, var(--shell-primary) 14%, transparent);
+        border-color: var(--shell-primary);
+    }
+
+}

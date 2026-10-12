@@ -1,0 +1,410 @@
+$nx-te-row-height: 56px;
+$nx-te-ruler-height: 28px;
+$nx-te-label-width: 150px;
+
+.nx-te {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+    color: var(--shell-text);
+}
+
+// --- Toolbar ---------------------------------------------------------------
+
+.nx-te-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+}
+
+.nx-te-search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    min-width: 160px;
+    padding: 7px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+}
+
+.nx-te-search {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-te-select {
+    padding: 7px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+}
+
+.nx-te-zoom {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    padding: 2px;
+}
+
+.nx-te-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+        background-color: var(--shell-surface-hover);
+        color: var(--shell-primary);
+    }
+
+    &:disabled {
+        opacity: .4;
+        cursor: not-allowed;
+    }
+}
+
+.nx-te-zoom-label {
+    min-width: 52px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 2px;
+
+    &:hover {
+        color: var(--shell-primary);
+    }
+}
+
+.nx-te-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: var(--nx-color-on-primary, #fff);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+// --- Body: fixed label column + horizontally scrollable canvas -------------
+
+.nx-te-body {
+    display: flex;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+    background-color: var(--shell-surface);
+}
+
+.nx-te-labels {
+    flex-shrink: 0;
+    width: $nx-te-label-width;
+    border-right: 1px solid var(--shell-border);
+}
+
+.nx-te-label-spacer {
+    height: $nx-te-ruler-height;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-te-label {
+    display: flex;
+    align-items: center;
+    height: $nx-te-row-height;
+    padding: 0 var(--nx-spacing-md, 16px);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+    border-bottom: 1px solid var(--shell-border);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10px;
+        bottom: 10px;
+        width: 3px;
+        border-radius: var(--nx-radius-round, 999px);
+        background-color: var(--shell-primary);
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.nx-te-label-empty {
+    padding: var(--nx-spacing-md, 16px);
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-te-scroll {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.nx-te-canvas {
+    position: relative;
+    min-width: 100%;
+}
+
+// --- Ruler -------------------------------------------------------------
+
+.nx-te-ruler {
+    position: relative;
+    height: $nx-te-ruler-height;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-te-tick {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    border-left: 1px dashed var(--shell-border);
+}
+
+.nx-te-tick-label {
+    margin-left: 4px;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+    white-space: nowrap;
+}
+
+// --- Rows / lanes --------------------------------------------------------
+
+.nx-te-row {
+    position: relative;
+    height: $nx-te-row-height;
+    border-bottom: 1px solid var(--shell-border);
+    cursor: copy;
+
+    &:hover {
+        background-color: var(--shell-surface-hover);
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.nx-te-empty {
+    padding: var(--nx-spacing-lg, 24px);
+    text-align: center;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+}
+
+// --- Event chips -----------------------------------------------------------
+
+.nx-te-event {
+    position: absolute;
+    top: 8px;
+    height: $nx-te-row-height - 16px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    border-left: 4px solid var(--shell-primary);
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .12));
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: grab;
+    touch-action: none;
+    box-shadow: var(--nx-shadow-sm, 0 1px 2px rgba(0, 0, 0, .08));
+    transition: box-shadow .12s ease;
+
+    &:hover {
+        box-shadow: var(--nx-shadow-md, 0 4px 10px rgba(0, 0, 0, .12));
+    }
+
+    &.dragging {
+        cursor: grabbing;
+        box-shadow: var(--nx-shadow-lg, 0 10px 20px rgba(0, 0, 0, .15));
+        z-index: 2;
+    }
+
+    &.selected {
+        outline: 2px solid var(--shell-primary);
+        outline-offset: 1px;
+    }
+}
+
+.nx-te-event-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// --- Docked edit panel -------------------------------------------------------
+
+.nx-te-edit-panel {
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    padding: var(--nx-spacing-md, 16px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.nx-te-edit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-te-edit-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--shell-surface-hover);
+        color: var(--shell-text);
+    }
+}
+
+.nx-te-edit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.nx-te-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+
+    input,
+    select,
+    textarea {
+        padding: 7px 8px;
+        border: 1px solid var(--shell-border);
+        border-radius: var(--nx-radius-sm, 4px);
+        background-color: var(--shell-bg, #ffffff);
+        color: var(--shell-text);
+        font-size: 13px;
+        font-family: inherit;
+        resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        border-color: var(--shell-primary);
+    }
+}
+
+.nx-te-field-wide {
+    grid-column: 1 / -1;
+}
+
+.nx-te-edit-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nx-spacing-sm, 8px);
+}
+
+.nx-te-edit-actions-right {
+    display: flex;
+    gap: var(--nx-spacing-sm, 8px);
+}
+
+.nx-te-delete-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--danger-color, #e74c3c);
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+        border-color: var(--danger-color, #e74c3c);
+        background-color: rgba(231, 76, 60, .08);
+    }
+}
+
+.nx-te-cancel-btn {
+    padding: 7px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--shell-text);
+        border-color: var(--shell-text-secondary);
+    }
+}
+
+.nx-te-save-btn {
+    padding: 7px 14px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: var(--nx-color-on-primary, #fff);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .9;
+    }
+}

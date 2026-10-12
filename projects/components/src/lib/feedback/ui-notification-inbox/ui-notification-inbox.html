@@ -1,0 +1,124 @@
+@if (licensed()) {
+    <div class="nx-notification-inbox">
+
+        <div class="nx-inbox-header">
+            <div class="nx-inbox-title-row">
+                <span class="nx-inbox-title">Notifications</span>
+                @if (unreadCount() > 0) {
+                    <span class="nx-inbox-unread-badge">{{ unreadCount() > 99 ? '99+' : unreadCount() }}</span>
+                }
+            </div>
+            @if (unreadCount() > 0) {
+                <button type="button" class="nx-inbox-mark-all" (click)="onMarkAllRead()">Mark all read</button>
+            }
+        </div>
+
+        <span class="nx-inbox-sr-only" role="status" aria-live="polite">
+            @if (unreadCount() > 0) {
+                {{ unreadCount() }} unread notification{{ unreadCount() === 1 ? '' : 's' }}
+            }
+        </span>
+
+        <div class="nx-inbox-filters">
+            <input
+                type="text"
+                class="nx-inbox-search"
+                placeholder="Search notifications..."
+                [ngModel]="searchText()"
+                (ngModelChange)="searchText.set($event)" />
+
+            <select class="nx-inbox-select" [ngModel]="readFilter()" (ngModelChange)="readFilter.set($event)">
+                <option value="all">All</option>
+                <option value="unread">Unread</option>
+                <option value="read">Read</option>
+            </select>
+
+            <select class="nx-inbox-select" [ngModel]="categoryFilter()" (ngModelChange)="categoryFilter.set($event)">
+                <option value="all">All categories</option>
+                @for (category of categories(); track category) {
+                    <option [value]="category">{{ category }}</option>
+                }
+            </select>
+
+            <select class="nx-inbox-select" [ngModel]="priorityFilter()" (ngModelChange)="priorityFilter.set($event)">
+                <option value="all">All priorities</option>
+                @for (priority of priorities; track priority) {
+                    <option [value]="priority">{{ priority }}</option>
+                }
+            </select>
+
+            <button type="button" class="nx-inbox-reset" (click)="resetFilters()">Reset</button>
+        </div>
+
+        <div
+            class="nx-inbox-list"
+            nxInfiniteScroll
+            [threshold]="150"
+            [disabled]="!hasMore || loading"
+            (nxInfiniteScroll)="onLoadMore()">
+
+            @for (group of groups(); track group.label) {
+                <div class="nx-inbox-group">
+                    <div class="nx-inbox-date-header">{{ group.label }}</div>
+
+                    @for (item of group.items; track item.id) {
+                        <div
+                            class="nx-inbox-item"
+                            [class.unread]="!item.read"
+                            [class.priority-urgent]="item.priority === 'urgent'"
+                            [class.priority-high]="item.priority === 'high'"
+                            (click)="onItemClick(item)">
+
+                            <button
+                                type="button"
+                                class="nx-inbox-read-toggle"
+                                (click)="onToggleRead($event, item)"
+                                [attr.aria-label]="item.read ? 'Mark as unread' : 'Mark as read'">
+                                <span class="nx-inbox-dot" [attr.data-priority]="item.priority"></span>
+                            </button>
+
+                            <div class="nx-inbox-body">
+                                <div class="nx-inbox-item-top">
+                                    <span class="nx-inbox-item-title">{{ item.title }}</span>
+                                    <span class="nx-inbox-priority-tag" [attr.data-priority]="item.priority">{{ item.priority }}</span>
+                                </div>
+
+                                <div class="nx-inbox-item-message">{{ item.message }}</div>
+
+                                <div class="nx-inbox-item-meta">
+                                    <span class="nx-inbox-category">{{ item.category }}</span>
+                                    <span class="nx-inbox-time">{{ item.timestamp | date: 'MMM d, h:mm a' }}</span>
+                                </div>
+
+                                @if (item.actions?.length) {
+                                    <div class="nx-inbox-actions">
+                                        @for (action of item.actions; track action.id) {
+                                            <button
+                                                type="button"
+                                                class="nx-inbox-action"
+                                                (click)="onAction($event, item, action)">
+                                                @if (action.icon) {
+                                                    <span class="nx-inbox-action-icon">{{ action.icon }}</span>
+                                                }
+                                                {{ action.label }}
+                                            </button>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            } @empty {
+                <div class="nx-inbox-empty">{{ emptyMessage }}</div>
+            }
+
+            @if (loading) {
+                <div class="nx-inbox-loading">Loading more...</div>
+            }
+        </div>
+
+    </div>
+} @else {
+    <nx-pro-locked componentName="Notification Inbox"></nx-pro-locked>
+}

@@ -1,0 +1,68 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Bulk Actions Bar"
+                description="{{ commonService.appName }} Bulk Actions - a floating bar that appears once one or more rows are checked below, showing the selection count and a row of Delete/Archive/Export buttons. The table owns the selection itself; NxBulkActions only displays the count it is given and emits actionClick/clear. Check a few rows to see it slide in."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+
+                <div class="bulk-actions-demo-table-wrap">
+                    @if (lastMessage()) {
+                        <div class="bulk-actions-demo-toast">{{ lastMessage() }}</div>
+                    }
+
+                    <table class="bulk-actions-demo-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input
+                                        type="checkbox"
+                                        [checked]="allSelected()"
+                                        (change)="toggleAll()"
+                                        aria-label="Select all rows" />
+                                </th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (row of rows; track row.id) {
+                                <tr [class.bulk-actions-demo-row-selected]="isSelected(row.id)">
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            [checked]="isSelected(row.id)"
+                                            (change)="toggleRow(row.id)"
+                                            [attr.aria-label]="'Select ' + row.name" />
+                                    </td>
+                                    <td>{{ row.name }}</td>
+                                    <td>{{ row.email }}</td>
+                                    <td>{{ row.role }}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <nx-bulk-actions
+                    [selectedCount]="selectedCount()"
+                    [actions]="actions"
+                    (actionClick)="onActionClick($event)"
+                    (clear)="onClear()">
+                </nx-bulk-actions>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

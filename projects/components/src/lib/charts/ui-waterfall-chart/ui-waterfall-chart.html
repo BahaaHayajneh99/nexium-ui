@@ -1,0 +1,113 @@
+<div class="nx-chart">
+
+    <button type="button" class="nx-chart-table-toggle" (click)="toggleTable()">
+        {{ showTable ? 'View as chart' : 'View as table' }}
+    </button>
+
+    @if (!showTable) {
+        <div class="nx-chart-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (tick of yTicks; track tick) {
+                    <line
+                        class="nx-chart-grid"
+                        [attr.x1]="52"
+                        [attr.x2]="600 - 16"
+                        [attr.y1]="tickY(tick)"
+                        [attr.y2]="tickY(tick)">
+                    </line>
+                    <text class="nx-chart-axis-label" text-anchor="end" [attr.x]="46" [attr.y]="tickY(tick) + 4">
+                        {{ formatTick(tick) }}
+                    </text>
+                }
+
+                @if (hasNegativeDip) {
+                    <line class="nx-chart-baseline" [attr.x1]="52" [attr.x2]="600 - 16" [attr.y1]="tickY(0)" [attr.y2]="tickY(0)"></line>
+                }
+
+                @for (connector of connectors; track connector.x1 + '-' + connector.y) {
+                    <line
+                        class="nx-chart-waterfall-connector"
+                        [attr.x1]="connector.x1"
+                        [attr.x2]="connector.x2"
+                        [attr.y1]="connector.y"
+                        [attr.y2]="connector.y">
+                    </line>
+                }
+
+                @for (bar of bars; track bar.index) {
+                    <path
+                        class="nx-chart-waterfall-bar"
+                        [class.nx-chart-waterfall-bar-hovered]="hovered === bar"
+                        [attr.d]="bar.path"
+                        [attr.fill]="bar.color"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="bar.point.label + ': ' + bar.labelText + ', running total ' + formatTick(bar.runningTotalAfter)"
+                        (pointerenter)="onBarEnter(bar)"
+                        (pointerleave)="onBarLeave()"
+                        (focus)="onBarEnter(bar)"
+                        (blur)="onBarLeave()">
+                    </path>
+
+                    <text class="nx-chart-waterfall-value" text-anchor="middle" [attr.x]="bar.x + bar.width / 2" [attr.y]="bar.labelY">
+                        {{ bar.labelText }}
+                    </text>
+                }
+
+                @for (point of data; track point.label; let i = $index) {
+                    <text class="nx-chart-axis-label" text-anchor="middle" [attr.x]="categoryLabelX(i)" [attr.y]="height - 12">
+                        {{ point.label }}
+                    </text>
+                }
+
+            </svg>
+
+            @if (hovered) {
+                <div class="nx-chart-tooltip" [style]="hoveredTooltipStyle">
+                    <div class="nx-chart-tooltip-category">{{ hovered.point.label }}</div>
+                    <div class="nx-chart-tooltip-row">
+                        <span class="nx-chart-tooltip-key" [style.background]="hovered.color"></span>
+                        <span class="nx-chart-tooltip-name">{{ hovered.kind === 'total' ? 'Total' : 'Change' }}</span>
+                        <strong class="nx-chart-tooltip-value">{{ hovered.labelText }}</strong>
+                    </div>
+                    <div class="nx-chart-tooltip-row">
+                        <span class="nx-chart-tooltip-name">Running total</span>
+                        <strong class="nx-chart-tooltip-value">{{ formatTick(hovered.runningTotalAfter) }}</strong>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="nx-chart-legend">
+            @for (item of legendItems; track item.kind) {
+                <div class="nx-chart-legend-item">
+                    <span class="nx-chart-legend-swatch" [style.background]="item.color"></span>
+                    {{ item.label }}
+                </div>
+            }
+        </div>
+    } @else {
+        <div class="nx-chart-table-wrap">
+            <table class="nx-chart-table">
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                        <th>Running total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (bar of bars; track bar.index) {
+                        <tr>
+                            <th scope="row">{{ bar.point.label }}</th>
+                            <td>{{ bar.labelText }}</td>
+                            <td>{{ formatTick(bar.runningTotalAfter) }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+</div>

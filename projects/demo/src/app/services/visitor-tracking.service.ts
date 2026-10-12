@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, get, set, onValue } from 'firebase/database';
+import { getDatabase, ref, get, onValue } from 'firebase/database';
 import { firebaseConfig } from '../firebase.config';
+
+const TRACK_VISITOR_ENDPOINT =
+  typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:3000/api/trackVisitor'
+    : 'https://nexium-ui.vercel.app/api/trackVisitor';
 
 @Injectable({
   providedIn: 'root'
@@ -15,129 +20,14 @@ export class VisitorTrackingService {
   }
 
   /**
-   * Track unique visitor by user ID with geolocation.
-   * If the same user visits again, they won't be counted twice - and
-   * neither will the same IP address under a *different* userId (e.g. a
-   * cleared localStorage or a private-browsing window generates a fresh
-   * guest id, but it's still the same real-world visitor).
+   * Records this visit as a unique visitor. Done server-side by api/trackVisitor.js - it dedupes
+   * by a salted hash of the IP and reads location from Vercel's geo headers - so the database
+   * never stores raw IPs and doesn't need to be writable from the browser.
    */
-  trackUniqueVisitor(userId: string): Promise<void> {
-    return new Promise(async (resolve) => {
-      try {
-        // Get user location from IP
-        const locationData = await this.getUserLocation();
-
-        const userVisitorRef = ref(this.db, `visitors/${userId}`);
-        const snapshot = await get(userVisitorRef);
-
-        if (snapshot.exists()) {
-          // Returning visitor under this exact userId (not counted again).
-          resolve();
-          return;
-        }
-
-        if (locationData.ip !== 'N/A' && (await this.isIpAlreadyTracked(locationData.ip))) {
-          // Same IP already has a visitor record under a different userId.
-          resolve();
-          return;
-        }
-
-        // New unique visitor - save their record with location
-        await set(userVisitorRef, {
-          visitedAt: new Date().toISOString(),
-          userId: userId,
-          country: locationData.country,
-          city: locationData.city,
-          ip: locationData.ip,
-          latitude: locationData.latitude,
-          longitude: locationData.longitude
-        });
-
-        // Increment total unique visitors counter
-        const totalRef = ref(this.db, 'stats/totalUniqueVisitors');
-        const totalSnapshot = await get(totalRef);
-        const currentTotal = totalSnapshot.val() || 0;
-
-        const newTotal = currentTotal + 1;
-        await set(totalRef, newTotal);
-
-        resolve();
-      } catch (error) {
-        resolve();
-      }
-    });
-  }
-
-  /** Whether any existing visitor record already has this IP address. */
-  private async isIpAlreadyTracked(ip: string): Promise<boolean> {
-    try {
-      const visitorsRef = ref(this.db, 'visitors');
-      const snapshot = await get(visitorsRef);
-      if (!snapshot.exists()) {
-        return false;
-      }
-
-      const visitors = snapshot.val();
-      return Object.values(visitors).some((visitor: any) => visitor.ip === ip);
-    } catch (error) {
-      return false;
-    }
-  }
-
-  /**
-   * Get user location from IP using free GeoIP APIs.
-   * ipapi.co has a low free-tier rate limit and is sometimes blocked by
-   * ad-blockers, which was leaving real visitors recorded as "Unknown" -
-   * ipwho.is is tried as a fallback before giving up.
-   */
-  private async getUserLocation(): Promise<any> {
-    try {
-      const response = await fetch('https://ipapi.co/json/');
-      const data = await response.json();
-
-      if (data && !data.error && (data.city || data.country_name)) {
-        return {
-          country: data.country_name || 'Unknown',
-          city: data.city || 'Unknown',
-          ip: data.ip || 'N/A',
-          latitude: data.latitude || null,
-          longitude: data.longitude || null,
-          region: data.region || 'Unknown',
-          postal: data.postal || ''
-        };
-      }
-    } catch (error) {
-      // fall through to the backup provider below
-    }
-
-    try {
-      const response = await fetch('https://ipwho.is/');
-      const data = await response.json();
-
-      if (data && data.success !== false) {
-        return {
-          country: data.country || 'Unknown',
-          city: data.city || 'Unknown',
-          ip: data.ip || 'N/A',
-          latitude: data.latitude || null,
-          longitude: data.longitude || null,
-          region: data.region || 'Unknown',
-          postal: data.postal_code || ''
-        };
-      }
-    } catch (error) {
-      // fall through to the Unknown fallback below
-    }
-
-    return {
-      country: 'Unknown',
-      city: 'Unknown',
-      ip: 'N/A',
-      latitude: null,
-      longitude: null,
-      region: 'Unknown',
-      postal: ''
-    };
+  trackUniqueVisitor(): Promise<void> {
+    return fetch(TRACK_VISITOR_ENDPOINT, { method: 'POST' })
+      .then(() => undefined)
+      .catch(() => undefined);
   }
 
   /**
@@ -172,31 +62,4 @@ export class VisitorTrackingService {
       return () => {}; // Return empty function if error
     }
   }
-
-  /**
-   * Get visitors by country
-   */
-  async getVisitorsByCountry(): Promise<any> {
-    try {
-      const visitorsRef = ref(this.db, 'visitors');
-      const snapshot = await get(visitorsRef);
-      
-      if (!snapshot.exists()) {
-        return {};
-      }
-
-      const visitors = snapshot.val();
-      const countByCountry: any = {};
-
-      Object.values(visitors).forEach((visitor: any) => {
-        const country = visitor.country || 'Unknown';
-        countByCountry[country] = (countByCountry[country] || 0) + 1;
-      });
-
-      return countByCountry;
-    } catch (error) {
-      return {};
-    }
-  }
 }
-

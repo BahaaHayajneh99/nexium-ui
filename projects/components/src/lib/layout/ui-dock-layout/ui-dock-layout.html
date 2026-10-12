@@ -1,0 +1,79 @@
+@if (licensed()) {
+    <div
+        class="nx-dock-layout"
+        [style.grid-template-columns]="gridTemplateColumns()"
+        [style.grid-template-rows]="gridTemplateRows()">
+
+        @if (leftPanel(); as panel) {
+            <div class="nx-dock-panel nx-dock-panel-left" [class.closed]="isClosed(panel)">
+                <div class="nx-dock-panel-header">
+                    <span class="nx-dock-panel-title">{{ panel.title }}</span>
+                    @if (panel.closable !== false) {
+                        <button type="button" class="nx-dock-panel-close" (click)="closePanel(panel)" [attr.aria-label]="'Close ' + panel.title">
+                            <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                        </button>
+                    }
+                </div>
+                <div class="nx-dock-panel-body" #leftSlot></div>
+            </div>
+            @if (!isClosed(panel)) {
+                <div class="nx-dock-divider nx-dock-divider-left" (pointerdown)="onDividerPointerDown('left', $event)">
+                    <span class="nx-dock-divider-handle"></span>
+                </div>
+            }
+        }
+
+        <div class="nx-dock-panel nx-dock-panel-center">
+            @if (centerPanel(); as panel) {
+                <div class="nx-dock-panel-header">
+                    <span class="nx-dock-panel-title">{{ panel.title }}</span>
+                </div>
+            }
+            <div class="nx-dock-panel-body" #centerSlot></div>
+        </div>
+
+        @if (rightPanel(); as panel) {
+            @if (!isClosed(panel)) {
+                <div class="nx-dock-divider nx-dock-divider-right" (pointerdown)="onDividerPointerDown('right', $event)">
+                    <span class="nx-dock-divider-handle"></span>
+                </div>
+            }
+            <div class="nx-dock-panel nx-dock-panel-right" [class.closed]="isClosed(panel)">
+                <div class="nx-dock-panel-header">
+                    <span class="nx-dock-panel-title">{{ panel.title }}</span>
+                    @if (panel.closable !== false) {
+                        <button type="button" class="nx-dock-panel-close" (click)="closePanel(panel)" [attr.aria-label]="'Close ' + panel.title">
+                            <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                        </button>
+                    }
+                </div>
+                <div class="nx-dock-panel-body" #rightSlot></div>
+            </div>
+        }
+
+        @if (bottomPanel(); as panel) {
+            @if (!isClosed(panel)) {
+                <div class="nx-dock-divider nx-dock-divider-bottom" (pointerdown)="onDividerPointerDown('bottom', $event)">
+                    <span class="nx-dock-divider-handle"></span>
+                </div>
+            }
+            <div class="nx-dock-panel nx-dock-panel-bottom" [class.closed]="isClosed(panel)">
+                <div class="nx-dock-panel-header">
+                    <span class="nx-dock-panel-title">{{ panel.title }}</span>
+                    @if (panel.closable !== false) {
+                        <button type="button" class="nx-dock-panel-close" (click)="closePanel(panel)" [attr.aria-label]="'Close ' + panel.title">
+                            <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                        </button>
+                    }
+                </div>
+                <div class="nx-dock-panel-body" #bottomSlot></div>
+            </div>
+        }
+
+        <div class="nx-dock-layout-sink" hidden>
+            <ng-content></ng-content>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Dock Layout"></nx-pro-locked>
+}

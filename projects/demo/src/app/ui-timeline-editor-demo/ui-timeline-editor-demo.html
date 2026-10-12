@@ -1,0 +1,33 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Interactive Timeline Editor"
+                description="{{ commonService.appName }}'s Timeline Editor is a fully interactive, editable timeline - the PRO sibling of the read-only NxTimeline. Click empty track space (or 'Add event') to create an event, drag a chip along the axis to reschedule it, click a chip to edit its label/group/times inline, zoom in/out to change the time scale, and filter by group or search text. [(events)] is two-way bindable so your own data stays in sync with every change."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-timeline-editor
+                    [(events)]="events"
+                    [groups]="groups"
+                    (eventAdded)="onEventAdded($event)"
+                    (eventMoved)="onEventMoved($event)"
+                    (eventEdited)="onEventEdited($event)"
+                    (eventDeleted)="onEventDeleted($event)">
+                </nx-timeline-editor>
+                @if (lastChange) {
+                    <p class="nx-te-demo-log">Last change: {{ lastChange }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -3,6 +3,38 @@
     flex-direction: column;
 }
 
+.nx-activity-feed-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-md, 16px);
+}
+
+.nx-activity-feed-select {
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+}
+
+.nx-activity-feed-reset {
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-activity-feed-reset:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
 .nx-activity-feed-day {
     font-size: 12px;
     font-weight: 700;
@@ -17,6 +49,7 @@
 }
 
 .nx-activity-feed-row {
+    position: relative;
     display: flex;
     align-items: flex-start;
     gap: 12px;
@@ -29,13 +62,29 @@
     background-color: var(--shell-surface-hover);
 }
 
+// The "chained" connector: a thin line running from this row's avatar down to the
+// next one in the same day group - preserved across the gap/padding between rows
+// so the sequence reads as one continuous chain, same idea as nx-activity-timeline
+// but reset at every day boundary instead of running the whole list.
+.nx-activity-feed-row-chained::after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    bottom: -8px;
+    left: 24px;
+    width: 1px;
+    background-color: var(--shell-border);
+}
+
 .nx-activity-feed-avatar {
+    position: relative;
+    z-index: 1;
     flex-shrink: 0;
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: var(--shell-surface-hover);
-    color: var(--shell-text-secondary);
+    background-color: hsl(var(--nx-avatar-hue, 210) 70% 92%);
+    color: hsl(var(--nx-avatar-hue, 210) 40% 32%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,6 +104,13 @@
     min-width: 0;
 }
 
+.nx-activity-feed-row-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
 .nx-activity-feed-text {
     margin: 0 0 2px;
     font-size: 14px;
@@ -65,9 +121,105 @@
     color: var(--shell-primary);
 }
 
+.nx-activity-feed-category {
+    margin-left: 6px;
+    padding: 1px 7px;
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    vertical-align: middle;
+}
+
 .nx-activity-feed-time {
     font-size: 12px;
     color: var(--shell-text-secondary);
+}
+
+.nx-activity-feed-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 4px;
+}
+
+.nx-activity-feed-action {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nx-activity-feed-action:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-activity-feed-detail-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: transparent;
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+
+    nx-icon {
+        display: inline-flex;
+        transition: transform .15s ease;
+        transform: rotate(-90deg);
+    }
+
+    &.open nx-icon {
+        transform: rotate(0deg);
+    }
+}
+
+.nx-activity-feed-detail-toggle:hover {
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-primary);
+}
+
+.nx-activity-feed-metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 8px 0 0;
+    padding: 8px 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-activity-feed-metadata-row {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+
+    dt {
+        flex-shrink: 0;
+        min-width: 90px;
+        color: var(--shell-text-secondary);
+        font-weight: 600;
+    }
+
+    dd {
+        margin: 0;
+        color: var(--shell-text);
+        word-break: break-word;
+    }
 }
 
 .nx-activity-feed-empty {

@@ -1,0 +1,11 @@
+.share-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+}
+
+.share-copied-note {
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}

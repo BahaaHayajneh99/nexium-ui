@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="AI Command Bar"
+                description="{{ commonService.appName }} AI Command Bar - a Spotlight/Cmd-K style natural-language command input. Press Ctrl K (or Cmd K on Mac) anywhere on this page, or click the button below, to open it. With the input empty you get clickable suggested prompts and recent queries; type '/' to switch to a quick-pick list of commands instead. Submitting a question emits (submit) - this demo then simulates a 'thinking' pause followed by a streamed reply, entirely client-side, to show the typing-cursor and auto-scroll in action. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-button (click)="open = true">Ask Nexium (or press Ctrl K)</nx-button>
+
+                <nx-ai-command-bar
+                    [(open)]="open"
+                    [suggestions]="suggestions"
+                    [history]="history"
+                    [commands]="commands"
+                    [isLoading]="isLoading"
+                    [streamingText]="streamingText"
+                    (submit)="onSubmit($event)"
+                    (cancel)="onCancel()"
+                    (commandSelected)="onCommandSelected($event)">
+                </nx-ai-command-bar>
+
+                @if (lastSubmitted) {
+                    <p class="template-form-note mt-2">Last asked: {{ lastSubmitted }}</p>
+                }
+                @if (lastCommand) {
+                    <p class="template-form-note mt-2">Last command selected: {{ lastCommand }}</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

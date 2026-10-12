@@ -1,0 +1,111 @@
+@if (licensed()) {
+    <nx-modal
+        [open]="open"
+        [header]="'Bulk Edit ' + records.length + ' Record' + (records.length === 1 ? '' : 's')"
+        (openChange)="handleCancel()">
+        <ng-container nx-modal-body>
+            <div class="nx-bulk-editor">
+                @if (records.length) {
+                    <div class="nx-bulk-editor-preview">
+                        <span class="nx-bulk-editor-preview-label">Editing:</span>
+                        <div class="nx-bulk-editor-preview-list">
+                            @for (record of records; track $index) {
+                                <span class="nx-bulk-editor-chip">{{ recordLabel(record) }}</span>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <div class="nx-bulk-editor-fields">
+                    @for (field of fields; track field.key) {
+                        <div class="nx-bulk-editor-field" [class.active]="isApplied(field.key)">
+                            <label class="nx-bulk-editor-apply">
+                                <input
+                                    type="checkbox"
+                                    [checked]="isApplied(field.key)"
+                                    (change)="toggleApply(field.key, $any($event.target).checked)" />
+                                Apply this field
+                            </label>
+
+                            <div class="nx-bulk-editor-control">
+                                <label class="nx-bulk-editor-field-label" [attr.for]="'nx-bulk-editor-' + field.key">{{ field.label }}</label>
+
+                                @switch (field.type) {
+                                    @case ('select') {
+                                        <select
+                                            [id]="'nx-bulk-editor-' + field.key"
+                                            class="nx-bulk-editor-input"
+                                            [disabled]="!isApplied(field.key)"
+                                            [ngModel]="draftValues()[field.key]"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            (ngModelChange)="setDraftValue(field.key, $event)">
+                                            <option value="">-- Select --</option>
+                                            @for (opt of field.options ?? []; track opt.value) {
+                                                <option [value]="opt.value">{{ opt.label }}</option>
+                                            }
+                                        </select>
+                                    }
+                                    @case ('checkbox') {
+                                        <input
+                                            [id]="'nx-bulk-editor-' + field.key"
+                                            type="checkbox"
+                                            [disabled]="!isApplied(field.key)"
+                                            [ngModel]="draftValues()[field.key]"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            (ngModelChange)="setDraftValue(field.key, $event)" />
+                                    }
+                                    @case ('date') {
+                                        <input
+                                            [id]="'nx-bulk-editor-' + field.key"
+                                            type="date"
+                                            class="nx-bulk-editor-input"
+                                            [disabled]="!isApplied(field.key)"
+                                            [ngModel]="draftValues()[field.key]"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            (ngModelChange)="setDraftValue(field.key, $event)" />
+                                    }
+                                    @case ('number') {
+                                        <input
+                                            [id]="'nx-bulk-editor-' + field.key"
+                                            type="number"
+                                            class="nx-bulk-editor-input"
+                                            [disabled]="!isApplied(field.key)"
+                                            [ngModel]="draftValues()[field.key]"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            (ngModelChange)="setDraftValue(field.key, $event)" />
+                                    }
+                                    @default {
+                                        <input
+                                            [id]="'nx-bulk-editor-' + field.key"
+                                            type="text"
+                                            class="nx-bulk-editor-input"
+                                            [disabled]="!isApplied(field.key)"
+                                            [ngModel]="draftValues()[field.key]"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            (ngModelChange)="setDraftValue(field.key, $event)" />
+                                    }
+                                }
+                            </div>
+                        </div>
+                    } @empty {
+                        <div class="nx-bulk-editor-empty">No bulk-editable fields configured.</div>
+                    }
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container nx-modal-footer>
+            <span class="nx-bulk-editor-applied-count">{{ appliedKeys().size }} field(s) selected</span>
+            <button type="button" class="nx-bulk-editor-btn" (click)="handleCancel()">Cancel</button>
+            <button
+                type="button"
+                class="nx-bulk-editor-btn nx-bulk-editor-btn-primary"
+                [disabled]="appliedKeys().size === 0"
+                (click)="applyChanges()">
+                Apply to {{ records.length }} Record{{ records.length === 1 ? '' : 's' }}
+            </button>
+        </ng-container>
+    </nx-modal>
+} @else {
+    <nx-pro-locked componentName="Bulk Editor"></nx-pro-locked>
+}

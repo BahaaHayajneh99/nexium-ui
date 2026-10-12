@@ -1,0 +1,83 @@
+.nx-login-activity {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-la-filters {
+    display: flex;
+    gap: 8px;
+}
+
+.nx-la-filter-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-la-filter-btn.active {
+    color: #fff;
+    background-color: var(--shell-primary);
+    border-color: var(--shell-primary);
+}
+
+.nx-la-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.nx-la-table th {
+    padding: 8px 10px;
+    text-align: left;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-la-row td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    vertical-align: top;
+}
+
+.nx-la-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    background-color: var(--shell-border);
+    color: var(--shell-text-secondary);
+}
+
+.nx-la-status-badge.success {
+    background-color: rgba(46, 204, 113, .15);
+    color: var(--success-color, #2ecc71);
+}
+
+.nx-la-status-badge.failed {
+    background-color: rgba(231, 76, 60, .15);
+    color: var(--danger-color, #e74c3c);
+}
+
+.nx-la-failure-reason {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--danger-color, #e74c3c);
+}
+
+.nx-la-empty {
+    text-align: center;
+    padding: 16px 10px;
+    color: var(--shell-text-secondary);
+}

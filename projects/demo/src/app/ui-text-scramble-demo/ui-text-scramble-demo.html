@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Text Scramble</h4>
+                <p class="main-section-description">
+                    Renders text that "scrambles" through random characters before settling into the real
+                    target text - the classic cyberpunk/hacker text-reveal effect. Re-triggers automatically
+                    whenever the bound <code>text</code> input changes (the default), or on load, or only
+                    when you call it yourself.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic"
+                description="Scrambles once on load since the text never changes afterward - trigger defaults to 'onChange', and the initial value counts as the first render, not a change."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-text-scramble text="Hello, NexiumUI" [trigger]="'onInit'" class="scramble-sample"></nx-text-scramble>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Re-scramble on Change"
+                description="Click the button to swap the bound text - the default 'onChange' trigger re-runs the scramble animation automatically every time."
+                [code]="onChangeCode"
+                [hasSampleClass]="false">
+                <div class="scramble-row">
+                    <nx-text-scramble [text]="headline" [duration]="900" class="scramble-sample"></nx-text-scramble>
+                    <button class="scramble-button" (click)="nextHeadline()">Next headline</button>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Manual Trigger"
+                description="With trigger set to 'manual', the animation never runs on its own - call the public scramble() method yourself, e.g. via a template reference variable."
+                [code]="manualCode"
+                [hasSampleClass]="false">
+                <div class="scramble-row">
+                    <nx-text-scramble #scramble text="Click the button to scramble" [trigger]="'manual'" class="scramble-sample"></nx-text-scramble>
+                    <button class="scramble-button" (click)="scramble.scramble()">Scramble</button>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

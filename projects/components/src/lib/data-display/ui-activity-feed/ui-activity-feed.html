@@ -1,12 +1,37 @@
+@if (licensed()) {
 <div class="nx-activity-feed">
+    @if (showFilters && (actors.length > 1 || hasCategories)) {
+        <div class="nx-activity-feed-filters">
+            <select class="nx-activity-feed-select" [ngModel]="actorFilter" (ngModelChange)="actorFilter = $event">
+                <option [value]="'all'">All people</option>
+                @for (actor of actors; track actor) {
+                    <option [value]="actor">{{ actor }}</option>
+                }
+            </select>
+
+            @if (hasCategories) {
+                <select class="nx-activity-feed-select" [ngModel]="categoryFilter" (ngModelChange)="categoryFilter = $event">
+                    <option [value]="'all'">All types</option>
+                    @for (category of categories; track category) {
+                        <option [value]="category">{{ category }}</option>
+                    }
+                </select>
+            }
+
+            @if (hasActiveFilters) {
+                <button type="button" class="nx-activity-feed-reset" (click)="resetFilters()">Reset</button>
+            }
+        </div>
+    }
+
     @for (group of groups; track group.label) {
         @if (group.label) {
             <div class="nx-activity-feed-day">{{ group.label }}</div>
         }
 
-        @for (item of group.items; track item.id) {
-            <div class="nx-activity-feed-row">
-                <div class="nx-activity-feed-avatar">
+        @for (item of group.items; track item.id; let last = $last) {
+            <div class="nx-activity-feed-row" [class.nx-activity-feed-row-chained]="!last">
+                <div class="nx-activity-feed-avatar" [style.--nx-avatar-hue]="avatarHueFor(item.actorName)">
                     @if (item.actorAvatarUrl) {
                         <img [src]="item.actorAvatarUrl" [alt]="item.actorName" />
                     } @else {
@@ -15,13 +40,56 @@
                 </div>
 
                 <div class="nx-activity-feed-content">
-                    <p class="nx-activity-feed-text">
-                        <strong>{{ item.actorName }}</strong> {{ item.action }}
-                        @if (item.target) {
-                            <span class="nx-activity-feed-target">{{ item.target }}</span>
-                        }
-                    </p>
+                    <div class="nx-activity-feed-row-head">
+                        <p class="nx-activity-feed-text">
+                            <strong>{{ item.actorName }}</strong> {{ item.action }}
+                            @if (item.target) {
+                                <span class="nx-activity-feed-target">{{ item.target }}</span>
+                            }
+                            @if (item.category) {
+                                <span class="nx-activity-feed-category">{{ item.category }}</span>
+                            }
+                        </p>
+
+                        <div class="nx-activity-feed-actions">
+                            @for (action of actionsFor(item); track action.id) {
+                                <button
+                                    type="button"
+                                    class="nx-activity-feed-action"
+                                    (click)="invokeAction(item, action)">
+                                    @if (action.icon) {
+                                        <nx-icon [icon]="action.icon" variant="svg" [size]="12"></nx-icon>
+                                    }
+                                    {{ action.label }}
+                                </button>
+                            }
+
+                            @if (item.metadata?.length) {
+                                <button
+                                    type="button"
+                                    class="nx-activity-feed-detail-toggle"
+                                    [class.open]="isExpanded(item)"
+                                    (click)="toggleExpand(item)"
+                                    [attr.aria-expanded]="isExpanded(item)"
+                                    [attr.aria-label]="isExpanded(item) ? 'Hide details' : 'Show details'">
+                                    <nx-icon icon="nx-chevron-down" variant="svg" [size]="12"></nx-icon>
+                                </button>
+                            }
+                        </div>
+                    </div>
+
                     <span class="nx-activity-feed-time">{{ item.timestamp | date: 'shortTime' }}</span>
+
+                    @if (item.metadata?.length && isExpanded(item)) {
+                        <dl class="nx-activity-feed-metadata">
+                            @for (entry of item.metadata; track entry.label) {
+                                <div class="nx-activity-feed-metadata-row">
+                                    <dt>{{ entry.label }}</dt>
+                                    <dd>{{ entry.value }}</dd>
+                                </div>
+                            }
+                        </dl>
+                    }
                 </div>
             </div>
         }
@@ -29,9 +97,14 @@
 
     @if (items.length === 0) {
         <p class="nx-activity-feed-empty">No activity yet.</p>
+    } @else if (groups.length === 0) {
+        <p class="nx-activity-feed-empty">No activity matches these filters.</p>
     }
 
     @if (showLoadMore && items.length > 0) {
         <button type="button" class="nx-activity-feed-load-more" (click)="loadMore.emit()">Load more</button>
     }
 </div>
+} @else {
+    <nx-pro-locked componentName="Activity Feed"></nx-pro-locked>
+}

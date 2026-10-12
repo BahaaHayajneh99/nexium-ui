@@ -1,7 +1,29 @@
 const { applyCors } = require('./_lib/cors');
 const { getDb } = require('./_lib/firebase-admin');
+const { isValidLicenseToken } = require('./_lib/validate');
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_EMAIL_LENGTH = 254;
+// Caps how many emails one token can trigger, so a token holder can't use this endpoint to spam
+// arbitrary addresses or burn through the Resend sending quota.
+const MAX_SENDS_PER_TOKEN = 3;
+const SEND_WINDOW_MS = 24 * 60 * 60 * 1000;
+
+/** Records one send for this token; returns false if the token already hit its limit in the current window. */
+async function reserveEmailSend(db, token) {
+  const ref = db.ref(`emailSends/${token}`);
+  const now = Date.now();
+  const record = (await ref.get()).val();
+  if (!record || now - record.windowStart > SEND_WINDOW_MS) {
+    await ref.set({ windowStart: now, count: 1 });
+    return true;
+  }
+  if (record.count >= MAX_SENDS_PER_TOKEN) {
+    return false;
+  }
+  await ref.update({ count: record.count + 1 });
+  return true;
+}
 // Resend's shared onboarding sender works with no setup but looks less trustworthy and has low
 // sending limits - verify your own domain in Resend and set FROM_EMAIL once you have one.
 const FROM_EMAIL = process.env.FROM_EMAIL || 'NexiumUI <onboarding@resend.dev>';
@@ -25,20 +47,26 @@ module.exports = async (req, res) => {
 
   const token = req.body?.token;
   const email = req.body?.email;
-  if (!token || typeof token !== 'string') {
-    res.status(400).json({ error: 'Missing token' });
+  if (!isValidLicenseToken(token)) {
+    res.status(400).json({ error: 'Missing or invalid token' });
     return;
   }
-  if (!email || typeof email !== 'string' || !EMAIL_PATTERN.test(email)) {
+  if (!email || typeof email !== 'string' || email.length > MAX_EMAIL_LENGTH || !EMAIL_PATTERN.test(email)) {
     res.status(400).json({ error: 'Missing or invalid email address' });
     return;
   }
 
   try {
-    const snapshot = await getDb().ref(`licenseTokens/${token}`).get();
+    const db = getDb();
+    const snapshot = await db.ref(`licenseTokens/${token}`).get();
     const record = snapshot.val();
     if (!snapshot.exists() || record.status !== 'paid') {
       res.status(404).json({ error: 'Unknown or unpaid license token' });
+      return;
+    }
+
+    if (!(await reserveEmailSend(db, token))) {
+      res.status(429).json({ error: 'Too many emails sent for this license today - please try again tomorrow.' });
       return;
     }
 

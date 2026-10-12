@@ -1,0 +1,70 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Coachmark"
+                description="{{ commonService.appName }} Coachmark spotlights exactly ONE feature at a time - a pulsing dot overlaid on whatever you project inside it. Click the dot to open the popover, then 'Got it' to dismiss. dismissed is two-way bindable, so you can persist it (e.g. to localStorage) and the hint stays gone on reload - use Reset below to bring it back."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div class="coachmark-row">
+                    <nx-coachmark
+                        title="New: Export"
+                        description="You can now export this report as a PDF or CSV straight from the toolbar."
+                        [dismissed]="exportHintDismissed()"
+                        (dismissedChange)="exportHintDismissed.set($event)">
+                        <button class="demo-btn">Export</button>
+                    </nx-coachmark>
+
+                    <button type="button" class="demo-btn" (click)="resetExportHint()">
+                        Reset hint
+                    </button>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Placement"
+                description="placement controls which side of the anchored content the popover opens on - 'top', 'bottom' (default), 'left', or 'right'."
+                [code]="placementCode"
+                [hasSampleClass]="false">
+                <div class="coachmark-row coachmark-row-spaced">
+                    <nx-coachmark title="Filters moved" description="Filters now live up here, above the table." placement="top">
+                        <button class="demo-btn">Filter</button>
+                    </nx-coachmark>
+
+                    <nx-coachmark title="Row actions" description="Click a row's coachmark for quick actions." placement="right">
+                        <button class="demo-btn">Row actions</button>
+                    </nx-coachmark>
+
+                    <nx-coachmark title="Workspace switcher" description="Jump between workspaces from here." placement="left">
+                        <button class="demo-btn">Workspace</button>
+                    </nx-coachmark>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Without the Pulse"
+                description="showPulse set to false renders the dot without the animated attention ring - useful for a quieter hint, or once a user has already seen a few coachmarks in the same session."
+                [code]="noPulseCode"
+                [hasSampleClass]="false">
+                <div class="coachmark-row">
+                    <nx-coachmark
+                        title="Settings moved"
+                        description="Click the dot any time to see this hint again - it never auto-dismisses."
+                        [showPulse]="false">
+                        <button class="demo-btn">Settings</button>
+                    </nx-coachmark>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

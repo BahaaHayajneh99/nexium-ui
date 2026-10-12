@@ -1,0 +1,44 @@
+@if (licensed()) {
+    <div class="nx-device-sessions">
+        <div class="nx-ds-header">
+            <span class="nx-ds-count">{{ sessions.length }} active session{{ sessions.length === 1 ? '' : 's' }}</span>
+            @if (otherSessionsCount > 0) {
+                <button type="button" class="nx-ds-revoke-all" (click)="onRevokeAll()">Revoke all other sessions</button>
+            }
+        </div>
+
+        <div class="nx-ds-list">
+            @for (session of sessions; track session.id) {
+                <div class="nx-ds-row">
+                    <div class="nx-ds-icon">
+                        <nx-icon [icon]="iconFor(session.deviceType)" variant="svg" [size]="20"></nx-icon>
+                    </div>
+
+                    <div class="nx-ds-content">
+                        <div class="nx-ds-head">
+                            <strong class="nx-ds-name">{{ session.deviceName }}</strong>
+                            @if (session.isCurrent) {
+                                <span class="nx-ds-current-badge">This device</span>
+                            }
+                        </div>
+                        <div class="nx-ds-meta">
+                            <span>{{ session.browser }}</span>
+                            @if (session.location) {
+                                <span>{{ session.location }}</span>
+                            }
+                            <span>Active {{ formatLastActive(session.lastActive) }}</span>
+                        </div>
+                    </div>
+
+                    @if (!session.isCurrent) {
+                        <button type="button" class="nx-ds-revoke-btn" (click)="onRevoke(session.id)">Revoke</button>
+                    }
+                </div>
+            } @empty {
+                <p class="nx-ds-empty">No active sessions.</p>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Device Sessions"></nx-pro-locked>
+}

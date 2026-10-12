@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Sequential approval"
+                description="{{ commonService.appName }} Approval Workflow - stages are fully data-driven via [stages]. 'Manager Review' needs Sara and Omar to approve in order: Sara already has, so only Omar can act right now; Lina (Director Approval) stays locked until Manager Review fully clears. Click a stage on the rail to expand/collapse its approvers, and open an approver's row to approve, reject, or leave a comment. This is a PRO component."
+                [code]="sequentialCode"
+                [tsCode]="sequentialTs"
+                [hasSampleClass]="false">
+                <nx-approval-workflow
+                    [(stages)]="sequentialStages"
+                    [(history)]="sequentialHistory"
+                    (approve)="onApprove($event)"
+                    (reject)="onReject($event)"
+                    (comment)="onComment($event)">
+                </nx-approval-workflow>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Parallel approval with a quorum"
+                description="'Design Review' only needs 2 of its 3 reviewers (quorum: 2) - Maya already approved, so Karim and Yousef can both act in any order, and the stage clears as soon as either one of them approves."
+                [code]="parallelCode"
+                [tsCode]="parallelTs"
+                [hasSampleClass]="false">
+                <nx-approval-workflow [(stages)]="parallelStages" [(history)]="parallelHistory"></nx-approval-workflow>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Rejection halts the workflow"
+                description="Rana rejected 'Manager Approval' with a comment - the banner flags the whole workflow as halted, the stage rail marks that stage distinctly (not just 'pending'), Fadi's approval is frozen, and 'Finance Approval' never opens up."
+                [code]="rejectedCode"
+                [tsCode]="rejectedTs"
+                [hasSampleClass]="false">
+                <nx-approval-workflow [(stages)]="rejectedStages" [(history)]="rejectedHistory"></nx-approval-workflow>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

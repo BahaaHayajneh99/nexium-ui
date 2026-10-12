@@ -1,0 +1,9 @@
+<div class="nx-html-preview" [style.height]="hostHeight">
+    <iframe
+        #frame
+        class="nx-html-preview-frame"
+        title="HTML preview"
+        [srcdoc]="safeSrcdoc"
+        (load)="onFrameLoad()">
+    </iframe>
+</div>

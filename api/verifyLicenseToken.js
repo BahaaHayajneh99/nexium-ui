@@ -1,5 +1,6 @@
 const { applyCors } = require('./_lib/cors');
 const { getDb } = require('./_lib/firebase-admin');
+const { isValidLicenseToken } = require('./_lib/validate');
 
 /**
  * Looked up by the published library's `nxProLicenseGranted()` (see
@@ -11,8 +12,8 @@ module.exports = async (req, res) => {
   if (applyCors(req, res)) return;
 
   const token = req.method === 'POST' ? req.body?.token : req.query.token;
-  if (!token || typeof token !== 'string') {
-    res.status(400).json({ valid: false, error: 'Missing token' });
+  if (!isValidLicenseToken(token)) {
+    res.status(400).json({ valid: false, error: 'Missing or invalid token' });
     return;
   }
 

@@ -1,9 +1,8 @@
 // Must stay in sync with PLAN_PRICES in projects/demo/src/app/pro-upgrade/pro-upgrade.ts - the
 // client renders these same two prices, but the PLAN is always derived here from what PayPal
 // actually confirms was paid, never trusted from the client.
-// TEMP-TEST-PRICE: yearly dropped to $1 to validate the live checkout end-to-end cheaply -
-// revert to '59.00' right after the test purchase is confirmed working.
-const PLAN_PRICES = { lifetime: '199.00', yearly: '1.00' };
+const PLAN_PRICES = { lifetime: '199.00', yearly: '59.00' };
+const PLAN_CURRENCY = 'USD';
 
 /** OAuth2 client-credentials token for PayPal's REST API - never exposed to any client. */
 async function getPaypalAccessToken(apiBase, clientId, clientSecret) {
@@ -34,8 +33,21 @@ async function verifyPaypalOrder(orderId, apiBase, accessToken) {
   if (order.status !== 'COMPLETED') {
     return { ok: false, reason: `order status is '${order.status}', not COMPLETED` };
   }
-  const capture = order.purchase_units?.[0]?.payments?.captures?.[0];
-  const paidAmount = capture?.amount?.value;
+  const purchaseUnit = order.purchase_units?.[0];
+  const capture = purchaseUnit?.payments?.captures?.[0];
+  if (capture?.status !== 'COMPLETED') {
+    return { ok: false, reason: `capture status is '${capture?.status}', not COMPLETED` };
+  }
+  // Without this, 199.00 in a cheaper currency (e.g. JPY) would match the lifetime price.
+  if (capture.amount?.currency_code !== PLAN_CURRENCY) {
+    return { ok: false, reason: `paid currency '${capture.amount?.currency_code}' is not ${PLAN_CURRENCY}` };
+  }
+  // Optional extra guard - set PAYPAL_MERCHANT_ID to make sure the money went to this account.
+  const expectedMerchantId = process.env.PAYPAL_MERCHANT_ID;
+  if (expectedMerchantId && purchaseUnit?.payee?.merchant_id !== expectedMerchantId) {
+    return { ok: false, reason: 'order was not paid to this merchant' };
+  }
+  const paidAmount = capture.amount?.value;
   const matchedPlan = Object.entries(PLAN_PRICES).find(([, price]) => price === paidAmount)?.[0];
   if (!matchedPlan) {
     return { ok: false, reason: `paid amount '${paidAmount}' does not match any known plan price` };

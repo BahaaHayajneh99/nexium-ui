@@ -1,0 +1,40 @@
+.session-timeout-demo-log {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+}
+
+.session-timeout-demo-log-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.session-timeout-demo-log-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+    font-family: var(--nx-font-mono, monospace);
+}
+
+.session-timeout-demo-log-empty {
+    margin: 0;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.session-timeout-demo-note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}

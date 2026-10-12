@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Preview"
+                description="{{ commonService.appName }} HTML Preview renders a raw HTML string inside a sandboxed <iframe> using srcdoc - the preview's own CSS and DOM are fully isolated from this page, so nothing it contains can style-clash with or reach into the host document. Scripts are disabled by default."
+                [code]="basicCode"
+                [hasSampleClass]="false">
+                <nx-html-preview [html]="basicHtml" [height]="180"></nx-html-preview>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Live Editing"
+                description="Type or paste HTML into the textarea to see the preview update in real time - genuinely reactive, driven entirely by the html input. This is the pairing an email-template builder or rich-text/markdown editor would use for a live preview pane."
+                [code]="liveCode"
+                [tsCode]="liveTs"
+                [hasSampleClass]="false">
+                <div class="html-preview-demo-wrap">
+                    <textarea class="html-preview-demo-textarea" rows="6" [(ngModel)]="liveHtml"></textarea>
+                    <nx-html-preview [html]="liveHtml" [height]="220"></nx-html-preview>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Opting Into Scripts"
+                description="allowScripts defaults to false (a safe, non-executing preview). Setting it to true lets the previewed document run its own <script> tags - the sandbox still isolates it (no allow-same-origin is granted alongside allow-scripts, which would otherwise let the content escape the sandbox entirely), but use this only for trusted content."
+                [code]="scriptCode"
+                [hasSampleClass]="false">
+                <nx-html-preview [html]="scriptHtml" [allowScripts]="true" [height]="100"></nx-html-preview>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Empty State"
+                description="An empty or undefined html input doesn't throw or render a broken frame - it shows a simple placeholder instead."
+                [code]="emptyCode"
+                [hasSampleClass]="false">
+                <nx-html-preview [height]="120"></nx-html-preview>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Auto-Resize"
+                description="autoResize measures the rendered content's height (via the sandboxed frame's own document, which is accessible here since scripts are off) and grows the frame to fit instead of using a fixed height - handy when the previewed content's length is unpredictable."
+                [code]="autoResizeCode"
+                [hasSampleClass]="false">
+                <nx-html-preview [html]="autoResizeHtml" [autoResize]="true"></nx-html-preview>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+:host {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.nx-marquee {
+    width: 100%;
+    overflow: hidden;
+}
+
+.nx-marquee-vertical {
+    height: 100%;
+}
+
+.nx-marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation-name: nx-marquee-scroll-x;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.nx-marquee-track-reverse {
+    animation-direction: reverse;
+}
+
+.nx-marquee-vertical .nx-marquee-track {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    height: max-content;
+    animation-name: nx-marquee-scroll-y;
+}
+
+.nx-marquee-segment {
+    display: flex;
+    flex: none;
+    align-items: center;
+}
+
+.nx-marquee-vertical .nx-marquee-segment {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.nx-marquee-pause-hover:hover .nx-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes nx-marquee-scroll-x {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-1 * var(--nx-marquee-distance, 100%)));
+    }
+}
+
+@keyframes nx-marquee-scroll-y {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(calc(-1 * var(--nx-marquee-distance, 100%)));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nx-marquee-track {
+        animation: none;
+    }
+}

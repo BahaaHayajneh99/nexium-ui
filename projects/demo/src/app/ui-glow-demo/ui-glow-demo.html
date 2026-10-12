@@ -1,0 +1,59 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Pulse On vs Off"
+                description="pulse=&quot;false&quot; (default) renders a steady glow. pulse=&quot;true&quot; animates it in a slow breathing loop, drawing a little more attention to a primary call-to-action."
+                [code]="pulseCode">
+                <div class="glow-row">
+                    <nx-glow color="#7c3aed" intensity="medium" [pulse]="false">
+                        <button type="button" class="cta-button">Get Started</button>
+                    </nx-glow>
+                    <nx-glow color="#7c3aed" intensity="medium" [pulse]="true">
+                        <button type="button" class="cta-button">Get Started</button>
+                    </nx-glow>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Behind vs Edge"
+                description="position=&quot;behind&quot; places a blurred colored shape behind the content via filter: blur(). position=&quot;edge&quot; instead hugs the content's real edges with a box-shadow glow."
+                [code]="positionCode">
+                <div class="glow-row">
+                    <nx-glow color="#06b6d4" intensity="high" position="behind">
+                        <div class="hero-card">Behind</div>
+                    </nx-glow>
+                    <nx-glow color="#06b6d4" intensity="high" position="edge">
+                        <div class="hero-card">Edge</div>
+                    </nx-glow>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Intensity Levels"
+                description="intensity accepts 'low' | 'medium' | 'high' presets (or a 0-1 number for fine control) - each step widens the blur radius and raises the glow's opacity."
+                [code]="intensityCode">
+                <div class="glow-row">
+                    <nx-glow color="#ec4899" intensity="low">
+                        <div class="chip">Low</div>
+                    </nx-glow>
+                    <nx-glow color="#ec4899" intensity="medium">
+                        <div class="chip">Medium</div>
+                    </nx-glow>
+                    <nx-glow color="#ec4899" intensity="high">
+                        <div class="chip">High</div>
+                    </nx-glow>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

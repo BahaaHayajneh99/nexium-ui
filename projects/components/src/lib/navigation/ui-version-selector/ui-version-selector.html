@@ -1,0 +1,30 @@
+@if (licensed()) {
+    <nx-dropdown-menu>
+        <button type="button" nx-dropdown-trigger class="nx-version-selector-trigger">
+            <span class="nx-version-selector-current">{{ selectedLabel }}</span>
+            @if (selectedTag) {
+                <span class="nx-version-selector-tag" [class]="'tag-' + selectedTag">{{ selectedTag }}</span>
+            }
+            <nx-icon icon="nx-chevron-down" variant="svg" [size]="14"></nx-icon>
+        </button>
+
+        <div nx-dropdown-content class="nx-version-selector-list">
+            @for (version of versions; track version.value) {
+                <button
+                    type="button"
+                    class="nx-version-selector-option"
+                    [class.active]="version.value === selected"
+                    (click)="choose(version)">
+                    <span>{{ version.label }}</span>
+                    @if (version.tag) {
+                        <span class="nx-version-selector-tag" [class]="'tag-' + version.tag">{{ version.tag }}</span>
+                    }
+                </button>
+            } @empty {
+                <div class="nx-version-selector-empty">No versions available</div>
+            }
+        </div>
+    </nx-dropdown-menu>
+} @else {
+    <nx-pro-locked componentName="Version Selector"></nx-pro-locked>
+}

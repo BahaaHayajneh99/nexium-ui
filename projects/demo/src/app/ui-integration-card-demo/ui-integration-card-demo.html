@@ -1,0 +1,67 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Connected Integration"
+                description="{{ commonService.appName }} Integration Card - the primary action toggles between Connect/Disconnect based on status, and Configure only shows up once connected. Last event: {{ lastEvent || '—' }}"
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-integration-card
+                    name="GitHub"
+                    description="Sync pull requests and issues into your workspace."
+                    icon="nx-github"
+                    [status]="githubStatus()"
+                    (connect)="onGithubConnect()"
+                    (disconnect)="onGithubDisconnect()"
+                    (configure)="onConfigure('GitHub')">
+                </nx-integration-card>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Disconnected &amp; Error States"
+                description="status drives the badge color/label; 'error' still offers Connect like 'disconnected' does, just styled distinctly to flag the problem."
+                [code]="statusCode"
+                [tsCode]="statusTs"
+                [hasSampleClass]="false">
+                <div class="integration-card-demo-row">
+                    <nx-integration-card
+                        name="Slack"
+                        description="Post build and release updates to a channel."
+                        icon="nx-message"
+                        [status]="slackStatus()"
+                        (connect)="onSlackConnect()">
+                    </nx-integration-card>
+
+                    <nx-integration-card
+                        name="Stripe"
+                        description="Billing is temporarily unavailable - check your API key."
+                        icon="nx-credit-card"
+                        [status]="stripeStatus()"
+                        (connect)="onStripeConnect()">
+                    </nx-integration-card>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Logo"
+                description="icon accepts a built-in icon name, but any markup projected into the [icon] slot - an &lt;img&gt;, inline SVG - takes over as the logo instead."
+                [code]="customIconCode"
+                [tsCode]="customIconTs"
+                [hasSampleClass]="false">
+                <nx-integration-card name="Custom Logo" description="Any projected markup works as the logo." status="connected">
+                    <span icon class="integration-card-demo-custom-logo">CL</span>
+                </nx-integration-card>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

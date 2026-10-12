@@ -1,0 +1,173 @@
+.nx-role-editor-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 520px;
+}
+
+.nx-role-editor-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nx-role-editor-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-role-editor-input,
+.nx-role-editor-textarea {
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.nx-role-editor-input:focus,
+.nx-role-editor-textarea:focus {
+    outline: none;
+    border-color: var(--shell-primary);
+}
+
+.nx-role-editor-permissions-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-top: 4px;
+    border-top: 1px solid var(--shell-border);
+}
+
+.nx-role-editor-permissions-title {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.nx-role-editor-permissions-count {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-role-editor-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-role-editor-group {
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    overflow: hidden;
+}
+
+.nx-role-editor-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-role-editor-group-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: transparent;
+    color: var(--shell-text);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nx-role-editor-group-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nx-role-editor-group-count {
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-role-editor-group-select-all {
+    border: none;
+    background: transparent;
+    color: var(--shell-primary);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nx-role-editor-group-select-all:hover {
+    text-decoration: underline;
+}
+
+.nx-role-editor-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 10px 10px;
+}
+
+.nx-role-editor-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 2px;
+    font-size: 13px;
+    color: var(--shell-text);
+    cursor: pointer;
+}
+
+.nx-role-editor-checkbox input {
+    cursor: pointer;
+}
+
+.nx-role-editor-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.nx-role-editor-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-role-editor-btn-secondary {
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+}
+
+.nx-role-editor-btn-secondary:hover {
+    border-color: var(--shell-text-secondary);
+}
+
+.nx-role-editor-btn-primary {
+    background-color: var(--shell-primary);
+    border-color: var(--shell-primary);
+    color: var(--text-white, #ffffff);
+}
+
+.nx-role-editor-btn-primary:hover {
+    opacity: .9;
+}

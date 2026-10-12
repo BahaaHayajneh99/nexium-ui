@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Notification Inbox"
+                description="{{ commonService.appName }} Notification Inbox - the full-page/panel sibling of the bell-icon nx-notification-center dropdown. Search across title/message, combine read-state/category/priority filters, scroll to load more, and wire up mark-all-read, per-item read toggling, and fully configurable per-item actions (Reply, Archive, Retry payment, ...). This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-notification-inbox
+                    [notifications]="notifications()"
+                    [hasMore]="hasMore()"
+                    [loading]="loading()"
+                    (loadMore)="onLoadMore()"
+                    (markAllRead)="onMarkAllRead()"
+                    (readToggle)="onReadToggle($event)"
+                    (actionClick)="onActionClick($event)">
+                </nx-notification-inbox>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

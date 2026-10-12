@@ -1,0 +1,70 @@
+.nx-presence-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 6px);
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text);
+}
+
+.nx-presence-indicator-avatar {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
+.nx-presence-indicator-dot {
+
+    position: relative;
+
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: var(--gray-500, #adb5bd);
+
+    &.online { background-color: var(--success-color, #28a745); }
+    &.away { background-color: var(--warning-color, #f39c12); }
+    &.busy { background-color: var(--danger-color, #e74c3c); }
+    &.offline { background-color: var(--gray-500, #adb5bd); }
+
+    // Overlaid in the bottom-right corner of an avatar - mirrors
+    // ui-avatar's own `.nx-avatar-status` sizing/positioning convention.
+    &.overlay {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+
+        width: 25%;
+        height: 25%;
+        min-width: 8px;
+        min-height: 8px;
+
+        border: 2px solid var(--shell-surface);
+    }
+
+    &.pulse::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--nx-radius-round, 999px);
+        background-color: inherit;
+        animation: nx-presence-indicator-pulse 1.6s ease-out infinite;
+    }
+
+}
+
+@keyframes nx-presence-indicator-pulse {
+    0% {
+        transform: scale(1);
+        opacity: .6;
+    }
+    100% {
+        transform: scale(2.6);
+        opacity: 0;
+    }
+}
+
+.nx-presence-indicator-label {
+    line-height: 1;
+}

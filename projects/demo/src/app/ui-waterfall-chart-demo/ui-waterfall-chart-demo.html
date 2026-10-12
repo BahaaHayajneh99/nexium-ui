@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Revenue Bridge"
+                description="{{ commonService.appName }} Waterfall Chart shows how a sequence of positive and negative deltas cumulatively builds from a starting total to an ending total. Each delta bar floats between the running total before and after it - green for an increase, red for a decrease - while a 'total' point (isTotal: true) renders as a full bar from zero and resets the running total, shown here in the neutral brand color for Starting/Ending Revenue. Hover a bar for its exact delta and running total."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-waterfall-chart [data]="revenueBridge"></nx-waterfall-chart>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Quarterly Cash Flow with a Mid-Sequence Checkpoint"
+                description="A 'total' point doesn't have to be first or last - it can also reset the baseline mid-sequence, such as a quarter-end checkpoint that then becomes the starting point for the next quarter's deltas."
+                [code]="bridgeCode"
+                [tsCode]="bridgeTs"
+                [hasSampleClass]="false">
+                <nx-waterfall-chart [data]="cashFlowBridge" [height]="340"></nx-waterfall-chart>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

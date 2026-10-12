@@ -1,0 +1,167 @@
+@if (licensed()) {
+    <div class="nx-approval-workflow">
+        @if (isHalted()) {
+            <div class="nx-approval-banner rejected">
+                <nx-icon icon="nx-alert-triangle" variant="svg" [size]="14"></nx-icon>
+                <span>This workflow was rejected and is halted - it will not advance further.</span>
+            </div>
+        } @else if (isCompleted()) {
+            <div class="nx-approval-banner completed">
+                <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+                <span>All stages have cleared - this workflow is complete.</span>
+            </div>
+        }
+
+        <div class="nx-approval-rail">
+            @for (stage of stages; track stage.id; let last = $last) {
+                <div
+                    class="nx-approval-rail-stage"
+                    [class.approved]="stageStatus(stage) === 'approved'"
+                    [class.active]="stageStatus(stage) === 'active'"
+                    [class.rejected]="stageStatus(stage) === 'rejected'"
+                    (click)="toggleExpanded(stage)">
+                    <div class="nx-approval-rail-marker">
+                        @switch (stageStatus(stage)) {
+                            @case ('approved') {
+                                <nx-icon icon="nx-check" variant="svg" [size]="14"></nx-icon>
+                            }
+                            @case ('rejected') {
+                                <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+                            }
+                            @default {
+                                <span>{{ stageIndex(stage) + 1 }}</span>
+                            }
+                        }
+                    </div>
+                    <div class="nx-approval-rail-label">
+                        <span class="nx-approval-rail-name">{{ stage.name }}</span>
+                        @if (stage.approvers?.length) {
+                            <span class="nx-approval-rail-sub">{{ approvedCount(stage) }}/{{ requiredApprovals(stage) }} · {{ stage.mode }}</span>
+                        }
+                    </div>
+                </div>
+                @if (!last) {
+                    <div class="nx-approval-rail-connector" [class.completed]="stageStatus(stage) === 'approved'"></div>
+                }
+            } @empty {
+                <div class="nx-approval-empty">No stages configured.</div>
+            }
+        </div>
+
+        @for (stage of stages; track stage.id) {
+            @if (isExpanded(stage) && stage.approvers?.length) {
+                <div class="nx-approval-detail" [class.rejected]="stageStatus(stage) === 'rejected'">
+                    <div class="nx-approval-detail-header">
+                        <div>
+                            <span class="nx-approval-detail-name">{{ stage.name }}</span>
+                            <span class="nx-approval-detail-mode">{{ stage.mode === 'sequential' ? 'Sequential approval' : 'Parallel approval' }}</span>
+                        </div>
+                        @if (stage.description) {
+                            <p class="nx-approval-detail-desc">{{ stage.description }}</p>
+                        }
+                    </div>
+
+                    <div class="nx-approval-approvers">
+                        @for (approver of stage.approvers; track approver.id) {
+                            <div class="nx-approval-approver" [class.turn]="canAct(stage, approver)">
+                                <div class="nx-approval-approver-avatar" [class.approved]="approver.status === 'approved'" [class.rejected]="approver.status === 'rejected'">
+                                    @switch (approver.status) {
+                                        @case ('approved') {
+                                            <nx-icon icon="nx-check" variant="svg" [size]="12"></nx-icon>
+                                        }
+                                        @case ('rejected') {
+                                            <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                                        }
+                                        @default {
+                                            <span>{{ initialsFor(approver.name) }}</span>
+                                        }
+                                    }
+                                </div>
+
+                                <div class="nx-approval-approver-body">
+                                    <div class="nx-approval-approver-line">
+                                        <strong>{{ approver.name }}</strong>
+                                        @if (approver.role) {
+                                            <span class="nx-approval-approver-role">{{ approver.role }}</span>
+                                        }
+                                        @if (approver.status === 'pending' && isWaitingOnOthers(stage, approver)) {
+                                            <span class="nx-approval-approver-waiting">waiting for their turn</span>
+                                        }
+                                        @if (approver.actedAt) {
+                                            <span class="nx-approval-approver-time">{{ timeLabel(approver.actedAt) }}</span>
+                                        }
+                                    </div>
+
+                                    @if (approver.comment) {
+                                        <div class="nx-approval-approver-comment">
+                                            <nx-icon icon="nx-message" variant="svg" [size]="11"></nx-icon>
+                                            <span>{{ approver.comment }}</span>
+                                        </div>
+                                    }
+
+                                    @if (isCommentBoxOpen(stage, approver)) {
+                                        <div class="nx-approval-comment-box">
+                                            <textarea
+                                                rows="2"
+                                                placeholder="Add an optional comment..."
+                                                [ngModel]="draftFor(stage, approver)"
+                                                (ngModelChange)="setDraft(stage, approver, $event)">
+                                            </textarea>
+                                            <div class="nx-approval-comment-actions">
+                                                @if (canAct(stage, approver)) {
+                                                    <button type="button" class="nx-approval-btn approve" (click)="approveStep(stage, approver)">Approve</button>
+                                                    <button type="button" class="nx-approval-btn reject" (click)="rejectStep(stage, approver)">Reject</button>
+                                                }
+                                                @if (canComment(approver) && approver.status === 'pending') {
+                                                    <button type="button" class="nx-approval-btn ghost" (click)="postComment(stage, approver)">Post comment</button>
+                                                }
+                                                <button type="button" class="nx-approval-btn ghost" (click)="toggleCommentBox(stage, approver)">Cancel</button>
+                                            </div>
+                                        </div>
+                                    } @else if (approver.status === 'pending') {
+                                        <div class="nx-approval-approver-actions">
+                                            @if (canAct(stage, approver)) {
+                                                <button type="button" class="nx-approval-btn approve" (click)="toggleCommentBox(stage, approver)">Approve</button>
+                                                <button type="button" class="nx-approval-btn reject" (click)="toggleCommentBox(stage, approver)">Reject</button>
+                                            } @else if (canComment(approver)) {
+                                                <button type="button" class="nx-approval-btn ghost" (click)="toggleCommentBox(stage, approver)">Comment</button>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="nx-approval-history">
+            <div class="nx-approval-history-title">Approval history</div>
+            <div class="nx-approval-history-list">
+                @for (entry of sortedHistory(); track entry.id) {
+                    <div class="nx-approval-history-entry" [class.rejected]="entry.action === 'rejected'">
+                        <div class="nx-approval-history-icon" [class.approved]="entry.action === 'approved'" [class.rejected]="entry.action === 'rejected'">
+                            <nx-icon [icon]="historyIcon(entry.action)" variant="svg" [size]="12"></nx-icon>
+                        </div>
+                        <div class="nx-approval-history-body">
+                            <div class="nx-approval-history-line">
+                                <strong>{{ entry.approverName }}</strong>
+                                {{ entry.action === 'commented' ? 'commented on' : entry.action }}
+                                <span class="nx-approval-history-stage">{{ entry.stageName }}</span>
+                                <span class="nx-approval-history-time">{{ timeLabel(entry.timestamp) }}</span>
+                            </div>
+                            @if (entry.comment) {
+                                <div class="nx-approval-history-comment">{{ entry.comment }}</div>
+                            }
+                        </div>
+                    </div>
+                } @empty {
+                    <div class="nx-approval-history-empty">No activity yet.</div>
+                }
+            </div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Approval Workflow"></nx-pro-locked>
+}

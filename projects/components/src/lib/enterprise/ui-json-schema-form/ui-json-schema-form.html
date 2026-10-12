@@ -1,0 +1,76 @@
+@if (licensed()) {
+    <form class="nx-json-schema-form" novalidate (ngSubmit)="handleSubmit()">
+        @for (key of fieldKeys; track key) {
+            @let f = field(key);
+            <div class="nx-json-schema-form-field">
+                @switch (f.type) {
+                    @case ('boolean') {
+                        <nx-checkbox
+                            #ctrl
+                            [label]="f.label || key"
+                            [checked]="asBoolean(values()[key])"
+                            [isRequired]="!!f.required"
+                            [requiredErrorMessage]="f.requiredErrorMessage || 'This field is required'"
+                            (checkedChange)="setValue(key, $event)">
+                        </nx-checkbox>
+                    }
+                    @case ('select') {
+                        <nx-select
+                            #ctrl
+                            [label]="f.label || key"
+                            [placeholder]="f.placeholder || 'Select...'"
+                            [options]="selectOptions(f)"
+                            [value]="asString(values()[key])"
+                            [isRequired]="!!f.required"
+                            [requiredErrorMessage]="f.requiredErrorMessage || 'Please select an option'"
+                            (valueChange)="setValue(key, $event)">
+                        </nx-select>
+                    }
+                    @case ('textarea') {
+                        <nx-textarea
+                            #ctrl
+                            [label]="f.label || key"
+                            [placeholder]="f.placeholder || ''"
+                            [rows]="f.rows || 4"
+                            [value]="asString(values()[key])"
+                            [isRequired]="!!f.required"
+                            [requiredErrorMessage]="f.requiredErrorMessage || 'This field is required'"
+                            (valueChange)="setValue(key, $event)">
+                        </nx-textarea>
+                    }
+                    @case ('number') {
+                        <nx-number
+                            #ctrl
+                            [label]="f.label || key"
+                            [placeholder]="f.placeholder || ''"
+                            [ngModel]="asNumber(values()[key])"
+                            [ngModelOptions]="{standalone: true}"
+                            [isRequired]="!!f.required"
+                            [requiredErrorMessage]="f.requiredErrorMessage || 'Please enter a value'"
+                            (ngModelChange)="setValue(key, $event)">
+                        </nx-number>
+                    }
+                    @default {
+                        <nx-input
+                            #ctrl
+                            [label]="f.label || key"
+                            [type]="f.type === 'email' ? 'email' : 'text'"
+                            [pattern]="f.type === 'email' ? 'email' : null"
+                            [placeholder]="f.placeholder || ''"
+                            [value]="asString(values()[key])"
+                            [isRequired]="!!f.required"
+                            [requiredErrorMessage]="f.requiredErrorMessage || 'This field is required'"
+                            (valueChange)="setValue(key, $event)">
+                        </nx-input>
+                    }
+                }
+            </div>
+        }
+
+        @if (showSubmitButton) {
+            <nx-button variant="primary">{{ submitLabel }}</nx-button>
+        }
+    </form>
+} @else {
+    <nx-pro-locked componentName="JSON Schema Form"></nx-pro-locked>
+}

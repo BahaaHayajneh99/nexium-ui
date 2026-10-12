@@ -1,0 +1,67 @@
+@if (licensed()) {
+    <div class="nx-login-activity">
+        <div class="nx-la-filters">
+            <button
+                type="button"
+                class="nx-la-filter-btn"
+                [class.active]="statusFilter() === 'all'"
+                (click)="statusFilter.set('all')">
+                All
+            </button>
+            <button
+                type="button"
+                class="nx-la-filter-btn"
+                [class.active]="statusFilter() === 'success'"
+                (click)="statusFilter.set('success')">
+                Successful
+            </button>
+            <button
+                type="button"
+                class="nx-la-filter-btn"
+                [class.active]="statusFilter() === 'failed'"
+                (click)="statusFilter.set('failed')">
+                Failed
+            </button>
+        </div>
+
+        <table class="nx-la-table">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>IP Address</th>
+                    <th>Location</th>
+                    <th>Device</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (entry of filteredEntries; track entry.id) {
+                    <tr class="nx-la-row">
+                        <td>
+                            <span class="nx-la-status-badge" [class.success]="entry.success" [class.failed]="!entry.success">
+                                <nx-icon
+                                    [icon]="entry.success ? 'nx-check-circle' : 'nx-x-circle'"
+                                    variant="svg"
+                                    [size]="13"></nx-icon>
+                                {{ entry.success ? 'Success' : 'Failed' }}
+                            </span>
+                            @if (!entry.success && entry.failureReason) {
+                                <div class="nx-la-failure-reason">{{ entry.failureReason }}</div>
+                            }
+                        </td>
+                        <td>{{ formatTimestamp(entry.timestamp) }}</td>
+                        <td>{{ entry.ipAddress }}</td>
+                        <td>{{ entry.location || '—' }}</td>
+                        <td>{{ entry.device }}</td>
+                    </tr>
+                } @empty {
+                    <tr>
+                        <td class="nx-la-empty" [attr.colspan]="5">No login attempts match this filter.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Login Activity"></nx-pro-locked>
+}

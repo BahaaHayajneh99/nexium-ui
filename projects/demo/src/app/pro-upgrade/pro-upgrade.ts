@@ -39,8 +39,6 @@ const PAYPAL_CLIENT_ID =
 
 // Must stay in sync with PLAN_PRICES in api/_lib/paypal.js - the server derives which plan was
 // bought purely from the amount PayPal confirms was paid, never from anything the client asserts.
-// TEMP-TEST-PRICE: yearly dropped to $1 to validate the live checkout end-to-end cheaply -
-// revert to '59.00' right after the test purchase is confirmed working.
 export type NxPlan = 'lifetime' | 'yearly';
 const PLAN_PRICES: Record<NxPlan, string> = { lifetime: '199.00', yearly: '59.00' };
 

@@ -1,0 +1,38 @@
+.bulk-editor-demo-table {
+    overflow-x: auto;
+    margin-bottom: 12px;
+}
+
+.bulk-editor-demo-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    th,
+    td {
+        padding: 8px 10px;
+        border: 1px solid var(--shell-border);
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    th {
+        background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+        font-weight: 600;
+    }
+}
+
+.bulk-editor-demo-payload {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+    font-size: 12px;
+
+    pre {
+        margin: 6px 0 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+}

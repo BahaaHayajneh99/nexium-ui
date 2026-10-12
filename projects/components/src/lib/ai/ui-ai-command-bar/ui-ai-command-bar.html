@@ -1,0 +1,112 @@
+@if (licensed()) {
+    @if (open) {
+        <div class="nx-ai-cmdbar-backdrop" (click)="onBackdropClick()"></div>
+
+        <div class="nx-ai-cmdbar-panel" (click)="$event.stopPropagation()">
+            <div class="nx-ai-cmdbar-inputrow">
+                <nx-icon icon="nx-star" variant="svg" [size]="18" class="nx-ai-cmdbar-sparkle"></nx-icon>
+
+                <input
+                    #inputRef
+                    type="text"
+                    class="nx-ai-cmdbar-input"
+                    [placeholder]="placeholder"
+                    [value]="query"
+                    (input)="onQueryChange($event)"
+                    autofocus />
+
+                @if (isLoading) {
+                    <button type="button" class="nx-ai-cmdbar-stop" (click)="onCancel()">
+                        <nx-icon icon="nx-x-circle" variant="svg" [size]="14"></nx-icon>
+                        Stop
+                    </button>
+                } @else if (query.trim() && mode === 'typing') {
+                    <button type="button" class="nx-ai-cmdbar-send" (click)="trySubmit()" aria-label="Ask">
+                        <nx-icon icon="nx-send" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                }
+            </div>
+
+            @if (activeQuery(); as asked) {
+                <div class="nx-ai-cmdbar-response" #responseScrollRef>
+                    <div class="nx-ai-cmdbar-asked">
+                        <nx-icon icon="nx-search" variant="svg" [size]="12"></nx-icon>
+                        {{ asked }}
+                    </div>
+
+                    @if (isLoading && !streamingText) {
+                        <div class="nx-ai-cmdbar-thinking" aria-label="Thinking">
+                            <span class="nx-ai-cmdbar-dot"></span>
+                            <span class="nx-ai-cmdbar-dot"></span>
+                            <span class="nx-ai-cmdbar-dot"></span>
+                        </div>
+                    } @else {
+                        <div class="nx-ai-cmdbar-answer">{{ streamingText }}<span class="nx-ai-cmdbar-cursor" [class.blink]="isLoading"></span></div>
+                    }
+                </div>
+            } @else if (mode === 'commands') {
+                <div class="nx-ai-cmdbar-list">
+                    @for (command of filteredCommands; track command.action; let i = $index) {
+                        <button
+                            type="button"
+                            class="nx-ai-cmdbar-item"
+                            [class.active]="i === activeIndex"
+                            (mouseenter)="activeIndex = i"
+                            (click)="selectCommand(command)">
+                            @if (command.icon) {
+                                <nx-icon [icon]="command.icon" variant="svg" [size]="16"></nx-icon>
+                            }
+                            <span>{{ command.label }}</span>
+                        </button>
+                    } @empty {
+                        <div class="nx-ai-cmdbar-empty">No matching commands.</div>
+                    }
+                </div>
+            } @else if (mode === 'idle') {
+                <div class="nx-ai-cmdbar-list">
+                    @if (suggestions.length) {
+                        <div class="nx-ai-cmdbar-label">Suggestions</div>
+                        @for (suggestion of suggestions; track suggestion; let i = $index) {
+                            <button
+                                type="button"
+                                class="nx-ai-cmdbar-item"
+                                [class.active]="isSuggestionActive(i)"
+                                (mouseenter)="activeIndex = i"
+                                (click)="useSuggestion(suggestion)">
+                                <nx-icon icon="nx-star" variant="svg" [size]="14"></nx-icon>
+                                <span>{{ suggestion }}</span>
+                            </button>
+                        }
+                    }
+
+                    @if (history.length) {
+                        <div class="nx-ai-cmdbar-label">Recent</div>
+                        @for (entry of history; track entry; let i = $index) {
+                            <button
+                                type="button"
+                                class="nx-ai-cmdbar-item"
+                                [class.active]="isHistoryActive(i)"
+                                (mouseenter)="activeIndex = suggestions.length + i"
+                                (click)="useHistory(entry)">
+                                <nx-icon icon="nx-clock" variant="svg" [size]="14"></nx-icon>
+                                <span>{{ entry }}</span>
+                            </button>
+                        }
+                    }
+
+                    @if (!suggestions.length && !history.length) {
+                        <div class="nx-ai-cmdbar-empty">Type a question, or "/" for commands.</div>
+                    }
+                </div>
+            }
+
+            <div class="nx-ai-cmdbar-footer">
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>Enter</kbd> select</span>
+                <span><kbd>Esc</kbd> close</span>
+            </div>
+        </div>
+    }
+} @else {
+    <nx-pro-locked componentName="AI Command Bar"></nx-pro-locked>
+}

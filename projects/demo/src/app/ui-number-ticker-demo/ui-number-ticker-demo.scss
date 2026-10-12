@@ -1,0 +1,22 @@
+.ticker-sample {
+    font-size: 28px;
+    color: var(--shell-text);
+}
+
+.ticker-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.ticker-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}

@@ -1,0 +1,31 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Single Role Editor"
+                description="{{ commonService.appName }} Role Editor - a focused form for editing one role at a time: its name, description, and a flat checklist of permissions grouped under collapsible section headers, each with a 'Select all / Clear all' shortcut. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-role-editor
+                    [(roleName)]="roleName"
+                    [(roleDescription)]="roleDescription"
+                    [permissionGroups]="permissionGroups"
+                    [(grantedPermissions)]="grantedPermissions"
+                    (save)="onSave($event)"
+                    (cancel)="onCancel()">
+                </nx-role-editor>
+                <p class="nx-role-editor-demo-event">{{ lastAction }}</p>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

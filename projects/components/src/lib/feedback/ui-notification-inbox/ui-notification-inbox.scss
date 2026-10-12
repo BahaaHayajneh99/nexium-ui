@@ -1,0 +1,308 @@
+.nx-notification-inbox {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 12px);
+    width: 100%;
+    background-color: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 10px);
+    padding: var(--nx-spacing-md, 16px);
+}
+
+.nx-inbox-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.nx-inbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nx-inbox-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-inbox-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.nx-inbox-unread-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background-color: #e74c3c;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.nx-inbox-mark-all {
+    border: none;
+    background: transparent;
+    color: var(--shell-primary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-inbox-mark-all:hover {
+    text-decoration: underline;
+}
+
+.nx-inbox-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-inbox-search {
+    flex: 1;
+    min-width: 160px;
+    padding: 7px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-inbox-select {
+    padding: 7px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.nx-inbox-reset {
+    padding: 7px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-inbox-reset:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-inbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding-right: 2px;
+}
+
+.nx-inbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nx-inbox-date-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 4px 0;
+    background-color: var(--shell-surface);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--shell-text-secondary);
+}
+
+.nx-inbox-item {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 6px);
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease;
+}
+
+.nx-inbox-item:hover {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-inbox-item.unread {
+    background-color: var(--shell-surface-hover);
+    border-color: var(--shell-primary);
+}
+
+.nx-inbox-item.priority-urgent {
+    border-left: 3px solid #e74c3c;
+}
+
+.nx-inbox-item.priority-high {
+    border-left: 3px solid #f39c12;
+}
+
+.nx-inbox-read-toggle {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.nx-inbox-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background-color: var(--shell-border);
+}
+
+.nx-inbox-item.unread .nx-inbox-dot {
+    background-color: var(--shell-primary);
+}
+
+.nx-inbox-dot[data-priority='urgent'] {
+    background-color: #e74c3c;
+}
+
+.nx-inbox-dot[data-priority='high'] {
+    background-color: #f39c12;
+}
+
+.nx-inbox-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nx-inbox-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.nx-inbox-item-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-inbox-item.unread .nx-inbox-item-title {
+    font-weight: 700;
+}
+
+.nx-inbox-priority-tag {
+    flex-shrink: 0;
+    padding: 1px 7px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--shell-text-secondary);
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-inbox-priority-tag[data-priority='urgent'] {
+    color: #ffffff;
+    background-color: #e74c3c;
+}
+
+.nx-inbox-priority-tag[data-priority='high'] {
+    color: #ffffff;
+    background-color: #f39c12;
+}
+
+.nx-inbox-item-message {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-inbox-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--shell-text-muted);
+}
+
+.nx-inbox-category {
+    padding: 1px 7px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text-secondary);
+}
+
+.nx-inbox-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.nx-inbox-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-inbox-action:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-inbox-action-icon {
+    font-size: 11px;
+}
+
+.nx-inbox-empty {
+    padding: 32px 16px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--shell-text-muted);
+}
+
+.nx-inbox-loading {
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--shell-text-muted);
+}

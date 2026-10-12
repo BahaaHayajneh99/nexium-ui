@@ -1,0 +1,58 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Share Popover"
+                description="{{ commonService.appName }} Share Popover offers a read-only copy-the-link row plus a row of social/channel icon buttons. Each channel button opens the network's real share-intent URL in a new tab, pre-filled with url and text. The copied output fires whenever the Copy button successfully copies the link."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div class="share-row">
+                    <nx-share-popover
+                        url="https://nexium-ui.dev"
+                        text="Check out NexiumUI"
+                        (copied)="onCopied($event)">
+                    </nx-share-popover>
+
+                    @if (lastCopied()) {
+                        <span class="share-copied-note">Copied: {{ lastCopied() }}</span>
+                    }
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="A Subset of Channels"
+                description="channels limits which networks show - here only Email and WhatsApp. position='left' aligns the panel to the left edge of the trigger instead of the right."
+                [code]="subsetCode"
+                [hasSampleClass]="false">
+                <div class="share-row">
+                    <nx-share-popover
+                        url="https://nexium-ui.dev/docs/ui-share-popover"
+                        text="Sharing this doc page"
+                        [channels]="['email', 'whatsapp']"
+                        position="left">
+                    </nx-share-popover>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Two Channels Only"
+                description="Any subset works - here just X and LinkedIn, handy for a marketing page that only cares about professional/social reach."
+                [code]="singleChannelCode"
+                [hasSampleClass]="false">
+                <div class="share-row">
+                    <nx-share-popover url="https://nexium-ui.dev/pricing" [channels]="['x', 'linkedin']"></nx-share-popover>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

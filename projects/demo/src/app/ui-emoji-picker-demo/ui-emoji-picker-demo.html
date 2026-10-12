@@ -1,0 +1,70 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Emoji Picker"
+                description="{{ commonService.appName }}'s nx-emoji-picker is a searchable, category-tabbed emoji grid - the kind of panel that opens from a chat composer or a message's reaction button. Every name is pulled straight from the shared NX_EMOJIS registry and rendered via the existing nx-emoji component, so glyph rendering stays in one place. Type to search by name (e.g. 'heart'), or browse a category tab. Click any emoji to select it."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div class="emoji-picker-demo-row">
+                    <nx-emoji-picker (emojiSelected)="onEmojiSelected($event)"></nx-emoji-picker>
+
+                    <div class="emoji-picker-readout">
+                        <span class="emoji-picker-readout-label">Last selected</span>
+                        @if (lastSelected) {
+                            <div class="emoji-picker-readout-value">
+                                <nx-emoji [emoji]="lastSelected" [size]="32"></nx-emoji>
+                                <code>{{ lastSelected }}</code>
+                            </div>
+                        } @else {
+                            <span class="emoji-picker-readout-empty">Nothing picked yet</span>
+                        }
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Inside a popover (reaction button)"
+                description="nx-emoji-picker is only the panel's content - it has no open/close state of its own. Host it inside the existing nx-popover (or any other dropdown/overlay primitive) behind a trigger, exactly how a reaction button on a chat message would use it."
+                [code]="popoverCode"
+                [hasSampleClass]="false">
+                <div class="emoji-picker-demo-row">
+                    <nx-popover>
+                        <button nx-popover-trigger class="demo-btn">😊 React</button>
+                        <nx-emoji-picker (emojiSelected)="onReactionSelected($event)"></nx-emoji-picker>
+                    </nx-popover>
+
+                    <div class="emoji-picker-readout">
+                        <span class="emoji-picker-readout-label">Reaction added</span>
+                        @if (reactionSelected) {
+                            <div class="emoji-picker-readout-value">
+                                <nx-emoji [emoji]="reactionSelected" [size]="32"></nx-emoji>
+                                <code>{{ reactionSelected }}</code>
+                            </div>
+                        } @else {
+                            <span class="emoji-picker-readout-empty">Nothing picked yet</span>
+                        }
+                    </div>
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Flat searchable grid"
+                description="Set showCategories to false to drop the category tabs entirely and fall back to one flat searchable grid."
+                [code]="flatCode"
+                [hasSampleClass]="false">
+                <nx-emoji-picker [showCategories]="false" (emojiSelected)="onEmojiSelected($event)"></nx-emoji-picker>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

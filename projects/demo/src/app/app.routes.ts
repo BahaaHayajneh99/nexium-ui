@@ -30,6 +30,8 @@ import { UiAdvancedDataGridDemo } from './ui-advanced-data-grid-demo/ui-advanced
 import { UiGanttChartDemo } from './ui-gantt-chart-demo/ui-gantt-chart-demo';
 import { UiSchedulerDemo } from './ui-scheduler-demo/ui-scheduler-demo';
 import { UiWorkflowBuilderDemo } from './ui-workflow-builder-demo/ui-workflow-builder-demo';
+import { UiApprovalWorkflowDemo } from './ui-approval-workflow-demo/ui-approval-workflow-demo';
+import { UiJsonSchemaFormDemo } from './ui-json-schema-form-demo/ui-json-schema-form-demo';
 import { UiHttpStatusDemo } from './ui-http-status-demo/ui-http-status-demo';
 import { UiEnvironmentSwitcherDemo } from './ui-environment-switcher-demo/ui-environment-switcher-demo';
 import { UiTerminalDemo } from './ui-terminal-demo/ui-terminal-demo';
@@ -77,7 +79,35 @@ import { UiChangelogWidgetDemo } from './ui-changelog-widget-demo/ui-changelog-w
 import { DirectiveFeatureFlagDemo } from './directive-feature-flag-demo/directive-feature-flag-demo';
 import { DirectivePermissionGateDemo } from './directive-permission-gate-demo/directive-permission-gate-demo';
 import { UiActivityTimelineDemo } from './ui-activity-timeline-demo/ui-activity-timeline-demo';
+import { UiTimelineEditorDemo } from './ui-timeline-editor-demo/ui-timeline-editor-demo';
+import { UiComparisonTableDemo } from './ui-comparison-table-demo/ui-comparison-table-demo';
 import { UiActivityFeedDemo } from './ui-activity-feed-demo/ui-activity-feed-demo';
+import { UiCommentsDemo } from './ui-comments-demo/ui-comments-demo';
+import { UiBulkActionsDemo } from './ui-bulk-actions-demo/ui-bulk-actions-demo';
+import { UiSessionTimeoutDemo } from './ui-session-timeout-demo/ui-session-timeout-demo';
+import { UiApiKeyManagerDemo } from './ui-api-key-manager-demo/ui-api-key-manager-demo';
+import { UiWebhookManagerDemo } from './ui-webhook-manager-demo/ui-webhook-manager-demo';
+import { UiSecurityEventLogDemo } from './ui-security-event-log-demo/ui-security-event-log-demo';
+import { UiLoginActivityDemo } from './ui-login-activity-demo/ui-login-activity-demo';
+import { UiDeviceSessionsDemo } from './ui-device-sessions-demo/ui-device-sessions-demo';
+import { UiAiCommandBarDemo } from './ui-ai-command-bar-demo/ui-ai-command-bar-demo';
+import { UiBulkEditorDemo } from './ui-bulk-editor-demo/ui-bulk-editor-demo';
+import { UiAccessControlDemo } from './ui-access-control-demo/ui-access-control-demo';
+import { UiRoleEditorDemo } from './ui-role-editor-demo/ui-role-editor-demo';
+import { UiMagneticButtonDemo } from './ui-magnetic-button-demo/ui-magnetic-button-demo';
+import { DirectiveRevealDemo } from './directive-reveal-demo/directive-reveal-demo';
+import { UiTextScrambleDemo } from './ui-text-scramble-demo/ui-text-scramble-demo';
+import { UiNumberTickerDemo } from './ui-number-ticker-demo/ui-number-ticker-demo';
+import { UiCoachmarkDemo } from './ui-coachmark-demo/ui-coachmark-demo';
+import { UiSharePopoverDemo } from './ui-share-popover-demo/ui-share-popover-demo';
+import { UiDockLayoutDemo } from './ui-dock-layout-demo/ui-dock-layout-demo';
+import { UiMarqueeDemo } from './ui-marquee-demo/ui-marquee-demo';
+import { UiGradientBorderDemo } from './ui-gradient-border-demo/ui-gradient-border-demo';
+import { UiGlowDemo } from './ui-glow-demo/ui-glow-demo';
+import { UiInlineEditDemo } from './ui-inline-edit-demo/ui-inline-edit-demo';
+import { UiQuickCreateDemo } from './ui-quick-create-demo/ui-quick-create-demo';
+import { UiIntegrationCardDemo } from './ui-integration-card-demo/ui-integration-card-demo';
+import { UiVersionSelectorDemo } from './ui-version-selector-demo/ui-version-selector-demo';
 import { UiAuditTimelineDemo } from './ui-audit-timeline-demo/ui-audit-timeline-demo';
 import { UiVirtualScrollDemo } from './ui-virtual-scroll-demo/ui-virtual-scroll-demo';
 import { UiSortableListDemo } from './ui-sortable-list-demo/ui-sortable-list-demo';
@@ -174,6 +204,8 @@ import { UiAlertDemo } from './ui-alert-demo/ui-alert-demo';
 import { UiLoadingDemo } from './ui-loading-demo/ui-loading-demo';
 import { UiLoadingButtonDemo } from './ui-loading-button-demo/ui-loading-button-demo';
 import { UiStatusIndicatorDemo } from './ui-status-indicator-demo/ui-status-indicator-demo';
+import { UiPresenceIndicatorDemo } from './ui-presence-indicator-demo/ui-presence-indicator-demo';
+import { UiReactionsDemo } from './ui-reactions-demo/ui-reactions-demo';
 import { UiErrorStateDemo } from './ui-error-state-demo/ui-error-state-demo';
 import { UiNotFoundDemo } from './ui-not-found-demo/ui-not-found-demo';
 import { UiPermissionDeniedDemo } from './ui-permission-denied-demo/ui-permission-denied-demo';
@@ -224,6 +256,7 @@ import { UiResizableDemo } from './ui-resizable-demo/ui-resizable-demo';
 import { UiUnitInputDemo } from './ui-unit-input-demo/ui-unit-input-demo';
 import { HowToMapNotesDemo } from './how-to-map-notes-demo/how-to-map-notes-demo';
 import { UiNotificationCenterDemo } from './ui-notification-center-demo/ui-notification-center-demo';
+import { UiNotificationInboxDemo } from './ui-notification-inbox-demo/ui-notification-inbox-demo';
 import { UiMentionDemo } from './ui-mention-demo/ui-mention-demo';
 import { UiFormulaInputDemo } from './ui-formula-input-demo/ui-formula-input-demo';
 import { UiRichTextEditorDemo } from './ui-rich-text-editor-demo/ui-rich-text-editor-demo';
@@ -260,6 +293,7 @@ import { AudioUploadDemo } from './audio-upload-demo/audio-upload-demo';
 import { DocumentUploadDemo } from './document-upload-demo/document-upload-demo';
 import { UiGalleryDemo } from './ui-gallery-demo/ui-gallery-demo';
 import { UiPreviewDemo } from './ui-preview-demo/ui-preview-demo';
+import { UiHtmlPreviewDemo } from './ui-html-preview-demo/ui-html-preview-demo';
 import { UiQrCodeDemo } from './ui-qr-code-demo/ui-qr-code-demo';
 import { UiCarouselDemo } from './ui-carousel-demo/ui-carousel-demo';
 import { UiBreadcrumbDemo } from './ui-breadcrumb-demo/ui-breadcrumb-demo';
@@ -277,6 +311,7 @@ import { AboutContactDemo } from './about-contact-demo/about-contact-demo';
 import { PipesDemo } from './pipes-demo/pipes-demo';
 import { IconsDemo } from './icons-demo/icons-demo';
 import { EmojiDemo } from './emoji-demo/emoji-demo';
+import { UiEmojiPickerDemo } from './ui-emoji-picker-demo/ui-emoji-picker-demo';
 import { NxTranslateDemo } from './nx-translate-demo/nx-translate-demo';
 import { NxSidebarDemo } from './nx-sidebar-demo/nx-sidebar-demo';
 import { GuideColorsDemo } from './guide-colors-demo/guide-colors-demo';
@@ -376,6 +411,7 @@ import { ChartsBubbleDemo } from './charts-bubble-demo/charts-bubble-demo';
 import { ChartsGaugeDemo } from './charts-gauge-demo/charts-gauge-demo';
 import { ChartsHeatmapDemo } from './charts-heatmap-demo/charts-heatmap-demo';
 import { ChartsFunnelDemo } from './charts-funnel-demo/charts-funnel-demo';
+import { UiWaterfallChartDemo } from './ui-waterfall-chart-demo/ui-waterfall-chart-demo';
 import { ChartsStackedBarDemo } from './charts-stacked-bar-demo/charts-stacked-bar-demo';
 import { ChartsMixedDemo } from './charts-mixed-demo/charts-mixed-demo';
 import { ChartsSparklineDemo } from './charts-sparkline-demo/charts-sparkline-demo';
@@ -636,6 +672,10 @@ export const routes: Routes = [
         component: UiNotificationCenterDemo
     },
     {
+        path: 'notification-inbox',
+        component: UiNotificationInboxDemo
+    },
+    {
         path: 'progress-bar',
         component:UiProgressBarDemo
     },
@@ -818,6 +858,14 @@ export const routes: Routes = [
     {
         path: 'status-indicator',
         component: UiStatusIndicatorDemo
+    },
+    {
+        path: 'presence-indicator',
+        component: UiPresenceIndicatorDemo
+    },
+    {
+        path: 'reactions',
+        component: UiReactionsDemo
     },
     {
         path: 'error-state',
@@ -1080,6 +1128,10 @@ export const routes: Routes = [
         component: UiPreviewDemo
     },
     {
+        path: 'html-preview',
+        component: UiHtmlPreviewDemo
+    },
+    {
         path: 'qr-code',
         component: UiQrCodeDemo
     },
@@ -1242,6 +1294,10 @@ export const routes: Routes = [
     {
         path: 'emoji',
         component: EmojiDemo
+    },
+    {
+        path: 'emoji-picker',
+        component: UiEmojiPickerDemo
     },
     {
         path: 'utilities/colors',
@@ -1542,6 +1598,10 @@ export const routes: Routes = [
     {
         path: 'charts/funnel',
         component: ChartsFunnelDemo
+    },
+    {
+        path: 'charts/waterfall',
+        component: UiWaterfallChartDemo
     },
     {
         path: 'charts/stacked-bar',
@@ -1848,8 +1908,20 @@ export const routes: Routes = [
         component: UiActivityTimelineDemo
     },
     {
+        path: 'timeline-editor',
+        component: UiTimelineEditorDemo
+    },
+    {
+        path: 'comparison-table',
+        component: UiComparisonTableDemo
+    },
+    {
         path: 'activity-feed',
         component: UiActivityFeedDemo
+    },
+    {
+        path: 'comments',
+        component: UiCommentsDemo
     },
     {
         path: 'audit-timeline',
@@ -2106,6 +2178,114 @@ export const routes: Routes = [
     {
         path: 'enterprise/workflow-builder',
         component: UiWorkflowBuilderDemo
+    },
+    {
+        path: 'enterprise/approval-workflow',
+        component: UiApprovalWorkflowDemo
+    },
+    {
+        path: 'enterprise/json-schema-form',
+        component: UiJsonSchemaFormDemo
+    },
+    {
+        path: 'bulk-actions',
+        component: UiBulkActionsDemo
+    },
+    {
+        path: 'session-timeout',
+        component: UiSessionTimeoutDemo
+    },
+    {
+        path: 'devtools/api-key-manager',
+        component: UiApiKeyManagerDemo
+    },
+    {
+        path: 'devtools/webhook-manager',
+        component: UiWebhookManagerDemo
+    },
+    {
+        path: 'enterprise/security-event-log',
+        component: UiSecurityEventLogDemo
+    },
+    {
+        path: 'enterprise/login-activity',
+        component: UiLoginActivityDemo
+    },
+    {
+        path: 'enterprise/device-sessions',
+        component: UiDeviceSessionsDemo
+    },
+    {
+        path: 'ai/command-bar',
+        component: UiAiCommandBarDemo
+    },
+    {
+        path: 'enterprise/bulk-editor',
+        component: UiBulkEditorDemo
+    },
+    {
+        path: 'enterprise/access-control',
+        component: UiAccessControlDemo
+    },
+    {
+        path: 'enterprise/role-editor',
+        component: UiRoleEditorDemo
+    },
+    {
+        path: 'magnetic-button',
+        component: UiMagneticButtonDemo
+    },
+    {
+        path: 'directives/reveal',
+        component: DirectiveRevealDemo
+    },
+    {
+        path: 'text-scramble',
+        component: UiTextScrambleDemo
+    },
+    {
+        path: 'number-ticker',
+        component: UiNumberTickerDemo
+    },
+    {
+        path: 'coachmark',
+        component: UiCoachmarkDemo
+    },
+    {
+        path: 'share-popover',
+        component: UiSharePopoverDemo
+    },
+    {
+        path: 'layout/dock-layout',
+        component: UiDockLayoutDemo
+    },
+    {
+        path: 'layout/marquee',
+        component: UiMarqueeDemo
+    },
+    {
+        path: 'layout/gradient-border',
+        component: UiGradientBorderDemo
+    },
+    {
+        path: 'layout/glow',
+        component: UiGlowDemo
+    },
+    {
+        path: 'inline-edit',
+        component: UiInlineEditDemo
+    },
+    {
+        path: 'quick-create',
+        component: UiQuickCreateDemo
+    },
+    {
+        path: 'integration-card',
+        component: UiIntegrationCardDemo
+    },
+    {
+        path: 'version-selector',
+        component: UiVersionSelectorDemo
     },
     {
         path: '**',

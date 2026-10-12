@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Static Ring"
+                description="With animated=&quot;false&quot; the gradient angle is fixed - a subtle decorative border with no motion."
+                [code]="staticCode">
+                <nx-gradient-border [animated]="false" [borderWidth]="2" [borderRadius]="16" class="gb-demo-wrap">
+                    <div class="card">
+                        <h4>Static ring</h4>
+                        <p>animated="false" keeps the gradient angle fixed.</p>
+                    </div>
+                </nx-gradient-border>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Animated Ring"
+                description="The default animated=&quot;true&quot; slowly rotates the gradient's angle around the ring using a CSS @property - no JavaScript animation loop involved."
+                [code]="animatedCode">
+                <nx-gradient-border [animated]="true" [speed]="4" [borderWidth]="2" [borderRadius]="16" class="gb-demo-wrap">
+                    <div class="card">
+                        <h4>Animated ring</h4>
+                        <p>The gradient slowly rotates around the border.</p>
+                    </div>
+                </nx-gradient-border>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Custom Colors on a Pill Button"
+                description="colors, borderWidth, borderRadius, and speed are all independently configurable - here a warm 2-stop gradient wraps a fully rounded button."
+                [code]="buttonCode">
+                <nx-gradient-border
+                    [colors]="['#f97316', '#ec4899', '#f97316']"
+                    [borderWidth]="3"
+                    [borderRadius]="999"
+                    [speed]="2.5"
+                    class="gb-demo-wrap-inline">
+                    <button type="button" class="pill-button">Upgrade to Pro</button>
+                </nx-gradient-border>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

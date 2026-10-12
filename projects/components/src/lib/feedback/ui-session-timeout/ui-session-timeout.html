@@ -1,0 +1,33 @@
+@if (licensed()) {
+    @if (open) {
+        <div class="nx-session-timeout-backdrop">
+            <div
+                class="nx-session-timeout-panel"
+                role="alertdialog"
+                aria-modal="true"
+                aria-label="Session about to expire"
+                tabindex="-1">
+                <div class="nx-session-timeout-icon">
+                    <nx-icon icon="nx-alert-triangle" variant="svg" [size]="28"></nx-icon>
+                </div>
+
+                <h3 class="nx-session-timeout-title">Your session is about to expire</h3>
+                <p class="nx-session-timeout-message">
+                    You've been inactive for a while. For your security, you'll be signed out automatically unless you choose to stay signed in.
+                </p>
+
+                <div class="nx-session-timeout-countdown">
+                    <nx-icon icon="nx-clock" variant="svg" [size]="14"></nx-icon>
+                    <span>{{ formattedRemaining }}</span>
+                </div>
+
+                <div class="nx-session-timeout-actions">
+                    <button type="button" class="nx-session-timeout-btn sign-out" (click)="signOut()">Sign out</button>
+                    <button type="button" class="nx-session-timeout-btn stay" (click)="stayActive()">Stay signed in</button>
+                </div>
+            </div>
+        </div>
+    }
+} @else {
+    <nx-pro-locked componentName="Session Timeout"></nx-pro-locked>
+}

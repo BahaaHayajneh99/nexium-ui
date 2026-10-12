@@ -9,12 +9,8 @@
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
+    <!-- Loaded from a file, not inlined, so the Content-Security-Policy in vercel.json can forbid inline scripts. -->
+    <script src="gtag-init.js"></script>
   </head>
   <body>
     <app-root></app-root>

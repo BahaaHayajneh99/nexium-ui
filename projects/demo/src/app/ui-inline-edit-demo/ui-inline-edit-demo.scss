@@ -1,0 +1,15 @@
+.inline-edit-demo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.inline-edit-demo-label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}

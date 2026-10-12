@@ -1,0 +1,109 @@
+@if (licensed()) {
+<div class="nx-comments">
+    <div class="nx-comments-composer">
+        <textarea
+            class="nx-comments-input"
+            [placeholder]="placeholder"
+            [value]="composerDraft()"
+            (input)="composerDraft.set($any($event.target).value)"></textarea>
+        <button
+            type="button"
+            class="nx-comments-post"
+            [disabled]="!composerDraft().trim()"
+            (click)="postRootComment()">
+            Post
+        </button>
+    </div>
+
+    <ng-template #commentTpl let-comment let-parentId="parentId">
+        <div class="nx-comment">
+            <div class="nx-comment-avatar" [style.--nx-avatar-hue]="avatarHueFor(comment.authorName)">
+                @if (comment.authorAvatarUrl) {
+                    <img [src]="comment.authorAvatarUrl" [alt]="comment.authorName" />
+                } @else {
+                    <span>{{ initialFor(comment.authorName) }}</span>
+                }
+            </div>
+
+            <div class="nx-comment-content">
+                <div class="nx-comment-head">
+                    <strong class="nx-comment-author">{{ comment.authorName }}</strong>
+                    <span class="nx-comment-time">{{ timeLabel(comment.timestamp) }}</span>
+                </div>
+
+                @if (isEditing(comment)) {
+                    <div class="nx-comment-edit">
+                        <textarea
+                            class="nx-comments-input"
+                            [value]="editDraft()"
+                            (input)="editDraft.set($any($event.target).value)"></textarea>
+                        <div class="nx-comment-edit-actions">
+                            <button type="button" class="nx-comments-post" [disabled]="!editDraft().trim()" (click)="saveEdit(comment)">
+                                Save
+                            </button>
+                            <button type="button" class="nx-comment-link" (click)="cancelEdit()">Cancel</button>
+                        </div>
+                    </div>
+                } @else {
+                    <p class="nx-comment-body">{{ comment.body }}</p>
+
+                    <div class="nx-comment-actions">
+                        <button type="button" class="nx-comment-link" (click)="toggleReply(comment)">
+                            <nx-icon icon="nx-message" variant="svg" [size]="14"></nx-icon>
+                            Reply
+                        </button>
+
+                        @if (isOwn(comment)) {
+                            <button type="button" class="nx-comment-link" (click)="startEdit(comment)">
+                                <nx-icon icon="nx-edit" variant="svg" [size]="14"></nx-icon>
+                                Edit
+                            </button>
+                            <button type="button" class="nx-comment-link nx-comment-link-danger" (click)="deleteComment(comment, parentId)">
+                                <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon>
+                                Delete
+                            </button>
+                        }
+                    </div>
+                }
+
+                @if (isReplying(comment)) {
+                    <div class="nx-comments-composer nx-comments-reply-composer">
+                        <textarea
+                            class="nx-comments-input"
+                            [placeholder]="replyPlaceholder"
+                            [value]="replyDraft()"
+                            (input)="replyDraft.set($any($event.target).value)"></textarea>
+                        <button
+                            type="button"
+                            class="nx-comments-post"
+                            [disabled]="!replyDraft().trim()"
+                            (click)="postReply(comment)">
+                            Reply
+                        </button>
+                    </div>
+                }
+
+                @if (comment.replies?.length) {
+                    <div class="nx-comment-replies">
+                        @for (reply of comment.replies; track reply.id) {
+                            <ng-container
+                                *ngTemplateOutlet="commentTpl; context: { $implicit: reply, parentId: comment.id }">
+                            </ng-container>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="nx-comments-list">
+        @for (comment of comments; track comment.id) {
+            <ng-container *ngTemplateOutlet="commentTpl; context: { $implicit: comment, parentId: null }"></ng-container>
+        } @empty {
+            <p class="nx-comments-empty">No comments yet - be the first to say something.</p>
+        }
+    </div>
+</div>
+} @else {
+    <nx-pro-locked componentName="Comments"></nx-pro-locked>
+}

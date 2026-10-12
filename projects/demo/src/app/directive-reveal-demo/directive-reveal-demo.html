@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Reveal</h4>
+                <p class="main-section-description">
+                    Applies a reveal animation (fade-in + slight translate by default) to the host element
+                    the moment it enters the viewport, via a native IntersectionObserver under the hood
+                    (reusing <code>NxInView</code> internally). By default it only animates the first time
+                    the element becomes visible; set <code>nxRevealOnce="false"</code> to replay it every
+                    time the element scrolls back into view.
+                </p>
+            </section>
+
+            <app-demo-section
+                header="Import"
+                description="Directives are standalone too - import directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Scroll to Reveal"
+                description="Scroll the panel below - each card uses a different nxRevealAnimation value and reveals as it enters the viewport."
+                [code]="animationCode"
+                [hasSampleClass]="false">
+                <div class="reveal-scroll-area">
+                    @for (card of cards; track card.title) {
+                        <div class="reveal-card" nxReveal [nxRevealAnimation]="card.animation" [nxRevealDuration]="600">
+                            <h5>{{ card.title }}</h5>
+                            <p>{{ card.description }}</p>
+                        </div>
+                    }
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Replay Every Time"
+                description="With nxRevealOnce set to false, this card fades out again when it leaves the viewport and replays its animation on every re-entry - scroll it in and out a few times."
+                [code]="repeatCode"
+                [hasSampleClass]="false">
+                <div class="reveal-scroll-area reveal-scroll-area-tall">
+                    <div class="reveal-spacer">Scroll down ↓</div>
+                    <div class="reveal-card reveal-card-repeat" nxReveal [nxRevealOnce]="false" nxRevealAnimation="slide-up">
+                        <h5>Replays every time</h5>
+                        <p>Scroll this card out of view, then back in - it resets and animates again each time.</p>
+                    </div>
+                    <div class="reveal-spacer">Keep scrolling ↓</div>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

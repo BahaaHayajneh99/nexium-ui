@@ -9,13 +9,20 @@
       ".read": false,
       ".write": false
     },
-    "stats": {
-      ".read": true,
+    "emailSends": {
+      ".read": false,
       ".write": false
     },
+    "stats": {
+      ".read": false,
+      ".write": false,
+      "totalUniqueVisitors": {
+        ".read": true
+      }
+    },
     "visitors": {
-      ".read": true,
-      ".write": true
+      ".read": false,
+      ".write": false
     }
   }
 }

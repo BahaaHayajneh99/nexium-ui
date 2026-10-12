@@ -1,0 +1,83 @@
+@if (!licensed()) {
+    <nx-pro-locked componentName="Inline Edit"></nx-pro-locked>
+} @else if (!editing()) {
+    <div
+        class="nx-inline-edit-display"
+        [class.disabled]="disabled"
+        tabindex="0"
+        role="button"
+        (click)="startEdit()"
+        (keydown.enter)="startEdit()">
+        @if (displayValue) {
+            <span class="nx-inline-edit-value">{{ displayValue }}</span>
+        } @else {
+            <span class="nx-inline-edit-placeholder">{{ placeholder || 'Click to edit' }}</span>
+        }
+
+        @if (!disabled) {
+            <button
+                type="button"
+                class="nx-inline-edit-pencil"
+                aria-label="Edit"
+                (click)="$event.stopPropagation(); startEdit()">
+                <nx-icon icon="nx-edit" variant="svg" [size]="14"></nx-icon>
+            </button>
+        }
+    </div>
+} @else {
+    <div class="nx-inline-edit-editor">
+        <div class="nx-inline-edit-control" #editorWrap (focusout)="onEditorBlur($event)">
+            @switch (type) {
+                @case ('textarea') {
+                    <textarea
+                        class="nx-inline-edit-textarea"
+                        [value]="textDraft"
+                        [placeholder]="placeholder"
+                        [disabled]="disabled"
+                        (input)="setTextDraft($any($event.target).value)"
+                        (keydown.escape)="cancelEdit()"></textarea>
+                }
+                @case ('number') {
+                    <nx-number
+                        [ngModel]="numberDraft"
+                        (ngModelChange)="setNumberDraft($event)"
+                        [placeholder]="placeholder"
+                        [disabled]="disabled"
+                        [showStepButtons]="false"
+                        (keydown.enter)="confirmSave()"
+                        (keydown.escape)="cancelEdit()">
+                    </nx-number>
+                }
+                @case ('select') {
+                    <nx-select
+                        [value]="selectDraft"
+                        [options]="options"
+                        [disabled]="disabled"
+                        (valueChange)="setSelectDraft($event)"
+                        (keydown.escape)="cancelEdit()">
+                    </nx-select>
+                }
+                @default {
+                    <input
+                        type="text"
+                        class="nx-inline-edit-input"
+                        [value]="textDraft"
+                        [placeholder]="placeholder"
+                        [disabled]="disabled"
+                        (input)="setTextDraft($any($event.target).value)"
+                        (keydown.enter)="confirmSave()"
+                        (keydown.escape)="cancelEdit()" />
+                }
+            }
+        </div>
+
+        <div class="nx-inline-edit-actions">
+            <button type="button" class="nx-inline-edit-action nx-inline-edit-save" aria-label="Save" (click)="confirmSave()">
+                <nx-icon icon="nx-check" variant="svg" [size]="14"></nx-icon>
+            </button>
+            <button type="button" class="nx-inline-edit-action nx-inline-edit-cancel" aria-label="Cancel" (click)="cancelEdit()">
+                <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+            </button>
+        </div>
+    </div>
+}

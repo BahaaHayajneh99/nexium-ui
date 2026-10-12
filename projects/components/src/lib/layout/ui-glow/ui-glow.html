@@ -1,0 +1,20 @@
+@if (licensed()) {
+    <div
+        class="nx-glow"
+        [class.nx-glow-edge]="isEdge"
+        [class.nx-glow-pulse]="pulse"
+        [style.--nx-glow-color]="color"
+        [style.--nx-glow-blur]="blurValue"
+        [style.--nx-glow-spread]="spreadValue"
+        [style.--nx-glow-opacity]="opacityValue"
+        [style.--nx-glow-shadow-color]="shadowColorValue">
+        @if (!isEdge) {
+            <div class="nx-glow-aura" aria-hidden="true"></div>
+        }
+        <div class="nx-glow-content">
+            <ng-content></ng-content>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Glow"></nx-pro-locked>
+}

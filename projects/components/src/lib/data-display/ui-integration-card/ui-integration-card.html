@@ -1,0 +1,44 @@
+@if (licensed()) {
+    <div class="nx-integration-card" [class.status-error]="status === 'error'">
+        <div class="nx-integration-card-header">
+            <div class="nx-integration-card-icon">
+                <ng-content select="[icon]">
+                    @if (icon) {
+                        <nx-icon [icon]="icon" variant="svg" [size]="28"></nx-icon>
+                    }
+                </ng-content>
+            </div>
+
+            <div class="nx-integration-card-titles">
+                <span class="nx-integration-card-name">{{ name }}</span>
+                <span class="nx-integration-card-badge" [class]="'status-' + status">
+                    {{ statusLabel }}
+                </span>
+            </div>
+        </div>
+
+        @if (description) {
+            <p class="nx-integration-card-description">{{ description }}</p>
+        }
+
+        <div class="nx-integration-card-actions">
+            <button
+                type="button"
+                class="nx-integration-card-action"
+                [class.primary]="status !== 'connected'"
+                [class.secondary]="status === 'connected'"
+                (click)="onPrimaryAction()">
+                {{ status === 'connected' ? 'Disconnect' : 'Connect' }}
+            </button>
+
+            @if (status === 'connected' && configurable) {
+                <button type="button" class="nx-integration-card-configure" (click)="configure.emit()">
+                    <nx-icon icon="nx-settings" variant="svg" [size]="14"></nx-icon>
+                    Configure
+                </button>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Integration Card"></nx-pro-locked>
+}

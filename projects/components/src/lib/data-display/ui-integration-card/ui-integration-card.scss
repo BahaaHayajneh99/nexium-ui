@@ -1,0 +1,137 @@
+.nx-integration-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 320px;
+    padding: 16px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+
+    &.status-error {
+        border-color: color-mix(in srgb, var(--danger-color, #e74c3c) 45%, var(--shell-border));
+    }
+}
+
+.nx-integration-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nx-integration-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text);
+
+    ::ng-deep img,
+    ::ng-deep svg {
+        max-width: 28px;
+        max-height: 28px;
+    }
+}
+
+.nx-integration-card-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.nx-integration-card-name {
+    color: var(--shell-text);
+    font-size: 15px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nx-integration-card-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: var(--nx-radius-round, 999px);
+    font-size: 11px;
+    font-weight: 600;
+
+    &.status-connected {
+        background: color-mix(in srgb, var(--success-color, #28a745) 16%, transparent);
+        color: var(--success-color, #28a745);
+    }
+
+    &.status-disconnected {
+        background: var(--shell-surface-hover);
+        color: var(--shell-text-secondary);
+    }
+
+    &.status-error {
+        background: color-mix(in srgb, var(--danger-color, #e74c3c) 16%, transparent);
+        color: var(--danger-color, #e74c3c);
+    }
+}
+
+.nx-integration-card-description {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.nx-integration-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.nx-integration-card-action {
+    padding: 7px 16px;
+    border: 1px solid transparent;
+    border-radius: var(--nx-radius-sm, 4px);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &.primary {
+        background-color: var(--shell-primary);
+        color: #ffffff;
+    }
+
+    &.secondary {
+        background-color: transparent;
+        border-color: var(--shell-border);
+        color: var(--shell-text);
+    }
+
+    &.secondary:hover {
+        border-color: var(--danger-color, #e74c3c);
+        color: var(--danger-color, #e74c3c);
+    }
+}
+
+.nx-integration-card-configure {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-integration-card-configure:hover {
+    color: var(--shell-primary);
+}

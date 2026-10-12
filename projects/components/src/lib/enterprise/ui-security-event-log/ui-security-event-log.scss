@@ -1,0 +1,135 @@
+.nx-security-event-log {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nx-sel-filters {
+    display: flex;
+    gap: 8px;
+}
+
+.nx-sel-search {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-sel-severity-filter {
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-sel-timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.nx-sel-row {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    padding-bottom: 20px;
+}
+
+.nx-sel-row::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    bottom: 0;
+    left: 11px;
+    width: 1px;
+    background-color: var(--shell-border);
+}
+
+.nx-sel-row.last::before {
+    display: none;
+}
+
+.nx-sel-dot {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    color: #fff;
+    background-color: var(--info-color, #17a2b8);
+}
+
+.nx-sel-dot.severity-warning {
+    background-color: var(--warning-color, #f39c12);
+}
+
+.nx-sel-dot.severity-critical {
+    background-color: var(--danger-color, #e74c3c);
+}
+
+.nx-sel-content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 1px;
+}
+
+.nx-sel-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nx-sel-label {
+    font-size: 14px;
+    color: var(--shell-text);
+}
+
+.nx-sel-badge {
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: #fff;
+    background-color: var(--info-color, #17a2b8);
+}
+
+.nx-sel-badge.severity-warning {
+    background-color: var(--warning-color, #f39c12);
+}
+
+.nx-sel-badge.severity-critical {
+    background-color: var(--danger-color, #e74c3c);
+}
+
+.nx-sel-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 2px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-sel-agent {
+    margin-top: 2px;
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+    font-family: "JetBrains Mono", monospace;
+}
+
+.nx-sel-empty {
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+    padding: 12px 0;
+}
