@@ -1,11 +1,7 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideNxTranslate } from '../../../../dist/core';
-import { provideNxLicense } from '../../../../dist/components';
-// Deep import straight into the library's source, not through `dist/components` - this token is
-// deliberately NOT part of the published `nexium-ui` package surface (see nx-license-internal.ts
-// for why), so this is the one place in this whole monorepo allowed to reach around that.
-import { NX_LICENSE_ENABLED } from '../../../components/src/lib/licensing/nx-license-internal';
+import { provideNxLicense, NX_LICENSE_ENABLED } from '../../../../dist/components';
 
 import { routes } from './app.routes';
 import { NX_TRANSLATIONS } from './translate/nx-translations';

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { NX_LICENSE_TOKEN } from 'components';
-// Deep import, not through the published package surface - see nx-license-internal.ts.
-import { NX_LICENSE_ENABLED } from '../../../../../components/src/lib/licensing/nx-license-internal';
+import { NX_LICENSE_ENABLED, NX_LICENSE_TOKEN } from 'components';
 
 /**
  * Forces anything projected inside it into the real "no license" state, regardless of the

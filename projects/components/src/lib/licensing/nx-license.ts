@@ -1,9 +1,25 @@
 import { InjectionToken, PLATFORM_ID, Provider, Signal, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { NX_LICENSE_ENABLED } from './nx-license-internal';
 
 /** Holds the token string registered via `provideNxLicense()`, if any. */
 export const NX_LICENSE_TOKEN = new InjectionToken<string | undefined>('NX_LICENSE_TOKEN');
+
+/**
+ * NOT a supported part of this package's public API, despite being exported (an `InjectionToken`
+ * can only be targeted by a provider if the exact same object reference is reachable by whoever
+ * writes that provider - keeping this reachable only via `dist/components`, the same compiled
+ * module `nxProLicenseGranted()` itself reads from, is what lets a single internal consumer
+ * (this monorepo's own demo/docs site, see `app.config.ts`) share the identical token instance.
+ * A separate, unexported copy canNOT be shared across independently-compiled module graphs - that
+ * was tried and broke the demo site, since the two copies don't resolve to the same instance).
+ *
+ * Forces `nxProLicenseGranted()` to skip the live network check entirely when provided `false`,
+ * returning an already-granted signal - used so the docs site doesn't pay a network round trip to
+ * re-verify its own already-known-good, real, paid token on every single page load. No prose in
+ * this package's README/JSDoc ever tells a consuming app this exists or what it does; treat it as
+ * unsupported/undocumented and subject to removal without notice if you find it some other way.
+ */
+export const NX_LICENSE_ENABLED = new InjectionToken<boolean>('NX_LICENSE_ENABLED');
 
 /**
  * Registers a NexiumUI PRO license token, unlocking PRO-tier components
@@ -91,9 +107,8 @@ function verifyTokenRemotely(token: string): Promise<boolean> {
  * pool lookup is the only authority. Always `false` during server-side rendering; the real
  * check runs client-side after hydration.
  *
- * `NX_LICENSE_ENABLED` can force this to skip the check and return an already-granted signal, but
- * that token is internal-only (not exported from this package) - there is no public way to
- * disable the check from a consuming app.
+ * `NX_LICENSE_ENABLED` can force this to skip the check and return an already-granted signal - see
+ * that token's own doc comment for why this isn't a supported, documented way to do so.
  */
 export function nxProLicenseGranted(): Signal<boolean> {
   const platformId = inject(PLATFORM_ID);
