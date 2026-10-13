@@ -58,7 +58,7 @@ const PAYPAL_CLIENT_ID =
 // bought purely from the amount PayPal confirms was paid, never from anything the client asserts.
 export type NxPlan = 'lifetime' | 'yearly';
 // TODO: revert lifetime back to '199.00' after confirming one real purchase cycle succeeds.
-const PLAN_PRICES: Record<NxPlan, string> = { lifetime: '1.00', yearly: '59.00' };
+const PLAN_PRICES: Record<NxPlan, string> = { lifetime: '10.00', yearly: '59.00' };
 
 // Display-only "was" price for the strikethrough/discount badge - purely cosmetic, never sent to
 // PayPal or checked by the server. Lets the real charged price (PLAN_PRICES above) be raised
