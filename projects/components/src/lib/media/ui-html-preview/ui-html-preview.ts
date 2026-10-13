@@ -9,6 +9,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 /**
  * Minimal default stylesheet injected into the preview document so plain-text /
@@ -69,11 +71,13 @@ const DEFAULT_BASE_STYLES = `
 @Component({
   selector: 'nx-html-preview',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-html-preview.html',
   styleUrl: './ui-html-preview.scss',
 })
 export class NxHtmlPreview implements OnChanges, AfterViewInit, OnDestroy {
+  protected readonly licensed = nxProLicenseGranted();
+
   /** Raw HTML source to render. Empty/undefined shows a blank placeholder state. */
   @Input() html = '';
 

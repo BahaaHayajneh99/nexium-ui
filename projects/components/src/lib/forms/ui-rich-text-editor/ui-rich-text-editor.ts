@@ -17,8 +17,6 @@ import {
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
-import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 interface ToolbarButton {
   label: string;
@@ -85,7 +83,7 @@ const MARKDOWN_SHORTCUTS: { pattern: RegExp; tag?: string; action?: 'bullet' | '
 @Component({
   selector: 'nx-rich-text-editor',
   standalone: true,
-  imports: [DatePipe, NxProLocked],
+  imports: [DatePipe],
   templateUrl: './ui-rich-text-editor.html',
   styleUrl: './ui-rich-text-editor.scss',
   // The editable content (mentions, code blocks, tables, images) is inserted via execCommand/
@@ -108,8 +106,6 @@ const MARKDOWN_SHORTCUTS: { pattern: RegExp; tag?: string; action?: 'bullet' | '
   ],
 })
 export class NxRichTextEditor implements AfterViewInit, OnChanges, OnInit, OnDestroy, ControlValueAccessor, Validator {
-  protected readonly licensed = nxProLicenseGranted();
-
   @Input() value = '';
   @Input() placeholder = 'Write something, or type / for commands...';
   @Input({ transform: booleanAttribute }) disabled = false;
@@ -127,9 +123,6 @@ export class NxRichTextEditor implements AfterViewInit, OnChanges, OnInit, OnDes
   /** Emitted every `autosaveInterval` ms while there are unsaved changes. */
   @Output() autosave = new EventEmitter<string>();
 
-  // `static: false` (the default) is required here, not `static: true` - both targets live
-  // inside the `@if (licensed())` block in the template, so Angular can only resolve them once
-  // that conditional view is created, which happens by `ngAfterViewInit` either way.
   @ViewChild('editorRef') private editorRef!: ElementRef<HTMLDivElement>;
   @ViewChild('fileInputRef') private fileInputRef!: ElementRef<HTMLInputElement>;
 
@@ -210,15 +203,12 @@ export class NxRichTextEditor implements AfterViewInit, OnChanges, OnInit, OnDes
   }
 
   ngAfterViewInit(): void {
-    // `editorRef` only exists when `licensed()` is true - the template's unlicensed branch
-    // renders `<nx-pro-locked>` instead, with no `#editorRef` in it at all - but this lifecycle
-    // hook still runs unconditionally either way.
-    if (this.editorRef) {
-      this.editorRef.nativeElement.innerHTML = this.value;
-    }
+    this.editorRef.nativeElement.innerHTML = this.value;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    // `ngOnChanges` fires before `ngAfterViewInit` on the very first change (before
+    // `@ViewChild` refs are resolved), so `editorRef` isn't guaranteed to exist yet here.
     if (!changes['value'] || !this.editorRef) {
       return;
     }

@@ -1,15 +1,19 @@
-<nav class="nx-toc" aria-label="Table of contents">
-    <ul class="nx-toc-list">
-        @for (heading of headings; track heading.id) {
-            <li class="nx-toc-item" [style.padding-left.px]="(heading.level - 1) * 16">
-                <a
-                    class="nx-toc-link"
-                    [class.active]="activeId() === heading.id"
-                    [attr.href]="'#' + heading.id"
-                    (click)="onLinkClick($event, heading.id)">
-                    {{ heading.label }}
-                </a>
-            </li>
-        }
-    </ul>
-</nav>
+@if (licensed()) {
+    <nav class="nx-toc" aria-label="Table of contents">
+        <ul class="nx-toc-list">
+            @for (heading of headings; track heading.id) {
+                <li class="nx-toc-item" [style.padding-left.px]="(heading.level - 1) * 16">
+                    <a
+                        class="nx-toc-link"
+                        [class.active]="activeId() === heading.id"
+                        [attr.href]="'#' + heading.id"
+                        (click)="onLinkClick($event, heading.id)">
+                        {{ heading.label }}
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+} @else {
+    <nx-pro-locked componentName="Table of Contents"></nx-pro-locked>
+}

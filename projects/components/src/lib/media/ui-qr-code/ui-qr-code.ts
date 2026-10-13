@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 import { encodeQrCode, NxQrErrorCorrectionLevel } from './qr-encoder';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 /**
  * Renders arbitrary text (URLs, plain text, contact info, ...) as a scannable QR Code
@@ -10,12 +12,16 @@ import { encodeQrCode, NxQrErrorCorrectionLevel } from './qr-encoder';
 @Component({
   selector: 'nx-qr-code',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-qr-code.html',
   styleUrl: './ui-qr-code.scss',
 })
 export class NxQrCode implements AfterViewInit, OnChanges {
-  @ViewChild('canvasEl') private canvasRef!: ElementRef<HTMLCanvasElement>;
+  protected readonly licensed = nxProLicenseGranted();
+
+  // Not a definite assignment (`!`) - the canvas now sits behind an `@if (licensed())` block, so
+  // it isn't guaranteed present on the very first change-detection pass.
+  @ViewChild('canvasEl') private canvasRef?: ElementRef<HTMLCanvasElement>;
 
   /** The data to encode (text, a URL, etc). An empty value renders a blank canvas. */
   @Input() value = '';
@@ -53,6 +59,9 @@ export class NxQrCode implements AfterViewInit, OnChanges {
   }
 
   private render(): void {
+    if (!this.canvasRef) {
+      return;
+    }
     const canvas = this.canvasRef.nativeElement;
     const ctx = canvas.getContext('2d');
     if (!ctx) {

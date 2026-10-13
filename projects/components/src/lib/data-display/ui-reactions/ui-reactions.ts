@@ -3,6 +3,8 @@ import { NxEmoji } from '../ui-emoji';
 import { NxIcon } from '../ui-icon';
 import { NxTooltip } from '../../feedback/ui-tooltip';
 import { NxClickOutside } from '../../directives/nx-click-outside';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 /** A single emoji reaction shown on a piece of content (message, comment, post, etc.). */
 export interface NxReaction {
@@ -53,11 +55,13 @@ export const NX_QUICK_REACTION_EMOJIS: string[] = [
 @Component({
   selector: 'nx-reactions',
   standalone: true,
-  imports: [NxEmoji, NxIcon, NxTooltip, NxClickOutside],
+  imports: [NxEmoji, NxIcon, NxTooltip, NxClickOutside, NxProLocked],
   templateUrl: './ui-reactions.html',
   styleUrl: './ui-reactions.scss',
 })
 export class NxReactions {
+  protected readonly licensed = nxProLicenseGranted();
+
   /** The reactions currently on this content, one entry per emoji that has at least one reactor. */
   @Input() reactions: NxReaction[] = [];
 

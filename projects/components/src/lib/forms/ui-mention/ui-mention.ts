@@ -11,8 +11,6 @@ import {
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { NxPatternInput, nxPatternErrorMessage, resolveNxPattern } from '../shared/nx-validators';
-import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
-import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxMentionSuggestion {
   id: string | number;
@@ -22,7 +20,7 @@ export interface NxMentionSuggestion {
 @Component({
   selector: 'nx-mention',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [],
   templateUrl: './ui-mention.html',
   styleUrl: './ui-mention.scss',
   host: {
@@ -42,7 +40,6 @@ export interface NxMentionSuggestion {
   ],
 })
 export class NxMention implements ControlValueAccessor, Validator {
-  protected readonly licensed = nxProLicenseGranted();
   @Input() value = '';
   @Input() placeholder = '';
   @Input() suggestions: NxMentionSuggestion[] = [];

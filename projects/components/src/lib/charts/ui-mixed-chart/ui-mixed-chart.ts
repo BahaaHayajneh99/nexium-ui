@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { axisTicks, formatNumber, niceMax, roundedTopRectPath, seriesColor } from '../chart-utils';
 import { NxMixedSeries } from '../chart-types';
-import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
-import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 interface MixedBarGeometry {
   categoryIndex: number;
@@ -19,12 +17,11 @@ interface MixedBarGeometry {
 @Component({
   selector: 'nx-mixed-chart',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [],
   templateUrl: './ui-mixed-chart.html',
   styleUrl: './ui-mixed-chart.scss',
 })
 export class NxMixedChart {
-  protected readonly licensed = nxProLicenseGranted();
   @Input() categories: string[] = [];
   @Input() series: NxMixedSeries[] = [];
   @Input() height = 320;

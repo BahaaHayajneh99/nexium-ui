@@ -8,6 +8,8 @@ declare const paypal: {
     fundingSource?: string;
     createOrder: (data: unknown, actions: PaypalOrderActions) => Promise<string>;
     onApprove: (data: unknown, actions: PaypalOrderActions) => Promise<void>;
+    onCancel?: () => void;
+    onError?: (err: unknown) => void;
   }) => { render: (selector: string) => void };
 };
 
@@ -20,6 +22,21 @@ interface PaypalOrderActions {
     create: (details: { purchase_units: { amount: { value: string } }[] }) => Promise<string>;
     capture: () => Promise<PaypalCaptureDetails>;
   };
+  /** Restarts the buyer flow so they can pick a different funding source - the recoverable path for a declined instrument. */
+  restart: () => Promise<void>;
+}
+
+/**
+ * PayPal's own recommended pattern (see "Handle funding failures" in their docs) is to check for
+ * this specific recoverable issue and call `actions.restart()` rather than just showing a generic
+ * failure - it lets the buyer pick a different card/funding source without having to reload the
+ * page and start a brand new order. The client SDK's rejection doesn't give a typed error shape,
+ * just embeds the underlying REST error JSON as text, so this checks for the issue code as a
+ * substring rather than trying to parse a guaranteed structure.
+ */
+function isInstrumentDeclined(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error);
+  return message.includes('INSTRUMENT_DECLINED');
 }
 
 /**
@@ -84,6 +101,8 @@ export class ProUpgrade implements OnInit {
   plans = PLAN_PRICES;
   originalPlans = DISPLAY_ORIGINAL_PRICES;
   checkoutFailed = signal(false);
+  /** The PayPal checkout itself failed or was declined (order creation or capture) - distinct from `claimFailed`, where payment succeeded but our server-side claim step didn't. */
+  paymentFailed = signal(false);
   claimFailed = signal(false);
   licenseToken = signal<string | null>(null);
   copied = signal(false);
@@ -176,12 +195,40 @@ export class ProUpgrade implements OnInit {
         // false (live account verification hold / self-payment restriction make the
         // PayPal-wallet-login path untestable), normal PayPal button once it's flipped back on.
         ...(this.commonService.showPaypalWalletButton ? {} : { fundingSource: paypal.FUNDING.CARD }),
-        createOrder: (_data, actions) =>
-          actions.order.create({
-            purchase_units: [{ amount: { value: this.price } }],
-          }),
-        onApprove: (_data, actions) =>
-          actions.order.capture().then((details) => this.claimLicenseToken(details.id)),
+        createOrder: async (_data, actions) => {
+          this.paymentFailed.set(false);
+          try {
+            return await actions.order.create({
+              purchase_units: [{ amount: { value: this.price } }],
+            });
+          } catch (error) {
+            console.error('PayPal createOrder failed', error);
+            this.paymentFailed.set(true);
+            throw error;
+          }
+        },
+        onApprove: async (_data, actions) => {
+          try {
+            const details = await actions.order.capture();
+            await this.claimLicenseToken(details.id);
+          } catch (error) {
+            console.error('PayPal capture failed', error);
+            if (isInstrumentDeclined(error)) {
+              // Recoverable: let the buyer pick a different funding source instead of a dead end.
+              await actions.restart();
+              return;
+            }
+            this.paymentFailed.set(true);
+          }
+        },
+        onCancel: () => {
+          // Buyer closed the PayPal window themselves - not a failure, no error message needed.
+          this.paymentFailed.set(false);
+        },
+        onError: (error) => {
+          console.error('PayPal Buttons error', error);
+          this.paymentFailed.set(true);
+        },
       })
       .render('#paypal-button-container');
   }

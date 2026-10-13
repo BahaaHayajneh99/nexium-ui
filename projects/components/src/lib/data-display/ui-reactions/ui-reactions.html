@@ -1,4 +1,5 @@
-<div class="nx-reactions" [class.disabled]="disabled">
+@if (licensed()) {
+    <div class="nx-reactions" [class.disabled]="disabled">
 
     @for (reaction of reactions; track trackByEmoji($index, reaction)) {
         <button
@@ -44,4 +45,7 @@
         </div>
     }
 
-</div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Reactions"></nx-pro-locked>
+}

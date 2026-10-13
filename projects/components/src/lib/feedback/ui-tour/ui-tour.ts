@@ -11,6 +11,8 @@ import {
   booleanAttribute,
   numberAttribute,
 } from '@angular/core';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxTourStep {
   /** CSS selector for the element this step highlights. */
@@ -36,11 +38,13 @@ interface NxTourRect {
 @Component({
   selector: 'nx-tour',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-tour.html',
   styleUrl: './ui-tour.scss',
 })
 export class NxTour implements OnChanges, OnDestroy {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input({ transform: booleanAttribute }) open = false;
   @Input() steps: NxTourStep[] = [];
   @Input({ transform: numberAttribute }) padding = 8;

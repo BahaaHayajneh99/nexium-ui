@@ -1,14 +1,26 @@
 @if (open) {
-    <div #panel class="nx-fullscreen-dialog" role="dialog" aria-modal="true" [attr.aria-label]="header" tabindex="-1">
-        <div class="nx-fullscreen-dialog-header">
-            <span class="nx-fullscreen-dialog-title">{{ header }}</span>
-            <button type="button" class="nx-fullscreen-dialog-close" aria-label="Close" (click)="close()">×</button>
+    @if (licensed()) {
+        <div #panel class="nx-fullscreen-dialog" role="dialog" aria-modal="true" [attr.aria-label]="header" tabindex="-1">
+            <div class="nx-fullscreen-dialog-header">
+                <span class="nx-fullscreen-dialog-title">{{ header }}</span>
+                <button type="button" class="nx-fullscreen-dialog-close" aria-label="Close" (click)="close()">×</button>
+            </div>
+            <div class="nx-fullscreen-dialog-body">
+                <ng-content select="[nx-fullscreen-dialog-body]"></ng-content>
+            </div>
+            <div class="nx-fullscreen-dialog-footer">
+                <ng-content select="[nx-fullscreen-dialog-footer]"></ng-content>
+            </div>
         </div>
-        <div class="nx-fullscreen-dialog-body">
-            <ng-content select="[nx-fullscreen-dialog-body]"></ng-content>
+    } @else {
+        <div class="nx-fullscreen-dialog" role="dialog" aria-modal="true" [attr.aria-label]="header" tabindex="-1">
+            <div class="nx-fullscreen-dialog-header">
+                <span class="nx-fullscreen-dialog-title">{{ header }}</span>
+                <button type="button" class="nx-fullscreen-dialog-close" aria-label="Close" (click)="close()">×</button>
+            </div>
+            <div class="nx-fullscreen-dialog-body">
+                <nx-pro-locked componentName="Fullscreen Dialog"></nx-pro-locked>
+            </div>
         </div>
-        <div class="nx-fullscreen-dialog-footer">
-            <ng-content select="[nx-fullscreen-dialog-footer]"></ng-content>
-        </div>
-    </div>
+    }
 }

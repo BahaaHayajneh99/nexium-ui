@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, Input, OnDestroy, signal } from '@angular/core';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxTocHeading {
   id: string;
@@ -15,11 +17,13 @@ export interface NxTocHeading {
 @Component({
   selector: 'nx-table-of-contents',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-table-of-contents.html',
   styleUrl: './ui-table-of-contents.scss',
 })
 export class NxTableOfContents implements AfterViewInit, OnDestroy {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input() headings: NxTocHeading[] = [];
 
   readonly activeId = signal<string | null>(null);

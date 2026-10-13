@@ -183,13 +183,13 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | List | `nx-list` |
 | Progress Bar | `nx-progress-bar` |
 | Result | `nx-result` |
-| Skeleton 🔒 PRO | `nx-skeleton` |
+| Skeleton | `nx-skeleton` |
 | Spinner | `nx-spinner` |
 | Statistic | `nx-statistic` |
 | Table | `nx-table` |
 | Tag | `nx-tag` |
 | Timeline | `nx-timeline` |
-| Tree 🔒 PRO | `nx-tree`, `nx-tree-node` |
+| Tree | `nx-tree`, `nx-tree-node` |
 | Tree Table 🔒 PRO | `nx-tree-table` |
 | Avatar | `nx-avatar` |
 | Badge | `nx-badge` |
@@ -206,7 +206,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Timeline Editor 🔒 PRO | `nx-timeline-editor` |
 | Comparison Table | `nx-comparison-table` |
 | Presence Indicator | `nx-presence-indicator` |
-| Reactions | `nx-reactions` |
+| Reactions 🔒 PRO | `nx-reactions` |
 | Emoji Picker | `nx-emoji-picker` |
 | Code Block | `nx-code-block` |
 | Copyable Text | `nx-copyable-text` |
@@ -216,9 +216,9 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Before / After 🔒 PRO | `nx-before-after` |
 | Loading State | `nx-loading-state` |
 | Status Indicator | `nx-status-indicator` |
-| Not Found | `nx-not-found` |
-| Permission Denied | `nx-permission-denied` |
-| Maintenance State | `nx-maintenance-state` |
+| Not Found 🔒 PRO | `nx-not-found` |
+| Permission Denied 🔒 PRO | `nx-permission-denied` |
+| Maintenance State 🔒 PRO | `nx-maintenance-state` |
 | Description List | `nx-description-list` |
 | Data Grid | `nx-data-grid` |
 | Document Viewer 🔒 PRO | `nx-document-viewer` |
@@ -252,14 +252,14 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Number Input | `nx-number` |
 | Input Mask 🔒 PRO | `nx-mask` |
 | Password Input 🔒 PRO | `nx-password` |
-| Mention 🔒 PRO | `nx-mention` |
-| OTP Input 🔒 PRO | `nx-otp-input` |
+| Mention | `nx-mention` |
+| OTP Input | `nx-otp-input` |
 | Unit Input 🔒 PRO | `nx-unit-input` |
 | Formula Input 🔒 PRO | `nx-formula-input` |
 | Address Input | `nx-address-input` |
 | Radio Group | `nx-radio-group` |
 | Rating | `nx-rating` |
-| Rich Text Editor 🔒 PRO | `nx-rich-text-editor` |
+| Rich Text Editor | `nx-rich-text-editor` |
 | JSON Editor 🔒 PRO | `nx-json-editor` |
 | Search | `nx-search` |
 | Segmented Control | `nx-segmented-control` |
@@ -279,15 +279,15 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | --- | --- |
 | Alert | `nx-alert` |
 | Banner | `nx-banner` |
-| Bottom Sheet | `nx-bottom-sheet` |
+| Bottom Sheet 🔒 PRO | `nx-bottom-sheet` |
 | Cookie Banner | `nx-cookie-banner` |
-| Command Palette 🔒 PRO | `nx-command-palette` |
+| Command Palette | `nx-command-palette` |
 | Connection Status | `nx-connection-status` |
 | Dialog | `nx-dialog` |
 | Drawer | `nx-drawer` |
-| Fullscreen Dialog | `nx-fullscreen-dialog` |
+| Fullscreen Dialog 🔒 PRO | `nx-fullscreen-dialog` |
 | Hover Card | `nx-hover-card` |
-| Lightbox | `nx-lightbox` |
+| Lightbox 🔒 PRO | `nx-lightbox` |
 | Loading Overlay | `nx-loading-overlay` |
 | Modal | `nx-modal` |
 | Notification Center | `nx-notification-center` |
@@ -297,7 +297,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Spotlight | `nx-spotlight` |
 | Toast | `nx-toast-container` (paired with the injectable `NxToastService`) |
 | Tooltip | `[nxTooltip]` (directive) |
-| Tour | `nx-tour` |
+| Tour 🔒 PRO | `nx-tour` |
 | Unsaved Changes Dialog | `nx-unsaved-changes-dialog` |
 | Session Timeout 🔒 PRO | `nx-session-timeout` |
 | Coachmark 🔒 PRO | `nx-coachmark` |
@@ -321,11 +321,11 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Nav Group | `nx-nav-group` |
 | Navbar | `nx-navbar` |
 | Navigation Progress | `nx-navigation-progress` |
-| Navigation Rail | `nx-navigation-rail` |
+| Navigation Rail 🔒 PRO | `nx-navigation-rail` |
 | Pagination | `nx-pagination` |
 | Sidebar | `nx-sidebar`, `nx-sidebar-item` |
 | Stepper | `nx-stepper` |
-| Table of Contents | `nx-table-of-contents` |
+| Table of Contents 🔒 PRO | `nx-table-of-contents` |
 | Version Selector 🔒 PRO | `nx-version-selector` |
 
 ### Panels
@@ -341,14 +341,14 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 
 | Component | Selector |
 | --- | --- |
-| Carousel 🔒 PRO | `nx-carousel` (with an `[nxCarouselSlide]` directive for projecting non-image slide content) |
-| Gallery 🔒 PRO | `nx-gallery` |
+| Carousel | `nx-carousel` (with an `[nxCarouselSlide]` directive for projecting non-image slide content) |
+| Gallery | `nx-gallery` |
 | Preview | `nx-preview` |
 | File Upload | `nx-file-upload` |
 | Image Cropper 🔒 PRO | `nx-image-cropper` |
-| Dropzone | `nx-dropzone` |
-| QR Code | `nx-qr-code` |
-| HTML Preview | `nx-html-preview` |
+| Dropzone 🔒 PRO | `nx-dropzone` |
+| QR Code 🔒 PRO | `nx-qr-code` |
+| HTML Preview 🔒 PRO | `nx-html-preview` |
 | Document Scanner 🔒 PRO | `nx-document-scanner` |
 | Image Editor 🔒 PRO | `nx-image-editor` |
 
@@ -385,10 +385,10 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Bar Chart | `nx-bar-chart` |
 | Bubble Chart | `nx-bubble-chart` |
 | Funnel Chart | `nx-funnel-chart` |
-| Gauge Chart 🔒 PRO | `nx-gauge-chart` |
+| Gauge Chart | `nx-gauge-chart` |
 | Heatmap Chart | `nx-heatmap-chart` |
 | Line Chart | `nx-line-chart` |
-| Mixed Chart 🔒 PRO | `nx-mixed-chart` |
+| Mixed Chart | `nx-mixed-chart` |
 | Pie Chart | `nx-pie-chart` |
 | Radar Chart | `nx-radar-chart` |
 | Scatter Chart | `nx-scatter-chart` |

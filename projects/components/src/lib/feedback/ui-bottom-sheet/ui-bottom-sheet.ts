@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 /**
  * A panel that slides up from the bottom of its container (the mobile-app "bottom sheet"
@@ -9,11 +11,13 @@ import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angul
 @Component({
   selector: 'nx-bottom-sheet',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-bottom-sheet.html',
   styleUrl: './ui-bottom-sheet.scss',
 })
 export class NxBottomSheet {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input({ transform: booleanAttribute }) open = false;
   @Input() maxHeight = '70vh';
   @Input({ transform: booleanAttribute }) closeOnBackdrop = true;

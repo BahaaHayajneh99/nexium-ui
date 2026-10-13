@@ -1,9 +1,13 @@
-<div class="nx-html-preview" [style.height]="hostHeight">
-    <iframe
-        #frame
-        class="nx-html-preview-frame"
-        title="HTML preview"
-        [srcdoc]="safeSrcdoc"
-        (load)="onFrameLoad()">
-    </iframe>
-</div>
+@if (licensed()) {
+    <div class="nx-html-preview" [style.height]="hostHeight">
+        <iframe
+            #frame
+            class="nx-html-preview-frame"
+            title="HTML preview"
+            [srcdoc]="safeSrcdoc"
+            (load)="onFrameLoad()">
+        </iframe>
+    </div>
+} @else {
+    <nx-pro-locked componentName="HTML Preview"></nx-pro-locked>
+}

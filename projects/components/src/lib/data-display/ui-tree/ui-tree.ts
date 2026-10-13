@@ -1,6 +1,4 @@
 import { booleanAttribute, Component, Input } from '@angular/core';
-import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
-import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxTreeNodeData {
   label: string;
@@ -32,14 +30,12 @@ export class NxTreeNode {
 @Component({
   selector: 'nx-tree',
   standalone: true,
-  imports: [NxTreeNode, NxProLocked],
+  imports: [NxTreeNode],
   exportAs: 'nxTree',
   templateUrl: './ui-tree.html',
   styleUrl: './ui-tree.scss',
 })
 export class NxTree {
-  protected readonly licensed = nxProLicenseGranted();
-
   @Input() nodes: NxTreeNodeData[] = [];
   @Input({ transform: booleanAttribute }) showExpandCollapseAll = false;
   @Input() expandAllLabel = 'Expand All';

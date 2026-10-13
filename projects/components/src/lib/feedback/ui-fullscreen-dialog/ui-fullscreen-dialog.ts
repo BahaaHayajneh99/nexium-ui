@@ -10,6 +10,8 @@ import {
   ViewChild,
   booleanAttribute,
 } from '@angular/core';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -22,11 +24,13 @@ const FOCUSABLE_SELECTOR =
 @Component({
   selector: 'nx-fullscreen-dialog',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-fullscreen-dialog.html',
   styleUrl: './ui-fullscreen-dialog.scss',
 })
 export class NxFullscreenDialog implements OnChanges {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input({ transform: booleanAttribute }) open = false;
   @Input() header = '';
   @Input({ transform: booleanAttribute }) closeOnEscape = true;

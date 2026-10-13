@@ -1,4 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, Output, booleanAttribute, numberAttribute } from '@angular/core';
+import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
+import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxLightboxImage {
   src: string;
@@ -15,11 +17,13 @@ export interface NxLightboxImage {
 @Component({
   selector: 'nx-lightbox',
   standalone: true,
-  imports: [],
+  imports: [NxProLocked],
   templateUrl: './ui-lightbox.html',
   styleUrl: './ui-lightbox.scss',
 })
 export class NxLightbox {
+  protected readonly licensed = nxProLicenseGranted();
+
   @Input({ transform: booleanAttribute }) open = false;
   @Input() images: NxLightboxImage[] = [];
   @Input({ transform: numberAttribute }) activeIndex = 0;

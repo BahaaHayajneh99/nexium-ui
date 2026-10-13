@@ -90,6 +90,11 @@
                     Couldn't load PayPal checkout. Check your connection and refresh the page.
                 </p>
             }
+            @if (paymentFailed()) {
+                <p class="pro-upgrade-error">
+                    Your payment could not be completed. Please try a different card or payment method.
+                </p>
+            }
             @if (claimFailed()) {
                 <p class="pro-upgrade-error">
                     Payment went through, but we couldn't issue a license token. Please contact

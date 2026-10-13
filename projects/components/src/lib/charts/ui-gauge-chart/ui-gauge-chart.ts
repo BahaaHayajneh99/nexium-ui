@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { formatNumber } from '../chart-utils';
-import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
-import { nxProLicenseGranted } from '../../licensing/nx-license';
 
 export interface NxGaugeBand {
   /** Upper bound of this band, in data units (the first band starts at `min`). */
@@ -28,12 +26,11 @@ const BAND_COLORS: Record<NxGaugeBand['variant'], string> = {
 @Component({
   selector: 'nx-gauge-chart',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [],
   templateUrl: './ui-gauge-chart.html',
   styleUrl: './ui-gauge-chart.scss',
 })
 export class NxGaugeChart {
-  protected readonly licensed = nxProLicenseGranted();
   @Input() value = 0;
   @Input() min = 0;
   @Input() max = 100;
