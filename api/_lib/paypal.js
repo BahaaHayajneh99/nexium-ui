@@ -1,7 +1,8 @@
 // Must stay in sync with PLAN_PRICES in projects/demo/src/app/pro-upgrade/pro-upgrade.ts - the
 // client renders these same two prices, but the PLAN is always derived here from what PayPal
 // actually confirms was paid, never trusted from the client.
-const PLAN_PRICES = { lifetime: '199.00', yearly: '59.00' };
+// TODO: revert lifetime back to '199.00' after confirming one real purchase cycle succeeds.
+const PLAN_PRICES = { lifetime: '1.00', yearly: '59.00' };
 const PLAN_CURRENCY = 'USD';
 
 /** OAuth2 client-credentials token for PayPal's REST API - never exposed to any client. */
