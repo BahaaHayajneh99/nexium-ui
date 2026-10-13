@@ -7,7 +7,7 @@ declare const paypal: {
   Buttons: (config: {
     fundingSource?: string;
     createOrder: (data: unknown, actions: PaypalOrderActions) => Promise<string>;
-    onApprove: (data: unknown, actions: PaypalOrderActions) => Promise<void>;
+    onApprove: (data: { orderID: string }, actions: PaypalOrderActions) => Promise<void>;
     onCancel?: () => void;
     onError?: (err: unknown) => void;
   }) => { render: (selector: string) => void };
@@ -208,7 +208,7 @@ export class ProUpgrade implements OnInit {
             throw error;
           }
         },
-        onApprove: async (_data, actions) => {
+        onApprove: async (data, actions) => {
           try {
             const details = await actions.order.capture();
             await this.claimLicenseToken(details.id);
@@ -217,6 +217,18 @@ export class ProUpgrade implements OnInit {
             if (isInstrumentDeclined(error)) {
               // Recoverable: let the buyer pick a different funding source instead of a dead end.
               await actions.restart();
+              return;
+            }
+            // `actions.order.capture()` is a client-side SDK call - its promise can reject (a
+            // dropped/slow response, a browser extension interfering, a transient network blip)
+            // even when PayPal already completed the real charge server-side. `data.orderID` is
+            // still valid in that case, and claimLicenseToken() independently re-verifies the
+            // order's actual status directly against PayPal's own REST API rather than trusting
+            // this client-side promise - so attempt the claim with it instead of assuming the
+            // charge failed outright. If the order genuinely isn't captured, the server's own
+            // verification will correctly reject it and claimFailed will be shown instead.
+            if (data?.orderID) {
+              await this.claimLicenseToken(data.orderID);
               return;
             }
             this.paymentFailed.set(true);
