@@ -30,20 +30,18 @@
             <section class="main-section">
                 <h4 class="main-section-header">Live example - locked vs. unlocked</h4>
                 <p class="main-section-description">
-                    This docs site itself is licensed, so PRO components normally render fully unlocked here.
-                    The box on the left forces the same component to render as if <em>no</em> license were
-                    configured, so you can see both real states side by side - this isn't a mockup, it's the
-                    actual <code>nx-rich-text-editor</code> PRO component rendering twice on this page.
+                    The box on the right is a real {{ commonService.appName }} component (the Rich Text
+                    Editor) rendering its actual content. The box on the left is a static rendering of the
+                    locked placeholder any PRO component - like the <code>nx-kanban</code> example above -
+                    falls back to until you configure a valid license token.
                 </p>
                 <div class="pro-demo-columns">
                     <div class="pro-demo-column">
                         <h5>Without a license</h5>
-                        <app-force-unlicensed>
-                            <nx-rich-text-editor></nx-rich-text-editor>
-                        </app-force-unlicensed>
+                        <nx-pro-locked componentName="Kanban Board"></nx-pro-locked>
                     </div>
                     <div class="pro-demo-column">
-                        <h5>With a license (this site's)</h5>
+                        <h5>A real component, for comparison</h5>
                         <nx-rich-text-editor></nx-rich-text-editor>
                     </div>
                 </div>

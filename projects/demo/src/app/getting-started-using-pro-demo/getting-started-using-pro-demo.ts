@@ -2,14 +2,13 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonService } from '../services/common.service';
 import { DemoSection } from '../shared/demo-section/demo-section';
-import { ForceUnlicensed } from '../shared/force-unlicensed/force-unlicensed';
-import { NxRichTextEditor } from 'components';
+import { NxProLocked, NxRichTextEditor } from 'components';
 
 @Component({
   selector: 'app-getting-started-using-pro-demo',
   templateUrl: './getting-started-using-pro-demo.html',
   styleUrl: './getting-started-using-pro-demo.scss',
-  imports: [DemoSection, RouterLink, ForceUnlicensed, NxRichTextEditor],
+  imports: [DemoSection, RouterLink, NxProLocked, NxRichTextEditor],
 })
 export class GettingStartedUsingProDemo {
   public commonService = inject(CommonService);
