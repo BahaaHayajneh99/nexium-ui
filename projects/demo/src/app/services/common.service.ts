@@ -49,7 +49,7 @@ export class CommonService {
   /** Single source of truth for the package/brand name shown across the demo site. */
   readonly appName = 'NexiumUI';
 
-  packageVersion = '0.1.8';
+  packageVersion = '0.1.9';
 
   /**
    * Kill switch for the PayPal-wallet-login button on /pro-upgrade. `false` renders a
