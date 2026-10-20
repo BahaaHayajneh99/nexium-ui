@@ -52,16 +52,6 @@ export class CommonService {
   packageVersion = '0.1.8';
 
   /**
-   * Site-wide kill switch for PRO license checking, read by `app.config.ts` when wiring up
-   * `provideNxLicense()`. `false` makes every PRO component on this demo/docs site render
-   * unlocked immediately, with no network call - this site exists to show off what every
-   * component (including PRO ones) can do, so it's never gated. Real npm consumers get a real
-   * check regardless of this flag - they call `provideNxLicense(token)` in their own app, which
-   * defaults `enabled` to `true` whether or not this site's kill switch is on.
-   */
-  readonly isEnablePro = false;
-
-  /**
    * Kill switch for the PayPal-wallet-login button on /pro-upgrade. `false` renders a
    * card-only checkout (fundingSource: paypal.FUNDING.CARD) - set while the live PayPal
    * business account has an open verification hold and the self-payment restriction makes the
