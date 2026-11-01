@@ -14,7 +14,7 @@ export interface ReleaseNote {
 /** Single source of truth for the Changelog and What's New pages - add new entries to the top. */
 export const RELEASE_NOTES: ReleaseNote[] = [
   {
-    version: '0.1.8',
+    version: '0.1.9',
     date: '26-09-2026',
     changes: [
       { type: 'feature', description: 'Added a new Try It page - a live playground where you write a real Angular component (an HTML template plus a TypeScript class, including your own imports, helper functions/interfaces, and constructor or functional inject() dependency injection) and see it rendered instantly, compiled right in the browser.' },
