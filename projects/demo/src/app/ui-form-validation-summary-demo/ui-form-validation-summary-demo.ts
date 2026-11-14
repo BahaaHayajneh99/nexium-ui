@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NxFormValidationSummary, NxInput, NxValidationError } from 'components';
+import { NxButton, NxFormValidationSummary, NxInput, NxValidationError } from 'components';
 import { CommonService } from '../services/common.service';
 import { DemoSection } from '../shared/demo-section/demo-section';
 
 @Component({
   selector: 'app-ui-form-validation-summary-demo',
-  imports: [NxFormValidationSummary, NxInput, DemoSection, FormsModule],
+  imports: [NxButton, NxFormValidationSummary, NxInput, DemoSection, FormsModule],
   templateUrl: './ui-form-validation-summary-demo.html',
   styleUrl: './ui-form-validation-summary-demo.scss',
 })
@@ -23,7 +23,7 @@ export class UiFormValidationSummaryDemo {
 
   basicCode = `<nx-input label="Email" [(ngModel)]="email"></nx-input>
 <nx-input type="password" label="Password" [(ngModel)]="password"></nx-input>
-<button (click)="onSubmit()">Submit</button>
+<nx-button (click)="onSubmit()">Submit</nx-button>
 
 <nx-form-validation-summary [errors]="errors" (errorClick)="onErrorClick($event)">
 </nx-form-validation-summary>`;

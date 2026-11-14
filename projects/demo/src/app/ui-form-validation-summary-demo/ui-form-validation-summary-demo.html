@@ -19,7 +19,7 @@
                     <nx-input label="Email" type="email" [(ngModel)]="email"></nx-input>
                     <nx-input label="Password" type="password" [(ngModel)]="password"></nx-input>
                     <div>
-                        <button type="button" (click)="onSubmit()">Submit</button>
+                        <nx-button (click)="onSubmit()">Submit</nx-button>
                     </div>
 
                     <nx-form-validation-summary [errors]="errors" (errorClick)="onErrorClick($event)">
