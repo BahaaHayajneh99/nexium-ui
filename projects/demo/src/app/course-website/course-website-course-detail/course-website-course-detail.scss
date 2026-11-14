@@ -1,0 +1,207 @@
+@import '../course-shared';
+
+.cdetail-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--nx-spacing-xxl, 48px);
+    align-items: center;
+
+    @media (max-width: 860px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cdetail-hero-media {
+    border-radius: var(--nx-radius-lg, 12px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.cdetail-hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.cdetail-tag-row {
+    display: flex;
+    gap: 8px;
+}
+
+.cdetail-title {
+    margin: 0;
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.cdetail-rating-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--nx-spacing-md, 16px);
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+}
+
+.cdetail-description {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    line-height: 1.6;
+}
+
+.cdetail-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.cdetail-price {
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+// ---- Curriculum -------------------------------------------------------------
+
+.cdetail-lesson-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cdetail-lesson-row {
+    padding: 8px 0;
+
+    span:first-child {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--shell-text);
+    }
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}
+
+// ---- Instructor ---------------------------------------------------------------
+
+.cdetail-instructor-card {
+    display: flex;
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+    }
+}
+
+.cdetail-instructor-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.cdetail-instructor-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cdetail-instructor-name {
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.cdetail-instructor-bio {
+    margin: 6px 0;
+    color: var(--shell-text-secondary);
+    line-height: 1.5;
+}
+
+.cdetail-instructor-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}
+
+// ---- Reviews -----------------------------------------------------------------
+
+.cdetail-reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.cdetail-review-row {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.cdetail-review-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cdetail-review-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.cdetail-review-date {
+    font-size: var(--nx-font-size-xs, 12px);
+}
+
+.cdetail-review-text {
+    margin: 4px 0 0;
+    color: var(--shell-text-secondary);
+    line-height: 1.5;
+}
+
+// ---- Not found ----------------------------------------------------------------
+
+.cdetail-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-xxl, 64px) 0;
+    text-align: center;
+    color: var(--shell-text-secondary);
+
+    nx-icon {
+        color: var(--shell-text-muted);
+    }
+
+    p {
+        margin: 0;
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}

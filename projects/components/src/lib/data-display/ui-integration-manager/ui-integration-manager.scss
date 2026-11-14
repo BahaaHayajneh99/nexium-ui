@@ -1,0 +1,65 @@
+.nx-integration-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.nx-integration-manager-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.nx-integration-manager-search {
+    flex: 1 1 240px;
+    max-width: 320px;
+}
+
+.nx-integration-manager-filters {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-integration-manager-filter {
+    padding: 6px 12px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 6px);
+    background-color: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.nx-integration-manager-filter:hover {
+    color: var(--shell-text);
+}
+
+.nx-integration-manager-filter.active {
+    background-color: var(--shell-primary);
+    color: #ffffff;
+}
+
+.nx-integration-manager-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.nx-integration-manager-empty {
+    margin: 0;
+    padding: 24px;
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    color: var(--shell-text-secondary);
+    font-size: 13px;
+    text-align: center;
+}

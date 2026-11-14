@@ -1,0 +1,31 @@
+@if (licensed()) {
+    <div class="nx-notification-preferences">
+        <div class="nx-notification-preferences-row nx-notification-preferences-header">
+            <div class="nx-notification-preferences-category-cell"></div>
+            @for (channel of channels; track channel.key) {
+                <div class="nx-notification-preferences-channel-cell">{{ channel.label }}</div>
+            }
+        </div>
+
+        @for (category of categories; track category.key) {
+            <div class="nx-notification-preferences-row">
+                <div class="nx-notification-preferences-category-cell">
+                    <span class="nx-notification-preferences-category-label">{{ category.label }}</span>
+                    @if (category.description) {
+                        <span class="nx-notification-preferences-category-description">{{ category.description }}</span>
+                    }
+                </div>
+                @for (channel of channels; track channel.key) {
+                    <div class="nx-notification-preferences-channel-cell">
+                        <nx-switch
+                            [checked]="cellValue(category.key, channel.key)"
+                            (checkedChange)="onToggle(category.key, channel.key, $event)">
+                        </nx-switch>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Notification Preferences"></nx-pro-locked>
+}

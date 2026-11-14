@@ -1,0 +1,85 @@
+@import '../saas-shared';
+
+.scar-hero {
+    background: linear-gradient(120deg, rgba(14, 22, 44, .92) 10%, rgba(14, 22, 44, .55) 100%),
+        url('https://picsum.photos/seed/nx-saas-careers/1600/500') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 56px) 0;
+    text-align: center;
+}
+
+.scar-hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: var(--nx-font-weight-bold, 700);
+    }
+
+    p {
+        margin: 0;
+        opacity: .85;
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.scar-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.scar-benefit-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    h3 {
+        margin: 0;
+        font-size: var(--nx-font-size-md, 16px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-sm, 14px);
+        line-height: 1.5;
+    }
+}
+
+.scar-jobs-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.scar-job-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nx-spacing-md, 16px);
+    flex-wrap: wrap;
+}
+
+.scar-job-title {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.scar-job-meta {
+    font-size: var(--nx-font-size-sm, 14px);
+}
+
+.scar-job-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-md, 16px);
+}

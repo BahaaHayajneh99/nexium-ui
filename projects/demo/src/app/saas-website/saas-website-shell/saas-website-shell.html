@@ -1,0 +1,84 @@
+<div class="saasw-shell">
+
+    @if (licensed()) {
+        <div class="saasw-unlocked-bar">
+            <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+            You've unlocked the full SaaS Website template with your PRO license.
+        </div>
+    } @else {
+        <div class="saasw-pro-bar">
+            <nx-icon icon="nx-lock" variant="svg" [size]="14"></nx-icon>
+            This is a NexiumUI <strong>PRO</strong> template - <strong>$59</strong>
+            <s>$99</s> one-time, included free with any PRO license.
+            <nx-button variant="primary" size="small" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+        </div>
+    }
+
+    <header class="saasw-header">
+        <div class="saasw-header-inner">
+            <a class="saasw-brand" [routerLink]="'/saas-website/home'">
+                <nx-icon icon="nx-cloud" variant="svg" [size]="20"></nx-icon>
+                Nimbus
+            </a>
+
+            <nav class="saasw-nav">
+                @for (link of navLinks; track link.path) {
+                    <a [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+                }
+            </nav>
+
+            <div class="saasw-actions">
+                <a class="saasw-login-link" [routerLink]="'/saas-website/login'" routerLinkActive="active">Log in</a>
+                <nx-button variant="primary" size="small" [routerLink]="'/saas-website/signup'">Get started</nx-button>
+            </div>
+        </div>
+    </header>
+
+    <main class="saasw-main">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="saasw-footer">
+        <div class="saasw-footer-inner">
+            <div class="saasw-footer-brand">
+                <div class="saasw-brand">
+                    <nx-icon icon="nx-cloud" variant="svg" [size]="20"></nx-icon>
+                    Nimbus
+                </div>
+                <p>Analytics that actually gets read.</p>
+            </div>
+
+            <div class="saasw-footer-columns">
+                <div class="saasw-footer-column">
+                    <h4>Product</h4>
+                    <a [routerLink]="'/saas-website/features'">Features</a>
+                    <a [routerLink]="'/saas-website/pricing'">Pricing</a>
+                    <a [routerLink]="'/saas-website/dashboard'">Dashboard demo</a>
+                </div>
+                <div class="saasw-footer-column">
+                    <h4>Company</h4>
+                    <a [routerLink]="'/saas-website/about'">About</a>
+                    <a [routerLink]="'/saas-website/careers'">Careers</a>
+                    <a [routerLink]="'/saas-website/contact'">Contact</a>
+                </div>
+                <div class="saasw-footer-column">
+                    <h4>Resources</h4>
+                    <a [routerLink]="'/saas-website/integrations'">Integrations</a>
+                    <a [routerLink]="'/saas-website/changelog'">Changelog</a>
+                    <a [routerLink]="'/saas-website/case-studies'">Case Studies</a>
+                    <a [routerLink]="'/saas-website/security'">Security</a>
+                </div>
+                <div class="saasw-footer-column">
+                    <h4>Account</h4>
+                    <a [routerLink]="'/saas-website/login'">Log in</a>
+                    <a [routerLink]="'/saas-website/signup'">Sign up</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="saasw-footer-bottom">
+            &copy; 2026 Nimbus. Built entirely with NexiumUI components.
+        </div>
+    </footer>
+
+</div>

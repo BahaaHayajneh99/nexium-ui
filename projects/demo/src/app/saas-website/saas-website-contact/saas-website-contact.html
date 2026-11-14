@@ -1,0 +1,64 @@
+<div class="saas-container saas-section">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="saas-locked-wrapper">
+      <div class="saas-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="saas-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full SaaS Website template for $59</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+
+  <div class="saas-breadcrumb-row">
+    <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+  </div>
+
+  <div class="scontact-hero">
+    <h1>Talk to the Nimbus team</h1>
+    <p>Questions about pricing, security, or a migration from another tool? We read every message ourselves.</p>
+  </div>
+
+  <div class="scontact-layout">
+    <div class="scontact-form">
+      <nx-input label="Name" placeholder="Jordan Reyes" [isRequired]="true"></nx-input>
+      <nx-input label="Work email" type="email" placeholder="you@company.com" [isRequired]="true"></nx-input>
+      <nx-input label="Subject" placeholder="e.g. Enterprise pricing question" [isRequired]="true"></nx-input>
+      <nx-textarea label="Message" placeholder="How can we help?" [rows]="6" [isRequired]="true"></nx-textarea>
+
+      <nx-button variant="primary" [fullWidth]="true">Send message</nx-button>
+    </div>
+
+    <div class="scontact-info">
+      <nx-card variant="outlined" class="saas-card-pad">
+        @for (row of infoRows; track row.text) {
+          <div class="scontact-info-row">
+            <nx-icon [icon]="row.icon" variant="svg" [size]="18"></nx-icon>
+            <span>{{ row.text }}</span>
+          </div>
+        }
+      </nx-card>
+    </div>
+  </div>
+
+  <div class="saas-section-heading scontact-faq-heading">
+    <h2>A few quick answers</h2>
+    <p>More questions are answered on the Pricing page.</p>
+  </div>
+
+  <nx-accordion>
+    @for (faq of faqs; track faq.q) {
+      <nx-accordion-item>
+        <nx-accordion-header>{{ faq.q }}</nx-accordion-header>
+        <nx-accordion-content>{{ faq.a }}</nx-accordion-content>
+      </nx-accordion-item>
+    }
+  </nx-accordion>
+</ng-template>

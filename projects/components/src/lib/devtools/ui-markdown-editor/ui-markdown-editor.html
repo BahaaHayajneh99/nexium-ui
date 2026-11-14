@@ -1,0 +1,30 @@
+@if (licensed()) {
+    <div class="nx-markdown-editor">
+        <div class="nx-markdown-editor-toolbar">
+            <button type="button" class="nx-markdown-editor-tool bold" title="Bold" aria-label="Bold" (click)="applyBold()">B</button>
+            <button type="button" class="nx-markdown-editor-tool italic" title="Italic" aria-label="Italic" (click)="applyItalic()">I</button>
+            <button type="button" class="nx-markdown-editor-tool" title="Link" aria-label="Link" (click)="applyLink()">
+                <nx-icon icon="nx-link" variant="svg" [size]="13"></nx-icon>
+            </button>
+            <button type="button" class="nx-markdown-editor-tool" title="Bulleted list" aria-label="Bulleted list" (click)="applyList()">
+                <nx-icon icon="nx-list" variant="svg" [size]="13"></nx-icon>
+            </button>
+            <button type="button" class="nx-markdown-editor-tool code" title="Inline code" aria-label="Inline code" (click)="applyCode()">&lt;/&gt;</button>
+        </div>
+
+        <div class="nx-markdown-editor-panes">
+            <textarea
+                #textareaRef
+                class="nx-markdown-editor-textarea"
+                placeholder="Write markdown..."
+                spellcheck="false"
+                [ngModel]="value"
+                (ngModelChange)="onInput($event)"
+                [ngModelOptions]="{standalone: true}"></textarea>
+
+            <div class="nx-markdown-editor-preview" [innerHTML]="renderedHtml()"></div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Markdown Editor"></nx-pro-locked>
+}

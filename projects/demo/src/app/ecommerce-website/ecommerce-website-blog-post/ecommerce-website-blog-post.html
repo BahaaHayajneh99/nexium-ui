@@ -1,0 +1,90 @@
+<div class="ecom-container ecom-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="ecom-locked-wrapper">
+            <div class="ecom-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="ecom-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full E-Commerce Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="ecom-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems()"></nx-breadcrumb>
+    </div>
+
+    @if (post(); as p) {
+        <article class="eblogp-article">
+            <div class="eblogp-hero">
+                <img [src]="p.image" [alt]="p.title" loading="lazy">
+            </div>
+
+            <nx-tag variant="outline" color="var(--shell-primary)">{{ p.category }}</nx-tag>
+            <h1 class="eblogp-title">{{ p.title }}</h1>
+
+            <div class="eblogp-author-row">
+                <img class="ecom-avatar-photo" [src]="p.author.avatar" [alt]="p.author.name">
+                <div>
+                    <div class="eblogp-author-name">{{ p.author.name }}</div>
+                    <div class="ecom-muted eblogp-meta">{{ p.author.role }} &middot; {{ p.date }} &middot; {{ p.readTime }}</div>
+                </div>
+            </div>
+
+            <div class="eblogp-body">
+                @for (paragraph of p.content; track $index) {
+                    <p>{{ paragraph }}</p>
+                }
+            </div>
+
+            <div class="eblogp-tag-row">
+                @for (tag of p.tags; track tag) {
+                    <nx-tag variant="solid" color="var(--shell-primary)">{{ tag }}</nx-tag>
+                }
+            </div>
+
+            <nx-card variant="outlined" class="ecom-card-pad eblogp-author-card">
+                <img class="ecom-avatar-photo eblogp-author-card-avatar" [src]="p.author.avatar" [alt]="p.author.name">
+                <div>
+                    <div class="eblogp-author-card-label ecom-muted">About the author</div>
+                    <div class="eblogp-author-name">{{ p.author.name }}</div>
+                    <div class="ecom-muted eblogp-meta">{{ p.author.role }}</div>
+                    <p class="eblogp-author-bio">{{ p.author.bio }}</p>
+                </div>
+            </nx-card>
+
+            @if (morePosts().length) {
+                <div class="ecom-section-heading eblogp-more-heading">
+                    <h2>More from the journal</h2>
+                </div>
+                <div class="eblogp-more-grid">
+                    @for (other of morePosts(); track other.slug) {
+                        <a class="eblogp-more-card" [routerLink]="'/ecommerce-website/blog/' + other.slug">
+                            <div class="eblogp-more-media">
+                                <img [src]="other.image" [alt]="other.title" loading="lazy">
+                            </div>
+                            <div class="eblogp-more-body">
+                                <div class="eblogp-more-title">{{ other.title }}</div>
+                                <div class="ecom-muted eblogp-meta">{{ other.date }} &middot; {{ other.readTime }}</div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            }
+        </article>
+    } @else {
+        <div class="eblogp-not-found">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>That article couldn't be found.</p>
+            <nx-button variant="primary" [routerLink]="'/ecommerce-website/blog'">Back to the journal</nx-button>
+        </div>
+    }
+
+</ng-template>

@@ -1,0 +1,74 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Project Grid"
+                description="Project cards built from nx-card with a cover placeholder and nx-tag skill labels."
+                [code]="projectsCode"
+                [hasSampleClass]="false">
+
+                <div style="--nx-grid-min-width: 260px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    @for (project of projects; track project.title) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <div class="block-hero-media" style="height: 140px; margin-bottom: 1rem;">Cover image</div>
+                                <div class="template-profile-name">{{ project.title }}</div>
+                                <p class="template-stat-label mt-1">{{ project.description }}</p>
+                                <div class="mt-2" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                    @for (tag of project.tags; track tag) {
+                                        <nx-tag variant="outline" color="var(--shell-primary)">{{ tag }}</nx-tag>
+                                    }
+                                </div>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="About & Testimonial"
+                description="A short profile block with nx-avatar and social links, alongside a featured testimonial card."
+                [code]="aboutCode"
+                [hasSampleClass]="false">
+
+                <div class="block-grid-2">
+                    <div>
+                        <div class="template-profile-header">
+                            <nx-avatar [name]="name" size="large"></nx-avatar>
+                            <div>
+                                <div class="template-profile-name">{{ name }}</div>
+                                <div class="template-stat-label">{{ title }}</div>
+                            </div>
+                        </div>
+                        <p class="mt-3">{{ bio }}</p>
+                        <div class="mt-3" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <nx-button variant="outline" size="small">
+                                <nx-icon icon="nx-mail" [size]="16"></nx-icon>
+                                Email
+                            </nx-button>
+                            <nx-button variant="outline" size="small">
+                                <nx-icon icon="nx-github" [size]="16"></nx-icon>
+                                GitHub
+                            </nx-button>
+                            <nx-button variant="outline" size="small">
+                                <nx-icon icon="nx-linkedin" [size]="16"></nx-icon>
+                                LinkedIn
+                            </nx-button>
+                        </div>
+                    </div>
+
+                    <nx-card variant="outlined">
+                        <nx-card-content>
+                            <p>{{ testimonialQuote }}</p>
+                            <p class="template-stat-label mt-2">{{ testimonialAuthor }}</p>
+                        </nx-card-content>
+                    </nx-card>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

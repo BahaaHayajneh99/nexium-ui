@@ -1,0 +1,97 @@
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="saas-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="sfeat-hero">
+        <h1>Everything your team needs to trust its data</h1>
+        <p>Eight features, one dashboard - built so analytics stops being a weekly chore and becomes a daily habit.</p>
+    </div>
+
+    <div class="sfeat-tabs-section">
+        <nx-tabs>
+            <nx-tab label="Analytics">
+                <div class="sfeat-grid">
+                    @for (feature of analyticsFeatures(); track feature.title) {
+                        <div class="saas-card sfeat-card">
+                            <nx-icon [icon]="feature.icon" variant="svg" [size]="24"></nx-icon>
+                            <h3>{{ feature.title }}</h3>
+                            <p>{{ feature.description }}</p>
+                        </div>
+                    }
+                </div>
+            </nx-tab>
+            <nx-tab label="Collaboration">
+                <div class="sfeat-grid">
+                    @for (feature of collaborationFeatures(); track feature.title) {
+                        <div class="saas-card sfeat-card">
+                            <nx-icon [icon]="feature.icon" variant="svg" [size]="24"></nx-icon>
+                            <h3>{{ feature.title }}</h3>
+                            <p>{{ feature.description }}</p>
+                        </div>
+                    }
+                </div>
+            </nx-tab>
+            <nx-tab label="Security">
+                <div class="sfeat-grid">
+                    @for (feature of securityFeatures(); track feature.title) {
+                        <div class="saas-card sfeat-card">
+                            <nx-icon [icon]="feature.icon" variant="svg" [size]="24"></nx-icon>
+                            <h3>{{ feature.title }}</h3>
+                            <p>{{ feature.description }}</p>
+                        </div>
+                    }
+                </div>
+            </nx-tab>
+        </nx-tabs>
+    </div>
+
+    <section class="saas-section sfeat-kanban-section">
+        <div class="saas-section-heading">
+            <h2>See how teams organize work in Nimbus</h2>
+            <p>Collaboration isn't just comments on a chart - plan the roadmap for your own dashboards right alongside them.</p>
+        </div>
+        <nx-kanban [columns]="workBoardColumns" [memberNames]="workBoardMembers"></nx-kanban>
+    </section>
+
+    <section class="saas-section">
+        <div class="saas-section-heading">
+            <h2>Every feature, side by side</h2>
+            <p>The full list, in case you'd rather skim everything at once.</p>
+        </div>
+        <div class="sfeat-grid sfeat-grid-all">
+            @for (feature of allFeatures; track feature.title) {
+                <div class="saas-card sfeat-card">
+                    <nx-icon [icon]="feature.icon" variant="svg" [size]="24"></nx-icon>
+                    <h3>{{ feature.title }}</h3>
+                    <p>{{ feature.description }}</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <div class="sfeat-cta">
+        <h2>Ready to see it on your own data?</h2>
+        <p>Start a free 14-day trial - no credit card required.</p>
+        <nx-button variant="primary" size="large" [routerLink]="'/saas-website/signup'">Start free trial</nx-button>
+    </div>
+
+</ng-template>

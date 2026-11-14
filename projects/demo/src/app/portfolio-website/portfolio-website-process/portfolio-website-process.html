@@ -1,0 +1,41 @@
+<section class="pprocess-hero">
+    <div class="port-container pprocess-hero-inner">
+        <h1>How we work</h1>
+        <p>Five stages, every time, from the first call to the 30 days after launch. No surprises in between.</p>
+    </div>
+</section>
+
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="pprocess-timeline-wrap">
+        <nx-timeline [items]="timelineItems"></nx-timeline>
+    </div>
+
+    <div class="pprocess-cta">
+        <h2>Ready to start the first step?</h2>
+        <p>Tell us about the project and we'll schedule the discovery call.</p>
+        <nx-button variant="primary" [routerLink]="'/portfolio-website/contact'">Start a project</nx-button>
+    </div>
+
+</ng-template>

@@ -1,0 +1,96 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Post Composer & Feed"
+                description="A composer built from nx-avatar, nx-textarea and nx-button above a feed of post cards."
+                [code]="feedCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="outlined">
+                    <nx-card-content>
+                        <div class="content-flex" style="align-items: flex-start;">
+                            <nx-avatar [name]="currentUser" size="medium"></nx-avatar>
+                            <nx-textarea placeholder="What's on your mind?" [rows]="2" style="flex: 1;"></nx-textarea>
+                        </div>
+                        <div class="mt-2" style="text-align: right;">
+                            <nx-button variant="primary">Post</nx-button>
+                        </div>
+                    </nx-card-content>
+                </nx-card>
+
+                <div class="mt-2" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @for (post of posts; track post.name) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <div class="content-flex">
+                                    <nx-avatar [name]="post.name" size="medium"></nx-avatar>
+                                    <div>
+                                        <div class="template-profile-name">{{ post.name }}</div>
+                                        <span class="template-stat-label">{{ post.time }}</span>
+                                    </div>
+                                </div>
+
+                                <p class="mt-2">{{ post.text }}</p>
+
+                                @if (post.hasMedia) {
+                                    <div class="block-hero-media" style="height: 160px; margin-bottom: 1rem;">Media placeholder</div>
+                                }
+
+                                <div class="content-flex">
+                                    <nx-button variant="ghost">
+                                        <nx-icon icon="nx-heart" variant="svg" [size]="16"></nx-icon>
+                                        {{ post.likes }}
+                                    </nx-button>
+                                    <nx-button variant="ghost">
+                                        <nx-icon icon="nx-message" variant="svg" [size]="16"></nx-icon>
+                                        {{ post.comments }}
+                                    </nx-button>
+                                    <nx-button variant="ghost">
+                                        <nx-icon icon="nx-share" variant="svg" [size]="16"></nx-icon>
+                                        {{ post.shares }}
+                                    </nx-button>
+                                </div>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Trending / Who to Follow"
+                description="A suggestion list built from nx-avatar and nx-button, with an nx-tag list of trending topics."
+                [code]="suggestionsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <div class="template-profile-name">Who to follow</div>
+
+                    <div class="mt-2" style="display: flex; flex-direction: column; gap: 1rem;">
+                        @for (person of suggestedPeople; track person.name) {
+                            <div class="content-flex">
+                                <nx-avatar [name]="person.name" size="small"></nx-avatar>
+                                <div style="flex: 1;">
+                                    <div class="template-profile-name">{{ person.name }}</div>
+                                    <span class="template-stat-label">{{ person.bio }}</span>
+                                </div>
+                                <nx-button variant="secondary" size="small">Follow</nx-button>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="template-profile-name mt-2">Trending topics</div>
+                    <div class="content-flex mt-2">
+                        @for (topic of trendingTopics; track topic) {
+                            <nx-tag variant="outline">{{ topic }}</nx-tag>
+                        }
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

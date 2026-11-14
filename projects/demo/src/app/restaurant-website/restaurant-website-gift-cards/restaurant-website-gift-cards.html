@@ -1,0 +1,66 @@
+<div class="resto-container resto-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="resto-locked-wrapper">
+            <div class="resto-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="resto-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Restaurant Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="resto-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="rgift-hero">
+        <nx-icon icon="nx-gift" variant="svg" [size]="32"></nx-icon>
+        <h1>Give the gift of Olive &amp; Oak</h1>
+        <p class="resto-muted">Digital gift cards, delivered by email, never expire.</p>
+    </div>
+
+    <div class="rgift-layout">
+        <div class="rgift-amounts">
+            <span class="resto-select-label">Choose an amount</span>
+            <div class="rgift-amount-row">
+                @for (amount of amounts; track amount.value) {
+                    <button
+                        type="button"
+                        class="rgift-amount-btn"
+                        [class.selected]="selectedAmount() === amount.value"
+                        (click)="selectAmount(amount.value)">
+                        ${{ amount.value }}
+                        @if (amount.popular) {
+                            <span class="rgift-amount-badge">Popular</span>
+                        }
+                    </button>
+                }
+            </div>
+        </div>
+
+        @if (added()) {
+            <nx-alert variant="success" title="Added to cart!">
+                A ${{ selectedAmount() }} Olive &amp; Oak gift card has been added to your cart.
+            </nx-alert>
+            <nx-button variant="outline" (click)="buyAnother()">Buy another gift card</nx-button>
+        } @else {
+            <form class="rgift-form" (submit)="$event.preventDefault(); addToCart()">
+                <div class="rgift-row">
+                    <nx-input label="Recipient name" placeholder="Jane Doe" [isRequired]="true"></nx-input>
+                    <nx-input label="Recipient email" type="email" placeholder="jane@example.com" [isRequired]="true"></nx-input>
+                </div>
+                <nx-textarea label="Personal message (optional)" placeholder="Happy birthday! Enjoy dinner on us." [rows]="3"></nx-textarea>
+                <nx-button variant="primary" [fullWidth]="true" type="submit">Add ${{ selectedAmount() }} gift card to cart</nx-button>
+            </form>
+        }
+    </div>
+
+</ng-template>

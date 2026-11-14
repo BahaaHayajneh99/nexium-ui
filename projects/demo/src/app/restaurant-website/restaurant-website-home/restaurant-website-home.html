@@ -1,0 +1,120 @@
+<section class="rhome-hero">
+    <div class="resto-container rhome-hero-inner">
+        <h1 class="rhome-hero-title">Seasonal plates,<br>cooked with intention.</h1>
+        <p class="rhome-hero-subtitle">
+            Olive &amp; Oak is a modern bistro built around farm-direct produce, a wood-fired grill, and a
+            dining room that feels like someone's favorite kitchen.
+        </p>
+        <div class="rhome-hero-actions">
+            <nx-button variant="primary" size="large" [routerLink]="'/restaurant-website/menu'">View menu</nx-button>
+            <nx-button variant="outline" size="large" [routerLink]="'/restaurant-website/reservations'">Book a table</nx-button>
+        </div>
+    </div>
+</section>
+
+<div class="resto-container resto-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="resto-locked-wrapper">
+            <div class="resto-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="resto-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Restaurant Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <section class="resto-section">
+        <div class="resto-section-heading">
+            <h2>Chef's picks</h2>
+            <p>The dishes our kitchen is proudest of this season.</p>
+        </div>
+        <div class="resto-dish-grid">
+            @for (item of chefsPicks; track item.id) {
+                <div class="resto-dish-card">
+                    <div class="resto-dish-media">
+                        <img class="resto-dish-media-img" [src]="item.image" [alt]="item.name" loading="lazy">
+                    </div>
+                    <div class="resto-dish-body">
+                        <a class="resto-dish-name" [routerLink]="'/restaurant-website/menu'">{{ item.name }}</a>
+                        <nx-rating [value]="item.rating" [readonly]="true"></nx-rating>
+                        <p class="resto-dish-description">{{ item.description }}</p>
+                        <div class="resto-dish-price-row">
+                            <span class="resto-dish-price">${{ item.price }}</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="resto-section">
+        <div class="resto-section-heading">
+            <h2>A look inside</h2>
+            <p>The dining room, the kitchen, and the plates that leave it.</p>
+        </div>
+        <nx-carousel class="rhome-gallery-carousel" [slides]="gallerySlides" [showIndicators]="true" [autoplay]="true"></nx-carousel>
+    </section>
+
+    <section class="resto-section">
+        <div class="resto-section-heading">
+            <h2>What our guests say</h2>
+            <p>Real feedback from the people who keep coming back.</p>
+        </div>
+        <div class="rhome-testimonial-grid">
+            @for (t of testimonials; track t.name) {
+                <div class="rhome-testimonial-card">
+                    <img class="resto-avatar-photo" [src]="t.avatar" [alt]="t.name">
+                    <div class="rhome-testimonial-name">{{ t.name }}</div>
+                    <nx-rating [value]="t.rating" [readonly]="true"></nx-rating>
+                    <p class="rhome-testimonial-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+                </div>
+            }
+        </div>
+        <div class="rhome-stats-row">
+            <div class="rhome-stat">
+                <nx-number-ticker [value]="12000" [suffix]="'+'" [separator]="','"></nx-number-ticker>
+                <span class="resto-muted">Meals served</span>
+            </div>
+            <div class="rhome-stat">
+                <nx-number-ticker [value]="4.9" [decimals]="1" [suffix]="' / 5'"></nx-number-ticker>
+                <span class="resto-muted">Average guest rating</span>
+            </div>
+            <div class="rhome-stat">
+                <nx-number-ticker [value]="14" [suffix]="' yrs'"></nx-number-ticker>
+                <span class="resto-muted">Serving the neighborhood</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="rhome-info-panel">
+        <div class="rhome-info-block">
+            <h3><nx-icon icon="nx-clock" variant="svg" [size]="18"></nx-icon> Opening hours</h3>
+            @for (row of hours; track row.day) {
+                <div class="resto-flex-between rhome-info-row">
+                    <span class="resto-muted">{{ row.day }}</span>
+                    <span>{{ row.hours }}</span>
+                </div>
+            }
+        </div>
+        <div class="rhome-info-block">
+            <h3><nx-icon icon="nx-map-pin" variant="svg" [size]="18"></nx-icon> Find us</h3>
+            <p class="resto-muted">{{ address }}</p>
+            <p class="resto-muted">{{ phone }}</p>
+        </div>
+    </section>
+
+    <section class="rhome-cta-banner">
+        <h3>Ready for your table?</h3>
+        <p>Reserve online in under a minute - we'll have it ready when you walk in.</p>
+        <nx-button variant="primary" size="large" [routerLink]="'/restaurant-website/reservations'">Book a table</nx-button>
+    </section>
+
+</ng-template>

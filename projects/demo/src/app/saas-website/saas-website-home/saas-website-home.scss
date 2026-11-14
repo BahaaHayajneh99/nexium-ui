@@ -1,0 +1,281 @@
+@import '../saas-shared';
+
+// ---- Hero ----------------------------------------------------------------
+
+.shome-hero {
+    background:
+        linear-gradient(120deg, rgba(14, 22, 44, .9) 10%, rgba(14, 22, 44, .6) 60%, rgba(14, 22, 44, .35) 100%),
+        url('https://picsum.photos/seed/nx-saas-hero/1600/700') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.shome-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-lg, 24px);
+    max-width: 640px;
+}
+
+.shome-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.shome-hero-subtitle {
+    font-size: var(--nx-font-size-md, 16px);
+    opacity: .85;
+    margin: 0;
+}
+
+.shome-hero-actions {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+    flex-wrap: wrap;
+}
+
+// ---- Trusted-by logos row --------------------------------------------------
+
+.shome-logos {
+    padding: var(--nx-spacing-lg, 24px) 0;
+    text-align: center;
+}
+
+.shome-logos-label {
+    margin: 0 0 var(--nx-spacing-md, 16px);
+    font-size: var(--nx-font-size-xs, 12px);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+nx-marquee {
+    display: block;
+}
+
+.shome-logo-name {
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text-muted);
+    white-space: nowrap;
+}
+
+// ---- Feature grid ----------------------------------------------------------
+
+.shome-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.shome-feature-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    nx-icon {
+        color: var(--shell-primary);
+        margin-bottom: 4px;
+    }
+
+    h3 {
+        margin: 0;
+        font-size: var(--nx-font-size-md, 16px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-sm, 14px);
+        line-height: 1.5;
+    }
+}
+
+// ---- Screenshot section -----------------------------------------------------
+
+.shome-screenshot-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--nx-spacing-xxl, 48px);
+    align-items: center;
+    padding: var(--nx-spacing-xxl, 48px) 0;
+
+    @media (max-width: 860px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.shome-screenshot-text {
+    h2 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-lg, 24px);
+        color: var(--shell-text-secondary);
+        line-height: 1.6;
+    }
+}
+
+.shome-screenshot-panel {
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    overflow: hidden;
+    box-shadow: 0 24px 48px -24px rgba(0, 0, 0, .35);
+}
+
+.shome-screenshot-bar {
+    display: flex;
+    gap: 6px;
+    padding: 10px 14px;
+    background: color-mix(in srgb, var(--shell-text) 6%, transparent);
+
+    span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: color-mix(in srgb, var(--shell-text) 25%, transparent);
+    }
+}
+
+.shome-screenshot-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px;
+}
+
+.shome-screenshot-tile {
+    height: 70px;
+    border-radius: var(--nx-radius-md, 8px);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--shell-primary) 25%, transparent), color-mix(in srgb, var(--shell-primary) 8%, transparent));
+}
+
+.shome-screenshot-tile-tall {
+    grid-row: span 2;
+    height: 100%;
+}
+
+.shome-screenshot-tile-wide {
+    grid-column: span 2;
+}
+
+// ---- Testimonials -----------------------------------------------------------
+
+.shome-testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.shome-testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+}
+
+.shome-testimonial-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.shome-testimonial-role {
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-muted);
+    margin-bottom: 4px;
+}
+
+.shome-testimonial-quote {
+    margin: var(--nx-spacing-xs, 4px) 0 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+// ---- Pricing teaser -----------------------------------------------------------
+
+.shome-pricing-teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.shome-pricing-teaser-card {
+    position: relative;
+    text-align: center;
+
+    &.highlighted {
+        border-color: var(--shell-primary);
+        box-shadow: 0 0 0 1px var(--shell-primary);
+    }
+
+    h3 {
+        margin: var(--nx-spacing-sm, 8px) 0 0;
+        font-size: var(--nx-font-size-lg, 18px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: var(--nx-spacing-sm, 8px) 0 0;
+        font-size: var(--nx-font-size-sm, 14px);
+    }
+}
+
+.shome-pricing-teaser-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--shell-primary);
+    color: #fff;
+    font-size: var(--nx-font-size-xs, 11px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+.shome-pricing-teaser-price {
+    margin: var(--nx-spacing-sm, 8px) 0;
+}
+
+.shome-pricing-teaser-amount {
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.shome-pricing-teaser-cta {
+    text-align: center;
+    margin-top: var(--nx-spacing-xl, 32px);
+}
+
+// ---- Final CTA ----------------------------------------------------------------
+
+.shome-final-cta {
+    text-align: center;
+    padding: var(--nx-spacing-xxl, 48px);
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: linear-gradient(135deg, #1f3a5f 0%, #15274a 100%);
+    color: #ffffff;
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-lg, 24px);
+        opacity: .85;
+    }
+}

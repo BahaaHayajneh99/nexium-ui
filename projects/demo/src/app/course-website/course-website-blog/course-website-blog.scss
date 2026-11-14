@@ -1,0 +1,107 @@
+@import '../course-shared';
+
+.cblog-hero {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--nx-spacing-xl, 32px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.cblog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.cblog-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--nx-transition-fast, .15s ease), box-shadow var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, .25);
+    }
+}
+
+.cblog-card-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.cblog-card-media-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cblog-card-category {
+    position: absolute;
+    top: var(--nx-spacing-sm, 8px);
+    left: var(--nx-spacing-sm, 8px);
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(10, 16, 32, .72);
+    color: #ffffff;
+    font-size: var(--nx-font-size-xs, 11px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+}
+
+.cblog-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: var(--nx-spacing-md, 16px);
+    flex: 1;
+}
+
+.cblog-card-title {
+    font-size: var(--nx-font-size-md, 17px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+    line-height: 1.3;
+}
+
+.cblog-card-excerpt {
+    margin: 0;
+    flex: 1;
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+.cblog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--nx-font-size-xs, 12px);
+    margin-top: auto;
+}
+
+.cblog-card-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}

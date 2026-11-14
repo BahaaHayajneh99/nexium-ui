@@ -1,0 +1,84 @@
+<div class="resto-container resto-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="resto-locked-wrapper">
+            <div class="resto-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="resto-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Restaurant Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="resto-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="rmenu-header">
+        <h1 class="rmenu-title">Our menu</h1>
+        <div class="rmenu-cart-note" [class.visible]="cartCount() > 0">
+            <nx-icon icon="nx-shopping-cart" variant="svg" [size]="16"></nx-icon>
+            {{ cartCount() }} item{{ cartCount() === 1 ? '' : 's' }} added
+        </div>
+    </div>
+
+    <div class="rmenu-qr-card">
+        <nx-qr-code [value]="menuQrValue" [size]="110" [margin]="2"></nx-qr-code>
+        <div class="rmenu-qr-copy">
+            <div class="rmenu-qr-title">Prefer your phone?</div>
+            <p class="resto-muted">Scan this code to pull up our full menu on your own device.</p>
+        </div>
+    </div>
+
+    <div class="rmenu-chip-row">
+        @for (category of categories; track category) {
+            <nx-chip
+                [variant]="activeCategory() === category ? 'primary' : 'secondary'"
+                [selected]="activeCategory() === category"
+                (click)="selectCategory(category)">
+                {{ category }}
+            </nx-chip>
+        }
+    </div>
+
+    <p class="resto-muted rmenu-count">Showing {{ filteredItems().length }} dishes</p>
+
+    <div class="resto-dish-grid">
+        @for (item of filteredItems(); track item.id) {
+            <div class="resto-dish-card">
+                <div class="resto-dish-media">
+                    <img class="resto-dish-media-img" [src]="item.image" [alt]="item.name" loading="lazy">
+                </div>
+                <div class="resto-dish-body">
+                    <div class="resto-dish-name">{{ item.name }}</div>
+
+                    @if (item.tags?.length) {
+                        <div class="resto-dish-tags">
+                            @for (tag of item.tags; track tag) {
+                                <nx-tag variant="outline">{{ tag }}</nx-tag>
+                            }
+                        </div>
+                    }
+
+                    <nx-rating [value]="item.rating" [readonly]="true"></nx-rating>
+                    <p class="resto-dish-description">{{ item.description }}</p>
+                    <div class="resto-dish-price-row">
+                        <span class="resto-dish-price">${{ item.price }}</span>
+                        <span class="resto-muted">({{ item.reviewCount }} reviews)</span>
+                    </div>
+                </div>
+                <div class="resto-dish-footer">
+                    <nx-button variant="primary" [fullWidth]="true" size="small" (click)="addToCart()">Add to cart</nx-button>
+                </div>
+            </div>
+        }
+    </div>
+
+</ng-template>

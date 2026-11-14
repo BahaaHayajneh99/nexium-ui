@@ -1,0 +1,48 @@
+<div class="dd-page">
+    <div class="dd-container">
+
+        <header class="dd-intro">
+            <h1 class="dd-title">Dashboard Designer</h1>
+            <p class="dd-subtitle">
+                A persistent dashboard-building workspace built on {{ commonService.appName }}'s
+                <code>NxDashboardBuilder</code>. Unlike a plain component demo, everything you build here -
+                every widget you place, resize, or switch between across multiple dashboards - is saved to
+                this browser and will still be here the next time you open this page. Export the whole
+                workspace to a JSON file to back it up or move it elsewhere, or import one back in.
+            </p>
+
+            @if (errorMessage()) {
+                <div class="dd-error" role="alert">{{ errorMessage() }}</div>
+            }
+
+            <div class="dd-toolbar">
+                <button type="button" class="dd-btn dd-btn-primary" (click)="exportAll()">
+                    Export all dashboards
+                </button>
+
+                <button type="button" class="dd-btn" (click)="triggerImport(importInput)">
+                    Import dashboards
+                </button>
+                <input
+                    #importInput
+                    type="file"
+                    accept="application/json"
+                    class="dd-file-input"
+                    (change)="onImportFileSelected($event)" />
+
+                <button type="button" class="dd-btn dd-btn-danger" (click)="resetToStarter()">
+                    Reset to starter dashboards
+                </button>
+
+                @if (lastSavedAt()) {
+                    <span class="dd-saved-at">Last saved locally at {{ lastSavedAt() }}</span>
+                }
+            </div>
+        </header>
+
+        <section class="dd-builder-shell">
+            <nx-dashboard-builder [layouts]="layouts()" (layoutSaved)="onLayoutSaved($event)"></nx-dashboard-builder>
+        </section>
+
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.json-viewer-try-it {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.json-viewer-try-it-error {
+    margin: 0;
+    padding: 10px 14px;
+    border-radius: var(--nx-radius-sm, 4px);
+    border: 1px solid var(--nx-color-danger, #e74c3c);
+    background-color: rgba(231, 76, 60, .08);
+    color: var(--nx-color-danger, #e74c3c);
+    font-size: 13px;
+    font-family: var(--nx-font-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
+}

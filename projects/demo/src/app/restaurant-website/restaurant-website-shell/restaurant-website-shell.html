@@ -1,0 +1,97 @@
+<div class="rshell-shell">
+
+    @if (licensed()) {
+        <div class="rshell-unlocked-bar">
+            <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+            You've unlocked the full Restaurant Website template with your PRO license.
+        </div>
+    } @else {
+        <div class="rshell-pro-bar">
+            <nx-icon icon="nx-lock" variant="svg" [size]="14"></nx-icon>
+            This is a NexiumUI <strong>PRO</strong> template - <strong>$45</strong>
+            <s>$79</s> one-time, included free with any PRO license.
+            <nx-button variant="primary" size="small" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+        </div>
+    }
+
+    <header class="rshell-header">
+        <div class="rshell-header-inner">
+            <a class="rshell-brand" [routerLink]="'/restaurant-website/home'">
+                <nx-icon icon="nx-fire" variant="svg" [size]="20"></nx-icon>
+                Olive &amp; Oak
+            </a>
+
+            <nav class="rshell-nav">
+                @for (link of navLinks; track link.path) {
+                    <a [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+                }
+            </nav>
+
+            <div class="rshell-actions">
+                <a class="rshell-icon-link" [routerLink]="'/restaurant-website/login'" routerLinkActive="active" title="Log in">
+                    <nx-icon icon="nx-user" variant="svg" [size]="18"></nx-icon>
+                </a>
+                <a class="rshell-icon-link rshell-cart-link" [routerLink]="'/restaurant-website/cart'" routerLinkActive="active" title="Cart">
+                    <nx-icon icon="nx-shopping-cart" variant="svg" [size]="18"></nx-icon>
+                    <span class="rshell-cart-count">{{ cartCount }}</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="rshell-main">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="rshell-footer">
+        <div class="rshell-footer-inner">
+            <div class="rshell-footer-brand">
+                <div class="rshell-brand">
+                    <nx-icon icon="nx-fire" variant="svg" [size]="20"></nx-icon>
+                    Olive &amp; Oak
+                </div>
+                <p>Seasonal plates, cooked with intention.</p>
+                <div class="rshell-footer-hours">
+                    @for (row of hours; track row.day) {
+                        <div class="rshell-flex-between">
+                            <span>{{ row.day }}</span>
+                            <span>{{ row.hours }}</span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="rshell-footer-columns">
+                <div class="rshell-footer-column">
+                    <h4>Order</h4>
+                    <a [routerLink]="'/restaurant-website/menu'">Menu</a>
+                    <a [routerLink]="'/restaurant-website/cart'">Cart</a>
+                    <a [routerLink]="'/restaurant-website/gift-cards'">Gift cards</a>
+                </div>
+                <div class="rshell-footer-column">
+                    <h4>Visit</h4>
+                    <a [routerLink]="'/restaurant-website/reservations'">Reservations</a>
+                    <a [routerLink]="'/restaurant-website/locations'">Locations</a>
+                    <a [routerLink]="'/restaurant-website/events'">Events & catering</a>
+                    <a [routerLink]="'/restaurant-website/contact'">Contact</a>
+                </div>
+                <div class="rshell-footer-column">
+                    <h4>About</h4>
+                    <a [routerLink]="'/restaurant-website/about'">Our story</a>
+                    <a [routerLink]="'/restaurant-website/gallery'">Gallery</a>
+                    <a [routerLink]="'/restaurant-website/reviews'">Reviews</a>
+                </div>
+                <div class="rshell-footer-column">
+                    <h4>Account</h4>
+                    <a [routerLink]="'/restaurant-website/login'">Log in</a>
+                    <a [routerLink]="'/restaurant-website/signup'">Sign up</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="rshell-footer-bottom">
+            &copy; 2026 Olive &amp; Oak. Built entirely with NexiumUI components.
+        </div>
+    </footer>
+
+</div>

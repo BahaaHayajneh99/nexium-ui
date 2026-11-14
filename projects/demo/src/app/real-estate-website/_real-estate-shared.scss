@@ -1,0 +1,231 @@
+// Shared styles for every page of the Real Estate Website template. Each page's own .scss
+// should `@import '../real-estate-shared';` (relative to its own folder, one level under
+// projects/demo/src/app/real-estate-website/) to pull these classes in - keeps the listing
+// card, section headings, and PRO lock overlay visually identical across all 8 pages.
+
+.realest-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 var(--nx-spacing-lg, 24px);
+}
+
+.realest-section {
+    padding: var(--nx-spacing-xxl, 48px) 0;
+}
+
+.realest-section-heading {
+    text-align: center;
+    margin-bottom: var(--nx-spacing-xl, 32px);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+// ---- Listing grid + card --------------------------------------------------
+
+.realest-listing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.realest-listing-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--nx-transition-fast, .15s ease), box-shadow var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, .25);
+    }
+}
+
+.realest-listing-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.realest-listing-media-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.realest-listing-badge {
+    position: absolute;
+    top: var(--nx-spacing-sm, 8px);
+    left: var(--nx-spacing-sm, 8px);
+}
+
+.realest-listing-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: var(--nx-spacing-md, 16px);
+    flex: 1;
+}
+
+.realest-listing-type {
+    font-size: var(--nx-font-size-xs, 12px);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--shell-text-muted);
+}
+
+.realest-listing-title {
+    font-size: var(--nx-font-size-md, 16px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+    line-height: 1.3;
+}
+
+.realest-listing-address {
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+}
+
+.realest-listing-price {
+    margin-top: 4px;
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.realest-listing-specs {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-md, 14px);
+    padding-top: var(--nx-spacing-sm, 8px);
+    border-top: 1px solid var(--shell-border);
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 13px);
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}
+
+// ---- Misc layout helpers --------------------------------------------------
+
+.realest-flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.realest-muted {
+    color: var(--shell-text-secondary);
+}
+
+.realest-breadcrumb-row {
+    margin-bottom: var(--nx-spacing-lg, 24px);
+}
+
+.realest-card-pad {
+    padding: var(--nx-spacing-lg, 24px);
+}
+
+.realest-avatar-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+// ---- PRO lock overlay (reused on every standalone page) -------------------
+
+.realest-locked-wrapper {
+    position: relative;
+}
+
+.realest-locked-content {
+    filter: blur(5px);
+    opacity: .55;
+    pointer-events: none;
+    user-select: none;
+}
+
+.realest-lock-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 8px);
+    text-align: center;
+    padding: var(--nx-spacing-lg, 24px);
+    z-index: 2;
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    p {
+        margin: 0;
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.realest-pro-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 8px);
+    flex-wrap: wrap;
+    padding: 10px var(--nx-spacing-lg, 24px);
+    background: color-mix(in srgb, var(--shell-primary) 12%, transparent);
+    color: var(--shell-text);
+    font-size: var(--nx-font-size-sm, 14px);
+    text-align: center;
+
+    strong {
+        color: var(--shell-primary);
+    }
+}
+
+.realest-unlocked-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px var(--nx-spacing-lg, 24px);
+    background: color-mix(in srgb, #22c55e 12%, transparent);
+    color: #16a34a;
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    text-align: center;
+}

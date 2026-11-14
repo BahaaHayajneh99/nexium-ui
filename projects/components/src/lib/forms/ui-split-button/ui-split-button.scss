@@ -1,0 +1,144 @@
+.nx-split-button {
+
+    position: relative;
+
+    display: inline-flex;
+    align-items: stretch;
+
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-size: 14px;
+
+    border-radius: var(--nx-radius-sm, 4px);
+    overflow: visible;
+
+}
+
+.nx-split-button-main,
+.nx-split-button-caret {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all .2s ease;
+
+}
+
+.nx-split-button-main {
+
+    gap: var(--nx-spacing-xs, 6px);
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
+
+    border-radius: var(--nx-radius-sm, 4px) 0 0 var(--nx-radius-sm, 4px);
+    border-right: 1px solid color-mix(in srgb, black 12%, transparent);
+
+}
+
+.nx-split-button-caret {
+
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-xs, 6px);
+
+    border-radius: 0 var(--nx-radius-sm, 4px) var(--nx-radius-sm, 4px) 0;
+
+}
+
+.nx-split-button-main:hover,
+.nx-split-button-caret:hover {
+    filter: brightness(0.92);
+}
+
+.nx-split-button-menu {
+
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    min-width: 180px;
+    z-index: 20;
+
+    margin: 0;
+    padding: var(--nx-spacing-xs, 4px) 0;
+    list-style: none;
+
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    box-shadow: 0 4px 12px color-mix(in srgb, black 15%, transparent);
+
+}
+
+.nx-split-button-menu-item {
+
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
+
+    color: var(--shell-text);
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover:not(.disabled) {
+        background: var(--shell-surface-hover);
+    }
+
+    &.disabled {
+        color: var(--disabled-color, #9e9e9e);
+        cursor: not-allowed;
+    }
+
+}
+
+// =========================
+// Variants
+// =========================
+
+.nx-split-button {
+
+    &.primary .nx-split-button-main,
+    &.primary .nx-split-button-caret {
+        background-color: var(--shell-primary, #3498db);
+        color: var(--white-color, #ffffff);
+    }
+
+    &.secondary .nx-split-button-main,
+    &.secondary .nx-split-button-caret {
+        background-color: var(--secondary-color, #6c757d);
+        color: var(--white-color, #ffffff);
+    }
+
+    &.success .nx-split-button-main,
+    &.success .nx-split-button-caret {
+        background-color: var(--success-color, #28a745);
+        color: var(--white-color, #ffffff);
+    }
+
+    &.danger .nx-split-button-main,
+    &.danger .nx-split-button-caret {
+        background-color: var(--danger-color, #e74c3c);
+        color: var(--white-color, #ffffff);
+    }
+
+    &.warning .nx-split-button-main,
+    &.warning .nx-split-button-caret {
+        background-color: var(--warning-color, #f39c12);
+        color: var(--black-color, #000000);
+    }
+
+    &.info .nx-split-button-main,
+    &.info .nx-split-button-caret {
+        background-color: var(--info-color, #17a2b8);
+        color: var(--white-color, #ffffff);
+    }
+
+    &.disabled {
+
+        .nx-split-button-main,
+        .nx-split-button-caret {
+            background-color: var(--disabled-bg, #e9ecef);
+            color: var(--disabled-color, #9e9e9e);
+            cursor: not-allowed;
+        }
+
+    }
+
+}

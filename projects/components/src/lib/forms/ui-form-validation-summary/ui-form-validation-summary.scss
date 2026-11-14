@@ -1,0 +1,59 @@
+.nx-form-validation-summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-space-sm, 8px);
+    padding: var(--nx-space-md, 16px);
+    border-radius: var(--nx-radius-md, 8px);
+    border-left: 4px solid var(--nx-color-danger, #e74c3c);
+    background: color-mix(in srgb, var(--nx-color-danger, #e74c3c) 10%, var(--shell-surface));
+    color: var(--shell-text);
+}
+
+.nx-form-validation-summary-header {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-space-sm, 8px);
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-form-validation-summary-title {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    font-size: var(--nx-font-size-sm, 14px);
+}
+
+.nx-form-validation-summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nx-form-validation-summary-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: 100%;
+    padding: 6px 8px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text);
+    font-size: var(--nx-font-size-sm, 14px);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color var(--nx-transition-fast, .15s ease);
+}
+
+.nx-form-validation-summary-row:hover {
+    background-color: color-mix(in srgb, var(--nx-color-danger, #e74c3c) 14%, transparent);
+}
+
+.nx-form-validation-summary-label {
+    font-weight: var(--nx-font-weight-semibold, 600);
+}
+
+.nx-form-validation-summary-message {
+    color: var(--shell-text-secondary);
+}

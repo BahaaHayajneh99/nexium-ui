@@ -1,0 +1,235 @@
+// Shared styles for every page of the Hotel / Travel Booking Website template. Each page's own
+// .scss should `@import '../hotel-shared';` (relative to its own folder, one level under
+// projects/demo/src/app/hotel-website/) to pull these classes in - keeps the room card, section
+// headings, and PRO lock overlay visually identical across all 8 pages.
+
+.hotel-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 var(--nx-spacing-lg, 24px);
+}
+
+.hotel-section {
+    padding: var(--nx-spacing-xxl, 48px) 0;
+}
+
+.hotel-section-heading {
+    text-align: center;
+    margin-bottom: var(--nx-spacing-xl, 32px);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+// ---- Room grid + card ----------------------------------------------------
+
+.hotel-room-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.hotel-room-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--nx-transition-fast, .15s ease), box-shadow var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, .25);
+    }
+}
+
+.hotel-room-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hotel-room-media-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hotel-room-badge {
+    position: absolute;
+    top: var(--nx-spacing-sm, 8px);
+    left: var(--nx-spacing-sm, 8px);
+}
+
+.hotel-room-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: var(--nx-spacing-md, 16px);
+    flex: 1;
+}
+
+.hotel-room-name {
+    font-size: var(--nx-font-size-md, 16px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+    line-height: 1.3;
+}
+
+.hotel-room-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-muted);
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    nx-icon {
+        color: var(--shell-text-muted);
+    }
+}
+
+.hotel-room-price-row {
+    margin-top: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.hotel-room-price {
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.hotel-room-price-unit {
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-muted);
+}
+
+.hotel-room-footer {
+    padding: 0 var(--nx-spacing-md, 16px) var(--nx-spacing-md, 16px);
+}
+
+// ---- Avatars / misc layout helpers ---------------------------------------
+
+.hotel-avatar-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.hotel-flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.hotel-muted {
+    color: var(--shell-text-secondary);
+}
+
+.hotel-breadcrumb-row {
+    margin-bottom: var(--nx-spacing-lg, 24px);
+}
+
+.hotel-card-pad {
+    padding: var(--nx-spacing-lg, 24px);
+}
+
+// ---- PRO lock overlay (reused on every standalone page) ------------------
+
+.hotel-locked-wrapper {
+    position: relative;
+}
+
+.hotel-locked-content {
+    filter: blur(5px);
+    opacity: .55;
+    pointer-events: none;
+    user-select: none;
+}
+
+.hotel-lock-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 8px);
+    text-align: center;
+    padding: var(--nx-spacing-lg, 24px);
+    z-index: 2;
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    p {
+        margin: 0;
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.hotel-pro-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 8px);
+    flex-wrap: wrap;
+    padding: 10px var(--nx-spacing-lg, 24px);
+    background: color-mix(in srgb, var(--shell-primary) 12%, transparent);
+    color: var(--shell-text);
+    font-size: var(--nx-font-size-sm, 14px);
+    text-align: center;
+
+    strong {
+        color: var(--shell-primary);
+    }
+
+    s {
+        opacity: .7;
+    }
+}
+
+.hotel-unlocked-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px var(--nx-spacing-lg, 24px);
+    background: color-mix(in srgb, #22c55e 12%, transparent);
+    color: #16a34a;
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    text-align: center;
+}

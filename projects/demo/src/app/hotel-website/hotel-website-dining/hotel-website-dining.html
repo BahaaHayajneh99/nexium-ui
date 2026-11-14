@@ -1,0 +1,63 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="hotel-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="hdining-hero">
+        <img class="hdining-hero-img" [src]="heroImage" alt="The Marlow Restaurant">
+        <div class="hdining-hero-copy">
+            <h1>The Marlow Restaurant</h1>
+            <p>Seasonal coastal cuisine from an open kitchen, plus a raw bar and a wine list built around small independent producers.</p>
+        </div>
+    </div>
+
+    <section class="hotel-section">
+        <div class="hotel-section-heading">
+            <h2>Menu highlights</h2>
+            <p>A sample of what's on the table this season.</p>
+        </div>
+
+        <nx-tabs>
+            @for (group of menuByCourse; track group.course) {
+                <nx-tab [label]="group.course">
+                    <div class="hdining-menu-grid">
+                        @for (item of group.items; track item.name) {
+                            <div class="hdining-menu-item">
+                                <div class="hotel-flex-between">
+                                    <span class="hdining-menu-name">{{ item.name }}</span>
+                                    <span class="hdining-menu-price">${{ item.price }}</span>
+                                </div>
+                                <p class="hotel-muted">{{ item.description }}</p>
+                            </div>
+                        }
+                    </div>
+                </nx-tab>
+            }
+        </nx-tabs>
+    </section>
+
+    <div class="hdining-closing">
+        <nx-icon icon="nx-clock" variant="svg" [size]="22"></nx-icon>
+        <p>Open daily, 7:00 AM - 10:30 PM. Reservations are recommended for dinner, especially on weekends.</p>
+        <nx-button variant="primary" [routerLink]="'/hotel-website/contact'">Contact us to reserve</nx-button>
+    </div>
+
+</ng-template>

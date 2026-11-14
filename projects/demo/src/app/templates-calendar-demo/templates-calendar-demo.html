@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Month View"
+                description="A plain CSS-grid month calendar - no calendar component required, just an array of day-cell objects and nx-badge for event chips."
+                [code]="monthViewCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; width: 100%;">
+                        @for (wd of weekDays; track wd) {
+                            <div style="text-align: center; font-weight: 600; font-size: 0.8rem; color: var(--shell-text-secondary);">{{ wd }}</div>
+                        }
+                        @for (cell of days; track $index) {
+                            <div
+                                style="min-height: 72px; border-radius: 8px; padding: 0.4rem; display: flex; flex-direction: column; gap: 0.25rem;"
+                                [style.background]="cell.isToday ? 'color-mix(in srgb, var(--shell-primary) 14%, transparent)' : 'transparent'"
+                                [style.border]="cell.isToday ? '2px solid var(--shell-primary)' : '1px solid var(--shell-border)'"
+                                [style.opacity]="cell.isOutside ? 0.45 : 1">
+                                <span style="font-size: 0.85rem; font-weight: 600;">{{ cell.day }}</span>
+                                @for (evt of cell.events; track evt.label) {
+                                    <nx-badge [variant]="evt.variant" size="small">{{ evt.label }}</nx-badge>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Upcoming Events"
+                description="A list of upcoming events with date/time, location, attendee count and a colored nx-tag category."
+                [code]="upcomingEventsCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    @for (event of upcomingEvents; track event.title) {
+                        <div class="template-setting-row">
+                            <div>
+                                <div class="template-setting-title">{{ event.title }}</div>
+                                <div class="template-setting-desc">{{ event.date }} · {{ event.meta }}</div>
+                            </div>
+                            <nx-tag [color]="event.color">{{ event.category }}</nx-tag>
+                        </div>
+                    }
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<section class="schg-hero">
+    <div class="saas-container schg-hero-inner">
+        <h1>What's new in Nimbus</h1>
+        <p>Every feature, improvement, and fix we ship, in one place - no release notes buried in an email.</p>
+    </div>
+</section>
+
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="saas-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <nx-timeline [items]="timelineItems"></nx-timeline>
+
+    <div class="schg-cta">
+        <h2>Have a feature request?</h2>
+        <p>Tell us what would make Nimbus more useful for your team.</p>
+        <nx-button variant="primary" [routerLink]="'/saas-website/contact'">Share feedback</nx-button>
+    </div>
+
+</ng-template>

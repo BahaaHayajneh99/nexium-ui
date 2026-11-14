@@ -1,0 +1,45 @@
+<div class="realest-container realest-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="realest-locked-wrapper">
+            <div class="realest-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="realest-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Real Estate Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="realest-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="refaq-hero">
+        <nx-icon icon="nx-help-circle" variant="svg" [size]="32"></nx-icon>
+        <h1>Frequently asked questions</h1>
+        <p>Answers to what buyers and sellers ask us most often.</p>
+    </div>
+
+    <nx-accordion>
+        @for (faq of faqs; track faq.q) {
+            <nx-accordion-item>
+                <nx-accordion-header>{{ faq.q }}</nx-accordion-header>
+                <nx-accordion-content>{{ faq.a }}</nx-accordion-content>
+            </nx-accordion-item>
+        }
+    </nx-accordion>
+
+    <div class="refaq-cta">
+        <h2>Still have questions?</h2>
+        <p>Reach out and an agent will get back to you within one business day.</p>
+        <nx-button variant="primary" [routerLink]="'/real-estate-website/contact'">Contact us</nx-button>
+    </div>
+
+</ng-template>

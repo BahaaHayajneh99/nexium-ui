@@ -1,0 +1,121 @@
+<div class="ecom-container ecom-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="ecom-locked-wrapper">
+            <div class="ecom-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="ecom-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full E-Commerce Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="ecom-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <h1 class="eshop-title">Shop all products</h1>
+    <p class="ecom-muted eshop-count">Showing {{ filteredProducts().length }} products</p>
+
+    <div class="eshop-layout">
+
+        <aside class="eshop-sidebar">
+
+            <div class="eshop-filter-group">
+                <h3>Categories</h3>
+                <div class="eshop-chip-row">
+                    @for (category of categories; track category) {
+                        <nx-chip
+                            [variant]="shopCategory() === category ? 'primary' : 'secondary'"
+                            [selected]="shopCategory() === category"
+                            (click)="selectCategory(category)">
+                            {{ category }}
+                        </nx-chip>
+                    }
+                </div>
+            </div>
+
+            <div class="eshop-filter-group">
+                <h3>Price</h3>
+                <div class="eshop-chip-row">
+                    @for (band of priceBands; track band.label) {
+                        <nx-chip
+                            [variant]="priceFilter() === band.label ? 'primary' : 'secondary'"
+                            [selected]="priceFilter() === band.label"
+                            (click)="togglePriceFilter(band.label)">
+                            {{ band.label }}
+                        </nx-chip>
+                    }
+                </div>
+            </div>
+
+            <nx-button variant="text" size="small" (click)="clearFilters()">Clear filters</nx-button>
+
+        </aside>
+
+        <div class="eshop-main">
+
+            <div class="eshop-sort-row">
+                <span class="ecom-muted">Sort by</span>
+                <div class="eshop-chip-row">
+                    @for (option of sortOptions; track option.key) {
+                        <nx-chip
+                            [variant]="sortBy() === option.key ? 'primary' : 'secondary'"
+                            [selected]="sortBy() === option.key"
+                            (click)="setSort(option.key)">
+                            {{ option.label }}
+                        </nx-chip>
+                    }
+                </div>
+            </div>
+
+            @if (filteredProducts().length === 0) {
+                <div class="eshop-empty-state">
+                    <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+                    <p>No products match your filters.</p>
+                    <nx-button variant="primary" size="small" (click)="clearFilters()">Clear filters</nx-button>
+                </div>
+            } @else {
+                <div class="ecom-product-grid">
+                    @for (product of filteredProducts(); track product.id) {
+                        <div class="ecom-product-card">
+                            <div class="ecom-product-media" [style.background]="product.swatch">
+                                <img class="ecom-product-media-img" [src]="product.image" [alt]="product.name" loading="lazy">
+                                @if (product.badge) {
+                                    <nx-badge [variant]="badgeVariant(product.badge)" class="ecom-product-badge">{{ product.badge }}</nx-badge>
+                                }
+                                <button type="button" class="ecom-product-wishlist" title="Add to wishlist">
+                                    <nx-icon icon="nx-heart" variant="svg" [size]="14"></nx-icon>
+                                </button>
+                            </div>
+                            <div class="ecom-product-body">
+                                <div class="ecom-product-category">{{ product.category }}</div>
+                                <a class="ecom-product-name" [routerLink]="'/ecommerce-website/product'">{{ product.name }}</a>
+                                <nx-rating [value]="product.rating" [readonly]="true"></nx-rating>
+                                <div class="ecom-product-price-row">
+                                    <span class="ecom-product-price">${{ product.price }}</span>
+                                    @if (product.compareAtPrice) {
+                                        <span class="ecom-product-price-compare">${{ product.compareAtPrice }}</span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="ecom-product-footer">
+                                <nx-button variant="primary" [fullWidth]="true" size="small">Add to cart</nx-button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</ng-template>

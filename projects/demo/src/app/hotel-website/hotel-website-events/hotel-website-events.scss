@@ -1,0 +1,115 @@
+@import '../hotel-shared';
+
+.hevt-hero {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto var(--nx-spacing-xxl, 48px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.hevt-space-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.hevt-space-card {
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    overflow: hidden;
+    background: var(--shell-surface);
+}
+
+.hevt-space-media img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.hevt-space-body {
+    padding: var(--nx-spacing-md, 16px);
+
+    h3 {
+        margin: 0;
+        font-size: var(--nx-font-size-md, 16px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: var(--nx-spacing-sm, 8px) 0 0;
+        font-size: var(--nx-font-size-sm, 14px);
+    }
+
+    nx-icon {
+        color: var(--shell-text-muted);
+    }
+}
+
+.hevt-inquiry-section {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.hevt-inquiry-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.hevt-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.hevt-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--nx-spacing-lg, 24px);
+
+    @media (max-width: 560px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.hevt-select-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .hevt-select-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--shell-text);
+    }
+
+    input {
+        padding: 8px 12px;
+        border: 1px solid var(--shell-border);
+        border-radius: 4px;
+        background-color: var(--shell-surface);
+        color: var(--shell-text);
+        font-size: 14px;
+        font-family: inherit;
+        outline: none;
+        transition: border-color .2s ease;
+
+        &:focus {
+            border-color: var(--shell-primary);
+        }
+    }
+}

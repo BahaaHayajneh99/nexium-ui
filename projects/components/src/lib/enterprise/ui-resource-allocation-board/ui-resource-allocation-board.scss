@@ -1,0 +1,110 @@
+.nx-rab-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+}
+
+.nx-rab-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.nx-rab-corner,
+.nx-rab-slot-header {
+    padding: 10px 12px;
+    text-align: left;
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    border-bottom: 1px solid var(--shell-border);
+    white-space: nowrap;
+}
+
+.nx-rab-slot-header {
+    text-align: center;
+    min-width: 140px;
+}
+
+.nx-rab-person-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background-color: var(--shell-surface);
+    border-bottom: 1px solid var(--shell-border);
+    border-right: 1px solid var(--shell-border);
+    white-space: nowrap;
+    text-align: left;
+}
+
+.nx-rab-person-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-rab-cell {
+    position: relative;
+    vertical-align: top;
+    padding: 8px;
+    border-bottom: 1px solid var(--shell-border);
+    border-left: 1px solid var(--shell-border);
+    cursor: pointer;
+    min-width: 140px;
+}
+
+.nx-rab-cell:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .03));
+}
+
+.nx-rab-cell.conflict {
+    border-left: 3px solid var(--nx-color-danger, #e74c3c);
+    background-color: rgba(231, 76, 60, .05);
+}
+
+.nx-rab-conflict-icon {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+
+.nx-rab-chip-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 24px;
+}
+
+.nx-rab-chip {
+    display: block;
+    width: 100%;
+    padding: 4px 8px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.nx-rab-chip:hover {
+    opacity: .85;
+}
+
+.nx-rab-cell-empty-hint {
+    display: block;
+}
+
+.nx-rab-empty-state {
+    padding: 24px 12px;
+    text-align: center;
+    color: var(--shell-text-secondary);
+}

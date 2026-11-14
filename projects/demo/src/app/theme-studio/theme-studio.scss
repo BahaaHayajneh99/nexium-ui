@@ -1,0 +1,245 @@
+.theme-studio-presets {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+}
+
+.theme-studio-presets-label {
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text-secondary);
+    margin-right: var(--nx-spacing-xs, 4px);
+}
+
+.theme-studio-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--nx-spacing-xs, 4px);
+    padding: 6px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-round, 999px);
+    background: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: var(--nx-font-size-sm, 14px);
+    cursor: pointer;
+    transition: all var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        border-color: var(--shell-primary);
+        color: var(--shell-primary);
+    }
+}
+
+.theme-studio-chip-reset {
+    color: var(--shell-text-secondary);
+}
+
+.theme-studio-chip-save {
+    border-style: dashed;
+    color: var(--shell-primary);
+    border-color: var(--shell-primary);
+}
+
+.theme-studio-editor-title {
+    font-size: var(--nx-font-size-md, 16px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+    margin: 0 0 var(--nx-spacing-sm, 8px);
+}
+
+.theme-studio-layout {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--nx-spacing-xl, 32px);
+    align-items: start;
+
+    @media (max-width: 960px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.theme-studio-editors {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-xl, 32px);
+    min-width: 0;
+}
+
+.theme-studio-editor-block {
+    padding: var(--nx-spacing-md, 16px);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+}
+
+.theme-studio-preview-column {
+    min-width: 0;
+}
+
+.theme-studio-preview-sticky {
+    position: sticky;
+    top: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-md, 16px);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+}
+
+/*
+ * The preview box below is a sandbox: every variable it uses is declared as an INLINE style on
+ * `.theme-studio-preview` itself (see the template), so it is scoped to this one element and its
+ * descendants only. It intentionally reuses global-looking token names (--shell-primary,
+ * --nx-radius-md) so the sample markup can look identical to real site components, but because
+ * the values are set inline here - never on :root or any shell element - editing the studio can
+ * never leak out and change the rest of the demo site's chrome.
+ */
+.theme-studio-preview {
+    display: flex;
+    justify-content: center;
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-md, 8px);
+    background: repeating-conic-gradient(
+        var(--shell-surface-hover) 0% 25%,
+        var(--shell-surface) 0% 50%
+    ) 50% / 20px 20px;
+}
+
+.theme-studio-preview-card {
+    width: 100%;
+    max-width: 320px;
+    background: #ffffff;
+    color: #1a1a1a;
+    box-shadow: var(--nx-theme-shadow);
+    border: var(--nx-theme-border);
+    border-radius: var(--nx-theme-border-radius);
+    padding: var(--nx-theme-padding);
+    margin: var(--nx-theme-margin);
+}
+
+.theme-studio-preview-heading {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.theme-studio-preview-text {
+    margin: 0 0 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4b5563;
+}
+
+.theme-studio-preview-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.theme-studio-preview-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--nx-radius-md, 8px);
+    background: var(--shell-primary);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: default;
+}
+
+.theme-studio-preview-tag {
+    padding: 3px 10px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-md, 8px);
+    color: var(--shell-primary);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.theme-studio-preview-input {
+    display: block;
+    width: 100%;
+}
+
+.theme-studio-my-themes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-top: var(--nx-spacing-sm, 8px);
+}
+
+.theme-studio-saved-chip {
+    padding: 0;
+    overflow: hidden;
+}
+
+.theme-studio-saved-chip-name {
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    padding: 6px 4px 6px 10px;
+    cursor: pointer;
+}
+
+.theme-studio-saved-chip-delete {
+    border: none;
+    background: transparent;
+    color: var(--shell-text-muted);
+    font-size: 14px;
+    line-height: 1;
+    padding: 6px 10px 6px 4px;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--danger-color, #e34948);
+    }
+}
+
+.theme-studio-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-top: var(--nx-spacing-sm, 8px);
+}
+
+.theme-studio-action-button {
+    padding: 8px 16px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-md, 8px);
+    background: var(--shell-primary);
+    color: #ffffff;
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    cursor: pointer;
+    transition: all var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.theme-studio-action-button-ghost {
+    background: transparent;
+    color: var(--shell-text-secondary);
+    border-color: var(--shell-border);
+
+    &:hover {
+        color: var(--shell-primary);
+        border-color: var(--shell-primary);
+        opacity: 1;
+    }
+}
+
+.theme-studio-hidden-input {
+    display: none;
+}
+
+.theme-studio-import-error {
+    margin-top: var(--nx-spacing-sm, 8px);
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--danger-color, #e34948);
+}

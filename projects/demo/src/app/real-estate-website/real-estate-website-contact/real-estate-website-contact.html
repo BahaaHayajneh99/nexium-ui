@@ -1,0 +1,65 @@
+<div class="realest-container realest-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="realest-locked-wrapper">
+            <div class="realest-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="realest-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Real Estate Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="realest-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="recontact-hero">
+        <h1>Get in touch</h1>
+        <p>Buying, selling, or renting - tell us what you need and an agent will reach out shortly.</p>
+    </div>
+
+    <div class="recontact-layout">
+        <div class="recontact-form">
+            <nx-input label="Name" placeholder="Jane Doe" [isRequired]="true"></nx-input>
+            <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+            <nx-input label="Phone" placeholder="(555) 555-0100"></nx-input>
+            <nx-textarea label="Message" [rows]="6" placeholder="How can we help?"></nx-textarea>
+
+            <nx-button variant="primary" [fullWidth]="true">Send message</nx-button>
+        </div>
+
+        <div class="recontact-info">
+            <nx-card variant="outlined" class="realest-card-pad">
+                @for (row of infoRows; track row.text) {
+                    <div class="recontact-info-row">
+                        <nx-icon [icon]="row.icon" variant="svg" [size]="18"></nx-icon>
+                        <span>{{ row.text }}</span>
+                    </div>
+                }
+            </nx-card>
+        </div>
+    </div>
+
+    <div class="realest-section-heading recontact-faq-heading">
+        <h2>Frequently asked questions</h2>
+        <p>Can't find what you're looking for? Reach out using the form above.</p>
+    </div>
+
+    <nx-accordion>
+        @for (faq of faqs; track faq.q) {
+            <nx-accordion-item>
+                <nx-accordion-header>{{ faq.q }}</nx-accordion-header>
+                <nx-accordion-content>{{ faq.a }}</nx-accordion-content>
+            </nx-accordion-item>
+        }
+    </nx-accordion>
+
+</ng-template>

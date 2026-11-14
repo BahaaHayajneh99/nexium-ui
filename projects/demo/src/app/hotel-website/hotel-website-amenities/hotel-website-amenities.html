@@ -1,0 +1,46 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="hotel-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="hamenity-hero">
+        <h1>Hotel Amenities</h1>
+        <p>Every detail at The Marlow is designed to make your stay feel effortless, from sunrise swims to late-night room service.</p>
+    </div>
+
+    <div class="hamenity-rows">
+        @for (amenity of amenities; track amenity.title; let i = $index) {
+            <div class="hamenity-row" [class.reverse]="i % 2 === 1">
+                <div class="hamenity-row-media">
+                    <img [src]="amenity.image" [alt]="amenity.title" loading="lazy">
+                </div>
+                <div class="hamenity-row-content">
+                    <div class="hamenity-row-icon">
+                        <nx-icon [icon]="amenity.icon" variant="svg" [size]="24"></nx-icon>
+                    </div>
+                    <h2>{{ amenity.title }}</h2>
+                    <p>{{ amenity.description }}</p>
+                </div>
+            </div>
+        }
+    </div>
+
+</ng-template>

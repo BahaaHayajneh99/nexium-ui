@@ -1,0 +1,133 @@
+<section class="shome-hero">
+    <div class="saas-container shome-hero-inner">
+        <h1 class="shome-hero-title">Analytics that actually gets read.</h1>
+        <p class="shome-hero-subtitle">
+            Nimbus turns raw product and revenue data into live dashboards your whole team opens every day -
+            no SQL, no weekly PDF, no waiting on an analyst.
+        </p>
+        <div class="shome-hero-actions">
+            <nx-button variant="primary" size="large" [routerLink]="'/saas-website/signup'">Start free trial</nx-button>
+            <nx-button variant="outline" size="large" [routerLink]="'/saas-website/dashboard'">View live demo</nx-button>
+        </div>
+    </div>
+</section>
+
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <section class="shome-logos">
+        <p class="saas-muted shome-logos-label">Trusted by teams at</p>
+        <nx-marquee [speed]="40" [pauseOnHover]="true" [gap]="48">
+            @for (logo of customerLogos; track logo) {
+                <span class="shome-logo-name">{{ logo }}</span>
+            }
+        </nx-marquee>
+    </section>
+
+    <section class="saas-section">
+        <div class="saas-section-heading">
+            <h2>Everything you need to make data a habit</h2>
+            <p>From real-time dashboards to enterprise-grade security, built for teams of every size.</p>
+        </div>
+        <div class="shome-feature-grid">
+            @for (feature of featuredFeatures; track feature.title) {
+                <div class="saas-card shome-feature-card">
+                    <nx-icon [icon]="feature.icon" variant="svg" [size]="24"></nx-icon>
+                    <h3>{{ feature.title }}</h3>
+                    <p>{{ feature.description }}</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="shome-screenshot-section">
+        <div class="shome-screenshot-text">
+            <h2>See your whole business in one view</h2>
+            <p>
+                Drag in a metric, pin it next to the ones it affects, and share the whole board with a link - no
+                exports, no screenshots pasted into a deck that's already out of date by Friday.
+            </p>
+            <nx-button variant="primary" [routerLink]="'/saas-website/dashboard'">Explore the dashboard</nx-button>
+        </div>
+        <div class="shome-screenshot-panel">
+            <div class="shome-screenshot-bar">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="shome-screenshot-body">
+                <div class="shome-screenshot-tile shome-screenshot-tile-tall"></div>
+                <div class="shome-screenshot-tile"></div>
+                <div class="shome-screenshot-tile"></div>
+                <div class="shome-screenshot-tile shome-screenshot-tile-wide"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="saas-section">
+        <div class="saas-section-heading">
+            <h2>Loved by data-driven teams</h2>
+            <p>Real feedback from the people who stare at these dashboards every day.</p>
+        </div>
+        <div class="shome-testimonial-grid">
+            @for (t of testimonials; track t.name) {
+                <div class="saas-card shome-testimonial-card">
+                    <img class="saas-avatar-photo" [src]="t.avatar" [alt]="t.name">
+                    <div class="shome-testimonial-name">{{ t.name }}</div>
+                    <div class="shome-testimonial-role">{{ t.role }}, {{ t.company }}</div>
+                    <p class="shome-testimonial-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="saas-section">
+        <div class="saas-section-heading">
+            <h2>Simple, transparent pricing</h2>
+            <p>Start free for 14 days. No credit card required.</p>
+        </div>
+        <div class="shome-pricing-teaser-grid">
+            @for (plan of pricingPlans; track plan.name) {
+                <div class="saas-card shome-pricing-teaser-card" [class.highlighted]="plan.highlighted">
+                    @if (plan.highlighted) {
+                        <span class="shome-pricing-teaser-badge">Most popular</span>
+                    }
+                    <h3>{{ plan.name }}</h3>
+                    <div class="shome-pricing-teaser-price">
+                        @if (plan.price === 'Custom') {
+                            <span class="shome-pricing-teaser-amount">Custom</span>
+                        } @else {
+                            <span class="shome-pricing-teaser-amount">${{ plan.price }}</span>
+                            <span class="saas-muted">{{ plan.period }}</span>
+                        }
+                    </div>
+                    <p class="saas-muted">{{ plan.description }}</p>
+                </div>
+            }
+        </div>
+        <div class="shome-pricing-teaser-cta">
+            <nx-button variant="primary" size="large" [routerLink]="'/saas-website/pricing'">See full plan details</nx-button>
+        </div>
+    </section>
+
+    <section class="shome-final-cta">
+        <h2>Ready to stop guessing?</h2>
+        <p>Start your free 14-day trial today - no credit card required.</p>
+        <nx-button variant="primary" size="large" [routerLink]="'/saas-website/signup'">Start free trial</nx-button>
+    </section>
+
+</ng-template>

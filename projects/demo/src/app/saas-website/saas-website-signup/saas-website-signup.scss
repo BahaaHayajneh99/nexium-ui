@@ -1,0 +1,140 @@
+@import '../saas-shared';
+
+.saas-auth-page {
+    min-height: calc(100vh - 160px);
+}
+
+.saas-auth-locked {
+    min-height: calc(100vh - 160px);
+}
+
+.saas-auth-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 160px);
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.saas-auth-marketing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--nx-spacing-xxl, 48px);
+    padding: var(--nx-spacing-xxl, 48px);
+    color: #ffffff;
+    background:
+        linear-gradient(135deg, rgba(31, 58, 95, .88) 0%, rgba(21, 39, 74, .92) 100%),
+        url('https://picsum.photos/seed/nx-saas-signup/900/1200') center / cover no-repeat;
+
+    @media (max-width: 900px) {
+        padding: var(--nx-spacing-xl, 32px);
+    }
+}
+
+.saas-auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+}
+
+.saas-auth-perks {
+    max-width: 480px;
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-lg, 24px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        line-height: 1.4;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--nx-spacing-md, 16px);
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: var(--nx-font-size-sm, 14px);
+    }
+
+    nx-icon {
+        color: #f4a261;
+        flex-shrink: 0;
+    }
+}
+
+.saas-auth-form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--nx-spacing-xxl, 48px);
+
+    @media (max-width: 900px) {
+        padding: var(--nx-spacing-xl, 32px);
+    }
+}
+
+.saas-auth-form {
+    width: 100%;
+    max-width: 380px;
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-xl, 32px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+}
+
+.saas-auth-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.saas-auth-name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.saas-auth-social-row {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+
+    nx-button {
+        flex: 1;
+    }
+
+    nx-icon {
+        margin-right: 6px;
+    }
+}
+
+.saas-auth-footer-line {
+    margin: var(--nx-spacing-sm, 8px) 0 0;
+    text-align: center;
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+
+    a {
+        color: var(--shell-primary);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

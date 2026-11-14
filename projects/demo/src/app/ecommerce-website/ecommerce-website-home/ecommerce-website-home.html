@@ -1,0 +1,160 @@
+<section class="ehome-hero">
+    <div class="ecom-container ehome-hero-inner">
+        <h1 class="ehome-hero-title">Everyday essentials,<br>thoughtfully made</h1>
+        <p class="ehome-hero-subtitle">
+            Thoughtfully designed goods for your everyday life - from tech to home to wardrobe staples, all curated in one place.
+        </p>
+        <div class="ehome-hero-actions">
+            <nx-button variant="primary" size="large" [routerLink]="'/ecommerce-website/shop'">Shop now</nx-button>
+            <nx-button variant="outline" size="large">View deals</nx-button>
+        </div>
+    </div>
+</section>
+
+<div class="ecom-container ecom-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="ecom-locked-wrapper">
+            <div class="ecom-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="ecom-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full E-Commerce Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <section class="ehome-categories">
+        <div class="ecom-section-heading">
+            <h2>Shop by category</h2>
+            <p>Find exactly what you're looking for, organized the way you shop.</p>
+        </div>
+        <div class="ehome-category-grid">
+            @for (cat of categoryTiles; track cat.name) {
+                <a class="ehome-category-tile" [routerLink]="'/ecommerce-website/shop'">
+                    <nx-icon [icon]="cat.icon" variant="svg" [size]="28"></nx-icon>
+                    <span>{{ cat.name }}</span>
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="ecom-section">
+        <div class="ecom-section-heading">
+            <h2>Featured Products</h2>
+            <p>Hand-picked favorites our customers keep coming back for.</p>
+        </div>
+        <div class="ecom-product-grid">
+            @for (product of featuredProducts; track product.id) {
+                <div class="ecom-product-card">
+                    <div class="ecom-product-media" [style.background]="product.swatch">
+                        <img class="ecom-product-media-img" [src]="product.image" [alt]="product.name" loading="lazy">
+                        @if (product.badge) {
+                            <nx-badge [variant]="badgeVariant(product.badge)" class="ecom-product-badge">{{ product.badge }}</nx-badge>
+                        }
+                        <button type="button" class="ecom-product-wishlist" title="Add to wishlist">
+                            <nx-icon icon="nx-heart" variant="svg" [size]="14"></nx-icon>
+                        </button>
+                    </div>
+                    <div class="ecom-product-body">
+                        <div class="ecom-product-category">{{ product.category }}</div>
+                        <a class="ecom-product-name" [routerLink]="'/ecommerce-website/product'">{{ product.name }}</a>
+                        <nx-rating [value]="product.rating" [readonly]="true"></nx-rating>
+                        <div class="ecom-product-price-row">
+                            <span class="ecom-product-price">${{ product.price }}</span>
+                            @if (product.compareAtPrice) {
+                                <span class="ecom-product-price-compare">${{ product.compareAtPrice }}</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="ecom-product-footer">
+                        <nx-button variant="primary" [fullWidth]="true" size="small">Add to cart</nx-button>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="ehome-promo-row">
+        <div class="ehome-promo-card ehome-promo-electronics">
+            <h3>Up to 30% off Electronics</h3>
+            <p>Limited-time deals on headphones, speakers, and smart gear.</p>
+            <nx-button variant="primary" [routerLink]="'/ecommerce-website/shop'">Shop deals</nx-button>
+        </div>
+        <div class="ehome-promo-card ehome-promo-home">
+            <h3>New arrivals in Home &amp; Living</h3>
+            <p>Refresh your space with our latest pieces, just landed.</p>
+            <nx-button variant="primary" [routerLink]="'/ecommerce-website/shop'">Explore</nx-button>
+        </div>
+    </section>
+
+    <section class="ecom-section">
+        <div class="ecom-section-heading">
+            <h2>New Arrivals</h2>
+            <p>Fresh off the shelves and ready to ship.</p>
+        </div>
+        <div class="ecom-product-grid">
+            @for (product of newArrivals; track product.id) {
+                <div class="ecom-product-card">
+                    <div class="ecom-product-media" [style.background]="product.swatch">
+                        <img class="ecom-product-media-img" [src]="product.image" [alt]="product.name" loading="lazy">
+                        @if (product.badge) {
+                            <nx-badge [variant]="badgeVariant(product.badge)" class="ecom-product-badge">{{ product.badge }}</nx-badge>
+                        }
+                        <button type="button" class="ecom-product-wishlist" title="Add to wishlist">
+                            <nx-icon icon="nx-heart" variant="svg" [size]="14"></nx-icon>
+                        </button>
+                    </div>
+                    <div class="ecom-product-body">
+                        <div class="ecom-product-category">{{ product.category }}</div>
+                        <a class="ecom-product-name" [routerLink]="'/ecommerce-website/product'">{{ product.name }}</a>
+                        <nx-rating [value]="product.rating" [readonly]="true"></nx-rating>
+                        <div class="ecom-product-price-row">
+                            <span class="ecom-product-price">${{ product.price }}</span>
+                            @if (product.compareAtPrice) {
+                                <span class="ecom-product-price-compare">${{ product.compareAtPrice }}</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="ecom-product-footer">
+                        <nx-button variant="primary" [fullWidth]="true" size="small">Add to cart</nx-button>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="ecom-section">
+        <div class="ecom-section-heading">
+            <h2>What our customers say</h2>
+            <p>Real feedback from real shoppers.</p>
+        </div>
+        <div class="ehome-testimonial-grid">
+            @for (t of testimonials; track t.name) {
+                <div class="ehome-testimonial-card">
+                    <img class="ecom-avatar-photo" [src]="t.avatar" [alt]="t.name">
+                    <div class="ehome-testimonial-name">{{ t.name }}</div>
+                    <div class="ehome-testimonial-role">{{ t.role }}</div>
+                    <nx-rating [value]="t.rating" [readonly]="true"></nx-rating>
+                    <p class="ehome-testimonial-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="ehome-trust-row">
+        @for (badge of trustBadges; track badge.label) {
+            <div class="ehome-trust-item">
+                <nx-icon [icon]="badge.icon" variant="svg" [size]="20"></nx-icon>
+                <span>{{ badge.label }}</span>
+            </div>
+        }
+    </section>
+
+</ng-template>

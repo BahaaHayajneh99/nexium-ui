@@ -1,0 +1,79 @@
+<div class="resto-auth-page">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="resto-locked-wrapper resto-auth-locked">
+      <div class="resto-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="resto-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full Restaurant Website template for $45</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+  <div class="resto-auth-layout">
+    <div class="resto-auth-marketing">
+      <div class="resto-auth-brand">
+        <nx-icon icon="nx-fire" variant="svg" [size]="20"></nx-icon>
+        Olive &amp; Oak
+      </div>
+
+      <div class="resto-auth-perks">
+        <h2>Join the Olive &amp; Oak table</h2>
+        <ul>
+          @for (perk of perks; track perk.text) {
+            <li>
+              <nx-icon [icon]="perk.icon" variant="svg" [size]="18"></nx-icon>
+              <span>{{ perk.text }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="resto-auth-form-panel">
+      <div class="resto-auth-form">
+        <h1>Create your account</h1>
+
+        <div class="resto-auth-fields">
+          <div class="resto-auth-name-row">
+            <nx-input label="First name" placeholder="Jane" [isRequired]="true"></nx-input>
+            <nx-input label="Last name" placeholder="Doe" [isRequired]="true"></nx-input>
+          </div>
+          <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+          <nx-input label="Password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+          <nx-input label="Confirm password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+
+          <nx-checkbox
+            label="I agree to the Terms of Service and Privacy Policy"
+            [checked]="agreedToTerms()"
+            (checkedChange)="agreedToTerms.set($event)"></nx-checkbox>
+
+          <nx-button variant="primary" [fullWidth]="true">Create account</nx-button>
+
+          <nx-divider label="or continue with"></nx-divider>
+
+          <div class="resto-auth-social-row">
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Google
+            </nx-button>
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Apple
+            </nx-button>
+          </div>
+
+          <p class="resto-auth-footer-line">
+            Already have an account? <a [routerLink]="'/restaurant-website/login'">Log in</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

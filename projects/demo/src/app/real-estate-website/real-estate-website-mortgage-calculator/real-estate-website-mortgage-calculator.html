@@ -1,0 +1,81 @@
+<div class="realest-container realest-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="realest-locked-wrapper">
+            <div class="realest-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="realest-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Real Estate Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="realest-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="remc-heading">
+        <h1>Mortgage calculator</h1>
+        <p class="realest-muted">Estimate your monthly payment before you start touring homes.</p>
+    </div>
+
+    <div class="remc-layout">
+
+        <div class="remc-form">
+            <nx-input
+                label="Home price"
+                type="number"
+                [value]="homePrice().toString()"
+                (valueChange)="onHomePriceChange($event)"></nx-input>
+
+            <nx-input
+                label="Down payment (%)"
+                type="number"
+                [value]="downPaymentPercent().toString()"
+                (valueChange)="onDownPaymentChange($event)"></nx-input>
+
+            <nx-input
+                label="Interest rate (%)"
+                type="number"
+                [value]="interestRatePercent().toString()"
+                (valueChange)="onInterestRateChange($event)"></nx-input>
+
+            <nx-input
+                label="Loan term (years)"
+                type="number"
+                [value]="loanTermYears().toString()"
+                (valueChange)="onLoanTermChange($event)"></nx-input>
+
+            <div class="realest-flex-between remc-down-row">
+                <span class="realest-muted">Down payment amount</span>
+                <span>${{ round(downPaymentAmount()) | number }}</span>
+            </div>
+        </div>
+
+        <div class="remc-result">
+            <div class="remc-result-heading">Estimated monthly payment</div>
+            <div class="remc-result-value">${{ round(monthlyPayment()) | number }}<span>/mo</span></div>
+
+            <div class="remc-result-stats">
+                <nx-statistic label="Loan Amount" [value]="round(loanPrincipal()).toLocaleString()" prefix="$"></nx-statistic>
+                <nx-statistic label="Total Interest" [value]="round(totalInterest()).toLocaleString()" prefix="$"></nx-statistic>
+                <nx-statistic label="Total Paid" [value]="round(totalPaid()).toLocaleString()" prefix="$"></nx-statistic>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="remc-cta">
+        <h2>Ready to get pre-approved?</h2>
+        <p>Talk to one of our agents about financing options and next steps.</p>
+        <nx-button variant="primary" [routerLink]="'/real-estate-website/contact'">Contact us</nx-button>
+    </div>
+
+</ng-template>

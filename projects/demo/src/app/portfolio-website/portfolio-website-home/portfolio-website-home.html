@@ -1,0 +1,101 @@
+<section class="phome-hero">
+    <div class="port-container phome-hero-inner">
+        <h1 class="phome-hero-title">Design that<br>moves the needle</h1>
+        <p class="phome-hero-subtitle">
+            Glint Studio is a branding, web, and product design agency for teams who need their next launch to actually perform - not just look good in a deck.
+        </p>
+        <div class="phome-hero-actions">
+            <nx-button variant="primary" size="large" [routerLink]="'/portfolio-website/work'">See our work</nx-button>
+            <nx-button variant="outline" size="large" [routerLink]="'/portfolio-website/contact'">Start a project</nx-button>
+        </div>
+    </div>
+</section>
+
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <section class="port-section">
+        <div class="port-section-heading">
+            <h2>What we do</h2>
+            <p>Six disciplines, one studio - no handoffs between agencies required.</p>
+        </div>
+        <div class="phome-services-grid">
+            @for (service of services; track service.title) {
+                <div class="phome-service-tile">
+                    <nx-icon [icon]="service.icon" variant="svg" [size]="24"></nx-icon>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="port-section">
+        <div class="port-section-heading">
+            <h2>Featured work</h2>
+            <p>A selection of recent projects across branding, web, product, and marketing.</p>
+        </div>
+        <div class="port-project-grid">
+            @for (project of featuredProjects; track project.slug) {
+                <a class="port-project-card" [routerLink]="['/portfolio-website/work', project.slug]">
+                    <div class="port-project-media">
+                        <img class="port-project-media-img" [src]="project.image" [alt]="project.title" loading="lazy">
+                    </div>
+                    <div class="port-project-caption">
+                        <span class="port-project-caption-category">{{ project.category }}</span>
+                        <span class="port-project-caption-title">{{ project.title }}</span>
+                        <span class="port-project-caption-client">{{ project.client }}</span>
+                    </div>
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="port-section phome-stats-section">
+        <div class="phome-stats-row">
+            @for (stat of stats; track stat.label) {
+                <nx-statistic [label]="stat.label" [value]="stat.value"></nx-statistic>
+            }
+        </div>
+    </section>
+
+    <section class="port-section">
+        <div class="port-section-heading">
+            <h2>What clients say</h2>
+            <p>Real feedback from the people we've shipped work for.</p>
+        </div>
+        <div class="phome-testimonial-grid">
+            @for (t of testimonials; track t.name) {
+                <div class="phome-testimonial-card">
+                    <img class="port-avatar-photo" [src]="t.avatar" [alt]="t.name">
+                    <p class="phome-testimonial-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+                    <div class="phome-testimonial-name">{{ t.name }}</div>
+                    <div class="phome-testimonial-role">{{ t.role }}, {{ t.company }}</div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="phome-cta-banner">
+        <h2>Have a project in mind?</h2>
+        <p>Tell us what you're building - we'll reply within one business day.</p>
+        <nx-button variant="primary" size="large" [routerLink]="'/portfolio-website/contact'">Start a project</nx-button>
+    </section>
+
+</ng-template>

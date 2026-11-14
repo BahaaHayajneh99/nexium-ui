@@ -10,6 +10,22 @@
             </app-demo-section>
 
             <app-demo-section
+                header="Try it yourself"
+                description="Paste or type any JSON below to see it rendered live as a collapsible tree - click a row with children to expand or collapse it."
+                [code]="tryItCode"
+                [tsCode]="tryItTs"
+                [hasSampleClass]="false">
+                <div class="json-viewer-try-it">
+                    <nx-textarea [(ngModel)]="jsonInput" [rows]="10" placeholder="Paste JSON here..."></nx-textarea>
+                    @if (jsonParseError) {
+                        <p class="json-viewer-try-it-error">Invalid JSON: {{ jsonParseError }}</p>
+                    } @else {
+                        <nx-json-viewer [value]="parsedJson"></nx-json-viewer>
+                    }
+                </div>
+            </app-demo-section>
+
+            <app-demo-section
                 header="Basic JSON Viewer"
                 description="The {{ commonService.appName }} JSON Viewer is a read-only, collapsible tree view of any JSON value - click a row with children to collapse or expand it."
                 [code]="basicCode"

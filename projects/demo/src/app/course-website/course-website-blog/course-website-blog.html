@@ -1,0 +1,50 @@
+<div class="course-container course-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="course-locked-wrapper">
+            <div class="course-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="course-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Course Website template for $55</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="course-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="cblog-hero">
+        <h1>The Pathwise Blog</h1>
+        <p>Practical advice on learning, career growth, and building real skills - from our instructors.</p>
+    </div>
+
+    <div class="cblog-grid">
+        @for (post of posts; track post.slug) {
+            <a class="cblog-card" [routerLink]="['/course-website/blog', post.slug]">
+                <div class="cblog-card-media">
+                    <img class="cblog-card-media-img" [src]="post.image" [alt]="post.title" loading="lazy">
+                    <span class="cblog-card-category">{{ post.category }}</span>
+                </div>
+                <div class="cblog-card-body">
+                    <div class="cblog-card-title">{{ post.title }}</div>
+                    <p class="course-muted cblog-card-excerpt">{{ post.excerpt }}</p>
+                    <div class="cblog-card-meta">
+                        <img class="cblog-card-avatar" [src]="post.authorAvatar" [alt]="post.author">
+                        <span class="course-muted">{{ post.author }}</span>
+                        <span class="course-muted">&middot;</span>
+                        <span class="course-muted">{{ post.readTime }}</span>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+
+</ng-template>

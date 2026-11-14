@@ -1,0 +1,8 @@
+{
+  "schematics": {
+    "ng-add": {
+      "description": "Adds NexiumUI to the application: registers the pre-compiled stylesheet in angular.json.",
+      "factory": "./ng-add/index.cjs#ngAdd"
+    }
+  }
+}

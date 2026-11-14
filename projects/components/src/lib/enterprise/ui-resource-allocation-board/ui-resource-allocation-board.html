@@ -1,0 +1,57 @@
+@if (licensed()) {
+    <div class="nx-rab-wrapper">
+        <table class="nx-rab-table">
+            <thead>
+                <tr>
+                    <th class="nx-rab-corner">Person</th>
+                    @for (slot of slots; track slot.id) {
+                        <th class="nx-rab-slot-header">{{ slot.label }}</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (person of people; track person.id) {
+                    <tr>
+                        <th class="nx-rab-person-cell">
+                            <nx-avatar [name]="person.name" [src]="person.avatarSrc" size="small" bordered></nx-avatar>
+                            <span class="nx-rab-person-name">{{ person.name }}</span>
+                        </th>
+                        @for (slot of slots; track slot.id) {
+                            <td
+                                class="nx-rab-cell"
+                                [class.conflict]="isOverAllocated(person, slot.id)"
+                                (click)="onCellClick(person.id, slot.id)">
+                                @if (isOverAllocated(person, slot.id)) {
+                                    <nx-icon
+                                        class="nx-rab-conflict-icon"
+                                        icon="nx-alert-triangle"
+                                        variant="svg"
+                                        [size]="12"
+                                        color="var(--nx-color-danger, #e74c3c)">
+                                    </nx-icon>
+                                }
+                                <div class="nx-rab-chip-stack">
+                                    @for (assignment of cellAssignments(person.id, slot.id); track assignment.id) {
+                                        <button
+                                            type="button"
+                                            class="nx-rab-chip"
+                                            [style.background-color]="chipColor(assignment)"
+                                            (click)="onAssignmentClick(assignment, $event)">
+                                            {{ assignment.projectName }}
+                                        </button>
+                                    } @empty {
+                                        <span class="nx-rab-cell-empty-hint"></span>
+                                    }
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                } @empty {
+                    <tr><td [attr.colspan]="slots.length + 1" class="nx-rab-empty-state">No people to show.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Resource Allocation Board"></nx-pro-locked>
+}

@@ -1,0 +1,214 @@
+@import '../hotel-shared';
+
+// ---- Hero -----------------------------------------------------------------
+
+.hhome-hero {
+    background:
+        linear-gradient(120deg, rgba(10, 16, 32, .82) 10%, rgba(10, 16, 32, .5) 60%, rgba(10, 16, 32, .25) 100%),
+        url('https://picsum.photos/seed/nx-marlow-hero/1600/800') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.hhome-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-lg, 24px);
+    max-width: 640px;
+}
+
+.hhome-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.hhome-hero-subtitle {
+    font-size: var(--nx-font-size-md, 16px);
+    opacity: .9;
+    margin: 0;
+}
+
+.hhome-search-widget {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--nx-spacing-md, 16px);
+    flex-wrap: wrap;
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    width: 100%;
+    max-width: 640px;
+
+    nx-date-range-picker {
+        flex: 1;
+        min-width: 220px;
+    }
+}
+
+.hhome-guest-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hhome-guest-label {
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.hhome-guest-stepper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    padding: 6px 10px;
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px;
+        height: 26px;
+        border: none;
+        border-radius: 50%;
+        background: var(--shell-surface-hover);
+        color: var(--shell-text);
+        cursor: pointer;
+
+        &:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.hhome-guest-value {
+    min-width: 18px;
+    text-align: center;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+// ---- Press mentions marquee --------------------------------------------------
+
+.hhome-press-strip {
+    background: var(--shell-surface);
+    border-bottom: 1px solid var(--shell-border);
+    padding: var(--nx-spacing-md, 16px) 0;
+}
+
+.hhome-press-item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    color: var(--shell-text-secondary);
+}
+
+// ---- Amenity preview row ----------------------------------------------------
+
+.hhome-amenity-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.hhome-amenity-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px) var(--nx-spacing-md, 16px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    text-decoration: none;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    text-align: center;
+    transition: transform .15s ease, box-shadow .15s ease;
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px -10px rgba(0, 0, 0, .2);
+    }
+}
+
+// ---- Testimonials -----------------------------------------------------------
+
+.hhome-testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.hhome-testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.hhome-testimonial-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.hhome-testimonial-location {
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-muted);
+    margin-bottom: 4px;
+}
+
+.hhome-testimonial-quote {
+    margin: var(--nx-spacing-xs, 4px) 0 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+// ---- Stats row --------------------------------------------------------------
+
+.hhome-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-xl, 32px) 0;
+    text-align: center;
+}
+
+// ---- CTA banner ---------------------------------------------------------------
+
+.hhome-cta-banner {
+    text-align: center;
+    padding: var(--nx-spacing-xxl, 48px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: linear-gradient(135deg, #3d5a80 0%, #293241 100%);
+    color: #ffffff;
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-lg, 24px);
+        opacity: .9;
+    }
+}

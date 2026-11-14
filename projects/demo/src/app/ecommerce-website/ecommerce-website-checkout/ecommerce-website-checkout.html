@@ -1,0 +1,151 @@
+<div class="ecom-container ecom-section">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="ecom-locked-wrapper">
+      <div class="ecom-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="ecom-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full E-Commerce Website template for $49</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+  <nx-breadcrumb
+    class="ecom-breadcrumb-row"
+    [items]="[{ label: 'Home' }, { label: 'Cart' }, { label: 'Checkout' }]"></nx-breadcrumb>
+
+  <h1 class="ecom-checkout-title">Checkout</h1>
+
+  <div class="ecom-checkout-steps">
+    @for (step of steps; track step; let i = $index) {
+      <div class="ecom-checkout-step" [class.active]="i === activeStepIndex">{{ step }}</div>
+    }
+  </div>
+
+  <div class="ecom-checkout-layout">
+    <div class="ecom-checkout-form">
+      <section class="ecom-checkout-section">
+        <h2>Contact information</h2>
+        <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+      </section>
+
+      <section class="ecom-checkout-section">
+        <h2>Shipping address</h2>
+        <div class="ecom-checkout-row">
+          <nx-input label="First name" placeholder="Jane" [isRequired]="true"></nx-input>
+          <nx-input label="Last name" placeholder="Doe" [isRequired]="true"></nx-input>
+        </div>
+        <nx-input label="Address" placeholder="123 Main Street" [isRequired]="true"></nx-input>
+        <nx-input label="Apartment, suite, etc. (optional)" placeholder="Apt 4B"></nx-input>
+        <div class="ecom-checkout-row ecom-checkout-row-3">
+          <nx-input label="City" placeholder="San Francisco" [isRequired]="true"></nx-input>
+          <label class="ecom-select-field">
+            <span class="ecom-select-label">State</span>
+            <select>
+              @for (state of states; track state) {
+                <option>{{ state }}</option>
+              }
+            </select>
+          </label>
+          <nx-input label="ZIP code" placeholder="94103" [isRequired]="true"></nx-input>
+        </div>
+        <label class="ecom-select-field">
+          <span class="ecom-select-label">Country</span>
+          <select>
+            @for (country of countries; track country) {
+              <option>{{ country }}</option>
+            }
+          </select>
+        </label>
+      </section>
+
+      <section class="ecom-checkout-section">
+        <h2>Payment method</h2>
+        <div class="ecom-payment-methods">
+          @for (method of paymentMethods; track method.id) {
+            <button
+              type="button"
+              class="ecom-payment-method-card"
+              [class.active]="paymentMethod() === method.id"
+              (click)="selectPaymentMethod(method.id)">
+              <nx-icon [icon]="method.icon" variant="svg" [size]="22"></nx-icon>
+              <span>{{ method.label }}</span>
+            </button>
+          }
+        </div>
+
+        @if (paymentMethod() === 'card') {
+          <div class="ecom-card-details">
+            <nx-input label="Card number" placeholder="1234 5678 9012 3456" [isRequired]="true"></nx-input>
+            <div class="ecom-checkout-row">
+              <nx-input label="Expiry" placeholder="MM/YY" [isRequired]="true"></nx-input>
+              <nx-input label="CVV" placeholder="123" [isRequired]="true"></nx-input>
+            </div>
+            <nx-input label="Name on card" placeholder="Jane Doe" [isRequired]="true"></nx-input>
+          </div>
+        }
+      </section>
+
+      <nx-checkbox
+        label="Billing address same as shipping"
+        [checked]="billingSameAsShipping()"
+        (checkedChange)="billingSameAsShipping.set($event)"></nx-checkbox>
+    </div>
+
+    <aside class="ecom-checkout-summary">
+      <nx-card variant="outlined">
+        <nx-card-header>
+          <nx-card-title>Order summary</nx-card-title>
+        </nx-card-header>
+        <nx-card-content>
+          <div class="ecom-summary-items">
+            @for (item of orderItems; track item.product.id) {
+              <div class="ecom-summary-item">
+                <span class="ecom-summary-item-name">{{ item.product.name }} &times; {{ item.qty }}</span>
+                <span class="ecom-summary-item-price">${{ item.product.price * item.qty }}</span>
+              </div>
+            }
+          </div>
+
+          <nx-divider></nx-divider>
+
+          <div class="ecom-summary-totals">
+            <div class="ecom-flex-between">
+              <span>Subtotal</span>
+              <span>${{ subtotal.toFixed(2) }}</span>
+            </div>
+            <div class="ecom-flex-between">
+              <span>Shipping</span>
+              <span>${{ shippingCost.toFixed(2) }}</span>
+            </div>
+            <div class="ecom-flex-between">
+              <span>Tax</span>
+              <span>${{ tax.toFixed(2) }}</span>
+            </div>
+            <div class="ecom-flex-between ecom-summary-total">
+              <span>Total</span>
+              <span>${{ total.toFixed(2) }}</span>
+            </div>
+          </div>
+        </nx-card-content>
+        <nx-card-footer>
+          <nx-button variant="primary" [fullWidth]="true">Place order</nx-button>
+          <div class="ecom-trust-badges">
+            @for (badge of trustBadges; track badge.label) {
+              <div class="ecom-trust-badge">
+                <nx-icon [icon]="badge.icon" variant="svg" [size]="16"></nx-icon>
+                <span>{{ badge.label }}</span>
+              </div>
+            }
+          </div>
+        </nx-card-footer>
+      </nx-card>
+    </aside>
+  </div>
+</ng-template>

@@ -1,0 +1,52 @@
+@import '../portfolio-shared';
+
+.pprocess-hero {
+    background: var(--shell-surface);
+    border-bottom: 1px solid var(--shell-border);
+    padding: var(--nx-spacing-xxl, 56px) 0;
+}
+
+.pprocess-hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: clamp(26px, 3.6vw, 36px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.pprocess-timeline-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.pprocess-cta {
+    text-align: center;
+    max-width: 720px;
+    margin: var(--nx-spacing-xxl, 48px) auto 0;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text-secondary);
+    }
+}

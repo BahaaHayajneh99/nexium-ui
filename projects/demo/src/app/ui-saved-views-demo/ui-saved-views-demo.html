@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Save, switch and manage views"
+                description="Pick a saved view to apply it, type a name and click Save to capture the current state as a new view, or use the inline rename/delete affordances on each row. {{ commonService.appName }}'s Saved Views is data-agnostic - it only manages the named list and emits events, the consumer owns capturing and applying the actual state."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px;">
+                    <nx-saved-views
+                        [views]="views"
+                        [activeViewId]="activeViewId"
+                        [currentState]="currentState"
+                        (viewSelected)="onViewSelected($event)"
+                        (viewSaved)="onViewSaved($event)"
+                        (viewDeleted)="onViewDeleted($event)"
+                        (viewRenamed)="onViewRenamed($event)">
+                    </nx-saved-views>
+
+                    @if (lastAction) {
+                        <p style="margin-top:12px; color:var(--shell-text-secondary); font-size:0.85rem;">
+                            {{ lastAction }}
+                        </p>
+                    }
+
+                    <pre style="margin-top:12px; padding:12px; background:var(--shell-surface); border:1px solid var(--shell-border); border-radius:8px; font-size:0.8rem; overflow:auto;">{{ currentState | json }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

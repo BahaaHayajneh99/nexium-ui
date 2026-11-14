@@ -80,9 +80,14 @@
                             <nx-icon class="nav-icon" [icon]="item.icon" variant="svg" [size]="18"></nx-icon>
                             {{ item.label }}
                         </span>
-                        @if (item.isNew) {
+                        @if (item.isNew || item.isPro) {
                             <span class="nav-link-badges">
-                                <nx-chip class="nav-badge-chip" variant="success" rounded>NEW</nx-chip>
+                                @if (item.isNew) {
+                                    <nx-chip class="nav-badge-chip" variant="success" rounded>NEW</nx-chip>
+                                }
+                                @if (item.isPro) {
+                                    <nx-chip class="nav-badge-chip" variant="warning" rounded>PRO</nx-chip>
+                                }
                             </span>
                         }
                     </a>

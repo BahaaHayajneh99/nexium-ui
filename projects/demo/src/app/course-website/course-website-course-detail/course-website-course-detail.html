@@ -1,0 +1,165 @@
+<div class="course-container course-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="course-locked-wrapper">
+            <div class="course-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="course-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Course Website template for $55</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    @if (course(); as c) {
+
+        <div class="course-breadcrumb-row">
+            <nx-breadcrumb [items]="breadcrumbItems()"></nx-breadcrumb>
+        </div>
+
+        <div class="cdetail-hero">
+            <div class="cdetail-hero-media">
+                <img [src]="c.image" [alt]="c.title">
+            </div>
+            <div class="cdetail-hero-info">
+                <div class="cdetail-tag-row">
+                    <nx-tag variant="solid">{{ c.category }}</nx-tag>
+                    <nx-tag variant="outline">{{ c.level }}</nx-tag>
+                </div>
+                <h1 class="cdetail-title">{{ c.title }}</h1>
+
+                <div class="cdetail-rating-row">
+                    <nx-rating [value]="c.rating" [readonly]="true"></nx-rating>
+                    <span class="course-muted">{{ c.rating }} ({{ c.reviewCount }} reviews)</span>
+                    <span class="course-muted">
+                        <nx-icon icon="nx-users" variant="svg" [size]="14"></nx-icon>
+                        {{ c.studentCount | number }} students
+                    </span>
+                </div>
+
+                <p class="cdetail-description">{{ c.description }}</p>
+
+                <div class="cdetail-price-row">
+                    <span class="cdetail-price">${{ c.price }}</span>
+                    @if (c.compareAtPrice) {
+                        <span class="course-card-price-compare">${{ c.compareAtPrice }}</span>
+                    }
+                </div>
+
+                <nx-button variant="primary" size="large" [routerLink]="'/course-website/signup'">Enroll now</nx-button>
+            </div>
+        </div>
+
+        <section class="course-section">
+            <div class="course-section-heading">
+                <h2>Course curriculum</h2>
+                <p>{{ c.modules.length }} modules - {{ lessonCount(c) }} lessons</p>
+            </div>
+
+            <nx-accordion>
+                @for (mod of c.modules; track mod.title) {
+                    <nx-accordion-item>
+                        <nx-accordion-header>{{ mod.title }} ({{ mod.lessons.length }} lessons)</nx-accordion-header>
+                        <nx-accordion-content>
+                            <ul class="cdetail-lesson-list">
+                                @for (lesson of mod.lessons; track lesson.title) {
+                                    <li class="course-flex-between cdetail-lesson-row">
+                                        <span>
+                                            <nx-icon icon="nx-monitor" variant="svg" [size]="14"></nx-icon>
+                                            {{ lesson.title }}
+                                        </span>
+                                        <span class="course-muted">{{ lesson.duration }}</span>
+                                    </li>
+                                }
+                            </ul>
+                        </nx-accordion-content>
+                    </nx-accordion-item>
+                }
+            </nx-accordion>
+        </section>
+
+        @if (instructor(); as inst) {
+            <section class="course-section">
+                <div class="course-section-heading">
+                    <h2>Your instructor</h2>
+                </div>
+                <div class="cdetail-instructor-card">
+                    <img class="cdetail-instructor-avatar" [src]="inst.avatar" [alt]="inst.name">
+                    <div class="cdetail-instructor-body">
+                        <div class="cdetail-instructor-name">{{ inst.name }}</div>
+                        <div class="course-muted cdetail-instructor-title">{{ inst.title }}</div>
+                        <p class="cdetail-instructor-bio">{{ inst.bio }}</p>
+                        <span class="course-muted cdetail-instructor-count">
+                            <nx-icon icon="nx-book" variant="svg" [size]="14"></nx-icon>
+                            {{ inst.courseCount }} courses
+                        </span>
+                    </div>
+                </div>
+            </section>
+        }
+
+        <section class="course-section">
+            <div class="course-section-heading">
+                <h2>Student reviews</h2>
+                <p>{{ c.reviewCount }} students have rated this course.</p>
+            </div>
+            <div class="cdetail-reviews-list">
+                @for (review of reviews; track review.name) {
+                    <div class="cdetail-review-row">
+                        <img class="course-avatar-photo" [src]="review.avatar" [alt]="review.name">
+                        <div class="cdetail-review-body">
+                            <div class="course-flex-between">
+                                <span class="cdetail-review-name">{{ review.name }}</span>
+                                <span class="course-muted cdetail-review-date">{{ review.date }}</span>
+                            </div>
+                            <nx-rating [value]="review.rating" [readonly]="true"></nx-rating>
+                            <p class="cdetail-review-text">{{ review.text }}</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <section class="course-section">
+            <div class="course-section-heading">
+                <h2>More courses</h2>
+                <p>Keep building your skills with these related courses.</p>
+            </div>
+            <div class="course-grid">
+                @for (related of moreCourses(); track related.slug) {
+                    <a class="course-card" [routerLink]="['/course-website/course', related.slug]">
+                        <div class="course-card-media">
+                            <img class="course-card-media-img" [src]="related.image" [alt]="related.title" loading="lazy">
+                            <span class="course-card-level-badge">{{ related.level }}</span>
+                        </div>
+                        <div class="course-card-body">
+                            <div class="course-card-category">{{ related.category }}</div>
+                            <div class="course-card-title">{{ related.title }}</div>
+                            <nx-rating [value]="related.rating" [readonly]="true"></nx-rating>
+                            <div class="course-card-price-row">
+                                <span class="course-card-price">${{ related.price }}</span>
+                                @if (related.compareAtPrice) {
+                                    <span class="course-card-price-compare">${{ related.compareAtPrice }}</span>
+                                }
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </section>
+
+    } @else {
+        <div class="cdetail-not-found">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>That course couldn't be found.</p>
+            <nx-button variant="primary" [routerLink]="'/course-website/courses'">Browse all courses</nx-button>
+        </div>
+    }
+
+</ng-template>

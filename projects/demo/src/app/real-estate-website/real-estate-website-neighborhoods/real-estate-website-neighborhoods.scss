@@ -1,0 +1,107 @@
+@import '../real-estate-shared';
+
+// ---- Hero ------------------------------------------------------------------
+
+.reneigh-hero {
+    background:
+        linear-gradient(120deg, rgba(12, 24, 20, .88) 10%, rgba(12, 24, 20, .55) 60%, rgba(12, 24, 20, .3) 100%),
+        url('https://picsum.photos/seed/nx-haven-neighborhoods/1600/700') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.reneigh-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-md, 16px);
+    max-width: 620px;
+}
+
+.reneigh-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.reneigh-hero-subtitle {
+    font-size: var(--nx-font-size-md, 16px);
+    opacity: .85;
+    margin: 0;
+}
+
+// ---- Grid --------------------------------------------------------------------
+
+.reneigh-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.reneigh-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.reneigh-media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.reneigh-media-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reneigh-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+}
+
+.reneigh-name {
+    margin: 0;
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.reneigh-description {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+.reneigh-stat-row {
+    font-size: var(--nx-font-size-sm, 13px);
+    padding-top: var(--nx-spacing-sm, 8px);
+    border-top: 1px solid var(--shell-border);
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--shell-text-secondary);
+    }
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}
+
+.reneigh-explore-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--shell-primary);
+    text-decoration: none;
+    font-weight: var(--nx-font-weight-semibold, 600);
+}

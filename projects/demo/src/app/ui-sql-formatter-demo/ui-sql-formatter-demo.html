@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="SQL Formatter"
+                description="{{ commonService.appName }} SQL Formatter - paste minified/raw SQL into the textarea and click 'Format' to apply a rule-based formatter (uppercases keywords, breaks clauses onto their own lines, indents AND/OR continuations and long SELECT column lists) with a one-click copy button on the output. The textarea below starts pre-filled with a messy multi-table join query. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-sql-formatter
+                    [sql]="sql"
+                    (formatted)="onFormatted($event)">
+                </nx-sql-formatter>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

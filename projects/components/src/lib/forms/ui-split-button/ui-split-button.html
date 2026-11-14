@@ -1,0 +1,35 @@
+<div class="nx-split-button" [ngClass]="buttonClasses">
+
+    <button
+        type="button"
+        class="nx-split-button-main"
+        [disabled]="disabled"
+        (click)="onPrimaryClick()">
+        {{ label }}
+    </button>
+
+    <button
+        type="button"
+        class="nx-split-button-caret"
+        [disabled]="disabled"
+        [attr.aria-expanded]="isOpen()"
+        aria-haspopup="menu"
+        (click)="toggleMenu()">
+        <nx-icon icon="nx-chevron-down" variant="svg" [size]="14"></nx-icon>
+    </button>
+
+    @if (isOpen()) {
+        <ul class="nx-split-button-menu" role="menu" (keydown.escape)="closeMenu()">
+            @for (action of actions; track action.value) {
+                <li
+                    role="menuitem"
+                    class="nx-split-button-menu-item"
+                    [class.disabled]="action.disabled"
+                    (click)="selectAction(action)">
+                    {{ action.label }}
+                </li>
+            }
+        </ul>
+    }
+
+</div>

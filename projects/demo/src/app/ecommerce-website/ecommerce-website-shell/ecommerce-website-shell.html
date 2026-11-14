@@ -1,0 +1,93 @@
+<div class="ecomw-shell">
+
+    @if (licensed()) {
+        <div class="ecomw-unlocked-bar">
+            <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+            You've unlocked the full E-Commerce Website template with your PRO license.
+        </div>
+    } @else {
+        <div class="ecomw-pro-bar">
+            <nx-icon icon="nx-lock" variant="svg" [size]="14"></nx-icon>
+            This is a NexiumUI <strong>PRO</strong> template - <strong>$49</strong>
+            <s>$89</s> one-time, included free with any PRO license.
+            <nx-button variant="primary" size="small" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+        </div>
+    }
+
+    <header class="ecomw-storefront-header">
+        <div class="ecomw-storefront-header-inner">
+            <a class="ecomw-brand" [routerLink]="'/ecommerce-website/home'">
+                <nx-icon icon="nx-shopping-cart" variant="svg" [size]="20"></nx-icon>
+                Fernway
+            </a>
+
+            <nav class="ecomw-storefront-nav">
+                @for (link of navLinks; track link.path) {
+                    <a [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+                }
+            </nav>
+
+            <div class="ecomw-storefront-actions">
+                <a class="ecomw-icon-link" [routerLink]="'/ecommerce-website/wishlist'" routerLinkActive="active" title="Wishlist">
+                    <nx-icon icon="nx-heart" variant="svg" [size]="18"></nx-icon>
+                </a>
+                <a class="ecomw-icon-link" [routerLink]="'/ecommerce-website/account'" routerLinkActive="active" title="My Account">
+                    <nx-icon icon="nx-user" variant="svg" [size]="18"></nx-icon>
+                </a>
+                <a class="ecomw-icon-link ecomw-cart-link" [routerLink]="'/ecommerce-website/cart'" routerLinkActive="active" title="Cart">
+                    <nx-icon icon="nx-shopping-cart" variant="svg" [size]="18"></nx-icon>
+                    <span class="ecomw-cart-count">{{ cartCount }}</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="ecomw-storefront-main">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="ecomw-storefront-footer">
+        <div class="ecomw-footer-inner">
+            <div class="ecomw-footer-newsletter">
+                <h3>Join our newsletter</h3>
+                <p>Get 10% off your first order plus early access to new drops.</p>
+                <div class="ecomw-footer-newsletter-row">
+                    <nx-input placeholder="you@example.com" type="email"></nx-input>
+                    <nx-button variant="primary">Subscribe</nx-button>
+                </div>
+            </div>
+
+            <div class="ecomw-footer-columns">
+                <div class="ecomw-footer-column">
+                    <h4>Shop</h4>
+                    <a [routerLink]="'/ecommerce-website/shop'">All products</a>
+                    <a [routerLink]="'/ecommerce-website/shop'">New arrivals</a>
+                    <a [routerLink]="'/ecommerce-website/shop'">Best sellers</a>
+                    <a [routerLink]="'/ecommerce-website/wishlist'">Wishlist</a>
+                </div>
+                <div class="ecomw-footer-column">
+                    <h4>Support</h4>
+                    <a [routerLink]="'/ecommerce-website/contact'">Contact us</a>
+                    <a [routerLink]="'/ecommerce-website/faq'">FAQs</a>
+                    <a [routerLink]="'/ecommerce-website/faq'">Shipping &amp; returns</a>
+                </div>
+                <div class="ecomw-footer-column">
+                    <h4>Account</h4>
+                    <a [routerLink]="'/ecommerce-website/login'">Log in</a>
+                    <a [routerLink]="'/ecommerce-website/signup'">Create account</a>
+                    <a [routerLink]="'/ecommerce-website/account'">My account</a>
+                </div>
+                <div class="ecomw-footer-column">
+                    <h4>Company</h4>
+                    <a [routerLink]="'/ecommerce-website/about'">About us</a>
+                    <a [routerLink]="'/ecommerce-website/blog'">Journal</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ecomw-footer-bottom">
+            &copy; 2026 Fernway. Built entirely with NexiumUI components.
+        </div>
+    </footer>
+
+</div>

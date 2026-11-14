@@ -1,0 +1,64 @@
+<div class="ecom-container ecom-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="ecom-locked-wrapper">
+            <div class="ecom-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="ecom-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full E-Commerce Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="ecom-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="efaq-hero">
+        <nx-icon icon="nx-help-circle" variant="svg" [size]="32"></nx-icon>
+        <h1>How can we help?</h1>
+        <p>Search our help center or browse frequently asked questions by topic.</p>
+        <div class="efaq-search">
+            <nx-icon icon="nx-search" variant="svg" [size]="16"></nx-icon>
+            <nx-input
+                placeholder="Search questions..."
+                [value]="searchTerm()"
+                (valueChange)="onSearchChange($event)"></nx-input>
+        </div>
+    </div>
+
+    @for (category of filteredCategories(); track category.category) {
+        <section class="efaq-category">
+            <div class="efaq-category-heading">
+                <nx-icon [icon]="category.icon" variant="svg" [size]="20"></nx-icon>
+                <h2>{{ category.category }}</h2>
+            </div>
+            <nx-accordion>
+                @for (faq of category.items; track faq.q) {
+                    <nx-accordion-item>
+                        <nx-accordion-header>{{ faq.q }}</nx-accordion-header>
+                        <nx-accordion-content>{{ faq.a }}</nx-accordion-content>
+                    </nx-accordion-item>
+                }
+            </nx-accordion>
+        </section>
+    }
+
+    @if (!filteredCategories().length) {
+        <p class="ecom-muted efaq-empty">No results match your search.</p>
+    }
+
+    <div class="efaq-cta">
+        <h2>Still have questions?</h2>
+        <p>Our support team is happy to help with anything not covered here.</p>
+        <nx-button variant="primary" [routerLink]="'/ecommerce-website/contact'">Contact us</nx-button>
+    </div>
+
+</ng-template>

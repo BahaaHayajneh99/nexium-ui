@@ -1,0 +1,75 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Menu"
+                description="A grid of menu item cards built from nx-card, nx-card-footer and nx-button."
+                [code]="menuCode"
+                [hasSampleClass]="false">
+
+                @for (category of categories; track category) {
+                    <h4 class="mt-2">{{ category }}</h4>
+                    <div style="--nx-grid-min-width: 240px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid mt-2">
+                        @for (item of itemsByCategory(category); track item.name) {
+                            <nx-card variant="outlined">
+                                <nx-card-content>
+                                    <div class="block-hero-media" style="height: 140px; margin-bottom: 1rem;">Image placeholder</div>
+                                    <div class="template-profile-name">{{ item.name }}</div>
+                                    <p>{{ item.description }}</p>
+                                    <strong>{{ '$' + item.price.toFixed(2) }}</strong>
+                                </nx-card-content>
+                                <nx-card-footer>
+                                    <nx-button variant="primary" size="small">Add to cart</nx-button>
+                                </nx-card-footer>
+                            </nx-card>
+                        }
+                    </div>
+                }
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Cart Summary"
+                description="A cart card with quantity steppers (nx-button pairs) and an order summary."
+                [code]="cartCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="outlined" class="template-card-wide">
+                    <nx-card-content>
+                        @for (item of cart; track item.name) {
+                            <div class="template-setting-row">
+                                <span>{{ item.name }}</span>
+                                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                    <nx-button variant="outline" size="small" (click)="decrement(item)">-</nx-button>
+                                    <span>{{ item.qty }}</span>
+                                    <nx-button variant="outline" size="small" (click)="increment(item)">+</nx-button>
+                                    <strong style="min-width: 70px; text-align: right;">{{ '$' + lineTotal(item).toFixed(2) }}</strong>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="template-setting-row">
+                            <span>Subtotal</span>
+                            <span>{{ '$' + subtotal.toFixed(2) }}</span>
+                        </div>
+                        <div class="template-setting-row">
+                            <span>Delivery Fee</span>
+                            <span>{{ '$' + deliveryFee.toFixed(2) }}</span>
+                        </div>
+                        <div class="template-setting-row">
+                            <strong>Total</strong>
+                            <strong>{{ '$' + total.toFixed(2) }}</strong>
+                        </div>
+
+                        <div class="mt-2">
+                            <nx-button variant="primary" [fullWidth]="true">Place Order</nx-button>
+                        </div>
+                    </nx-card-content>
+                </nx-card>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

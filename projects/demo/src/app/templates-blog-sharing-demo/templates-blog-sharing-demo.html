@@ -1,0 +1,82 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Post Feed"
+                description="Blog post cards built from nx-card, nx-avatar, nx-tag and nx-icon."
+                [code]="feedCode"
+                [hasSampleClass]="false">
+
+                <div style="--nx-grid-min-width: 280px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    @for (post of posts; track post.title) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <div class="block-hero-media" style="height: 140px; margin-bottom: 1rem;">Cover image</div>
+                                <div class="template-profile-name">{{ post.title }}</div>
+                                <p class="template-stat-label mt-2">{{ post.excerpt }}</p>
+
+                                <div class="content-flex mt-2">
+                                    <nx-avatar [name]="post.author" size="small"></nx-avatar>
+                                    <span>{{ post.author }}</span>
+                                    <span class="template-stat-label">{{ post.date }}</span>
+                                </div>
+
+                                <div class="content-flex mt-2">
+                                    <nx-tag variant="outline">{{ post.category }}</nx-tag>
+                                    <span class="content-flex" style="gap: 0.25rem;">
+                                        <nx-icon icon="nx-heart" variant="svg" [size]="16"></nx-icon>
+                                        <span>{{ post.likes }}</span>
+                                    </span>
+                                    <span class="content-flex" style="gap: 0.25rem;">
+                                        <nx-icon icon="nx-message" variant="svg" [size]="16"></nx-icon>
+                                        <span>{{ post.comments }}</span>
+                                    </span>
+                                </div>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Author Profile & Comments"
+                description="A profile header built from nx-avatar and nx-button, above a short comment list."
+                [code]="profileCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <div class="template-profile-header">
+                        <nx-avatar [name]="author.name" size="large"></nx-avatar>
+                        <div>
+                            <div class="template-profile-name">{{ author.name }}</div>
+                            <p class="template-stat-label">{{ author.bio }}</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <nx-button variant="primary">Follow</nx-button>
+                    </div>
+
+                    <div class="mt-2" style="display: flex; flex-direction: column; gap: 1rem;">
+                        @for (comment of comments; track comment.name) {
+                            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <nx-avatar [name]="comment.name" size="small"></nx-avatar>
+                                <div>
+                                    <div>
+                                        <strong>{{ comment.name }}</strong>
+                                        <span class="template-stat-label">- {{ comment.time }}</span>
+                                    </div>
+                                    <p>{{ comment.text }}</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

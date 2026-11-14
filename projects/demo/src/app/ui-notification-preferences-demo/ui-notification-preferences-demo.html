@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Preferences matrix"
+                description="Toggle any cell. {{ commonService.appName }}'s Notification Preferences renders a category x channel grid of nx-switch toggles and emits valuesChange with a brand-new values object whenever one changes."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:640px;">
+                    <nx-notification-preferences
+                        [categories]="categories"
+                        [channels]="channels"
+                        [values]="values"
+                        (valuesChange)="onValuesChange($event)">
+                    </nx-notification-preferences>
+                    @if (lastChange) {
+                        <p style="margin-top:12px; color:var(--shell-text-secondary); font-size:0.85rem; word-break:break-word;">
+                            {{ lastChange }}
+                        </p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

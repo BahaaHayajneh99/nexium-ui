@@ -1,0 +1,66 @@
+<section class="sint-hero">
+    <div class="saas-container sint-hero-inner">
+        <h1>Connect the tools you already use</h1>
+        <p>Nimbus plugs into your stack in a few clicks - no engineering ticket required to get data flowing.</p>
+    </div>
+</section>
+
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="saas-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="sint-filter-row">
+        @for (category of categories; track category) {
+            <button
+                type="button"
+                class="sint-filter-chip"
+                [class.active]="activeCategory() === category"
+                (click)="selectCategory(category)">
+                {{ category }}
+            </button>
+        }
+    </div>
+
+    <div class="sint-grid">
+        @for (integration of filteredIntegrations(); track integration.name) {
+            <div class="saas-card sint-card">
+                <nx-icon [icon]="integration.icon" variant="svg" [size]="24"></nx-icon>
+                <div class="sint-card-heading">
+                    <h3>{{ integration.name }}</h3>
+                    <nx-tag variant="outline">{{ integration.category }}</nx-tag>
+                </div>
+                <p>{{ integration.description }}</p>
+            </div>
+        }
+    </div>
+
+    @if (!filteredIntegrations().length) {
+        <p class="saas-muted sint-empty">No integrations in this category yet.</p>
+    }
+
+    <div class="sint-cta">
+        <h2>Don't see what you need?</h2>
+        <p>Every metric is available over a documented REST API, so you can connect anything.</p>
+        <nx-button variant="primary" [routerLink]="'/saas-website/contact'">Talk to us</nx-button>
+    </div>
+
+</ng-template>

@@ -1,0 +1,53 @@
+.nx-notification-preferences {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    overflow: hidden;
+}
+
+.nx-notification-preferences-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-notification-preferences-row:last-child {
+    border-bottom: none;
+}
+
+.nx-notification-preferences-header {
+    background-color: var(--shell-surface-hover);
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text-secondary);
+}
+
+.nx-notification-preferences-category-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: var(--nx-space-sm, 8px) var(--nx-space-md, 16px);
+}
+
+.nx-notification-preferences-category-label {
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.nx-notification-preferences-category-description {
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-notification-preferences-channel-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 96px;
+    padding: var(--nx-space-sm, 8px);
+}

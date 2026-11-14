@@ -1,0 +1,177 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="hotel-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <h1 class="hbook-title">Reserve your stay</h1>
+
+    @if (bookingConfirmed()) {
+
+        <nx-alert variant="success" title="Booking confirmed!">
+            Your stay at {{ selectedRoom().name }} is reserved for {{ nights() }} night{{ nights() > 1 ? 's' : '' }}.
+            A confirmation email is on its way to you.
+        </nx-alert>
+
+    } @else {
+
+        <div class="hbook-layout">
+            <div class="hbook-form">
+
+                <section class="hbook-section">
+                    <h2>Choose your room</h2>
+                    <div class="hbook-room-list">
+                        @for (room of selectableRooms; track room.id) {
+                            <button
+                                type="button"
+                                class="hbook-room-option"
+                                [class.active]="selectedRoomId() === room.id"
+                                (click)="selectRoom(room.id)">
+                                <img class="hbook-room-option-img" [src]="room.image" [alt]="room.name" loading="lazy">
+                                <div class="hbook-room-option-info">
+                                    <span class="hbook-room-option-name">{{ room.name }}</span>
+                                    <span class="hotel-muted">{{ room.type }} &middot; {{ room.bedType }}</span>
+                                </div>
+                                <div class="hbook-room-option-price">${{ room.pricePerNight }}<span>/night</span></div>
+                            </button>
+                        }
+                    </div>
+                </section>
+
+                <section class="hbook-section">
+                    <h2>Stay details</h2>
+                    <div class="hbook-stay-row">
+                        <nx-date-range-picker
+                            label="Check-in - Check-out"
+                            [startDate]="stayDates().startDate"
+                            [endDate]="stayDates().endDate"
+                            (valueChange)="stayDates.set($event)">
+                        </nx-date-range-picker>
+
+                        <div class="hbook-guest-field">
+                            <span class="hbook-guest-label">Guests</span>
+                            <div class="hbook-guest-stepper">
+                                <button type="button" (click)="decrementGuests()" [disabled]="guestCount() <= 1" aria-label="Decrease guests">
+                                    <nx-icon icon="nx-minus" variant="svg" [size]="14"></nx-icon>
+                                </button>
+                                <span class="hbook-guest-value">{{ guestCount() }}</span>
+                                <button type="button" (click)="incrementGuests()" aria-label="Increase guests">
+                                    <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="hbook-section">
+                    <h2>Guest information</h2>
+                    <div class="hbook-row">
+                        <nx-input label="First name" placeholder="Jane" [isRequired]="true"></nx-input>
+                        <nx-input label="Last name" placeholder="Doe" [isRequired]="true"></nx-input>
+                    </div>
+                    <div class="hbook-row">
+                        <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+                        <nx-input label="Phone" placeholder="(555) 123-4567" [isRequired]="true"></nx-input>
+                    </div>
+                </section>
+
+                <section class="hbook-section">
+                    <h2>Payment method</h2>
+                    <div class="hbook-payment-methods">
+                        @for (method of paymentMethods; track method.id) {
+                            <button
+                                type="button"
+                                class="hbook-payment-method-card"
+                                [class.active]="paymentMethod() === method.id"
+                                (click)="selectPaymentMethod(method.id)">
+                                <nx-icon [icon]="method.icon" variant="svg" [size]="22"></nx-icon>
+                                <span>{{ method.label }}</span>
+                            </button>
+                        }
+                    </div>
+
+                    @if (paymentMethod() === 'card') {
+                        <div class="hbook-card-details">
+                            <nx-input label="Card number" placeholder="1234 5678 9012 3456" [isRequired]="true"></nx-input>
+                            <div class="hbook-row">
+                                <nx-input label="Expiry" placeholder="MM/YY" [isRequired]="true"></nx-input>
+                                <nx-input label="CVV" placeholder="123" [isRequired]="true"></nx-input>
+                            </div>
+                            <nx-input label="Name on card" placeholder="Jane Doe" [isRequired]="true"></nx-input>
+                        </div>
+                    }
+                </section>
+
+            </div>
+
+            <aside class="hbook-summary">
+                <nx-card variant="outlined">
+                    <nx-card-header>
+                        <nx-card-title>Booking summary</nx-card-title>
+                    </nx-card-header>
+                    <nx-card-content>
+                        <div class="hbook-summary-room">
+                            <img [src]="selectedRoom().image" [alt]="selectedRoom().name">
+                            <div>
+                                <div class="hbook-summary-room-name">{{ selectedRoom().name }}</div>
+                                <div class="hotel-muted">{{ selectedRoom().type }}</div>
+                            </div>
+                        </div>
+
+                        <nx-divider></nx-divider>
+
+                        <div class="hotel-flex-between hbook-summary-row">
+                            <span class="hotel-muted">Nights</span>
+                            <span>{{ nights() }}</span>
+                        </div>
+                        <div class="hotel-flex-between hbook-summary-row">
+                            <span class="hotel-muted">Guests</span>
+                            <span>{{ guestCount() }}</span>
+                        </div>
+                        <div class="hotel-flex-between hbook-summary-row">
+                            <span class="hotel-muted">Rate</span>
+                            <span>${{ selectedRoom().pricePerNight }} / night</span>
+                        </div>
+
+                        <nx-divider></nx-divider>
+
+                        <div class="hotel-flex-between hbook-summary-row">
+                            <span>Subtotal</span>
+                            <span>${{ subtotal().toFixed(2) }}</span>
+                        </div>
+                        <div class="hotel-flex-between hbook-summary-row">
+                            <span>Taxes &amp; fees</span>
+                            <span>${{ taxesAndFees().toFixed(2) }}</span>
+                        </div>
+                        <div class="hotel-flex-between hbook-summary-total">
+                            <span>Total</span>
+                            <span>${{ total().toFixed(2) }}</span>
+                        </div>
+                    </nx-card-content>
+                    <nx-card-footer>
+                        <nx-button variant="primary" [fullWidth]="true" (click)="confirmBooking()">Confirm booking</nx-button>
+                    </nx-card-footer>
+                </nx-card>
+            </aside>
+        </div>
+
+    }
+
+</ng-template>

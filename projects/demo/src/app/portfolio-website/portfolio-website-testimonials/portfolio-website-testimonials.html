@@ -1,0 +1,53 @@
+<section class="ptest-hero">
+    <div class="port-container ptest-hero-inner">
+        <nx-icon icon="nx-message" variant="svg" [size]="28"></nx-icon>
+        <h1>What clients say after we ship</h1>
+        <p>Every quote on this page came from a client after their project launched, not from a pitch deck.</p>
+    </div>
+</section>
+
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="ptest-grid">
+        @for (t of testimonials; track t.name) {
+            <div class="ptest-card">
+                <nx-icon icon="nx-star" variant="svg" [size]="16"></nx-icon>
+                <p class="ptest-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+                <div class="ptest-person">
+                    <img class="port-avatar-photo" [src]="t.avatar" [alt]="t.name">
+                    <div>
+                        <div class="ptest-name">{{ t.name }}</div>
+                        <div class="ptest-role port-muted">{{ t.role }}, {{ t.company }}</div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="ptest-cta">
+        <h2>Want to be the next quote on this page?</h2>
+        <nx-button variant="primary" [routerLink]="'/portfolio-website/contact'">Start a project</nx-button>
+    </div>
+
+</ng-template>

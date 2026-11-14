@@ -1,0 +1,217 @@
+@import '../ecommerce-shared';
+
+.ecom-checkout-title {
+    margin: 0 0 var(--nx-spacing-lg, 24px);
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.ecom-checkout-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.ecom-checkout-step {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text-secondary);
+    background: var(--shell-surface-hover);
+    border: 1px solid var(--shell-border);
+
+    &.active {
+        color: #ffffff;
+        background: var(--shell-primary);
+        border-color: var(--shell-primary);
+    }
+}
+
+.ecom-checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+    gap: var(--nx-spacing-xxl, 48px);
+    align-items: start;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ecom-checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-xl, 32px);
+}
+
+.ecom-checkout-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+
+    h2 {
+        margin: 0;
+        font-size: var(--nx-font-size-lg, 18px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.ecom-checkout-row {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+
+    > * {
+        flex: 1;
+        min-width: 0;
+    }
+
+    @media (max-width: 520px) {
+        flex-direction: column;
+    }
+}
+
+.ecom-checkout-row-3 > * {
+    flex: 1;
+}
+
+.ecom-select-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+
+    .ecom-select-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--shell-text);
+    }
+
+    select {
+        padding: 8px 12px;
+        border: 1px solid var(--shell-border);
+        border-radius: 4px;
+        background-color: var(--shell-surface);
+        color: var(--shell-text);
+        font-size: 14px;
+        outline: none;
+        transition: border-color .2s ease;
+
+        &:focus {
+            border-color: var(--shell-primary);
+        }
+    }
+}
+
+.ecom-payment-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--nx-spacing-md, 16px);
+
+    @media (max-width: 520px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ecom-payment-method-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: var(--nx-spacing-md, 16px);
+    border-radius: var(--nx-radius-lg, 12px);
+    border: 1px solid var(--shell-border);
+    background: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+
+    &:hover {
+        border-color: var(--shell-primary);
+    }
+
+    &.active {
+        border-color: var(--shell-primary);
+        background: color-mix(in srgb, var(--shell-primary) 10%, transparent);
+        color: var(--shell-primary);
+    }
+}
+
+.ecom-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+    margin-top: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-md, 16px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface-hover);
+}
+
+.ecom-checkout-summary {
+    position: sticky;
+    top: 24px;
+}
+
+.ecom-summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: var(--nx-spacing-md, 16px);
+}
+
+.ecom-summary-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--nx-spacing-md, 16px);
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text);
+}
+
+.ecom-summary-item-name {
+    color: var(--shell-text-secondary);
+}
+
+.ecom-summary-totals {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: var(--nx-spacing-md, 16px);
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+}
+
+.ecom-summary-total {
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--shell-border);
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.ecom-trust-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: var(--nx-spacing-md, 16px);
+}
+
+.ecom-trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-secondary);
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}

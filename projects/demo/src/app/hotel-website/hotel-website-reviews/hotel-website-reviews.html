@@ -1,0 +1,53 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="hotel-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="hrev-hero">
+        <h1>Guest reviews</h1>
+        <p>Real feedback from guests who have stayed at The Marlow.</p>
+    </div>
+
+    <div class="hrev-summary">
+        <nx-statistic label="Average rating" [value]="averageRating" suffix=" / 5"></nx-statistic>
+        <nx-statistic label="Total reviews" [value]="reviews.length"></nx-statistic>
+        <div class="hrev-summary-rating">
+            <nx-rating [value]="averageRating" [readonly]="true"></nx-rating>
+        </div>
+    </div>
+
+    <div class="hrev-grid">
+        @for (review of reviews; track review.name) {
+            <div class="hrev-card">
+                <div class="hrev-card-head">
+                    <img class="hotel-avatar-photo" [src]="review.avatar" [alt]="review.name">
+                    <div>
+                        <div class="hrev-name">{{ review.name }}</div>
+                        <div class="hotel-muted hrev-location">{{ review.location }}</div>
+                    </div>
+                </div>
+                <nx-rating [value]="review.rating" [readonly]="true"></nx-rating>
+                <p class="hrev-quote">&ldquo;{{ review.quote }}&rdquo;</p>
+            </div>
+        }
+    </div>
+
+</ng-template>

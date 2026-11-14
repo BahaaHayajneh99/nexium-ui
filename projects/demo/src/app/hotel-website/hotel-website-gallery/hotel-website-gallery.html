@@ -1,0 +1,43 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="hotel-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="hgallery-hero">
+        <h1>Gallery</h1>
+        <p>A closer look at The Marlow - rooms, grounds, and the details in between.</p>
+    </div>
+
+    <nx-masonry [cols]="3" [gap]="16">
+        @for (image of images; track image.src; let i = $index) {
+            <button type="button" class="hgallery-item" (click)="openLightbox(i)">
+                <img [src]="image.src" [alt]="image.alt" loading="lazy">
+            </button>
+        }
+    </nx-masonry>
+
+    <nx-lightbox
+        [(open)]="lightboxOpen"
+        [images]="lightboxImages"
+        [(activeIndex)]="lightboxIndex">
+    </nx-lightbox>
+
+</ng-template>

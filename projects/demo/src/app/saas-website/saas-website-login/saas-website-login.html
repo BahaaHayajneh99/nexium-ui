@@ -1,0 +1,75 @@
+<div class="saas-auth-page">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="saas-locked-wrapper saas-auth-locked">
+      <div class="saas-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="saas-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full SaaS Website template for $59</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+  <div class="saas-auth-layout">
+    <div class="saas-auth-marketing">
+      <div class="saas-auth-brand">
+        <nx-icon icon="nx-cloud" variant="svg" [size]="20"></nx-icon>
+        Nimbus
+      </div>
+
+      <blockquote class="saas-auth-quote">
+        <nx-icon icon="nx-star" variant="svg" [size]="22"></nx-icon>
+        <p>&ldquo;{{ testimonial.quote }}&rdquo;</p>
+        <footer>
+          <strong>{{ testimonial.name }}</strong>
+          <span>{{ testimonial.role }}, {{ testimonial.company }}</span>
+        </footer>
+      </blockquote>
+    </div>
+
+    <div class="saas-auth-form-panel">
+      <div class="saas-auth-form">
+        <h1>Welcome back</h1>
+        <p class="saas-auth-subtext">Sign in to your Nimbus account</p>
+
+        <div class="saas-auth-fields">
+          <nx-input label="Email" type="email" placeholder="you@company.com" [isRequired]="true"></nx-input>
+          <nx-input label="Password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+
+          <div class="saas-auth-row">
+            <nx-checkbox
+              label="Remember me"
+              [checked]="rememberMe()"
+              (checkedChange)="rememberMe.set($event)"></nx-checkbox>
+            <span class="saas-auth-link">Forgot password?</span>
+          </div>
+
+          <nx-button variant="primary" [fullWidth]="true">Log in</nx-button>
+
+          <nx-divider label="or continue with"></nx-divider>
+
+          <div class="saas-auth-social-row">
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Google
+            </nx-button>
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Microsoft
+            </nx-button>
+          </div>
+
+          <p class="saas-auth-footer-line">
+            Don't have an account? <a [routerLink]="'/saas-website/signup'">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

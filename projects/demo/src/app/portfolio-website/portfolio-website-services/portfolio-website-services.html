@@ -1,0 +1,50 @@
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="port-section-heading pservices-heading">
+        <h1>What we do</h1>
+        <p>Six disciplines delivered by one studio - brought together or booked individually.</p>
+    </div>
+
+    <div class="pservices-list">
+        @for (service of services; track service.title; let i = $index) {
+            <div class="pservices-row" [class.pservices-row-reverse]="i % 2 === 1">
+                <div class="pservices-icon">
+                    <nx-icon [icon]="service.icon" variant="svg" [size]="32"></nx-icon>
+                </div>
+                <div class="pservices-text">
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="port-section-heading">
+        <h2>How we work</h2>
+        <p>A five-stage process we run on every engagement, no matter the size.</p>
+    </div>
+
+    <nx-timeline [items]="processItems"></nx-timeline>
+
+</ng-template>

@@ -1,0 +1,119 @@
+@import '../saas-shared';
+
+.sdash-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--nx-spacing-lg, 24px);
+    flex-wrap: wrap;
+    margin-bottom: var(--nx-spacing-xl, 32px);
+
+    h1 {
+        margin: 0 0 4px;
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.sdash-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    margin-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.sdash-chart-card {
+    margin-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.sdash-chart-heading {
+    margin-bottom: var(--nx-spacing-md, 16px);
+
+    h2 {
+        margin: 0;
+        font-size: var(--nx-font-size-lg, 18px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.sdash-activity-card {
+    margin-bottom: var(--nx-spacing-xl, 32px);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        font-size: var(--nx-font-size-lg, 18px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.sdash-team-card {
+    h2 {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        font-size: var(--nx-font-size-lg, 18px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+// ---- Animated stat tiles (number-ticker swapped in for the static nx-statistic value) ----
+
+.sdash-animated-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sdash-animated-stat-label {
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.sdash-animated-stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--shell-text);
+    line-height: 1.2;
+}
+
+.sdash-animated-stat-affix {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.sdash-animated-stat-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    width: fit-content;
+    font-size: 13px;
+    font-weight: 600;
+
+    &.good {
+        color: #0ca30c;
+    }
+
+    &.bad {
+        color: #d03b3b;
+    }
+
+    &.neutral {
+        color: var(--shell-text-muted);
+    }
+}
+
+.sdash-animated-stat-arrow {
+    font-size: 14px;
+    line-height: 1;
+}

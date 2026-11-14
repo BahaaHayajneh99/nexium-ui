@@ -1,0 +1,81 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="hotel-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="hevt-hero">
+        <h1>Weddings & private events</h1>
+        <p>Three distinct spaces and a dedicated events team to handle every detail, from a 20-person rehearsal dinner to a 220-guest wedding.</p>
+    </div>
+
+    <div class="hevt-space-grid">
+        @for (space of spaces; track space.name) {
+            <div class="hevt-space-card">
+                <div class="hevt-space-media">
+                    <img [src]="space.image" [alt]="space.name" loading="lazy">
+                </div>
+                <div class="hevt-space-body">
+                    <div class="hotel-flex-between">
+                        <h3>{{ space.name }}</h3>
+                        <span class="hotel-muted"><nx-icon icon="nx-users" variant="svg" [size]="14"></nx-icon> Up to {{ space.capacity }}</span>
+                    </div>
+                    <p class="hotel-muted">{{ space.description }}</p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <section class="hotel-section hevt-inquiry-section">
+        <div class="hotel-section-heading">
+            <h2>Request a proposal</h2>
+            <p>Tell us about your event and our planning team will follow up within one business day.</p>
+        </div>
+
+        <div class="hevt-inquiry-panel">
+            @if (submitted()) {
+                <nx-alert variant="success" title="Inquiry sent!">
+                    Thank you - a member of our events team will reach out shortly to discuss your date and space.
+                </nx-alert>
+                <nx-button variant="outline" (click)="sendAnotherInquiry()">Send another inquiry</nx-button>
+            } @else {
+                <form class="hevt-form" (submit)="$event.preventDefault(); submitInquiry()">
+                    <div class="hevt-row">
+                        <nx-input label="Full name" placeholder="Jane Doe" [isRequired]="true"></nx-input>
+                        <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+                    </div>
+
+                    <div class="hevt-row">
+                        <label class="hevt-select-field">
+                            <span class="hevt-select-label">Event date</span>
+                            <input type="date" required>
+                        </label>
+                        <nx-input label="Estimated guests" type="number" placeholder="100" [isRequired]="true"></nx-input>
+                    </div>
+
+                    <nx-textarea label="Tell us about your event" placeholder="Wedding, size, preferred space, anything else we should know..." [rows]="4"></nx-textarea>
+
+                    <nx-button variant="primary" [fullWidth]="true" type="submit">Send inquiry</nx-button>
+                </form>
+            }
+        </div>
+    </section>
+
+</ng-template>

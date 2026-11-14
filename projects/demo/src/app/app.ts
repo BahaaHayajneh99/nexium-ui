@@ -4,6 +4,7 @@ import { filter } from 'rxjs';
 import { NxIcon } from '../../../../dist/components';
 import { Nav } from './component/nav';
 import { ThemeCustomizer } from './component/theme-customizer/theme-customizer';
+import { SeoService } from './services/seo.service';
 import { VisitorTrackingService } from './services/visitor-tracking.service';
 
 @Component({
@@ -21,11 +22,18 @@ export class App implements OnInit {
   // wrapped in the docs site's own sidebar/chrome, so app.html hides that chrome on these routes.
   isShowcaseRoute = signal(false);
 
-  constructor(router: Router, private visitorTracking: VisitorTrackingService) {
+  constructor(
+    router: Router,
+    private visitorTracking: VisitorTrackingService,
+    private seo: SeoService,
+  ) {
     this.isShowcaseRoute.set(router.url.startsWith('/showcase'));
+    this.seo.apply(router.url);
     router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event) => {
       this.mobileNavOpen.set(false);
-      this.isShowcaseRoute.set((event as NavigationEnd).urlAfterRedirects.startsWith('/showcase'));
+      const url = (event as NavigationEnd).urlAfterRedirects;
+      this.isShowcaseRoute.set(url.startsWith('/showcase'));
+      this.seo.apply(url);
     });
   }
 

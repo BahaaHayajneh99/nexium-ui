@@ -1,0 +1,135 @@
+<section class="hhome-hero">
+    <div class="hotel-container hhome-hero-inner">
+        <h1 class="hhome-hero-title">Rest, well-appointed.</h1>
+        <p class="hhome-hero-subtitle">
+            A boutique hotel on the harbor - thoughtfully designed rooms, a full-service spa, and a concierge team
+            that treats every stay like your first.
+        </p>
+
+        <div class="hhome-search-widget">
+            <nx-date-range-picker
+                label="Check-in - Check-out"
+                [startDate]="stayDates().startDate"
+                [endDate]="stayDates().endDate"
+                (valueChange)="stayDates.set($event)">
+            </nx-date-range-picker>
+
+            <div class="hhome-guest-field">
+                <span class="hhome-guest-label">Guests</span>
+                <div class="hhome-guest-stepper">
+                    <button type="button" (click)="decrementGuests()" [disabled]="guestCount() <= 1" aria-label="Decrease guests">
+                        <nx-icon icon="nx-minus" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                    <span class="hhome-guest-value">{{ guestCount() }}</span>
+                    <button type="button" (click)="incrementGuests()" aria-label="Increase guests">
+                        <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                </div>
+            </div>
+
+            <nx-button variant="primary" size="large" [routerLink]="'/hotel-website/rooms'">Search rooms</nx-button>
+        </div>
+    </div>
+</section>
+
+<section class="hhome-press-strip">
+    <nx-marquee [pauseOnHover]="true" [speed]="50">
+        @for (mention of pressMentions; track mention) {
+            <div class="hhome-press-item">{{ mention }}</div>
+        }
+    </nx-marquee>
+</section>
+
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <section class="hotel-section">
+        <div class="hotel-section-heading">
+            <h2>Featured Rooms</h2>
+            <p>A sample of what's waiting for you at The Marlow.</p>
+        </div>
+        <div class="hotel-room-grid">
+            @for (room of featuredRooms; track room.id) {
+                <a class="hotel-room-card" [routerLink]="['/hotel-website/room', room.id]">
+                    <div class="hotel-room-media">
+                        <img class="hotel-room-media-img" [src]="room.image" [alt]="room.name" loading="lazy">
+                        <nx-tag class="hotel-room-badge" [color]="roomTypeColor(room.type)">{{ room.type }}</nx-tag>
+                    </div>
+                    <div class="hotel-room-body">
+                        <div class="hotel-room-name">{{ room.name }}</div>
+                        <div class="hotel-room-meta-row">
+                            <span><nx-icon icon="nx-users" variant="svg" [size]="13"></nx-icon> {{ room.capacity }} guests</span>
+                            <span>{{ room.bedType }}</span>
+                        </div>
+                        <div class="hotel-room-price-row">
+                            <span class="hotel-room-price">${{ room.pricePerNight }}</span>
+                            <span class="hotel-room-price-unit">/ night</span>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="hotel-section hhome-amenities-row">
+        <div class="hotel-section-heading">
+            <h2>Hotel Amenities</h2>
+            <p>Everything you need for a stay that feels effortless.</p>
+        </div>
+        <div class="hhome-amenity-tiles">
+            @for (amenity of amenities; track amenity.title) {
+                <a class="hhome-amenity-tile" [routerLink]="'/hotel-website/amenities'">
+                    <nx-icon [icon]="amenity.icon" variant="svg" [size]="26"></nx-icon>
+                    <span>{{ amenity.title }}</span>
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="hotel-section">
+        <div class="hotel-section-heading">
+            <h2>What our guests say</h2>
+            <p>Real feedback from recent stays.</p>
+        </div>
+        <div class="hhome-testimonial-grid">
+            @for (t of testimonials; track t.name) {
+                <div class="hhome-testimonial-card">
+                    <img class="hotel-avatar-photo" [src]="t.avatar" [alt]="t.name">
+                    <div class="hhome-testimonial-name">{{ t.name }}</div>
+                    <div class="hhome-testimonial-location">{{ t.location }}</div>
+                    <nx-rating [value]="t.rating" [readonly]="true"></nx-rating>
+                    <p class="hhome-testimonial-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="hhome-stats-row">
+        @for (stat of stats; track stat.label) {
+            <nx-statistic [label]="stat.label" [value]="stat.value" [suffix]="stat.suffix ?? ''"></nx-statistic>
+        }
+    </section>
+
+    <section class="hhome-cta-banner">
+        <h2>Ready to experience The Marlow?</h2>
+        <p>Rooms book quickly on weekends - reserve yours today.</p>
+        <nx-button variant="primary" size="large" [routerLink]="'/hotel-website/rooms'">Browse rooms</nx-button>
+    </section>
+
+</ng-template>

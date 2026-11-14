@@ -1,0 +1,66 @@
+<div class="resto-container resto-section">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="resto-locked-wrapper">
+      <div class="resto-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="resto-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full Restaurant Website template for $45</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+  <div class="resto-breadcrumb-row">
+    <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+  </div>
+
+  <div class="rcontact-hero">
+    <h1>Get in touch</h1>
+    <p>Questions about a reservation, a private event, or anything else? We're here to help.</p>
+  </div>
+
+  <div class="rcontact-layout">
+    <div class="rcontact-form">
+      <nx-input label="Name" placeholder="Jane Doe" [isRequired]="true"></nx-input>
+      <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+      <nx-textarea label="Message" placeholder="How can we help?" [rows]="6" [isRequired]="true"></nx-textarea>
+      <nx-button variant="primary" [fullWidth]="true">Send message</nx-button>
+    </div>
+
+    <div class="rcontact-info">
+      <nx-card variant="outlined" class="resto-card-pad">
+        @for (row of infoRows; track row.text) {
+          <div class="rcontact-info-row">
+            <nx-icon [icon]="row.icon" variant="svg" [size]="18"></nx-icon>
+            <span>{{ row.text }}</span>
+          </div>
+        }
+      </nx-card>
+
+      <div class="rcontact-map-placeholder">
+        <nx-icon icon="nx-map-pin" variant="svg" [size]="28"></nx-icon>
+        <span>{{ address }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resto-section-heading rcontact-hours-heading">
+    <h2>Opening hours</h2>
+    <p>Stop by, or reserve ahead for guaranteed seating.</p>
+  </div>
+
+  <div class="rcontact-hours-table">
+    @for (row of hours; track row.day) {
+      <div class="resto-flex-between rcontact-hours-row">
+        <span>{{ row.day }}</span>
+        <span class="resto-muted">{{ row.hours }}</span>
+      </div>
+    }
+  </div>
+</ng-template>

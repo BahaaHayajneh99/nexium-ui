@@ -1,0 +1,78 @@
+@import '../hotel-shared';
+
+.hdining-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 1fr);
+    gap: var(--nx-spacing-xxl, 48px);
+    align-items: center;
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+
+    @media (max-width: 860px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.hdining-hero-img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border-radius: var(--nx-radius-lg, 12px);
+}
+
+.hdining-hero-copy {
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.hdining-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding-top: var(--nx-spacing-lg, 24px);
+}
+
+.hdining-menu-item {
+    padding: var(--nx-spacing-md, 16px);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+}
+
+.hdining-menu-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.hdining-menu-price {
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-primary);
+}
+
+.hdining-closing {
+    text-align: center;
+    max-width: 480px;
+    margin: var(--nx-spacing-xxl, 48px) auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        color: var(--shell-text-secondary);
+    }
+}

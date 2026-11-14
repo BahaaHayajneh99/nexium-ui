@@ -1,0 +1,128 @@
+.nx-org-chart {
+    display: flex;
+    justify-content: center;
+    min-width: max-content;
+    padding: 20px 16px;
+}
+
+.nx-org-chart-node-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nx-org-chart-node {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    cursor: pointer;
+    transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+    z-index: 1;
+}
+
+.nx-org-chart-node:hover {
+    border-color: var(--shell-primary);
+}
+
+.nx-org-chart-node.matched {
+    border-color: var(--shell-primary);
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .08));
+    box-shadow: 0 0 0 2px var(--nx-color-primary-soft, rgba(59, 130, 246, .18));
+}
+
+.nx-org-chart-node.ancestor-of-match {
+    border-color: var(--shell-primary);
+}
+
+.nx-org-chart-node-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.nx-org-chart-node-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--shell-text);
+    white-space: nowrap;
+}
+
+.nx-org-chart-node-title {
+    font-size: 11px;
+    color: var(--shell-text-secondary);
+    white-space: nowrap;
+}
+
+.nx-org-chart-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-round, 999px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text-secondary);
+    cursor: pointer;
+}
+
+.nx-org-chart-toggle:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+/* Connecting lines - plain CSS borders, no SVG: a stem down from a parent that has visible
+   children, a horizontal bar spanning the children row (only drawn with 2+ children), and a
+   stem up into each child. */
+.nx-org-chart-node-wrapper.has-children > .nx-org-chart-node::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    width: 1px;
+    height: 20px;
+    background-color: var(--shell-border);
+}
+
+.nx-org-chart-children {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.nx-org-chart-children.multi::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 14px;
+    right: 14px;
+    height: 1px;
+    background-color: var(--shell-border);
+}
+
+.nx-org-chart-child {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nx-org-chart-child::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 1px;
+    height: 20px;
+    background-color: var(--shell-border);
+}

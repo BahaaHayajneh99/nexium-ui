@@ -1,0 +1,240 @@
+// Shared styles for every page of the E-Commerce Website template. Each page's own .scss
+// should `@import '../ecommerce-shared';` (relative to its own folder, one level under
+// projects/demo/src/app/ecommerce-website/) to pull these classes in - keeps the product
+// card, section headings, and PRO lock overlay visually identical across all 8 pages.
+
+.ecom-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 var(--nx-spacing-lg, 24px);
+}
+
+.ecom-section {
+    padding: var(--nx-spacing-xxl, 48px) 0;
+}
+
+.ecom-section-heading {
+    text-align: center;
+    margin-bottom: var(--nx-spacing-xl, 32px);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+// ---- Product grid + card ------------------------------------------------
+
+.ecom-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.ecom-product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    transition: transform var(--nx-transition-fast, .15s ease), box-shadow var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, .25);
+    }
+}
+
+.ecom-product-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    overflow: hidden;
+
+    nx-icon {
+        opacity: .9;
+    }
+}
+
+.ecom-product-media-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ecom-avatar-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.ecom-product-badge {
+    position: absolute;
+    top: var(--nx-spacing-sm, 8px);
+    left: var(--nx-spacing-sm, 8px);
+}
+
+.ecom-product-wishlist {
+    position: absolute;
+    top: var(--nx-spacing-sm, 8px);
+    right: var(--nx-spacing-sm, 8px);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .85);
+    color: #1a1a1a;
+    border: none;
+    cursor: pointer;
+}
+
+.ecom-product-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: var(--nx-spacing-md, 16px);
+    flex: 1;
+}
+
+.ecom-product-category {
+    font-size: var(--nx-font-size-xs, 12px);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--shell-text-muted);
+}
+
+.ecom-product-name {
+    font-size: var(--nx-font-size-md, 16px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+    line-height: 1.3;
+}
+
+.ecom-product-price-row {
+    margin-top: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.ecom-product-price {
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.ecom-product-price-compare {
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-muted);
+    text-decoration: line-through;
+}
+
+.ecom-product-footer {
+    padding: 0 var(--nx-spacing-md, 16px) var(--nx-spacing-md, 16px);
+}
+
+// ---- Misc layout helpers -------------------------------------------------
+
+.ecom-flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.ecom-muted {
+    color: var(--shell-text-secondary);
+}
+
+.ecom-breadcrumb-row {
+    margin-bottom: var(--nx-spacing-lg, 24px);
+}
+
+.ecom-card-pad {
+    padding: var(--nx-spacing-lg, 24px);
+}
+
+// ---- PRO lock overlay (reused on every standalone page) ------------------
+
+.ecom-locked-wrapper {
+    position: relative;
+}
+
+.ecom-locked-content {
+    filter: blur(5px);
+    opacity: .55;
+    pointer-events: none;
+    user-select: none;
+}
+
+.ecom-lock-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 8px);
+    text-align: center;
+    padding: var(--nx-spacing-lg, 24px);
+    z-index: 2;
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    p {
+        margin: 0;
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.ecom-pro-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 8px);
+    flex-wrap: wrap;
+    padding: 10px var(--nx-spacing-lg, 24px);
+    background: color-mix(in srgb, var(--shell-primary) 12%, transparent);
+    color: var(--shell-text);
+    font-size: var(--nx-font-size-sm, 14px);
+    text-align: center;
+
+    strong {
+        color: var(--shell-primary);
+    }
+}
+
+.ecom-unlocked-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px var(--nx-spacing-lg, 24px);
+    background: color-mix(in srgb, #22c55e 12%, transparent);
+    color: #16a34a;
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    text-align: center;
+}

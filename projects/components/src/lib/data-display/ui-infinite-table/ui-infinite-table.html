@@ -1,0 +1,46 @@
+@if (licensed()) {
+    <div class="nx-infinite-table-wrapper">
+        <div class="nx-infinite-table-scroll" #scrollBody [style.max-height.px]="maxHeight">
+            <table class="nx-infinite-table">
+                <thead>
+                    <tr>
+                        @for (col of columns; track col.key) {
+                            <th>{{ col.label }}</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (row of rows; track $index) {
+                        <tr class="nx-infinite-table-row">
+                            @for (col of columns; track col.key) {
+                                <td>{{ cellValue(row, col.key) }}</td>
+                            }
+                        </tr>
+                    } @empty {
+                        <tr class="nx-infinite-table-empty-row">
+                            <td [attr.colspan]="columns.length">No data</td>
+                        </tr>
+                    }
+
+                    @if (rows.length) {
+                        <tr class="nx-infinite-table-status-row">
+                            <td [attr.colspan]="columns.length">
+                                @if (loading) {
+                                    <div class="nx-infinite-table-loading">
+                                        <nx-spinner size="small"></nx-spinner>
+                                        <span>Loading more...</span>
+                                    </div>
+                                } @else if (!hasMore) {
+                                    <div class="nx-infinite-table-end">No more results</div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="nx-infinite-table-sentinel" #sentinel></div>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Infinite Table"></nx-pro-locked>
+}

@@ -1,0 +1,57 @@
+<div class="course-container course-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="course-locked-wrapper">
+            <div class="course-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="course-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Course Website template for $55</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="course-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="course-section-heading">
+        <h2>Meet our instructors</h2>
+        <p>Practitioners who still do the work, teaching what they actually use day to day.</p>
+    </div>
+
+    <div class="cinst-grid">
+        @for (instructor of instructors; track instructor.id) {
+            <div class="cinst-card">
+                <nx-hover-card placement="bottom">
+                    <span nx-hover-card-trigger>
+                        <img class="cinst-avatar" [src]="instructor.avatar" [alt]="instructor.name">
+                    </span>
+                    <div class="cinst-hovercard-panel">
+                        <strong>{{ instructor.name }}</strong>
+                        <p class="course-muted">{{ instructor.title }}</p>
+                        <p>{{ instructor.bio }}</p>
+                        <span class="cinst-hovercard-count">
+                            <nx-icon icon="nx-book" variant="svg" [size]="14"></nx-icon>
+                            {{ instructor.courseCount }} courses
+                        </span>
+                    </div>
+                </nx-hover-card>
+                <div class="cinst-name">{{ instructor.name }}</div>
+                <div class="course-muted cinst-title">{{ instructor.title }}</div>
+                <span class="cinst-course-count">
+                    <nx-icon icon="nx-book" variant="svg" [size]="14"></nx-icon>
+                    {{ instructor.courseCount }} courses
+                </span>
+                <a class="cinst-profile-link" [routerLink]="['/course-website/instructor', instructor.id]">View profile</a>
+            </div>
+        }
+    </div>
+
+</ng-template>

@@ -1,0 +1,67 @@
+@import '../real-estate-shared';
+
+// ---- Hero ------------------------------------------------------------------
+
+.resell-hero {
+    background:
+        linear-gradient(120deg, rgba(12, 24, 20, .88) 10%, rgba(12, 24, 20, .55) 60%, rgba(12, 24, 20, .3) 100%),
+        url('https://picsum.photos/seed/nx-haven-sell/1600/700') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.resell-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-md, 16px);
+    max-width: 620px;
+}
+
+.resell-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.resell-hero-subtitle {
+    font-size: var(--nx-font-size-md, 16px);
+    opacity: .85;
+    margin: 0;
+}
+
+// ---- Stats row ---------------------------------------------------------------
+
+.resell-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+// ---- CTA banner ------------------------------------------------------------
+
+.resell-cta {
+    margin-top: var(--nx-spacing-xl, 32px);
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text-secondary);
+    }
+}

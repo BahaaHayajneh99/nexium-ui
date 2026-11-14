@@ -1,0 +1,102 @@
+@import '../saas-shared';
+
+.scsd-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--nx-spacing-xl, 32px);
+    align-items: center;
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+
+    @media (max-width: 720px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.scsd-hero-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: var(--nx-radius-lg, 12px);
+}
+
+.scsd-hero-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-sm, 8px);
+
+    h1 {
+        margin: 0;
+        font-size: clamp(26px, 4vw, 34px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+        line-height: 1.5;
+    }
+}
+
+.scsd-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-xl, 32px);
+}
+
+.scsd-block {
+    h2 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+        line-height: 1.6;
+    }
+}
+
+.scsd-cta {
+    margin-top: var(--nx-spacing-xl, 32px);
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text-secondary);
+    }
+}
+
+.scsd-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-xxl, 48px) 0;
+    text-align: center;
+
+    nx-icon {
+        color: var(--shell-text-secondary);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        color: var(--shell-text-secondary);
+    }
+}

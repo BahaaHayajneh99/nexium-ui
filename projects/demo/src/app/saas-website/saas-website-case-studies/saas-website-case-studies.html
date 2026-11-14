@@ -1,0 +1,51 @@
+<section class="scase-hero">
+    <div class="saas-container scase-hero-inner">
+        <h1>Real teams, real results</h1>
+        <p>A look at how four very different teams use Nimbus to catch problems sooner and make decisions faster.</p>
+    </div>
+</section>
+
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="saas-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="scase-grid">
+        @for (study of caseStudies; track study.slug) {
+            <a class="saas-card scase-card" [routerLink]="['/saas-website/case-studies', study.slug]">
+                <img class="scase-card-img" [src]="study.image" [alt]="study.company" loading="lazy">
+                <div class="scase-card-body">
+                    <div class="scase-card-heading">
+                        <h3>{{ study.company }}</h3>
+                        <nx-tag variant="outline">{{ study.industry }}</nx-tag>
+                    </div>
+                    <nx-statistic [label]="study.headlineLabel" [value]="study.headlineStat"></nx-statistic>
+                    <p>{{ study.summary }}</p>
+                    <span class="scase-card-link">
+                        Read case study
+                        <nx-icon icon="nx-arrow-right" variant="svg" [size]="14"></nx-icon>
+                    </span>
+                </div>
+            </a>
+        }
+    </div>
+
+</ng-template>

@@ -1,0 +1,62 @@
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="port-section-heading pcareers-heading">
+        <h1>Join Glint Studio</h1>
+        <p>We're a small, senior team that believes great work happens when designers, strategists, and engineers sit at the same table - not in separate departments.</p>
+    </div>
+
+    <div class="pcareers-perks-row">
+        @for (perk of perks; track perk.text) {
+            <div class="pcareers-perk">
+                <nx-icon [icon]="perk.icon" variant="svg" [size]="20"></nx-icon>
+                <span>{{ perk.text }}</span>
+            </div>
+        }
+    </div>
+
+    <div class="port-section-heading">
+        <h2>Open positions</h2>
+        <p>{{ jobs.length }} roles open right now across design, engineering, and strategy.</p>
+    </div>
+
+    <div class="pcareers-job-list">
+        @for (job of jobs; track job.title) {
+            <div class="pcareers-job-card">
+                <div class="pcareers-job-info">
+                    <h3>{{ job.title }}</h3>
+                    <div class="pcareers-job-meta">
+                        <span>{{ job.department }}</span>
+                        <span class="pcareers-job-dot">&bull;</span>
+                        <span>{{ job.location }}</span>
+                    </div>
+                </div>
+                <div class="pcareers-job-actions">
+                    <nx-tag variant="outline" color="var(--shell-primary)">{{ job.type }}</nx-tag>
+                    <nx-button variant="primary" size="small" [routerLink]="'/portfolio-website/contact'">Apply</nx-button>
+                </div>
+            </div>
+        }
+    </div>
+
+</ng-template>

@@ -1,0 +1,79 @@
+<div class="reauth-page">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="realest-locked-wrapper reauth-locked">
+      <div class="realest-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="realest-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full Real Estate Website template for $49</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+  <div class="reauth-layout">
+    <div class="reauth-marketing">
+      <div class="reauth-brand">
+        <nx-icon icon="nx-home" variant="svg" [size]="20"></nx-icon>
+        Haven Realty
+      </div>
+
+      <div class="reauth-perks">
+        <h2>Join thousands finding their next home</h2>
+        <ul>
+          @for (perk of perks; track perk.text) {
+            <li>
+              <nx-icon [icon]="perk.icon" variant="svg" [size]="18"></nx-icon>
+              <span>{{ perk.text }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="reauth-form-panel">
+      <div class="reauth-form">
+        <h1>Create your account</h1>
+
+        <div class="reauth-fields">
+          <div class="reauth-name-row">
+            <nx-input label="First name" placeholder="Jane" [isRequired]="true"></nx-input>
+            <nx-input label="Last name" placeholder="Doe" [isRequired]="true"></nx-input>
+          </div>
+          <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+          <nx-input label="Password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+          <nx-input label="Confirm password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+
+          <nx-checkbox
+            label="I agree to the Terms of Service and Privacy Policy"
+            [checked]="agreedToTerms()"
+            (checkedChange)="agreedToTerms.set($event)"></nx-checkbox>
+
+          <nx-button variant="primary" [fullWidth]="true">Create account</nx-button>
+
+          <nx-divider label="or continue with"></nx-divider>
+
+          <div class="reauth-social-row">
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Google
+            </nx-button>
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Apple
+            </nx-button>
+          </div>
+
+          <p class="reauth-footer-line">
+            Already have an account? <a [routerLink]="'/real-estate-website/login'">Log in</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

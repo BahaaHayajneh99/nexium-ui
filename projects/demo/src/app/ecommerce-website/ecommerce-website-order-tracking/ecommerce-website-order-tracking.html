@@ -1,0 +1,102 @@
+<div class="ecom-container ecom-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="ecom-locked-wrapper">
+            <div class="ecom-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="ecom-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full E-Commerce Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="ecom-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems()"></nx-breadcrumb>
+    </div>
+
+    @if (order(); as current) {
+
+        <div class="ecom-flex-between etrack-header">
+            <div>
+                <h1 class="etrack-title">Order {{ current.id }}</h1>
+                <p class="ecom-muted">Placed on {{ current.date }}</p>
+            </div>
+            <nx-tag [color]="statusColor(current.status)">{{ current.status }}</nx-tag>
+        </div>
+
+        <div class="etrack-stepper-panel ecom-card-pad">
+            <nx-stepper [steps]="stepperSteps()" [activeIndex]="activeStepIndex()"></nx-stepper>
+
+            <div class="etrack-timeline">
+                @for (step of current.trackingSteps; track step.label) {
+                    <div class="etrack-timeline-row">
+                        @if (step.done) {
+                            <nx-icon icon="nx-check-circle" variant="svg" [size]="16" class="etrack-timeline-done-icon"></nx-icon>
+                        } @else {
+                            <span class="etrack-timeline-dot"></span>
+                        }
+                        <span class="etrack-timeline-label" [class.ecom-muted]="!step.done">{{ step.label }}</span>
+                        @if (step.time) {
+                            <span class="ecom-muted etrack-timeline-time">{{ step.time }}</span>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="etrack-layout">
+
+            <div class="etrack-summary-panel ecom-card-pad">
+                <h3>Order Summary</h3>
+                @for (item of current.items; track item.product.id) {
+                    <div class="ecom-flex-between etrack-summary-row">
+                        <div class="etrack-summary-item">
+                            <img class="etrack-item-thumb" [src]="item.product.image" [alt]="item.product.name" loading="lazy">
+                            <div>
+                                <div class="etrack-item-name">{{ item.product.name }}</div>
+                                <div class="ecom-muted etrack-item-qty">Qty {{ item.qty }}</div>
+                            </div>
+                        </div>
+                        <span class="etrack-item-price">${{ (item.product.price * item.qty).toFixed(2) }}</span>
+                    </div>
+                }
+                <div class="ecom-flex-between etrack-summary-total">
+                    <span>Total</span>
+                    <span>${{ current.total.toFixed(2) }}</span>
+                </div>
+            </div>
+
+            <div class="etrack-shipping-panel ecom-card-pad">
+                <h3>Shipping Details</h3>
+                <div class="etrack-shipping-row">
+                    <nx-icon icon="nx-map-pin" variant="svg" [size]="16"></nx-icon>
+                    <span>{{ current.shippingAddress }}</span>
+                </div>
+                <div class="etrack-shipping-row">
+                    <nx-icon icon="nx-tag" variant="svg" [size]="16"></nx-icon>
+                    <span>{{ current.carrier }}</span>
+                </div>
+                <div class="etrack-shipping-row">
+                    <nx-icon icon="nx-search" variant="svg" [size]="16"></nx-icon>
+                    <span class="etrack-tracking-number">{{ current.trackingNumber }}</span>
+                </div>
+            </div>
+
+        </div>
+
+    } @else {
+        <div class="etrack-not-found-state">
+            <nx-icon icon="nx-search" variant="svg" [size]="40"></nx-icon>
+            <p>We couldn't find that order.</p>
+            <nx-button variant="primary" [routerLink]="'/ecommerce-website/account'">Go to My Account</nx-button>
+        </div>
+    }
+
+</ng-template>

@@ -1,0 +1,111 @@
+@import '../ecommerce-shared';
+
+// ---- Hero ------------------------------------------------------------------
+
+.eabout-hero {
+    background:
+        linear-gradient(120deg, rgba(10, 16, 32, .88) 10%, rgba(10, 16, 32, .55) 60%, rgba(10, 16, 32, .3) 100%),
+        url('https://picsum.photos/seed/nx-ecom-about/1600/700') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.eabout-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-md, 16px);
+    max-width: 620px;
+}
+
+.eabout-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.eabout-hero-subtitle {
+    font-size: var(--nx-font-size-md, 16px);
+    opacity: .85;
+    margin: 0;
+}
+
+// ---- Stats row ---------------------------------------------------------------
+
+.eabout-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+// ---- Team grid ---------------------------------------------------------------
+
+.eabout-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.eabout-team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.eabout-team-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.eabout-team-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.eabout-team-role {
+    font-size: var(--nx-font-size-xs, 12px);
+    margin-bottom: 4px;
+}
+
+.eabout-team-bio {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+// ---- CTA banner ------------------------------------------------------------
+
+.eabout-cta {
+    margin-top: var(--nx-spacing-xl, 32px);
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text-secondary);
+    }
+}

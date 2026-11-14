@@ -1,0 +1,61 @@
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <h1 class="pwork-title">Our work</h1>
+    <p class="port-muted pwork-count">Showing {{ filteredProjects().length }} projects</p>
+
+    <div class="pwork-chip-row">
+        @for (category of categories; track category) {
+            <button
+                type="button"
+                class="pwork-chip"
+                [class.active]="activeCategory() === category"
+                (click)="selectCategory(category)">
+                {{ category }}
+            </button>
+        }
+    </div>
+
+    @if (filteredProjects().length === 0) {
+        <div class="pwork-empty-state">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>No projects match this category yet.</p>
+        </div>
+    } @else {
+        <nx-masonry [cols]="3" [gap]="20">
+            @for (project of filteredProjects(); track project.slug; let i = $index) {
+                <a class="port-project-card pwork-masonry-card" [routerLink]="['/portfolio-website/work', project.slug]">
+                    <div class="port-project-media" [style.height]="mediaHeight(i)">
+                        <img class="port-project-media-img" [src]="project.image" [alt]="project.title" loading="lazy">
+                    </div>
+                    <div class="port-project-caption">
+                        <span class="port-project-caption-category">{{ project.category }}</span>
+                        <span class="port-project-caption-title">{{ project.title }}</span>
+                        <span class="port-project-caption-client">{{ project.client }}</span>
+                    </div>
+                </a>
+            }
+        </nx-masonry>
+    }
+
+</ng-template>

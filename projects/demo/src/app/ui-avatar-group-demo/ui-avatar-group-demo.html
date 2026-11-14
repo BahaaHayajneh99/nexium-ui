@@ -1,0 +1,41 @@
+<div class="main-content">
+
+    <div class="main-container">
+
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Basic Avatar Group"
+                description="{{ commonService.appName }}'s Avatar Group stacks user avatars with a slight overlap, reusing nx-avatar under the hood. Each avatar shows the user's name as a native tooltip, and falls back to initials when no src is given."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-avatar-group [users]="basicUsers" size="medium"></nx-avatar-group>
+            </app-demo-section>
+
+            <app-demo-section
+                header="Overflow chip"
+                description="Set max to cap how many avatars are shown. Anything past that count collapses into a '+N' chip you can hook into via overflowClick, for example to open a full member list."
+                [code]="overflowCode"
+                [tsCode]="overflowTs"
+                [hasSampleClass]="false">
+                <nx-avatar-group [users]="overflowUsers" [max]="3" (overflowClick)="onOverflowClick()"></nx-avatar-group>
+                @if (lastOverflowClick) {
+                    <p style="margin-top:12px; color:var(--shell-text-secondary); font-size:0.85rem;">
+                        {{ lastOverflowClick }}
+                    </p>
+                }
+            </app-demo-section>
+
+        </div>
+
+    </div>
+
+</div>

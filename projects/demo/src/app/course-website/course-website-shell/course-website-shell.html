@@ -1,0 +1,82 @@
+<div class="coursew-shell">
+
+    @if (licensed()) {
+        <div class="coursew-unlocked-bar">
+            <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+            You've unlocked the full Course Website template with your PRO license.
+        </div>
+    } @else {
+        <div class="coursew-pro-bar">
+            <nx-icon icon="nx-lock" variant="svg" [size]="14"></nx-icon>
+            This is a NexiumUI <strong>PRO</strong> template - <strong>$55</strong>
+            <s>$95</s> one-time, included free with any PRO license.
+            <nx-button variant="primary" size="small" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+        </div>
+    }
+
+    <header class="coursew-site-header">
+        <div class="coursew-site-header-inner">
+            <a class="coursew-brand" [routerLink]="'/course-website/home'">
+                <nx-icon icon="nx-book" variant="svg" [size]="20"></nx-icon>
+                Pathwise Academy
+            </a>
+
+            <nav class="coursew-site-nav">
+                @for (link of navLinks; track link.path) {
+                    <a [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+                }
+            </nav>
+
+            <div class="coursew-site-actions">
+                <a class="coursew-text-link" [routerLink]="'/course-website/login'" routerLinkActive="active">Log in</a>
+                <a class="coursew-icon-link" [routerLink]="'/course-website/dashboard'" routerLinkActive="active" title="My Dashboard">
+                    <nx-icon icon="nx-grid" variant="svg" [size]="18"></nx-icon>
+                </a>
+                <nx-button variant="primary" size="small" [routerLink]="'/course-website/signup'">Get started</nx-button>
+            </div>
+        </div>
+    </header>
+
+    <main class="coursew-site-main">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="coursew-site-footer">
+        <div class="coursew-footer-inner">
+            <div class="coursew-footer-brand">
+                <div class="coursew-brand">
+                    <nx-icon icon="nx-book" variant="svg" [size]="20"></nx-icon>
+                    Pathwise Academy
+                </div>
+                <p>Learn at your pace, master for life.</p>
+            </div>
+
+            <div class="coursew-footer-columns">
+                <div class="coursew-footer-column">
+                    <h4>Learn</h4>
+                    <a [routerLink]="'/course-website/courses'">Courses</a>
+                    <a [routerLink]="'/course-website/instructors'">Instructors</a>
+                    <a [routerLink]="'/course-website/pricing'">Pricing</a>
+                    <a [routerLink]="'/course-website/blog'">Blog</a>
+                    <a [routerLink]="'/course-website/reviews'">Reviews</a>
+                    <a [routerLink]="'/course-website/faq'">FAQ</a>
+                </div>
+                <div class="coursew-footer-column">
+                    <h4>Account</h4>
+                    <a [routerLink]="'/course-website/dashboard'">Dashboard</a>
+                    <a [routerLink]="'/course-website/login'">Log in</a>
+                    <a [routerLink]="'/course-website/signup'">Sign up</a>
+                </div>
+                <div class="coursew-footer-column">
+                    <h4>Support</h4>
+                    <a [routerLink]="'/course-website/contact'">Contact</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="coursew-footer-bottom">
+            &copy; 2026 Pathwise Academy. Built entirely with NexiumUI components.
+        </div>
+    </footer>
+
+</div>

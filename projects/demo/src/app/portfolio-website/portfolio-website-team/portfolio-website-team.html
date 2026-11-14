@@ -1,0 +1,47 @@
+<section class="pteam-hero">
+    <div class="port-container pteam-hero-inner">
+        <h1>Meet the studio</h1>
+        <p>Seven people, every one of them senior enough to lead the project they're staffed on, not just support it.</p>
+    </div>
+</section>
+
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="pteam-grid">
+        @for (member of team; track member.name) {
+            <div class="pteam-card">
+                <img class="pteam-avatar" [src]="member.avatar" [alt]="member.name">
+                <div class="pteam-name">{{ member.name }}</div>
+                <div class="pteam-role">{{ member.role }}</div>
+                <p class="pteam-bio">{{ member.bio }}</p>
+            </div>
+        }
+    </div>
+
+    <div class="pteam-cta">
+        <h2>Want to work with this team?</h2>
+        <nx-button variant="primary" [routerLink]="'/portfolio-website/careers'">View open roles</nx-button>
+    </div>
+
+</ng-template>

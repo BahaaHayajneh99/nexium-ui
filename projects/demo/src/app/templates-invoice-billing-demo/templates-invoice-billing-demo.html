@@ -1,0 +1,64 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Invoice List"
+                description="A data table wired to plain columns and rows arrays - status is shown as plain text since nx-table renders cell values as text."
+                [code]="invoiceListCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="invoices" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Invoice Detail"
+                description="A single invoice built from nx-card, an itemized nx-table and an nx-badge status indicator."
+                [code]="invoiceDetailCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="outlined" class="template-card-wide">
+                    <nx-card-header>
+                        <nx-card-title>Invoice {{ detailInvoice.number }}</nx-card-title>
+                    </nx-card-header>
+                    <nx-card-content>
+                        <div class="template-form-row">
+                            <div>
+                                <div class="template-setting-title">From</div>
+                                <div class="template-setting-desc">{{ detailInvoice.from.name }}</div>
+                                <div class="template-setting-desc">{{ detailInvoice.from.address }}</div>
+                                <div class="template-setting-desc">{{ detailInvoice.from.email }}</div>
+                            </div>
+                            <div>
+                                <div class="template-setting-title">Bill To</div>
+                                <div class="template-setting-desc">{{ detailInvoice.billTo.name }}</div>
+                                <div class="template-setting-desc">{{ detailInvoice.billTo.address }}</div>
+                                <div class="template-setting-desc">{{ detailInvoice.billTo.email }}</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <nx-table [columns]="itemColumns" [data]="lineItems" bordered></nx-table>
+                        </div>
+
+                        <div class="mt-4" style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem;">
+                            <div class="template-setting-desc">Subtotal: {{ detailInvoice.subtotal }}</div>
+                            <div class="template-setting-desc">Tax: {{ detailInvoice.tax }}</div>
+                            <div class="template-stat-value">Total: {{ detailInvoice.total }}</div>
+                        </div>
+                    </nx-card-content>
+                    <nx-card-footer style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                        <nx-badge [variant]="detailInvoice.statusVariant">{{ detailInvoice.status }}</nx-badge>
+                        <div style="display: flex; gap: 0.75rem;">
+                            <nx-button variant="secondary">Download PDF</nx-button>
+                            <nx-button variant="primary">Send Reminder</nx-button>
+                        </div>
+                    </nx-card-footer>
+                </nx-card>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

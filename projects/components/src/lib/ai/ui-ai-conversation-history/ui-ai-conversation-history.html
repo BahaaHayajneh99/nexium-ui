@@ -1,0 +1,69 @@
+@if (licensed()) {
+    <div class="nx-ai-conversation-history">
+        <button type="button" class="nx-ai-conversation-history-new" (click)="onNewChat()">
+            <nx-icon icon="nx-plus" variant="svg" [size]="13"></nx-icon> New chat
+        </button>
+
+        <div class="nx-ai-conversation-history-search">
+            <nx-icon icon="nx-search" variant="svg" [size]="13"></nx-icon>
+            <input
+                type="text"
+                placeholder="Search conversations"
+                [ngModel]="searchTerm()"
+                (ngModelChange)="setSearch($event)"
+                [ngModelOptions]="{standalone: true}" />
+        </div>
+
+        <div class="nx-ai-conversation-history-list">
+            @for (group of groups(); track group.label) {
+                <div class="nx-ai-conversation-history-group">
+                    <div class="nx-ai-conversation-history-group-label">{{ group.label }}</div>
+
+                    @for (conversation of group.conversations; track conversation.id) {
+                        <div
+                            class="nx-ai-conversation-history-row"
+                            [class.active]="conversation.id === activeId"
+                            (click)="onSelect(conversation)">
+
+                            @if (renamingId() === conversation.id) {
+                                <input
+                                    type="text"
+                                    class="nx-ai-conversation-history-rename-input"
+                                    [ngModel]="renameDraft()"
+                                    (ngModelChange)="setRenameDraft($event)"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (click)="$event.stopPropagation()"
+                                    (keydown.enter)="commitRename()"
+                                    (keydown.escape)="cancelRename()"
+                                    (blur)="commitRename()" />
+                            } @else {
+                                <span class="nx-ai-conversation-history-title">{{ conversation.title }}</span>
+
+                                <div class="nx-ai-conversation-history-actions">
+                                    <button
+                                        type="button"
+                                        class="nx-ai-conversation-history-action"
+                                        aria-label="Rename conversation"
+                                        (click)="startRename(conversation, $event)">
+                                        <nx-icon icon="nx-edit" variant="svg" [size]="12"></nx-icon>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="nx-ai-conversation-history-action"
+                                        aria-label="Delete conversation"
+                                        (click)="onDelete(conversation, $event)">
+                                        <nx-icon icon="nx-trash" variant="svg" [size]="12"></nx-icon>
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            } @empty {
+                <div class="nx-ai-conversation-history-empty">No conversations found.</div>
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="AI Conversation History"></nx-pro-locked>
+}

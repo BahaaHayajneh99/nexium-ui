@@ -1,0 +1,75 @@
+@import '../portfolio-shared';
+
+.pcareers-heading {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pcareers-perks-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+}
+
+.pcareers-perk {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+
+    nx-icon {
+        color: var(--shell-primary);
+        flex-shrink: 0;
+    }
+}
+
+.pcareers-job-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.pcareers-job-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    flex-wrap: wrap;
+}
+
+.pcareers-job-info {
+    h3 {
+        margin: 0 0 4px;
+        font-size: var(--nx-font-size-md, 16px);
+        color: var(--shell-text);
+    }
+}
+
+.pcareers-job-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--shell-text-muted);
+    font-size: var(--nx-font-size-sm, 14px);
+}
+
+.pcareers-job-dot {
+    opacity: .6;
+}
+
+.pcareers-job-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-md, 16px);
+}

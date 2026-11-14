@@ -1,0 +1,112 @@
+<section class="chome-hero">
+    <div class="course-container chome-hero-inner">
+        <h1 class="chome-hero-title">Learn at your pace,<br>master for life</h1>
+        <p class="chome-hero-subtitle">
+            Self-paced courses in design, development, business, and marketing - taught by practitioners who still do
+            the work, built to fit around your schedule, not the other way around.
+        </p>
+        <div class="chome-hero-actions">
+            <nx-button variant="primary" size="large" [routerLink]="'/course-website/courses'">Browse courses</nx-button>
+            <nx-button variant="outline" size="large" [routerLink]="'/course-website/signup'">Get started free</nx-button>
+        </div>
+    </div>
+</section>
+
+<div class="course-container course-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="course-locked-wrapper">
+            <div class="course-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="course-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Course Website template for $55</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <section class="chome-categories">
+        <div class="course-section-heading">
+            <h2>Explore by category</h2>
+            <p>Find the skill track that matches where you want to go next.</p>
+        </div>
+        <div class="chome-category-grid">
+            @for (cat of categoryTiles; track cat.name) {
+                <a class="chome-category-tile" [routerLink]="'/course-website/courses'">
+                    <nx-icon [icon]="cat.icon" variant="svg" [size]="28"></nx-icon>
+                    <span>{{ cat.name }}</span>
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="course-section">
+        <div class="course-section-heading">
+            <h2>Featured Courses</h2>
+            <p>Hand-picked courses our students rate highest.</p>
+        </div>
+        <div class="course-grid">
+            @for (course of featuredCourses; track course.slug) {
+                <a class="course-card" [routerLink]="['/course-website/course', course.slug]">
+                    <div class="course-card-media">
+                        <img class="course-card-media-img" [src]="course.image" [alt]="course.title" loading="lazy">
+                        <span class="course-card-level-badge">{{ course.level }}</span>
+                    </div>
+                    <div class="course-card-body">
+                        <div class="course-card-category">{{ course.category }}</div>
+                        <div class="course-card-title">{{ course.title }}</div>
+                        <nx-rating [value]="course.rating" [readonly]="true"></nx-rating>
+                        <div class="course-card-meta-row">
+                            <span class="course-card-students">
+                                <nx-icon icon="nx-users" variant="svg" [size]="12"></nx-icon>
+                                {{ course.studentCount | number }} students
+                            </span>
+                        </div>
+                        <div class="course-card-price-row">
+                            <span class="course-card-price">${{ course.price }}</span>
+                            @if (course.compareAtPrice) {
+                                <span class="course-card-price-compare">${{ course.compareAtPrice }}</span>
+                            }
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="chome-stats-row">
+        @for (stat of stats; track stat.label) {
+            <nx-statistic [label]="stat.label" [value]="stat.value" [suffix]="stat.suffix"></nx-statistic>
+        }
+    </section>
+
+    <section class="course-section">
+        <div class="course-section-heading">
+            <h2>What our students say</h2>
+            <p>Real outcomes from real learners.</p>
+        </div>
+        <div class="chome-testimonial-grid">
+            @for (t of testimonials; track t.name) {
+                <div class="chome-testimonial-card">
+                    <img class="course-avatar-photo" [src]="t.avatar" [alt]="t.name">
+                    <div class="chome-testimonial-name">{{ t.name }}</div>
+                    <div class="chome-testimonial-role">{{ t.role }}</div>
+                    <p class="chome-testimonial-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="chome-cta-banner">
+        <h2>Ready to start learning?</h2>
+        <p>Join thousands of students building real skills, one lesson at a time.</p>
+        <nx-button variant="primary" size="large" [routerLink]="'/course-website/signup'">Create your free account</nx-button>
+    </section>
+
+</ng-template>

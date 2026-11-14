@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Integrations dashboard"
+                description="{{ commonService.appName }}'s Integration Manager lists many integrations at once, each rendered with the real nx-integration-card - search by name or filter by connection status, and connect/disconnect/configure events pass through from the underlying card."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:900px;">
+                    <nx-integration-manager
+                        [integrations]="integrations"
+                        (connect)="onConnect($event)"
+                        (disconnect)="onDisconnect($event)"
+                        (configure)="onConfigure($event)">
+                    </nx-integration-manager>
+                    @if (lastEvent) {
+                        <p style="margin-top:12px; color:var(--shell-text-secondary); font-size:0.85rem;">
+                            Last event: {{ lastEvent }}
+                        </p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

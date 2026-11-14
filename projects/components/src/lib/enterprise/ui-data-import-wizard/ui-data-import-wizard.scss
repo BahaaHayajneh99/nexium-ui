@@ -1,0 +1,222 @@
+.nx-data-import-wizard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nx-data-import-wizard-body {
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    padding: 16px;
+}
+
+.nx-data-import-wizard-step {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nx-data-import-wizard-step-hint {
+    margin: 0;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-data-import-wizard-status {
+    margin: 0;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-data-import-wizard-error {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: rgba(231, 76, 60, .1);
+    color: var(--nx-color-danger, #e74c3c);
+    font-size: 12px;
+}
+
+.nx-data-import-wizard-mapping-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-data-import-wizard-mapping-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+}
+
+.nx-data-import-wizard-mapping-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nx-data-import-wizard-mapping-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--shell-text);
+}
+
+.nx-data-import-wizard-required-tag {
+    padding: 1px 6px;
+    border-radius: 999px;
+    background-color: rgba(231, 76, 60, .12);
+    color: var(--nx-color-danger, #e74c3c);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+
+.nx-data-import-wizard-mapping-select {
+    min-width: 200px;
+    padding: 6px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-bg, #ffffff);
+    color: var(--shell-text);
+    font-size: 12px;
+}
+
+.nx-data-import-wizard-review-summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-data-import-wizard-invalid-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background-color: rgba(231, 76, 60, .12);
+    color: var(--nx-color-danger, #e74c3c);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.nx-data-import-wizard-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+}
+
+.nx-data-import-wizard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.nx-data-import-wizard-table th {
+    padding: 8px 10px;
+    text-align: left;
+    background-color: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    border-bottom: 1px solid var(--shell-border);
+    white-space: nowrap;
+}
+
+.nx-data-import-wizard-table td {
+    padding: 8px 10px;
+    color: var(--shell-text);
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.nx-data-import-wizard-table tr:last-child td {
+    border-bottom: none;
+}
+
+.nx-data-import-wizard-table tr.has-problem td {
+    background-color: rgba(231, 76, 60, .05);
+}
+
+.nx-data-import-wizard-empty-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--shell-text-secondary);
+}
+
+.nx-data-import-wizard-missing-badge {
+    padding: 1px 6px;
+    border-radius: 999px;
+    background-color: var(--nx-color-danger, #e74c3c);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.nx-data-import-wizard-empty-state {
+    padding: 24px 12px;
+    text-align: center;
+    color: var(--shell-text-secondary);
+}
+
+.nx-data-import-wizard-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.nx-data-import-wizard-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-data-import-wizard-btn:hover {
+    border-color: var(--shell-primary);
+    color: var(--shell-primary);
+}
+
+.nx-data-import-wizard-btn.primary {
+    border-color: var(--shell-primary);
+    background-color: var(--shell-primary);
+    color: #ffffff;
+}
+
+.nx-data-import-wizard-btn.primary:hover {
+    opacity: .9;
+}
+
+.nx-data-import-wizard-btn.ghost {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.nx-data-import-wizard-done {
+    align-items: center;
+    text-align: center;
+    padding: 24px 12px;
+}
+
+.nx-data-import-wizard-done-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--shell-text);
+}

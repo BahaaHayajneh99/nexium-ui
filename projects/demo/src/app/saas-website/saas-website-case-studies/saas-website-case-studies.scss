@@ -1,0 +1,90 @@
+@import '../saas-shared';
+
+.scase-hero {
+    background: linear-gradient(120deg, rgba(14, 22, 44, .92) 10%, rgba(14, 22, 44, .55) 100%),
+        url('https://picsum.photos/seed/nx-saas-casestudies/1600/500') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 56px) 0;
+    text-align: center;
+}
+
+.scase-hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: var(--nx-font-weight-bold, 700);
+    }
+
+    p {
+        margin: 0;
+        opacity: .85;
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.scase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.scase-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow .15s ease, transform .15s ease;
+
+    &:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .1);
+        transform: translateY(-2px);
+    }
+}
+
+.scase-card-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.scase-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: var(--nx-spacing-lg, 24px);
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-sm, 14px);
+        line-height: 1.5;
+    }
+}
+
+.scase-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nx-spacing-sm, 8px);
+
+    h3 {
+        margin: 0;
+        font-size: var(--nx-font-size-md, 16px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.scase-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-primary);
+    font-size: var(--nx-font-size-sm, 14px);
+}

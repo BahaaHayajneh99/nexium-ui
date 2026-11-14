@@ -1,0 +1,159 @@
+@import '../restaurant-shared';
+
+// ---- Hero ----------------------------------------------------------------
+
+.rhome-hero {
+    background:
+        linear-gradient(120deg, rgba(28, 22, 14, .88) 10%, rgba(28, 22, 14, .55) 60%, rgba(28, 22, 14, .3) 100%),
+        url('https://picsum.photos/seed/resto-hero/1600/700') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.rhome-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-lg, 24px);
+    max-width: 620px;
+}
+
+.rhome-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.rhome-hero-subtitle {
+    font-size: var(--nx-font-size-md, 16px);
+    opacity: .85;
+    margin: 0;
+}
+
+.rhome-hero-actions {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+    flex-wrap: wrap;
+}
+
+// ---- Gallery ---------------------------------------------------------------
+
+.rhome-gallery-carousel {
+    display: block;
+    border-radius: var(--nx-radius-lg, 12px);
+    overflow: hidden;
+}
+
+// ---- Testimonials -----------------------------------------------------------
+
+.rhome-testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.rhome-testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.rhome-testimonial-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.rhome-testimonial-quote {
+    margin: var(--nx-spacing-xs, 4px) 0 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+// ---- Stats row ---------------------------------------------------------------
+
+.rhome-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    margin-top: var(--nx-spacing-xl, 32px);
+    padding-top: var(--nx-spacing-xl, 32px);
+    border-top: 1px solid var(--shell-border);
+}
+
+.rhome-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+
+    nx-number-ticker {
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-primary);
+    }
+}
+
+// ---- Info panel (hours + location) -----------------------------------------
+
+.rhome-info-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--nx-spacing-xl, 32px);
+    padding: var(--nx-spacing-xl, 32px) 0;
+}
+
+.rhome-info-block {
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text);
+
+        nx-icon {
+            color: var(--shell-primary);
+        }
+    }
+
+    p {
+        margin: 0 0 4px;
+    }
+}
+
+.rhome-info-row {
+    font-size: var(--nx-font-size-sm, 14px);
+    padding: 4px 0;
+}
+
+// ---- Final CTA ---------------------------------------------------------------
+
+.rhome-cta-banner {
+    text-align: center;
+    padding: var(--nx-spacing-xxl, 48px) var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: linear-gradient(135deg, #6b4423 0%, #3d2b1f 100%);
+    color: #ffffff;
+
+    h3 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-lg, 24px);
+        opacity: .9;
+    }
+}

@@ -1,0 +1,101 @@
+.nx-avatar-group {
+
+    display: inline-flex;
+    align-items: center;
+
+    --nx-avatar-group-overlap: -12px;
+
+    &.small {
+        --nx-avatar-group-overlap: -8px;
+    }
+
+    &.medium {
+        --nx-avatar-group-overlap: -12px;
+    }
+
+    &.large {
+        --nx-avatar-group-overlap: -16px;
+    }
+
+}
+
+.nx-avatar-group-item {
+
+    position: relative;
+
+    display: inline-flex;
+
+    border-radius: var(--nx-radius-round, 999px);
+    box-shadow: 0 0 0 2px var(--shell-surface);
+
+    margin-left: var(--nx-avatar-group-overlap, -12px);
+
+    &:first-child {
+        margin-left: 0;
+    }
+
+    // Each avatar's right/bottom edge is covered by the next overlapping avatar (or the
+    // overflow chip), which would otherwise bury NxAvatar's default bottom-right status dot
+    // under the next item every time. The bottom-left corner is the one spot never covered by
+    // a later, overlapping sibling, so the presence dot is moved there just within this
+    // overlapping context - standalone <nx-avatar> usage elsewhere is unaffected.
+    ::ng-deep .nx-avatar-status {
+        right: auto;
+        left: 0;
+    }
+
+}
+
+.nx-avatar-group-overflow {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    margin-left: var(--nx-avatar-group-overlap, -12px);
+
+    border: none;
+    border-radius: var(--nx-radius-round, 999px);
+    box-shadow: 0 0 0 2px var(--shell-surface);
+
+    background: var(--shell-surface-hover);
+    color: var(--shell-text);
+
+    font-family: var(--font-family, "Roboto", sans-serif);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    font-size: var(--nx-font-size-sm, 14px);
+
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .2s ease;
+
+    &:hover {
+        background: var(--shell-border);
+    }
+
+}
+
+// =========================
+// Sizes (overflow chip dimensions)
+// =========================
+
+.nx-avatar-group.small .nx-avatar-group-overflow {
+    width: 28px;
+    height: 28px;
+    font-size: var(--nx-font-size-xs, 12px);
+}
+
+.nx-avatar-group.medium .nx-avatar-group-overflow {
+    width: 40px;
+    height: 40px;
+    font-size: var(--nx-font-size-sm, 14px);
+}
+
+.nx-avatar-group.large .nx-avatar-group-overflow {
+    width: 56px;
+    height: 56px;
+    font-size: var(--nx-font-size-md, 16px);
+}

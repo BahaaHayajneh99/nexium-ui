@@ -1,0 +1,56 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Article Categories"
+                description="A grid of category cards built from nx-card, nx-icon and plain text."
+                [code]="categoriesCode"
+                [hasSampleClass]="false">
+
+                <div style="--nx-grid-min-width: 220px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    @for (category of categories; track category.name) {
+                        <nx-card variant="outlined" hoverable>
+                            <nx-card-content style="text-align: center;">
+                                <nx-icon [icon]="category.icon" variant="svg" [size]="28"></nx-icon>
+                                <div class="template-profile-name mt-2">{{ category.name }}</div>
+                                <div class="template-stat-label">{{ category.count }} articles</div>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Article & Search"
+                description="A search nx-input, an nx-breadcrumb trail and an open article preview with a feedback row."
+                [code]="articleCode"
+                [hasSampleClass]="false">
+
+                <div class="template-preview">
+                    <nx-input placeholder="Search articles..."></nx-input>
+
+                    <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+
+                    <div>
+                        <h3 class="template-profile-name">How to Reset Your Password</h3>
+                        <p class="mt-2">If you've forgotten your password, you can reset it in under a minute. From the login screen, select "Forgot password?" and enter the email address associated with your account. We'll send a secure, time-limited reset link to that inbox.</p>
+                        <p class="mt-2">Once you open the link, you'll be asked to choose a new password. For security, it must be at least 10 characters and include a number. After saving, you'll be signed out of all other active sessions automatically.</p>
+                        <p class="mt-2">If the email doesn't arrive within a few minutes, check your spam folder or confirm the address on file under Settings → Account. Still stuck? Contact support and we'll help you regain access.</p>
+                    </div>
+
+                    <div class="template-form-row">
+                        <span class="template-form-note">Was this helpful?</span>
+                        <div style="display: flex; gap: 0.75rem;">
+                            <nx-button variant="secondary" size="small">Yes</nx-button>
+                            <nx-button variant="secondary" size="small">No</nx-button>
+                        </div>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

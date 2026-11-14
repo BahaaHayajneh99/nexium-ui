@@ -1,0 +1,76 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Inbox List"
+                description="Email rows reusing the template-setting-row pattern, with nx-badge dots marking unread messages."
+                [code]="inboxCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="outlined">
+                    <nx-card-content>
+                        @for (email of emails; track email.subject) {
+                            <div class="template-setting-row">
+                                <div>
+                                    <div [style.font-weight]="email.unread ? 700 : 400" style="display: flex; align-items: center; gap: 0.5rem;">
+                                        @if (email.unread) {
+                                            <nx-badge variant="primary" dot></nx-badge>
+                                        }
+                                        <span>{{ email.sender }} &mdash; {{ email.subject }}</span>
+                                    </div>
+                                    <div class="template-stat-label mt-1">{{ email.preview }}</div>
+                                </div>
+                                <span class="template-stat-label">{{ email.time }}</span>
+                            </div>
+                        }
+                    </nx-card-content>
+                </nx-card>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Message Preview"
+                description="An open-email card with nx-avatar, a heading subject and action buttons with icons."
+                [code]="previewCode"
+                [hasSampleClass]="false">
+
+                <nx-card variant="outlined">
+                    <nx-card-content>
+                        <div class="template-profile-header">
+                            <nx-avatar [name]="openEmail.senderName" size="medium"></nx-avatar>
+                            <div>
+                                <div class="template-profile-name">{{ openEmail.senderName }}</div>
+                                <div class="template-stat-label">{{ openEmail.senderEmail }}</div>
+                            </div>
+                        </div>
+                        <h3 class="mt-3">{{ openEmail.subject }}</h3>
+                        @for (paragraph of openEmail.paragraphs; track paragraph) {
+                            <p class="mt-2">{{ paragraph }}</p>
+                        }
+                        <div class="mt-3" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <nx-button variant="primary" size="small">
+                                <nx-icon icon="nx-send" [size]="16"></nx-icon>
+                                Reply
+                            </nx-button>
+                            <nx-button variant="outline" size="small">
+                                <nx-icon icon="nx-share" [size]="16"></nx-icon>
+                                Forward
+                            </nx-button>
+                            <nx-button variant="outline" size="small">
+                                <nx-icon icon="nx-folder" [size]="16"></nx-icon>
+                                Archive
+                            </nx-button>
+                            <nx-button variant="outline" size="small">
+                                <nx-icon icon="nx-trash" [size]="16"></nx-icon>
+                                Delete
+                            </nx-button>
+                        </div>
+                    </nx-card-content>
+                </nx-card>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<section class="rehome-hero">
+    <div class="realest-container rehome-hero-inner">
+        <h1 class="rehome-hero-title">Find the home<br>that finds you.</h1>
+        <p class="rehome-hero-subtitle">
+            Haven Realty pairs local agents with a curated list of homes, condos, and rentals across four growing
+            metro areas - so you spend less time searching and more time moving in.
+        </p>
+        <div class="rehome-search-row">
+            <nx-input placeholder="Search by city, neighborhood, or ZIP"></nx-input>
+            <nx-button variant="primary" size="large" [routerLink]="'/real-estate-website/listings'">Search</nx-button>
+        </div>
+    </div>
+</section>
+
+<div class="realest-container realest-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="realest-locked-wrapper">
+            <div class="realest-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="realest-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Real Estate Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <section class="rehome-areas">
+        <div class="realest-section-heading">
+            <h2>Featured areas</h2>
+            <p>Browse homes in the metro areas our agents know best.</p>
+        </div>
+        <div class="rehome-area-grid">
+            @for (city of featuredCities; track city.name) {
+                <a class="rehome-area-tile" [routerLink]="'/real-estate-website/listings'" [style.background-image]="'url(' + city.image + ')'">
+                    <div class="rehome-area-tile-overlay">
+                        <span class="rehome-area-name">{{ city.name }}</span>
+                        <span class="rehome-area-count">{{ city.listingCount }} listings</span>
+                    </div>
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="realest-section">
+        <div class="realest-flex-between rehome-featured-heading">
+            <div class="realest-section-heading rehome-featured-heading-text">
+                <h2>Featured listings</h2>
+                <p>A hand-picked sample of what's currently available.</p>
+            </div>
+            <nx-button variant="outline" [routerLink]="'/real-estate-website/listings'">View all</nx-button>
+        </div>
+        <div class="realest-listing-grid">
+            @for (listing of featuredListings; track listing.id) {
+                <a class="realest-listing-card" [routerLink]="['/real-estate-website/listing', listing.id]">
+                    <div class="realest-listing-media">
+                        <img class="realest-listing-media-img" [src]="listing.image" [alt]="listing.title" loading="lazy">
+                        <nx-badge [variant]="badgeVariant(listing.status)" class="realest-listing-badge">{{ listing.status }}</nx-badge>
+                    </div>
+                    <div class="realest-listing-body">
+                        <div class="realest-listing-type">{{ listing.type }} &middot; {{ listing.city }}</div>
+                        <span class="realest-listing-title">{{ listing.title }}</span>
+                        <span class="realest-listing-address">{{ listing.address }}</span>
+                        <span class="realest-listing-price">${{ listing.price | number }}{{ listing.status === 'For Rent' ? '/mo' : '' }}</span>
+                        <div class="realest-listing-specs">
+                            <span><nx-icon icon="nx-moon" variant="svg" [size]="14"></nx-icon>{{ listing.beds }} bd</span>
+                            <span><nx-icon icon="nx-cloud" variant="svg" [size]="14"></nx-icon>{{ listing.baths }} ba</span>
+                            <span><nx-icon icon="nx-layout" variant="svg" [size]="14"></nx-icon>{{ listing.sqft | number }} sqft</span>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="realest-section">
+        <div class="realest-section-heading">
+            <h2>What our clients say</h2>
+            <p>Real stories from buyers, sellers, and renters we've worked with.</p>
+        </div>
+        <div class="rehome-testimonial-grid">
+            @for (t of testimonials; track t.name) {
+                <div class="rehome-testimonial-card">
+                    <img class="realest-avatar-photo" [src]="t.avatar" [alt]="t.name">
+                    <div class="rehome-testimonial-name">{{ t.name }}</div>
+                    <div class="rehome-testimonial-role">{{ t.role }}</div>
+                    <p class="rehome-testimonial-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="rehome-stats-row">
+        @for (stat of trustStats; track stat.label) {
+            <nx-statistic [label]="stat.label" [value]="stat.value" [suffix]="stat.suffix ?? ''"></nx-statistic>
+        }
+    </section>
+
+    <div class="rehome-cta">
+        <h2>Ready to find your next place?</h2>
+        <p>Tell us what you're looking for and an agent will follow up within one business day.</p>
+        <nx-button variant="primary" size="large" [routerLink]="'/real-estate-website/contact'">Get in touch</nx-button>
+    </div>
+
+</ng-template>

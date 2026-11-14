@@ -1,0 +1,62 @@
+<div class="resto-container resto-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="resto-locked-wrapper">
+            <div class="resto-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="resto-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Restaurant Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="resto-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="rlocations-hero">
+        <h1>Find an Olive &amp; Oak near you</h1>
+        <p class="resto-muted">Two dining rooms, one kitchen philosophy: seasonal, farm-direct, and cooked over wood fire.</p>
+    </div>
+
+    <div class="rlocations-grid">
+        @for (location of locations; track location.name) {
+            <div class="rlocations-card">
+                <img class="rlocations-card-img" [src]="location.image" [alt]="location.name" loading="lazy">
+                <div class="rlocations-card-body">
+                    <h3>{{ location.name }}</h3>
+                    <div class="rlocations-info-row">
+                        <nx-icon icon="nx-map-pin" variant="svg" [size]="16"></nx-icon>
+                        <span>{{ location.address }}</span>
+                    </div>
+                    <div class="rlocations-info-row">
+                        <nx-icon icon="nx-phone" variant="svg" [size]="16"></nx-icon>
+                        <span>{{ location.phone }}</span>
+                    </div>
+
+                    <div class="rlocations-hours">
+                        @for (row of location.hours; track row.day) {
+                            <div class="resto-flex-between rlocations-hours-row">
+                                <span class="resto-muted">{{ row.day }}</span>
+                                <span>{{ row.hours }}</span>
+                            </div>
+                        }
+                    </div>
+
+                    <a class="rlocations-directions" [href]="directionsUrl(location)" target="_blank" rel="noopener">
+                        <nx-icon icon="nx-compass" variant="svg" [size]="16"></nx-icon>
+                        Get directions
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+</ng-template>

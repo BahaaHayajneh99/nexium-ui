@@ -1,0 +1,87 @@
+<div class="ecom-container ecom-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="ecom-locked-wrapper">
+            <div class="ecom-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="ecom-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full E-Commerce Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="ecom-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="ecom-section-heading">
+        <h1>The Fernway Journal</h1>
+        <p>Stories about sourcing, style, and the people behind everything we make.</p>
+    </div>
+
+    <div class="eblog-filter-row">
+        @for (category of categories(); track category) {
+            <button type="button" class="eblog-filter-btn" (click)="selectCategory(category)">
+                <nx-chip [variant]="selectedCategory() === category ? 'primary' : 'secondary'" [outlined]="selectedCategory() !== category" rounded>
+                    {{ category }}
+                </nx-chip>
+            </button>
+        }
+    </div>
+
+    @if (selectedCategory() === 'All' && featuredPost) {
+        <a class="eblog-featured-card" [routerLink]="'/ecommerce-website/blog/' + featuredPost.slug">
+            <div class="eblog-featured-media">
+                <img [src]="featuredPost.image" [alt]="featuredPost.title" loading="lazy">
+            </div>
+            <div class="eblog-featured-body">
+                <nx-chip variant="info" rounded>{{ featuredPost.category }}</nx-chip>
+                <h2 class="eblog-featured-title">{{ featuredPost.title }}</h2>
+                <p class="eblog-featured-excerpt">{{ featuredPost.excerpt }}</p>
+                <div class="eblog-author-row">
+                    <img class="ecom-avatar-photo" [src]="featuredPost.author.avatar" [alt]="featuredPost.author.name">
+                    <div>
+                        <div class="eblog-author-name">{{ featuredPost.author.name }}</div>
+                        <div class="eblog-meta ecom-muted">{{ featuredPost.date }} &middot; {{ featuredPost.readTime }}</div>
+                    </div>
+                </div>
+                <span class="eblog-read-link">
+                    Read article
+                    <nx-icon icon="nx-arrow-right" variant="svg" [size]="14"></nx-icon>
+                </span>
+            </div>
+        </a>
+    }
+
+    <div class="eblog-grid">
+        @for (post of filteredPosts(); track post.slug) {
+            <a class="eblog-card" [routerLink]="'/ecommerce-website/blog/' + post.slug">
+                <div class="eblog-card-media">
+                    <img [src]="post.image" [alt]="post.title" loading="lazy">
+                </div>
+                <div class="eblog-card-body">
+                    <nx-chip variant="secondary" outlined rounded>{{ post.category }}</nx-chip>
+                    <h3 class="eblog-card-title">{{ post.title }}</h3>
+                    <p class="eblog-card-excerpt">{{ post.excerpt }}</p>
+                    <div class="eblog-author-row eblog-author-row-small">
+                        <img class="eblog-avatar-sm" [src]="post.author.avatar" [alt]="post.author.name">
+                        <span class="eblog-author-name">{{ post.author.name }}</span>
+                        <span class="eblog-meta ecom-muted">&middot; {{ post.date }} &middot; {{ post.readTime }}</span>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+
+    @if (!filteredPosts().length) {
+        <p class="ecom-muted eblog-empty">No posts in this category yet.</p>
+    }
+
+</ng-template>

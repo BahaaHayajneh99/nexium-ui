@@ -1,0 +1,151 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <section class="main-section">
+                <h4 class="main-section-header">Theme Studio</h4>
+                <p class="main-section-description">
+                    Design a complete theme - colors, typography, shadows, spacing, and borders - and preview it
+                    live. Export it as CSS or JSON to wire into your own app, or save it here to keep iterating
+                    later.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <div class="theme-studio-presets">
+                    <span class="theme-studio-presets-label">Presets:</span>
+                    @for (preset of presets; track preset.name) {
+                        <button type="button" class="theme-studio-chip" (click)="applyPreset(preset)">{{ preset.name }}</button>
+                    }
+                    <button type="button" class="theme-studio-chip theme-studio-chip-reset" (click)="resetTheme()">Reset</button>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <div class="theme-studio-layout">
+
+                    <div class="theme-studio-editors">
+
+                        <div class="theme-studio-editor-block">
+                            <h5 class="theme-studio-editor-title">Brand &amp; Typography</h5>
+                            <nx-theme-editor [value]="state().brand" (valueChange)="onBrandChange($event)"></nx-theme-editor>
+                        </div>
+
+                        <div class="theme-studio-editor-block">
+                            <h5 class="theme-studio-editor-title">Color Palette</h5>
+                            <nx-color-token-generator
+                                [baseColor]="state().brand.primaryColor"
+                                (baseColorChange)="onPrimaryColorChange($event)">
+                            </nx-color-token-generator>
+                        </div>
+
+                        <div class="theme-studio-editor-block">
+                            <h5 class="theme-studio-editor-title">Shadow</h5>
+                            <nx-shadow-editor [value]="state().shadow" (valueChange)="onShadowChange($event)"></nx-shadow-editor>
+                        </div>
+
+                        <div class="theme-studio-editor-block">
+                            <h5 class="theme-studio-editor-title">Spacing</h5>
+                            <nx-spacing-editor [value]="state().spacing" (valueChange)="onSpacingChange($event)"></nx-spacing-editor>
+                        </div>
+
+                        <div class="theme-studio-editor-block">
+                            <h5 class="theme-studio-editor-title">Border &amp; Radius</h5>
+                            <nx-border-editor [value]="state().border" (valueChange)="onBorderChange($event)"></nx-border-editor>
+                        </div>
+
+                    </div>
+
+                    <div class="theme-studio-preview-column">
+                        <div class="theme-studio-preview-sticky">
+                            <h5 class="theme-studio-editor-title">Live Preview</h5>
+
+                            <div
+                                class="theme-studio-preview"
+                                [style.--shell-primary]="previewPrimaryColor()"
+                                [style.--nx-radius-md.px]="previewRadius()"
+                                [style.--nx-theme-shadow]="previewBoxShadow()"
+                                [style.--nx-theme-border]="previewBorder()"
+                                [style.--nx-theme-border-radius]="previewBorderRadius()"
+                                [style.--nx-theme-padding]="previewPadding()"
+                                [style.--nx-theme-margin]="previewMargin()"
+                                [style.font-family]="previewFontFamily()">
+
+                                <div class="theme-studio-preview-card">
+
+                                    <h6 class="theme-studio-preview-heading">Sample card heading</h6>
+                                    <p class="theme-studio-preview-text">
+                                        A short paragraph of body copy, so you can see how this theme reads at a
+                                        normal size and weight.
+                                    </p>
+
+                                    <div class="theme-studio-preview-row">
+                                        <button type="button" class="theme-studio-preview-button">Primary action</button>
+                                        <span class="theme-studio-preview-tag">Tag</span>
+                                    </div>
+
+                                    <nx-input class="theme-studio-preview-input" placeholder="Sample input field"></nx-input>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h5 class="theme-studio-editor-title">My Themes</h5>
+                <p class="main-section-description">
+                    Save the theme you're currently editing under a name, then click it any time to reapply it.
+                </p>
+
+                <div class="theme-studio-my-themes">
+                    <button type="button" class="theme-studio-chip theme-studio-chip-save" (click)="saveCurrentAs()">
+                        + Save current as...
+                    </button>
+
+                    @for (saved of savedPresets(); track $index; let i = $index) {
+                        <span class="theme-studio-chip theme-studio-saved-chip">
+                            <button type="button" class="theme-studio-saved-chip-name" (click)="applyPreset(saved)">{{ saved.name }}</button>
+                            <button
+                                type="button"
+                                class="theme-studio-saved-chip-delete"
+                                (click)="deleteSavedPreset(i)"
+                                [attr.aria-label]="'Delete ' + saved.name">
+                                &times;
+                            </button>
+                        </span>
+                    }
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h5 class="theme-studio-editor-title">Export &amp; Import</h5>
+
+                <div class="theme-studio-actions">
+                    <button type="button" class="theme-studio-action-button" (click)="exportJson()">Export JSON</button>
+
+                    <button type="button" class="theme-studio-action-button" (click)="exportCssToClipboard()">
+                        {{ cssExportCopied() ? 'Copied!' : 'Export CSS' }}
+                    </button>
+
+                    <button type="button" class="theme-studio-action-button" (click)="triggerImport(importFileInput)">Import JSON</button>
+                    <input
+                        #importFileInput
+                        type="file"
+                        accept="application/json"
+                        class="theme-studio-hidden-input"
+                        (change)="onImportFileSelected($event)" />
+
+                    <button type="button" class="theme-studio-action-button theme-studio-action-button-ghost" (click)="resetTheme()">Reset</button>
+                </div>
+
+                @if (importError()) {
+                    <p class="theme-studio-import-error">{{ importError() }}</p>
+                }
+            </section>
+
+        </div>
+    </div>
+</div>
