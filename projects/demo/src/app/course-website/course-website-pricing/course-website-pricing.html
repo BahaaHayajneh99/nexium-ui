@@ -1,0 +1,69 @@
+<div class="course-container course-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="course-locked-wrapper">
+            <div class="course-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="course-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Course Website template for $55</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="course-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="cprice-hero">
+        <h1>Simple, honest pricing</h1>
+        <p>Buy a single course outright, or go unlimited with All-Access. No hidden fees, cancel anytime.</p>
+    </div>
+
+    <div class="cprice-plan-grid">
+        @for (plan of plans; track plan.name) {
+            <div class="cprice-plan-card" [class.highlighted]="plan.highlighted">
+                @if (plan.highlighted) {
+                    <span class="cprice-plan-badge">Most popular</span>
+                }
+                <h2>{{ plan.name }}</h2>
+                <p class="course-muted cprice-plan-description">{{ plan.description }}</p>
+                <div class="cprice-plan-price">
+                    @if (plan.price === 'Custom') {
+                        <span class="cprice-plan-amount">Custom</span>
+                    } @else {
+                        <span class="cprice-plan-amount">${{ plan.price }}</span>
+                        <span class="course-muted">{{ plan.period }}</span>
+                    }
+                </div>
+                <nx-button
+                    [variant]="plan.highlighted ? 'primary' : 'outline'"
+                    [fullWidth]="true"
+                    [routerLink]="'/course-website/signup'">
+                    {{ plan.price === 'Custom' ? 'Contact sales' : 'Get started' }}
+                </nx-button>
+                <ul class="cprice-plan-features">
+                    @for (feature of plan.features; track feature) {
+                        <li>
+                            <nx-icon icon="nx-check" variant="svg" [size]="16"></nx-icon>
+                            <span>{{ feature }}</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+
+    <div class="cprice-cta">
+        <h2>Ready to start learning?</h2>
+        <p>Create your free account and pick the plan that fits how you learn.</p>
+        <nx-button variant="primary" size="large" [routerLink]="'/course-website/signup'">Sign up now</nx-button>
+    </div>
+
+</ng-template>

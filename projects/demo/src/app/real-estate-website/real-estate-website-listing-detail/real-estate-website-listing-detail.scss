@@ -1,0 +1,192 @@
+@import '../real-estate-shared';
+
+// ---- Layout -----------------------------------------------------------------
+
+.reld-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--nx-spacing-xxl, 48px);
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+}
+
+@media (max-width: 768px) {
+    .reld-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+// ---- Gallery ------------------------------------------------------------------
+
+.reld-gallery {
+    position: relative;
+}
+
+.reld-gallery-carousel {
+    display: block;
+    border-radius: var(--nx-radius-lg, 12px);
+    overflow: hidden;
+
+    ::ng-deep img {
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+    }
+}
+
+.reld-gallery-badge {
+    position: absolute;
+    top: var(--nx-spacing-sm, 8px);
+    left: var(--nx-spacing-sm, 8px);
+    z-index: 1;
+}
+
+// ---- Info -----------------------------------------------------------------------
+
+.reld-title {
+    margin: var(--nx-spacing-xs, 4px) 0;
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.reld-price {
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-primary);
+    margin-bottom: var(--nx-spacing-md, 16px);
+}
+
+.reld-stat-row {
+    display: flex;
+    gap: var(--nx-spacing-lg, 24px);
+    margin-bottom: var(--nx-spacing-lg, 24px);
+}
+
+.reld-stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}
+
+.reld-description {
+    color: var(--shell-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--nx-spacing-lg, 24px);
+}
+
+.reld-option-group {
+    margin-bottom: var(--nx-spacing-lg, 24px);
+
+    h3 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-sm, 14px);
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        color: var(--shell-text-muted);
+    }
+}
+
+.reld-feature-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--shell-text);
+        font-size: var(--nx-font-size-sm, 14px);
+    }
+
+    nx-icon {
+        color: var(--shell-primary);
+        flex-shrink: 0;
+    }
+}
+
+.reld-specs-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.reld-spec-row {
+    padding: var(--nx-spacing-sm, 8px) 0;
+    border-bottom: 1px solid var(--shell-border);
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+// ---- Agent card ------------------------------------------------------------------
+
+.reld-agent-card {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-md, 16px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    flex-wrap: wrap;
+}
+
+.reld-agent-avatar {
+    width: 56px;
+    height: 56px;
+}
+
+.reld-agent-info {
+    flex: 1;
+    min-width: 180px;
+}
+
+.reld-agent-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.reld-agent-title {
+    font-size: var(--nx-font-size-xs, 12px);
+    margin-bottom: 6px;
+}
+
+.reld-agent-contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-secondary);
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}
+
+// ---- Not found --------------------------------------------------------------------
+
+.reld-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 12px);
+    padding: 120px var(--nx-spacing-lg, 24px);
+    text-align: center;
+    color: var(--shell-text-secondary);
+}

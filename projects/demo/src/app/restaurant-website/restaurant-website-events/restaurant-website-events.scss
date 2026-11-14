@@ -1,0 +1,110 @@
+@import '../restaurant-shared';
+
+.revents-hero {
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto var(--nx-spacing-xxl, 48px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.revents-package-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+}
+
+.revents-package-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.revents-package-name {
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.revents-package-price {
+    margin-top: 4px;
+    font-size: var(--nx-font-size-xl, 22px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-primary);
+}
+
+.revents-package-guests {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: var(--nx-font-size-sm, 14px);
+}
+
+.revents-package-description {
+    margin: var(--nx-spacing-sm, 8px) 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+.revents-package-features {
+    margin: var(--nx-spacing-sm, 8px) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    li {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: var(--nx-font-size-sm, 14px);
+        color: var(--shell-text);
+
+        nx-icon {
+            color: var(--shell-primary);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+    }
+}
+
+.revents-form-heading {
+    margin-bottom: var(--nx-spacing-lg, 24px);
+}
+
+.revents-form-panel {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.revents-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.revents-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--nx-spacing-lg, 24px);
+
+    @media (max-width: 560px) {
+        grid-template-columns: 1fr;
+    }
+}

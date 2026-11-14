@@ -9,6 +9,11 @@
       "input": ".",
       "glob": "styles.css",
       "output": "."
+    },
+    {
+      "input": "./schematics",
+      "glob": "**/*",
+      "output": "./schematics"
     }
   ]
 }

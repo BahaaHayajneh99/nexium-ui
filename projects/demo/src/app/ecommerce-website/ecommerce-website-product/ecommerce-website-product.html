@@ -1,0 +1,218 @@
+<div class="ecom-container ecom-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="ecom-locked-wrapper">
+            <div class="ecom-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="ecom-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full E-Commerce Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="ecom-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="eprod-layout">
+
+        <div class="eprod-gallery">
+            <div class="eprod-gallery-main">
+                <img class="eprod-gallery-main-img" [src]="galleryImages[activeThumbnail()]" [alt]="product.name">
+            </div>
+            <div class="eprod-thumbnail-row">
+                @for (thumb of thumbnails; track thumb) {
+                    <button
+                        type="button"
+                        class="eprod-thumbnail"
+                        [class.active]="activeThumbnail() === thumb"
+                        (click)="setThumbnail(thumb)">
+                        <img class="eprod-thumbnail-img" [src]="galleryImages[thumb]" [alt]="product.name + ' thumbnail ' + (thumb + 1)">
+                    </button>
+                }
+            </div>
+        </div>
+
+        <div class="eprod-info">
+            <div class="ecom-product-category">{{ product.category }}</div>
+            <h1 class="eprod-name">{{ product.name }}</h1>
+
+            <div class="eprod-rating-row">
+                <nx-rating [value]="product.rating" [readonly]="true"></nx-rating>
+                <span class="ecom-muted">({{ product.reviewCount }} reviews)</span>
+            </div>
+
+            <div class="eprod-price-row">
+                <span class="eprod-price">${{ product.price }}</span>
+                @if (product.compareAtPrice) {
+                    <span class="ecom-product-price-compare">${{ product.compareAtPrice }}</span>
+                    <nx-tag color="#16a34a">Save ${{ saveAmount }}</nx-tag>
+                }
+            </div>
+
+            <p class="eprod-description">{{ product.description }}</p>
+
+            @if (product.colors?.length) {
+                <div class="eprod-option-group">
+                    <h3>Color</h3>
+                    <div class="eprod-color-row">
+                        @for (color of product.colors; track color) {
+                            <button
+                                type="button"
+                                class="eprod-color-swatch"
+                                [class.active]="selectedColor() === color"
+                                [style.background]="color"
+                                [title]="color"
+                                (click)="selectColor(color)">
+                            </button>
+                        }
+                    </div>
+                </div>
+            }
+
+            @if (product.sizes?.length) {
+                <div class="eprod-option-group">
+                    <h3>Size</h3>
+                    <div class="eprod-size-row">
+                        @for (size of product.sizes; track size) {
+                            <button
+                                type="button"
+                                class="eprod-size-pill"
+                                [class.active]="selectedSize() === size"
+                                (click)="selectSize(size)">
+                                {{ size }}
+                            </button>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="eprod-option-group">
+                <h3>Quantity</h3>
+                <div class="eprod-qty-stepper">
+                    <button type="button" (click)="decrementQty()" [disabled]="qty() <= 1" aria-label="Decrease quantity">
+                        <nx-icon icon="nx-minus" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                    <span class="eprod-qty-value">{{ qty() }}</span>
+                    <button type="button" (click)="incrementQty()" aria-label="Increase quantity">
+                        <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="eprod-cta-row">
+                <nx-button variant="primary" [fullWidth]="true">Add to cart</nx-button>
+                <button type="button" class="eprod-wishlist-btn" title="Add to wishlist">
+                    <nx-icon icon="nx-heart" variant="svg" [size]="18"></nx-icon>
+                </button>
+            </div>
+
+            <ul class="eprod-delivery-info">
+                <li>
+                    <nx-icon icon="nx-shopping-cart" variant="svg" [size]="16"></nx-icon>
+                    Free shipping over $50
+                </li>
+                <li>
+                    <nx-icon icon="nx-check-circle" variant="svg" [size]="16"></nx-icon>
+                    30-day returns
+                </li>
+                <li>
+                    <nx-icon icon="nx-clock" variant="svg" [size]="16"></nx-icon>
+                    Ships within 2 business days
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="eprod-tabs-section">
+        <nx-tabs>
+            <nx-tab label="Description">
+                <p>
+                    Every pair of {{ product.name }} starts with acoustically-tuned 40mm drivers, tuned over hundreds of
+                    listening sessions to deliver a warm low end without ever losing clarity in the mids and highs.
+                    Active noise cancellation adapts in real time to your environment, whether that's a packed train
+                    platform or a quiet home office, and a dedicated transparency mode lets the outside world back in
+                    with the press of a single button.
+                </p>
+                <p>
+                    Underneath the memory-foam cushions sits a 30-hour battery that recharges fully in under two hours,
+                    with a quick 10-minute top-up good for another five hours of playback. The frame folds flat for
+                    travel and ships in a rigid carrying case, along with a 3.5mm audio cable for wired listening when
+                    you'd rather save the battery altogether.
+                </p>
+            </nx-tab>
+            <nx-tab label="Specifications">
+                <div class="eprod-specs-list">
+                    @for (spec of specs; track spec.label) {
+                        <div class="ecom-flex-between eprod-spec-row">
+                            <span class="ecom-muted">{{ spec.label }}</span>
+                            <span>{{ spec.value }}</span>
+                        </div>
+                    }
+                </div>
+            </nx-tab>
+            <nx-tab [label]="'Reviews (' + reviews.length + ')'">
+                <div class="eprod-reviews-list">
+                    @for (review of reviews; track review.name) {
+                        <div class="eprod-review-row">
+                            <img class="ecom-avatar-photo" [src]="review.avatar" [alt]="review.name">
+                            <div class="eprod-review-body">
+                                <div class="ecom-flex-between">
+                                    <span class="eprod-review-name">{{ review.name }}</span>
+                                    <span class="ecom-muted eprod-review-date">{{ review.date }}</span>
+                                </div>
+                                <nx-rating [value]="review.rating" [readonly]="true"></nx-rating>
+                                <p class="eprod-review-text">{{ review.text }}</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </nx-tab>
+        </nx-tabs>
+    </div>
+
+    <section class="ecom-section">
+        <div class="ecom-section-heading">
+            <h2>You may also like</h2>
+            <p>More products picked to go with your order.</p>
+        </div>
+        <div class="ecom-product-grid">
+            @for (related of relatedProducts; track related.id) {
+                <div class="ecom-product-card">
+                    <div class="ecom-product-media" [style.background]="related.swatch">
+                        <img class="ecom-product-media-img" [src]="related.image" [alt]="related.name" loading="lazy">
+                        @if (related.badge) {
+                            <nx-badge [variant]="badgeVariant(related.badge)" class="ecom-product-badge">{{ related.badge }}</nx-badge>
+                        }
+                        <button type="button" class="ecom-product-wishlist" title="Add to wishlist">
+                            <nx-icon icon="nx-heart" variant="svg" [size]="14"></nx-icon>
+                        </button>
+                    </div>
+                    <div class="ecom-product-body">
+                        <div class="ecom-product-category">{{ related.category }}</div>
+                        <a class="ecom-product-name" [routerLink]="'/ecommerce-website/product'">{{ related.name }}</a>
+                        <nx-rating [value]="related.rating" [readonly]="true"></nx-rating>
+                        <div class="ecom-product-price-row">
+                            <span class="ecom-product-price">${{ related.price }}</span>
+                            @if (related.compareAtPrice) {
+                                <span class="ecom-product-price-compare">${{ related.compareAtPrice }}</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="ecom-product-footer">
+                        <nx-button variant="primary" [fullWidth]="true" size="small">Add to cart</nx-button>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+</ng-template>

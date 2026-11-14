@@ -1,0 +1,71 @@
+.nx-infinite-table-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+}
+
+.nx-infinite-table-scroll {
+    overflow-y: auto;
+    background-color: var(--shell-surface);
+}
+
+.nx-infinite-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    color: var(--shell-text);
+
+    th,
+    td {
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--shell-border);
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: var(--shell-surface);
+        color: var(--shell-text-secondary);
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .02em;
+    }
+}
+
+.nx-infinite-table-row:hover {
+    background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+}
+
+.nx-infinite-table-empty-row td,
+.nx-infinite-table-status-row td {
+    border-bottom: none;
+    color: var(--shell-text-secondary);
+    text-align: center;
+    white-space: normal;
+}
+
+.nx-infinite-table-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 0;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+}
+
+.nx-infinite-table-end {
+    padding: 6px 0;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+}
+
+.nx-infinite-table-sentinel {
+    height: 1px;
+}

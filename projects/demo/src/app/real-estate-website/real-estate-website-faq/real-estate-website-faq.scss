@@ -1,0 +1,47 @@
+@import '../real-estate-shared';
+
+.refaq-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    h1 {
+        margin: 0;
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+    }
+}
+
+.refaq-cta {
+    margin-top: var(--nx-spacing-xxl, 48px);
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text-secondary);
+    }
+}

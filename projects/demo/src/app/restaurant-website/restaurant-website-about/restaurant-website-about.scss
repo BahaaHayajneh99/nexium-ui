@@ -1,0 +1,78 @@
+@import '../restaurant-shared';
+
+.rabout-hero {
+    background: linear-gradient(135deg, #6b4423 0%, #3d2b1f 100%);
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 48px) 0;
+}
+
+.rabout-hero-inner {
+    max-width: 640px;
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        line-height: 1.2;
+    }
+
+    p {
+        margin: 0;
+        font-size: var(--nx-font-size-md, 16px);
+        opacity: .9;
+        line-height: 1.6;
+    }
+}
+
+.rabout-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    margin-bottom: var(--nx-spacing-xl, 32px);
+
+    nx-statistic {
+        text-align: center;
+    }
+}
+
+.rabout-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.rabout-team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.rabout-team-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: var(--nx-spacing-sm, 8px);
+}
+
+.rabout-team-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.rabout-team-role {
+    font-size: var(--nx-font-size-sm, 14px);
+}
+
+.rabout-team-bio {
+    margin: var(--nx-spacing-xs, 4px) 0 0;
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+    line-height: 1.5;
+}

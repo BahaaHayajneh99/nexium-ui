@@ -1,0 +1,40 @@
+@if (licensed()) {
+    <div class="nx-cascader">
+        <button
+            type="button"
+            class="nx-cascader-trigger"
+            [class.open]="open()"
+            [attr.aria-expanded]="open()"
+            (click)="toggleOpen()">
+            <span class="nx-cascader-trigger-text" [class.placeholder]="!value || !value.length">
+                {{ triggerLabel() }}
+            </span>
+            <nx-icon class="nx-cascader-chevron-icon" icon="nx-chevron-down" variant="svg" [size]="16"></nx-icon>
+        </button>
+
+        @if (open()) {
+            <div class="nx-cascader-panel">
+                @for (column of columns(); track $index; let depth = $index) {
+                    <div class="nx-cascader-column">
+                        @for (option of column; track option.value) {
+                            <button
+                                type="button"
+                                class="nx-cascader-option"
+                                [class.active]="isSelected(depth, option)"
+                                (click)="selectOption(depth, option)">
+                                <span>{{ option.label }}</span>
+                                @if (option.children?.length) {
+                                    <nx-icon icon="nx-chevron-right" variant="svg" [size]="12"></nx-icon>
+                                }
+                            </button>
+                        } @empty {
+                            <div class="nx-cascader-empty">No options</div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Cascader"></nx-pro-locked>
+}

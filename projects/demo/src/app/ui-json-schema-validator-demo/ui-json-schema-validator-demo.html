@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="JSON Schema Validator"
+                description="{{ commonService.appName }} JSON Schema Validator - edit the schema and/or data textareas and click 'Validate' to check the JSON data document against the hand-rolled schema validator (supports type, required, properties, items, enum, minimum/maximum, minLength/maxLength). The data textarea below starts pre-filled with a passing example; try removing the email field or setting age to a negative number to see the error list. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-json-schema-validator
+                    [schema]="schema"
+                    [data]="passingData"
+                    (validated)="onValidated($event)">
+                </nx-json-schema-validator>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

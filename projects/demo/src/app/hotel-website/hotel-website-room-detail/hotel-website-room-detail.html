@@ -1,0 +1,131 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+    @if (room(); as r) {
+
+        <div class="hotel-breadcrumb-row">
+            <nx-breadcrumb [items]="breadcrumbItems()"></nx-breadcrumb>
+        </div>
+
+        <div class="hrd-layout">
+
+            <div class="hrd-gallery">
+                <nx-carousel
+                    class="hrd-carousel"
+                    [slides]="gallerySlides()"
+                    [autoplay]="false"
+                    [loop]="true"
+                    [showIndicators]="true"
+                    [showArrows]="true">
+                </nx-carousel>
+            </div>
+
+            <div class="hrd-info">
+                <nx-tag [color]="roomTypeColor(r.type)">{{ r.type }}</nx-tag>
+                <h1 class="hrd-name">{{ r.name }}</h1>
+
+                <div class="hrd-stat-row">
+                    <span><nx-icon icon="nx-users" variant="svg" [size]="15"></nx-icon> {{ r.capacity }} guests</span>
+                    <span><nx-icon icon="nx-home" variant="svg" [size]="15"></nx-icon> {{ r.bedType }}</span>
+                    <span><nx-icon icon="nx-grid" variant="svg" [size]="15"></nx-icon> {{ r.sizeSqft }} sqft</span>
+                </div>
+
+                <div class="hrd-price-row">
+                    <span class="hrd-price">${{ r.pricePerNight }}</span>
+                    <span class="hotel-muted">/ night</span>
+                </div>
+
+                <p class="hrd-description">{{ r.description }}</p>
+
+                <div class="hrd-amenities">
+                    <h3>Room amenities</h3>
+                    <ul class="hrd-amenity-list">
+                        @for (amenity of r.amenities; track amenity) {
+                            <li>
+                                <nx-icon icon="nx-check-circle" variant="svg" [size]="15"></nx-icon>
+                                {{ amenity }}
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="hrd-booking-widget">
+                    <nx-date-range-picker
+                        label="Check-in - Check-out"
+                        [startDate]="stayDates().startDate"
+                        [endDate]="stayDates().endDate"
+                        (valueChange)="stayDates.set($event)">
+                    </nx-date-range-picker>
+
+                    <div class="hrd-guest-field">
+                        <span class="hrd-guest-label">Guests</span>
+                        <div class="hrd-guest-stepper">
+                            <button type="button" (click)="decrementGuests()" [disabled]="guestCount() <= 1" aria-label="Decrease guests">
+                                <nx-icon icon="nx-minus" variant="svg" [size]="14"></nx-icon>
+                            </button>
+                            <span class="hrd-guest-value">{{ guestCount() }}</span>
+                            <button type="button" (click)="incrementGuests()" aria-label="Increase guests">
+                                <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <nx-button variant="primary" [fullWidth]="true" size="large" [routerLink]="'/hotel-website/booking'">
+                    Book this room
+                </nx-button>
+            </div>
+
+        </div>
+
+        <section class="hotel-section">
+            <div class="hotel-section-heading">
+                <h2>Similar rooms</h2>
+                <p>Other rooms you might also like.</p>
+            </div>
+            <div class="hotel-room-grid">
+                @for (similar of similarRooms(); track similar.id) {
+                    <a class="hotel-room-card" [routerLink]="['/hotel-website/room', similar.id]">
+                        <div class="hotel-room-media">
+                            <img class="hotel-room-media-img" [src]="similar.image" [alt]="similar.name" loading="lazy">
+                            <nx-tag class="hotel-room-badge" [color]="roomTypeColor(similar.type)">{{ similar.type }}</nx-tag>
+                        </div>
+                        <div class="hotel-room-body">
+                            <div class="hotel-room-name">{{ similar.name }}</div>
+                            <div class="hotel-room-meta-row">
+                                <span><nx-icon icon="nx-users" variant="svg" [size]="13"></nx-icon> {{ similar.capacity }} guests</span>
+                                <span>{{ similar.bedType }}</span>
+                            </div>
+                            <div class="hotel-room-price-row">
+                                <span class="hotel-room-price">${{ similar.pricePerNight }}</span>
+                                <span class="hotel-room-price-unit">/ night</span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </section>
+
+    } @else {
+        <div class="hrd-not-found">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>That room couldn't be found.</p>
+            <nx-button variant="primary" [routerLink]="'/hotel-website/rooms'">Back to all rooms</nx-button>
+        </div>
+    }
+</ng-template>

@@ -1,0 +1,87 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Job Listings"
+                description="Job cards built from nx-card, nx-avatar, nx-tag and nx-button."
+                [code]="listingsCode"
+                [hasSampleClass]="false">
+
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    @for (job of jobs; track job.title) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <div style="display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
+                                    <div style="display: flex; gap: 1rem;">
+                                        <nx-avatar [name]="job.company" shape="rounded" size="large"></nx-avatar>
+                                        <div>
+                                            <div class="template-profile-name">{{ job.title }}</div>
+                                            <div class="template-stat-label">{{ job.company }}</div>
+                                            <div class="mt-2" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                                <nx-tag variant="outline">{{ job.location }}</nx-tag>
+                                                <nx-tag variant="outline">{{ job.type }}</nx-tag>
+                                            </div>
+                                            <p class="mt-2">{{ job.description }}</p>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 0.75rem;">
+                                        <div class="template-stat-label">{{ job.posted }}</div>
+                                        <nx-button variant="primary" size="small">View details</nx-button>
+                                    </div>
+                                </div>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Filters & Job Detail"
+                description="A filter row (nx-select, nx-input) above an expanded job-detail card."
+                [code]="detailCode"
+                [hasSampleClass]="false">
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                    <nx-select [options]="categoryOptions" placeholder="Category"></nx-select>
+                    <nx-select [options]="locationOptions" placeholder="Location"></nx-select>
+                    <nx-input placeholder="Search by keyword"></nx-input>
+                </div>
+
+                <nx-card variant="outlined">
+                    <nx-card-content>
+                        <div class="template-profile-name">Senior Frontend Engineer</div>
+                        <div class="template-stat-label mt-2">Nimbus Cloud &middot; Remote &middot; Full-time</div>
+
+                        <p class="mt-2"><strong>About the role</strong></p>
+                        <p>We're looking for a Senior Frontend Engineer to help us build and maintain the customer-facing dashboard that thousands of teams rely on every day. You'll work closely with design and backend engineering to ship features end-to-end, from early prototypes to production.</p>
+                        <p>This is a fully remote position with a flexible schedule, occasional travel for team offsites, and a strong focus on code quality and mentorship.</p>
+
+                        <p class="mt-2"><strong>Requirements</strong></p>
+                        <ul>
+                            <li>5+ years of experience with Angular, React, or a similar framework</li>
+                            <li>Strong command of TypeScript and modern CSS</li>
+                            <li>Experience building and maintaining component libraries</li>
+                            <li>Comfortable collaborating across design and backend teams</li>
+                        </ul>
+
+                        <p class="mt-2"><strong>Benefits</strong></p>
+                        <ul>
+                            <li>Fully remote with flexible working hours</li>
+                            <li>Comprehensive health coverage</li>
+                            <li>Annual learning and development stipend</li>
+                            <li>Four weeks of paid time off</li>
+                        </ul>
+
+                        <div class="mt-2">
+                            <nx-button variant="primary">Apply now</nx-button>
+                        </div>
+                    </nx-card-content>
+                </nx-card>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

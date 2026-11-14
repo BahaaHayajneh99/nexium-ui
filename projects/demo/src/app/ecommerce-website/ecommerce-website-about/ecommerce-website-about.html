@@ -1,0 +1,71 @@
+<section class="eabout-hero">
+    <div class="ecom-container eabout-hero-inner">
+        <h1 class="eabout-hero-title">Made with care, built to last</h1>
+        <p class="eabout-hero-subtitle">
+            Fernway started in a storage unit in 2019 with a simple idea: sell fewer, better things, and stand
+            behind every one of them with a no-questions return policy.
+        </p>
+    </div>
+</section>
+
+<div class="ecom-container ecom-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="ecom-locked-wrapper">
+            <div class="ecom-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="ecom-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full E-Commerce Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="ecom-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="eabout-stats-row">
+        @for (stat of stats; track stat.label) {
+            <nx-statistic [label]="stat.label" [value]="stat.value" [suffix]="stat.suffix ?? ''"></nx-statistic>
+        }
+    </div>
+
+    <section class="ecom-section">
+        <div class="ecom-section-heading">
+            <h2>Our story so far</h2>
+            <p>A few of the moments that shaped how we do business today.</p>
+        </div>
+        <nx-timeline [items]="timelineItems"></nx-timeline>
+    </section>
+
+    <section class="ecom-section">
+        <div class="ecom-section-heading">
+            <h2>Meet the team</h2>
+            <p>The people behind the sourcing, the stories, and the support you get.</p>
+        </div>
+        <div class="eabout-team-grid">
+            @for (member of team; track member.name) {
+                <div class="eabout-team-card">
+                    <img class="eabout-team-avatar" [src]="member.avatar" [alt]="member.name">
+                    <div class="eabout-team-name">{{ member.name }}</div>
+                    <div class="ecom-muted eabout-team-role">{{ member.role }}</div>
+                    <p class="eabout-team-bio">{{ member.bio }}</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <div class="eabout-cta">
+        <h2>Ready to shop the collection?</h2>
+        <p>Browse everything we make, from everyday essentials to seasonal favorites.</p>
+        <nx-button variant="primary" [routerLink]="'/ecommerce-website/shop'">Shop now</nx-button>
+    </div>
+
+</ng-template>

@@ -1,0 +1,152 @@
+@import '../ecommerce-shared';
+
+.ecom-auth-page {
+    min-height: calc(100vh - 160px);
+}
+
+.ecom-auth-locked {
+    min-height: calc(100vh - 160px);
+}
+
+.ecom-auth-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 160px);
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ecom-auth-marketing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--nx-spacing-xxl, 48px);
+    padding: var(--nx-spacing-xxl, 48px);
+    color: #ffffff;
+    background:
+        linear-gradient(135deg, rgba(61, 90, 128, .85) 0%, rgba(41, 50, 65, .9) 100%),
+        url('https://picsum.photos/seed/nx-ecom-login/900/1200') center / cover no-repeat;
+
+    @media (max-width: 900px) {
+        padding: var(--nx-spacing-xl, 32px);
+    }
+}
+
+.ecom-auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+}
+
+.ecom-auth-quote {
+    margin: 0;
+    max-width: 480px;
+
+    nx-icon {
+        color: #f4a261;
+        margin-bottom: var(--nx-spacing-md, 16px);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-lg, 24px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        line-height: 1.4;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: var(--nx-font-size-sm, 14px);
+
+        span {
+            opacity: .75;
+        }
+    }
+}
+
+.ecom-auth-form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--nx-spacing-xxl, 48px);
+
+    @media (max-width: 900px) {
+        padding: var(--nx-spacing-xl, 32px);
+    }
+}
+
+.ecom-auth-form {
+    width: 100%;
+    max-width: 380px;
+
+    h1 {
+        margin: 0 0 6px;
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+}
+
+.ecom-auth-subtext {
+    margin: 0 0 var(--nx-spacing-xl, 32px);
+    color: var(--shell-text-secondary);
+}
+
+.ecom-auth-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.ecom-auth-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -8px;
+}
+
+.ecom-auth-link {
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-primary);
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.ecom-auth-social-row {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+
+    nx-button {
+        flex: 1;
+    }
+
+    nx-icon {
+        margin-right: 6px;
+    }
+}
+
+.ecom-auth-footer-line {
+    margin: var(--nx-spacing-sm, 8px) 0 0;
+    text-align: center;
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+
+    a {
+        color: var(--shell-primary);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

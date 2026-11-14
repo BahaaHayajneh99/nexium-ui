@@ -1,0 +1,163 @@
+.nx-saved-views {
+    position: relative;
+    display: inline-block;
+}
+
+.nx-saved-views-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nx-saved-views-trigger:hover {
+    border-color: var(--shell-primary);
+}
+
+.nx-saved-views-trigger-caret {
+    color: var(--shell-text-secondary);
+    font-size: 11px;
+}
+
+.nx-saved-views-panel {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 20;
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.nx-saved-views-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.nx-saved-views-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: var(--nx-radius-sm, 4px);
+    cursor: pointer;
+}
+
+.nx-saved-views-row:hover {
+    background-color: var(--shell-surface-hover);
+}
+
+.nx-saved-views-row.active {
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .08));
+}
+
+.nx-saved-views-row-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--shell-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nx-saved-views-default-tag {
+    flex-shrink: 0;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background-color: var(--shell-border);
+    color: var(--shell-text-secondary);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.nx-saved-views-row-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.nx-saved-views-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nx-saved-views-icon-btn:hover {
+    background-color: var(--shell-border);
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-saved-views-rename-input {
+    flex: 1;
+    padding: 4px 6px;
+    border: 1px solid var(--shell-primary);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+    outline: none;
+}
+
+.nx-saved-views-empty {
+    padding: 10px 6px;
+    color: var(--shell-text-muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+.nx-saved-views-save-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    padding-top: 6px;
+    border-top: 1px solid var(--shell-border);
+}
+
+.nx-saved-views-save-row nx-input {
+    flex: 1;
+}
+
+.nx-saved-views-save-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-primary);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nx-saved-views-save-btn:hover {
+    opacity: .9;
+}

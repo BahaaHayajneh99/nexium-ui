@@ -1,6 +1,52 @@
 {
   "name": "nexium-ui",
   "version": "0.1.10",
+  "description": "300+ ready-to-use standalone Angular UI components for building modern dashboards, admin panels, and enterprise applications - forms, data tables, charts, navigation, AI tools, and more. Tree-shakable, themeable via CSS variables, free and PRO tiers.",
+  "keywords": [
+    "angular",
+    "angular-ui",
+    "angular-components",
+    "angular-component-library",
+    "angular-ui-library",
+    "angular-standalone-components",
+    "standalone-components",
+    "typescript",
+    "design-system",
+    "angular-design-system",
+    "angular-dashboard",
+    "angular-admin-dashboard",
+    "angular-charts",
+    "angular-forms",
+    "angular-table",
+    "data-grid",
+    "angular-file-upload",
+    "angular-navigation",
+    "avatar",
+    "autocomplete",
+    "datepicker",
+    "file-upload",
+    "rich-text-editor",
+    "data-table",
+    "kanban",
+    "gantt-chart",
+    "angular-data-grid",
+    "angular-kanban",
+    "angular-gantt-chart",
+    "angular-scheduler",
+    "angular-workflow-builder",
+    "angular-form-builder",
+    "angular-admin-panel"
+  ],
+  "author": "Bahaa Hayajneh",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://nexium-ui.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BahaaHayajneh99/nexium-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BahaaHayajneh99/nexium-ui/issues"
+  },
   "scripts": {
     "build:styles": "sass src/styles.scss styles.css --style=compressed --no-source-map",
     "build": "npm run build:styles && ng build components"
@@ -12,16 +58,22 @@
     },
     "./styles.css": "./styles.css"
   },
+  "schematics": "./schematics/collection.json",
+  "ng-add": {
+    "save": "dependencies"
+  },
   "files": [
     "fesm2022",
     "types",
     "styles.css",
+    "schematics",
     "package.json",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "peerDependencies": {
-    "@angular/common": "^21.2.0",
-    "@angular/core": "^21.2.0"
+    "@angular/common": "^18.1.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
+    "@angular/core": "^18.1.0 || ^19.0.0 || ^20.0.0 || ^21.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

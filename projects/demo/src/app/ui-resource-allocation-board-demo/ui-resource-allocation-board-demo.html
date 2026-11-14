@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Weekly allocation grid"
+                description="{{ commonService.appName }}'s Resource Allocation Board shows people x days, with assignment chips stacked per cell. Ada Lovelace's Monday cell has two assignments against a capacity of 1, so it's flagged with a red border and warning icon. Click a chip for assignmentClick, or empty cell space for cellClick - this component renders the grid only, you supply your own add/edit UI. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:900px;">
+                    <nx-resource-allocation-board
+                        [people]="people"
+                        [slots]="slots"
+                        [assignments]="assignments"
+                        (assignmentClick)="onAssignmentClick($event)"
+                        (cellClick)="onCellClick($event)">
+                    </nx-resource-allocation-board>
+                    @if (lastEvent) {
+                        <p style="margin-top:12px; color:var(--shell-text-secondary); font-size:0.85rem;">
+                            Last event - {{ lastEvent }}
+                        </p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

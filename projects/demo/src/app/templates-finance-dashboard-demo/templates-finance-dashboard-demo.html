@@ -1,0 +1,40 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Account Overview"
+                description="Balance cards built from nx-card and nx-statistic, with built-in up/down delta coloring."
+                [code]="accountsCode"
+                [hasSampleClass]="false">
+
+                <div style="--nx-grid-min-width: 220px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    @for (account of accounts; track account.label) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <nx-statistic
+                                    [label]="account.label"
+                                    [value]="account.value"
+                                    [delta]="account.delta"
+                                    [upIsGood]="account.upIsGood">
+                                </nx-statistic>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Recent Transactions"
+                description="A data table wired to plain columns and rows arrays."
+                [code]="transactionsCode"
+                [hasSampleClass]="false">
+
+                <nx-table [columns]="columns" [data]="transactions" striped hoverable></nx-table>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

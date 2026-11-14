@@ -1,0 +1,28 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Cascader"
+                description="{{ commonService.appName }} Cascader - a multi-level cascading select. Click the trigger to open a flyout with one column per level; picking an option in a column reveals the next column (its children) to the right, until a leaf is picked, which commits the full path and closes the flyout. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-cascader
+                    [options]="options"
+                    [value]="selectedPath()"
+                    placeholder="Select a city"
+                    (valueChange)="onValueChange($event)">
+                </nx-cascader>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

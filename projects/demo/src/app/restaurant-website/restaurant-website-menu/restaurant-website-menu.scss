@@ -1,0 +1,72 @@
+@import '../restaurant-shared';
+
+.rmenu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--nx-spacing-md, 16px);
+    margin-bottom: var(--nx-spacing-lg, 24px);
+}
+
+.rmenu-title {
+    margin: 0;
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.rmenu-cart-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--shell-primary) 14%, transparent);
+    color: var(--shell-primary);
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    opacity: 0;
+    transition: opacity .15s ease;
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
+.rmenu-qr-card {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-lg, 24px);
+    margin-bottom: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    max-width: 480px;
+}
+
+.rmenu-qr-title {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+    margin-bottom: 4px;
+}
+
+.rmenu-qr-copy p {
+    margin: 0;
+}
+
+.rmenu-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-md, 16px);
+
+    nx-chip {
+        cursor: pointer;
+    }
+}
+
+.rmenu-count {
+    margin: 0 0 var(--nx-spacing-xl, 32px);
+}

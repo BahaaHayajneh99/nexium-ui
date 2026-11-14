@@ -1,0 +1,75 @@
+<div class="course-container course-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="course-locked-wrapper">
+            <div class="course-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="course-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Course Website template for $55</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="course-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <h1 class="ccourses-title">All Courses</h1>
+    <p class="course-muted ccourses-count">Showing {{ filteredCourses().length }} courses</p>
+
+    <div class="ccourses-chip-row">
+        @for (category of categories; track category) {
+            <nx-chip
+                [variant]="activeCategory() === category ? 'primary' : 'secondary'"
+                [selected]="activeCategory() === category"
+                (click)="selectCategory(category)">
+                {{ category }}
+            </nx-chip>
+        }
+    </div>
+
+    @if (filteredCourses().length === 0) {
+        <div class="ccourses-empty-state">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>No courses match this category yet.</p>
+            <nx-button variant="primary" size="small" (click)="selectCategory('All')">Show all courses</nx-button>
+        </div>
+    } @else {
+        <div class="course-grid">
+            @for (course of filteredCourses(); track course.slug) {
+                <a class="course-card" [routerLink]="['/course-website/course', course.slug]">
+                    <div class="course-card-media">
+                        <img class="course-card-media-img" [src]="course.image" [alt]="course.title" loading="lazy">
+                        <span class="course-card-level-badge">{{ course.level }}</span>
+                    </div>
+                    <div class="course-card-body">
+                        <div class="course-card-category">{{ course.category }}</div>
+                        <div class="course-card-title">{{ course.title }}</div>
+                        <div class="course-card-instructor">{{ instructorName(course.instructorId) }}</div>
+                        <nx-rating [value]="course.rating" [readonly]="true"></nx-rating>
+                        <div class="course-card-meta-row">
+                            <span class="course-card-students">
+                                <nx-icon icon="nx-users" variant="svg" [size]="12"></nx-icon>
+                                {{ course.studentCount | number }} students
+                            </span>
+                        </div>
+                        <div class="course-card-price-row">
+                            <span class="course-card-price">${{ course.price }}</span>
+                            @if (course.compareAtPrice) {
+                                <span class="course-card-price-compare">${{ course.compareAtPrice }}</span>
+                            }
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+
+</ng-template>

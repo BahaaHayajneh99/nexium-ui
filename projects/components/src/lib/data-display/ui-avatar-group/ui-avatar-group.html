@@ -1,0 +1,27 @@
+<div class="nx-avatar-group" [class.small]="size === 'small'" [class.medium]="size === 'medium'" [class.large]="size === 'large'">
+
+    @for (user of visibleUsers; track user.name + $index) {
+        <span class="nx-avatar-group-item" [title]="user.name">
+            <nx-avatar
+                [src]="user.src"
+                [name]="user.name"
+                [size]="size"
+                [status]="user.status">
+            </nx-avatar>
+        </span>
+    }
+
+    @if (overflowCount > 0) {
+        <button
+            type="button"
+            class="nx-avatar-group-overflow"
+            [class.small]="size === 'small'"
+            [class.medium]="size === 'medium'"
+            [class.large]="size === 'large'"
+            [title]="overflowCount + ' more'"
+            (click)="onOverflowClick()">
+            +{{ overflowCount }}
+        </button>
+    }
+
+</div>

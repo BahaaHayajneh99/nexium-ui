@@ -1,0 +1,75 @@
+<div class="course-auth-page">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="course-locked-wrapper course-auth-locked">
+      <div class="course-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="course-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full Course Website template for $55</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+  <div class="course-auth-layout">
+    <div class="course-auth-marketing">
+      <div class="course-auth-brand">
+        <nx-icon icon="nx-book" variant="svg" [size]="20"></nx-icon>
+        Pathwise Academy
+      </div>
+
+      <blockquote class="course-auth-quote">
+        <nx-icon icon="nx-star" variant="svg" [size]="22"></nx-icon>
+        <p>&ldquo;{{ testimonial.quote }}&rdquo;</p>
+        <footer>
+          <strong>{{ testimonial.name }}</strong>
+          <span>{{ testimonial.role }}</span>
+        </footer>
+      </blockquote>
+    </div>
+
+    <div class="course-auth-form-panel">
+      <div class="course-auth-form">
+        <h1>Welcome back</h1>
+        <p class="course-auth-subtext">Sign in to continue learning</p>
+
+        <div class="course-auth-fields">
+          <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+          <nx-input label="Password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+
+          <div class="course-auth-row">
+            <nx-checkbox
+              label="Remember me"
+              [checked]="rememberMe()"
+              (checkedChange)="rememberMe.set($event)"></nx-checkbox>
+            <span class="course-auth-link">Forgot password?</span>
+          </div>
+
+          <nx-button variant="primary" [fullWidth]="true">Log in</nx-button>
+
+          <nx-divider label="or continue with"></nx-divider>
+
+          <div class="course-auth-social-row">
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Google
+            </nx-button>
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Apple
+            </nx-button>
+          </div>
+
+          <p class="course-auth-footer-line">
+            Don't have an account? <a [routerLink]="'/course-website/signup'">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

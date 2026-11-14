@@ -1,0 +1,73 @@
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems()"></nx-breadcrumb>
+    </div>
+
+    @if (post(); as p) {
+
+        <div class="pbpost-hero">
+            <img class="pbpost-hero-img" [src]="p.image" [alt]="p.title">
+        </div>
+
+        <div class="pbpost-header">
+            <nx-tag variant="outline" color="var(--shell-primary)">{{ p.category }}</nx-tag>
+            <h1>{{ p.title }}</h1>
+            <div class="pbpost-byline">
+                <img class="pbpost-byline-avatar" [src]="p.authorAvatar" [alt]="p.author">
+                <div>
+                    <div class="pbpost-byline-name">{{ p.author }}</div>
+                    <div class="port-muted pbpost-byline-meta">{{ p.date }} &middot; {{ p.readTime }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pbpost-body">
+            @for (paragraph of p.content; track $index) {
+                <p>{{ paragraph }}</p>
+            }
+        </div>
+
+        @if (moreArticles().length) {
+            <div class="port-section-heading">
+                <h2>More articles</h2>
+            </div>
+            <div class="pbpost-more-grid">
+                @for (article of moreArticles(); track article.slug) {
+                    <a class="pbpost-more-card" [routerLink]="['/portfolio-website/blog', article.slug]">
+                        <img [src]="article.image" [alt]="article.title" loading="lazy">
+                        <div class="pbpost-more-body">
+                            <span class="port-muted pbpost-more-category">{{ article.category }}</span>
+                            <strong>{{ article.title }}</strong>
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+
+    } @else {
+        <div class="pbpost-not-found">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>That article couldn't be found.</p>
+            <nx-button variant="primary" [routerLink]="'/portfolio-website/blog'">Back to blog</nx-button>
+        </div>
+    }
+
+</ng-template>

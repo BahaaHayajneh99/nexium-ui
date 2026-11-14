@@ -1,0 +1,36 @@
+@if (licensed()) {
+    <div class="nx-jwt-decoder">
+        <textarea
+            class="nx-jwt-decoder-input"
+            placeholder="Paste a JWT, e.g. eyJhbGciOi....eyJzdWIiOi....signature"
+            [value]="tokenText()"
+            (input)="onTokenChange($any($event.target).value)"></textarea>
+
+        <p class="nx-jwt-decoder-disclaimer">
+            <nx-icon icon="nx-info-circle" variant="svg" [size]="12"></nx-icon>
+            Decoded locally for inspection only - signature not verified.
+        </p>
+
+        @if (isInvalid()) {
+            <div class="nx-jwt-decoder-error">Invalid JWT - expected a token with 3 base64url segments.</div>
+        } @else if (result(); as r) {
+            <div class="nx-jwt-decoder-expiry" [class.expired]="isExpired()">
+                <nx-icon [icon]="isExpired() ? 'nx-x-circle' : 'nx-clock'" variant="svg" [size]="12"></nx-icon>
+                {{ expiryLabel() }}
+            </div>
+
+            <div class="nx-jwt-decoder-panels">
+                <div class="nx-jwt-decoder-panel">
+                    <span class="nx-jwt-decoder-label">Header</span>
+                    <pre class="nx-jwt-decoder-code"><code>{{ headerJson() }}</code></pre>
+                </div>
+                <div class="nx-jwt-decoder-panel">
+                    <span class="nx-jwt-decoder-label">Payload</span>
+                    <pre class="nx-jwt-decoder-code"><code>{{ payloadJson() }}</code></pre>
+                </div>
+            </div>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="JWT Decoder"></nx-pro-locked>
+}

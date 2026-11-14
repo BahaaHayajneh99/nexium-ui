@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Infinite Table"
+                description="{{ commonService.appName }} Infinite Table - seeded with 20 rows; scroll the body near the bottom to trigger loadMore, which simulates a ~700ms network delay and appends 20 more rows, up to 100 total. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-infinite-table
+                    [columns]="columns"
+                    [rows]="rows()"
+                    [hasMore]="hasMore()"
+                    [loading]="loading()"
+                    [maxHeight]="420"
+                    (loadMore)="onLoadMore()">
+                </nx-infinite-table>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

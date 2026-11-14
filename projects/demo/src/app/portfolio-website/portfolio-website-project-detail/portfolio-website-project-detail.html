@@ -1,0 +1,130 @@
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems()"></nx-breadcrumb>
+    </div>
+
+    @if (project(); as p) {
+
+        <div class="pdetail-hero">
+            <img class="pdetail-hero-img" [src]="p.image" [alt]="p.title">
+        </div>
+
+        <div class="pdetail-header">
+            <div class="pdetail-header-main">
+                <nx-tag variant="outline" color="var(--shell-primary)">{{ p.category }}</nx-tag>
+                <h1>{{ p.title }}</h1>
+                <p class="pdetail-summary">{{ p.summary }}</p>
+            </div>
+            <div class="pdetail-header-meta">
+                <div>
+                    <span class="port-muted">Client</span>
+                    <strong>{{ p.client }}</strong>
+                </div>
+                <div>
+                    <span class="port-muted">Year</span>
+                    <strong>{{ p.year }}</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="pdetail-services-row">
+            @for (service of p.services; track service) {
+                <nx-tag variant="solid">{{ service }}</nx-tag>
+            }
+        </div>
+
+        <div class="pdetail-case-study">
+            <div class="pdetail-case-block">
+                <h3>The Challenge</h3>
+                <p>{{ p.challenge }}</p>
+            </div>
+            <div class="pdetail-case-block">
+                <h3>The Solution</h3>
+                <p>{{ p.solution }}</p>
+            </div>
+            <div class="pdetail-case-block">
+                <h3>The Result</h3>
+                <p>{{ p.result }}</p>
+            </div>
+        </div>
+
+        @if (showBeforeAfter()) {
+            <div class="port-section-heading">
+                <h2>Before &amp; after</h2>
+                <p>Drag the handle to compare the old identity against what shipped.</p>
+            </div>
+            <div class="pdetail-before-after">
+                <nx-before-after
+                    [beforeSrc]="beforeImage()"
+                    [afterSrc]="p.image"
+                    beforeLabel="Old Brand"
+                    afterLabel="New Brand"
+                    [initialPosition]="50">
+                </nx-before-after>
+            </div>
+        }
+
+        <div class="port-section-heading">
+            <h2>Gallery</h2>
+        </div>
+        <div class="pdetail-gallery-grid">
+            @for (image of gallery(); track image; let i = $index) {
+                <button type="button" class="pdetail-gallery-thumb" (click)="openLightbox(i)">
+                    <img class="pdetail-gallery-img" [src]="image" [alt]="p.title" loading="lazy">
+                    <span class="pdetail-gallery-thumb-icon">
+                        <nx-icon icon="nx-search" variant="svg" [size]="18"></nx-icon>
+                    </span>
+                </button>
+            }
+        </div>
+
+        <nx-lightbox
+            [images]="galleryImages()"
+            [(open)]="lightboxOpen"
+            [(activeIndex)]="lightboxIndex"
+            [showThumbnails]="true">
+        </nx-lightbox>
+
+        @if (nextProject(); as next) {
+            <a class="pdetail-next-card" [routerLink]="['/portfolio-website/work', next.slug]">
+                <div class="pdetail-next-media">
+                    <img [src]="next.image" [alt]="next.title" loading="lazy">
+                </div>
+                <div class="pdetail-next-body">
+                    <span class="port-muted">Next project</span>
+                    <h3>{{ next.title }}</h3>
+                    <span class="pdetail-next-link">
+                        View case study
+                        <nx-icon icon="nx-arrow-right" variant="svg" [size]="14"></nx-icon>
+                    </span>
+                </div>
+            </a>
+        }
+
+    } @else {
+        <div class="pdetail-not-found">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>That project couldn't be found.</p>
+            <nx-button variant="primary" [routerLink]="'/portfolio-website/work'">Back to work</nx-button>
+        </div>
+    }
+
+</ng-template>

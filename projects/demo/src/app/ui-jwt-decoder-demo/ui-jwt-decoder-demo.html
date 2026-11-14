@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="JWT Decoder"
+                description="{{ commonService.appName }} JWT Decoder - paste any JWT to decode its header and payload (base64url decode + JSON.parse) client-side, with an expiry badge derived from the 'exp' claim. Decoding only - the signature is never verified. The field below starts pre-filled with a realistic-looking sample token. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-jwt-decoder
+                    [token]="token"
+                    (decoded)="onDecoded($event)">
+                </nx-jwt-decoder>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

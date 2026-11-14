@@ -1,0 +1,170 @@
+@import '../restaurant-shared';
+
+.rcheckout-title {
+    margin: 0 0 var(--nx-spacing-xl, 32px);
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.rcheckout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+    gap: var(--nx-spacing-xxl, 48px);
+    align-items: start;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rcheckout-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-xl, 32px);
+}
+
+.rcheckout-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+
+    h2 {
+        margin: 0;
+        font-size: var(--nx-font-size-lg, 18px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.rcheckout-fulfillment-row {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+
+    nx-button {
+        flex: 1;
+    }
+}
+
+.rcheckout-row {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+
+    > * {
+        flex: 1;
+        min-width: 0;
+    }
+
+    @media (max-width: 520px) {
+        flex-direction: column;
+    }
+}
+
+.rcheckout-payment-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--nx-spacing-md, 16px);
+
+    @media (max-width: 520px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rcheckout-payment-method-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: var(--nx-spacing-md, 16px);
+    border-radius: var(--nx-radius-lg, 12px);
+    border: 1px solid var(--shell-border);
+    background: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+
+    &:hover {
+        border-color: var(--shell-primary);
+    }
+
+    &.active {
+        border-color: var(--shell-primary);
+        background: color-mix(in srgb, var(--shell-primary) 10%, transparent);
+        color: var(--shell-primary);
+    }
+}
+
+.rcheckout-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+    margin-top: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-md, 16px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface-hover);
+}
+
+.rcheckout-summary {
+    position: sticky;
+    top: 24px;
+}
+
+.rcheckout-summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: var(--nx-spacing-md, 16px);
+}
+
+.rcheckout-summary-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--nx-spacing-md, 16px);
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text);
+}
+
+.rcheckout-summary-item-name {
+    color: var(--shell-text-secondary);
+}
+
+.rcheckout-summary-totals {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: var(--nx-spacing-md, 16px);
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+}
+
+.rcheckout-summary-total {
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--shell-border);
+    font-size: var(--nx-font-size-lg, 18px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.rcheckout-trust-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: var(--nx-spacing-md, 16px);
+}
+
+.rcheckout-trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-secondary);
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}

@@ -1,0 +1,89 @@
+@import '../saas-shared';
+
+.sfeat-hero {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto var(--nx-spacing-xl, 32px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.sfeat-tabs-section {
+    margin-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.sfeat-kanban-section {
+    margin-bottom: var(--nx-spacing-xl, 32px);
+
+    nx-kanban {
+        display: block;
+    }
+}
+
+.sfeat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding-top: var(--nx-spacing-lg, 24px);
+}
+
+.sfeat-grid-all {
+    padding-top: 0;
+}
+
+.sfeat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    nx-icon {
+        color: var(--shell-primary);
+        margin-bottom: 4px;
+    }
+
+    h3 {
+        margin: 0;
+        font-size: var(--nx-font-size-md, 16px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-sm, 14px);
+        line-height: 1.5;
+    }
+}
+
+.sfeat-cta {
+    text-align: center;
+    padding: var(--nx-spacing-xxl, 48px);
+    margin-top: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-lg, 24px);
+        color: var(--shell-text-secondary);
+    }
+}

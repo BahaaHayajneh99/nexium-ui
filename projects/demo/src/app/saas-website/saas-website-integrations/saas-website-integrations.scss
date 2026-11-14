@@ -1,0 +1,118 @@
+@import '../saas-shared';
+
+.sint-hero {
+    background: linear-gradient(120deg, rgba(14, 22, 44, .92) 10%, rgba(14, 22, 44, .55) 100%),
+        url('https://picsum.photos/seed/nx-saas-integrations/1600/500') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 56px) 0;
+    text-align: center;
+}
+
+.sint-hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: var(--nx-font-weight-bold, 700);
+    }
+
+    p {
+        margin: 0;
+        opacity: .85;
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.sint-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.sint-filter-chip {
+    border: 1px solid var(--shell-border);
+    background: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: var(--nx-font-size-sm, 14px);
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+
+    &.active {
+        background: var(--shell-primary);
+        border-color: var(--shell-primary);
+        color: #fff;
+    }
+
+    &:hover:not(.active) {
+        border-color: var(--shell-primary);
+        color: var(--shell-text);
+    }
+}
+
+.sint-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.sint-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-sm, 14px);
+        line-height: 1.5;
+    }
+}
+
+.sint-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nx-spacing-sm, 8px);
+
+    h3 {
+        margin: 0;
+        font-size: var(--nx-font-size-md, 16px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.sint-empty {
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px) 0;
+}
+
+.sint-cta {
+    margin-top: var(--nx-spacing-xl, 32px);
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text-secondary);
+    }
+}

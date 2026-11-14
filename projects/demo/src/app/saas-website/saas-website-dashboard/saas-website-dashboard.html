@@ -1,0 +1,92 @@
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="saas-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="sdash-heading">
+        <div>
+            <h1>Your Nimbus dashboard</h1>
+            <p class="saas-muted">This is a live product preview - a sample of what your team sees after logging in.</p>
+        </div>
+        <nx-button variant="outline" [routerLink]="'/saas-website/signup'">Start free trial</nx-button>
+    </div>
+
+    <div class="sdash-stats-row">
+        @for (stat of stats; track stat.label) {
+            @if (stat.animated) {
+                <div class="sdash-animated-stat">
+                    <div class="sdash-animated-stat-label">{{ stat.label }}</div>
+                    <div class="sdash-animated-stat-value">
+                        @if (stat.prefix) {
+                            <span class="sdash-animated-stat-affix">{{ stat.prefix }}</span>
+                        }
+                        <nx-number-ticker [value]="stat.value" [duration]="1400" [separator]="','"></nx-number-ticker>
+                        @if (stat.suffix) {
+                            <span class="sdash-animated-stat-affix">{{ stat.suffix }}</span>
+                        }
+                    </div>
+                    <div class="sdash-animated-stat-delta" [class]="deltaClass(stat)">
+                        @if (deltaDirection(stat) === 'up') {
+                            <span class="sdash-animated-stat-arrow">&#8593;</span>
+                        } @else if (deltaDirection(stat) === 'down') {
+                            <span class="sdash-animated-stat-arrow">&#8595;</span>
+                        }
+                        {{ stat.delta }}
+                    </div>
+                </div>
+            } @else {
+                <nx-statistic
+                    [label]="stat.label"
+                    [value]="stat.value"
+                    [prefix]="stat.prefix ?? ''"
+                    [suffix]="stat.suffix ?? ''"
+                    [delta]="stat.delta"
+                    [upIsGood]="stat.upIsGood ?? true">
+                </nx-statistic>
+            }
+        }
+    </div>
+
+    <section class="saas-card sdash-chart-card">
+        <div class="saas-flex-between sdash-chart-heading">
+            <h2>Signups &amp; revenue</h2>
+            <span class="saas-muted">Last 6 months</span>
+        </div>
+        <nx-line-chart [categories]="months" [series]="chartSeries"></nx-line-chart>
+    </section>
+
+    <section class="saas-card sdash-activity-card">
+        <h2>Recent activity</h2>
+        <nx-activity-feed [items]="activityItems" [groupByDay]="true"></nx-activity-feed>
+    </section>
+
+    <section class="saas-card sdash-team-card">
+        <h2>Team members</h2>
+        <nx-table
+            [columns]="teamColumns"
+            [data]="teamMembers"
+            [striped]="true"
+            [bordered]="true"
+            [hoverable]="true">
+        </nx-table>
+    </section>
+
+</ng-template>

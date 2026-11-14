@@ -1,0 +1,48 @@
+@if (licensed()) {
+    @if (root) {
+        <div class="nx-org-chart">
+            <ng-container *ngTemplateOutlet="nodeTpl; context: { $implicit: root }"></ng-container>
+        </div>
+    }
+
+    <ng-template #nodeTpl let-node>
+        <div class="nx-org-chart-node-wrapper" [class.has-children]="hasChildren(node) && isExpanded(node)">
+            <div
+                class="nx-org-chart-node"
+                [class.matched]="isMatch(node)"
+                [class.ancestor-of-match]="isAncestorOfMatch(node)"
+                (click)="onNodeClick(node)">
+                <nx-avatar [src]="node.avatarSrc" [name]="node.name" size="medium"></nx-avatar>
+
+                <div class="nx-org-chart-node-info">
+                    <span class="nx-org-chart-node-name">{{ node.name }}</span>
+                    @if (node.title) {
+                        <span class="nx-org-chart-node-title">{{ node.title }}</span>
+                    }
+                </div>
+
+                @if (hasChildren(node)) {
+                    <button
+                        type="button"
+                        class="nx-org-chart-toggle"
+                        [attr.aria-label]="isExpanded(node) ? 'Collapse' : 'Expand'"
+                        (click)="toggle(node, $event)">
+                        <nx-icon [icon]="isExpanded(node) ? 'nx-chevron-up' : 'nx-chevron-down'" variant="svg" [size]="14"></nx-icon>
+                    </button>
+                }
+            </div>
+
+            @if (hasChildren(node) && isExpanded(node)) {
+                <div class="nx-org-chart-children" [class.multi]="(node.children?.length ?? 0) > 1">
+                    @for (child of node.children; track child.id) {
+                        <div class="nx-org-chart-child">
+                            <ng-container *ngTemplateOutlet="nodeTpl; context: { $implicit: child }"></ng-container>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </ng-template>
+} @else {
+    <nx-pro-locked componentName="Organization Chart"></nx-pro-locked>
+}

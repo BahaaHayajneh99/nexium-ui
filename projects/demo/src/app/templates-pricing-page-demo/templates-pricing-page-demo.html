@@ -1,0 +1,62 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Pricing Tiers"
+                description="Three nx-card plans with the middle tier highlighted via an elevated variant and a nx-badge."
+                [code]="tiersCode"
+                [hasSampleClass]="false">
+
+                <div style="--nx-grid-min-width: 260px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    @for (tier of tiers; track tier.name) {
+                        <nx-card [variant]="tier.highlighted ? 'elevated' : 'outlined'" [style.border]="tier.highlighted ? '2px solid var(--shell-primary)' : null">
+                            <nx-card-header>
+                                @if (tier.highlighted) {
+                                    <nx-badge variant="primary" size="small" rounded>Most popular</nx-badge>
+                                }
+                                <nx-card-title>{{ tier.name }}</nx-card-title>
+                                <div class="mt-2">
+                                    <span style="font-size: 2rem; font-weight: 700;">{{ tier.price }}</span>
+                                    <span class="template-stat-label">{{ tier.period }}</span>
+                                </div>
+                            </nx-card-header>
+                            <nx-card-content>
+                                @for (feature of tier.features; track feature) {
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;" class="mt-2">
+                                        <nx-icon icon="nx-check" [size]="16" color="var(--success-color, #2e9e5b)"></nx-icon>
+                                        <span>{{ feature }}</span>
+                                    </div>
+                                }
+                            </nx-card-content>
+                            <nx-card-footer>
+                                <nx-button [variant]="tier.ctaVariant" fullWidth>{{ tier.cta }}</nx-button>
+                            </nx-card-footer>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Frequently Asked Questions"
+                description="Pricing FAQs built on nx-accordion."
+                [code]="faqCode"
+                [hasSampleClass]="false">
+
+                <div class="nx-card" style="margin: 0 auto;">
+                    <nx-accordion>
+                        @for (item of faqs; track item.q) {
+                            <nx-accordion-item>
+                                <nx-accordion-header>{{ item.q }}</nx-accordion-header>
+                                <nx-accordion-content>{{ item.a }}</nx-accordion-content>
+                            </nx-accordion-item>
+                        }
+                    </nx-accordion>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

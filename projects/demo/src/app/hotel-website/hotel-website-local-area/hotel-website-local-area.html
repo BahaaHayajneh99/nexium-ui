@@ -1,0 +1,46 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="hotel-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="hlocal-hero">
+        <h1>Explore the area</h1>
+        <p>The Marlow sits at the edge of Seabrook's harborfront, within easy reach of the best the area has to offer.</p>
+    </div>
+
+    <div class="hlocal-grid">
+        @for (place of attractions; track place.name) {
+            <div class="hlocal-card">
+                <div class="hlocal-icon">
+                    <nx-icon [icon]="place.icon" variant="svg" [size]="22"></nx-icon>
+                </div>
+                <div class="hlocal-body">
+                    <div class="hotel-flex-between">
+                        <h3>{{ place.name }}</h3>
+                        <span class="hlocal-distance">{{ place.distance }}</span>
+                    </div>
+                    <p class="hotel-muted">{{ place.description }}</p>
+                </div>
+            </div>
+        }
+    </div>
+
+</ng-template>

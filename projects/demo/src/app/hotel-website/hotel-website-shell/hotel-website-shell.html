@@ -1,0 +1,83 @@
+<div class="hotelw-shell">
+
+    @if (licensed()) {
+        <div class="hotelw-unlocked-bar">
+            <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+            You've unlocked the full Hotel Website template with your PRO license.
+        </div>
+    } @else {
+        <div class="hotelw-pro-bar">
+            <nx-icon icon="nx-lock" variant="svg" [size]="14"></nx-icon>
+            This is a NexiumUI <strong>PRO</strong> template - <strong>$49</strong>
+            <s>$89</s> one-time, included free with any PRO license.
+            <nx-button variant="primary" size="small" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+        </div>
+    }
+
+    <header class="hotelw-header">
+        <div class="hotelw-header-inner">
+            <a class="hotelw-brand" [routerLink]="'/hotel-website/home'">
+                <nx-icon icon="nx-home" variant="svg" [size]="20"></nx-icon>
+                The Marlow
+            </a>
+
+            <nav class="hotelw-nav">
+                @for (link of navLinks; track link.path) {
+                    <a [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+                }
+            </nav>
+
+            <div class="hotelw-actions">
+                <a class="hotelw-icon-link" [routerLink]="'/hotel-website/login'" routerLinkActive="active" title="Log in">
+                    <nx-icon icon="nx-user" variant="svg" [size]="18"></nx-icon>
+                </a>
+                <nx-button variant="primary" size="small" [routerLink]="'/hotel-website/rooms'">Book now</nx-button>
+            </div>
+        </div>
+    </header>
+
+    <main class="hotelw-main">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="hotelw-footer">
+        <div class="hotelw-footer-inner">
+            <div class="hotelw-footer-brand">
+                <div class="hotelw-brand">
+                    <nx-icon icon="nx-home" variant="svg" [size]="20"></nx-icon>
+                    The Marlow
+                </div>
+                <p>Rest, well-appointed. A boutique hotel on the harbor, open since 1998.</p>
+            </div>
+
+            <div class="hotelw-footer-columns">
+                <div class="hotelw-footer-column">
+                    <h4>Stay</h4>
+                    <a [routerLink]="'/hotel-website/rooms'">Rooms</a>
+                    <a [routerLink]="'/hotel-website/amenities'">Amenities</a>
+                    <a [routerLink]="'/hotel-website/booking'">Booking</a>
+                    <a [routerLink]="'/hotel-website/gallery'">Gallery</a>
+                    <a [routerLink]="'/hotel-website/dining'">Dining</a>
+                    <a [routerLink]="'/hotel-website/spa'">Spa</a>
+                    <a [routerLink]="'/hotel-website/events'">Events</a>
+                    <a [routerLink]="'/hotel-website/local-area'">Local Area</a>
+                </div>
+                <div class="hotelw-footer-column">
+                    <h4>Guest</h4>
+                    <a [routerLink]="'/hotel-website/login'">Log in</a>
+                    <a [routerLink]="'/hotel-website/signup'">Sign up</a>
+                    <a [routerLink]="'/hotel-website/reviews'">Reviews</a>
+                </div>
+                <div class="hotelw-footer-column">
+                    <h4>Contact</h4>
+                    <a [routerLink]="'/hotel-website/contact'">Contact us</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hotelw-footer-bottom">
+            &copy; 2026 The Marlow Hotel. Built entirely with NexiumUI components.
+        </div>
+    </footer>
+
+</div>

@@ -1,0 +1,58 @@
+<section class="reneigh-hero">
+    <div class="realest-container reneigh-hero-inner">
+        <h1 class="reneigh-hero-title">Explore our markets</h1>
+        <p class="reneigh-hero-subtitle">
+            Haven Realty is active across four very different metro areas - browse each one to get a feel for
+            pricing, walkability, and what's currently for sale.
+        </p>
+    </div>
+</section>
+
+<div class="realest-container realest-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="realest-locked-wrapper">
+            <div class="realest-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="realest-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Real Estate Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="realest-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="reneigh-grid">
+        @for (city of cities; track city.slug) {
+            <div class="reneigh-card">
+                <div class="reneigh-media">
+                    <img class="reneigh-media-img" [src]="city.image" [alt]="city.name" loading="lazy">
+                </div>
+                <div class="reneigh-body">
+                    <h3 class="reneigh-name">{{ city.name }}</h3>
+                    <p class="reneigh-description">{{ city.description }}</p>
+                    <div class="realest-flex-between reneigh-stat-row">
+                        <span><nx-icon icon="nx-tag" variant="svg" [size]="14"></nx-icon>Avg. ${{ city.avgPrice | number:'1.0-0' }}</span>
+                        <span><nx-icon icon="nx-compass" variant="svg" [size]="14"></nx-icon>Walk Score {{ city.walkScore }}</span>
+                    </div>
+                    <div class="realest-flex-between reneigh-stat-row">
+                        <span class="realest-muted">{{ city.listingCount }} active listings</span>
+                        <a class="reneigh-explore-link" [routerLink]="['/real-estate-website/neighborhood', city.slug]">
+                            Explore <nx-icon icon="nx-arrow-right" variant="svg" [size]="14"></nx-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</ng-template>

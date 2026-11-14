@@ -1,0 +1,101 @@
+<div class="realest-container realest-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="realest-locked-wrapper">
+            <div class="realest-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="realest-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Real Estate Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="realest-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <h1 class="relist-title">All listings</h1>
+    <p class="realest-muted relist-count">Showing {{ filteredListings().length }} properties</p>
+
+    <div class="relist-filter-row">
+        @for (type of propertyTypes; track type) {
+            <button
+                type="button"
+                class="relist-filter-chip"
+                [class.active]="activeType() === type"
+                (click)="selectType(type)">
+                {{ type }}
+            </button>
+        }
+    </div>
+
+    @if (filteredListings().length === 0) {
+        <div class="relist-empty-state">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>No listings match this filter.</p>
+            <nx-button variant="primary" size="small" (click)="selectType('All')">Clear filter</nx-button>
+        </div>
+    } @else {
+        <div class="realest-listing-grid">
+            @for (listing of filteredListings(); track listing.id) {
+                <div class="realest-listing-card relist-card">
+                    <a class="relist-card-link" [routerLink]="['/real-estate-website/listing', listing.id]">
+                        <div class="realest-listing-media">
+                            <img class="realest-listing-media-img" [src]="listing.image" [alt]="listing.title" loading="lazy">
+                            <nx-badge [variant]="badgeVariant(listing.status)" class="realest-listing-badge">{{ listing.status }}</nx-badge>
+                        </div>
+                        <div class="realest-listing-body">
+                            <div class="realest-listing-type">{{ listing.type }} &middot; {{ listing.city }}</div>
+                            <span class="realest-listing-title">{{ listing.title }}</span>
+                            <span class="realest-listing-address">{{ listing.address }}</span>
+                            <span class="realest-listing-price">${{ listing.price | number }}{{ listing.status === 'For Rent' ? '/mo' : '' }}</span>
+                            <div class="realest-listing-specs">
+                                <span><nx-icon icon="nx-moon" variant="svg" [size]="14"></nx-icon>{{ listing.beds }} bd</span>
+                                <span><nx-icon icon="nx-cloud" variant="svg" [size]="14"></nx-icon>{{ listing.baths }} ba</span>
+                                <span><nx-icon icon="nx-layout" variant="svg" [size]="14"></nx-icon>{{ listing.sqft | number }} sqft</span>
+                            </div>
+                        </div>
+                    </a>
+                    <button
+                        type="button"
+                        class="relist-compare-toggle"
+                        [class.active]="isComparing(listing.id)"
+                        [disabled]="!isComparing(listing.id) && compareIds().length >= maxCompare"
+                        (click)="toggleCompare(listing.id)">
+                        <input type="checkbox" [checked]="isComparing(listing.id)" tabindex="-1" aria-hidden="true">
+                        {{ isComparing(listing.id) ? 'Added to compare' : 'Compare' }}
+                    </button>
+                </div>
+            }
+        </div>
+
+        <section class="realest-section relist-compare-section">
+            <div class="realest-section-heading">
+                <h2>Compare listings</h2>
+                <p>Pick up to {{ maxCompare }} properties above to compare them side by side.</p>
+            </div>
+
+            @if (compareListings().length >= 2) {
+                <nx-comparison-table
+                    [columns]="compareColumns()"
+                    [rows]="compareRows()"
+                    featureHeader="Feature"
+                    [bordered]="true">
+                </nx-comparison-table>
+            } @else {
+                <div class="relist-compare-hint">
+                    <nx-icon icon="nx-layout" variant="svg" [size]="20"></nx-icon>
+                    <p>Select 2-3 listings above to compare them.</p>
+                </div>
+            }
+        </section>
+    }
+
+</ng-template>

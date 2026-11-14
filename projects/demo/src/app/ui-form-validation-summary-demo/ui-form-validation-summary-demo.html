@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Form with validation summary"
+                description="Submit the form below without filling it in. {{ commonService.appName }}'s Form Validation Summary lists every current field error in one place - click a row to see errorClick fire with that error's field name."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:420px; display:flex; flex-direction:column; gap:12px;">
+                    <nx-input label="Email" type="email" [(ngModel)]="email"></nx-input>
+                    <nx-input label="Password" type="password" [(ngModel)]="password"></nx-input>
+                    <div>
+                        <button type="button" (click)="onSubmit()">Submit</button>
+                    </div>
+
+                    <nx-form-validation-summary [errors]="errors" (errorClick)="onErrorClick($event)">
+                    </nx-form-validation-summary>
+
+                    @if (lastClicked) {
+                        <p style="margin-top:4px; color:var(--shell-text-secondary); font-size:0.85rem;">
+                            {{ lastClicked }}
+                        </p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

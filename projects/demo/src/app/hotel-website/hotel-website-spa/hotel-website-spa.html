@@ -1,0 +1,53 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="hotel-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="hspa-hero">
+        <img class="hspa-hero-img" [src]="heroImage" alt="The Marlow spa">
+        <div class="hspa-hero-copy">
+            <h1>Spa & Wellness</h1>
+            <p>A full-service spa with six treatment rooms, a eucalyptus steam room, and a signature hot-stone massage guests fly back for.</p>
+        </div>
+    </div>
+
+    <section class="hotel-section">
+        <div class="hotel-section-heading">
+            <h2>Treatment menu</h2>
+            <p>Book any treatment at the spa desk or through the concierge.</p>
+        </div>
+
+        <nx-table [columns]="columns" [data]="rows" [bordered]="true" [hoverable]="true"></nx-table>
+
+        <div class="hspa-descriptions">
+            @for (treatment of treatments; track treatment.name) {
+                <p><strong>{{ treatment.name }}</strong> - <span class="hotel-muted">{{ treatment.description }}</span></p>
+            }
+        </div>
+    </section>
+
+    <div class="hspa-closing">
+        <h2>Ready to unwind?</h2>
+        <p>Spa access is complimentary for Suite and Penthouse guests - treatments are booked separately.</p>
+        <nx-button variant="primary" size="large" [routerLink]="'/hotel-website/booking'">Book your stay</nx-button>
+    </div>
+
+</ng-template>

@@ -1,0 +1,120 @@
+<div class="resto-container resto-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="resto-locked-wrapper">
+            <div class="resto-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="resto-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Restaurant Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="resto-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <h1 class="rcart-title">Your Order</h1>
+
+    @if (cartLines().length === 0) {
+        <div class="rcart-empty-state">
+            <nx-icon icon="nx-shopping-cart" variant="svg" [size]="40"></nx-icon>
+            <p>Your cart is empty.</p>
+            <nx-button variant="primary" [routerLink]="'/restaurant-website/menu'">Browse the menu</nx-button>
+        </div>
+    } @else {
+
+        <div class="rcart-layout">
+
+            <div class="rcart-lines rcart-panel">
+                @for (line of cartLines(); track line.item.id) {
+                    <div class="rcart-line">
+                        <div class="rcart-line-media">
+                            <img class="rcart-line-media-img" [src]="line.item.image" [alt]="line.item.name" loading="lazy">
+                        </div>
+
+                        <div class="rcart-line-info">
+                            <div class="rcart-line-name">{{ line.item.name }}</div>
+                            <div class="resto-muted rcart-line-category">{{ line.item.category }}</div>
+                        </div>
+
+                        <div class="rcart-qty-stepper">
+                            <button type="button" (click)="decrement(line.item.id)" [disabled]="line.qty <= 1" aria-label="Decrease quantity">
+                                <nx-icon icon="nx-minus" variant="svg" [size]="14"></nx-icon>
+                            </button>
+                            <span class="rcart-qty-value">{{ line.qty }}</span>
+                            <button type="button" (click)="increment(line.item.id)" aria-label="Increase quantity">
+                                <nx-icon icon="nx-plus" variant="svg" [size]="14"></nx-icon>
+                            </button>
+                        </div>
+
+                        <div class="rcart-line-price">
+                            <span class="resto-muted">${{ line.item.price }} each</span>
+                            <span class="rcart-line-total">${{ line.qty * line.item.price }}</span>
+                        </div>
+
+                        <button type="button" class="rcart-remove-btn" title="Remove item" (click)="removeLine(line.item.id)">
+                            <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+                        </button>
+                    </div>
+                }
+
+                <div class="rcart-promo-row">
+                    <nx-input placeholder="Promo code"></nx-input>
+                    <nx-button variant="secondary" (click)="applyPromo()">Apply</nx-button>
+                </div>
+
+                @if (promoApplied()) {
+                    <nx-alert variant="success">Promo code applied - 10% off your order.</nx-alert>
+                }
+            </div>
+
+            <div class="rcart-summary rcart-panel">
+                <h3>Order Summary</h3>
+
+                <div class="resto-flex-between rcart-summary-row">
+                    <span class="resto-muted">Subtotal</span>
+                    <span>${{ subtotal().toFixed(2) }}</span>
+                </div>
+
+                @if (promoApplied()) {
+                    <div class="resto-flex-between rcart-summary-row">
+                        <span class="resto-muted">Discount (10%)</span>
+                        <span>-${{ discount().toFixed(2) }}</span>
+                    </div>
+                }
+
+                <div class="resto-flex-between rcart-summary-row">
+                    <span class="resto-muted">Service fee</span>
+                    <span>${{ serviceFee().toFixed(2) }}</span>
+                </div>
+
+                <div class="resto-flex-between rcart-summary-total">
+                    <span>Total</span>
+                    <span>${{ total().toFixed(2) }}</span>
+                </div>
+
+                <div class="rcart-actions">
+                    <nx-button variant="text" [routerLink]="'/restaurant-website/menu'">Continue browsing</nx-button>
+                    <nx-button
+                        variant="primary"
+                        [fullWidth]="true"
+                        [disabled]="cartLines().length === 0"
+                        [routerLink]="'/restaurant-website/checkout'">
+                        Proceed to checkout
+                    </nx-button>
+                </div>
+            </div>
+
+        </div>
+
+    }
+
+</ng-template>

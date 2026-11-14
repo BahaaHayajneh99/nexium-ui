@@ -1,0 +1,50 @@
+@if (licensed()) {
+    <div class="nx-data-mapping-editor">
+        <div class="nx-data-mapping-columns">
+            <div class="nx-data-mapping-source">
+                <div class="nx-data-mapping-column-title">Source fields</div>
+                <ul class="nx-data-mapping-source-list">
+                    @for (field of sourceFields; track field.key) {
+                        <li class="nx-data-mapping-source-item">{{ field.label }}</li>
+                    } @empty {
+                        <li class="nx-data-mapping-source-item nx-data-mapping-source-empty">No source fields</li>
+                    }
+                </ul>
+            </div>
+
+            <div class="nx-data-mapping-target">
+                <div class="nx-data-mapping-column-title">Target fields</div>
+                @for (field of targetFields; track field.key) {
+                    <div class="nx-data-mapping-target-row">
+                        <div class="nx-data-mapping-target-label">
+                            <span
+                                class="nx-data-mapping-status-dot"
+                                [class.mapped]="isMapped(field.key)"
+                                [class.missing]="field.required && !isMapped(field.key)">
+                            </span>
+                            <span class="nx-data-mapping-target-text">{{ field.label }}</span>
+                            @if (field.required) {
+                                <span class="nx-data-mapping-required-tag">Required</span>
+                            }
+                        </div>
+                        <select
+                            class="nx-data-mapping-select"
+                            [value]="mapping[field.key] ?? ''"
+                            (change)="onMapChange(field.key, $event)">
+                            <option value="">&mdash; Select source field &mdash;</option>
+                            @for (source of sourceFields; track source.key) {
+                                <option [value]="source.key">{{ source.label }}</option>
+                            }
+                        </select>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="nx-data-mapping-summary" [class.complete]="allRequiredMapped">
+            {{ mappedRequiredCount }} of {{ requiredFields.length }} required fields mapped
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Data Mapping Editor"></nx-pro-locked>
+}

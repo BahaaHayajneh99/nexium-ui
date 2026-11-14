@@ -1,0 +1,68 @@
+<section class="ssec-hero">
+    <div class="saas-container ssec-hero-inner">
+        <h1>Security &amp; trust</h1>
+        <p>Your data is encrypted, audited, and never used for anything other than running your own dashboards.</p>
+    </div>
+</section>
+
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="saas-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <section class="saas-section ssec-certs-section">
+        <div class="saas-section-heading">
+            <h2>Certifications &amp; compliance</h2>
+            <p>Independently audited so your security team doesn't have to take our word for it.</p>
+        </div>
+        <div class="ssec-certs-grid">
+            @for (cert of certifications; track cert.name) {
+                <div class="saas-card ssec-cert-card">
+                    <nx-icon [icon]="cert.icon" variant="svg" [size]="24"></nx-icon>
+                    <h3>{{ cert.name }}</h3>
+                    <p>{{ cert.description }}</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="saas-section">
+        <div class="saas-section-heading">
+            <h2>Security FAQ</h2>
+            <p>The questions security and IT teams ask us most often.</p>
+        </div>
+        <nx-accordion>
+            @for (faq of faqs; track faq.q) {
+                <nx-accordion-item>
+                    <nx-accordion-header>{{ faq.q }}</nx-accordion-header>
+                    <nx-accordion-content>{{ faq.a }}</nx-accordion-content>
+                </nx-accordion-item>
+            }
+        </nx-accordion>
+    </section>
+
+    <div class="ssec-cta">
+        <h2>Have a security questionnaire?</h2>
+        <p>Our security team can usually turn around a vendor questionnaire within two business days.</p>
+        <nx-button variant="primary" [routerLink]="'/saas-website/contact'">Contact security</nx-button>
+    </div>
+
+</ng-template>

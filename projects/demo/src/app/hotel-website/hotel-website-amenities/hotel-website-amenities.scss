@@ -1,0 +1,91 @@
+@import '../hotel-shared';
+
+.hamenity-hero {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--nx-spacing-xxl, 48px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.hamenity-rows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-xxl, 48px);
+}
+
+.hamenity-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--nx-spacing-xxl, 40px);
+    align-items: center;
+
+    &.reverse {
+        .hamenity-row-media {
+            order: 2;
+        }
+
+        .hamenity-row-content {
+            order: 1;
+        }
+    }
+
+    @media (max-width: 760px) {
+        grid-template-columns: 1fr;
+
+        .hamenity-row-media,
+        .hamenity-row-content {
+            order: initial !important;
+        }
+    }
+}
+
+.hamenity-row-media {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--nx-radius-lg, 12px);
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.hamenity-row-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--nx-radius-lg, 12px);
+    background: color-mix(in srgb, var(--shell-primary) 16%, transparent);
+    color: var(--shell-primary);
+    margin-bottom: var(--nx-spacing-md, 16px);
+}
+
+.hamenity-row-content {
+    h2 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        line-height: 1.6;
+    }
+}

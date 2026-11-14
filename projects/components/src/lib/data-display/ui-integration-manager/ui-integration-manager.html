@@ -1,0 +1,40 @@
+@if (licensed()) {
+    <div class="nx-integration-manager">
+        <div class="nx-integration-manager-toolbar">
+            <nx-search class="nx-integration-manager-search" placeholder="Search integrations..." [(value)]="searchTerm"></nx-search>
+
+            <div class="nx-integration-manager-filters">
+                @for (option of filterOptions; track option.value) {
+                    <button
+                        type="button"
+                        class="nx-integration-manager-filter"
+                        [class.active]="statusFilter() === option.value"
+                        (click)="setFilter(option.value)">
+                        {{ option.label }}
+                    </button>
+                }
+            </div>
+        </div>
+
+        @if (filteredIntegrations().length) {
+            <div class="nx-integration-manager-grid">
+                @for (integration of filteredIntegrations(); track integration.id) {
+                    <nx-integration-card
+                        [name]="integration.name"
+                        [description]="integration.description ?? ''"
+                        [icon]="integration.icon ?? ''"
+                        [status]="integration.status"
+                        [configurable]="integration.configurable ?? true"
+                        (connect)="connect.emit(integration)"
+                        (disconnect)="disconnect.emit(integration)"
+                        (configure)="configure.emit(integration)">
+                    </nx-integration-card>
+                }
+            </div>
+        } @else {
+            <p class="nx-integration-manager-empty">No integrations match your search.</p>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="Integration Manager"></nx-pro-locked>
+}

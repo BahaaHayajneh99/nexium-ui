@@ -1,0 +1,101 @@
+@import '../ecommerce-shared';
+
+.efaq-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    h1 {
+        margin: 0;
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        color: var(--shell-text-secondary);
+    }
+}
+
+.efaq-search {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+
+    nx-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    nx-input {
+        display: block;
+        width: 100%;
+
+        ::ng-deep .nx-input {
+            padding-left: 36px;
+        }
+    }
+}
+
+// ---- Category sections ---------------------------------------------------
+
+.efaq-category {
+    margin-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.efaq-category-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-md, 16px);
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    h2 {
+        margin: 0;
+        font-size: var(--nx-font-size-lg, 18px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+}
+
+.efaq-empty {
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px) 0;
+}
+
+// ---- CTA banner ------------------------------------------------------------
+
+.efaq-cta {
+    margin-top: var(--nx-spacing-xxl, 48px);
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text-secondary);
+    }
+}

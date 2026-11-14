@@ -1,0 +1,23 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="API Response Times (ms)"
+                description="{{ commonService.appName }} Box Plot draws, per category, a whisker from min to max, a box from Q1 to Q3 with a median line, and small circles for any outliers. The y-axis scale is derived from the overall min/max (including outliers) across all datasets. Hover a box or outlier dot for details. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-box-plot [datasets]="responseTimes" [height]="320"></nx-box-plot>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

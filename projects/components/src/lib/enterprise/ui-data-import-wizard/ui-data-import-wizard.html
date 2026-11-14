@@ -1,0 +1,135 @@
+@if (licensed()) {
+    <div class="nx-data-import-wizard">
+        <nx-stepper [steps]="steps" [activeIndex]="stepperIndex()" (activeIndexChange)="onStepperNav($event)"></nx-stepper>
+
+        <div class="nx-data-import-wizard-body">
+            @switch (currentStep()) {
+                @case (1) {
+                    <div class="nx-data-import-wizard-step">
+                        <p class="nx-data-import-wizard-step-hint">Upload a file to begin. The first row is treated as the header row.</p>
+
+                        <nx-file-upload
+                            [accept]="'.csv,.xlsx,.xls'"
+                            [multiple]="false"
+                            label="Drag & drop a file here, or click to browse"
+                            (filesSelected)="onFilesSelected($event)">
+                        </nx-file-upload>
+
+                        @if (parsing()) {
+                            <p class="nx-data-import-wizard-status">Parsing {{ selectedFileName() }}...</p>
+                        }
+
+                        @if (parseError(); as err) {
+                            <div class="nx-data-import-wizard-error">
+                                <nx-icon icon="nx-alert-triangle" variant="svg" [size]="14"></nx-icon>
+                                <span>{{ err }}</span>
+                            </div>
+                        }
+                    </div>
+                }
+                @case (2) {
+                    <div class="nx-data-import-wizard-step">
+                        <p class="nx-data-import-wizard-step-hint">
+                            Map each target field to a column from <strong>{{ selectedFileName() }}</strong>.
+                        </p>
+
+                        <div class="nx-data-import-wizard-mapping-rows">
+                            @for (field of targetFields; track field.key) {
+                                <div class="nx-data-import-wizard-mapping-row">
+                                    <div class="nx-data-import-wizard-mapping-field">
+                                        <span class="nx-data-import-wizard-mapping-label">{{ field.label }}</span>
+                                        @if (field.required) {
+                                            <span class="nx-data-import-wizard-required-tag">Required</span>
+                                        }
+                                    </div>
+                                    <select
+                                        class="nx-data-import-wizard-mapping-select"
+                                        [attr.aria-label]="'Source column for ' + field.label"
+                                        [value]="mapping[field.key] ?? ''"
+                                        (change)="onMappingSelect(field.key, $event)">
+                                        <option value="">— none —</option>
+                                        @for (header of headers(); track header) {
+                                            <option [value]="header">{{ header }}</option>
+                                        }
+                                    </select>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="nx-data-import-wizard-actions">
+                            <button type="button" class="nx-data-import-wizard-btn" (click)="backToUpload()">Back</button>
+                            <button type="button" class="nx-data-import-wizard-btn primary" (click)="goToReview()">Review import</button>
+                        </div>
+                    </div>
+                }
+                @case (3) {
+                    <div class="nx-data-import-wizard-step">
+                        <div class="nx-data-import-wizard-review-summary">
+                            <span>Previewing {{ previewRows.length }} of {{ rows().length }} rows.</span>
+                            @if (invalidRowCount > 0) {
+                                <span class="nx-data-import-wizard-invalid-badge">
+                                    <nx-icon icon="nx-alert-triangle" variant="svg" [size]="12"></nx-icon>
+                                    {{ invalidRowCount }} row(s) missing a required value
+                                </span>
+                            }
+                        </div>
+
+                        <div class="nx-data-import-wizard-table-wrap">
+                            <table class="nx-data-import-wizard-table">
+                                <thead>
+                                    <tr>
+                                        @for (field of targetFields; track field.key) {
+                                            <th>
+                                                {{ field.label }}
+                                                @if (field.required) {
+                                                    <span class="nx-data-import-wizard-required-tag">Required</span>
+                                                }
+                                            </th>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (row of previewRows; track $index) {
+                                        <tr [class.has-problem]="rowHasProblem(row)">
+                                            @for (field of targetFields; track field.key) {
+                                                <td>
+                                                    @if (cellValue(row, field.key); as value) {
+                                                        {{ value }}
+                                                    } @else {
+                                                        <span class="nx-data-import-wizard-empty-cell">
+                                                            — @if (isMissingRequired(row, field)) {
+                                                                <span class="nx-data-import-wizard-missing-badge">missing required value</span>
+                                                            }
+                                                        </span>
+                                                    }
+                                                </td>
+                                            }
+                                        </tr>
+                                    } @empty {
+                                        <tr><td [attr.colspan]="targetFields.length" class="nx-data-import-wizard-empty-state">No rows parsed.</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="nx-data-import-wizard-actions">
+                            <button type="button" class="nx-data-import-wizard-btn" (click)="backToMapping()">Back</button>
+                            <button type="button" class="nx-data-import-wizard-btn ghost" (click)="cancel()">Cancel</button>
+                            <button type="button" class="nx-data-import-wizard-btn primary" (click)="confirmImport()">Confirm import</button>
+                        </div>
+                    </div>
+                }
+                @case (4) {
+                    <div class="nx-data-import-wizard-step nx-data-import-wizard-done">
+                        <nx-icon icon="nx-check-circle" variant="svg" [size]="36" color="var(--nx-color-success, #22c55e)"></nx-icon>
+                        <p class="nx-data-import-wizard-done-title">Import confirmed</p>
+                        <p class="nx-data-import-wizard-step-hint">{{ rows().length }} row(s) were handed off for import.</p>
+                        <button type="button" class="nx-data-import-wizard-btn" (click)="startOver()">Import another file</button>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Data Import Wizard"></nx-pro-locked>
+}

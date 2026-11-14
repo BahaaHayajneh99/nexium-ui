@@ -1,0 +1,71 @@
+@import '../hotel-shared';
+
+.hlocal-hero {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--nx-spacing-xxl, 48px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.hlocal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.hlocal-card {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+    padding: var(--nx-spacing-md, 16px);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+}
+
+.hlocal-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--shell-primary) 12%, transparent);
+    color: var(--shell-primary);
+}
+
+.hlocal-body {
+    flex: 1;
+    min-width: 0;
+
+    h3 {
+        margin: 0;
+        font-size: var(--nx-font-size-md, 16px);
+        font-weight: var(--nx-font-weight-semibold, 600);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 4px 0 0;
+        font-size: var(--nx-font-size-sm, 14px);
+    }
+}
+
+.hlocal-distance {
+    flex-shrink: 0;
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-muted);
+    white-space: nowrap;
+}

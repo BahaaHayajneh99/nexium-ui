@@ -1,0 +1,81 @@
+@import '../real-estate-shared';
+
+.reagents-heading {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto var(--nx-spacing-xxl, 48px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+}
+
+.reagents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.reagents-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    nx-button {
+        margin-top: var(--nx-spacing-sm, 8px);
+        width: 100%;
+    }
+}
+
+.reagents-avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reagents-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.reagents-title {
+    font-size: var(--nx-font-size-xs, 12px);
+    margin-bottom: 4px;
+}
+
+.reagents-bio {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+.reagents-contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-secondary);
+    margin-top: 4px;
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}

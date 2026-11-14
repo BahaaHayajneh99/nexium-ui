@@ -1,0 +1,85 @@
+<div class="hotel-container hotel-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="hotel-locked-wrapper">
+            <div class="hotel-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="hotel-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Hotel Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="hotel-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <h1 class="hrooms-title">Our Rooms &amp; Suites</h1>
+    <p class="hotel-muted hrooms-count">Showing {{ filteredRooms().length }} rooms</p>
+
+    <div class="hrooms-chip-row">
+        @for (type of typeFilters; track type) {
+            <nx-chip
+                [variant]="activeType() === type ? 'primary' : 'secondary'"
+                [selected]="activeType() === type"
+                (click)="selectType(type)">
+                {{ type }}
+            </nx-chip>
+        }
+    </div>
+
+    @if (filteredRooms().length === 0) {
+        <div class="hrooms-empty-state">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>No rooms match this filter.</p>
+            <nx-button variant="primary" size="small" (click)="selectType('All')">Show all rooms</nx-button>
+        </div>
+    } @else {
+        <div class="hotel-room-grid">
+            @for (room of filteredRooms(); track room.id) {
+                <a class="hotel-room-card" [routerLink]="['/hotel-website/room', room.id]">
+                    <div class="hotel-room-media">
+                        <img class="hotel-room-media-img" [src]="room.image" [alt]="room.name" loading="lazy">
+                        <nx-tag class="hotel-room-badge" [color]="roomTypeColor(room.type)">{{ room.type }}</nx-tag>
+                    </div>
+                    <div class="hotel-room-body">
+                        <div class="hotel-room-name">{{ room.name }}</div>
+                        <div class="hotel-room-meta-row">
+                            <span><nx-icon icon="nx-users" variant="svg" [size]="13"></nx-icon> {{ room.capacity }} guests</span>
+                            <span>{{ room.bedType }}</span>
+                            <span><nx-icon icon="nx-grid" variant="svg" [size]="13"></nx-icon> {{ room.sizeSqft }} sqft</span>
+                        </div>
+                        <div class="hotel-room-price-row">
+                            <span class="hotel-room-price">${{ room.pricePerNight }}</span>
+                            <span class="hotel-room-price-unit">/ night</span>
+                        </div>
+                    </div>
+                    <div class="hotel-room-footer">
+                        <nx-button variant="primary" [fullWidth]="true" size="small">View room</nx-button>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+
+    <section class="hotel-section hrooms-compare">
+        <div class="hotel-section-heading">
+            <h2>Compare room types</h2>
+            <p>A side-by-side look at what each tier includes, so you can pick with confidence.</p>
+        </div>
+        <nx-comparison-table
+            [columns]="compareColumns"
+            [rows]="compareRows"
+            featureHeader="Features"
+            [bordered]="true">
+        </nx-comparison-table>
+    </section>
+
+</ng-template>

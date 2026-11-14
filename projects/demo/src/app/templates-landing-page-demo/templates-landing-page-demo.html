@@ -1,0 +1,75 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Hero & Features"
+                description="A centered hero built from nx-button, above a feature grid of nx-card and nx-icon."
+                [code]="heroCode"
+                [tsCode]="featuresTsCode"
+                [hasSampleClass]="false">
+
+                <div class="block-hero block-preview">
+                    <span class="block-eyebrow">Introducing Lumen</span>
+                    <h2 class="block-heading">Launch a landing page your whole team is proud of</h2>
+                    <p class="block-subheading">
+                        Compose hero sections, feature grids and testimonials from the same free component set -
+                        no design hand-off required.
+                    </p>
+                    <div class="block-actions">
+                        <nx-button variant="primary" size="large">Get Started</nx-button>
+                        <nx-button variant="secondary" size="large">View Demo</nx-button>
+                    </div>
+                </div>
+
+                <div style="--nx-grid-min-width: 220px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid mt-2">
+                    @for (feature of features; track feature.title) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <div class="block-feature-icon">
+                                    <nx-icon [icon]="feature.icon" variant="svg" [size]="20"></nx-icon>
+                                </div>
+                                <div class="block-feature-title">{{ feature.title }}</div>
+                                <p class="block-feature-text">{{ feature.desc }}</p>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+            </app-demo-section>
+
+            <app-demo-section
+                header="Testimonials & CTA"
+                description="Testimonial cards built from nx-card and nx-avatar, followed by a closing call-to-action strip."
+                [code]="testimonialsCode"
+                [hasSampleClass]="false">
+
+                <div style="--nx-grid-min-width: 260px; --nx-grid-gap: 1.5rem;" class="nx-auto-fit-grid">
+                    @for (testimonial of testimonials; track testimonial.name) {
+                        <nx-card variant="outlined">
+                            <nx-card-content>
+                                <p>&quot;{{ testimonial.quote }}&quot;</p>
+                                <div class="content-flex mt-2">
+                                    <nx-avatar [name]="testimonial.name" size="small"></nx-avatar>
+                                    <div>
+                                        <div class="template-profile-name">{{ testimonial.name }}</div>
+                                        <span class="template-stat-label">{{ testimonial.role }}</span>
+                                    </div>
+                                </div>
+                            </nx-card-content>
+                        </nx-card>
+                    }
+                </div>
+
+                <div class="block-cta-colored block-preview mt-2" style="text-align: center;">
+                    <h2 class="block-heading">Ready to launch your own page?</h2>
+                    <div style="margin-top: 1rem;">
+                        <nx-button variant="light" size="large">Start Building</nx-button>
+                    </div>
+                </div>
+
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

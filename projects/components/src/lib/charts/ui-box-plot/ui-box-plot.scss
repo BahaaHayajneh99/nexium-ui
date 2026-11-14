@@ -1,0 +1,34 @@
+@use '../chart-chrome' as *;
+
+.nx-box-plot-group {
+    cursor: pointer;
+}
+
+.nx-box-plot-whisker,
+.nx-box-plot-cap {
+    stroke-width: 1.5;
+}
+
+.nx-box-plot-box {
+    fill: color-mix(in srgb, var(--shell-primary) 18%, transparent);
+    stroke-width: 1.5;
+    transition: opacity .1s ease;
+}
+
+.nx-box-plot-median {
+    stroke-width: 2;
+}
+
+.nx-box-plot-outlier {
+    fill: var(--shell-surface);
+    stroke-width: 1.5;
+}
+
+.nx-box-plot-group:hover .nx-box-plot-box {
+    opacity: .8;
+}
+
+.nx-box-plot-group:focus-visible {
+    outline: 2px solid var(--shell-primary, #3498db);
+    outline-offset: 2px;
+}

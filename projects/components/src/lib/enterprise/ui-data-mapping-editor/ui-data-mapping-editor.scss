@@ -1,0 +1,132 @@
+.nx-data-mapping-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nx-data-mapping-columns {
+    display: flex;
+    gap: 16px;
+}
+
+.nx-data-mapping-column-title {
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--shell-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.nx-data-mapping-source {
+    width: 180px;
+    flex-shrink: 0;
+    padding: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+}
+
+.nx-data-mapping-source-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nx-data-mapping-source-item {
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text);
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.nx-data-mapping-source-empty {
+    color: var(--shell-text-muted);
+    font-family: inherit;
+    font-style: italic;
+}
+
+.nx-data-mapping-target {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nx-data-mapping-target-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+}
+
+.nx-data-mapping-target-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--shell-text);
+    min-width: 0;
+}
+
+.nx-data-mapping-status-dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--shell-border);
+}
+
+.nx-data-mapping-status-dot.mapped {
+    background-color: var(--nx-color-success, #2ecc71);
+}
+
+.nx-data-mapping-status-dot.missing {
+    background-color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-data-mapping-required-tag {
+    flex-shrink: 0;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background-color: var(--nx-color-primary-soft, rgba(59, 130, 246, .1));
+    color: var(--shell-primary);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.nx-data-mapping-select {
+    flex-shrink: 0;
+    width: 200px;
+    padding: 6px 8px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 13px;
+}
+
+.nx-data-mapping-summary {
+    padding: 8px 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface-hover);
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.nx-data-mapping-summary.complete {
+    background-color: var(--nx-color-success-soft, rgba(46, 204, 113, .1));
+    color: var(--nx-color-success, #2ecc71);
+}

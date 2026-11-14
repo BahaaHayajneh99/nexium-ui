@@ -1,0 +1,75 @@
+@import '../portfolio-shared';
+
+.pwork-title {
+    margin: 0 0 4px;
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.pwork-count {
+    margin: 0 0 var(--nx-spacing-lg, 24px);
+}
+
+.pwork-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.pwork-chip {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--shell-border);
+    background: var(--shell-surface);
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-medium, 500);
+    cursor: pointer;
+    transition: background var(--nx-transition-fast, .15s ease), color var(--nx-transition-fast, .15s ease), border-color var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        border-color: var(--shell-primary);
+        color: var(--shell-primary);
+    }
+
+    &.active {
+        background: var(--shell-primary);
+        border-color: var(--shell-primary);
+        color: #ffffff;
+    }
+}
+
+// Overrides for project cards living inside <nx-masonry>: the shared .port-project-card is normally
+// a fixed 4/3 aspect-ratio tile (see _portfolio-shared.scss), but a real masonry effect needs each
+// card's height to come from its own media block (set inline per-card via mediaHeight()) instead.
+.pwork-masonry-card {
+    aspect-ratio: auto;
+
+    .port-project-media {
+        position: relative;
+        inset: auto;
+        width: 100%;
+    }
+}
+
+.pwork-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-xxl, 48px);
+    text-align: center;
+    color: var(--shell-text-secondary);
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+
+    nx-icon {
+        color: var(--shell-text-muted);
+    }
+
+    p {
+        margin: 0;
+    }
+}

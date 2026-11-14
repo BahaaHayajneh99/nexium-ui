@@ -1,0 +1,51 @@
+<div class="course-container course-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="course-locked-wrapper">
+            <div class="course-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="course-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Course Website template for $55</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="course-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="creviews-hero">
+        <h1>Student reviews</h1>
+        <p>What students are saying after taking courses on Pathwise Academy.</p>
+    </div>
+
+    <div class="creviews-summary-row">
+        <nx-statistic label="Average rating" [value]="averageRating()" suffix=" / 5"></nx-statistic>
+        <nx-statistic label="Total reviews" [value]="totalStudentReviews()"></nx-statistic>
+        <nx-statistic label="Courses rated" [value]="courseCount"></nx-statistic>
+    </div>
+
+    <div class="creviews-list">
+        @for (review of reviews; track review.name + review.date) {
+            <div class="creviews-card">
+                <img class="course-avatar-photo" [src]="review.avatar" [alt]="review.name">
+                <div class="creviews-body">
+                    <div class="course-flex-between">
+                        <span class="creviews-name">{{ review.name }}</span>
+                        <span class="course-muted creviews-date">{{ review.date }}</span>
+                    </div>
+                    <nx-rating [value]="review.rating" [readonly]="true"></nx-rating>
+                    <p class="creviews-text">{{ review.text }}</p>
+                </div>
+            </div>
+        }
+    </div>
+
+</ng-template>

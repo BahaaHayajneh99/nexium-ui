@@ -4,7 +4,7 @@ export interface NxNavLink {
   /** Marks this component as a paid/licensed feature - renders a small "PRO" badge and gates the route behind checkout. */
   isPro?: boolean;
   /** Marks this component as newly added since the last major release - renders a small "NEW" badge. */
-  isNew?: boolean; 
+  isNew?: boolean;
 }
 
 export interface NxNavGroup {
@@ -13,7 +13,7 @@ export interface NxNavGroup {
   /** An `nx-icon` name shown next to `heading` - ignored when `heading` is omitted. */
   icon?: string;
   links: NxNavLink[];
-} 
+}
 
 export interface NxNavItem {
   /** Stable identity used for expand/collapse state - not displayed. */
@@ -26,6 +26,8 @@ export interface NxNavItem {
   groups?: NxNavGroup[];
   /** Marks this direct (flat) nav item as newly added - renders a small "NEW" badge. */
   isNew?: boolean;
+  /** Marks this direct (flat) nav item as a paid/licensed feature - renders a small "PRO" badge. */
+  isPro?: boolean;
 }
 
 export const NAV_ITEMS: NxNavItem[] = [
@@ -46,29 +48,6 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
     ],
   },
-  { key: 'Using PRO', label: 'Using PRO', icon: 'nx-lock', path: '/getting-started/using-pro' },
-  { key: 'Showcase', label: 'Showcase', icon: 'nx-layout', path: '/showcase', isNew: true },
-  {
-    key: 'Design System',
-    label: 'Design System',
-    icon: 'nx-palette',
-    groups: [
-      {
-        links: [
-          { label: 'Overview', path: '/design-system/overview' },
-          { label: 'Design Tokens', path: '/design-system/design-tokens' },
-          { label: 'Colors', path: '/guide/colors' },
-          { label: 'Typography', path: '/guide/typography' },
-          { label: 'Spacing', path: '/guide/spacing' },
-          { label: 'Border Radius', path: '/design-system/border-radius' },
-          { label: 'Shadows', path: '/design-system/shadows' },
-          { label: 'Elevation', path: '/design-system/elevation' },
-          { label: 'Breakpoints', path: '/design-system/breakpoints' },
-          { label: 'Motion & Animation', path: '/design-system/motion-animation' },
-        ],
-      },
-    ],
-  },
   {
     key: 'Components',
     label: 'Components',
@@ -83,6 +62,8 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Select', path: '/select' },
           { label: 'AutoComplete', path: '/autocomplete' },
           { label: 'Combobox', path: '/combobox', isNew: true },
+          { label: 'Split Button', path: '/split-button', isNew: true },
+          { label: 'Form Validation Summary', path: '/form-validation-summary', isNew: true },
           { label: 'Checkbox', path: '/checkbox' },
           { label: 'Radio', path: '/radio' },
           { label: 'Switch', path: '/switch' },
@@ -101,6 +82,8 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Transfer Box', path: '/transfer-box', isNew: true },
           { label: 'Tag Input', path: '/tag-input', isNew: true },
           { label: 'Inline Edit', path: '/inline-edit', isPro: true, isNew: true },
+          { label: 'Cascader', path: '/cascader', isPro: true, isNew: true },
+          { label: 'File Input with Validation', path: '/file-input-validation', isPro: true, isNew: true },
         ],
       },
       {
@@ -139,6 +122,9 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Badge', path: '/badge' },
           { label: 'Tag', path: '/tag' },
           { label: 'Avatar', path: '/avatar' },
+          { label: 'Avatar Group', path: '/avatar-group', isNew: true },
+          { label: 'Organization Chart', path: '/org-chart', isPro: true, isNew: true },
+          { label: 'Integration Manager', path: '/integration-manager', isPro: true, isNew: true },
           { label: 'Icon', path: '/icon' },
           { label: 'Timeline', path: '/timeline' },
           { label: 'Tree', path: '/tree' },
@@ -182,6 +168,7 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Text Scramble', path: '/text-scramble', isPro: true, isNew: true },
           { label: 'Number Ticker', path: '/number-ticker', isPro: true, isNew: true },
           { label: 'Integration Card', path: '/integration-card', isPro: true, isNew: true },
+          { label: 'Infinite Data Table', path: '/infinite-table', isPro: true, isNew: true },
         ],
       },
       {
@@ -192,6 +179,7 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Toast', path: '/toast' },
           { label: 'Notification Center', path: '/notification-center' },
           { label: 'Notification Inbox', path: '/notification-inbox', isPro: true, isNew: true },
+          { label: 'Notification Preferences', path: '/notification-preferences', isPro: true, isNew: true },
           { label: 'Modal', path: '/modal' },
           { label: 'Confirm Dialog', path: '/dialog' },
           { label: 'Drawer', path: '/drawer' },
@@ -255,6 +243,7 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Navigation Progress', path: '/navigation-progress', isNew: true },
           { label: 'Table of Contents', path: '/table-of-contents', isPro: true, isNew: true },
           { label: 'Version Selector', path: '/version-selector', isPro: true, isNew: true },
+          { label: 'Application Switcher', path: '/app-switcher', isPro: true, isNew: true },
         ],
       },
       {
@@ -292,6 +281,7 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Marquee', path: '/layout/marquee', isPro: true, isNew: true },
           // { label: 'Gradient Border', path: '/layout/gradient-border', isPro: true, isNew: true },
           { label: 'Glow', path: '/layout/glow', isPro: true, isNew: true },
+          { label: 'Floating Panel', path: '/layout/floating-panel', isPro: true, isNew: true },
         ],
       },
       {
@@ -331,6 +321,7 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Query Builder', path: '/query-builder', isPro: true, isNew: true },
           { label: 'Bulk Actions', path: '/bulk-actions', isPro: true, isNew: true },
           { label: 'Quick Create', path: '/quick-create', isPro: true, isNew: true },
+          { label: 'Saved Views', path: '/saved-views', isPro: true, isNew: true },
         ],
       },
       {
@@ -394,6 +385,10 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'API Key Manager', path: '/devtools/api-key-manager', isPro: true, isNew: true },
           { label: 'Webhook Manager', path: '/devtools/webhook-manager', isPro: true, isNew: true },
           // { label: 'Code Editor', path: '/devtools/code-editor', isPro: true },
+          { label: 'JSON Schema Validator', path: '/devtools/json-schema-validator', isPro: true, isNew: true },
+          { label: 'JWT Decoder', path: '/devtools/jwt-decoder', isPro: true, isNew: true },
+          { label: 'SQL Formatter', path: '/devtools/sql-formatter', isPro: true, isNew: true },
+          { label: 'Markdown Editor', path: '/devtools/markdown-editor', isPro: true, isNew: true },
         ],
       },
       {
@@ -416,6 +411,9 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Bulk Editor', path: '/enterprise/bulk-editor', isPro: true, isNew: true },
           { label: 'Access Control', path: '/enterprise/access-control', isPro: true, isNew: true },
           { label: 'Role Editor', path: '/enterprise/role-editor', isPro: true, isNew: true },
+          { label: 'Data Mapping Editor', path: '/enterprise/data-mapping-editor', isPro: true, isNew: true },
+          { label: 'Data Import Wizard', path: '/enterprise/data-import-wizard', isPro: true, isNew: true },
+          { label: 'Resource Allocation Board', path: '/enterprise/resource-allocation-board', isPro: true, isNew: true },
         ],
       },
       {
@@ -442,6 +440,8 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'AI Token Usage', path: '/ai/token-usage', isNew: true },
           { label: 'AI Model Playground', path: '/ai/model-playground', isPro: true, isNew: true },
           { label: 'AI Command Bar', path: '/ai/command-bar', isPro: true, isNew: true },
+          { label: 'AI File Upload', path: '/ai/file-upload', isPro: true, isNew: true },
+          { label: 'AI Conversation History', path: '/ai/conversation-history', isPro: true, isNew: true },
         ],
       },
       {
@@ -452,27 +452,22 @@ export const NAV_ITEMS: NxNavItem[] = [
     ],
   },
   {
-    key: 'Directives',
-    label: 'Directives',
-    icon: 'nx-external-link',
+    key: 'Design System',
+    label: 'Design System',
+    icon: 'nx-palette',
     groups: [
       {
         links: [
-          { label: 'Click Outside', path: '/directives/click-outside' },
-          { label: 'Autofocus', path: '/directives/autofocus' },
-          { label: 'Copy to Clipboard', path: '/directives/copy-to-clipboard' },
-          { label: 'Long Press', path: '/directives/long-press' },
-          { label: 'Debounce Click', path: '/directives/debounce-click' },
-          { label: 'Has Permission', path: '/directives/has-permission' },
-          { label: 'Feature Flag', path: '/directives/feature-flag' },
-          { label: 'Permission Gate', path: '/directives/permission-gate' },
-          { label: 'Drag & Drop', path: '/directives/drag-drop' },
-          { label: 'Infinite Scroll', path: '/directives/infinite-scroll' },
-          { label: 'In-View', path: '/directives/in-view', isNew: true },
-          { label: 'Scroll Lock', path: '/directives/scroll-lock', isNew: true },
-          { label: 'Focus Trap', path: '/directives/focus-trap', isNew: true },
-          { label: 'Hotkey', path: '/directives/hotkey', isNew: true },
-          { label: 'Reveal', path: '/directives/reveal', isPro: true, isNew: true },
+          { label: 'Overview', path: '/design-system/overview' },
+          { label: 'Design Tokens', path: '/design-system/design-tokens' },
+          { label: 'Colors', path: '/guide/colors' },
+          { label: 'Typography', path: '/guide/typography' },
+          { label: 'Spacing', path: '/guide/spacing' },
+          { label: 'Border Radius', path: '/design-system/border-radius' },
+          { label: 'Shadows', path: '/design-system/shadows' },
+          { label: 'Elevation', path: '/design-system/elevation' },
+          { label: 'Breakpoints', path: '/design-system/breakpoints' },
+          { label: 'Motion & Animation', path: '/design-system/motion-animation' },
         ],
       },
     ],
@@ -505,14 +500,50 @@ export const NAV_ITEMS: NxNavItem[] = [
           { label: 'Candlestick Chart', path: '/charts/candlestick', isPro: true, isNew: true },
           { label: 'Polar Area', path: '/charts/polar-area', isNew: true },
           { label: 'Sunburst', path: '/charts/sunburst', isPro: true, isNew: true },
+          { label: 'Box Plot', path: '/charts/box-plot', isPro: true, isNew: true },
         ],
       },
     ],
   },
-  { key: 'Pipes', label: 'Pipes', icon: 'nx-filter', path: '/pipes' },
-  { key: 'Icons', label: 'Icons', icon: 'nx-star', path: '/icons' },
-  { key: 'Emoji', label: 'Emoji', icon: 'nx-heart', path: '/emoji' },
-  { key: 'EmojiPicker', label: 'Emoji Picker', icon: 'nx-grid', path: '/emoji-picker', isNew: true },
+  {
+    key: 'Templates',
+    label: 'Templates',
+    icon: 'nx-file',
+    groups: [
+      {
+        links: [
+          { label: 'Login', path: '/templates/login' },
+          { label: 'Register', path: '/templates/register' },
+          { label: 'Forgot Password', path: '/templates/forgot-password' },
+          { label: 'Dashboard', path: '/templates/dashboard' },
+          { label: 'Profile', path: '/templates/profile' },
+          { label: 'Settings', path: '/templates/settings' },
+          { label: 'Admin Dashboard', path: '/templates/admin-dashboard' },
+          { label: 'CRM', path: '/templates/crm' },
+          { label: 'HR Portal', path: '/templates/hr-portal' },
+          { label: 'E-commerce', path: '/templates/ecommerce' },
+          { label: 'Project Management', path: '/templates/project-management' },
+          { label: 'Analytics Dashboard', path: '/templates/analytics-dashboard' },
+          { label: 'Risk Management Dashboard', path: '/templates/risk-management' },
+          { label: 'Document Management', path: '/templates/document-management' },
+          { label: 'User Management', path: '/templates/user-management' },
+          { label: 'Notifications', path: '/templates/notifications' },
+          { label: 'Blog Sharing', path: '/templates/blog-sharing', isNew: true },
+          { label: 'Social Feed', path: '/templates/social-feed', isNew: true },
+          { label: 'Landing Page', path: '/templates/landing-page', isNew: true },
+          { label: 'Pricing Page', path: '/templates/pricing-page', isNew: true },
+          { label: 'Portfolio', path: '/templates/portfolio', isNew: true },
+          { label: 'Email Client', path: '/templates/email-client', isNew: true },
+          { label: 'Calendar & Scheduling', path: '/templates/calendar', isNew: true },
+          { label: 'Knowledge Base', path: '/templates/knowledge-base', isNew: true },
+          { label: 'Invoice & Billing', path: '/templates/invoice-billing', isNew: true },
+          { label: 'Job Board', path: '/templates/job-board', isNew: true },
+          { label: 'Restaurant Ordering', path: '/templates/restaurant-ordering', isNew: true },
+          { label: 'Finance Dashboard', path: '/templates/finance-dashboard', isNew: true },
+        ],
+      },
+    ],
+  },
   {
     key: 'Blocks',
     label: 'Blocks',
@@ -542,33 +573,60 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
     ],
   },
+  { key: 'Showcase', label: 'Showcase', icon: 'nx-layout', path: '/showcase', isNew: true },
   {
-    key: 'Templates',
-    label: 'Templates',
-    icon: 'nx-file',
+    key: 'PRO Websites',
+    label: 'PRO Websites',
+    icon: 'nx-monitor',
     groups: [
       {
         links: [
-          { label: 'Login', path: '/templates/login' },
-          { label: 'Register', path: '/templates/register' },
-          { label: 'Forgot Password', path: '/templates/forgot-password' },
-          { label: 'Dashboard', path: '/templates/dashboard' },
-          { label: 'Profile', path: '/templates/profile' },
-          { label: 'Settings', path: '/templates/settings' },
-          { label: 'Admin Dashboard', path: '/templates/admin-dashboard' },
-          { label: 'CRM', path: '/templates/crm' },
-          { label: 'HR Portal', path: '/templates/hr-portal' },
-          { label: 'E-commerce', path: '/templates/ecommerce' },
-          { label: 'Project Management', path: '/templates/project-management' },
-          { label: 'Analytics Dashboard', path: '/templates/analytics-dashboard' },
-          { label: 'Risk Management Dashboard', path: '/templates/risk-management' },
-          { label: 'Document Management', path: '/templates/document-management' },
-          { label: 'User Management', path: '/templates/user-management' },
-          { label: 'Notifications', path: '/templates/notifications' },
+          { label: 'E-Commerce Website', path: '/pro-templates/ecommerce-website', isPro: true, isNew: true },
+          { label: 'SaaS Website', path: '/pro-templates/saas-website', isPro: true, isNew: true },
+          { label: 'Real Estate Website', path: '/pro-templates/real-estate-website', isPro: true, isNew: true },
+          { label: 'Restaurant Website', path: '/pro-templates/restaurant-website', isPro: true, isNew: true },
+          { label: 'Portfolio Website', path: '/pro-templates/portfolio-website', isPro: true, isNew: true },
+          { label: 'Hotel Website', path: '/pro-templates/hotel-website', isPro: true, isNew: true },
+          { label: 'Course Website', path: '/pro-templates/course-website', isPro: true, isNew: true },
         ],
       },
     ],
   },
+  { key: 'Get PRO License', label: 'Get PRO License', icon: 'nx-gift', path: '/pro-upgrade', isNew: true },
+  { key: 'Using PRO', label: 'Using PRO', icon: 'nx-lock', path: '/getting-started/using-pro' },
+  // { key: 'Dashboard Designer', label: 'Dashboard Designer', icon: 'nx-chart-bar', path: '/dashboard-designer', isNew: true },
+  { key: 'Theme Studio', label: 'Theme Studio', icon: 'nx-palette', path: '/theme-studio', isNew: true },
+  { key: 'Playground', label: 'Playground', icon: 'nx-fire', path: '/playground' },
+  {
+    key: 'Directives',
+    label: 'Directives',
+    icon: 'nx-external-link',
+    groups: [
+      {
+        links: [
+          { label: 'Click Outside', path: '/directives/click-outside' },
+          { label: 'Autofocus', path: '/directives/autofocus' },
+          { label: 'Copy to Clipboard', path: '/directives/copy-to-clipboard' },
+          { label: 'Long Press', path: '/directives/long-press' },
+          { label: 'Debounce Click', path: '/directives/debounce-click' },
+          { label: 'Has Permission', path: '/directives/has-permission' },
+          { label: 'Feature Flag', path: '/directives/feature-flag' },
+          { label: 'Permission Gate', path: '/directives/permission-gate' },
+          { label: 'Drag & Drop', path: '/directives/drag-drop' },
+          { label: 'Infinite Scroll', path: '/directives/infinite-scroll' },
+          { label: 'In-View', path: '/directives/in-view', isNew: true },
+          { label: 'Scroll Lock', path: '/directives/scroll-lock', isNew: true },
+          { label: 'Focus Trap', path: '/directives/focus-trap', isNew: true },
+          { label: 'Hotkey', path: '/directives/hotkey', isNew: true },
+          { label: 'Reveal', path: '/directives/reveal', isPro: true, isNew: true },
+        ],
+      },
+    ],
+  },
+  { key: 'Pipes', label: 'Pipes', icon: 'nx-filter', path: '/pipes' },
+  { key: 'Icons', label: 'Icons', icon: 'nx-star', path: '/icons' },
+  { key: 'Emoji', label: 'Emoji', icon: 'nx-heart', path: '/emoji' },
+  { key: 'EmojiPicker', label: 'Emoji Picker', icon: 'nx-grid', path: '/emoji-picker', isNew: true },
   {
     key: 'How To',
     label: 'How To',
@@ -643,7 +701,6 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
     ],
   },
-  { key: 'Playground', label: 'Playground', icon: 'nx-fire', path: '/playground' },
   {
     key: 'API Reference',
     label: 'API Reference',
@@ -665,7 +722,6 @@ export const NAV_ITEMS: NxNavItem[] = [
   },
   { key: 'Utilities', label: 'Utilities', icon: 'nx-settings', path: '/developer/css-utilities' },
   { key: "What's New", label: "What's New", icon: 'nx-new', path: '/about/releases' },
-  { key: 'Get PRO License', label: 'Get PRO License', icon: 'nx-gift', path: '/pro-upgrade', isNew: true },
   {
     key: 'About',
     label: 'About',

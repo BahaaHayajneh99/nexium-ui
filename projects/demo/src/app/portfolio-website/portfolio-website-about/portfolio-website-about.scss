@@ -1,0 +1,109 @@
+@import '../portfolio-shared';
+
+.pabout-hero {
+    background:
+        linear-gradient(120deg, rgba(10, 10, 20, .88) 10%, rgba(10, 10, 20, .55) 60%, rgba(10, 10, 20, .3) 100%),
+        url('https://picsum.photos/seed/nx-port-about/1600/600') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.pabout-hero-inner {
+    max-width: 680px;
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        line-height: 1.2;
+    }
+
+    p {
+        margin: 0;
+        opacity: .85;
+        font-size: var(--nx-font-size-md, 16px);
+        line-height: 1.6;
+    }
+}
+
+.pabout-stats-section {
+    padding-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.pabout-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.pabout-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.pabout-team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.pabout-team-avatar {
+    width: 72px;
+    height: 72px;
+    margin-bottom: var(--nx-spacing-sm, 8px);
+    cursor: pointer;
+}
+
+.port-hovercard-panel {
+    width: 220px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    strong {
+        color: var(--shell-text);
+        font-size: var(--nx-font-size-sm, 14px);
+    }
+
+    p {
+        margin: 0;
+        font-size: var(--nx-font-size-xs, 12px);
+        color: var(--shell-text-secondary);
+        line-height: 1.5;
+
+        &:first-of-type {
+            color: var(--shell-primary);
+            font-weight: var(--nx-font-weight-medium, 500);
+        }
+    }
+}
+
+.pabout-team-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.pabout-team-role {
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-muted);
+    margin-bottom: 4px;
+}
+
+.pabout-team-bio {
+    margin: 0;
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+    line-height: 1.5;
+}

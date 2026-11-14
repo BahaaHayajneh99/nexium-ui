@@ -1,0 +1,75 @@
+@import '../real-estate-shared';
+
+.reagd-profile {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--nx-spacing-xl, 32px);
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    flex-wrap: wrap;
+}
+
+.reagd-avatar {
+    width: 120px;
+    height: 120px;
+}
+
+.reagd-info {
+    flex: 1;
+    min-width: 240px;
+}
+
+.reagd-name {
+    margin: 0;
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.reagd-title {
+    margin-bottom: var(--nx-spacing-sm, 8px);
+}
+
+.reagd-contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--nx-spacing-md, 16px);
+    margin-bottom: var(--nx-spacing-md, 16px);
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text-secondary);
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}
+
+.reagd-bio {
+    color: var(--shell-text-secondary);
+    line-height: 1.6;
+    margin: 0 0 var(--nx-spacing-lg, 24px);
+    max-width: 640px;
+}
+
+.reagd-empty {
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+}
+
+.reagd-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-sm, 12px);
+    padding: 120px var(--nx-spacing-lg, 24px);
+    text-align: center;
+    color: var(--shell-text-secondary);
+}

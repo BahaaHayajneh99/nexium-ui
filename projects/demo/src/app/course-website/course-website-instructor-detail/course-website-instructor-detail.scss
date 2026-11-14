@@ -1,0 +1,68 @@
+@import '../course-shared';
+
+.cidetail-hero {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-xl, 32px);
+    flex-wrap: wrap;
+}
+
+.cidetail-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.cidetail-info {
+    flex: 1;
+    min-width: 240px;
+}
+
+.cidetail-name {
+    margin: 0 0 4px;
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.cidetail-title {
+    margin: 0 0 var(--nx-spacing-sm, 8px);
+    font-size: var(--nx-font-size-md, 16px);
+}
+
+.cidetail-bio {
+    margin: 0 0 var(--nx-spacing-sm, 8px);
+    color: var(--shell-text-secondary);
+    line-height: 1.6;
+}
+
+.cidetail-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--nx-font-size-sm, 14px);
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}
+
+.cidetail-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-xxl, 48px) 0;
+    color: var(--shell-text-secondary);
+    text-align: center;
+
+    nx-icon {
+        color: var(--shell-text-muted);
+    }
+
+    p {
+        margin: 0;
+    }
+}

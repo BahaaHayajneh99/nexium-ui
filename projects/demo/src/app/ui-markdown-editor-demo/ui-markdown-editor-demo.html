@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Markdown Editor"
+                description="{{ commonService.appName }} Markdown Editor - a split-pane editor with a formatting toolbar (bold, italic, link, bulleted list, inline code) above a raw-text textarea on the left and a live-rendered HTML preview on the right. Select text and click a toolbar button to wrap it, or click with nothing selected to insert a snippet at the cursor. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-markdown-editor
+                    [value]="markdown()"
+                    (valueChange)="onMarkdownChange($event)">
+                </nx-markdown-editor>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

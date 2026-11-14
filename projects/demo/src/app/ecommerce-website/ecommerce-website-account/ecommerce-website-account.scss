@@ -1,0 +1,149 @@
+@import '../ecommerce-shared';
+
+.eacct-title {
+    margin: 0 0 var(--nx-spacing-xl, 32px);
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+// ---- Profile tab ----------------------------------------------------------
+
+.eacct-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-lg, 24px);
+    max-width: 480px;
+    padding-top: var(--nx-spacing-lg, 24px);
+}
+
+.eacct-avatar {
+    width: 72px;
+    height: 72px;
+}
+
+.eacct-field-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    width: 100%;
+}
+
+.eacct-field-row {
+    padding: var(--nx-spacing-sm, 8px) 0;
+    border-bottom: 1px solid var(--shell-border);
+    font-size: var(--nx-font-size-sm, 14px);
+
+    &:last-of-type {
+        border-bottom: none;
+    }
+}
+
+// ---- Order History tab -----------------------------------------------------
+
+.eacct-orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+    padding-top: var(--nx-spacing-lg, 24px);
+}
+
+.eacct-order-card {
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.eacct-order-id {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.eacct-order-date {
+    font-size: var(--nx-font-size-xs, 12px);
+}
+
+.eacct-order-items {
+    display: flex;
+    gap: var(--nx-spacing-sm, 8px);
+}
+
+.eacct-item-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--nx-radius-md, 8px);
+    object-fit: cover;
+    border: 1px solid var(--shell-border);
+}
+
+.eacct-order-footer {
+    padding-top: var(--nx-spacing-sm, 8px);
+    border-top: 1px solid var(--shell-border);
+}
+
+.eacct-order-total {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+// ---- Addresses tab ----------------------------------------------------------
+
+.eacct-addresses-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-md, 16px);
+    padding-top: var(--nx-spacing-lg, 24px);
+}
+
+.eacct-address-card {
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+}
+
+.eacct-address-header {
+    align-items: flex-start;
+}
+
+.eacct-address-label {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.eacct-address-actions {
+    display: flex;
+    gap: var(--nx-spacing-xs, 4px);
+}
+
+.eacct-icon-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--shell-text-muted);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--shell-primary);
+    }
+}
+
+.eacct-address-text {
+    margin: var(--nx-spacing-sm, 8px) 0 0;
+    font-size: var(--nx-font-size-sm, 14px);
+}
+
+.eacct-add-address-btn {
+    margin-top: var(--nx-spacing-md, 16px);
+}

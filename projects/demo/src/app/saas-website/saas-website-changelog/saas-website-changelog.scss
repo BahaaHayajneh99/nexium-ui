@@ -1,0 +1,47 @@
+@import '../saas-shared';
+
+.schg-hero {
+    background: linear-gradient(120deg, rgba(14, 22, 44, .92) 10%, rgba(14, 22, 44, .55) 100%),
+        url('https://picsum.photos/seed/nx-saas-changelog/1600/500') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 56px) 0;
+    text-align: center;
+}
+
+.schg-hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: var(--nx-font-weight-bold, 700);
+    }
+
+    p {
+        margin: 0;
+        opacity: .85;
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.schg-cta {
+    margin-top: var(--nx-spacing-xl, 32px);
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text-secondary);
+    }
+}

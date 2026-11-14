@@ -1,0 +1,71 @@
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="port-section-heading">
+        <h1>Retainer packages</h1>
+        <p>Monthly retainers built around how much of our time your roadmap actually needs.</p>
+    </div>
+
+    <div class="ppricing-grid">
+        @for (pkg of packages; track pkg.name) {
+            <div class="ppricing-card" [class.ppricing-card-highlighted]="pkg.highlighted">
+                @if (pkg.highlighted) {
+                    <div class="ppricing-badge">Most popular</div>
+                }
+                <h3>{{ pkg.name }}</h3>
+                <div class="ppricing-price">
+                    <span class="ppricing-price-value">{{ pkg.price }}</span>
+                    @if (pkg.period) {
+                        <span class="port-muted">{{ pkg.period }}</span>
+                    }
+                </div>
+                <p class="ppricing-description">{{ pkg.description }}</p>
+                <ul class="ppricing-features">
+                    @for (feature of pkg.features; track feature) {
+                        <li>
+                            <nx-icon icon="nx-check" variant="svg" [size]="16"></nx-icon>
+                            {{ feature }}
+                        </li>
+                    }
+                </ul>
+                <nx-button
+                    [variant]="pkg.highlighted ? 'primary' : 'secondary'"
+                    [fullWidth]="true"
+                    [routerLink]="'/portfolio-website/contact'">
+                    Get started
+                </nx-button>
+            </div>
+        }
+    </div>
+
+    <div class="ppricing-note">
+        <h3>Need something custom?</h3>
+        <p>
+            Most engagements start with one of the packages above, but we regularly scope one-off projects, fixed-price
+            launches, and hybrid arrangements that mix a smaller retainer with a one-time project fee. If none of these
+            fit the way you work, tell us what you need on the contact page and we'll put together a custom scope within
+            two business days - no obligation either way.
+        </p>
+    </div>
+
+</ng-template>

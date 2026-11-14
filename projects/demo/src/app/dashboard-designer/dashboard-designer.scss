@@ -1,0 +1,118 @@
+.dd-page {
+    background: var(--shell-bg);
+    color: var(--shell-text);
+    min-height: 100%;
+    padding: var(--nx-spacing-lg, 24px) var(--nx-spacing-md, 16px);
+}
+
+.dd-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dd-intro {
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    margin-bottom: var(--nx-spacing-lg, 24px);
+}
+
+.dd-title {
+    margin: 0 0 var(--nx-spacing-sm, 8px);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--shell-text);
+}
+
+.dd-subtitle {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 860px;
+
+    code {
+        background: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+        border-radius: var(--nx-radius-xs, 4px);
+        padding: 1px 5px;
+        font-size: 0.85em;
+    }
+}
+
+.dd-error {
+    margin-top: var(--nx-spacing-md, 16px);
+    padding: var(--nx-spacing-sm, 8px) var(--nx-spacing-md, 16px);
+    border: 1px solid var(--danger-color, #e53935);
+    border-radius: var(--nx-radius-sm, 6px);
+    background: rgba(229, 57, 53, 0.08);
+    color: var(--danger-color, #e53935);
+    font-size: 0.85rem;
+}
+
+.dd-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-top: var(--nx-spacing-lg, 24px);
+}
+
+.dd-btn {
+    appearance: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: var(--nx-radius-sm, 6px);
+    border: 1px solid var(--shell-border);
+    background: var(--shell-surface);
+    color: var(--shell-text);
+    transition: background-color .15s ease, border-color .15s ease, opacity .15s ease;
+
+    &:hover {
+        background: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+    }
+
+    &:active {
+        opacity: 0.85;
+    }
+}
+
+.dd-btn-primary {
+    background: var(--shell-primary);
+    border-color: var(--shell-primary);
+    color: var(--white-color, #fff);
+
+    &:hover {
+        opacity: 0.92;
+        background: var(--shell-primary);
+    }
+}
+
+.dd-btn-danger {
+    color: var(--danger-color, #e53935);
+    border-color: var(--danger-color, #e53935);
+    background: transparent;
+
+    &:hover {
+        background: rgba(229, 57, 53, 0.08);
+    }
+}
+
+.dd-file-input {
+    display: none;
+}
+
+.dd-saved-at {
+    margin-left: auto;
+    font-size: 0.78rem;
+    color: var(--shell-text-muted);
+}
+
+.dd-builder-shell {
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    padding: var(--nx-spacing-md, 16px);
+}

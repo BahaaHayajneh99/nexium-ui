@@ -1,0 +1,47 @@
+@import '../course-shared';
+
+.cfaq-hero {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto var(--nx-spacing-xl, 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-xs, 4px);
+
+    nx-icon {
+        color: var(--shell-primary);
+        margin-bottom: var(--nx-spacing-xs, 4px);
+    }
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: clamp(26px, 4vw, 34px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.cfaq-cta {
+    text-align: center;
+    max-width: 520px;
+    margin: var(--nx-spacing-xxl, 48px) auto 0;
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-lg, 24px);
+        color: var(--shell-text-secondary);
+    }
+}

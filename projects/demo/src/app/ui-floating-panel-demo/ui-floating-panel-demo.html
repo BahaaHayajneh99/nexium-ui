@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Floating Panel"
+                description="{{ commonService.appName }} Floating Panel - a draggable mini window with a header bar (title, collapse toggle, close button) you can drag anywhere in the viewport, and a content area that collapses/expands. Drag the header to reposition it, click the chevron to collapse/expand the content, or click the X to close it (click 'Reopen panel' below to bring it back). This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                @if (panelVisible()) {
+                    <nx-floating-panel
+                        title="Live Stats"
+                        [initialX]="24"
+                        [initialY]="24"
+                        [collapsed]="panelCollapsed()"
+                        (closed)="onClosed()"
+                        (collapsedChange)="onCollapsedChange($event)">
+                        <p>Active users right now: <strong>{{ activeUsers() }}</strong></p>
+                        <p>Drag this panel by its header to move it anywhere on the page.</p>
+                    </nx-floating-panel>
+                } @else {
+                    <button type="button" (click)="reopenPanel()">Reopen panel</button>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

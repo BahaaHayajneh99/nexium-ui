@@ -1,0 +1,141 @@
+@import '../course-shared';
+
+// ---- Hero ----------------------------------------------------------------
+
+.chome-hero {
+    background:
+        linear-gradient(120deg, rgba(10, 16, 32, .88) 10%, rgba(10, 16, 32, .55) 60%, rgba(10, 16, 32, .3) 100%),
+        url('https://picsum.photos/seed/nx-course-hero/1600/700') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.chome-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-lg, 24px);
+    max-width: 620px;
+}
+
+.chome-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.chome-hero-subtitle {
+    font-size: var(--nx-font-size-md, 16px);
+    opacity: .85;
+    margin: 0;
+}
+
+.chome-hero-actions {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+    flex-wrap: wrap;
+}
+
+// ---- Categories ------------------------------------------------------------
+
+.chome-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.chome-category-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px) var(--nx-spacing-md, 16px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    text-decoration: none;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    transition: transform .15s ease, box-shadow .15s ease;
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px -10px rgba(0, 0, 0, .2);
+    }
+}
+
+// ---- Stats row --------------------------------------------------------------
+
+.chome-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-xl, 32px) var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    margin: var(--nx-spacing-md, 16px) 0;
+}
+
+// ---- Testimonials -----------------------------------------------------------
+
+.chome-testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.chome-testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.chome-testimonial-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.chome-testimonial-role {
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-muted);
+    margin-bottom: 4px;
+}
+
+.chome-testimonial-quote {
+    margin: var(--nx-spacing-xs, 4px) 0 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+// ---- CTA banner -------------------------------------------------------------
+
+.chome-cta-banner {
+    text-align: center;
+    padding: var(--nx-spacing-xxl, 48px) var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: linear-gradient(135deg, var(--shell-primary) 0%, color-mix(in srgb, var(--shell-primary) 60%, #1a1a2e) 100%);
+    color: #ffffff;
+
+    h2 {
+        margin: 0 0 8px;
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-lg, 24px);
+        opacity: .9;
+    }
+}

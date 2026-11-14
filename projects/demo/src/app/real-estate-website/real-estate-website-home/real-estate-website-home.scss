@@ -1,0 +1,175 @@
+@import '../real-estate-shared';
+
+// ---- Hero ------------------------------------------------------------------
+
+.rehome-hero {
+    background:
+        linear-gradient(120deg, rgba(12, 24, 20, .88) 10%, rgba(12, 24, 20, .55) 60%, rgba(12, 24, 20, .3) 100%),
+        url('https://picsum.photos/seed/nx-haven-hero/1600/700') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.rehome-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-lg, 24px);
+    max-width: 640px;
+}
+
+.rehome-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.rehome-hero-subtitle {
+    font-size: var(--nx-font-size-md, 16px);
+    opacity: .85;
+    margin: 0;
+}
+
+.rehome-search-row {
+    display: flex;
+    gap: var(--nx-spacing-sm, 8px);
+    width: 100%;
+    max-width: 520px;
+    flex-wrap: wrap;
+
+    nx-input {
+        flex: 1;
+        min-width: 220px;
+    }
+}
+
+// ---- Featured areas ----------------------------------------------------------
+
+.rehome-area-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.rehome-area-tile {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--nx-radius-lg, 12px);
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px -10px rgba(0, 0, 0, .3);
+    }
+}
+
+.rehome-area-tile-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 2px;
+    padding: var(--nx-spacing-md, 16px);
+    background: linear-gradient(0deg, rgba(0, 0, 0, .75) 0%, rgba(0, 0, 0, 0) 60%);
+    color: #ffffff;
+}
+
+.rehome-area-name {
+    font-weight: var(--nx-font-weight-bold, 700);
+    font-size: var(--nx-font-size-md, 16px);
+}
+
+.rehome-area-count {
+    font-size: var(--nx-font-size-xs, 12px);
+    opacity: .85;
+}
+
+// ---- Featured listings heading -------------------------------------------------
+
+.rehome-featured-heading {
+    align-items: flex-start;
+    margin-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.rehome-featured-heading-text {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+// ---- Testimonials -----------------------------------------------------------
+
+.rehome-testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.rehome-testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.rehome-testimonial-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.rehome-testimonial-role {
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-muted);
+    margin-bottom: 4px;
+}
+
+.rehome-testimonial-quote {
+    margin: var(--nx-spacing-xs, 4px) 0 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+// ---- Stats row -----------------------------------------------------------------
+
+.rehome-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+// ---- CTA banner ------------------------------------------------------------
+
+.rehome-cta {
+    margin-top: var(--nx-spacing-xl, 32px);
+    text-align: center;
+    padding: var(--nx-spacing-xl, 32px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h2 {
+        margin: 0 0 var(--nx-spacing-xs, 4px);
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text-secondary);
+    }
+}

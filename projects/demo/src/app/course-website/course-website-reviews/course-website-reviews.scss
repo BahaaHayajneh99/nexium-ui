@@ -1,0 +1,66 @@
+@import '../course-shared';
+
+.creviews-hero {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--nx-spacing-xl, 32px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.creviews-summary-row {
+    display: flex;
+    justify-content: center;
+    gap: var(--nx-spacing-xxl, 48px);
+    flex-wrap: wrap;
+    padding: var(--nx-spacing-lg, 24px) 0 var(--nx-spacing-xxl, 48px);
+    text-align: center;
+}
+
+.creviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.creviews-card {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.creviews-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.creviews-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.creviews-date {
+    font-size: var(--nx-font-size-sm, 13px);
+}
+
+.creviews-text {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    line-height: 1.6;
+}

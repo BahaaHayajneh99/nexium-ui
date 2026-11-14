@@ -1,0 +1,71 @@
+<section class="sabout-hero">
+    <div class="saas-container sabout-hero-inner">
+        <h1 class="sabout-hero-title">Built to make data a daily habit</h1>
+        <p class="sabout-hero-subtitle">
+            Nimbus started in 2021 because two engineers were tired of maintaining a dashboard nobody opened and a
+            weekly PDF nobody read. We set out to build the opposite: analytics people actually check every morning.
+        </p>
+    </div>
+</section>
+
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="saas-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="sabout-stats-row">
+        @for (stat of stats; track stat.label) {
+            <nx-statistic [label]="stat.label" [value]="stat.value" [suffix]="stat.suffix ?? ''"></nx-statistic>
+        }
+    </div>
+
+    <section class="saas-section">
+        <div class="saas-section-heading">
+            <h2>Our story so far</h2>
+            <p>A few of the moments that shaped how Nimbus got built.</p>
+        </div>
+        <nx-timeline [items]="timelineItems"></nx-timeline>
+    </section>
+
+    <section class="saas-section">
+        <div class="saas-section-heading">
+            <h2>Meet the team</h2>
+            <p>The people behind the product, the support, and the security posture.</p>
+        </div>
+        <div class="sabout-team-grid">
+            @for (member of team; track member.name) {
+                <div class="sabout-team-card">
+                    <img class="sabout-team-avatar" [src]="member.avatar" [alt]="member.name">
+                    <div class="sabout-team-name">{{ member.name }}</div>
+                    <div class="saas-muted sabout-team-role">{{ member.role }}</div>
+                    <p class="sabout-team-bio">{{ member.bio }}</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <div class="sabout-cta">
+        <h2>Ready to see Nimbus on your own data?</h2>
+        <p>Start a free 14-day trial - no credit card required.</p>
+        <nx-button variant="primary" [routerLink]="'/saas-website/signup'">Start free trial</nx-button>
+    </div>
+
+</ng-template>

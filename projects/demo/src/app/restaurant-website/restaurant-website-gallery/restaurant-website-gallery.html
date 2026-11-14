@@ -1,0 +1,42 @@
+<div class="resto-container resto-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="resto-locked-wrapper">
+            <div class="resto-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="resto-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Restaurant Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="resto-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="rgallery-hero">
+        <h1>A look inside Olive &amp; Oak</h1>
+        <p class="resto-muted">The dining room, the kitchen, and the plates that leave it. Tap any photo for a closer look.</p>
+    </div>
+
+    <nx-masonry [cols]="3" [gap]="16">
+        @for (photo of photos; track photo.src; let i = $index) {
+            <button type="button" class="rgallery-tile" (click)="openLightbox(i)">
+                <img class="rgallery-tile-img" [src]="photo.src" [alt]="photo.alt || ''" loading="lazy">
+                @if (photo.caption) {
+                    <span class="rgallery-tile-caption">{{ photo.caption }}</span>
+                }
+            </button>
+        }
+    </nx-masonry>
+
+    <nx-lightbox [images]="photos" [(open)]="lightboxOpen" [(activeIndex)]="lightboxIndex" [showThumbnails]="true"></nx-lightbox>
+
+</ng-template>

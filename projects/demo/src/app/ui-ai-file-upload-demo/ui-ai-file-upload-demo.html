@@ -1,0 +1,27 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="AI File Upload"
+                description="{{ commonService.appName }} AI File Upload - a chat-attachment-style drop zone. Click 'Attach files' or drag & drop a couple of small files to see them render as compact chips with a file-type icon, size, and an estimated token-count badge (a rough bytes-per-token heuristic), useful for showing how much of an AI model's context budget the attachments will consume. Capped at 4 files here - extra files are silently dropped with a brief inline note. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-ai-file-upload
+                    accept=".pdf,.txt,.md,image/*"
+                    [maxFiles]="4"
+                    (filesChange)="onFilesChange($event)">
+                </nx-ai-file-upload>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

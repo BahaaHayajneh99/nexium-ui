@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Application Switcher"
+                description="{{ commonService.appName }} Application Switcher - a 'grid of 9 dots' trigger that opens a popover grid of linked apps (icon + label). Click the trigger to open it, then click a tile to select an app (closes the popover and emits the chosen item) or click outside to dismiss it. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-app-switcher
+                    [apps]="apps"
+                    triggerLabel="Switch app"
+                    (appSelected)="onAppSelected($event)">
+                </nx-app-switcher>
+                @if (lastSelected()) {
+                    <p>Last selected: <strong>{{ lastSelected()?.label }}</strong> ({{ lastSelected()?.url }})</p>
+                }
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

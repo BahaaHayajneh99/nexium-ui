@@ -1,0 +1,52 @@
+<section class="pblog-hero">
+    <div class="port-container pblog-hero-inner">
+        <h1>Notes from the studio</h1>
+        <p>What we're learning about branding, product, and running client work, written by the people doing it.</p>
+    </div>
+</section>
+
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="pblog-grid">
+        @for (post of posts; track post.slug) {
+            <a class="pblog-card" [routerLink]="['/portfolio-website/blog', post.slug]">
+                <div class="pblog-card-media">
+                    <img [src]="post.image" [alt]="post.title" loading="lazy">
+                    <nx-tag class="pblog-card-tag" variant="solid">{{ post.category }}</nx-tag>
+                </div>
+                <div class="pblog-card-body">
+                    <h3>{{ post.title }}</h3>
+                    <p class="pblog-card-excerpt">{{ post.excerpt }}</p>
+                    <div class="pblog-card-meta">
+                        <img class="pblog-card-avatar" [src]="post.authorAvatar" [alt]="post.author">
+                        <span>{{ post.author }}</span>
+                        <span class="pblog-card-dot">&middot;</span>
+                        <span>{{ post.date }}</span>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+
+</ng-template>

@@ -1,0 +1,46 @@
+<div class="realest-container realest-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="realest-locked-wrapper">
+            <div class="realest-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="realest-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Real Estate Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="realest-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="reagents-heading">
+        <h1>Meet our agents</h1>
+        <p class="realest-muted">Local experts across four metro areas, ready to help you buy, sell, or rent.</p>
+    </div>
+
+    <div class="reagents-grid">
+        @for (agent of agents; track agent.id) {
+            <div class="reagents-card">
+                <img class="reagents-avatar" [src]="agent.avatar" [alt]="agent.name">
+                <div class="reagents-name">{{ agent.name }}</div>
+                <div class="realest-muted reagents-title">{{ agent.title }}</div>
+                <p class="reagents-bio">{{ agent.bio }}</p>
+                <div class="reagents-contact-row">
+                    <span><nx-icon icon="nx-phone" variant="svg" [size]="14"></nx-icon>{{ agent.phone }}</span>
+                    <span><nx-icon icon="nx-mail" variant="svg" [size]="14"></nx-icon>{{ agent.email }}</span>
+                </div>
+                <nx-button variant="outline" [fullWidth]="true" [routerLink]="['/real-estate-website/agent', agent.id]">View profile</nx-button>
+                <nx-button variant="primary" [fullWidth]="true" [routerLink]="'/real-estate-website/contact'">Contact</nx-button>
+            </div>
+        }
+    </div>
+
+</ng-template>

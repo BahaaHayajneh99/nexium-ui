@@ -1,0 +1,54 @@
+@if (licensed()) {
+    <div class="nx-json-schema-validator">
+        <div class="nx-json-schema-validator-panels">
+            <div class="nx-json-schema-validator-panel">
+                <span class="nx-json-schema-validator-label">JSON Schema</span>
+                <textarea
+                    class="nx-json-schema-validator-textarea"
+                    placeholder="{ &quot;type&quot;: &quot;object&quot;, &quot;required&quot;: [&quot;name&quot;] }"
+                    [value]="schemaText()"
+                    (input)="onSchemaChange($any($event.target).value)"></textarea>
+            </div>
+
+            <div class="nx-json-schema-validator-panel">
+                <span class="nx-json-schema-validator-label">JSON Data</span>
+                <textarea
+                    class="nx-json-schema-validator-textarea"
+                    placeholder="{ &quot;name&quot;: &quot;Ada&quot; }"
+                    [value]="dataText()"
+                    (input)="onDataChange($any($event.target).value)"></textarea>
+            </div>
+        </div>
+
+        <div class="nx-json-schema-validator-toolbar">
+            <button type="button" class="nx-json-schema-validator-validate" (click)="validate()">
+                <nx-icon icon="nx-check" variant="svg" [size]="12"></nx-icon> Validate
+            </button>
+        </div>
+
+        @if (parseError()) {
+            <div class="nx-json-schema-validator-result error">
+                <span class="nx-json-schema-validator-result-title">Parse error</span>
+                <p class="nx-json-schema-validator-parse-error">{{ parseError() }}</p>
+            </div>
+        } @else if (result(); as r) {
+            @if (r.valid) {
+                <div class="nx-json-schema-validator-result success">
+                    <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+                    <span class="nx-json-schema-validator-result-title">Valid - 0 errors</span>
+                </div>
+            } @else {
+                <div class="nx-json-schema-validator-result error">
+                    <span class="nx-json-schema-validator-result-title">{{ r.errors.length }} error(s)</span>
+                    <ul class="nx-json-schema-validator-error-list">
+                        @for (error of r.errors; track error) {
+                            <li>{{ error }}</li>
+                        }
+                    </ul>
+                </div>
+            }
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="JSON Schema Validator"></nx-pro-locked>
+}

@@ -1,0 +1,79 @@
+<div class="hotel-auth-page">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="hotel-locked-wrapper hotel-auth-locked">
+      <div class="hotel-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="hotel-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full Hotel Website template for $49</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+  <div class="hotel-auth-layout">
+    <div class="hotel-auth-marketing">
+      <div class="hotel-auth-brand">
+        <nx-icon icon="nx-home" variant="svg" [size]="20"></nx-icon>
+        The Marlow
+      </div>
+
+      <div class="hotel-auth-perks">
+        <h2>Join The Marlow Circle</h2>
+        <ul>
+          @for (perk of perks; track perk.text) {
+            <li>
+              <nx-icon [icon]="perk.icon" variant="svg" [size]="18"></nx-icon>
+              <span>{{ perk.text }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="hotel-auth-form-panel">
+      <div class="hotel-auth-form">
+        <h1>Create your account</h1>
+
+        <div class="hotel-auth-fields">
+          <div class="hotel-auth-name-row">
+            <nx-input label="First name" placeholder="Jane" [isRequired]="true"></nx-input>
+            <nx-input label="Last name" placeholder="Doe" [isRequired]="true"></nx-input>
+          </div>
+          <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+          <nx-input label="Password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+          <nx-input label="Confirm password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+
+          <nx-checkbox
+            label="I agree to the Terms of Service and Privacy Policy"
+            [checked]="agreedToTerms()"
+            (checkedChange)="agreedToTerms.set($event)"></nx-checkbox>
+
+          <nx-button variant="primary" [fullWidth]="true">Create account</nx-button>
+
+          <nx-divider label="or continue with"></nx-divider>
+
+          <div class="hotel-auth-social-row">
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Google
+            </nx-button>
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Apple
+            </nx-button>
+          </div>
+
+          <p class="hotel-auth-footer-line">
+            Already have an account? <a [routerLink]="'/hotel-website/login'">Log in</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

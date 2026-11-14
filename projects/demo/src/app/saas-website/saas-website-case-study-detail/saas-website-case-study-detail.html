@@ -1,0 +1,65 @@
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    @if (study(); as item) {
+
+        <div class="saas-breadcrumb-row">
+            <nx-breadcrumb [items]="breadcrumbItems()"></nx-breadcrumb>
+        </div>
+
+        <section class="scsd-hero">
+            <img class="scsd-hero-img" [src]="item.image" [alt]="item.company">
+            <div class="scsd-hero-body">
+                <nx-tag variant="outline">{{ item.industry }}</nx-tag>
+                <h1>{{ item.company }}</h1>
+                <p>{{ item.summary }}</p>
+                <nx-statistic [label]="item.headlineLabel" [value]="item.headlineStat"></nx-statistic>
+            </div>
+        </section>
+
+        <div class="scsd-body">
+            <section class="scsd-block">
+                <h2>The challenge</h2>
+                <p>{{ item.challenge }}</p>
+            </section>
+            <section class="scsd-block">
+                <h2>The solution</h2>
+                <p>{{ item.solution }}</p>
+            </section>
+            <section class="scsd-block">
+                <h2>The result</h2>
+                <p>{{ item.result }}</p>
+            </section>
+        </div>
+
+        <div class="scsd-cta">
+            <h2>Want results like {{ item.company }}?</h2>
+            <p>Start a free 14-day trial - no credit card required.</p>
+            <nx-button variant="primary" [routerLink]="'/saas-website/signup'">Start free trial</nx-button>
+        </div>
+
+    } @else {
+        <div class="scsd-not-found">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>That case study couldn't be found.</p>
+            <nx-button variant="primary" [routerLink]="'/saas-website/case-studies'">Back to case studies</nx-button>
+        </div>
+    }
+
+</ng-template>

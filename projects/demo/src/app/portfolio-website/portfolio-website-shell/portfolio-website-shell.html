@@ -1,0 +1,82 @@
+<div class="ports-shell">
+
+    @if (licensed()) {
+        <div class="ports-unlocked-bar">
+            <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+            You've unlocked the full Portfolio Website template with your PRO license.
+        </div>
+    } @else {
+        <div class="ports-pro-bar">
+            <nx-icon icon="nx-lock" variant="svg" [size]="14"></nx-icon>
+            This is a NexiumUI <strong>PRO</strong> template - <strong>$45</strong>
+            <s>$79</s> one-time, included free with any PRO license.
+            <nx-button variant="primary" size="small" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+        </div>
+    }
+
+    <header class="ports-header">
+        <div class="ports-header-inner">
+            <a class="ports-brand" [routerLink]="'/portfolio-website/home'">
+                <nx-icon icon="nx-star" variant="svg" [size]="20"></nx-icon>
+                Glint Studio
+            </a>
+
+            <nav class="ports-nav">
+                @for (link of navLinks; track link.path) {
+                    <a [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+                }
+            </nav>
+
+            <div class="ports-header-actions">
+                <nx-button variant="primary" size="small" [routerLink]="'/portfolio-website/contact'">Start a project</nx-button>
+            </div>
+        </div>
+    </header>
+
+    <main class="ports-main">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="ports-footer">
+        <div class="ports-footer-inner">
+            <div class="ports-footer-brand">
+                <a class="ports-brand" [routerLink]="'/portfolio-website/home'">
+                    <nx-icon icon="nx-star" variant="svg" [size]="20"></nx-icon>
+                    Glint Studio
+                </a>
+                <p>Design that moves the needle.</p>
+            </div>
+
+            <div class="ports-footer-columns">
+                <div class="ports-footer-column">
+                    <h4>Studio</h4>
+                    <a [routerLink]="'/portfolio-website/work'">Work</a>
+                    <a [routerLink]="'/portfolio-website/services'">Services</a>
+                    <a [routerLink]="'/portfolio-website/pricing'">Pricing</a>
+                </div>
+                <div class="ports-footer-column">
+                    <h4>Company</h4>
+                    <a [routerLink]="'/portfolio-website/about'">About</a>
+                    <a [routerLink]="'/portfolio-website/team'">Team</a>
+                    <a [routerLink]="'/portfolio-website/careers'">Careers</a>
+                </div>
+                <div class="ports-footer-column">
+                    <h4>Resources</h4>
+                    <a [routerLink]="'/portfolio-website/blog'">Blog</a>
+                    <a [routerLink]="'/portfolio-website/testimonials'">Testimonials</a>
+                    <a [routerLink]="'/portfolio-website/process'">Process</a>
+                    <a [routerLink]="'/portfolio-website/faq'">FAQ</a>
+                </div>
+                <div class="ports-footer-column">
+                    <h4>Connect</h4>
+                    <a [routerLink]="'/portfolio-website/contact'">Contact</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ports-footer-bottom">
+            &copy; 2026 Glint Studio. Built entirely with NexiumUI components.
+        </div>
+    </footer>
+
+</div>

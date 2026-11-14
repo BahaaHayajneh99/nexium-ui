@@ -87,6 +87,139 @@ import { UiBulkActionsDemo } from './ui-bulk-actions-demo/ui-bulk-actions-demo';
 import { UiSessionTimeoutDemo } from './ui-session-timeout-demo/ui-session-timeout-demo';
 import { UiApiKeyManagerDemo } from './ui-api-key-manager-demo/ui-api-key-manager-demo';
 import { UiWebhookManagerDemo } from './ui-webhook-manager-demo/ui-webhook-manager-demo';
+import { UiCascaderDemo } from './ui-cascader-demo/ui-cascader-demo';
+import { UiFileInputDemo } from './ui-file-input-demo/ui-file-input-demo';
+import { UiInfiniteTableDemo } from './ui-infinite-table-demo/ui-infinite-table-demo';
+import { UiAppSwitcherDemo } from './ui-app-switcher-demo/ui-app-switcher-demo';
+import { UiFloatingPanelDemo } from './ui-floating-panel-demo/ui-floating-panel-demo';
+import { UiBoxPlotDemo } from './ui-box-plot-demo/ui-box-plot-demo';
+import { UiJsonSchemaValidatorDemo } from './ui-json-schema-validator-demo/ui-json-schema-validator-demo';
+import { UiJwtDecoderDemo } from './ui-jwt-decoder-demo/ui-jwt-decoder-demo';
+import { UiSqlFormatterDemo } from './ui-sql-formatter-demo/ui-sql-formatter-demo';
+import { UiMarkdownEditorDemo } from './ui-markdown-editor-demo/ui-markdown-editor-demo';
+import { UiAiFileUploadDemo } from './ui-ai-file-upload-demo/ui-ai-file-upload-demo';
+import { UiAiConversationHistoryDemo } from './ui-ai-conversation-history-demo/ui-ai-conversation-history-demo';
+import { ThemeStudio } from './theme-studio/theme-studio';
+import { DashboardDesigner } from './dashboard-designer/dashboard-designer';
+import { TemplatesBlogSharingDemo } from './templates-blog-sharing-demo/templates-blog-sharing-demo';
+import { TemplatesSocialFeedDemo } from './templates-social-feed-demo/templates-social-feed-demo';
+import { TemplatesLandingPageDemo } from './templates-landing-page-demo/templates-landing-page-demo';
+import { TemplatesPricingPageDemo } from './templates-pricing-page-demo/templates-pricing-page-demo';
+import { TemplatesPortfolioDemo } from './templates-portfolio-demo/templates-portfolio-demo';
+import { TemplatesEmailClientDemo } from './templates-email-client-demo/templates-email-client-demo';
+import { TemplatesCalendarDemo } from './templates-calendar-demo/templates-calendar-demo';
+import { TemplatesKnowledgeBaseDemo } from './templates-knowledge-base-demo/templates-knowledge-base-demo';
+import { TemplatesInvoiceBillingDemo } from './templates-invoice-billing-demo/templates-invoice-billing-demo';
+import { TemplatesJobBoardDemo } from './templates-job-board-demo/templates-job-board-demo';
+import { TemplatesRestaurantOrderingDemo } from './templates-restaurant-ordering-demo/templates-restaurant-ordering-demo';
+import { TemplatesFinanceDashboardDemo } from './templates-finance-dashboard-demo/templates-finance-dashboard-demo';
+import { ProWebsiteDetails } from './pro-templates/pro-website-details/pro-website-details';
+import { EcommerceWebsiteShell } from './ecommerce-website/ecommerce-website-shell/ecommerce-website-shell';
+import { EcommerceWebsiteHomeDemo } from './ecommerce-website/ecommerce-website-home/ecommerce-website-home';
+import { EcommerceWebsiteShopDemo } from './ecommerce-website/ecommerce-website-shop/ecommerce-website-shop';
+import { EcommerceWebsiteProductDemo } from './ecommerce-website/ecommerce-website-product/ecommerce-website-product';
+import { EcommerceWebsiteCartDemo } from './ecommerce-website/ecommerce-website-cart/ecommerce-website-cart';
+import { EcommerceWebsiteCheckoutDemo } from './ecommerce-website/ecommerce-website-checkout/ecommerce-website-checkout';
+import { EcommerceWebsiteLoginDemo } from './ecommerce-website/ecommerce-website-login/ecommerce-website-login';
+import { EcommerceWebsiteSignupDemo } from './ecommerce-website/ecommerce-website-signup/ecommerce-website-signup';
+import { EcommerceWebsiteContactDemo } from './ecommerce-website/ecommerce-website-contact/ecommerce-website-contact';
+import { EcommerceWebsiteWishlistDemo } from './ecommerce-website/ecommerce-website-wishlist/ecommerce-website-wishlist';
+import { EcommerceWebsiteAccountDemo } from './ecommerce-website/ecommerce-website-account/ecommerce-website-account';
+import { EcommerceWebsiteOrderTrackingDemo } from './ecommerce-website/ecommerce-website-order-tracking/ecommerce-website-order-tracking';
+import { EcommerceWebsiteBlogDemo } from './ecommerce-website/ecommerce-website-blog/ecommerce-website-blog';
+import { EcommerceWebsiteBlogPostDemo } from './ecommerce-website/ecommerce-website-blog-post/ecommerce-website-blog-post';
+import { EcommerceWebsiteFaqDemo } from './ecommerce-website/ecommerce-website-faq/ecommerce-website-faq';
+import { EcommerceWebsiteAboutDemo } from './ecommerce-website/ecommerce-website-about/ecommerce-website-about';
+import { SaasWebsiteShell } from './saas-website/saas-website-shell/saas-website-shell';
+import { SaasWebsiteHomeDemo } from './saas-website/saas-website-home/saas-website-home';
+import { SaasWebsiteFeaturesDemo } from './saas-website/saas-website-features/saas-website-features';
+import { SaasWebsitePricingDemo } from './saas-website/saas-website-pricing/saas-website-pricing';
+import { SaasWebsiteDashboardDemo } from './saas-website/saas-website-dashboard/saas-website-dashboard';
+import { SaasWebsiteLoginDemo } from './saas-website/saas-website-login/saas-website-login';
+import { SaasWebsiteSignupDemo } from './saas-website/saas-website-signup/saas-website-signup';
+import { SaasWebsiteContactDemo } from './saas-website/saas-website-contact/saas-website-contact';
+import { SaasWebsiteAboutDemo } from './saas-website/saas-website-about/saas-website-about';
+import { RealEstateWebsiteShell } from './real-estate-website/real-estate-website-shell/real-estate-website-shell';
+import { RealEstateWebsiteHomeDemo } from './real-estate-website/real-estate-website-home/real-estate-website-home';
+import { RealEstateWebsiteListingsDemo } from './real-estate-website/real-estate-website-listings/real-estate-website-listings';
+import { RealEstateWebsiteListingDetailDemo } from './real-estate-website/real-estate-website-listing-detail/real-estate-website-listing-detail';
+import { RealEstateWebsiteAgentsDemo } from './real-estate-website/real-estate-website-agents/real-estate-website-agents';
+import { RealEstateWebsiteContactDemo } from './real-estate-website/real-estate-website-contact/real-estate-website-contact';
+import { RealEstateWebsiteLoginDemo } from './real-estate-website/real-estate-website-login/real-estate-website-login';
+import { RealEstateWebsiteSignupDemo } from './real-estate-website/real-estate-website-signup/real-estate-website-signup';
+import { RealEstateWebsiteAboutDemo } from './real-estate-website/real-estate-website-about/real-estate-website-about';
+import { RestaurantWebsiteShell } from './restaurant-website/restaurant-website-shell/restaurant-website-shell';
+import { RestaurantWebsiteHomeDemo } from './restaurant-website/restaurant-website-home/restaurant-website-home';
+import { RestaurantWebsiteMenuDemo } from './restaurant-website/restaurant-website-menu/restaurant-website-menu';
+import { RestaurantWebsiteCartDemo } from './restaurant-website/restaurant-website-cart/restaurant-website-cart';
+import { RestaurantWebsiteCheckoutDemo } from './restaurant-website/restaurant-website-checkout/restaurant-website-checkout';
+import { RestaurantWebsiteReservationsDemo } from './restaurant-website/restaurant-website-reservations/restaurant-website-reservations';
+import { RestaurantWebsiteLoginDemo } from './restaurant-website/restaurant-website-login/restaurant-website-login';
+import { RestaurantWebsiteSignupDemo } from './restaurant-website/restaurant-website-signup/restaurant-website-signup';
+import { RestaurantWebsiteContactDemo } from './restaurant-website/restaurant-website-contact/restaurant-website-contact';
+import { PortfolioWebsiteShell } from './portfolio-website/portfolio-website-shell/portfolio-website-shell';
+import { PortfolioWebsiteHomeDemo } from './portfolio-website/portfolio-website-home/portfolio-website-home';
+import { PortfolioWebsiteWorkDemo } from './portfolio-website/portfolio-website-work/portfolio-website-work';
+import { PortfolioWebsiteProjectDetailDemo } from './portfolio-website/portfolio-website-project-detail/portfolio-website-project-detail';
+import { PortfolioWebsiteServicesDemo } from './portfolio-website/portfolio-website-services/portfolio-website-services';
+import { PortfolioWebsitePricingDemo } from './portfolio-website/portfolio-website-pricing/portfolio-website-pricing';
+import { PortfolioWebsiteAboutDemo } from './portfolio-website/portfolio-website-about/portfolio-website-about';
+import { PortfolioWebsiteCareersDemo } from './portfolio-website/portfolio-website-careers/portfolio-website-careers';
+import { PortfolioWebsiteContactDemo } from './portfolio-website/portfolio-website-contact/portfolio-website-contact';
+import { HotelWebsiteShell } from './hotel-website/hotel-website-shell/hotel-website-shell';
+import { HotelWebsiteHomeDemo } from './hotel-website/hotel-website-home/hotel-website-home';
+import { HotelWebsiteRoomsDemo } from './hotel-website/hotel-website-rooms/hotel-website-rooms';
+import { HotelWebsiteRoomDetailDemo } from './hotel-website/hotel-website-room-detail/hotel-website-room-detail';
+import { HotelWebsiteAmenitiesDemo } from './hotel-website/hotel-website-amenities/hotel-website-amenities';
+import { HotelWebsiteBookingDemo } from './hotel-website/hotel-website-booking/hotel-website-booking';
+import { HotelWebsiteLoginDemo } from './hotel-website/hotel-website-login/hotel-website-login';
+import { HotelWebsiteSignupDemo } from './hotel-website/hotel-website-signup/hotel-website-signup';
+import { HotelWebsiteContactDemo } from './hotel-website/hotel-website-contact/hotel-website-contact';
+import { CourseWebsiteShell } from './course-website/course-website-shell/course-website-shell';
+import { CourseWebsiteHomeDemo } from './course-website/course-website-home/course-website-home';
+import { CourseWebsiteCoursesDemo } from './course-website/course-website-courses/course-website-courses';
+import { CourseWebsiteCourseDetailDemo } from './course-website/course-website-course-detail/course-website-course-detail';
+import { CourseWebsiteInstructorsDemo } from './course-website/course-website-instructors/course-website-instructors';
+import { CourseWebsiteDashboardDemo } from './course-website/course-website-dashboard/course-website-dashboard';
+import { CourseWebsiteLoginDemo } from './course-website/course-website-login/course-website-login';
+import { CourseWebsiteSignupDemo } from './course-website/course-website-signup/course-website-signup';
+import { CourseWebsiteContactDemo } from './course-website/course-website-contact/course-website-contact';
+import { SaasWebsiteIntegrationsDemo } from './saas-website/saas-website-integrations/saas-website-integrations';
+import { SaasWebsiteChangelogDemo } from './saas-website/saas-website-changelog/saas-website-changelog';
+import { SaasWebsiteCaseStudiesDemo } from './saas-website/saas-website-case-studies/saas-website-case-studies';
+import { SaasWebsiteCaseStudyDetailDemo } from './saas-website/saas-website-case-study-detail/saas-website-case-study-detail';
+import { SaasWebsiteCareersDemo } from './saas-website/saas-website-careers/saas-website-careers';
+import { SaasWebsiteSecurityDemo } from './saas-website/saas-website-security/saas-website-security';
+import { RealEstateWebsiteAgentDetailDemo } from './real-estate-website/real-estate-website-agent-detail/real-estate-website-agent-detail';
+import { RealEstateWebsiteNeighborhoodsDemo } from './real-estate-website/real-estate-website-neighborhoods/real-estate-website-neighborhoods';
+import { RealEstateWebsiteNeighborhoodDetailDemo } from './real-estate-website/real-estate-website-neighborhood-detail/real-estate-website-neighborhood-detail';
+import { RealEstateWebsiteMortgageCalculatorDemo } from './real-estate-website/real-estate-website-mortgage-calculator/real-estate-website-mortgage-calculator';
+import { RealEstateWebsiteSellDemo } from './real-estate-website/real-estate-website-sell/real-estate-website-sell';
+import { RealEstateWebsiteFaqDemo } from './real-estate-website/real-estate-website-faq/real-estate-website-faq';
+import { RestaurantWebsiteGalleryDemo } from './restaurant-website/restaurant-website-gallery/restaurant-website-gallery';
+import { RestaurantWebsiteEventsDemo } from './restaurant-website/restaurant-website-events/restaurant-website-events';
+import { RestaurantWebsiteLocationsDemo } from './restaurant-website/restaurant-website-locations/restaurant-website-locations';
+import { RestaurantWebsiteReviewsDemo } from './restaurant-website/restaurant-website-reviews/restaurant-website-reviews';
+import { RestaurantWebsiteGiftCardsDemo } from './restaurant-website/restaurant-website-gift-cards/restaurant-website-gift-cards';
+import { RestaurantWebsiteAboutDemo } from './restaurant-website/restaurant-website-about/restaurant-website-about';
+import { PortfolioWebsiteTestimonialsDemo } from './portfolio-website/portfolio-website-testimonials/portfolio-website-testimonials';
+import { PortfolioWebsiteBlogDemo } from './portfolio-website/portfolio-website-blog/portfolio-website-blog';
+import { PortfolioWebsiteBlogPostDemo } from './portfolio-website/portfolio-website-blog-post/portfolio-website-blog-post';
+import { PortfolioWebsiteProcessDemo } from './portfolio-website/portfolio-website-process/portfolio-website-process';
+import { PortfolioWebsiteTeamDemo } from './portfolio-website/portfolio-website-team/portfolio-website-team';
+import { PortfolioWebsiteFaqDemo } from './portfolio-website/portfolio-website-faq/portfolio-website-faq';
+import { HotelWebsiteGalleryDemo } from './hotel-website/hotel-website-gallery/hotel-website-gallery';
+import { HotelWebsiteDiningDemo } from './hotel-website/hotel-website-dining/hotel-website-dining';
+import { HotelWebsiteSpaDemo } from './hotel-website/hotel-website-spa/hotel-website-spa';
+import { HotelWebsiteEventsDemo } from './hotel-website/hotel-website-events/hotel-website-events';
+import { HotelWebsiteLocalAreaDemo } from './hotel-website/hotel-website-local-area/hotel-website-local-area';
+import { HotelWebsiteReviewsDemo } from './hotel-website/hotel-website-reviews/hotel-website-reviews';
+import { CourseWebsiteInstructorDetailDemo } from './course-website/course-website-instructor-detail/course-website-instructor-detail';
+import { CourseWebsitePricingDemo } from './course-website/course-website-pricing/course-website-pricing';
+import { CourseWebsiteReviewsDemo } from './course-website/course-website-reviews/course-website-reviews';
+import { CourseWebsiteBlogDemo } from './course-website/course-website-blog/course-website-blog';
+import { CourseWebsiteBlogPostDemo } from './course-website/course-website-blog-post/course-website-blog-post';
+import { CourseWebsiteFaqDemo } from './course-website/course-website-faq/course-website-faq';
 import { UiSecurityEventLogDemo } from './ui-security-event-log-demo/ui-security-event-log-demo';
 import { UiLoginActivityDemo } from './ui-login-activity-demo/ui-login-activity-demo';
 import { UiDeviceSessionsDemo } from './ui-device-sessions-demo/ui-device-sessions-demo';
@@ -112,6 +245,16 @@ import { UiAuditTimelineDemo } from './ui-audit-timeline-demo/ui-audit-timeline-
 import { UiVirtualScrollDemo } from './ui-virtual-scroll-demo/ui-virtual-scroll-demo';
 import { UiSortableListDemo } from './ui-sortable-list-demo/ui-sortable-list-demo';
 import { UiKanbanDemo } from './ui-kanban-demo/ui-kanban-demo';
+import { UiAvatarGroupDemo } from './ui-avatar-group-demo/ui-avatar-group-demo';
+import { UiOrgChartDemo } from './ui-org-chart-demo/ui-org-chart-demo';
+import { UiIntegrationManagerDemo } from './ui-integration-manager-demo/ui-integration-manager-demo';
+import { UiSplitButtonDemo } from './ui-split-button-demo/ui-split-button-demo';
+import { UiFormValidationSummaryDemo } from './ui-form-validation-summary-demo/ui-form-validation-summary-demo';
+import { UiNotificationPreferencesDemo } from './ui-notification-preferences-demo/ui-notification-preferences-demo';
+import { UiSavedViewsDemo } from './ui-saved-views-demo/ui-saved-views-demo';
+import { UiDataMappingEditorDemo } from './ui-data-mapping-editor-demo/ui-data-mapping-editor-demo';
+import { UiDataImportWizardDemo } from './ui-data-import-wizard-demo/ui-data-import-wizard-demo';
+import { UiResourceAllocationBoardDemo } from './ui-resource-allocation-board-demo/ui-resource-allocation-board-demo';
 import { UiResizablePanelsDemo } from './ui-resizable-panels-demo/ui-resizable-panels-demo';
 import { UiColumnSelectorDemo } from './ui-column-selector-demo/ui-column-selector-demo';
 import { UiFilterBuilderDemo } from './ui-filter-builder-demo/ui-filter-builder-demo';
@@ -1940,6 +2083,46 @@ export const routes: Routes = [
         component: UiKanbanDemo
     },
     {
+        path: 'avatar-group',
+        component: UiAvatarGroupDemo
+    },
+    {
+        path: 'org-chart',
+        component: UiOrgChartDemo
+    },
+    {
+        path: 'integration-manager',
+        component: UiIntegrationManagerDemo
+    },
+    {
+        path: 'split-button',
+        component: UiSplitButtonDemo
+    },
+    {
+        path: 'form-validation-summary',
+        component: UiFormValidationSummaryDemo
+    },
+    {
+        path: 'notification-preferences',
+        component: UiNotificationPreferencesDemo
+    },
+    {
+        path: 'saved-views',
+        component: UiSavedViewsDemo
+    },
+    {
+        path: 'enterprise/data-mapping-editor',
+        component: UiDataMappingEditorDemo
+    },
+    {
+        path: 'enterprise/data-import-wizard',
+        component: UiDataImportWizardDemo
+    },
+    {
+        path: 'enterprise/resource-allocation-board',
+        component: UiResourceAllocationBoardDemo
+    },
+    {
         path: 'resizable-panels',
         component: UiResizablePanelsDemo
     },
@@ -2202,6 +2385,262 @@ export const routes: Routes = [
     {
         path: 'devtools/webhook-manager',
         component: UiWebhookManagerDemo
+    },
+    {
+        path: 'cascader',
+        component: UiCascaderDemo
+    },
+    {
+        path: 'file-input-validation',
+        component: UiFileInputDemo
+    },
+    {
+        path: 'infinite-table',
+        component: UiInfiniteTableDemo
+    },
+    {
+        path: 'app-switcher',
+        component: UiAppSwitcherDemo
+    },
+    {
+        path: 'layout/floating-panel',
+        component: UiFloatingPanelDemo
+    },
+    {
+        path: 'charts/box-plot',
+        component: UiBoxPlotDemo
+    },
+    {
+        path: 'devtools/json-schema-validator',
+        component: UiJsonSchemaValidatorDemo
+    },
+    {
+        path: 'devtools/jwt-decoder',
+        component: UiJwtDecoderDemo
+    },
+    {
+        path: 'devtools/sql-formatter',
+        component: UiSqlFormatterDemo
+    },
+    {
+        path: 'devtools/markdown-editor',
+        component: UiMarkdownEditorDemo
+    },
+    {
+        path: 'ai/file-upload',
+        component: UiAiFileUploadDemo
+    },
+    {
+        path: 'ai/conversation-history',
+        component: UiAiConversationHistoryDemo
+    },
+    {
+        path: 'theme-studio',
+        component: ThemeStudio
+    },
+    {
+        path: 'dashboard-designer',
+        component: DashboardDesigner
+    },
+    {
+        path: 'templates/blog-sharing',
+        component: TemplatesBlogSharingDemo
+    },
+    {
+        path: 'templates/social-feed',
+        component: TemplatesSocialFeedDemo
+    },
+    {
+        path: 'templates/landing-page',
+        component: TemplatesLandingPageDemo
+    },
+    {
+        path: 'templates/pricing-page',
+        component: TemplatesPricingPageDemo
+    },
+    {
+        path: 'templates/portfolio',
+        component: TemplatesPortfolioDemo
+    },
+    {
+        path: 'templates/email-client',
+        component: TemplatesEmailClientDemo
+    },
+    {
+        path: 'templates/calendar',
+        component: TemplatesCalendarDemo
+    },
+    {
+        path: 'templates/knowledge-base',
+        component: TemplatesKnowledgeBaseDemo
+    },
+    {
+        path: 'templates/invoice-billing',
+        component: TemplatesInvoiceBillingDemo
+    },
+    {
+        path: 'templates/job-board',
+        component: TemplatesJobBoardDemo
+    },
+    {
+        path: 'templates/restaurant-ordering',
+        component: TemplatesRestaurantOrderingDemo
+    },
+    {
+        path: 'templates/finance-dashboard',
+        component: TemplatesFinanceDashboardDemo
+    },
+    {
+        path: 'pro-templates/:slug',
+        component: ProWebsiteDetails
+    },
+    {
+        path: 'ecommerce-website',
+        component: EcommerceWebsiteShell,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: EcommerceWebsiteHomeDemo },
+            { path: 'shop', component: EcommerceWebsiteShopDemo },
+            { path: 'product', component: EcommerceWebsiteProductDemo },
+            { path: 'cart', component: EcommerceWebsiteCartDemo },
+            { path: 'checkout', component: EcommerceWebsiteCheckoutDemo },
+            { path: 'login', component: EcommerceWebsiteLoginDemo },
+            { path: 'signup', component: EcommerceWebsiteSignupDemo },
+            { path: 'contact', component: EcommerceWebsiteContactDemo },
+            { path: 'wishlist', component: EcommerceWebsiteWishlistDemo },
+            { path: 'account', component: EcommerceWebsiteAccountDemo },
+            { path: 'order-tracking/:id', component: EcommerceWebsiteOrderTrackingDemo },
+            { path: 'blog', component: EcommerceWebsiteBlogDemo },
+            { path: 'blog/:slug', component: EcommerceWebsiteBlogPostDemo },
+            { path: 'faq', component: EcommerceWebsiteFaqDemo },
+            { path: 'about', component: EcommerceWebsiteAboutDemo },
+        ]
+    },
+    {
+        path: 'saas-website',
+        component: SaasWebsiteShell,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: SaasWebsiteHomeDemo },
+            { path: 'features', component: SaasWebsiteFeaturesDemo },
+            { path: 'pricing', component: SaasWebsitePricingDemo },
+            { path: 'dashboard', component: SaasWebsiteDashboardDemo },
+            { path: 'login', component: SaasWebsiteLoginDemo },
+            { path: 'signup', component: SaasWebsiteSignupDemo },
+            { path: 'contact', component: SaasWebsiteContactDemo },
+            { path: 'about', component: SaasWebsiteAboutDemo },
+            { path: 'integrations', component: SaasWebsiteIntegrationsDemo },
+            { path: 'changelog', component: SaasWebsiteChangelogDemo },
+            { path: 'case-studies', component: SaasWebsiteCaseStudiesDemo },
+            { path: 'case-studies/:slug', component: SaasWebsiteCaseStudyDetailDemo },
+            { path: 'careers', component: SaasWebsiteCareersDemo },
+            { path: 'security', component: SaasWebsiteSecurityDemo },
+        ]
+    },
+    {
+        path: 'real-estate-website',
+        component: RealEstateWebsiteShell,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: RealEstateWebsiteHomeDemo },
+            { path: 'listings', component: RealEstateWebsiteListingsDemo },
+            { path: 'listing/:id', component: RealEstateWebsiteListingDetailDemo },
+            { path: 'agents', component: RealEstateWebsiteAgentsDemo },
+            { path: 'contact', component: RealEstateWebsiteContactDemo },
+            { path: 'login', component: RealEstateWebsiteLoginDemo },
+            { path: 'signup', component: RealEstateWebsiteSignupDemo },
+            { path: 'about', component: RealEstateWebsiteAboutDemo },
+            { path: 'agent/:id', component: RealEstateWebsiteAgentDetailDemo },
+            { path: 'neighborhoods', component: RealEstateWebsiteNeighborhoodsDemo },
+            { path: 'neighborhood/:slug', component: RealEstateWebsiteNeighborhoodDetailDemo },
+            { path: 'mortgage-calculator', component: RealEstateWebsiteMortgageCalculatorDemo },
+            { path: 'sell', component: RealEstateWebsiteSellDemo },
+            { path: 'faq', component: RealEstateWebsiteFaqDemo },
+        ]
+    },
+    {
+        path: 'restaurant-website',
+        component: RestaurantWebsiteShell,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: RestaurantWebsiteHomeDemo },
+            { path: 'menu', component: RestaurantWebsiteMenuDemo },
+            { path: 'cart', component: RestaurantWebsiteCartDemo },
+            { path: 'checkout', component: RestaurantWebsiteCheckoutDemo },
+            { path: 'reservations', component: RestaurantWebsiteReservationsDemo },
+            { path: 'login', component: RestaurantWebsiteLoginDemo },
+            { path: 'signup', component: RestaurantWebsiteSignupDemo },
+            { path: 'contact', component: RestaurantWebsiteContactDemo },
+            { path: 'gallery', component: RestaurantWebsiteGalleryDemo },
+            { path: 'events', component: RestaurantWebsiteEventsDemo },
+            { path: 'locations', component: RestaurantWebsiteLocationsDemo },
+            { path: 'reviews', component: RestaurantWebsiteReviewsDemo },
+            { path: 'gift-cards', component: RestaurantWebsiteGiftCardsDemo },
+            { path: 'about', component: RestaurantWebsiteAboutDemo },
+        ]
+    },
+    {
+        path: 'portfolio-website',
+        component: PortfolioWebsiteShell,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: PortfolioWebsiteHomeDemo },
+            { path: 'work', component: PortfolioWebsiteWorkDemo },
+            { path: 'work/:slug', component: PortfolioWebsiteProjectDetailDemo },
+            { path: 'services', component: PortfolioWebsiteServicesDemo },
+            { path: 'pricing', component: PortfolioWebsitePricingDemo },
+            { path: 'about', component: PortfolioWebsiteAboutDemo },
+            { path: 'careers', component: PortfolioWebsiteCareersDemo },
+            { path: 'contact', component: PortfolioWebsiteContactDemo },
+            { path: 'testimonials', component: PortfolioWebsiteTestimonialsDemo },
+            { path: 'blog', component: PortfolioWebsiteBlogDemo },
+            { path: 'blog/:slug', component: PortfolioWebsiteBlogPostDemo },
+            { path: 'process', component: PortfolioWebsiteProcessDemo },
+            { path: 'team', component: PortfolioWebsiteTeamDemo },
+            { path: 'faq', component: PortfolioWebsiteFaqDemo },
+        ]
+    },
+    {
+        path: 'hotel-website',
+        component: HotelWebsiteShell,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: HotelWebsiteHomeDemo },
+            { path: 'rooms', component: HotelWebsiteRoomsDemo },
+            { path: 'room/:id', component: HotelWebsiteRoomDetailDemo },
+            { path: 'amenities', component: HotelWebsiteAmenitiesDemo },
+            { path: 'booking', component: HotelWebsiteBookingDemo },
+            { path: 'login', component: HotelWebsiteLoginDemo },
+            { path: 'signup', component: HotelWebsiteSignupDemo },
+            { path: 'contact', component: HotelWebsiteContactDemo },
+            { path: 'gallery', component: HotelWebsiteGalleryDemo },
+            { path: 'dining', component: HotelWebsiteDiningDemo },
+            { path: 'spa', component: HotelWebsiteSpaDemo },
+            { path: 'events', component: HotelWebsiteEventsDemo },
+            { path: 'local-area', component: HotelWebsiteLocalAreaDemo },
+            { path: 'reviews', component: HotelWebsiteReviewsDemo },
+        ]
+    },
+    {
+        path: 'course-website',
+        component: CourseWebsiteShell,
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: CourseWebsiteHomeDemo },
+            { path: 'courses', component: CourseWebsiteCoursesDemo },
+            { path: 'course/:slug', component: CourseWebsiteCourseDetailDemo },
+            { path: 'instructors', component: CourseWebsiteInstructorsDemo },
+            { path: 'dashboard', component: CourseWebsiteDashboardDemo },
+            { path: 'login', component: CourseWebsiteLoginDemo },
+            { path: 'signup', component: CourseWebsiteSignupDemo },
+            { path: 'contact', component: CourseWebsiteContactDemo },
+            { path: 'instructor/:id', component: CourseWebsiteInstructorDetailDemo },
+            { path: 'pricing', component: CourseWebsitePricingDemo },
+            { path: 'reviews', component: CourseWebsiteReviewsDemo },
+            { path: 'blog', component: CourseWebsiteBlogDemo },
+            { path: 'blog/:slug', component: CourseWebsiteBlogPostDemo },
+            { path: 'faq', component: CourseWebsiteFaqDemo },
+        ]
     },
     {
         path: 'enterprise/security-event-log',

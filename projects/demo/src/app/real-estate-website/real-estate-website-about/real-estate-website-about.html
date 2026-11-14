@@ -1,0 +1,54 @@
+<section class="reabout-hero">
+    <div class="realest-container reabout-hero-inner">
+        <h1 class="reabout-hero-title">Fifteen years of finding the right fit</h1>
+        <p class="reabout-hero-subtitle">
+            Haven Realty started in 2011 with a single Austin office and a belief that buying or selling a home
+            shouldn't feel like a transaction - it should feel like having someone in your corner.
+        </p>
+    </div>
+</section>
+
+<div class="realest-container realest-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="realest-locked-wrapper">
+            <div class="realest-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="realest-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Real Estate Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="realest-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="reabout-stats-row">
+        @for (stat of stats; track stat.label) {
+            <nx-statistic [label]="stat.label" [value]="stat.value" [suffix]="stat.suffix ?? ''"></nx-statistic>
+        }
+    </div>
+
+    <section class="realest-section">
+        <div class="realest-section-heading">
+            <h2>Our story so far</h2>
+            <p>A few of the moments that shaped how we do business today.</p>
+        </div>
+        <nx-timeline [items]="timelineItems"></nx-timeline>
+    </section>
+
+    <div class="reabout-cta">
+        <h2>Ready to start your search?</h2>
+        <p>Browse everything currently available across our four markets.</p>
+        <nx-button variant="primary" [routerLink]="'/real-estate-website/listings'">View listings</nx-button>
+    </div>
+
+</ng-template>

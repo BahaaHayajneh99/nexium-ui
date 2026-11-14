@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="AI Conversation History"
+                description="{{ commonService.appName }} AI Conversation History - a ChatGPT-style sidebar of past conversations grouped into 'Today', 'Yesterday', 'Previous 7 days', and 'Older' buckets based on each conversation's updatedAt, most recently updated first. Click a row to select it, hover a row to reveal rename/delete icon-buttons (the pencil swaps to an inline text input - Enter or blur commits, Escape cancels), use the search box to filter by title, or click 'New chat' to start one. This is a PRO component."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <nx-ai-conversation-history
+                    [conversations]="conversations()"
+                    [activeId]="activeId()"
+                    (select)="onSelect($event)"
+                    (rename)="onRename($event)"
+                    (delete)="onDelete($event)"
+                    (newChat)="onNewChat()">
+                </nx-ai-conversation-history>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

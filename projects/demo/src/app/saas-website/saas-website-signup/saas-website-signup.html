@@ -1,0 +1,79 @@
+<div class="saas-auth-page">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="saas-locked-wrapper saas-auth-locked">
+      <div class="saas-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="saas-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full SaaS Website template for $59</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+  <div class="saas-auth-layout">
+    <div class="saas-auth-marketing">
+      <div class="saas-auth-brand">
+        <nx-icon icon="nx-cloud" variant="svg" [size]="20"></nx-icon>
+        Nimbus
+      </div>
+
+      <div class="saas-auth-perks">
+        <h2>Join 50,000+ teams reading their data daily</h2>
+        <ul>
+          @for (perk of perks; track perk.text) {
+            <li>
+              <nx-icon [icon]="perk.icon" variant="svg" [size]="18"></nx-icon>
+              <span>{{ perk.text }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="saas-auth-form-panel">
+      <div class="saas-auth-form">
+        <h1>Create your account</h1>
+
+        <div class="saas-auth-fields">
+          <div class="saas-auth-name-row">
+            <nx-input label="First name" placeholder="Jordan" [isRequired]="true"></nx-input>
+            <nx-input label="Last name" placeholder="Reyes" [isRequired]="true"></nx-input>
+          </div>
+          <nx-input label="Work email" type="email" placeholder="you@company.com" [isRequired]="true"></nx-input>
+          <nx-input label="Password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+          <nx-input label="Confirm password" type="password" placeholder="••••••••" [isRequired]="true"></nx-input>
+
+          <nx-checkbox
+            label="I agree to the Terms of Service and Privacy Policy"
+            [checked]="agreedToTerms()"
+            (checkedChange)="agreedToTerms.set($event)"></nx-checkbox>
+
+          <nx-button variant="primary" [fullWidth]="true">Start free trial</nx-button>
+
+          <nx-divider label="or continue with"></nx-divider>
+
+          <div class="saas-auth-social-row">
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Google
+            </nx-button>
+            <nx-button variant="outline" [fullWidth]="true">
+              <nx-icon icon="nx-user" variant="svg" [size]="16"></nx-icon>
+              Microsoft
+            </nx-button>
+          </div>
+
+          <p class="saas-auth-footer-line">
+            Already have an account? <a [routerLink]="'/saas-website/login'">Log in</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

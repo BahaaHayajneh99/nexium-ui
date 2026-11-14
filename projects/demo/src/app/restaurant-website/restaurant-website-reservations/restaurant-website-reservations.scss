@@ -1,0 +1,129 @@
+@import '../restaurant-shared';
+
+.rres-hero {
+    margin-bottom: var(--nx-spacing-xl, 32px);
+
+    h1 {
+        margin: 0 0 6px;
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.rres-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
+    gap: var(--nx-spacing-xxl, 48px);
+    align-items: start;
+
+    @media (max-width: 860px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rres-form-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.rres-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.rres-row {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+
+    > * {
+        flex: 1;
+        min-width: 0;
+    }
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+    }
+}
+
+.rres-party-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.rres-party-stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    width: fit-content;
+    overflow: hidden;
+
+    button {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: var(--shell-surface);
+        color: var(--shell-text);
+        cursor: pointer;
+
+        &:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.rres-party-value {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 48px;
+    justify-content: center;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+}
+
+.rres-hours-panel {
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 var(--nx-spacing-md, 16px);
+        color: var(--shell-text);
+
+        nx-icon {
+            color: var(--shell-primary);
+        }
+    }
+}
+
+.rres-hours-row {
+    font-size: var(--nx-font-size-sm, 14px);
+    padding: 6px 0;
+}
+
+.rres-hours-note {
+    margin: var(--nx-spacing-md, 16px) 0 0;
+    font-size: var(--nx-font-size-xs, 12px);
+}

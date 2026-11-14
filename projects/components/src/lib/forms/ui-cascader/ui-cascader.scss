@@ -1,0 +1,115 @@
+.nx-cascader {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    max-width: 420px;
+}
+
+.nx-cascader-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+
+    &:hover,
+    &.open {
+        border-color: var(--shell-primary, #3498db);
+    }
+}
+
+.nx-cascader-trigger-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &.placeholder {
+        color: var(--shell-text-secondary);
+    }
+}
+
+.nx-cascader-chevron-icon {
+    flex-shrink: 0;
+    color: var(--shell-text-secondary);
+    transition: transform .15s ease;
+}
+
+.nx-cascader-trigger.open .nx-cascader-chevron-icon {
+    transform: rotate(180deg);
+}
+
+.nx-cascader-panel {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 20;
+    display: flex;
+    max-height: 280px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-surface);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+    overflow: hidden;
+}
+
+.nx-cascader-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 160px;
+    padding: 4px;
+    overflow-y: auto;
+
+    & + & {
+        border-left: 1px solid var(--shell-border);
+    }
+}
+
+.nx-cascader-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    width: 100%;
+    padding: 6px 8px;
+    border: none;
+    border-radius: var(--nx-radius-sm, 4px);
+    background: none;
+    color: var(--shell-text);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+        background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+    }
+
+    &.active {
+        background-color: var(--shell-surface-hover, rgba(0, 0, 0, .04));
+        color: var(--shell-primary, #3498db);
+        font-weight: 600;
+    }
+
+    nx-icon {
+        flex-shrink: 0;
+        color: var(--shell-text-secondary);
+    }
+}
+
+.nx-cascader-empty {
+    padding: 10px 8px;
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+    text-align: center;
+}

@@ -1,0 +1,50 @@
+@if (licensed()) {
+    <div class="nx-file-input-wrapper">
+        @if (label) {
+            <label class="nx-file-input-label">{{ label }}@if (isRequired) {<span class="nx-file-input-required">*</span>}</label>
+        }
+
+        <label class="nx-file-input-trigger">
+            <input
+                type="file"
+                class="nx-file-input-native"
+                [attr.accept]="accept === '*' ? null : accept"
+                [multiple]="multiple"
+                (change)="onFilesSelected($event)" />
+            <nx-icon icon="nx-upload" variant="svg" [size]="14"></nx-icon>
+            <span>{{ multiple ? 'Choose files' : 'Choose file' }}</span>
+        </label>
+
+        <div class="nx-file-input-hint">
+            Max {{ maxSizeMb }}MB per file - up to {{ maxFiles }} file{{ maxFiles === 1 ? '' : 's' }}@if (accept !== '*') {<span> - accepted: {{ accept }}</span>}
+        </div>
+
+        @if (acceptedFiles().length) {
+            <ul class="nx-file-input-list">
+                @for (file of acceptedFiles(); track file) {
+                    <li class="nx-file-input-item">
+                        <nx-icon icon="nx-file" variant="svg" [size]="14"></nx-icon>
+                        <span class="nx-file-input-name">{{ file.name }}</span>
+                        <span class="nx-file-input-size">{{ formatSize(file.size) }}</span>
+                        <button type="button" class="nx-file-input-remove" (click)="removeFile(file)" aria-label="Remove file">
+                            <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+                        </button>
+                    </li>
+                }
+            </ul>
+        }
+
+        @if (errors().length) {
+            <ul class="nx-file-input-errors">
+                @for (error of errors(); track error) {
+                    <li class="nx-file-input-error">
+                        <nx-icon icon="nx-alert-triangle" variant="svg" [size]="12"></nx-icon>
+                        {{ error }}
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+} @else {
+    <nx-pro-locked componentName="File Input"></nx-pro-locked>
+}

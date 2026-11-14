@@ -1,0 +1,107 @@
+@import '../portfolio-shared';
+
+.pblog-hero {
+    background: var(--shell-surface);
+    border-bottom: 1px solid var(--shell-border);
+    padding: var(--nx-spacing-xxl, 56px) 0;
+}
+
+.pblog-hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: clamp(26px, 3.6vw, 36px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.pblog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.pblog-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--nx-radius-lg, 12px);
+    overflow: hidden;
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    text-decoration: none;
+    transition: transform var(--nx-transition-fast, .15s ease), box-shadow var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, .3);
+    }
+}
+
+.pblog-card-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.pblog-card-tag {
+    position: absolute;
+    top: var(--nx-spacing-sm, 8px);
+    left: var(--nx-spacing-sm, 8px);
+}
+
+.pblog-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-xs, 4px);
+    padding: var(--nx-spacing-lg, 24px);
+    flex: 1;
+
+    h3 {
+        margin: 0;
+        font-size: var(--nx-font-size-lg, 18px);
+        color: var(--shell-text);
+    }
+}
+
+.pblog-card-excerpt {
+    margin: 0;
+    flex: 1;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+.pblog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--nx-spacing-sm, 8px);
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-secondary);
+}
+
+.pblog-card-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.pblog-card-dot {
+    opacity: .6;
+}

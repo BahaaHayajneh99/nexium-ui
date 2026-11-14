@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Match imported columns to your schema"
+                description="Each target field gets a dropdown of which source field feeds it, plus a status dot for whether it's mapped. {{ commonService.appName }}'s Data Mapping Editor pre-fills smart guesses (name &rarr; full_name, email &rarr; email_addr below) and emits a fresh mapping object via mappingChange on every change."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:640px;">
+                    <nx-data-mapping-editor
+                        [sourceFields]="sourceFields"
+                        [targetFields]="targetFields"
+                        [mapping]="mapping"
+                        (mappingChange)="onMappingChange($event)">
+                    </nx-data-mapping-editor>
+
+                    <pre style="margin-top:16px; padding:12px; background:var(--shell-surface); border:1px solid var(--shell-border); border-radius:8px; font-size:0.8rem; overflow:auto;">{{ mapping | json }}</pre>
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="course-container course-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="course-locked-wrapper">
+            <div class="course-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="course-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Course Website template for $55</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    @if (post(); as p) {
+
+        <div class="course-breadcrumb-row">
+            <nx-breadcrumb [items]="breadcrumbItems()"></nx-breadcrumb>
+        </div>
+
+        <article class="cbpost-article">
+            <div class="cbpost-category">{{ p.category }}</div>
+            <h1 class="cbpost-title">{{ p.title }}</h1>
+
+            <div class="cbpost-byline">
+                <img class="cbpost-byline-avatar" [src]="p.authorAvatar" [alt]="p.author">
+                <div>
+                    <div class="cbpost-byline-name">{{ p.author }}</div>
+                    <div class="course-muted cbpost-byline-meta">{{ p.date }} &middot; {{ p.readTime }}</div>
+                </div>
+            </div>
+
+            <div class="cbpost-hero-media">
+                <img [src]="p.image" [alt]="p.title">
+            </div>
+
+            <div class="cbpost-content">
+                @for (paragraph of p.content; track $index) {
+                    <p>{{ paragraph }}</p>
+                }
+            </div>
+        </article>
+
+        <section class="course-section">
+            <div class="course-section-heading">
+                <h2>More articles</h2>
+            </div>
+            <div class="cbpost-more-grid">
+                @for (related of morePosts(); track related.slug) {
+                    <a class="cbpost-more-card" [routerLink]="['/course-website/blog', related.slug]">
+                        <img [src]="related.image" [alt]="related.title" loading="lazy">
+                        <div class="cbpost-more-body">
+                            <span class="course-muted cbpost-more-category">{{ related.category }}</span>
+                            <div class="cbpost-more-title">{{ related.title }}</div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </section>
+
+    } @else {
+        <div class="cbpost-not-found">
+            <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+            <p>That article couldn't be found.</p>
+            <nx-button variant="primary" [routerLink]="'/course-website/blog'">Back to the blog</nx-button>
+        </div>
+    }
+
+</ng-template>

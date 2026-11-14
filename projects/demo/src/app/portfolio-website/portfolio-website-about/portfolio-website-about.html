@@ -1,0 +1,67 @@
+<section class="pabout-hero">
+    <div class="port-container pabout-hero-inner">
+        <h1>We started Glint Studio to stop handing off work between agencies</h1>
+        <p>
+            Founded in 2018, Glint Studio brings brand, product, and marketing work under one roof so nothing gets lost
+            in translation between the team that designs your identity and the team that builds your site.
+        </p>
+    </div>
+</section>
+
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <section class="pabout-stats-section">
+        <div class="pabout-stats-row">
+            @for (stat of stats; track stat.label) {
+                <nx-statistic [label]="stat.label" [value]="stat.value"></nx-statistic>
+            }
+        </div>
+    </section>
+
+    <section class="port-section">
+        <div class="port-section-heading">
+            <h2>Meet the team</h2>
+            <p>A small, senior team - every project is led by someone who's done it before, not delegated to a junior.</p>
+        </div>
+        <div class="pabout-team-grid">
+            @for (member of team; track member.name) {
+                <div class="pabout-team-card">
+                    <nx-hover-card placement="bottom">
+                        <span nx-hover-card-trigger>
+                            <img class="port-avatar-photo pabout-team-avatar" [src]="member.avatar" [alt]="member.name">
+                        </span>
+                        <div class="port-hovercard-panel">
+                            <strong>{{ member.name }}</strong>
+                            <p>{{ member.role }}</p>
+                            <p>{{ member.bio }}</p>
+                        </div>
+                    </nx-hover-card>
+                    <div class="pabout-team-name">{{ member.name }}</div>
+                    <div class="pabout-team-role">{{ member.role }}</div>
+                </div>
+            }
+        </div>
+    </section>
+
+</ng-template>

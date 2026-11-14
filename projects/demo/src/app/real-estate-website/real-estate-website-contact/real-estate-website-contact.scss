@@ -1,0 +1,61 @@
+@import '../real-estate-shared';
+
+.recontact-hero {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto var(--nx-spacing-xxl, 48px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.recontact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
+    gap: var(--nx-spacing-xxl, 48px);
+    align-items: start;
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+
+    @media (max-width: 860px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.recontact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.recontact-info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: var(--nx-spacing-sm, 8px) 0;
+    font-size: var(--nx-font-size-sm, 14px);
+    color: var(--shell-text);
+
+    &:not(:last-child) {
+        border-bottom: 1px solid var(--shell-border);
+    }
+
+    nx-icon {
+        color: var(--shell-primary);
+        margin-top: 2px;
+        flex-shrink: 0;
+    }
+}
+
+.recontact-faq-heading {
+    margin-top: var(--nx-spacing-xl, 32px);
+}

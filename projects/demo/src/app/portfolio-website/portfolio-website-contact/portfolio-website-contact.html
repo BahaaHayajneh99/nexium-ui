@@ -1,0 +1,51 @@
+<div class="port-container port-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="port-locked-wrapper">
+            <div class="port-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="port-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Portfolio Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="port-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="pcontact-hero">
+        <h1>Start a project</h1>
+        <p>Tell us a bit about what you're building. We reply to every inquiry within one business day.</p>
+    </div>
+
+    <div class="pcontact-layout">
+        <div class="pcontact-form">
+            <nx-input label="Name" placeholder="Jane Doe" [isRequired]="true"></nx-input>
+            <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+            <nx-input label="Company" placeholder="Your company"></nx-input>
+            <nx-textarea label="Project details" placeholder="What are you looking to build, and what's your timeline?" [rows]="6" [isRequired]="true"></nx-textarea>
+
+            <nx-button variant="primary" [fullWidth]="true">Send message</nx-button>
+        </div>
+
+        <div class="pcontact-info">
+            <nx-card variant="outlined" class="port-card-pad">
+                @for (row of infoRows; track row.text) {
+                    <div class="pcontact-info-row">
+                        <nx-icon [icon]="row.icon" variant="svg" [size]="18"></nx-icon>
+                        <span>{{ row.text }}</span>
+                    </div>
+                }
+            </nx-card>
+        </div>
+    </div>
+
+</ng-template>

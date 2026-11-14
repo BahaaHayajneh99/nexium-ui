@@ -1,0 +1,77 @@
+<div class="saas-container saas-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="saas-locked-wrapper">
+            <div class="saas-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="saas-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full SaaS Website template for $59</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="saas-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="sprice-hero">
+        <h1>Simple, transparent pricing</h1>
+        <p>Start free for 14 days on any plan. No credit card required, cancel any time.</p>
+    </div>
+
+    <div class="sprice-plan-grid">
+        @for (plan of plans; track plan.name) {
+            <div class="saas-card sprice-plan-card" [class.highlighted]="plan.highlighted">
+                @if (plan.highlighted) {
+                    <span class="sprice-plan-badge">Most popular</span>
+                }
+                <h2>{{ plan.name }}</h2>
+                <p class="saas-muted sprice-plan-description">{{ plan.description }}</p>
+                <div class="sprice-plan-price">
+                    @if (plan.price === 'Custom') {
+                        <span class="sprice-plan-amount">Custom</span>
+                    } @else {
+                        <span class="sprice-plan-amount">${{ plan.price }}</span>
+                        <span class="saas-muted">{{ plan.period }}</span>
+                    }
+                </div>
+                <nx-button
+                    [variant]="plan.highlighted ? 'primary' : 'outline'"
+                    [fullWidth]="true"
+                    [routerLink]="'/saas-website/signup'">
+                    {{ plan.price === 'Custom' ? 'Contact sales' : 'Start free trial' }}
+                </nx-button>
+                <ul class="sprice-plan-features">
+                    @for (feature of plan.features; track feature) {
+                        <li>
+                            <nx-icon icon="nx-check" variant="svg" [size]="16"></nx-icon>
+                            <span>{{ feature }}</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+
+    <div class="saas-section-heading sprice-faq-heading">
+        <h2>Frequently asked questions</h2>
+        <p>Still have a question? Reach out on the Contact page.</p>
+    </div>
+
+    <nx-accordion>
+        @for (faq of faqs; track faq.q) {
+            <nx-accordion-item>
+                <nx-accordion-header>{{ faq.q }}</nx-accordion-header>
+                <nx-accordion-content>{{ faq.a }}</nx-accordion-content>
+            </nx-accordion-item>
+        }
+    </nx-accordion>
+
+</ng-template>

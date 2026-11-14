@@ -1,0 +1,33 @@
+<div class="main-content">
+    <div class="main-container">
+        <div class="main-sections">
+
+            <app-demo-section
+                header="Import"
+                description="Every component is standalone - import it directly from 'nexium-ui', no NgModule needed."
+                [codeLang]="'ts'"
+                [code]="importCode">
+            </app-demo-section>
+
+            <app-demo-section
+                header="Searchable org chart"
+                description="{{ commonService.appName }}'s Organization Chart renders a hierarchy as expandable person-cards. Type a name below - matching nodes are highlighted and their ancestor chain auto-expands so the match is always visible, even inside a collapsed branch."
+                [code]="basicCode"
+                [tsCode]="basicTs"
+                [hasSampleClass]="false">
+                <div style="max-width:900px;">
+                    <div style="max-width:280px; margin-bottom:16px;">
+                        <nx-input [(value)]="searchTerm" placeholder="Search people..."></nx-input>
+                    </div>
+                    <nx-org-chart [root]="root" [searchTerm]="searchTerm" (nodeClick)="onNodeClick($event)"></nx-org-chart>
+                    @if (lastClicked) {
+                        <p style="margin-top:12px; color:var(--shell-text-secondary); font-size:0.85rem;">
+                            Last clicked: {{ lastClicked }}
+                        </p>
+                    }
+                </div>
+            </app-demo-section>
+
+        </div>
+    </div>
+</div>

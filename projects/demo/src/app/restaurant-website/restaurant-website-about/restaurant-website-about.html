@@ -1,0 +1,66 @@
+<section class="rabout-hero">
+    <div class="resto-container rabout-hero-inner">
+        <h1>Seasonal plates, cooked with intention</h1>
+        <p>
+            Olive &amp; Oak opened in 2012 as a 12-table bistro built around a wood-fired grill and whatever the
+            farmers market had that morning. Fourteen years later, on {{ address }}, that's still the whole idea -
+            we just got better at it.
+        </p>
+    </div>
+</section>
+
+<div class="resto-container resto-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="resto-locked-wrapper">
+            <div class="resto-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="resto-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Restaurant Website template for $45</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="resto-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <div class="rabout-stats-row">
+        @for (stat of stats; track stat.label) {
+            <nx-statistic [label]="stat.label" [value]="stat.value" [suffix]="stat.suffix ?? ''"></nx-statistic>
+        }
+    </div>
+
+    <section class="resto-section">
+        <div class="resto-section-heading">
+            <h2>Our story so far</h2>
+            <p>A few of the moments that shaped how Olive &amp; Oak got built.</p>
+        </div>
+        <nx-timeline [items]="timelineItems"></nx-timeline>
+    </section>
+
+    <section class="resto-section">
+        <div class="resto-section-heading">
+            <h2>Meet the team</h2>
+            <p>The chefs and the floor team behind every plate that leaves the kitchen.</p>
+        </div>
+        <div class="rabout-team-grid">
+            @for (member of team; track member.name) {
+                <div class="rabout-team-card">
+                    <img class="rabout-team-avatar" [src]="member.avatar" [alt]="member.name">
+                    <div class="rabout-team-name">{{ member.name }}</div>
+                    <div class="resto-muted rabout-team-role">{{ member.role }}</div>
+                    <p class="rabout-team-bio">{{ member.bio }}</p>
+                </div>
+            }
+        </div>
+    </section>
+
+</ng-template>

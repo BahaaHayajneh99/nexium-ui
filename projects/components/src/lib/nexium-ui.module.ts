@@ -218,6 +218,16 @@ import { NxAdvancedDataGrid } from './enterprise/ui-advanced-data-grid';
 import { NxGanttChart } from './enterprise/ui-gantt-chart';
 import { NxScheduler } from './enterprise/ui-scheduler';
 import { NxWorkflowBuilder } from './enterprise/ui-workflow-builder';
+import { NxAvatarGroup } from './data-display/ui-avatar-group';
+import { NxOrgChart } from './data-display/ui-org-chart';
+import { NxIntegrationManager } from './data-display/ui-integration-manager';
+import { NxSplitButton } from './forms/ui-split-button';
+import { NxFormValidationSummary } from './forms/ui-form-validation-summary';
+import { NxNotificationPreferences } from './feedback/ui-notification-preferences';
+import { NxSavedViews } from './interaction/ui-saved-views';
+import { NxDataMappingEditor } from './enterprise/ui-data-mapping-editor';
+import { NxDataImportWizard } from './enterprise/ui-data-import-wizard';
+import { NxResourceAllocationBoard } from './enterprise/ui-resource-allocation-board';
 
 // Every standalone component/directive the library ships, gathered in one
 // place so NexiumUiModule (below) and anyone hand-rolling a similar aggregate
@@ -461,6 +471,16 @@ const NEXIUM_UI_DECLARATIONS = [
   NxGanttChart,
   NxScheduler,
   NxWorkflowBuilder,
+  NxAvatarGroup,
+  NxOrgChart,
+  NxIntegrationManager,
+  NxSplitButton,
+  NxFormValidationSummary,
+  NxNotificationPreferences,
+  NxSavedViews,
+  NxDataMappingEditor,
+  NxDataImportWizard,
+  NxResourceAllocationBoard,
 ] as const;
 
 /**

@@ -1,0 +1,89 @@
+@if (licensed()) {
+    <div class="nx-chart">
+        <div class="nx-chart-canvas">
+            <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
+
+                @for (tick of yTicks; track tick.value) {
+                    <line class="nx-chart-grid" [attr.x1]="48" [attr.x2]="640 - 16" [attr.y1]="tick.y" [attr.y2]="tick.y"></line>
+                    <text class="nx-chart-axis-label" text-anchor="end" x="42" [attr.y]="tick.y + 4">
+                        {{ formatTick(tick.value) }}
+                    </text>
+                }
+
+                @for (box of boxes(); track box.label) {
+                    <g
+                        class="nx-box-plot-group"
+                        tabindex="0"
+                        role="img"
+                        [attr.aria-label]="box.label + ': min ' + formatTick(box.yMin) + ', median at center'">
+                        <title>{{ box.label }}</title>
+
+                        <line
+                            class="nx-box-plot-whisker"
+                            [attr.x1]="box.centerX"
+                            [attr.x2]="box.centerX"
+                            [attr.y1]="box.yMax"
+                            [attr.y2]="box.yMin"
+                            [attr.stroke]="color">
+                        </line>
+
+                        <line
+                            class="nx-box-plot-cap"
+                            [attr.x1]="box.centerX - box.boxWidth / 4"
+                            [attr.x2]="box.centerX + box.boxWidth / 4"
+                            [attr.y1]="box.yMax"
+                            [attr.y2]="box.yMax"
+                            [attr.stroke]="color">
+                        </line>
+                        <line
+                            class="nx-box-plot-cap"
+                            [attr.x1]="box.centerX - box.boxWidth / 4"
+                            [attr.x2]="box.centerX + box.boxWidth / 4"
+                            [attr.y1]="box.yMin"
+                            [attr.y2]="box.yMin"
+                            [attr.stroke]="color">
+                        </line>
+
+                        <rect
+                            class="nx-box-plot-box"
+                            [attr.x]="box.boxX"
+                            [attr.y]="box.yQ3"
+                            [attr.width]="box.boxWidth"
+                            [attr.height]="box.yQ1 - box.yQ3"
+                            [attr.stroke]="color">
+                        </rect>
+
+                        <line
+                            class="nx-box-plot-median"
+                            [attr.x1]="box.boxX"
+                            [attr.x2]="box.boxX + box.boxWidth"
+                            [attr.y1]="box.yMedian"
+                            [attr.y2]="box.yMedian"
+                            [attr.stroke]="color">
+                        </line>
+
+                        @for (outlier of box.outlierPoints; track outlier.value) {
+                            <circle
+                                class="nx-box-plot-outlier"
+                                [attr.cx]="outlier.x"
+                                [attr.cy]="outlier.y"
+                                r="3"
+                                [attr.stroke]="color">
+                                <title>{{ box.label }} outlier: {{ formatTick(outlier.value) }}</title>
+                            </circle>
+                        }
+                    </g>
+                }
+
+                @for (box of boxes(); track box.label) {
+                    <text class="nx-chart-axis-label" text-anchor="middle" [attr.x]="box.centerX" [attr.y]="height - 10">
+                        {{ box.label }}
+                    </text>
+                }
+
+            </svg>
+        </div>
+    </div>
+} @else {
+    <nx-pro-locked componentName="Box Plot"></nx-pro-locked>
+}

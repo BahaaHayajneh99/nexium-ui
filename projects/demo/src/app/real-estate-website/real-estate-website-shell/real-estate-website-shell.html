@@ -1,0 +1,87 @@
+<div class="reshell-shell">
+
+    @if (licensed()) {
+        <div class="reshell-unlocked-bar">
+            <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+            You've unlocked the full Real Estate Website template with your PRO license.
+        </div>
+    } @else {
+        <div class="reshell-pro-bar">
+            <nx-icon icon="nx-lock" variant="svg" [size]="14"></nx-icon>
+            This is a NexiumUI <strong>PRO</strong> template - <strong>$49</strong>
+            <s>$89</s> one-time, included free with any PRO license.
+            <nx-button variant="primary" size="small" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+        </div>
+    }
+
+    <header class="reshell-header">
+        <div class="reshell-header-inner">
+            <a class="reshell-brand" [routerLink]="'/real-estate-website/home'">
+                <nx-icon icon="nx-home" variant="svg" [size]="20"></nx-icon>
+                Haven Realty
+            </a>
+
+            <nav class="reshell-nav">
+                @for (link of navLinks; track link.path) {
+                    <a [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+                }
+            </nav>
+
+            <div class="reshell-actions">
+                <a class="reshell-icon-link" [routerLink]="'/real-estate-website/login'" routerLinkActive="active" title="Log in">
+                    <nx-icon icon="nx-user" variant="svg" [size]="18"></nx-icon>
+                    <span>Log in</span>
+                </a>
+                <nx-button variant="primary" size="small" [routerLink]="'/real-estate-website/contact'">
+                    List your property
+                </nx-button>
+            </div>
+        </div>
+    </header>
+
+    <main class="reshell-main">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="reshell-footer">
+        <div class="reshell-footer-inner">
+            <div class="reshell-footer-brand">
+                <div class="reshell-brand">
+                    <nx-icon icon="nx-home" variant="svg" [size]="20"></nx-icon>
+                    Haven Realty
+                </div>
+                <p>Find the home that finds you. Residential sales, rentals, and relocation across four metro areas.</p>
+            </div>
+
+            <div class="reshell-footer-columns">
+                <div class="reshell-footer-column">
+                    <h4>Explore</h4>
+                    <a [routerLink]="'/real-estate-website/listings'">Listings</a>
+                    <a [routerLink]="'/real-estate-website/neighborhoods'">Neighborhoods</a>
+                    <a [routerLink]="'/real-estate-website/agents'">Agents</a>
+                </div>
+                <div class="reshell-footer-column">
+                    <h4>Resources</h4>
+                    <a [routerLink]="'/real-estate-website/mortgage-calculator'">Mortgage Calculator</a>
+                    <a [routerLink]="'/real-estate-website/sell'">Sell With Us</a>
+                    <a [routerLink]="'/real-estate-website/faq'">FAQ</a>
+                </div>
+                <div class="reshell-footer-column">
+                    <h4>Company</h4>
+                    <a [routerLink]="'/real-estate-website/about'">About</a>
+                    <a [routerLink]="'/real-estate-website/contact'">Contact</a>
+                </div>
+                <div class="reshell-footer-column">
+                    <h4>Account</h4>
+                    <a [routerLink]="'/real-estate-website/login'">Log in</a>
+                    <a [routerLink]="'/real-estate-website/signup'">Sign up</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="reshell-footer-bottom">
+            &copy; 2026 Haven Realty. Built entirely with NexiumUI components.
+        </div>
+    </footer>
+
+</div>

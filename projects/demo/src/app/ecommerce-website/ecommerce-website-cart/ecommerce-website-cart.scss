@@ -1,0 +1,205 @@
+@import '../ecommerce-shared';
+
+.ecart-title {
+    margin: 0 0 var(--nx-spacing-xl, 32px);
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.ecart-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-md, 16px);
+    padding: var(--nx-spacing-xxl, 64px) var(--nx-spacing-lg, 24px);
+    text-align: center;
+    color: var(--shell-text-secondary);
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+
+    nx-icon {
+        color: var(--shell-text-muted);
+    }
+}
+
+.ecart-panel {
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    padding: var(--nx-spacing-lg, 24px);
+}
+
+.ecart-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: var(--nx-spacing-xl, 32px);
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .ecart-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ecart-lines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.ecart-line {
+    display: grid;
+    grid-template-columns: 56px 1fr auto auto auto;
+    align-items: center;
+    gap: var(--nx-spacing-md, 16px);
+    padding-bottom: var(--nx-spacing-lg, 24px);
+    border-bottom: 1px solid var(--shell-border);
+
+    &:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .ecart-line {
+        grid-template-columns: 48px 1fr;
+        row-gap: var(--nx-spacing-sm, 8px);
+    }
+}
+
+.ecart-line-media {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.ecart-line-media-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ecart-line-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.ecart-line-variant {
+    font-size: var(--nx-font-size-xs, 12px);
+}
+
+.ecart-qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    overflow: hidden;
+    width: fit-content;
+
+    button {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: var(--shell-surface);
+        color: var(--shell-text);
+        cursor: pointer;
+
+        &:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.ecart-qty-value {
+    width: 32px;
+    text-align: center;
+    font-weight: var(--nx-font-weight-semibold, 600);
+}
+
+.ecart-line-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: var(--nx-font-size-sm, 14px);
+}
+
+.ecart-line-total {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.ecart-remove-btn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--shell-text-muted);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--shell-danger, #e74c3c);
+    }
+}
+
+.ecart-promo-row {
+    display: flex;
+    gap: var(--nx-spacing-sm, 8px);
+    align-items: flex-start;
+    padding-top: var(--nx-spacing-lg, 24px);
+    border-top: 1px solid var(--shell-border);
+
+    nx-input {
+        flex: 1;
+    }
+}
+
+.ecart-summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+
+    h3 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        color: var(--shell-text);
+    }
+}
+
+.ecart-summary-row {
+    font-size: var(--nx-font-size-sm, 14px);
+    padding: 4px 0;
+}
+
+.ecart-summary-total {
+    padding: var(--nx-spacing-sm, 8px) 0;
+    margin-top: var(--nx-spacing-sm, 8px);
+    border-top: 1px solid var(--shell-border);
+    font-weight: var(--nx-font-weight-bold, 700);
+    font-size: var(--nx-font-size-lg, 18px);
+    color: var(--shell-text);
+}
+
+.ecart-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    margin-top: var(--nx-spacing-sm, 8px);
+}

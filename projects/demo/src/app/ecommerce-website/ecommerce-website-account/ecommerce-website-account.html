@@ -1,0 +1,114 @@
+<div class="ecom-container ecom-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="ecom-locked-wrapper">
+            <div class="ecom-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="ecom-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full E-Commerce Website template for $49</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="ecom-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <h1 class="eacct-title">My Account</h1>
+
+    <nx-tabs>
+        <nx-tab label="Profile">
+            <div class="eacct-profile">
+                <img class="ecom-avatar-photo eacct-avatar" src="https://i.pravatar.cc/150?img=68" alt="Jordan Ellis">
+
+                <div class="eacct-field-list">
+                    <div class="ecom-flex-between eacct-field-row">
+                        <span class="ecom-muted">Name</span>
+                        <span>Jordan Ellis</span>
+                    </div>
+                    <div class="ecom-flex-between eacct-field-row">
+                        <span class="ecom-muted">Email</span>
+                        <span>jordan.ellis@example.com</span>
+                    </div>
+                    <div class="ecom-flex-between eacct-field-row">
+                        <span class="ecom-muted">Phone</span>
+                        <span>(512) 555-0148</span>
+                    </div>
+                    <div class="ecom-flex-between eacct-field-row">
+                        <span class="ecom-muted">Member since</span>
+                        <span>March 2022</span>
+                    </div>
+                    <div class="ecom-flex-between eacct-field-row">
+                        <span class="ecom-muted">Preferred payment method</span>
+                        <span>Visa ending in 4471</span>
+                    </div>
+                </div>
+
+                <nx-button variant="secondary">Edit profile</nx-button>
+            </div>
+        </nx-tab>
+
+        <nx-tab label="Order History">
+            <div class="eacct-orders-list">
+                @for (order of orders; track order.id) {
+                    <div class="eacct-order-card ecom-card-pad">
+                        <div class="ecom-flex-between eacct-order-header">
+                            <div>
+                                <div class="eacct-order-id">{{ order.id }}</div>
+                                <div class="ecom-muted eacct-order-date">{{ order.date }}</div>
+                            </div>
+                            <nx-tag [color]="statusColor(order.status)">{{ order.status }}</nx-tag>
+                        </div>
+
+                        <div class="eacct-order-items">
+                            @for (item of order.items; track item.product.id) {
+                                <img class="eacct-item-thumb" [src]="item.product.image" [alt]="item.product.name" loading="lazy" [title]="item.product.name + ' x' + item.qty">
+                            }
+                        </div>
+
+                        <div class="ecom-flex-between eacct-order-footer">
+                            <span class="eacct-order-total">Total: ${{ order.total.toFixed(2) }}</span>
+                            <nx-button variant="text" [routerLink]="'/ecommerce-website/order-tracking/' + order.id">Track order</nx-button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </nx-tab>
+
+        <nx-tab label="Addresses">
+            <div class="eacct-addresses-list">
+                @for (addr of addresses; track addr.label) {
+                    <div class="eacct-address-card ecom-card-pad">
+                        <div class="ecom-flex-between eacct-address-header">
+                            <div class="eacct-address-label">
+                                {{ addr.label }}
+                                @if (addr.default) {
+                                    <nx-tag color="#2563eb">Default</nx-tag>
+                                }
+                            </div>
+                            <div class="eacct-address-actions">
+                                <button type="button" class="eacct-icon-btn" title="Edit address">
+                                    <nx-icon icon="nx-edit" variant="svg" [size]="14"></nx-icon>
+                                </button>
+                                <button type="button" class="eacct-icon-btn" title="Delete address">
+                                    <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="ecom-muted eacct-address-text">{{ addr.address }}</p>
+                    </div>
+                }
+            </div>
+
+            <nx-button variant="secondary" class="eacct-add-address-btn">+ Add new address</nx-button>
+        </nx-tab>
+    </nx-tabs>
+
+</ng-template>

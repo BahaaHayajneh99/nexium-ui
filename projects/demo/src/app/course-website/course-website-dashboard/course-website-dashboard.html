@@ -1,0 +1,76 @@
+<div class="course-container course-section">
+    @if (licensed()) {
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+    } @else {
+        <div class="course-locked-wrapper">
+            <div class="course-locked-content">
+                <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+            </div>
+            <div class="course-lock-overlay">
+                <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+                <p>Unlock the full Course Website template for $55</p>
+                <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+            </div>
+        </div>
+    }
+</div>
+
+<ng-template #pageContent>
+
+    <div class="course-breadcrumb-row">
+        <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+    </div>
+
+    <h1 class="cdash-title">Welcome back, Jordan</h1>
+    <p class="course-muted cdash-subtitle">Here's where you left off.</p>
+
+    <div class="cdash-stats-row">
+        @for (stat of stats; track stat.label) {
+            <nx-statistic [label]="stat.label" [value]="stat.value" [suffix]="stat.suffix"></nx-statistic>
+        }
+    </div>
+
+    <div class="course-section-heading cdash-courses-heading">
+        <h2>Continue learning</h2>
+        <p>Pick up right where you left off.</p>
+    </div>
+
+    <div class="cdash-enrolled-grid">
+        @for (enrolled of enrolledCourses; track enrolled.course.slug) {
+            <div class="cdash-enrolled-card">
+                <img class="cdash-enrolled-media" [src]="enrolled.course.image" [alt]="enrolled.course.title">
+                <div class="cdash-enrolled-body">
+                    <div class="cdash-enrolled-title">{{ enrolled.course.title }}</div>
+                    <p class="course-muted cdash-enrolled-last">Last watched: {{ enrolled.lastLesson }}</p>
+                    <nx-progress-bar [value]="enrolled.progress" [showLabel]="true" variant="primary"></nx-progress-bar>
+                    <nx-button
+                        variant="primary"
+                        [fullWidth]="true"
+                        size="small"
+                        [routerLink]="['/course-website/course', enrolled.course.slug]">
+                        Continue learning
+                    </nx-button>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="cdash-panels-row">
+        <div class="cdash-panel">
+            <div class="course-section-heading cdash-panel-heading">
+                <h2>Recent activity</h2>
+                <p>What's happened across your courses lately.</p>
+            </div>
+            <nx-activity-feed [items]="activityItems" [groupByDay]="true"></nx-activity-feed>
+        </div>
+
+        <div class="cdash-panel">
+            <div class="course-section-heading cdash-panel-heading">
+                <h2>Top learners this week</h2>
+                <p>See how your streak stacks up against the rest of the cohort.</p>
+            </div>
+            <nx-ranking-list [items]="topLearners"></nx-ranking-list>
+        </div>
+    </div>
+
+</ng-template>

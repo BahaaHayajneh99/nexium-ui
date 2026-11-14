@@ -1,0 +1,76 @@
+@import '../hotel-shared';
+
+.hrev-hero {
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto var(--nx-spacing-xl, 32px);
+
+    h1 {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        font-size: var(--nx-font-size-xxl, 28px);
+        font-weight: var(--nx-font-weight-bold, 700);
+        color: var(--shell-text);
+    }
+
+    p {
+        margin: 0;
+        color: var(--shell-text-secondary);
+        font-size: var(--nx-font-size-md, 16px);
+    }
+}
+
+.hrev-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nx-spacing-xxl, 48px);
+    flex-wrap: wrap;
+    padding: var(--nx-spacing-lg, 24px);
+    margin-bottom: var(--nx-spacing-xxl, 48px);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+}
+
+.hrev-summary-rating {
+    display: flex;
+    align-items: center;
+}
+
+.hrev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.hrev-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+}
+
+.hrev-card-head {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+}
+
+.hrev-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.hrev-location {
+    font-size: var(--nx-font-size-xs, 12px);
+}
+
+.hrev-quote {
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}

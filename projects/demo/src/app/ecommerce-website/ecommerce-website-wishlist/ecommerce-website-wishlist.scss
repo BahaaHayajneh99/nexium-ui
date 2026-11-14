@@ -1,0 +1,52 @@
+@import '../ecommerce-shared';
+
+.ewish-title {
+    margin: 0 0 var(--nx-spacing-xl, 32px);
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.ewish-review-count {
+    font-size: var(--nx-font-size-xs, 12px);
+}
+
+.ewish-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+}
+
+.ewish-remove-btn {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--nx-radius-md, 8px);
+    border: 1px solid var(--shell-border);
+    background: var(--shell-surface);
+    color: var(--shell-text-muted);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--shell-danger, #e74c3c);
+    }
+}
+
+.ewish-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-md, 16px);
+    padding: var(--nx-spacing-xxl, 64px) var(--nx-spacing-lg, 24px);
+    text-align: center;
+    color: var(--shell-text-secondary);
+    border: 1px dashed var(--shell-border);
+    border-radius: var(--nx-radius-lg, 12px);
+
+    nx-icon {
+        color: var(--shell-text-muted);
+    }
+}

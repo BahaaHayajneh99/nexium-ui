@@ -1,0 +1,190 @@
+@import '../ecommerce-shared';
+
+.ecom-product-name {
+    color: var(--shell-text);
+    text-decoration: none;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    font-size: var(--nx-font-size-md, 16px);
+
+    &:hover {
+        color: var(--shell-primary);
+    }
+}
+
+// ---- Hero ----------------------------------------------------------------
+
+.ehome-hero {
+    background:
+        linear-gradient(120deg, rgba(10, 16, 32, .88) 10%, rgba(10, 16, 32, .55) 60%, rgba(10, 16, 32, .3) 100%),
+        url('https://picsum.photos/seed/nx-ecom-hero/1600/700') center / cover no-repeat;
+    color: #ffffff;
+    padding: var(--nx-spacing-xxl, 64px) 0;
+}
+
+.ehome-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-lg, 24px);
+    max-width: 620px;
+}
+
+.ehome-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.ehome-hero-subtitle {
+    font-size: var(--nx-font-size-md, 16px);
+    opacity: .85;
+    margin: 0;
+}
+
+.ehome-hero-actions {
+    display: flex;
+    gap: var(--nx-spacing-md, 16px);
+    flex-wrap: wrap;
+}
+
+// ---- Categories ------------------------------------------------------------
+
+.ehome-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--nx-spacing-md, 16px);
+}
+
+.ehome-category-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px) var(--nx-spacing-md, 16px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    text-decoration: none;
+    font-weight: var(--nx-font-weight-semibold, 600);
+    transition: transform .15s ease, box-shadow .15s ease;
+
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px -10px rgba(0, 0, 0, .2);
+    }
+}
+
+// ---- Promo banners ---------------------------------------------------------
+
+.ehome-promo-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-xl, 32px) 0;
+}
+
+.ehome-promo-card {
+    border-radius: var(--nx-radius-lg, 12px);
+    padding: var(--nx-spacing-xl, 32px);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--nx-spacing-sm, 8px);
+
+    h3 {
+        margin: 0;
+        font-size: var(--nx-font-size-xl, 22px);
+        font-weight: var(--nx-font-weight-bold, 700);
+    }
+
+    p {
+        margin: 0 0 var(--nx-spacing-sm, 8px);
+        opacity: .9;
+    }
+}
+
+.ehome-promo-electronics {
+    background: linear-gradient(135deg, #3d5a80 0%, #293241 100%);
+}
+
+.ehome-promo-home {
+    background: linear-gradient(135deg, #bc6c25 0%, #9c6644 100%);
+}
+
+// ---- Testimonials -----------------------------------------------------------
+
+.ehome-testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+}
+
+.ehome-testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-lg, 24px);
+    border-radius: var(--nx-radius-lg, 12px);
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+}
+
+.ehome-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: var(--nx-font-weight-bold, 700);
+    font-size: var(--nx-font-size-md, 16px);
+}
+
+.ehome-testimonial-name {
+    font-weight: var(--nx-font-weight-semibold, 600);
+    color: var(--shell-text);
+}
+
+.ehome-testimonial-role {
+    font-size: var(--nx-font-size-xs, 12px);
+    color: var(--shell-text-muted);
+    margin-bottom: 4px;
+}
+
+.ehome-testimonial-quote {
+    margin: var(--nx-spacing-xs, 4px) 0 0;
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    line-height: 1.5;
+}
+
+// ---- Trust badges -------------------------------------------------------------
+
+.ehome-trust-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--nx-spacing-lg, 24px);
+    padding: var(--nx-spacing-xl, 32px) 0 var(--nx-spacing-xxl, 48px);
+}
+
+.ehome-trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    color: var(--shell-text-secondary);
+    font-size: var(--nx-font-size-sm, 14px);
+    font-weight: var(--nx-font-weight-medium, 500);
+
+    nx-icon {
+        color: var(--shell-primary);
+        flex-shrink: 0;
+    }
+}

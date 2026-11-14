@@ -1,0 +1,33 @@
+@import '../hotel-shared';
+
+.hrooms-title {
+    margin: 0 0 4px;
+    font-size: var(--nx-font-size-xxl, 28px);
+    font-weight: var(--nx-font-weight-bold, 700);
+    color: var(--shell-text);
+}
+
+.hrooms-count {
+    margin: 0 0 var(--nx-spacing-lg, 24px);
+}
+
+.hrooms-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: var(--nx-spacing-xl, 32px);
+}
+
+.hrooms-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nx-spacing-sm, 8px);
+    padding: var(--nx-spacing-xxl, 64px) var(--nx-spacing-lg, 24px);
+    color: var(--shell-text-secondary);
+    text-align: center;
+}
+
+.hrooms-compare {
+    margin-top: var(--nx-spacing-xxl, 48px);
+}

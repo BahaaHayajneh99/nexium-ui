@@ -1,0 +1,146 @@
+<div class="resto-container resto-section">
+  @if (licensed()) {
+    <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+  } @else {
+    <div class="resto-locked-wrapper">
+      <div class="resto-locked-content">
+        <ng-container *ngTemplateOutlet="pageContent"></ng-container>
+      </div>
+      <div class="resto-lock-overlay">
+        <nx-icon icon="nx-lock" variant="svg" [size]="32"></nx-icon>
+        <p>Unlock the full Restaurant Website template for $45</p>
+        <nx-button variant="primary" [routerLink]="'/pro-upgrade'">Get a PRO license</nx-button>
+      </div>
+    </div>
+  }
+</div>
+
+<ng-template #pageContent>
+  <div class="resto-breadcrumb-row">
+    <nx-breadcrumb [items]="breadcrumbItems"></nx-breadcrumb>
+  </div>
+
+  <h1 class="rcheckout-title">Checkout</h1>
+
+  <div class="rcheckout-layout">
+    <div class="rcheckout-form">
+      <section class="rcheckout-section">
+        <h2>How would you like your order?</h2>
+        <div class="rcheckout-fulfillment-row">
+          <nx-button
+            [variant]="fulfillmentMode() === 'pickup' ? 'primary' : 'outline'"
+            [fullWidth]="true"
+            (click)="selectFulfillmentMode('pickup')">
+            <nx-icon icon="nx-map-pin" variant="svg" [size]="16"></nx-icon>
+            Pickup
+          </nx-button>
+          <nx-button
+            [variant]="fulfillmentMode() === 'delivery' ? 'primary' : 'outline'"
+            [fullWidth]="true"
+            (click)="selectFulfillmentMode('delivery')">
+            <nx-icon icon="nx-send" variant="svg" [size]="16"></nx-icon>
+            Delivery
+          </nx-button>
+        </div>
+      </section>
+
+      <section class="rcheckout-section">
+        <h2>Contact information</h2>
+        <div class="rcheckout-row">
+          <nx-input label="Full name" placeholder="Jane Doe" [isRequired]="true"></nx-input>
+          <nx-input label="Phone" placeholder="(503) 555-0118" [isRequired]="true"></nx-input>
+        </div>
+        <nx-input label="Email" type="email" placeholder="you@example.com" [isRequired]="true"></nx-input>
+
+        @if (fulfillmentMode() === 'delivery') {
+          <nx-textarea
+            label="Delivery address"
+            placeholder="123 Main Street, Apt 4B, Portland, OR 97209"
+            [rows]="3"
+            [isRequired]="true"></nx-textarea>
+        } @else {
+          <nx-textarea label="Special instructions (optional)" placeholder="Anything we should know for pickup?" [rows]="3"></nx-textarea>
+        }
+      </section>
+
+      <section class="rcheckout-section">
+        <h2>Payment method</h2>
+        <div class="rcheckout-payment-methods">
+          @for (method of paymentMethods; track method.id) {
+            <button
+              type="button"
+              class="rcheckout-payment-method-card"
+              [class.active]="paymentMethod() === method.id"
+              (click)="selectPaymentMethod(method.id)">
+              <nx-icon [icon]="method.icon" variant="svg" [size]="22"></nx-icon>
+              <span>{{ method.label }}</span>
+            </button>
+          }
+        </div>
+
+        @if (paymentMethod() === 'card') {
+          <div class="rcheckout-card-details">
+            <nx-input label="Card number" placeholder="1234 5678 9012 3456" [isRequired]="true"></nx-input>
+            <div class="rcheckout-row">
+              <nx-input label="Expiry" placeholder="MM/YY" [isRequired]="true"></nx-input>
+              <nx-input label="CVV" placeholder="123" [isRequired]="true"></nx-input>
+            </div>
+            <nx-input label="Name on card" placeholder="Jane Doe" [isRequired]="true"></nx-input>
+          </div>
+        }
+      </section>
+    </div>
+
+    <aside class="rcheckout-summary">
+      <nx-card variant="outlined">
+        <nx-card-header>
+          <nx-card-title>Order summary</nx-card-title>
+        </nx-card-header>
+        <nx-card-content>
+          <div class="rcheckout-summary-items">
+            @for (entry of orderItems; track entry.item.id) {
+              <div class="rcheckout-summary-item">
+                <span class="rcheckout-summary-item-name">{{ entry.item.name }} &times; {{ entry.qty }}</span>
+                <span class="rcheckout-summary-item-price">${{ entry.item.price * entry.qty }}</span>
+              </div>
+            }
+          </div>
+
+          <nx-divider></nx-divider>
+
+          <div class="rcheckout-summary-totals">
+            <div class="resto-flex-between">
+              <span>Subtotal</span>
+              <span>${{ subtotal().toFixed(2) }}</span>
+            </div>
+            <div class="resto-flex-between">
+              <span>Service fee</span>
+              <span>${{ serviceFee().toFixed(2) }}</span>
+            </div>
+            @if (fulfillmentMode() === 'delivery') {
+              <div class="resto-flex-between">
+                <span>Delivery fee</span>
+                <span>${{ fulfillmentFee().toFixed(2) }}</span>
+              </div>
+            }
+            <div class="resto-flex-between rcheckout-summary-total">
+              <span>Total</span>
+              <span>${{ total().toFixed(2) }}</span>
+            </div>
+          </div>
+        </nx-card-content>
+        <nx-card-footer>
+          <nx-button variant="primary" [fullWidth]="true">Place order</nx-button>
+          <div class="rcheckout-trust-badges">
+            @for (badge of trustBadges; track badge.label) {
+              <div class="rcheckout-trust-badge">
+                <nx-icon [icon]="badge.icon" variant="svg" [size]="16"></nx-icon>
+                <span>{{ badge.label }}</span>
+              </div>
+            }
+          </div>
+        </nx-card-footer>
+      </nx-card>
+    </aside>
+  </div>
+</ng-template>

@@ -1,0 +1,70 @@
+@if (template(); as t) {
+    <div class="pwd-page">
+        <section class="pwd-hero">
+            <div class="pwd-hero-icon">
+                <nx-icon [icon]="t.heroIcon" variant="svg" [size]="36"></nx-icon>
+            </div>
+            <div class="pwd-hero-text">
+                <div class="pwd-hero-title-row">
+                    <h1>{{ t.name }}</h1>
+                    <nx-chip variant="warning" rounded>PRO</nx-chip>
+                </div>
+                <p class="pwd-tagline">{{ t.tagline }}</p>
+            </div>
+        </section>
+
+        <div class="pwd-body">
+            <div class="pwd-main">
+                <p class="pwd-description">{{ t.description }}</p>
+
+                <h3 class="pwd-section-title">What's included</h3>
+                <ul class="pwd-features">
+                    @for (feature of t.features; track feature) {
+                        <li>
+                            <nx-icon icon="nx-check-circle" variant="svg" [size]="16"></nx-icon>
+                            {{ feature }}
+                        </li>
+                    }
+                </ul>
+
+                <h3 class="pwd-section-title">Pages included ({{ t.pages.length }})</h3>
+                <div class="pwd-pages-row">
+                    @for (page of t.pages; track page) {
+                        <nx-chip variant="secondary" outlined>{{ page }}</nx-chip>
+                    }
+                </div>
+            </div>
+
+            <aside class="pwd-sidebar">
+                <div class="pwd-price-card">
+                    <div class="pwd-price-row">
+                        <span class="pwd-price-current">${{ t.price }}</span>
+                        <s class="pwd-price-old">${{ t.compareAtPrice }}</s>
+                    </div>
+                    <p class="pwd-price-note">One-time - included free with any NexiumUI PRO license.</p>
+
+                    <nx-button variant="primary" [fullWidth]="true" [routerLink]="t.demoPath">
+                        View live demo
+                    </nx-button>
+
+                    @if (licensed()) {
+                        <p class="pwd-licensed-note">
+                            <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
+                            You have PRO access - every page is fully unlocked.
+                        </p>
+                    } @else {
+                        <nx-button variant="secondary" [fullWidth]="true" [routerLink]="'/pro-upgrade'">
+                            Get a PRO license
+                        </nx-button>
+                    }
+                </div>
+            </aside>
+        </div>
+    </div>
+} @else {
+    <div class="pwd-not-found">
+        <nx-icon icon="nx-search" variant="svg" [size]="32"></nx-icon>
+        <p>That PRO template couldn't be found.</p>
+        <nx-button variant="primary" [routerLink]="'/'">Go to homepage</nx-button>
+    </div>
+}

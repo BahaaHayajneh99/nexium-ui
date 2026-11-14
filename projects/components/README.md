@@ -1,27 +1,100 @@
-# nexium-ui
+# NexiumUI
 
-Standalone Angular components for the NexiumUI library — data display, forms, feedback,
-navigation, panels, media, uploads, layout, charts, directives, advanced interaction,
-collaboration & activity, design tools, dashboard, developer tools, AI & machine learning, and
-enterprise-tier components. Every component is a standalone Angular component or directive; the library also
-ships `NexiumUiModule`, which aggregates all of them into a single `@NgModule` for apps that
-prefer that style. A subset of components are 🔒 PRO-tier - see
-[PRO / Licensed components](#pro--licensed-components).
+[![npm version](https://img.shields.io/npm/v/nexium-ui.svg)](https://www.npmjs.com/package/nexium-ui)
+[![npm downloads](https://img.shields.io/npm/dm/nexium-ui.svg)](https://www.npmjs.com/package/nexium-ui)
+[![License](https://img.shields.io/badge/license-Free%20%2B%20PRO-blue.svg)](./LICENSE)
+[![Angular](https://img.shields.io/badge/Angular-18.1%2B-dd0031.svg)](#supported-angular-versions)
+[![GitHub stars](https://img.shields.io/github/stars/BahaaHayajneh99/nexium-ui.svg?style=social)](https://github.com/BahaaHayajneh99/nexium-ui)
 
-## Demo
+**A comprehensive Angular UI component library: 300+ standalone components, plus directives and
+pipes, for building modern web applications.**
 
-Browse every component live, with usage examples and copy-paste code snippets, at
-**[nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started)**.
+Build dashboards, admin panels, enterprise applications, and interactive user interfaces faster
+with ready-to-use Angular components.
+
+- **300+ UI components** - forms, data display, charts, navigation, feedback, layout, media,
+  uploads, dashboards, developer tools, AI, and enterprise-tier components.
+- **Standalone architecture** - designed for tree-shaking: import only the components you need.
+  `NexiumUiModule` is also available for `@NgModule`-style apps.
+- **Native Angular forms support** - most form components implement `ControlValueAccessor`,
+  supporting `[(ngModel)]` and reactive forms with no custom adapters (see
+  [Forms integration](#forms-integration-ngmodel--reactive-forms) for the exact list).
+- **Themeable** - one pre-compiled stylesheet, customizable via CSS variables.
+- **Free & PRO** - start with 150+ free components; unlock advanced ones with a
+  [PRO license](#pro--licensed-components) when you need them.
+
+**Get started in seconds:**
+
+```bash
+ng add nexium-ui
+```
+
+[Explore 300+ components](https://nexium-ui.vercel.app/getting-started) ·
+[View live showcase](https://nexium-ui.vercel.app/showcase/dashboard) ·
+[Browse on GitHub](https://github.com/BahaaHayajneh99/nexium-ui)
+
+![Analytics dashboard built with NexiumUI Angular components - stat cards, line chart, and bar chart](https://raw.githubusercontent.com/BahaaHayajneh99/nexium-ui/main/docs/screenshots/dashboard.png)
+*A complete analytics dashboard from the [showcase](https://nexium-ui.vercel.app/showcase/dashboard), built entirely with NexiumUI components.*
+
+![NexiumUI documentation page for the Kanban Board component, with a live board and copy-paste code examples](https://raw.githubusercontent.com/BahaaHayajneh99/nexium-ui/main/docs/screenshots/kanban-docs.png)
+*Every component gets its own docs page with live examples and HTML/TS code tabs - here, the [Kanban Board](https://nexium-ui.vercel.app/kanban).*
+
+Want to see complete applications instead of single components? Browse the
+[showcase apps](https://nexium-ui.vercel.app/showcase/dashboard) and the multi-page
+[PRO website templates](https://nexium-ui.vercel.app/pro-templates/ecommerce-website) - e-commerce,
+SaaS, real estate, restaurant, portfolio, hotel, and course sites, each built entirely from
+NexiumUI components:
+
+<p>
+  <img alt="Analytics page with KPI cards, donut chart, and line chart built with NexiumUI Angular components" src="https://raw.githubusercontent.com/BahaaHayajneh99/nexium-ui/main/docs/screenshots/showcase-analytics.png" width="49%" />
+  <img alt="E-commerce website template built with NexiumUI - storefront hero, category cards, and cart" src="https://raw.githubusercontent.com/BahaaHayajneh99/nexium-ui/main/docs/screenshots/ecommerce-website.png" width="49%" />
+</p>
+<p>
+  <img alt="SaaS marketing website template built with NexiumUI - landing page with pricing and integrations" src="https://raw.githubusercontent.com/BahaaHayajneh99/nexium-ui/main/docs/screenshots/saas-website.png" width="49%" />
+  <img alt="Hotel website template built with NexiumUI - room search with date range picker and guest selector" src="https://raw.githubusercontent.com/BahaaHayajneh99/nexium-ui/main/docs/screenshots/hotel-website.png" width="49%" />
+</p>
+
+## Popular components
+
+Looking for a specific Angular UI component? Some of the most commonly used ones, each with its
+own live demo page:
+
+- **Data display**: [Avatar](https://nexium-ui.vercel.app/avatar), [Badge](https://nexium-ui.vercel.app/badge), [Card](https://nexium-ui.vercel.app/card), [Table](https://nexium-ui.vercel.app/table), [Data Grid](https://nexium-ui.vercel.app/enterprise/data-grid), [Timeline](https://nexium-ui.vercel.app/timeline)
+- **Forms**: [Autocomplete](https://nexium-ui.vercel.app/autocomplete), [Datepicker](https://nexium-ui.vercel.app/datepicker), [Date Range Picker](https://nexium-ui.vercel.app/date-range-picker), [Select](https://nexium-ui.vercel.app/select), [Combobox](https://nexium-ui.vercel.app/combobox)
+- **Navigation**: [Tabs](https://nexium-ui.vercel.app/tabs), [Sidebar](https://nexium-ui.vercel.app/sidebar), [Breadcrumb](https://nexium-ui.vercel.app/breadcrumb), [Dropdown Menu](https://nexium-ui.vercel.app/dropdown-menu)
+- **Feedback**: [Alert](https://nexium-ui.vercel.app/alert), [Dialog](https://nexium-ui.vercel.app/dialog), [Toast](https://nexium-ui.vercel.app/toast), [Tooltip](https://nexium-ui.vercel.app/tooltip), [Popover](https://nexium-ui.vercel.app/popover)
+- **Media & uploads**: [File Upload](https://nexium-ui.vercel.app/file-upload), [Image Cropper](https://nexium-ui.vercel.app/image-cropper), [Gallery](https://nexium-ui.vercel.app/gallery), [Carousel](https://nexium-ui.vercel.app/carousel)
+- **Charts**: [Line](https://nexium-ui.vercel.app/charts/line), [Bar](https://nexium-ui.vercel.app/charts/bar), [Pie](https://nexium-ui.vercel.app/charts/pie), [Area](https://nexium-ui.vercel.app/charts/area)
+- **Advanced**: [Kanban Board](https://nexium-ui.vercel.app/kanban), [Scheduler](https://nexium-ui.vercel.app/enterprise/scheduler), [Gantt Chart](https://nexium-ui.vercel.app/enterprise/gantt-chart), [Workflow Builder](https://nexium-ui.vercel.app/enterprise/workflow-builder)
+
+Or browse the complete [component catalog](#components) below.
 
 ## Installation
+
+```bash
+ng add nexium-ui
+```
+
+`ng add` installs the package and automatically registers the NexiumUI stylesheet in your
+`angular.json` - no manual setup needed. Prefer plain npm? Install and add the stylesheet
+yourself (see [Styles & Theming](#styles--theming)):
 
 ```bash
 npm i nexium-ui
 ```
 
+### Supported Angular versions
+
+| nexium-ui | Angular |
+| --- | --- |
+| 0.1.10 and later | 18.1+, 19, 20, 21 |
+| 0.1.9 and earlier | 21.2+ only |
+
 ## Styles & Theming
 
-To apply NexiumUI styles, you must include the library's pre-compiled stylesheet in your application. Choose one of the following methods:
+To apply NexiumUI styles, the library's pre-compiled stylesheet must be included in your
+application. **If you installed with `ng add nexium-ui`, this is already done for you.**
+Otherwise, choose one of the following methods:
 
 ### Option 1: Include in `angular.json` (Recommended)
 Add the stylesheet path to your application's `styles` array in `angular.json`:
@@ -51,16 +124,16 @@ Alternatively, import `styles.css` directly into your main `src/styles.scss` or 
 ### Standalone components
 
 Import only what you use directly into a standalone component's `imports` array. This is the
-recommended approach — unused components are tree-shaken out of your bundle.
+recommended approach — it lets your bundler tree-shake unused components out of your
+production build.
 
 ```ts
 import { Component } from '@angular/core';
-import { UiCard, UiCardContent, UiBadge } from 'nexium-ui';
+import { NxCard, NxCardContent, NxBadge } from 'nexium-ui';
 
 @Component({
   selector: 'app-example',
-  standalone: true,
-  imports: [UiCard, UiCardContent, UiBadge],
+  imports: [NxCard, NxCardContent, NxBadge],
   template: `
     <nx-card>
       <nx-card-content>
@@ -94,13 +167,17 @@ your production bundle smaller.
 
 ### Forms integration (`ngModel` / reactive forms)
 
-Every form component (`nx-input`, `nx-textarea`, `nx-select`, `nx-autocomplete`, `nx-combobox`,
-`nx-checkbox`, `nx-radio-group`, `nx-switch`, `nx-toggle`, `nx-segmented-control`, `nx-slider`,
-`nx-rating`, `nx-otp-input`, `nx-mention`, `nx-unit-input`, `nx-formula-input`, `nx-mask`,
-`nx-password`, `nx-address-input`, `nx-rich-text-editor`, `nx-json-editor`, `nx-color-picker`,
-`nx-datepicker`) implements Angular's `ControlValueAccessor`, so on top of its native
-`[(value)]`/`[(checked)]` binding it also works with `[(ngModel)]` and
-`formControlName`/`[formControl]` - no adapter needed.
+The following form components (`nx-input`, `nx-textarea`, `nx-select`, `nx-autocomplete`,
+`nx-combobox`, `nx-checkbox`, `nx-radio-group`, `nx-switch`, `nx-toggle`, `nx-segmented-control`,
+`nx-slider`, `nx-rating`, `nx-otp-input`, `nx-mention`, `nx-unit-input`, `nx-formula-input`,
+`nx-mask`, `nx-password`, `nx-address-input`, `nx-rich-text-editor`, `nx-json-editor`,
+`nx-color-picker`, `nx-datepicker`, `nx-date-range-picker`, `nx-time-picker`, `nx-number`,
+`nx-search`) implement Angular's `ControlValueAccessor`, so on top of their native
+`[(value)]`/`[(checked)]` binding they also work with `[(ngModel)]` and
+`formControlName`/`[formControl]` - no adapter needed. A few form-adjacent components
+(`nx-button`, `nx-cascader`, `nx-file-input`, `nx-inline-edit`, `nx-signature-pad`,
+`nx-tag-input`, `nx-transfer-box`) use their own input/output API instead - check each
+component's own docs page for its exact bindings.
 
 **Important:** because these are standalone components, `NgModel`/`FormControlName` are directives
 that your OWN component must import - nexium-ui can't do this for you. If you bind `[(ngModel)]`
@@ -126,6 +203,19 @@ export class Example {
 ```
 
 ## PRO / Licensed components
+
+The free tier is a complete UI kit on its own - 150+ of the library's 300+ components, including
+the core building blocks most apps need, plus nearly all directives and pipes. PRO adds over a
+hundred heavy, specialized components on top:
+
+| Free (no license needed) | 🔒 PRO |
+| --- | --- |
+| Core UI: cards, badges, tables, lists, trees | Advanced Data Grid, Tree Table, Pivot Table |
+| All basic form inputs, autocomplete, datepicker | Event Calendar, Formula Input, Signature Pad |
+| Charts: line, bar, pie, area, radar, and more | Candlestick, Sankey, Treemap, Gantt Chart |
+| Navigation: menus, tabs, sidebar, breadcrumb | Workflow Builder, Kanban Board, Scheduler |
+| Dashboard cards, metrics, leaderboards | Dashboard Builder, Widget Grid, Spreadsheet |
+| Dialogs, toasts, popovers, tooltips | Form Builder, File Manager, AI Chat |
 
 A subset of components - marked **🔒 PRO** in the tables below - are gated behind a license
 token. Without one they still render (nothing throws, nothing breaks your build), but show a
@@ -156,10 +246,12 @@ import { NX_LICENSE_TOKEN, nxProLicenseGranted } from 'nexium-ui';
 - `nxProLicenseGranted(): Signal<boolean>` - what each PRO component calls internally (as a field
   initializer, so it must run in an injection context), then reads as `licensed()` in its
   template. Starts `false` and flips to `true` once your token is confirmed against the real,
-  server-side license pool - there's nothing to forge locally: tokens are a fixed set issued only
-  after a payment is independently re-verified with PayPal server-side, and checking one is a
-  live network lookup, not a recomputable local check. Always `false` during server-side
-  rendering; the real check runs client-side after hydration.
+  server-side license pool. Tokens are a fixed set issued only after a payment is independently
+  re-verified with PayPal server-side, so a token can't be fabricated client-side - but note this
+  gate controls which *UI* renders, not access to sensitive data or server-side functionality; if
+  you build paid features of your own behind NexiumUI PRO components, protect those on your own
+  server too. Always `false` during server-side rendering; the real check runs client-side after
+  hydration.
 
 Because the check is a network call, it's cached per token (in memory for the page load, and in
 `localStorage` for 24h) so pages with many PRO components only verify once, not once per
@@ -192,6 +284,9 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Tree | `nx-tree`, `nx-tree-node` |
 | Tree Table 🔒 PRO | `nx-tree-table` |
 | Avatar | `nx-avatar` |
+| Avatar Group | `nx-avatar-group` |
+| Organization Chart 🔒 PRO | `nx-org-chart` |
+| Integration Manager 🔒 PRO | `nx-integration-manager` |
 | Badge | `nx-badge` |
 | Todo List 🔒 PRO | `nx-todo-list` |
 | Notes App 🔒 PRO | `nx-notes-app` |
@@ -234,6 +329,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Text Scramble 🔒 PRO | `nx-text-scramble` |
 | Number Ticker 🔒 PRO | `nx-number-ticker` |
 | Integration Card 🔒 PRO | `nx-integration-card` |
+| Infinite Data Table 🔒 PRO | `nx-infinite-table` |
 
 ### Forms
 
@@ -244,6 +340,8 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Checkbox | `nx-checkbox` |
 | Color Picker | `nx-color-picker` |
 | Combobox | `nx-combobox` |
+| Split Button | `nx-split-button` |
+| Form Validation Summary | `nx-form-validation-summary` |
 | Datepicker | `nx-datepicker` |
 | Date Range Picker | `nx-date-range-picker` |
 | Time Picker | `nx-time-picker` |
@@ -272,6 +370,8 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Transfer Box | `nx-transfer-box` |
 | Tag Input | `nx-tag-input` |
 | Inline Edit 🔒 PRO | `nx-inline-edit` |
+| Cascader 🔒 PRO | `nx-cascader` |
+| File Input with Validation 🔒 PRO | `nx-file-input` |
 
 ### Feedback
 
@@ -292,6 +392,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Modal | `nx-modal` |
 | Notification Center | `nx-notification-center` |
 | Notification Inbox 🔒 PRO | `nx-notification-inbox` |
+| Notification Preferences 🔒 PRO | `nx-notification-preferences` |
 | Popover | `nx-popover` |
 | Popover Menu | `nx-popover-menu` |
 | Spotlight | `nx-spotlight` |
@@ -327,6 +428,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Stepper | `nx-stepper` |
 | Table of Contents 🔒 PRO | `nx-table-of-contents` |
 | Version Selector 🔒 PRO | `nx-version-selector` |
+| Application Switcher 🔒 PRO | `nx-app-switcher` |
 
 ### Panels
 
@@ -376,6 +478,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Marquee 🔒 PRO | `nx-marquee` |
 | Gradient Border 🔒 PRO | `nx-gradient-border` |
 | Glow 🔒 PRO | `nx-glow` |
+| Floating Panel 🔒 PRO | `nx-floating-panel` |
 
 ### Charts
 
@@ -399,6 +502,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Sankey Chart 🔒 PRO | `nx-sankey-chart` |
 | Sunburst Chart 🔒 PRO | `nx-sunburst-chart` |
 | Treemap 🔒 PRO | `nx-treemap` |
+| Box Plot 🔒 PRO | `nx-box-plot` |
 | Waterfall Chart | `nx-waterfall-chart` |
 
 `nx-bar-chart` also renders a stacked layout via its `stacked` input - there's no separate
@@ -419,6 +523,7 @@ normally once a valid `NX_LICENSE_TOKEN` is provided, and a locked placeholder o
 | Bulk Actions 🔒 PRO | `nx-bulk-actions` |
 | Magnetic Button 🔒 PRO | `nx-magnetic-button` |
 | Quick Create 🔒 PRO | `nx-quick-create` |
+| Saved Views 🔒 PRO | `nx-saved-views` |
 
 ### Collaboration & Activity
 
@@ -483,6 +588,10 @@ Every component below is 🔒 PRO.
 | Calculator 🔒 PRO | `nx-calculator` |
 | API Key Manager 🔒 PRO | `nx-api-key-manager` |
 | Webhook Manager 🔒 PRO | `nx-webhook-manager` |
+| JSON Schema Validator 🔒 PRO | `nx-json-schema-validator` |
+| JWT Decoder 🔒 PRO | `nx-jwt-decoder` |
+| SQL Formatter 🔒 PRO | `nx-sql-formatter` |
+| Markdown Editor 🔒 PRO | `nx-markdown-editor` |
 
 ### Enterprise / PRO
 
@@ -508,6 +617,9 @@ Every component below is 🔒 PRO.
 | Bulk Editor | `nx-bulk-editor` |
 | Access Control | `nx-access-control` |
 | Role Editor | `nx-role-editor` |
+| Data Mapping Editor | `nx-data-mapping-editor` |
+| Data Import Wizard | `nx-data-import-wizard` |
+| Resource Allocation Board | `nx-resource-allocation-board` |
 
 ### AI & Machine Learning
 
@@ -524,6 +636,8 @@ Every component below is 🔒 PRO.
 | AI Token Usage | `nx-ai-token-usage` |
 | AI Model Playground 🔒 PRO | `nx-ai-model-playground` |
 | AI Command Bar 🔒 PRO | `nx-ai-command-bar` |
+| AI File Upload 🔒 PRO | `nx-ai-file-upload` |
+| AI Conversation History 🔒 PRO | `nx-ai-conversation-history` |
 
 ### Directives
 
@@ -568,24 +682,11 @@ For full input/output reference and live examples, see the hosted demo at
 
 ## Translation (i18n)
 
-Translation is **not** part of `nexium-ui` - it ships from the separate `core` package
-(`provideNxTranslate`, `NxTranslateService`, `NxTranslatePipe`), so it doesn't add weight to
-this library for apps that don't need it. Install it separately and see
-[`projects/core/README.md`](../core/README.md) for the full config and API reference. Quick
-taste:
-
-```ts
-import { provideNxTranslate } from 'core';
-
-provideNxTranslate({
-  defaultLang: 'en',
-  translations: { en: { greeting: 'Hello, {{name}}!' } },
-});
-```
-
-```html
-<p>{{ 'greeting' | nxTranslate:{ name: user.firstName } }}</p>
-```
+Translation is intentionally **not** part of `nexium-ui`, so it adds no weight for apps that
+don't need it. A companion package (`provideNxTranslate`, `NxTranslateService`,
+`NxTranslatePipe`) exists in the NexiumUI monorepo and is on the roadmap for a separate npm
+release - it is not installable yet. In the meantime, NexiumUI components work fine alongside
+any Angular i18n solution, since all user-facing text comes from your own inputs and templates.
 
 ## Detailed examples
 
@@ -954,16 +1055,14 @@ providers: [{ provide: NxPermissionChecker, useClass: AppPermissionChecker }]
 <button *nxHasPermission="[Role.Admin, 'DEL_INV']">Delete invoice</button>
 ```
 
-## Running end-to-end tests
+## License
 
-For end-to-end (e2e) testing, run:
+Free components (not marked 🔒 PRO) are MIT licensed. PRO components ship in the same package
+but require a paid [license token](#pro--licensed-components) for production use. See
+[LICENSE](./LICENSE) for the full terms.
 
-```bash
-ng e2e
-```
+## Resources
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Live demo & documentation](https://nexium-ui.vercel.app/getting-started)
+- [Get a PRO license](https://nexium-ui.vercel.app/pro-upgrade)
+- [Report an issue](https://github.com/BahaaHayajneh99/nexium-ui/issues)

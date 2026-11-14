@@ -1,0 +1,93 @@
+.nx-jwt-decoder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nx-jwt-decoder-input {
+    min-height: 90px;
+    padding: 10px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-surface);
+    color: var(--shell-text);
+    font-family: var(--nx-font-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
+    font-size: 12px;
+    resize: vertical;
+    word-break: break-all;
+}
+
+.nx-jwt-decoder-disclaimer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    color: var(--shell-text-secondary);
+    font-size: 12px;
+}
+
+.nx-jwt-decoder-error {
+    padding: 10px 12px;
+    border: 1px solid var(--nx-color-danger, #e74c3c);
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: rgba(231, 76, 60, .08);
+    color: var(--nx-color-danger, #e74c3c);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.nx-jwt-decoder-expiry {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: rgba(46, 204, 113, .12);
+    color: var(--nx-color-success, #2ecc71);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.nx-jwt-decoder-expiry.expired {
+    background-color: rgba(231, 76, 60, .12);
+    color: var(--nx-color-danger, #e74c3c);
+}
+
+.nx-jwt-decoder-panels {
+    display: flex;
+    gap: 12px;
+}
+
+@media (max-width: 720px) {
+    .nx-jwt-decoder-panels {
+        flex-direction: column;
+    }
+}
+
+.nx-jwt-decoder-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.nx-jwt-decoder-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--shell-text-secondary);
+}
+
+.nx-jwt-decoder-code {
+    margin: 0;
+    padding: 10px;
+    border-radius: var(--nx-radius-sm, 4px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    color: #e6e6e6;
+    font-family: var(--nx-font-mono, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace);
+    font-size: 12px;
+    overflow-x: auto;
+    white-space: pre;
+    min-height: 120px;
+}
