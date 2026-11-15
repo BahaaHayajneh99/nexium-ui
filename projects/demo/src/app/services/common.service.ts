@@ -50,7 +50,7 @@ export class CommonService {
   readonly appName = 'NexiumUI';
 
   packageVersion = '0.1.11';
-
+ 
   /**
    * Kill switch for the PayPal-wallet-login button on /pro-upgrade. `false` renders a
    * card-only checkout (fundingSource: paypal.FUNDING.CARD) - set while the live PayPal
