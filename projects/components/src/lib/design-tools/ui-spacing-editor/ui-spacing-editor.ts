@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -18,7 +19,7 @@ export interface NxSpacingValue {
 @Component({
   selector: 'nx-spacing-editor',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-spacing-editor.html',
   styleUrl: './ui-spacing-editor.scss',
 })

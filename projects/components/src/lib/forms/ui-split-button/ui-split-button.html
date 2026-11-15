@@ -18,18 +18,15 @@
         <nx-icon icon="nx-chevron-down" variant="svg" [size]="14"></nx-icon>
     </button>
 
-    @if (isOpen()) {
-        <ul class="nx-split-button-menu" role="menu" (keydown.escape)="closeMenu()">
-            @for (action of actions; track action.value) {
-                <li
-                    role="menuitem"
-                    class="nx-split-button-menu-item"
-                    [class.disabled]="action.disabled"
-                    (click)="selectAction(action)">
-                    {{ action.label }}
-                </li>
-            }
-        </ul>
-    }
+    <ul class="nx-split-button-menu" role="menu" (keydown.escape)="closeMenu()" *ngIf="isOpen()">
+        <li
+            role="menuitem"
+            class="nx-split-button-menu-item"
+            *ngFor="let action of actions; trackBy: trackByActionValue"
+            [class.disabled]="action.disabled"
+            (click)="selectAction(action)">
+            {{ action.label }}
+        </li>
+    </ul>
 
 </div>

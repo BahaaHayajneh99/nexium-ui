@@ -1,5 +1,5 @@
 import { booleanAttribute, Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export type NxAlertVariant = 'success' | 'danger' | 'warning' | 'info';
@@ -14,7 +14,7 @@ const NX_ALERT_ICONS: Record<NxAlertVariant, string> = {
 @Component({
   selector: 'nx-alert',
   standalone: true,
-  imports: [NgClass, NxIcon],
+  imports: [NgClass, NgIf, NxIcon],
   templateUrl: './ui-alert.html',
   styleUrl: './ui-alert.scss',
 })

@@ -1,11 +1,8 @@
-@if (licensed()) {
-    <div class="nx-integration-card" [class.status-error]="status === 'error'">
+<div class="nx-integration-card" [class.status-error]="status === 'error'" *ngIf="licensed(); else elseBlock1">
         <div class="nx-integration-card-header">
             <div class="nx-integration-card-icon">
                 <ng-content select="[icon]">
-                    @if (icon) {
-                        <nx-icon [icon]="icon" variant="svg" [size]="28"></nx-icon>
-                    }
+                    <nx-icon *ngIf="icon" [icon]="icon" variant="svg" [size]="28"></nx-icon>
                 </ng-content>
             </div>
 
@@ -17,9 +14,7 @@
             </div>
         </div>
 
-        @if (description) {
-            <p class="nx-integration-card-description">{{ description }}</p>
-        }
+        <p class="nx-integration-card-description" *ngIf="description">{{ description }}</p>
 
         <div class="nx-integration-card-actions">
             <button
@@ -31,14 +26,12 @@
                 {{ status === 'connected' ? 'Disconnect' : 'Connect' }}
             </button>
 
-            @if (status === 'connected' && configurable) {
-                <button type="button" class="nx-integration-card-configure" (click)="configure.emit()">
-                    <nx-icon icon="nx-settings" variant="svg" [size]="14"></nx-icon>
-                    Configure
-                </button>
-            }
+            <button type="button" class="nx-integration-card-configure" (click)="configure.emit()" *ngIf="status === 'connected' && configurable">
+                <nx-icon icon="nx-settings" variant="svg" [size]="14"></nx-icon>
+                Configure
+            </button>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Integration Card"></nx-pro-locked>
-}
+</ng-template>

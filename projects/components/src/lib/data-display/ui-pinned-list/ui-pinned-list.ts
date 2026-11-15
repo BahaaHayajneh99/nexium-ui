@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -28,7 +28,7 @@ export interface NxPinnedItem {
 @Component({
   selector: 'nx-pinned-list',
   standalone: true,
-  imports: [NgTemplateOutlet, NxIcon, NxProLocked],
+  imports: [NgTemplateOutlet, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, NxIcon, NxProLocked],
   templateUrl: './ui-pinned-list.html',
   styleUrl: './ui-pinned-list.scss',
 })
@@ -43,6 +43,10 @@ export class NxPinnedList {
   @Output() itemsChange = new EventEmitter<NxPinnedItem[]>();
   @Output() itemClick = new EventEmitter<NxPinnedItem>();
   @Output() unpinned = new EventEmitter<NxPinnedItem>();
+
+  trackByPinnedItemId(_index: number, item: NxPinnedItem): string {
+    return item.id;
+  }
 
   unpin(item: NxPinnedItem): void {
     const next = this.items.filter((i) => i.id !== item.id);

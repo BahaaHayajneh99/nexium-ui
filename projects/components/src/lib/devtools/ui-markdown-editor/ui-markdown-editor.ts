@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -115,7 +116,7 @@ function markdownToHtml(source: string): string {
 @Component({
   selector: 'nx-markdown-editor',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-markdown-editor.html',
   styleUrl: './ui-markdown-editor.scss',
 })

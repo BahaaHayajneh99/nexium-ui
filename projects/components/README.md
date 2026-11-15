@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/nexium-ui.svg)](https://www.npmjs.com/package/nexium-ui)
 [![npm downloads](https://img.shields.io/npm/dm/nexium-ui.svg)](https://www.npmjs.com/package/nexium-ui)
 [![License](https://img.shields.io/badge/license-Free%20%2B%20PRO-blue.svg)](./LICENSE)
-[![Angular](https://img.shields.io/badge/Angular-18.1%2B-dd0031.svg)](#supported-angular-versions)
+[![Angular](https://img.shields.io/badge/Angular-16%2B-dd0031.svg)](#supported-angular-versions)
 [![GitHub stars](https://img.shields.io/github/stars/BahaaHayajneh99/nexium-ui.svg?style=social)](https://github.com/BahaaHayajneh99/nexium-ui)
 
 **A comprehensive Angular UI component library: 300+ standalone components, plus directives and
@@ -87,7 +87,7 @@ npm i nexium-ui
 
 | nexium-ui | Angular |
 | --- | --- |
-| 0.1.10 and later | 18.1+, 19, 20, 21 |
+| 0.1.10 and later | 16, 17, 18, 19, 20, 21 |
 | 0.1.9 and earlier | 21.2+ only |
 
 ## Styles & Theming

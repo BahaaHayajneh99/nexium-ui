@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber, seriesColor } from '../chart-utils';
 
 export interface NxFunnelStage {
@@ -19,7 +20,7 @@ interface FunnelBar {
 @Component({
   selector: 'nx-funnel-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-funnel-chart.html',
   styleUrl: './ui-funnel-chart.scss',
 })
@@ -104,5 +105,9 @@ export class NxFunnelChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackByBarLabel(index: number, bar: FunnelBar): string {
+    return bar.stage.label;
   }
 }

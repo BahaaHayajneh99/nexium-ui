@@ -1,51 +1,44 @@
-@if (licensed()) {
-    <div class="nx-property-editor">
-        @for (prop of properties; track prop.key) {
-            <div class="nx-property-editor-row">
-                <label class="nx-property-editor-label">{{ prop.label }}</label>
-                <div class="nx-property-editor-control">
-                    @switch (prop.type) {
-                        @case ('text') {
+<div class="nx-property-editor" *ngIf="licensed(); else elseBlock1">
+        <div class="nx-property-editor-row" *ngFor="let prop of properties; trackBy: trackByPropKey">
+            <label class="nx-property-editor-label">{{ prop.label }}</label>
+            <div class="nx-property-editor-control">
+                <ng-container [ngSwitch]="prop.type">
+                    <ng-container *ngSwitchCase="'text'">
+                        <input
+                            type="text"
+                            [value]="values[prop.key]"
+                            (input)="setValue(prop.key, $any($event.target).value)" />
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'number'">
+                        <div class="nx-property-editor-number-wrap">
                             <input
-                                type="text"
+                                type="number"
                                 [value]="values[prop.key]"
-                                (input)="setValue(prop.key, $any($event.target).value)" />
-                        }
-                        @case ('number') {
-                            <div class="nx-property-editor-number-wrap">
-                                <input
-                                    type="number"
-                                    [value]="values[prop.key]"
-                                    (input)="setValue(prop.key, $any($event.target).valueAsNumber)" />
-                                @if (prop.unit) {
-                                    <span class="nx-property-editor-unit">{{ prop.unit }}</span>
-                                }
-                            </div>
-                        }
-                        @case ('color') {
-                            <input
-                                type="color"
-                                [value]="values[prop.key]"
-                                (input)="setValue(prop.key, $any($event.target).value)" />
-                        }
-                        @case ('boolean') {
-                            <input
-                                type="checkbox"
-                                [checked]="values[prop.key]"
-                                (change)="setValue(prop.key, $any($event.target).checked)" />
-                        }
-                        @case ('select') {
-                            <select [value]="values[prop.key]" (change)="setValue(prop.key, $any($event.target).value)">
-                                @for (option of prop.options; track option.value) {
-                                    <option [value]="option.value">{{ option.label }}</option>
-                                }
-                            </select>
-                        }
-                    }
-                </div>
+                                (input)="setValue(prop.key, $any($event.target).valueAsNumber)" />
+                            <span class="nx-property-editor-unit" *ngIf="prop.unit">{{ prop.unit }}</span>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'color'">
+                        <input
+                            type="color"
+                            [value]="values[prop.key]"
+                            (input)="setValue(prop.key, $any($event.target).value)" />
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'boolean'">
+                        <input
+                            type="checkbox"
+                            [checked]="values[prop.key]"
+                            (change)="setValue(prop.key, $any($event.target).checked)" />
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'select'">
+                        <select [value]="values[prop.key]" (change)="setValue(prop.key, $any($event.target).value)">
+                            <option *ngFor="let option of prop.options; trackBy: trackByOptionValue" [value]="option.value">{{ option.label }}</option>
+                        </select>
+                    </ng-container>
+                </ng-container>
             </div>
-        }
+        </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Property Editor"></nx-pro-locked>
-}
+</ng-template>

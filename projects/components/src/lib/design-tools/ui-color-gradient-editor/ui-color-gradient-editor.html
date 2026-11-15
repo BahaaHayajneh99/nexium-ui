@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-color-gradient-editor">
+<div class="nx-color-gradient-editor" *ngIf="licensed(); else elseBlock1">
         <nx-color-gradient [type]="type" [angle]="angle" [stops]="stops"></nx-color-gradient>
 
         <div
@@ -7,7 +6,7 @@
             (dblclick)="onTrackDoubleClick($event)"
             (pointermove)="onHandlePointerMove($event)"
             (pointerup)="onHandlePointerUp()">
-            @for (stop of stops; track $index; let i = $index) {
+            <ng-container *ngFor="let stop of stops; trackBy: trackByStopIndex; let i = index">
                 <button
                     type="button"
                     class="nx-color-gradient-editor-handle"
@@ -16,7 +15,7 @@
                     [style.background]="stop.color"
                     (pointerdown)="onHandlePointerDown(i, $event)"
                     (click)="select(i)"></button>
-            }
+            </ng-container>
         </div>
 
         <div class="nx-color-gradient-editor-controls">
@@ -25,29 +24,27 @@
                 <option value="radial">Radial</option>
             </select>
 
-            @if (type === 'linear') {
-                <input
-                    type="number"
-                    class="nx-color-gradient-editor-number"
-                    min="0"
-                    max="360"
-                    [value]="angle"
-                    (input)="setAngle($any($event.target).valueAsNumber)" />
-            }
+            <input
+                *ngIf="type === 'linear'"
+                type="number"
+                class="nx-color-gradient-editor-number"
+                min="0"
+                max="360"
+                [value]="angle"
+                (input)="setAngle($any($event.target).valueAsNumber)" />
 
-            @if (selectedStop) {
-                <input
-                    type="color"
-                    class="nx-color-gradient-editor-color"
-                    [value]="selectedStop.color"
-                    (input)="setSelectedColor($any($event.target).value)" />
-            }
+            <input
+                *ngIf="selectedStop"
+                type="color"
+                class="nx-color-gradient-editor-color"
+                [value]="selectedStop.color"
+                (input)="setSelectedColor($any($event.target).value)" />
 
             <button type="button" class="nx-color-gradient-editor-remove" [disabled]="stops.length <= 2" (click)="removeSelected()">
                 Remove stop
             </button>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Color Gradient Editor"></nx-pro-locked>
-}
+</ng-template>

@@ -1,32 +1,25 @@
-@if (licensed()) {
-    <div class="nx-code-runner">
-        @for (block of blocks; track $index; let i = $index) {
-            <div class="nx-code-block">
-                <div class="nx-code-block-header">
-                    <span class="nx-code-lang">{{ block.language }}</span>
-                    @if (isRunnable(block.language)) {
-                        <button type="button" class="nx-code-run-btn" (click)="run(i, block.code)">Run</button>
-                    }
-                </div>
-
-                <pre class="nx-code-pre"><code>{{ block.code }}</code></pre>
-
-                @if (stateFor(i).ran) {
-                    <div class="nx-code-output" [class.has-error]="stateFor(i).error">
-                        @if (stateFor(i).error; as err) {
-                            <div class="nx-code-output-error">{{ err }}</div>
-                        } @else {
-                            @for (line of stateFor(i).output; track $index) {
-                                <div class="nx-code-output-line">{{ line }}</div>
-                            } @empty {
-                                <div class="nx-code-output-line nx-code-output-empty">(no output)</div>
-                            }
-                        }
-                    </div>
-                }
+<div class="nx-code-runner" *ngIf="licensed(); else elseBlock1">
+    <ng-container *ngFor="let block of blocks; trackBy: trackByBlockIndex; let i = index">
+        <div class="nx-code-block">
+            <div class="nx-code-block-header">
+                <span class="nx-code-lang">{{ block.language }}</span>
+                <button type="button" class="nx-code-run-btn" *ngIf="isRunnable(block.language)" (click)="run(i, block.code)">Run</button>
             </div>
-        }
-    </div>
-} @else {
+
+            <pre class="nx-code-pre"><code>{{ block.code }}</code></pre>
+
+            <div class="nx-code-output" [class.has-error]="stateFor(i).error" *ngIf="stateFor(i).ran">
+                <div class="nx-code-output-error" *ngIf="stateFor(i).error as err; else elseBlock2">{{ err }}</div>
+                <ng-template #elseBlock2>
+                    <ng-container *ngFor="let line of stateFor(i).output; trackBy: trackByLineIndex">
+                        <div class="nx-code-output-line">{{ line }}</div>
+                    </ng-container>
+                    <div class="nx-code-output-line nx-code-output-empty" *ngIf="!stateFor(i).output || stateFor(i).output.length === 0">(no output)</div>
+                </ng-template>
+            </div>
+        </div>
+    </ng-container>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Markdown Code Runner"></nx-pro-locked>
-}
+</ng-template>

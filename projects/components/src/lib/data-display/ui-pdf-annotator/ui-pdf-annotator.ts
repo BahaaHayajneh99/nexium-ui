@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, computed, signal } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -68,7 +69,7 @@ function clamp01(value: number): number {
 @Component({
   selector: 'nx-pdf-annotator',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-pdf-annotator.html',
   styleUrl: './ui-pdf-annotator.scss',
 })
@@ -120,6 +121,18 @@ export class NxPdfAnnotator {
 
   get overlayActive(): boolean {
     return this.activeTool() !== null;
+  }
+
+  trackByTool(_index: number, t: NxToolDef): NxAnnotationTool {
+    return t.tool;
+  }
+
+  trackByColor(_index: number, c: string): string {
+    return c;
+  }
+
+  trackByAnnotationId(_index: number, a: NxPdfAnnotation): string {
+    return a.id;
   }
 
   selectTool(tool: NxAnnotationTool): void {

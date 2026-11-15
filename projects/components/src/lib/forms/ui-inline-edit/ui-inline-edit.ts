@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, booleanAttribute, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxNumber } from '../ui-number';
 import { NxSelect, NxSelectOption } from '../ui-select';
@@ -19,7 +20,7 @@ export type NxInlineEditType = 'text' | 'number' | 'textarea' | 'select';
 @Component({
   selector: 'nx-inline-edit',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxNumber, NxSelect, NxProLocked],
+  imports: [FormsModule, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, NxIcon, NxNumber, NxSelect, NxProLocked],
   templateUrl: './ui-inline-edit.html',
   styleUrl: './ui-inline-edit.scss',
 })

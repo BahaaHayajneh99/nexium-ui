@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <span class="nx-number-ticker">{{ displayValue }}</span>
-} @else {
+<span class="nx-number-ticker" *ngIf="licensed(); else elseBlock1">{{ displayValue }}</span>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Number Ticker"></nx-pro-locked>
-}
+</ng-template>

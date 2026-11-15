@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -297,7 +298,7 @@ export function defaultFieldValue(field: NxFormField): unknown {
 @Component({
   selector: 'nx-form-builder',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-form-builder.html',
   styleUrl: './ui-form-builder.scss',
 })
@@ -356,6 +357,46 @@ export class NxFormBuilder {
   protected readonly previewSubmitResult = signal<string | null>(null);
 
   protected readonly previewVisibilityMap = computed(() => computeVisibilityMap(this.schema.fields, this.previewValues()));
+
+  protected trackByPaletteType(index: number, item: { type: NxFormFieldType; label: string; icon: string }): NxFormFieldType {
+    return item.type;
+  }
+
+  protected trackByRowId(index: number, row: NxFormBuilderRow): string {
+    return row.field.id;
+  }
+
+  protected trackByPreviewRowId(index: number, row: NxFormBuilderRow): string {
+    return row.field.id;
+  }
+
+  protected trackBySelectOptionValue(index: number, opt: { label: string; value: string }): string {
+    return opt.value;
+  }
+
+  protected trackByRadioOptionValue(index: number, opt: { label: string; value: string }): string {
+    return opt.value;
+  }
+
+  protected trackByOptionIndex(index: number, opt: { label: string; value: string }): number {
+    return index;
+  }
+
+  protected trackByValidationIndex(index: number, rule: NxFormValidationRule): number {
+    return index;
+  }
+
+  protected trackByValidationType(index: number, type: NxFormValidationRule['type']): NxFormValidationRule['type'] {
+    return type;
+  }
+
+  protected trackByReferenceableFieldId(index: number, ref: NxFormField): string {
+    return ref.id;
+  }
+
+  protected trackByConditionOperator(index: number, op: NxFormFieldCondition['operator']): NxFormFieldCondition['operator'] {
+    return op;
+  }
 
   // --- Toolbar -------------------------------------------------------------
 

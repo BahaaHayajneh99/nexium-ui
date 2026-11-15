@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NX_FILTER_OPERATORS, NxFilterField, NxFilterOperator } from '../ui-filter-builder';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -30,7 +31,7 @@ function createId(): string {
 @Component({
   selector: 'nx-query-builder-group',
   standalone: true,
-  imports: [NxQueryBuilderGroup],
+  imports: [NgIf, NgFor, NxQueryBuilderGroup],
   templateUrl: './ui-query-builder-group.html',
   styleUrl: './ui-query-builder.scss',
 })
@@ -78,6 +79,18 @@ export class NxQueryBuilderGroup {
 
   asGroup(node: NxQueryRule | NxQueryGroup): NxQueryGroup {
     return node as NxQueryGroup;
+  }
+
+  trackByNodeId(index: number, node: NxQueryRule | NxQueryGroup): string {
+    return node.id;
+  }
+
+  trackByFieldId(index: number, field: NxFilterField): string {
+    return field.id;
+  }
+
+  trackByOperatorValue(index: number, operator: { value: NxFilterOperator; label: string }): NxFilterOperator {
+    return operator.value;
   }
 }
 

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input, OnDestroy, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -17,7 +18,7 @@ export interface NxTocHeading {
 @Component({
   selector: 'nx-table-of-contents',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-table-of-contents.html',
   styleUrl: './ui-table-of-contents.scss',
 })
@@ -45,6 +46,10 @@ export class NxTableOfContents implements AfterViewInit, OnDestroy {
 
   scrollTo(id: string): void {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  trackByHeadingId(index: number, heading: NxTocHeading): string {
+    return heading.id;
   }
 
   private setupObserver(): void {

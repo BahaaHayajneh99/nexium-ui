@@ -1,32 +1,27 @@
-@if (variant === 'ring') {
-    <div class="nx-goal-progress ring">
-        <svg viewBox="0 0 100 100" class="nx-goal-progress-svg">
-            <circle class="nx-goal-progress-track" cx="50" cy="50" r="40"></circle>
-            <circle
-                class="nx-goal-progress-fill"
-                cx="50"
-                cy="50"
-                r="40"
-                [style.stroke-dasharray]="circumference"
-                [style.stroke-dashoffset]="dashOffset"></circle>
-        </svg>
-        <div class="nx-goal-progress-ring-label">
-            <span class="nx-goal-progress-percent">{{ roundedPercent }}%</span>
-            @if (label) {
-                <span class="nx-goal-progress-caption">{{ label }}</span>
-            }
-        </div>
+<div class="nx-goal-progress ring" *ngIf="variant === 'ring'; else elseBlock1">
+    <svg viewBox="0 0 100 100" class="nx-goal-progress-svg">
+        <circle class="nx-goal-progress-track" cx="50" cy="50" r="40"></circle>
+        <circle
+            class="nx-goal-progress-fill"
+            cx="50"
+            cy="50"
+            r="40"
+            [style.stroke-dasharray]="circumference"
+            [style.stroke-dashoffset]="dashOffset"></circle>
+    </svg>
+    <div class="nx-goal-progress-ring-label">
+        <span class="nx-goal-progress-percent">{{ roundedPercent }}%</span>
+        <span class="nx-goal-progress-caption" *ngIf="label">{{ label }}</span>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <div class="nx-goal-progress bar">
-        @if (label) {
-            <div class="nx-goal-progress-bar-header">
-                <span>{{ label }}</span>
-                <span>{{ roundedPercent }}%</span>
-            </div>
-        }
+        <div class="nx-goal-progress-bar-header" *ngIf="label">
+            <span>{{ label }}</span>
+            <span>{{ roundedPercent }}%</span>
+        </div>
         <div class="nx-goal-progress-track-bar">
             <div class="nx-goal-progress-fill-bar" [style.width.%]="percent"></div>
         </div>
     </div>
-}
+</ng-template>

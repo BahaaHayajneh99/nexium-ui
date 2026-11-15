@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -18,7 +19,7 @@ export interface NxCascaderOption {
 @Component({
   selector: 'nx-cascader',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgFor, NgIf, NxIcon, NxProLocked],
   templateUrl: './ui-cascader.html',
   styleUrl: './ui-cascader.scss',
 })
@@ -118,5 +119,13 @@ export class NxCascader {
       this.valueChange.emit(next);
       this.open.set(false);
     }
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackByOptionValue(index: number, option: NxCascaderOption): string | number {
+    return option.value;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxSearch } from '../../forms/ui-search';
 import { NxChip } from '../ui-chip';
@@ -38,6 +39,8 @@ const DEFAULT_NOTES: NxNote[] = [
   selector: 'nx-notes-app',
   standalone: true,
   imports: [
+    NgIf,
+    NgFor,
     FormsModule,
     NxSearch,
     NxChip,
@@ -92,6 +95,14 @@ export class NxNotesApp {
       const matchesCategory = this.activeCategory === 'all' || note.category === this.activeCategory;
       return matchesTerm && matchesCategory;
     });
+  }
+
+  trackByCategory(_index: number, category: string): string {
+    return category;
+  }
+
+  trackByNoteId(_index: number, note: NxNote): number {
+    return note.id;
   }
 
   setCategory(category: string): void {

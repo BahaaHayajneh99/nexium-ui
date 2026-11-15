@@ -1,4 +1,5 @@
 import { booleanAttribute, Component, Input } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 
 export interface NxTreeNodeData {
   label: string;
@@ -9,7 +10,7 @@ export interface NxTreeNodeData {
 @Component({
   selector: 'nx-tree-node',
   standalone: true,
-  imports: [NxTreeNode],
+  imports: [NgIf, NgFor, NxTreeNode],
   templateUrl: './nx-tree-node.html',
   styleUrl: './ui-tree.scss',
 })
@@ -25,12 +26,16 @@ export class NxTreeNode {
   get hasChildren(): boolean {
     return !!this.node.children?.length;
   }
+
+  trackByLabel(_index: number, node: NxTreeNodeData): string {
+    return node.label;
+  }
 }
 
 @Component({
   selector: 'nx-tree',
   standalone: true,
-  imports: [NxTreeNode],
+  imports: [NgIf, NgFor, NxTreeNode],
   exportAs: 'nxTree',
   templateUrl: './ui-tree.html',
   styleUrl: './ui-tree.scss',
@@ -40,6 +45,10 @@ export class NxTree {
   @Input({ transform: booleanAttribute }) showExpandCollapseAll = false;
   @Input() expandAllLabel = 'Expand All';
   @Input() collapseAllLabel = 'Collapse All';
+
+  trackByLabel(_index: number, node: NxTreeNodeData): string {
+    return node.label;
+  }
 
   expandAll(): void {
     this.setExpandedState(this.nodes, true);

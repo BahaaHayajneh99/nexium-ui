@@ -1,4 +1,5 @@
 import { Component, Input, numberAttribute, signal } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 
 export interface NxSimpleDataGridColumn {
   field: string;
@@ -17,6 +18,7 @@ export type NxDataGridSortDirection = 'asc' | 'desc' | null;
 @Component({
   selector: 'nx-data-grid',
   standalone: true,
+  imports: [NgIf, NgFor],
   templateUrl: './ui-data-grid.html',
   styleUrl: './ui-data-grid.scss',
 })
@@ -122,5 +124,17 @@ export class NxDataGrid {
       return;
     }
     this.page.set(pageNum);
+  }
+
+  trackByColumnField(index: number, column: NxSimpleDataGridColumn): string {
+    return column.field;
+  }
+
+  trackByIndex(index: number, item: unknown): number {
+    return index;
+  }
+
+  trackByPageNum(index: number, pageNum: number): number {
+    return pageNum;
   }
 }

@@ -10,6 +10,7 @@ import {
   numberAttribute,
   signal,
 } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -59,7 +60,7 @@ export interface NxDataGridPageEvent {
 @Component({
   selector: 'nx-advanced-data-grid',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf, NgFor],
   templateUrl: './ui-advanced-data-grid.html',
   styleUrl: './ui-advanced-data-grid.scss',
 })
@@ -629,5 +630,21 @@ export class NxAdvancedDataGrid implements AfterViewInit {
 
   private htmlEscape(value: string): string {
     return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  trackByColumnId(index: number, column: NxDataGridColumn): string {
+    return column.id;
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackByGroupKey(index: number, group: { key: string; rows: Record<string, unknown>[] }): string {
+    return group.key;
+  }
+
+  trackByNumber(index: number, value: number): number {
+    return value;
   }
 }

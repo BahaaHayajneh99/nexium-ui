@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet, NgIf, NgFor } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 import { NxAvatar } from '../ui-avatar';
@@ -21,7 +21,7 @@ export interface NxOrgChartNode {
 @Component({
   selector: 'nx-org-chart',
   standalone: true,
-  imports: [NgTemplateOutlet, NxProLocked, NxAvatar, NxIcon],
+  imports: [NgTemplateOutlet, NgIf, NgFor, NxProLocked, NxAvatar, NxIcon],
   templateUrl: './ui-org-chart.html',
   styleUrl: './ui-org-chart.scss',
 })
@@ -35,6 +35,10 @@ export class NxOrgChart {
 
   /** Ids the user has explicitly collapsed - everything else with children starts expanded. */
   private readonly manuallyCollapsed = signal<Set<string | number>>(new Set());
+
+  trackByChildId(_index: number, child: NxOrgChartNode): string | number {
+    return child.id;
+  }
 
   hasChildren(node: NxOrgChartNode): boolean {
     return !!node.children?.length;

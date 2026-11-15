@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxAvatar } from '../../data-display/ui-avatar';
 import { NxSwitch } from '../../forms/ui-switch';
@@ -43,7 +44,7 @@ const ROLE_PALETTE = ['primary', 'success', 'warning', 'info', 'danger', 'second
 @Component({
   selector: 'nx-access-control',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxAvatar, NxSwitch, NxProLocked],
+  imports: [FormsModule, NgFor, NgIf, NxIcon, NxAvatar, NxSwitch, NxProLocked],
   templateUrl: './ui-access-control.html',
   styleUrl: './ui-access-control.scss',
 })
@@ -87,6 +88,14 @@ export class NxAccessControl {
       return matchesTerm && matchesRole;
     });
   });
+
+  trackByRoleValue(index: number, role: NxAccessControlRole): string {
+    return role.value;
+  }
+
+  trackByUserId(index: number, user: NxAccessControlUser): string | number {
+    return user.id;
+  }
 
   roleLabel(value: string): string {
     return this.roles.find((role) => role.value === value)?.label ?? value;

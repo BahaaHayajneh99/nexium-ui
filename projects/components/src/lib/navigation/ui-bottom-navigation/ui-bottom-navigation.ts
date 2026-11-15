@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export interface NxBottomNavItem {
@@ -10,7 +11,7 @@ export interface NxBottomNavItem {
 @Component({
   selector: 'nx-bottom-navigation',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgFor, NxIcon],
   templateUrl: './ui-bottom-navigation.html',
   styleUrl: './ui-bottom-navigation.scss',
 })
@@ -23,5 +24,9 @@ export class NxBottomNavigation {
   select(item: NxBottomNavItem): void {
     this.active = item.id;
     this.activeChange.emit(item.id);
+  }
+
+  trackByItemId(index: number, item: NxBottomNavItem): string | number {
+    return item.id;
   }
 }

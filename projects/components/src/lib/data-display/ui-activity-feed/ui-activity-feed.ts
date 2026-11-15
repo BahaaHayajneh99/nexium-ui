@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgIf, NgFor } from '@angular/common';
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NxIcon } from '../ui-icon';
@@ -53,7 +53,7 @@ const ALL = 'all';
 @Component({
   selector: 'nx-activity-feed',
   standalone: true,
-  imports: [DatePipe, FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, DatePipe, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-activity-feed.html',
   styleUrl: './ui-activity-feed.scss',
 })
@@ -189,5 +189,29 @@ export class NxActivityFeed {
 
   private unique(values: string[]): string[] {
     return [...new Set(values)].sort((a, b) => a.localeCompare(b));
+  }
+
+  trackByActor(index: number, actor: string): string {
+    return actor;
+  }
+
+  trackByCategory(index: number, category: string): string {
+    return category;
+  }
+
+  trackByGroupLabel(index: number, group: NxActivityFeedGroup): string {
+    return group.label;
+  }
+
+  trackByItem(index: number, item: NxActivityFeedItem): string | number {
+    return item.id;
+  }
+
+  trackByActionId(index: number, action: NxActivityFeedAction): string {
+    return action.id;
+  }
+
+  trackByMetadataLabel(index: number, entry: NxActivityFeedMetadataEntry): string {
+    return entry.label;
   }
 }

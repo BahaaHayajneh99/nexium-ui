@@ -1,9 +1,9 @@
 import { Component, Input, booleanAttribute, numberAttribute } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 
 @Component({
   selector: 'nx-skeleton',
-  imports: [NgClass],
+  imports: [NgClass, NgFor],
   templateUrl: './ui-skeleton.html',
   styleUrl: './ui-skeleton.scss',
 })
@@ -28,6 +28,10 @@ export class NxSkeleton {
 
   get lines(): number[] {
     return Array.from({ length: this.count });
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 
   get resolvedHeight(): string {

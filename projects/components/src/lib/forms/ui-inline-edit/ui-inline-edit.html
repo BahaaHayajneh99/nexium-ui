@@ -1,44 +1,41 @@
-@if (!licensed()) {
-    <nx-pro-locked componentName="Inline Edit"></nx-pro-locked>
-} @else if (!editing()) {
+<nx-pro-locked componentName="Inline Edit" *ngIf="!licensed(); else elseIfBlock1"></nx-pro-locked>
+<ng-template #elseIfBlock1>
     <div
         class="nx-inline-edit-display"
         [class.disabled]="disabled"
         tabindex="0"
         role="button"
         (click)="startEdit()"
-        (keydown.enter)="startEdit()">
-        @if (displayValue) {
-            <span class="nx-inline-edit-value">{{ displayValue }}</span>
-        } @else {
+        (keydown.enter)="startEdit()"
+        *ngIf="!editing(); else elseBlock1">
+        <span class="nx-inline-edit-value" *ngIf="displayValue; else elseBlock2">{{ displayValue }}</span>
+        <ng-template #elseBlock2>
             <span class="nx-inline-edit-placeholder">{{ placeholder || 'Click to edit' }}</span>
-        }
+        </ng-template>
 
-        @if (!disabled) {
-            <button
-                type="button"
-                class="nx-inline-edit-pencil"
-                aria-label="Edit"
-                (click)="$event.stopPropagation(); startEdit()">
-                <nx-icon icon="nx-edit" variant="svg" [size]="14"></nx-icon>
-            </button>
-        }
+        <button
+            type="button"
+            class="nx-inline-edit-pencil"
+            aria-label="Edit"
+            (click)="$event.stopPropagation(); startEdit()"
+            *ngIf="!disabled">
+            <nx-icon icon="nx-edit" variant="svg" [size]="14"></nx-icon>
+        </button>
     </div>
-} @else {
-    <div class="nx-inline-edit-editor">
-        <div class="nx-inline-edit-control" #editorWrap (focusout)="onEditorBlur($event)">
-            @switch (type) {
-                @case ('textarea') {
+    <ng-template #elseBlock1>
+        <div class="nx-inline-edit-editor">
+            <div class="nx-inline-edit-control" #editorWrap (focusout)="onEditorBlur($event)">
+                <ng-container [ngSwitch]="type">
                     <textarea
                         class="nx-inline-edit-textarea"
+                        *ngSwitchCase="'textarea'"
                         [value]="textDraft"
                         [placeholder]="placeholder"
                         [disabled]="disabled"
                         (input)="setTextDraft($any($event.target).value)"
                         (keydown.escape)="cancelEdit()"></textarea>
-                }
-                @case ('number') {
                     <nx-number
+                        *ngSwitchCase="'number'"
                         [ngModel]="numberDraft"
                         (ngModelChange)="setNumberDraft($event)"
                         [placeholder]="placeholder"
@@ -47,37 +44,35 @@
                         (keydown.enter)="confirmSave()"
                         (keydown.escape)="cancelEdit()">
                     </nx-number>
-                }
-                @case ('select') {
                     <nx-select
+                        *ngSwitchCase="'select'"
                         [value]="selectDraft"
                         [options]="options"
                         [disabled]="disabled"
                         (valueChange)="setSelectDraft($event)"
                         (keydown.escape)="cancelEdit()">
                     </nx-select>
-                }
-                @default {
                     <input
                         type="text"
                         class="nx-inline-edit-input"
+                        *ngSwitchDefault
                         [value]="textDraft"
                         [placeholder]="placeholder"
                         [disabled]="disabled"
                         (input)="setTextDraft($any($event.target).value)"
                         (keydown.enter)="confirmSave()"
                         (keydown.escape)="cancelEdit()" />
-                }
-            }
-        </div>
+                </ng-container>
+            </div>
 
-        <div class="nx-inline-edit-actions">
-            <button type="button" class="nx-inline-edit-action nx-inline-edit-save" aria-label="Save" (click)="confirmSave()">
-                <nx-icon icon="nx-check" variant="svg" [size]="14"></nx-icon>
-            </button>
-            <button type="button" class="nx-inline-edit-action nx-inline-edit-cancel" aria-label="Cancel" (click)="cancelEdit()">
-                <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
-            </button>
+            <div class="nx-inline-edit-actions">
+                <button type="button" class="nx-inline-edit-action nx-inline-edit-save" aria-label="Save" (click)="confirmSave()">
+                    <nx-icon icon="nx-check" variant="svg" [size]="14"></nx-icon>
+                </button>
+                <button type="button" class="nx-inline-edit-action nx-inline-edit-cancel" aria-label="Cancel" (click)="cancelEdit()">
+                    <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+                </button>
+            </div>
         </div>
-    </div>
-}
+    </ng-template>
+</ng-template>

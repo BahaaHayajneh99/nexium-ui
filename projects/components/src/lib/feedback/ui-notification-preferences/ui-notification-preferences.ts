@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 import { NxSwitch } from '../../forms/ui-switch';
@@ -18,7 +19,7 @@ export interface NxNotificationCategory {
 @Component({
   selector: 'nx-notification-preferences',
   standalone: true,
-  imports: [NxProLocked, NxSwitch],
+  imports: [NgFor, NgIf, NxProLocked, NxSwitch],
   templateUrl: './ui-notification-preferences.html',
   styleUrl: './ui-notification-preferences.scss',
 })
@@ -34,6 +35,14 @@ export class NxNotificationPreferences {
 
   cellValue(categoryKey: string, channelKey: string): boolean {
     return this.values[categoryKey]?.[channelKey] ?? false;
+  }
+
+  trackByChannelKey(index: number, channel: NxNotificationChannel): string {
+    return channel.key;
+  }
+
+  trackByCategoryKey(index: number, category: NxNotificationCategory): string {
+    return category.key;
   }
 
   onToggle(categoryKey: string, channelKey: string, checked: boolean): void {

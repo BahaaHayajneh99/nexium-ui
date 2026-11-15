@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -13,7 +14,7 @@ export interface NxColumnSelectorColumn {
 @Component({
   selector: 'nx-column-selector',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-column-selector.html',
   styleUrl: './ui-column-selector.scss',
 })
@@ -43,5 +44,9 @@ export class NxColumnSelector {
     if (!this.elementRef.nativeElement.contains(event.target as Node)) {
       this.open.set(false);
     }
+  }
+
+  trackByColumnId(index: number, column: NxColumnSelectorColumn): string {
+    return column.id;
   }
 }

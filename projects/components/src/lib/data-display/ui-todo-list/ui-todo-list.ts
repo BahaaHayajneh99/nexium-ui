@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -11,7 +12,7 @@ export interface NxTodoItem {
 @Component({
   selector: 'nx-todo-list',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-todo-list.html',
   styleUrl: './ui-todo-list.scss',
 })
@@ -35,6 +36,10 @@ export class NxTodoList {
 
   get remainingCount(): number {
     return this.items.filter((item) => !item.done).length;
+  }
+
+  trackByItemId(_index: number, item: NxTodoItem): string | number {
+    return item.id;
   }
 
   onDraftInput(event: Event): void {

@@ -1,8 +1,6 @@
 <div class="nx-code-block">
     <div class="nx-code-block-toolbar">
-        @if (language) {
-            <span class="nx-code-block-language">{{ language }}</span>
-        }
+        <span class="nx-code-block-language" *ngIf="language">{{ language }}</span>
         <button type="button" class="nx-code-block-copy" (click)="copy()">
             {{ copied() ? 'Copied!' : 'Copy' }}
         </button>

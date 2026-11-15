@@ -5,18 +5,14 @@
     [class.top-right]="position === 'top-right'"
     [class.top-left]="position === 'top-left'">
 
-    @if (hasActions && open()) {
-        <div class="nx-fab-actions">
-            @for (action of actions; track action.label) {
-                <button type="button" class="nx-fab-action" (click)="selectAction(action)">
-                    <span class="nx-fab-action-label">{{ action.label }}</span>
-                    <span class="nx-fab-action-circle">
-                        <nx-icon [icon]="action.icon" variant="svg" [size]="18"></nx-icon>
-                    </span>
-                </button>
-            }
-        </div>
-    }
+    <div class="nx-fab-actions" *ngIf="hasActions && open()">
+        <button type="button" class="nx-fab-action" (click)="selectAction(action)" *ngFor="let action of actions; trackBy: trackByActionLabel">
+            <span class="nx-fab-action-label">{{ action.label }}</span>
+            <span class="nx-fab-action-circle">
+                <nx-icon [icon]="action.icon" variant="svg" [size]="18"></nx-icon>
+            </span>
+        </button>
+    </div>
 
     <button
         type="button"

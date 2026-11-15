@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, booleanAttribute, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 /** A collapsible, labeled group of nav links - typically nested inside a sidebar. */
 @Component({
   selector: 'nx-nav-group',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgIf, NxIcon],
   templateUrl: './ui-nav-group.html',
   styleUrl: './ui-nav-group.scss',
 })

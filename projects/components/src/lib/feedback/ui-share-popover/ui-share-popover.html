@@ -1,4 +1,4 @@
-@if (licensed()) {
+<ng-container *ngIf="licensed(); else elseBlock1">
     <nx-popover [position]="position">
         <button type="button" class="nx-share-trigger" nx-popover-trigger>
             <nx-icon icon="nx-share" variant="svg" [size]="16"></nx-icon>
@@ -20,20 +20,20 @@
             </div>
 
             <div class="nx-share-channels">
-                @for (channel of visibleChannels; track channel.key) {
-                    <a
-                        class="nx-share-channel"
-                        [href]="shareHref(channel)"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        [attr.aria-label]="'Share on ' + channel.label">
-                        <nx-icon [icon]="channel.icon" variant="svg" [size]="20"></nx-icon>
-                        <span>{{ channel.label }}</span>
-                    </a>
-                }
+                <a
+                    class="nx-share-channel"
+                    *ngFor="let channel of visibleChannels; trackBy: trackByChannelKey"
+                    [href]="shareHref(channel)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    [attr.aria-label]="'Share on ' + channel.label">
+                    <nx-icon [icon]="channel.icon" variant="svg" [size]="20"></nx-icon>
+                    <span>{{ channel.label }}</span>
+                </a>
             </div>
         </div>
     </nx-popover>
-} @else {
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Share Popover"></nx-pro-locked>
-}
+</ng-template>

@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-theme-editor">
+<div class="nx-theme-editor" *ngIf="licensed(); else elseBlock1">
         <div class="nx-theme-editor-controls">
             <label class="nx-theme-editor-field">
                 <span>Primary color</span>
@@ -20,9 +19,7 @@
             <label class="nx-theme-editor-field">
                 <span>Font</span>
                 <select [value]="value.fontFamily" (change)="update({ fontFamily: $any($event.target).value })">
-                    @for (font of fontOptions; track font) {
-                        <option [value]="font">{{ font.split(',')[0] }}</option>
-                    }
+                    <option *ngFor="let font of fontOptions; trackBy: trackByFont" [value]="font">{{ font.split(',')[0] }}</option>
                 </select>
             </label>
         </div>
@@ -41,6 +38,6 @@
             </div>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Theme Editor"></nx-pro-locked>
-}
+</ng-template>

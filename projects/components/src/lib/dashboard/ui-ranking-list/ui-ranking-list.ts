@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxAvatar } from '../../data-display/ui-avatar';
 
 export interface NxRankingItem {
@@ -14,10 +15,14 @@ export interface NxRankingItem {
 @Component({
   selector: 'nx-ranking-list',
   standalone: true,
-  imports: [NxAvatar],
+  imports: [NgFor, NgIf, NxAvatar],
   templateUrl: './ui-ranking-list.html',
   styleUrl: './ui-ranking-list.scss',
 })
 export class NxRankingList {
   @Input() items: NxRankingItem[] = [];
+
+  trackByItemId(index: number, item: NxRankingItem): string | number {
+    return item.id;
+  }
 }

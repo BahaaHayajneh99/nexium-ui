@@ -1,95 +1,83 @@
-@if (licensed()) {
-    <div
-        #gridRoot
-        class="nx-spreadsheet"
-        tabindex="0"
-        [attr.dir]="direction"
-        [style.--nx-ss-header-bg]="theme.headerBackground"
-        [style.--nx-ss-accent]="theme.accentColor"
-        [style.--nx-ss-border]="theme.borderColor">
-        <div class="nx-spreadsheet-toolbar">
-            <button type="button" class="nx-spreadsheet-tool-btn" (click)="undo()" [disabled]="!canUndo()" aria-label="Undo" title="Undo (Ctrl+Z)">↶</button>
-            <button type="button" class="nx-spreadsheet-tool-btn" (click)="redo()" [disabled]="!canRedo()" aria-label="Redo" title="Redo (Ctrl+Y)">↷</button>
-            <span class="nx-spreadsheet-toolbar-spacer"></span>
-            <button type="button" class="nx-spreadsheet-export" (click)="exportCSV()">Export CSV</button>
-        </div>
+<div
+    #gridRoot
+    class="nx-spreadsheet"
+    tabindex="0"
+    [attr.dir]="direction"
+    [style.--nx-ss-header-bg]="theme.headerBackground"
+    [style.--nx-ss-accent]="theme.accentColor"
+    [style.--nx-ss-border]="theme.borderColor"
+    *ngIf="licensed(); else elseBlock1">
+    <div class="nx-spreadsheet-toolbar">
+        <button type="button" class="nx-spreadsheet-tool-btn" (click)="undo()" [disabled]="!canUndo()" aria-label="Undo" title="Undo (Ctrl+Z)">↶</button>
+        <button type="button" class="nx-spreadsheet-tool-btn" (click)="redo()" [disabled]="!canRedo()" aria-label="Redo" title="Redo (Ctrl+Y)">↷</button>
+        <span class="nx-spreadsheet-toolbar-spacer"></span>
+        <button type="button" class="nx-spreadsheet-export" (click)="exportCSV()">Export CSV</button>
+    </div>
 
-        <div class="nx-spreadsheet-scroll">
-            <div class="nx-spreadsheet-grid" [class.striped]="theme.stripedRows">
+    <div class="nx-spreadsheet-scroll">
+        <div class="nx-spreadsheet-grid" [class.striped]="theme.stripedRows">
 
-                @if (hasColumnGroups()) {
-                    <div class="nx-spreadsheet-row nx-spreadsheet-group-row">
-                        <div class="nx-spreadsheet-corner"></div>
-                        @for (span of columnGroupSpans(); track span.startCol) {
-                            <div class="nx-spreadsheet-group-header" [style.width.px]="groupSpanWidth(span)">
-                                {{ span.label }}
-                            </div>
-                        }
-                    </div>
-                }
-
-                <div class="nx-spreadsheet-row nx-spreadsheet-header-row" [style.top.px]="hasColumnGroups() ? 28 : 0">
-                    <div class="nx-spreadsheet-corner"></div>
-                    @for (col of colIndexes(); track col) {
-                        <div
-                            class="nx-spreadsheet-col-header"
-                            [class.frozen]="col < frozenCols"
-                            [style.width.px]="colWidth(col)"
-                            [style.inset-inline-start.px]="col < frozenCols ? colLeft(col) : null">
-                            {{ columnLabel(col) }}
-                            @if (columnDef(col)?.required) {
-                                <span class="nx-spreadsheet-required-mark">*</span>
-                            }
-                            <span class="nx-spreadsheet-col-resize" (mousedown)="startColResize(col, $event)"></span>
-                        </div>
-                    }
-                    @if (allowAddColumn) {
-                        <button type="button" class="nx-spreadsheet-add-col" (click)="addColumn()" aria-label="Add column" title="Add column">+</button>
-                    }
+            <div class="nx-spreadsheet-row nx-spreadsheet-group-row" *ngIf="hasColumnGroups()">
+                <div class="nx-spreadsheet-corner"></div>
+                <div class="nx-spreadsheet-group-header" [style.width.px]="groupSpanWidth(span)" *ngFor="let span of columnGroupSpans(); trackBy: trackBySpanStartCol">
+                    {{ span.label }}
                 </div>
-
-                @for (row of rowIndexes(); track row) {
-                    <div class="nx-spreadsheet-row" [style.height.px]="rowHeight(row)">
-                        <div
-                            class="nx-spreadsheet-row-header"
-                            [class.frozen]="row < frozenRows"
-                            [style.top.px]="row < frozenRows ? rowTop(row) : null">
-                            {{ row + 1 }}
-                            <span class="nx-spreadsheet-row-resize" (mousedown)="startRowResize(row, $event)"></span>
-                        </div>
-                        @for (col of colIndexes(); track col) {
-                            <div
-                                class="nx-spreadsheet-cell"
-                                [class.active]="isActive(row, col)"
-                                [class.selected]="isSelected(row, col) && !isActive(row, col)"
-                                [class.frozen-row]="row < frozenRows"
-                                [class.frozen-col]="col < frozenCols"
-                                [class.invalid]="!!cellError(row, col)"
-                                [style.width.px]="colWidth(col)"
-                                [style.inset-inline-start.px]="col < frozenCols ? colLeft(col) : null"
-                                [style.top.px]="row < frozenRows ? rowTop(row) : null"
-                                [title]="cellError(row, col)"
-                                (mousedown)="onCellMouseDown(row, col, $event)"
-                                (mouseenter)="onCellMouseEnter(row, col)"
-                                (dblclick)="onCellDoubleClick(row, col)">
-                                @if (isEditing(row, col)) {
-                                    <input
-                                        type="text"
-                                        class="nx-spreadsheet-cell-input"
-                                        nxAutofocus
-                                        [(ngModel)]="editDraft"
-                                        (click)="$event.stopPropagation()" />
-                                } @else {
-                                    <span class="nx-spreadsheet-cell-value">{{ displayValue(row, col) }}</span>
-                                }
-                            </div>
-                        }
-                    </div>
-                }
-
             </div>
+
+            <div class="nx-spreadsheet-row nx-spreadsheet-header-row" [style.top.px]="hasColumnGroups() ? 28 : 0">
+                <div class="nx-spreadsheet-corner"></div>
+                <div
+                    class="nx-spreadsheet-col-header"
+                    [class.frozen]="col < frozenCols"
+                    [style.width.px]="colWidth(col)"
+                    [style.inset-inline-start.px]="col < frozenCols ? colLeft(col) : null"
+                    *ngFor="let col of colIndexes(); trackBy: trackByCol">
+                    {{ columnLabel(col) }}
+                    <span class="nx-spreadsheet-required-mark" *ngIf="columnDef(col)?.required">*</span>
+                    <span class="nx-spreadsheet-col-resize" (mousedown)="startColResize(col, $event)"></span>
+                </div>
+                <button type="button" class="nx-spreadsheet-add-col" (click)="addColumn()" aria-label="Add column" title="Add column" *ngIf="allowAddColumn">+</button>
+            </div>
+
+            <div class="nx-spreadsheet-row" [style.height.px]="rowHeight(row)" *ngFor="let row of rowIndexes(); trackBy: trackByRow">
+                <div
+                    class="nx-spreadsheet-row-header"
+                    [class.frozen]="row < frozenRows"
+                    [style.top.px]="row < frozenRows ? rowTop(row) : null">
+                    {{ row + 1 }}
+                    <span class="nx-spreadsheet-row-resize" (mousedown)="startRowResize(row, $event)"></span>
+                </div>
+                <div
+                    class="nx-spreadsheet-cell"
+                    [class.active]="isActive(row, col)"
+                    [class.selected]="isSelected(row, col) && !isActive(row, col)"
+                    [class.frozen-row]="row < frozenRows"
+                    [class.frozen-col]="col < frozenCols"
+                    [class.invalid]="!!cellError(row, col)"
+                    [style.width.px]="colWidth(col)"
+                    [style.inset-inline-start.px]="col < frozenCols ? colLeft(col) : null"
+                    [style.top.px]="row < frozenRows ? rowTop(row) : null"
+                    [title]="cellError(row, col)"
+                    (mousedown)="onCellMouseDown(row, col, $event)"
+                    (mouseenter)="onCellMouseEnter(row, col)"
+                    (dblclick)="onCellDoubleClick(row, col)"
+                    *ngFor="let col of colIndexes(); trackBy: trackByCol">
+                    <input
+                        type="text"
+                        class="nx-spreadsheet-cell-input"
+                        nxAutofocus
+                        [(ngModel)]="editDraft"
+                        (click)="$event.stopPropagation()"
+                        *ngIf="isEditing(row, col); else elseBlock2" />
+                    <ng-template #elseBlock2>
+                        <span class="nx-spreadsheet-cell-value">{{ displayValue(row, col) }}</span>
+                    </ng-template>
+                </div>
+            </div>
+
         </div>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Spreadsheet"></nx-pro-locked>
-}
+</ng-template>

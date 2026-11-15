@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -26,7 +27,7 @@ function createId(): string {
 @Component({
   selector: 'nx-workflow-builder',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-workflow-builder.html',
   styleUrl: './ui-workflow-builder.scss',
 })
@@ -158,5 +159,13 @@ export class NxWorkflowBuilder {
   private pointerToCanvasPoint(event: PointerEvent): { x: number; y: number } {
     const rect = this.elementRef.nativeElement.querySelector('.nx-workflow-builder-canvas')!.getBoundingClientRect();
     return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+  }
+
+  trackByEdgeId(index: number, edge: NxWorkflowEdge): string {
+    return edge.id;
+  }
+
+  trackByNodeId(index: number, node: NxWorkflowNode): string {
+    return node.id;
   }
 }

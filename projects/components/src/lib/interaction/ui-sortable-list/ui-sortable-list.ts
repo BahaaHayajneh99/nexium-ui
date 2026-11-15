@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -12,7 +13,7 @@ export interface NxSortableItem {
 @Component({
   selector: 'nx-sortable-list',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-sortable-list.html',
   styleUrl: './ui-sortable-list.scss',
 })
@@ -62,5 +63,9 @@ export class NxSortableList {
   onDragEnd(): void {
     this.draggedIndex = null;
     this.dragOverIndex.set(null);
+  }
+
+  trackByItemId(index: number, item: NxSortableItem): string | number {
+    return item.id;
   }
 }

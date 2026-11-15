@@ -1,26 +1,19 @@
-@if (licensed()) {
-    <div class="nx-version-timeline">
-        @for (entry of entries; track entry.id; let last = $last) {
-            <div class="nx-version-timeline-node-wrap">
-                <div class="nx-version-timeline-node" [class.current]="entry.current">
-                    <span class="nx-version-timeline-dot"></span>
-                    <span class="nx-version-timeline-version">{{ entry.version }}</span>
-                    @if (entry.date) {
-                        <span class="nx-version-timeline-date">{{ entry.date }}</span>
-                    }
-                </div>
-                @if (entry.current) {
-                    <div class="nx-version-timeline-branch">
-                        <span class="nx-version-timeline-branch-line"></span>
-                        <span class="nx-version-timeline-branch-label">Current</span>
-                    </div>
-                }
+<div class="nx-version-timeline" *ngIf="licensed(); else elseBlock1">
+    <ng-container *ngFor="let entry of entries; trackBy: trackByEntryId; let last = last">
+        <div class="nx-version-timeline-node-wrap">
+            <div class="nx-version-timeline-node" [class.current]="entry.current">
+                <span class="nx-version-timeline-dot"></span>
+                <span class="nx-version-timeline-version">{{ entry.version }}</span>
+                <span class="nx-version-timeline-date" *ngIf="entry.date">{{ entry.date }}</span>
             </div>
-            @if (!last) {
-                <span class="nx-version-timeline-connector"></span>
-            }
-        }
-    </div>
-} @else {
+            <div class="nx-version-timeline-branch" *ngIf="entry.current">
+                <span class="nx-version-timeline-branch-line"></span>
+                <span class="nx-version-timeline-branch-label">Current</span>
+            </div>
+        </div>
+        <span class="nx-version-timeline-connector" *ngIf="!last"></span>
+    </ng-container>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Version Timeline"></nx-pro-locked>
-}
+</ng-template>

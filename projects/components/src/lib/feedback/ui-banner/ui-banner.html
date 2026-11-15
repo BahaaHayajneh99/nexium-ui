@@ -1,18 +1,12 @@
-@if (open) {
-    <div class="nx-banner" [class]="variant" role="status">
-        <nx-icon class="nx-banner-icon" [icon]="resolvedIcon" variant="svg" [size]="18"></nx-icon>
+<div class="nx-banner" *ngIf="open" [class]="variant" role="status">
+    <nx-icon class="nx-banner-icon" [icon]="resolvedIcon" variant="svg" [size]="18"></nx-icon>
 
-        <span class="nx-banner-message">
-            {{ message }}
-            <ng-content></ng-content>
-        </span>
+    <span class="nx-banner-message">
+        {{ message }}
+        <ng-content></ng-content>
+    </span>
 
-        @if (actionLabel) {
-            <button type="button" class="nx-banner-action" (click)="actionClick.emit()">{{ actionLabel }}</button>
-        }
+    <button type="button" class="nx-banner-action" *ngIf="actionLabel" (click)="actionClick.emit()">{{ actionLabel }}</button>
 
-        @if (dismissible) {
-            <button type="button" class="nx-banner-dismiss" aria-label="Dismiss" (click)="dismiss()">&times;</button>
-        }
-    </div>
-}
+    <button type="button" class="nx-banner-dismiss" *ngIf="dismissible" aria-label="Dismiss" (click)="dismiss()">&times;</button>
+</div>

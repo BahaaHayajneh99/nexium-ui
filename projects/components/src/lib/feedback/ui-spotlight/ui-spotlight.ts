@@ -12,6 +12,7 @@ import {
   booleanAttribute,
   numberAttribute,
 } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 export interface NxSpotlightRect {
   top: number;
@@ -33,7 +34,7 @@ export interface NxSpotlightRect {
 @Component({
   selector: 'nx-spotlight',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-spotlight.html',
   styleUrl: './ui-spotlight.scss',
 })

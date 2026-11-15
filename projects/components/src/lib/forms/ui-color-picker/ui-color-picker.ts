@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 
 const HEX_PATTERN = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i;
 
@@ -11,7 +12,7 @@ const DEFAULT_PRESETS = [
 @Component({
   selector: 'nx-color-picker',
   standalone: true,
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './ui-color-picker.html',
   styleUrl: './ui-color-picker.scss',
   host: {
@@ -141,6 +142,10 @@ export class NxColorPicker implements ControlValueAccessor, Validator {
 
   registerOnValidatorChange(fn: () => void): void {
     this.onValidatorChangeFn = fn;
+  }
+
+  trackByPreset(index: number, preset: string): string {
+    return preset;
   }
 
   private emitValue(hex: string): void {

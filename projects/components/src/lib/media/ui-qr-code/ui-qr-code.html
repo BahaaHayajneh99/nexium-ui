@@ -1,18 +1,16 @@
-@if (licensed()) {
-    <div
-        class="nx-qr-code"
-        [style.width.px]="size"
-        [style.height.px]="size"
-        role="img"
-        [attr.aria-label]="value ? ('QR code for ' + value) : 'QR code (no data)'">
+<div
+    class="nx-qr-code"
+    *ngIf="licensed(); else elseBlock1"
+    [style.width.px]="size"
+    [style.height.px]="size"
+    role="img"
+    [attr.aria-label]="value ? ('QR code for ' + value) : 'QR code (no data)'">
 
-        <canvas #canvasEl class="nx-qr-code-canvas"></canvas>
+    <canvas #canvasEl class="nx-qr-code-canvas"></canvas>
 
-        @if (errorMessage) {
-            <span class="nx-qr-code-error">{{ errorMessage }}</span>
-        }
+    <span class="nx-qr-code-error" *ngIf="errorMessage">{{ errorMessage }}</span>
 
-    </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="QR Code"></nx-pro-locked>
-}
+</ng-template>

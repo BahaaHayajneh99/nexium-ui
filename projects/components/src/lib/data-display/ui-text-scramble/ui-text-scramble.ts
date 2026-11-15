@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -13,7 +14,7 @@ export type NxTextScrambleTrigger = 'onInit' | 'onChange' | 'manual';
 @Component({
   selector: 'nx-text-scramble',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-text-scramble.html',
   styleUrl: './ui-text-scramble.scss',
 })

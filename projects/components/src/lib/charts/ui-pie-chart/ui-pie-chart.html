@@ -4,11 +4,11 @@
         {{ showTable ? 'View as chart' : 'View as table' }}
     </button>
 
-    @if (!showTable) {
+    <ng-container *ngIf="!showTable; else elseBlock1">
         <div class="nx-chart-canvas nx-pie-canvas">
             <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
 
-                @for (slice of slices; track slice.datum.label) {
+                <ng-container *ngFor="let slice of slices; trackBy: trackBySliceLabel">
                     <path
                         class="nx-chart-slice"
                         [class.nx-chart-slice-hovered]="hoveredIndex === slice.index"
@@ -22,19 +22,19 @@
                         (focus)="onSliceEnter(slice.index)"
                         (blur)="onSliceLeave()">
                     </path>
-                }
+                </ng-container>
 
-                @if (isDonut) {
+                <ng-container *ngIf="isDonut">
                     <text class="nx-chart-donut-total" text-anchor="middle" x="150" y="146">
                         {{ formatValue(total) }}
                     </text>
                     <text class="nx-chart-donut-caption" text-anchor="middle" x="150" y="164">
                         Total
                     </text>
-                }
+                </ng-container>
             </svg>
 
-            @if (hoveredSlice) {
+            <ng-container *ngIf="hoveredSlice">
                 <div class="nx-chart-tooltip" [style]="tooltipStyle">
                     <div class="nx-chart-tooltip-row">
                         <span class="nx-chart-tooltip-key" [style.background]="hoveredSlice.color"></span>
@@ -43,20 +43,21 @@
                     </div>
                     <div class="nx-chart-tooltip-percent">{{ formatPercent(hoveredSlice.percent) }} of total</div>
                 </div>
-            }
+            </ng-container>
         </div>
 
-        @if (hasLegend) {
+        <ng-container *ngIf="hasLegend">
             <div class="nx-chart-legend">
-                @for (slice of slices; track slice.datum.label) {
+                <ng-container *ngFor="let slice of slices; trackBy: trackBySliceLabel">
                     <div class="nx-chart-legend-item">
                         <span class="nx-chart-legend-swatch" [style.background]="slice.color"></span>
                         {{ slice.datum.label }}
                     </div>
-                }
+                </ng-container>
             </div>
-        }
-    } @else {
+        </ng-container>
+    </ng-container>
+    <ng-template #elseBlock1>
         <div class="nx-chart-table-wrap">
             <table class="nx-chart-table">
                 <thead>
@@ -67,16 +68,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (slice of slices; track slice.datum.label) {
+                    <ng-container *ngFor="let slice of slices; trackBy: trackBySliceLabel">
                         <tr>
                             <th scope="row">{{ slice.datum.label }}</th>
                             <td>{{ formatValue(slice.datum.value) }}</td>
                             <td>{{ formatPercent(slice.percent) }}</td>
                         </tr>
-                    }
+                    </ng-container>
                 </tbody>
             </table>
         </div>
-    }
+    </ng-template>
 
 </div>

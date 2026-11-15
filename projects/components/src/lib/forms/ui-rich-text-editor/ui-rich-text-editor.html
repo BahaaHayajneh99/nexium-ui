@@ -1,20 +1,19 @@
 <div class="nx-rte" [class.disabled]="disabled" [class.invalid]="!!displayError">
 
     <div class="nx-rte-toolbar">
-        @for (button of toolbar; track button.command + (button.arg ?? '')) {
-            <button
-                type="button"
-                class="nx-rte-btn"
-                [class.nx-rte-btn-bold]="button.command === 'bold'"
-                [class.nx-rte-btn-italic]="button.command === 'italic'"
-                [disabled]="disabled"
-                [attr.aria-label]="button.label"
-                [title]="button.label"
-                (mousedown)="$event.preventDefault()"
-                (click)="runCommand(button)">
-                {{ button.icon }}
-            </button>
-        }
+        <button
+            type="button"
+            class="nx-rte-btn"
+            *ngFor="let button of toolbar; trackBy: trackByToolbarButton"
+            [class.nx-rte-btn-bold]="button.command === 'bold'"
+            [class.nx-rte-btn-italic]="button.command === 'italic'"
+            [disabled]="disabled"
+            [attr.aria-label]="button.label"
+            [title]="button.label"
+            (mousedown)="$event.preventDefault()"
+            (click)="runCommand(button)">
+            {{ button.icon }}
+        </button>
         <button
             type="button"
             class="nx-rte-btn"
@@ -44,44 +43,28 @@
 
     <div class="nx-rte-footer">
         <span class="nx-rte-count">{{ wordCount }} words · {{ charCount }} characters</span>
-        @if (autosaveInterval > 0) {
-            <span class="nx-rte-autosave">{{ lastSavedAt() ? 'Saved ' + (lastSavedAt() | date: 'shortTime') : 'Not saved yet' }}</span>
-        }
+        <span class="nx-rte-autosave" *ngIf="autosaveInterval > 0">{{ lastSavedAt() ? 'Saved ' + (lastSavedAt() | date: 'shortTime') : 'Not saved yet' }}</span>
     </div>
 
-    @if (displayError) {
-        <span class="nx-rte-error">{{ displayError }}</span>
-    }
+    <span class="nx-rte-error" *ngIf="displayError">{{ displayError }}</span>
 
-    @if (slashMenuOpen() && filteredSlashCommands.length) {
-        <div class="nx-rte-popup" [style.left.px]="popupPos().x" [style.top.px]="popupPos().y">
-            @for (cmd of filteredSlashCommands; track cmd.id) {
-                <button type="button" class="nx-rte-popup-item" (mousedown)="$event.preventDefault()" (click)="runSlashCommand(cmd)">
-                    <span class="nx-rte-popup-icon">{{ cmd.icon }}</span>
-                    {{ cmd.label }}
-                </button>
-            }
-        </div>
-    }
+    <div class="nx-rte-popup" [style.left.px]="popupPos().x" [style.top.px]="popupPos().y" *ngIf="slashMenuOpen() && filteredSlashCommands.length">
+        <button type="button" class="nx-rte-popup-item" *ngFor="let cmd of filteredSlashCommands; trackBy: trackBySlashCommandId" (mousedown)="$event.preventDefault()" (click)="runSlashCommand(cmd)">
+            <span class="nx-rte-popup-icon">{{ cmd.icon }}</span>
+            {{ cmd.label }}
+        </button>
+    </div>
 
-    @if (mentionMenuOpen() && filteredMentions.length) {
-        <div class="nx-rte-popup" [style.left.px]="popupPos().x" [style.top.px]="popupPos().y">
-            @for (name of filteredMentions; track name) {
-                <button type="button" class="nx-rte-popup-item" (mousedown)="$event.preventDefault()" (click)="insertMention(name)">
-                    @{{ name }}
-                </button>
-            }
-        </div>
-    }
+    <div class="nx-rte-popup" [style.left.px]="popupPos().x" [style.top.px]="popupPos().y" *ngIf="mentionMenuOpen() && filteredMentions.length">
+        <button type="button" class="nx-rte-popup-item" *ngFor="let name of filteredMentions; trackBy: trackByMentionName" (mousedown)="$event.preventDefault()" (click)="insertMention(name)">
+            {{ '@' }}{{ name }}
+        </button>
+    </div>
 
-    @if (emojiMenuOpen()) {
-        <div class="nx-rte-emoji-popup">
-            @for (emoji of emojiList; track emoji) {
-                <button type="button" class="nx-rte-emoji-item" (mousedown)="$event.preventDefault()" (click)="insertEmoji(emoji)">
-                    {{ emoji }}
-                </button>
-            }
-        </div>
-    }
+    <div class="nx-rte-emoji-popup" *ngIf="emojiMenuOpen()">
+        <button type="button" class="nx-rte-emoji-item" *ngFor="let emoji of emojiList; trackBy: trackByEmoji" (mousedown)="$event.preventDefault()" (click)="insertEmoji(emoji)">
+            {{ emoji }}
+        </button>
+    </div>
 
 </div>

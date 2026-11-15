@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 
 export type NxChangelogEntryType = 'feature' | 'improvement' | 'fix';
 
@@ -17,7 +18,7 @@ export interface NxChangelogEntry {
 @Component({
   selector: 'nx-changelog-widget',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-changelog-widget.html',
   styleUrl: './ui-changelog-widget.scss',
 })
@@ -27,5 +28,13 @@ export class NxChangelogWidget {
 
   get visibleEntries(): NxChangelogEntry[] {
     return this.entries.slice(0, this.maxVersions);
+  }
+
+  trackByVersion(index: number, entry: NxChangelogEntry): string {
+    return entry.version;
+  }
+
+  trackByChangeDescription(index: number, change: NxChangelogChange): string {
+    return change.description;
   }
 }

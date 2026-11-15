@@ -11,6 +11,7 @@ import {
   booleanAttribute,
   numberAttribute,
 } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -38,7 +39,7 @@ interface NxTourRect {
 @Component({
   selector: 'nx-tour',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgFor, NgIf, NxProLocked],
   templateUrl: './ui-tour.html',
   styleUrl: './ui-tour.scss',
 })
@@ -126,6 +127,10 @@ export class NxTour implements OnChanges, OnDestroy {
 
   back(): void {
     this.goTo(this.currentIndex - 1);
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 
   goTo(index: number): void {

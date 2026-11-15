@@ -1,4 +1,5 @@
 import { Component, Input, signal } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -22,7 +23,7 @@ export interface NxAuditLogEntry {
 @Component({
   selector: 'nx-audit-log',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-audit-log.html',
   styleUrl: './ui-audit-log.scss',
 })
@@ -70,5 +71,17 @@ export class NxAuditLog {
       next.add(id);
     }
     this.expandedIds.set(next);
+  }
+
+  trackByAction(index: number, action: string): string {
+    return action;
+  }
+
+  trackByEntryId(index: number, entry: NxAuditLogEntry): string | number {
+    return entry.id;
+  }
+
+  trackByChangeField(index: number, change: NxAuditLogChange): string {
+    return change.field;
   }
 }

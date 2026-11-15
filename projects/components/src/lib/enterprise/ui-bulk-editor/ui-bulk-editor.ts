@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { NxModal } from '../../feedback/ui-modal/ui-modal';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -34,7 +35,7 @@ export interface NxBulkEditorChange {
 @Component({
   selector: 'nx-bulk-editor',
   standalone: true,
-  imports: [FormsModule, NxModal, NxProLocked],
+  imports: [FormsModule, NxModal, NxProLocked, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './ui-bulk-editor.html',
   styleUrl: './ui-bulk-editor.scss',
 })
@@ -121,6 +122,18 @@ export class NxBulkEditor {
       defaults[field.key] = this.defaultValueFor(field);
     }
     this.draftValues.set(defaults);
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackByFieldKey(index: number, field: NxBulkEditorField): string {
+    return field.key;
+  }
+
+  trackByOptionValue(index: number, opt: { label: string; value: unknown }): unknown {
+    return opt.value;
   }
 
   private defaultValueFor(field: NxBulkEditorField): unknown {

@@ -1,7 +1,5 @@
 <div class="nx-color-picker-wrapper">
-    @if (label) {
-        <label class="nx-color-picker-label">{{ label }}@if (isRequired) {<span class="nx-color-picker-required">*</span>}</label>
-    }
+    <label class="nx-color-picker-label" *ngIf="label">{{ label }}<span class="nx-color-picker-required" *ngIf="isRequired">*</span></label>
 
     <button
         type="button"
@@ -17,44 +15,39 @@
         <span class="nx-color-picker-value">{{ value }}</span>
     </button>
 
-    @if (displayError) {
-        <span class="nx-color-picker-error">{{ displayError }}</span>
-    }
+    <span class="nx-color-picker-error" *ngIf="displayError">{{ displayError }}</span>
 
-    @if (open) {
-        <div class="nx-color-picker-panel">
+    <div class="nx-color-picker-panel" *ngIf="open">
 
-            <div class="nx-color-picker-presets">
-                @for (preset of presets; track preset) {
-                    <button
-                        type="button"
-                        class="nx-color-picker-preset"
-                        [class.selected]="preset === value"
-                        [style.background]="preset"
-                        [attr.aria-label]="preset"
-                        (click)="selectPreset(preset)">
-                    </button>
-                }
-            </div>
-
-            <div class="nx-color-picker-custom">
-                <input
-                    type="color"
-                    class="nx-color-picker-native"
-                    [value]="isValidHex ? value : '#3498db'"
-                    (input)="onNativeInput($event)"
-                    (blur)="onBlur()" />
-
-                <input
-                    type="text"
-                    class="nx-color-picker-hex"
-                    [value]="hexDraft"
-                    (input)="onHexDraftChange($event)"
-                    (blur)="commitHexDraft(); onBlur()"
-                    (keydown.enter)="commitHexDraft()"
-                    spellcheck="false" />
-            </div>
-
+        <div class="nx-color-picker-presets">
+            <button
+                type="button"
+                class="nx-color-picker-preset"
+                *ngFor="let preset of presets; trackBy: trackByPreset"
+                [class.selected]="preset === value"
+                [style.background]="preset"
+                [attr.aria-label]="preset"
+                (click)="selectPreset(preset)">
+            </button>
         </div>
-    }
+
+        <div class="nx-color-picker-custom">
+            <input
+                type="color"
+                class="nx-color-picker-native"
+                [value]="isValidHex ? value : '#3498db'"
+                (input)="onNativeInput($event)"
+                (blur)="onBlur()" />
+
+            <input
+                type="text"
+                class="nx-color-picker-hex"
+                [value]="hexDraft"
+                (input)="onHexDraftChange($event)"
+                (blur)="commitHexDraft(); onBlur()"
+                (keydown.enter)="commitHexDraft()"
+                spellcheck="false" />
+        </div>
+
+    </div>
 </div>

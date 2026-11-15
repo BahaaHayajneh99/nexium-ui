@@ -10,13 +10,14 @@ import {
   ViewChild,
   booleanAttribute,
 } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 export type NxTagVariant = 'solid' | 'outline';
 
 @Component({
   selector: 'nx-tag',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-tag.html',
   styleUrl: './ui-tag.scss',
 })

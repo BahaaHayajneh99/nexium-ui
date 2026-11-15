@@ -1,10 +1,9 @@
-@if (licensed()) {
-    <div class="nx-integration-manager">
+<div class="nx-integration-manager" *ngIf="licensed(); else elseBlock1">
         <div class="nx-integration-manager-toolbar">
             <nx-search class="nx-integration-manager-search" placeholder="Search integrations..." [(value)]="searchTerm"></nx-search>
 
             <div class="nx-integration-manager-filters">
-                @for (option of filterOptions; track option.value) {
+                <ng-container *ngFor="let option of filterOptions; trackBy: trackByOptionValue">
                     <button
                         type="button"
                         class="nx-integration-manager-filter"
@@ -12,13 +11,13 @@
                         (click)="setFilter(option.value)">
                         {{ option.label }}
                     </button>
-                }
+                </ng-container>
             </div>
         </div>
 
-        @if (filteredIntegrations().length) {
+        <ng-container *ngIf="filteredIntegrations().length; else elseBlock2">
             <div class="nx-integration-manager-grid">
-                @for (integration of filteredIntegrations(); track integration.id) {
+                <ng-container *ngFor="let integration of filteredIntegrations(); trackBy: trackByIntegrationId">
                     <nx-integration-card
                         [name]="integration.name"
                         [description]="integration.description ?? ''"
@@ -29,12 +28,13 @@
                         (disconnect)="disconnect.emit(integration)"
                         (configure)="configure.emit(integration)">
                     </nx-integration-card>
-                }
+                </ng-container>
             </div>
-        } @else {
+        </ng-container>
+        <ng-template #elseBlock2>
             <p class="nx-integration-manager-empty">No integrations match your search.</p>
-        }
+        </ng-template>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Integration Manager"></nx-pro-locked>
-}
+</ng-template>

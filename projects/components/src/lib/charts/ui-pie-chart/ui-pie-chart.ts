@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber, seriesColor } from '../chart-utils';
 
 export interface NxPieDatum {
@@ -19,7 +20,7 @@ interface PieSlice {
 @Component({
   selector: 'nx-pie-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-pie-chart.html',
   styleUrl: './ui-pie-chart.scss',
 })
@@ -139,5 +140,9 @@ export class NxPieChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackBySliceLabel(index: number, slice: PieSlice): string {
+    return slice.datum.label;
   }
 }

@@ -1,27 +1,22 @@
-@if (licensed()) {
-    <div class="nx-json-viewer">
-        @for (row of rows; track row.path) {
-            <div class="nx-json-row" [style.padding-left.px]="row.indent * 16">
-                @if (row.hasChildren) {
-                    <button
-                        type="button"
-                        class="nx-json-toggle"
-                        [attr.aria-label]="isCollapsed(row.path) ? 'Expand' : 'Collapse'"
-                        (click)="toggle(row.path)">
-                        {{ isCollapsed(row.path) ? '▶' : '▼' }}
-                    </button>
-                } @else {
-                    <span class="nx-json-toggle-spacer"></span>
-                }
+<div class="nx-json-viewer" *ngIf="licensed(); else elseBlock2">
+    <div class="nx-json-row" *ngFor="let row of rows; trackBy: trackByRowPath" [style.padding-left.px]="row.indent * 16">
+        <button
+            type="button"
+            class="nx-json-toggle"
+            *ngIf="row.hasChildren; else elseBlock1"
+            [attr.aria-label]="isCollapsed(row.path) ? 'Expand' : 'Collapse'"
+            (click)="toggle(row.path)">
+            {{ isCollapsed(row.path) ? '▶' : '▼' }}
+        </button>
+        <ng-template #elseBlock1>
+            <span class="nx-json-toggle-spacer"></span>
+        </ng-template>
 
-                @if (row.key !== null) {
-                    <span class="nx-json-key">{{ row.key }}:</span>
-                }
+        <span class="nx-json-key" *ngIf="row.key !== null">{{ row.key }}:</span>
 
-                <span class="nx-json-value" [class]="row.valueType">{{ row.preview }}</span>
-            </div>
-        }
+        <span class="nx-json-value" [class]="row.valueType">{{ row.preview }}</span>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock2>
     <nx-pro-locked componentName="JSON Viewer"></nx-pro-locked>
-}
+</ng-template>

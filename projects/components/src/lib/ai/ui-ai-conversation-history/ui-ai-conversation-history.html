@@ -1,4 +1,4 @@
-@if (licensed()) {
+<ng-container *ngIf="licensed(); else elseBlock1">
     <div class="nx-ai-conversation-history">
         <button type="button" class="nx-ai-conversation-history-new" (click)="onNewChat()">
             <nx-icon icon="nx-plus" variant="svg" [size]="13"></nx-icon> New chat
@@ -15,28 +15,28 @@
         </div>
 
         <div class="nx-ai-conversation-history-list">
-            @for (group of groups(); track group.label) {
+            <ng-container *ngFor="let group of groups(); trackBy: trackByGroupLabel">
                 <div class="nx-ai-conversation-history-group">
                     <div class="nx-ai-conversation-history-group-label">{{ group.label }}</div>
 
-                    @for (conversation of group.conversations; track conversation.id) {
+                    <ng-container *ngFor="let conversation of group.conversations; trackBy: trackByConversationId">
                         <div
                             class="nx-ai-conversation-history-row"
                             [class.active]="conversation.id === activeId"
                             (click)="onSelect(conversation)">
 
-                            @if (renamingId() === conversation.id) {
-                                <input
-                                    type="text"
-                                    class="nx-ai-conversation-history-rename-input"
-                                    [ngModel]="renameDraft()"
-                                    (ngModelChange)="setRenameDraft($event)"
-                                    [ngModelOptions]="{standalone: true}"
-                                    (click)="$event.stopPropagation()"
-                                    (keydown.enter)="commitRename()"
-                                    (keydown.escape)="cancelRename()"
-                                    (blur)="commitRename()" />
-                            } @else {
+                            <input
+                                *ngIf="renamingId() === conversation.id; else elseBlock2"
+                                type="text"
+                                class="nx-ai-conversation-history-rename-input"
+                                [ngModel]="renameDraft()"
+                                (ngModelChange)="setRenameDraft($event)"
+                                [ngModelOptions]="{standalone: true}"
+                                (click)="$event.stopPropagation()"
+                                (keydown.enter)="commitRename()"
+                                (keydown.escape)="cancelRename()"
+                                (blur)="commitRename()" />
+                            <ng-template #elseBlock2>
                                 <span class="nx-ai-conversation-history-title">{{ conversation.title }}</span>
 
                                 <div class="nx-ai-conversation-history-actions">
@@ -55,15 +55,15 @@
                                         <nx-icon icon="nx-trash" variant="svg" [size]="12"></nx-icon>
                                     </button>
                                 </div>
-                            }
+                            </ng-template>
                         </div>
-                    }
+                    </ng-container>
                 </div>
-            } @empty {
-                <div class="nx-ai-conversation-history-empty">No conversations found.</div>
-            }
+            </ng-container>
+            <div class="nx-ai-conversation-history-empty" *ngIf="!groups() || groups().length === 0">No conversations found.</div>
         </div>
     </div>
-} @else {
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="AI Conversation History"></nx-pro-locked>
-}
+</ng-template>

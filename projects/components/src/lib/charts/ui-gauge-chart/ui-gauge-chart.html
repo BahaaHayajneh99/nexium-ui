@@ -7,7 +7,7 @@
             role="img"
             [attr.aria-label]="(label || 'Gauge') + ': ' + formatValue(value) + ' of ' + formatValue(min) + '-' + formatValue(max)">
 
-            @for (band of bandArcs; track band.to) {
+            <ng-container *ngFor="let band of bandArcs; trackBy: trackByBandTo">
                 <path
                     class="nx-chart-gauge-band"
                     [attr.d]="band.path"
@@ -15,7 +15,7 @@
                     [attr.stroke-width]="trackStrokeWidth"
                     fill="none">
                 </path>
-            }
+            </ng-container>
 
             <text class="nx-chart-axis-label" text-anchor="start" [attr.x]="minLabelPoint.x" [attr.y]="minLabelPoint.y">
                 {{ formatValue(min) }}
@@ -31,24 +31,20 @@
                 {{ formatValue(value) }}
             </text>
 
-            @if (label) {
-                <text class="nx-chart-gauge-caption" text-anchor="middle" x="150" y="148">
-                    {{ label }}
-                </text>
-            }
+            <text *ngIf="label" class="nx-chart-gauge-caption" text-anchor="middle" x="150" y="148">
+                {{ label }}
+            </text>
 
         </svg>
     </div>
 
-    @if (hasBandLegend) {
-        <div class="nx-chart-legend">
-            @for (band of bandArcs; track band.to) {
-                <div class="nx-chart-legend-item">
-                    <span class="nx-chart-legend-swatch" [style.background]="band.color"></span>
-                    {{ band.label }} ({{ bandRangeLabel(band) }})
-                </div>
-            }
-        </div>
-    }
+    <div class="nx-chart-legend" *ngIf="hasBandLegend">
+        <ng-container *ngFor="let band of bandArcs; trackBy: trackByBandTo">
+            <div class="nx-chart-legend-item">
+                <span class="nx-chart-legend-swatch" [style.background]="band.color"></span>
+                {{ band.label }} ({{ bandRangeLabel(band) }})
+            </div>
+        </ng-container>
+    </div>
 
 </div>

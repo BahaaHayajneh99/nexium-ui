@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export interface NxValidationError {
@@ -11,7 +12,7 @@ export interface NxValidationError {
 @Component({
   selector: 'nx-form-validation-summary',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgFor, NgIf, NxIcon],
   templateUrl: './ui-form-validation-summary.html',
   styleUrl: './ui-form-validation-summary.scss',
 })
@@ -24,5 +25,9 @@ export class NxFormValidationSummary {
 
   onRowClick(error: NxValidationError): void {
     this.errorClick.emit(error);
+  }
+
+  trackByErrorField(index: number, error: NxValidationError): string {
+    return error.field;
   }
 }

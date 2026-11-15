@@ -17,6 +17,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 
 export interface NxComboboxOption {
   label: string;
@@ -34,7 +35,7 @@ export interface NxComboboxOption {
 @Component({
   selector: 'nx-combobox',
   standalone: true,
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './ui-combobox.html',
   styleUrl: './ui-combobox.scss',
   host: {
@@ -249,5 +250,9 @@ export class NxCombobox implements ControlValueAccessor, Validator {
   private labelForValue(value: unknown): string {
     const match = this.options.find((option) => option.value === value);
     return match ? match.label : '';
+  }
+
+  trackByOptionValue(index: number, option: NxComboboxOption): unknown {
+    return option.value;
   }
 }

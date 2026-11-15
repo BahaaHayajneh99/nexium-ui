@@ -1,48 +1,41 @@
-@if (licensed()) {
-    <div class="nx-scheduler">
-        <div class="nx-scheduler-scroll">
-            <div class="nx-scheduler-grid" [style.grid-template-columns]="'56px repeat(' + dayCount + ', 1fr)'">
-                <div class="nx-scheduler-corner"></div>
-                @for (day of days; track $index) {
-                    <div class="nx-scheduler-day-header">
-                        {{ day | date: 'EEE d' }}
-                    </div>
-                }
+<div class="nx-scheduler" *ngIf="licensed(); else elseBlock1">
+    <div class="nx-scheduler-scroll">
+        <div class="nx-scheduler-grid" [style.grid-template-columns]="'56px repeat(' + dayCount + ', 1fr)'">
+            <div class="nx-scheduler-corner"></div>
+            <div class="nx-scheduler-day-header" *ngFor="let day of days; trackBy: trackByIndex">
+                {{ day | date: 'EEE d' }}
+            </div>
 
-                <div class="nx-scheduler-hours">
-                    @for (hour of hours; track hour) {
-                        <div class="nx-scheduler-hour-label" [style.height.px]="pxPerHour">
-                            {{ hour }}:00
-                        </div>
-                    }
+            <div class="nx-scheduler-hours">
+                <div class="nx-scheduler-hour-label" [style.height.px]="pxPerHour" *ngFor="let hour of hours; trackBy: trackByHour">
+                    {{ hour }}:00
                 </div>
+            </div>
 
-                @for (day of days; track $index; let dayIndex = $index) {
+            <div
+                class="nx-scheduler-day-column"
+                [style.height.px]="gridHeight"
+                [style.--nx-scheduler-hour]="pxPerHour + 'px'"
+                *ngFor="let day of days; trackBy: trackByIndex; let dayIndex = index">
+                <ng-container *ngFor="let positioned of positionedEvents; trackBy: trackByPositionedEventId">
                     <div
-                        class="nx-scheduler-day-column"
-                        [style.height.px]="gridHeight"
-                        [style.--nx-scheduler-hour]="pxPerHour + 'px'">
-                        @for (positioned of positionedEvents; track positioned.event.id) {
-                            @if (positioned.dayIndex === dayIndex) {
-                                <div
-                                    class="nx-scheduler-event"
-                                    [attr.data-event]="positioned.event.id"
-                                    [style.top.px]="positioned.top"
-                                    [style.height.px]="positioned.height"
-                                    [style.background-color]="positioned.event.color ?? 'var(--shell-primary)'"
-                                    (pointerdown)="onEventPointerDown(positioned, 'move', $event)">
-                                    <span class="nx-scheduler-event-title">{{ positioned.event.title }}</span>
-                                    <span
-                                        class="nx-scheduler-event-resize-handle"
-                                        (pointerdown)="onEventPointerDown(positioned, 'resize', $event)"></span>
-                                </div>
-                            }
-                        }
+                        class="nx-scheduler-event"
+                        [attr.data-event]="positioned.event.id"
+                        [style.top.px]="positioned.top"
+                        [style.height.px]="positioned.height"
+                        [style.background-color]="positioned.event.color ?? 'var(--shell-primary)'"
+                        (pointerdown)="onEventPointerDown(positioned, 'move', $event)"
+                        *ngIf="positioned.dayIndex === dayIndex">
+                        <span class="nx-scheduler-event-title">{{ positioned.event.title }}</span>
+                        <span
+                            class="nx-scheduler-event-resize-handle"
+                            (pointerdown)="onEventPointerDown(positioned, 'resize', $event)"></span>
                     </div>
-                }
+                </ng-container>
             </div>
         </div>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Scheduler"></nx-pro-locked>
-}
+</ng-template>

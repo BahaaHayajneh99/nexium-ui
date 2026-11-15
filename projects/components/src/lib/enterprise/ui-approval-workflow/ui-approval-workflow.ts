@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -81,7 +82,7 @@ function initials(name: string): string {
 @Component({
   selector: 'nx-approval-workflow',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [FormsModule, NxIcon, NxProLocked, NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './ui-approval-workflow.html',
   styleUrl: './ui-approval-workflow.scss',
 })
@@ -337,6 +338,18 @@ export class NxApprovalWorkflow {
       default:
         return 'nx-message';
     }
+  }
+
+  trackByStageId(index: number, stage: NxApprovalStage): string | number {
+    return stage.id;
+  }
+
+  trackByApproverId(index: number, approver: NxApprovalStep): string | number {
+    return approver.id;
+  }
+
+  trackByHistoryId(index: number, entry: NxApprovalHistoryEntry): string {
+    return entry.id;
   }
 
   timeLabel(iso: string): string {

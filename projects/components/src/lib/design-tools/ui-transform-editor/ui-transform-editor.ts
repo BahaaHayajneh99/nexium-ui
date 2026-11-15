@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -15,7 +16,7 @@ export interface NxTransformValue {
 @Component({
   selector: 'nx-transform-editor',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-transform-editor.html',
   styleUrl: './ui-transform-editor.scss',
 })

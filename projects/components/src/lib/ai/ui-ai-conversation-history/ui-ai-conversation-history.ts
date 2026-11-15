@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -44,7 +45,7 @@ function bucketFor(updatedAt: string, todayStart: number): NxAiConversationBucke
 @Component({
   selector: 'nx-ai-conversation-history',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-ai-conversation-history.html',
   styleUrl: './ui-ai-conversation-history.scss',
 })
@@ -149,5 +150,13 @@ export class NxAiConversationHistory {
 
   protected onNewChat(): void {
     this.newChat.emit();
+  }
+
+  protected trackByGroupLabel(index: number, group: NxAiConversationGroup): NxAiConversationBucketLabel {
+    return group.label;
+  }
+
+  protected trackByConversationId(index: number, conversation: NxAiConversation): string | number {
+    return conversation.id;
   }
 }

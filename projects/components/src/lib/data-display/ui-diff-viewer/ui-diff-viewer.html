@@ -1,14 +1,13 @@
-@if (licensed()) {
-    <div class="nx-diff-viewer">
-        @for (line of diffLines; track $index) {
+<div class="nx-diff-viewer" *ngIf="licensed(); else elseBlock1">
+        <ng-container *ngFor="let line of diffLines; trackBy: trackByIndex">
             <div class="nx-diff-line" [class]="line.type">
                 <span class="nx-diff-gutter">{{ line.oldLineNumber ?? '' }}</span>
                 <span class="nx-diff-gutter">{{ line.newLineNumber ?? '' }}</span>
                 <span class="nx-diff-marker">{{ line.type === 'added' ? '+' : line.type === 'removed' ? '-' : ' ' }}</span>
                 <span class="nx-diff-text">{{ line.text }}</span>
             </div>
-        }
+        </ng-container>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Diff Viewer"></nx-pro-locked>
-}
+</ng-template>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output, booleanAttribute } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 
 export interface NxCommandItem {
   id: string | number;
@@ -10,7 +11,7 @@ export interface NxCommandItem {
 @Component({
   selector: 'nx-command-palette',
   standalone: true,
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './ui-command-palette.html',
   styleUrl: './ui-command-palette.scss',
 })
@@ -31,6 +32,10 @@ export class NxCommandPalette {
       return this.commands;
     }
     return this.commands.filter((c) => c.label.toLowerCase().includes(query));
+  }
+
+  trackByItemId(index: number, item: NxCommandItem): string | number {
+    return item.id;
   }
 
   isFirstInGroup(index: number): boolean {

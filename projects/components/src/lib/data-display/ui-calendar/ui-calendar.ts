@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -36,7 +37,7 @@ function sameDay(a: Date, b: Date): boolean {
 @Component({
   selector: 'nx-calendar',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NxIcon, NxProLocked],
   templateUrl: './ui-calendar.html',
   styleUrl: './ui-calendar.scss',
 })
@@ -215,5 +216,29 @@ export class NxCalendar {
       weeks.push(week);
     }
     return weeks;
+  }
+
+  trackByView(index: number, v: NxCalendarView): NxCalendarView {
+    return v;
+  }
+
+  trackByDayName(index: number, name: string): string {
+    return name;
+  }
+
+  trackByIndex(index: number, item: unknown): number {
+    return index;
+  }
+
+  trackByDayTime(index: number, day: Date): number {
+    return day.getTime();
+  }
+
+  trackByEventId(index: number, event: NxCalendarEvent): string | number {
+    return event.id;
+  }
+
+  trackByHour(index: number, hour: number): number {
+    return hour;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxEmoji, NX_EMOJIS, NX_EMOJI_CATEGORIES } from '../ui-emoji';
 import { NxIcon } from '../ui-icon';
 import { NxSearch } from '../../forms/ui-search';
@@ -24,7 +25,7 @@ const ALL_TAB = 'All';
 @Component({
   selector: 'nx-emoji-picker',
   standalone: true,
-  imports: [NxEmoji, NxIcon, NxSearch],
+  imports: [NgIf, NgFor, NxEmoji, NxIcon, NxSearch],
   templateUrl: './ui-emoji-picker.html',
   styleUrl: './ui-emoji-picker.scss',
 })
@@ -81,5 +82,9 @@ export class NxEmojiPicker {
 
   trackByName(_index: number, name: string): string {
     return name;
+  }
+
+  trackByTab(index: number, tab: string): string {
+    return tab;
   }
 }

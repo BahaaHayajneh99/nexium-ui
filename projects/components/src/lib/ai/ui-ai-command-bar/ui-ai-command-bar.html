@@ -1,5 +1,5 @@
-@if (licensed()) {
-    @if (open) {
+<ng-container *ngIf="licensed(); else elseBlock1">
+    <ng-container *ngIf="open">
         <div class="nx-ai-cmdbar-backdrop" (click)="onBackdropClick()"></div>
 
         <div class="nx-ai-cmdbar-panel" (click)="$event.stopPropagation()">
@@ -15,90 +15,89 @@
                     (input)="onQueryChange($event)"
                     autofocus />
 
-                @if (isLoading) {
-                    <button type="button" class="nx-ai-cmdbar-stop" (click)="onCancel()">
-                        <nx-icon icon="nx-x-circle" variant="svg" [size]="14"></nx-icon>
-                        Stop
-                    </button>
-                } @else if (query.trim() && mode === 'typing') {
-                    <button type="button" class="nx-ai-cmdbar-send" (click)="trySubmit()" aria-label="Ask">
+                <button *ngIf="isLoading; else elseIfBlock2" type="button" class="nx-ai-cmdbar-stop" (click)="onCancel()">
+                    <nx-icon icon="nx-x-circle" variant="svg" [size]="14"></nx-icon>
+                    Stop
+                </button>
+                <ng-template #elseIfBlock2>
+                    <button *ngIf="query.trim() && mode === 'typing'" type="button" class="nx-ai-cmdbar-send" (click)="trySubmit()" aria-label="Ask">
                         <nx-icon icon="nx-send" variant="svg" [size]="14"></nx-icon>
                     </button>
-                }
+                </ng-template>
             </div>
 
-            @if (activeQuery(); as asked) {
+            <ng-container *ngIf="activeQuery() as asked; else elseIfBlock3">
                 <div class="nx-ai-cmdbar-response" #responseScrollRef>
                     <div class="nx-ai-cmdbar-asked">
                         <nx-icon icon="nx-search" variant="svg" [size]="12"></nx-icon>
                         {{ asked }}
                     </div>
 
-                    @if (isLoading && !streamingText) {
-                        <div class="nx-ai-cmdbar-thinking" aria-label="Thinking">
-                            <span class="nx-ai-cmdbar-dot"></span>
-                            <span class="nx-ai-cmdbar-dot"></span>
-                            <span class="nx-ai-cmdbar-dot"></span>
-                        </div>
-                    } @else {
+                    <div *ngIf="isLoading && !streamingText; else elseBlock4" class="nx-ai-cmdbar-thinking" aria-label="Thinking">
+                        <span class="nx-ai-cmdbar-dot"></span>
+                        <span class="nx-ai-cmdbar-dot"></span>
+                        <span class="nx-ai-cmdbar-dot"></span>
+                    </div>
+                    <ng-template #elseBlock4>
                         <div class="nx-ai-cmdbar-answer">{{ streamingText }}<span class="nx-ai-cmdbar-cursor" [class.blink]="isLoading"></span></div>
-                    }
+                    </ng-template>
                 </div>
-            } @else if (mode === 'commands') {
-                <div class="nx-ai-cmdbar-list">
-                    @for (command of filteredCommands; track command.action; let i = $index) {
-                        <button
-                            type="button"
-                            class="nx-ai-cmdbar-item"
-                            [class.active]="i === activeIndex"
-                            (mouseenter)="activeIndex = i"
-                            (click)="selectCommand(command)">
-                            @if (command.icon) {
-                                <nx-icon [icon]="command.icon" variant="svg" [size]="16"></nx-icon>
-                            }
-                            <span>{{ command.label }}</span>
-                        </button>
-                    } @empty {
-                        <div class="nx-ai-cmdbar-empty">No matching commands.</div>
-                    }
-                </div>
-            } @else if (mode === 'idle') {
-                <div class="nx-ai-cmdbar-list">
-                    @if (suggestions.length) {
-                        <div class="nx-ai-cmdbar-label">Suggestions</div>
-                        @for (suggestion of suggestions; track suggestion; let i = $index) {
+            </ng-container>
+            <ng-template #elseIfBlock3>
+                <ng-container *ngIf="mode === 'commands'; else elseIfBlock5">
+                    <div class="nx-ai-cmdbar-list">
+                        <ng-container *ngFor="let command of filteredCommands; trackBy: trackByCommandAction; let i = index">
                             <button
                                 type="button"
                                 class="nx-ai-cmdbar-item"
-                                [class.active]="isSuggestionActive(i)"
+                                [class.active]="i === activeIndex"
                                 (mouseenter)="activeIndex = i"
-                                (click)="useSuggestion(suggestion)">
-                                <nx-icon icon="nx-star" variant="svg" [size]="14"></nx-icon>
-                                <span>{{ suggestion }}</span>
+                                (click)="selectCommand(command)">
+                                <nx-icon *ngIf="command.icon" [icon]="command.icon" variant="svg" [size]="16"></nx-icon>
+                                <span>{{ command.label }}</span>
                             </button>
-                        }
-                    }
+                        </ng-container>
+                        <div class="nx-ai-cmdbar-empty" *ngIf="!filteredCommands || filteredCommands.length === 0">No matching commands.</div>
+                    </div>
+                </ng-container>
+                <ng-template #elseIfBlock5>
+                    <ng-container *ngIf="mode === 'idle'">
+                        <div class="nx-ai-cmdbar-list">
+                            <ng-container *ngIf="suggestions.length">
+                                <div class="nx-ai-cmdbar-label">Suggestions</div>
+                                <ng-container *ngFor="let suggestion of suggestions; trackBy: trackBySuggestion; let i = index">
+                                    <button
+                                        type="button"
+                                        class="nx-ai-cmdbar-item"
+                                        [class.active]="isSuggestionActive(i)"
+                                        (mouseenter)="activeIndex = i"
+                                        (click)="useSuggestion(suggestion)">
+                                        <nx-icon icon="nx-star" variant="svg" [size]="14"></nx-icon>
+                                        <span>{{ suggestion }}</span>
+                                    </button>
+                                </ng-container>
+                            </ng-container>
 
-                    @if (history.length) {
-                        <div class="nx-ai-cmdbar-label">Recent</div>
-                        @for (entry of history; track entry; let i = $index) {
-                            <button
-                                type="button"
-                                class="nx-ai-cmdbar-item"
-                                [class.active]="isHistoryActive(i)"
-                                (mouseenter)="activeIndex = suggestions.length + i"
-                                (click)="useHistory(entry)">
-                                <nx-icon icon="nx-clock" variant="svg" [size]="14"></nx-icon>
-                                <span>{{ entry }}</span>
-                            </button>
-                        }
-                    }
+                            <ng-container *ngIf="history.length">
+                                <div class="nx-ai-cmdbar-label">Recent</div>
+                                <ng-container *ngFor="let entry of history; trackBy: trackByHistoryEntry; let i = index">
+                                    <button
+                                        type="button"
+                                        class="nx-ai-cmdbar-item"
+                                        [class.active]="isHistoryActive(i)"
+                                        (mouseenter)="activeIndex = suggestions.length + i"
+                                        (click)="useHistory(entry)">
+                                        <nx-icon icon="nx-clock" variant="svg" [size]="14"></nx-icon>
+                                        <span>{{ entry }}</span>
+                                    </button>
+                                </ng-container>
+                            </ng-container>
 
-                    @if (!suggestions.length && !history.length) {
-                        <div class="nx-ai-cmdbar-empty">Type a question, or "/" for commands.</div>
-                    }
-                </div>
-            }
+                            <div class="nx-ai-cmdbar-empty" *ngIf="!suggestions.length && !history.length">Type a question, or "/" for commands.</div>
+                        </div>
+                    </ng-container>
+                </ng-template>
+            </ng-template>
 
             <div class="nx-ai-cmdbar-footer">
                 <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
@@ -106,7 +105,8 @@
                 <span><kbd>Esc</kbd> close</span>
             </div>
         </div>
-    }
-} @else {
+    </ng-container>
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="AI Command Bar"></nx-pro-locked>
-}
+</ng-template>

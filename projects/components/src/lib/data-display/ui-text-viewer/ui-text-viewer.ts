@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -19,7 +20,7 @@ function escapeRegExp(value: string): string {
 @Component({
   selector: 'nx-text-viewer',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-text-viewer.html',
   styleUrl: './ui-text-viewer.scss',
 })
@@ -53,6 +54,10 @@ export class NxTextViewer {
     const regex = new RegExp(escapeRegExp(q), 'gi');
     return (this.content.match(regex) || []).length;
   });
+
+  trackByIndex(index: number): number {
+    return index;
+  }
 
   lineSegments(line: string): NxTextSegment[] {
     const q = this.searchQuery().trim();

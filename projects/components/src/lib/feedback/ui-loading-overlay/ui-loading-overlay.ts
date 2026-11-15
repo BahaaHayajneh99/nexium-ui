@@ -1,4 +1,5 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxSpinnerComponent } from '../../data-display/ui-spinner';
 
 /**
@@ -10,7 +11,7 @@ import { NxSpinnerComponent } from '../../data-display/ui-spinner';
 @Component({
   selector: 'nx-loading-overlay',
   standalone: true,
-  imports: [NxSpinnerComponent],
+  imports: [NgIf, NxSpinnerComponent],
   templateUrl: './ui-loading-overlay.html',
   styleUrl: './ui-loading-overlay.scss',
 })

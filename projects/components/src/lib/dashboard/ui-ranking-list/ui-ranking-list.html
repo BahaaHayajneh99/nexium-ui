@@ -1,13 +1,9 @@
 <div class="nx-ranking-list">
-    @for (item of items; track item.id) {
-        <div class="nx-ranking-list-row">
-            <span class="nx-ranking-list-rank">{{ item.rank }}</span>
-            <nx-avatar [src]="item.avatarUrl" [alt]="item.name" size="small"></nx-avatar>
-            <span class="nx-ranking-list-name">{{ item.name }}</span>
-            <span class="nx-ranking-list-value">{{ item.value }}</span>
-            @if (item.delta) {
-                <span class="nx-ranking-list-delta">{{ item.delta }}</span>
-            }
-        </div>
-    }
+    <div class="nx-ranking-list-row" *ngFor="let item of items; trackBy: trackByItemId">
+        <span class="nx-ranking-list-rank">{{ item.rank }}</span>
+        <nx-avatar [src]="item.avatarUrl" [alt]="item.name" size="small"></nx-avatar>
+        <span class="nx-ranking-list-name">{{ item.name }}</span>
+        <span class="nx-ranking-list-value">{{ item.value }}</span>
+        <span class="nx-ranking-list-delta" *ngIf="item.delta">{{ item.delta }}</span>
+    </div>
 </div>

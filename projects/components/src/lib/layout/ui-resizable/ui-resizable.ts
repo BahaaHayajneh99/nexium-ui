@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output, booleanAttribute, numberAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -12,7 +13,7 @@ export interface NxResizeEvent {
 @Component({
   selector: 'nx-resizable',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-resizable.html',
   styleUrl: './ui-resizable.scss',
 })

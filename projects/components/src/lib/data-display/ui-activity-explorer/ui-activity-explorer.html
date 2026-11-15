@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-activity-explorer">
+<div class="nx-activity-explorer" *ngIf="licensed(); else elseBlock1">
         <div class="nx-activity-filters">
             <input
                 type="text"
@@ -10,23 +9,23 @@
 
             <select class="nx-activity-select" [ngModel]="userFilter()" (ngModelChange)="userFilter.set($event)">
                 <option value="all">All users</option>
-                @for (user of users(); track user) {
+                <ng-container *ngFor="let user of users(); trackBy: trackByUser">
                     <option [value]="user">{{ user }}</option>
-                }
+                </ng-container>
             </select>
 
             <select class="nx-activity-select" [ngModel]="actionFilter()" (ngModelChange)="actionFilter.set($event)">
                 <option value="all">All actions</option>
-                @for (action of actions(); track action) {
+                <ng-container *ngFor="let action of actions(); trackBy: trackByAction">
                     <option [value]="action">{{ action }}</option>
-                }
+                </ng-container>
             </select>
 
             <select class="nx-activity-select" [ngModel]="entityFilter()" (ngModelChange)="entityFilter.set($event)">
                 <option value="all">All entities</option>
-                @for (entity of entities(); track entity) {
+                <ng-container *ngFor="let entity of entities(); trackBy: trackByEntity">
                     <option [value]="entity">{{ entity }}</option>
-                }
+                </ng-container>
             </select>
 
             <input type="date" class="nx-activity-date" [ngModel]="dateFrom()" (ngModelChange)="dateFrom.set($event)" />
@@ -37,11 +36,11 @@
         </div>
 
         <div class="nx-activity-timeline">
-            @for (group of groups(); track group.dateLabel) {
+            <ng-container *ngFor="let group of groups(); trackBy: trackByDateLabel">
                 <div class="nx-activity-group">
                     <div class="nx-activity-date-header">{{ group.dateLabel }}</div>
                     <div class="nx-activity-events">
-                        @for (event of group.events; track event.id) {
+                        <ng-container *ngFor="let event of group.events; trackBy: trackByEventId">
                             <div class="nx-activity-event">
                                 <div class="nx-activity-dot">
                                     <nx-icon [icon]="event.icon || 'nx-check-circle'" variant="svg" [size]="12"></nx-icon>
@@ -51,24 +50,25 @@
                                         <strong>{{ event.user }}</strong>
                                         {{ event.action }}
                                         <span class="nx-activity-entity">{{ event.entity }}</span>
-                                        @if (event.entityName) {
+                                        <ng-container *ngIf="event.entityName">
                                             <span class="nx-activity-entity-name">{{ event.entityName }}</span>
-                                        }
+                                        </ng-container>
                                         <span class="nx-activity-time">{{ timeLabel(event.date) }}</span>
                                     </div>
-                                    @if (event.detail) {
+                                    <ng-container *ngIf="event.detail">
                                         <div class="nx-activity-detail">{{ event.detail }}</div>
-                                    }
+                                    </ng-container>
                                 </div>
                             </div>
-                        }
+                        </ng-container>
                     </div>
                 </div>
-            } @empty {
+            </ng-container>
+            <ng-container *ngIf="!groups() || groups().length === 0">
                 <div class="nx-activity-empty">No activity matches these filters.</div>
-            }
+            </ng-container>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Activity Explorer"></nx-pro-locked>
-}
+</ng-template>

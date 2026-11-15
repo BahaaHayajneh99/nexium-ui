@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber } from '../chart-utils';
 
 export interface NxGaugeBand {
@@ -26,7 +27,7 @@ const BAND_COLORS: Record<NxGaugeBand['variant'], string> = {
 @Component({
   selector: 'nx-gauge-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-gauge-chart.html',
   styleUrl: './ui-gauge-chart.scss',
 })
@@ -114,5 +115,9 @@ export class NxGaugeChart {
 
   bandRangeLabel(band: BandArc): string {
     return `${formatNumber(band.from)}–${formatNumber(band.to)}${this.valueSuffix}`;
+  }
+
+  trackByBandTo(index: number, band: BandArc): number {
+    return band.to;
   }
 }

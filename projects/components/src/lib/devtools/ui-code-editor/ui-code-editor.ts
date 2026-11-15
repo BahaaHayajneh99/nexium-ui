@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, ViewChild, booleanAttribute, forwardRef, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -7,7 +8,7 @@ import { nxProLicenseGranted } from '../../licensing/nx-license';
 @Component({
   selector: 'nx-code-editor',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-code-editor.html',
   styleUrl: './ui-code-editor.scss',
   providers: [
@@ -62,5 +63,9 @@ export class NxCodeEditor implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 }

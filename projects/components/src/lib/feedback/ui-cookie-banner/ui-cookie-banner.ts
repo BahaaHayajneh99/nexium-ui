@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, booleanAttribute, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxSwitch } from '../../forms/ui-switch';
 
 export interface NxCookieCategories {
@@ -40,7 +41,7 @@ function writeStoredConsent(storageKey: string, value: NxStoredCookieConsent): v
 @Component({
   selector: 'nx-cookie-banner',
   standalone: true,
-  imports: [NxSwitch],
+  imports: [NgIf, NxSwitch],
   templateUrl: './ui-cookie-banner.html',
   styleUrl: './ui-cookie-banner.scss',
 })

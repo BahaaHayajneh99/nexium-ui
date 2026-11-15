@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SlicePipe } from '@angular/common';
+import { NgIf, NgFor, SlicePipe } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -46,7 +46,7 @@ function formatBytes(bytes?: number): string {
 @Component({
   selector: 'nx-file-manager',
   standalone: true,
-  imports: [FormsModule, SlicePipe, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, SlicePipe, NxIcon, NxProLocked],
   templateUrl: './ui-file-manager.html',
   styleUrl: './ui-file-manager.scss',
 })
@@ -125,6 +125,18 @@ export class NxFileManager {
   });
 
   formatSize = formatBytes;
+
+  trackByCrumbId(index: number, crumb: NxFileNode): string {
+    return crumb.id;
+  }
+
+  trackByNodeId(index: number, node: NxFileNode): string {
+    return node.id;
+  }
+
+  trackByNodeIdRow(index: number, node: NxFileNode): string {
+    return node.id;
+  }
 
   /** Every file in the current folder, in display order - what Prev/Next cycle through (folders are skipped). */
   readonly previewableFiles = computed<NxFileNode[]>(() => this.visibleChildren().filter((n) => n.type === 'file'));

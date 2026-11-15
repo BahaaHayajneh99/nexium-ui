@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxStatisticDeltaDirection } from '../../data-display/ui-statistic';
 import { NxSparkline } from '../../charts/ui-sparkline';
 
@@ -6,7 +7,7 @@ import { NxSparkline } from '../../charts/ui-sparkline';
 @Component({
   selector: 'nx-sparkline-card',
   standalone: true,
-  imports: [NxSparkline],
+  imports: [NgIf, NxSparkline],
   templateUrl: './ui-sparkline-card.html',
   styleUrl: './ui-sparkline-card.scss',
 })

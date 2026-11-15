@@ -1,6 +1,6 @@
 <div class="nx-avatar-group" [class.small]="size === 'small'" [class.medium]="size === 'medium'" [class.large]="size === 'large'">
 
-    @for (user of visibleUsers; track user.name + $index) {
+    <ng-container *ngFor="let user of visibleUsers; trackBy: trackByUserNameIndex">
         <span class="nx-avatar-group-item" [title]="user.name">
             <nx-avatar
                 [src]="user.src"
@@ -9,19 +9,18 @@
                 [status]="user.status">
             </nx-avatar>
         </span>
-    }
+    </ng-container>
 
-    @if (overflowCount > 0) {
-        <button
-            type="button"
-            class="nx-avatar-group-overflow"
-            [class.small]="size === 'small'"
-            [class.medium]="size === 'medium'"
-            [class.large]="size === 'large'"
-            [title]="overflowCount + ' more'"
-            (click)="onOverflowClick()">
+    <button
+        type="button"
+        class="nx-avatar-group-overflow"
+        [class.small]="size === 'small'"
+        [class.medium]="size === 'medium'"
+        [class.large]="size === 'large'"
+        [title]="overflowCount + ' more'"
+        (click)="onOverflowClick()"
+        *ngIf="overflowCount > 0">
             +{{ overflowCount }}
         </button>
-    }
 
 </div>

@@ -1,13 +1,12 @@
-@if (licensed()) {
-    <div class="nx-html-preview" [style.height]="hostHeight">
-        <iframe
-            #frame
-            class="nx-html-preview-frame"
-            title="HTML preview"
-            [srcdoc]="safeSrcdoc"
-            (load)="onFrameLoad()">
-        </iframe>
-    </div>
-} @else {
+<div class="nx-html-preview" [style.height]="hostHeight" *ngIf="licensed(); else elseBlock1">
+    <iframe
+        #frame
+        class="nx-html-preview-frame"
+        title="HTML preview"
+        [srcdoc]="safeSrcdoc"
+        (load)="onFrameLoad()">
+    </iframe>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="HTML Preview"></nx-pro-locked>
-}
+</ng-template>

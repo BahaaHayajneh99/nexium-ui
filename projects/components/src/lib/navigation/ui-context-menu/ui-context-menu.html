@@ -1,5 +1,3 @@
 <ng-content></ng-content>
 
-@if (open) {
-    <nx-menu class="nx-context-menu-panel" [style.left.px]="x" [style.top.px]="y" [items]="items" (itemSelect)="onSelect($event)"></nx-menu>
-}
+<nx-menu *ngIf="open" class="nx-context-menu-panel" [style.left.px]="x" [style.top.px]="y" [items]="items" (itemSelect)="onSelect($event)"></nx-menu>

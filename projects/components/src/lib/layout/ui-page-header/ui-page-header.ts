@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 /**
  * A page-level header: title/description block plus slots for a breadcrumb
@@ -7,7 +8,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'nx-page-header',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-page-header.html',
   styleUrl: './ui-page-header.scss',
 })

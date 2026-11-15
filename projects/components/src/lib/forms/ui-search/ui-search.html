@@ -15,34 +15,28 @@
             (blur)="onBlur()"
             (keydown)="onKeydown($event)" />
 
-        @if (showClear && value) {
-            <button type="button" class="nx-search-clear" aria-label="Clear search" (mousedown)="clear($event)">
-                <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
-            </button>
-        }
+        <button type="button" class="nx-search-clear" aria-label="Clear search" (mousedown)="clear($event)" *ngIf="showClear && value">
+            <nx-icon icon="nx-close" variant="svg" [size]="14"></nx-icon>
+        </button>
     </div>
 
-    @if (displayError) {
-        <span class="nx-search-error">{{ displayError }}</span>
-    }
+    <span class="nx-search-error" *ngIf="displayError">{{ displayError }}</span>
 
-    @if (showPanel) {
-        <ul class="nx-search-results">
-            @if (normalizedResults.length) {
-                @for (result of normalizedResults; track $index) {
-                    <li
-                        class="nx-search-result"
-                        [class.active]="$index === activeIndex"
-                        (mousedown)="selectResult(result)">
-                        {{ result.label }}
-                    </li>
-                }
-            } @else {
-                <li class="nx-search-empty">
-                    <p>{{ noResultsText }} for "{{ value }}"</p>
-                    <p class="nx-search-empty-hint">{{ noResultsHint }}</p>
-                </li>
-            }
-        </ul>
-    }
+    <ul class="nx-search-results" *ngIf="showPanel">
+        <ng-container *ngIf="normalizedResults.length; else elseBlock1">
+            <li
+                class="nx-search-result"
+                *ngFor="let result of normalizedResults; trackBy: trackByIndex; let i = index"
+                [class.active]="i === activeIndex"
+                (mousedown)="selectResult(result)">
+                {{ result.label }}
+            </li>
+        </ng-container>
+        <ng-template #elseBlock1>
+            <li class="nx-search-empty">
+                <p>{{ noResultsText }} for "{{ value }}"</p>
+                <p class="nx-search-empty-hint">{{ noResultsHint }}</p>
+            </li>
+        </ng-template>
+    </ul>
 </div>

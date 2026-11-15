@@ -7,6 +7,7 @@ import {
   ViewChild,
   booleanAttribute,
 } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -23,7 +24,7 @@ import { nxProLicenseGranted } from '../../licensing/nx-license';
 @Component({
   selector: 'nx-magnetic-button',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-magnetic-button.html',
   styleUrl: './ui-magnetic-button.scss',
 })

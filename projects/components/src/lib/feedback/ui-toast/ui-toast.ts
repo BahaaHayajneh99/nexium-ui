@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { NxToastMessage, NxToastPosition, NxToastService } from './toast.service';
 
 @Component({
   selector: 'nx-toast-container',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgFor, NgIf],
   templateUrl: './ui-toast.html',
   styleUrl: './ui-toast.scss',
 })
@@ -24,6 +24,14 @@ export class NxToastContainer {
 
   toastsFor(position: NxToastPosition): NxToastMessage[] {
     return this.toasts().filter((toast) => toast.position === position);
+  }
+
+  trackByPosition(index: number, position: NxToastPosition): NxToastPosition {
+    return position;
+  }
+
+  trackByToastId(index: number, toast: NxToastMessage): number {
+    return toast.id;
   }
 
   dismiss(id: number): void {

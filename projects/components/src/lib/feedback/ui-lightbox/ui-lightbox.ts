@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output, booleanAttribute, numberAttribute } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -17,7 +18,7 @@ export interface NxLightboxImage {
 @Component({
   selector: 'nx-lightbox',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgFor, NgIf, NxProLocked],
   templateUrl: './ui-lightbox.html',
   styleUrl: './ui-lightbox.scss',
 })
@@ -62,6 +63,10 @@ export class NxLightbox {
       return;
     }
     this.setIndex((this.activeIndex - 1 + this.images.length) % this.images.length);
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 
   setIndex(index: number): void {

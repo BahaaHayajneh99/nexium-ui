@@ -1,47 +1,44 @@
-@if (licensed()) {
-    <div class="nx-gantt-chart">
-        <div class="nx-gantt-chart-labels">
-            <div class="nx-gantt-chart-labels-header">Task</div>
-            @for (row of rows; track row.task.id) {
-                <div class="nx-gantt-chart-label">{{ row.task.name }}</div>
-            }
+<div class="nx-gantt-chart" *ngIf="licensed(); else elseBlock1">
+    <div class="nx-gantt-chart-labels">
+        <div class="nx-gantt-chart-labels-header">Task</div>
+        <ng-container *ngFor="let row of rows; trackBy: trackByRowId">
+            <div class="nx-gantt-chart-label">{{ row.task.name }}</div>
+        </ng-container>
+    </div>
+
+    <div class="nx-gantt-chart-timeline">
+        <div class="nx-gantt-chart-header" [style.width.px]="totalDays * pxPerDay">
+            <ng-container *ngFor="let tick of dayTicks; trackBy: trackByTickLeft">
+                <span class="nx-gantt-chart-tick" [style.left.px]="tick.left">
+                    {{ tick.date | date: 'MMM d' }}
+                </span>
+            </ng-container>
         </div>
 
-        <div class="nx-gantt-chart-timeline">
-            <div class="nx-gantt-chart-header" [style.width.px]="totalDays * pxPerDay">
-                @for (tick of dayTicks; track tick.left) {
-                    <span class="nx-gantt-chart-tick" [style.left.px]="tick.left">
-                        {{ tick.date | date: 'MMM d' }}
-                    </span>
-                }
-            </div>
-
-            <div
-                class="nx-gantt-chart-body"
-                [style.width.px]="totalDays * pxPerDay"
-                [style.background-size.px]="pxPerDay">
-                @for (row of rows; track row.task.id) {
-                    <div class="nx-gantt-chart-row">
-                        <div
-                            class="nx-gantt-chart-bar"
-                            [attr.data-task]="row.task.id"
-                            [style.left.px]="row.left"
-                            [style.width.px]="row.width"
-                            [style.background-color]="row.task.color ?? 'var(--shell-primary)'"
-                            (pointerdown)="onBarPointerDown(row, 'move', $event)">
-                            @if (row.task.progress !== undefined) {
-                                <div class="nx-gantt-chart-progress" [style.width.%]="row.task.progress"></div>
-                            }
-                            <span class="nx-gantt-chart-bar-label">{{ row.task.name }}</span>
-                            <span
-                                class="nx-gantt-chart-resize-handle"
-                                (pointerdown)="onBarPointerDown(row, 'resize', $event)"></span>
-                        </div>
+        <div
+            class="nx-gantt-chart-body"
+            [style.width.px]="totalDays * pxPerDay"
+            [style.background-size.px]="pxPerDay">
+            <ng-container *ngFor="let row of rows; trackBy: trackByRowIdBody">
+                <div class="nx-gantt-chart-row">
+                    <div
+                        class="nx-gantt-chart-bar"
+                        [attr.data-task]="row.task.id"
+                        [style.left.px]="row.left"
+                        [style.width.px]="row.width"
+                        [style.background-color]="row.task.color ?? 'var(--shell-primary)'"
+                        (pointerdown)="onBarPointerDown(row, 'move', $event)">
+                        <div class="nx-gantt-chart-progress" *ngIf="row.task.progress !== undefined" [style.width.%]="row.task.progress"></div>
+                        <span class="nx-gantt-chart-bar-label">{{ row.task.name }}</span>
+                        <span
+                            class="nx-gantt-chart-resize-handle"
+                            (pointerdown)="onBarPointerDown(row, 'resize', $event)"></span>
                     </div>
-                }
-            </div>
+                </div>
+            </ng-container>
         </div>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Gantt Chart"></nx-pro-locked>
-}
+</ng-template>

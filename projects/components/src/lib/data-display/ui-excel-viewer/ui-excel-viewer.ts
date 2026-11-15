@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -27,7 +28,7 @@ function colLetter(index: number): string {
 @Component({
   selector: 'nx-excel-viewer',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-excel-viewer.html',
   styleUrl: './ui-excel-viewer.scss',
 })
@@ -81,5 +82,13 @@ export class NxExcelViewer {
     link.download = `${this.exportFilename}-${sheet.name}.csv`;
     link.click();
     URL.revokeObjectURL(url);
+  }
+
+  trackByCol(index: number, col: number): number {
+    return col;
+  }
+
+  trackByIndex(index: number, item: unknown): number {
+    return index;
   }
 }

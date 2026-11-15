@@ -7,6 +7,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export interface NxSegmentedOption {
@@ -26,7 +27,7 @@ export type NxSegmentedSize = 'small' | 'medium' | 'large';
 @Component({
   selector: 'nx-segmented-control',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgFor, NgIf, NxIcon],
   templateUrl: './ui-segmented-control.html',
   styleUrl: './ui-segmented-control.scss',
   providers: [
@@ -154,5 +155,9 @@ export class NxSegmentedControl implements ControlValueAccessor, Validator {
 
   registerOnValidatorChange(fn: () => void): void {
     this.onValidatorChangeFn = fn;
+  }
+
+  trackByOptionValue(index: number, option: NxSegmentedOption): string {
+    return option.value;
   }
 }

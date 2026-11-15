@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -105,7 +106,7 @@ function describeField(value: string, unit: string, names?: string[]): string | 
 @Component({
   selector: 'nx-cron-builder',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-cron-builder.html',
   styleUrl: './ui-cron-builder.scss',
 })
@@ -184,5 +185,9 @@ export class NxCronBuilder {
   applyPreset(preset: NxCronPreset): void {
     this.value = { ...preset.value };
     this.valueChange.emit(this.value);
+  }
+
+  trackByPresetLabel(index: number, preset: NxCronPreset): string {
+    return preset.label;
   }
 }

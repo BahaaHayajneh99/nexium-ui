@@ -1,5 +1,5 @@
-@if (open && rect && currentStep) {
-    @if (licensed()) {
+<ng-container *ngIf="open && rect && currentStep">
+    <ng-container *ngIf="licensed(); else elseBlock1">
         <div class="nx-tour-backdrop" (click)="skip()"></div>
 
         <div
@@ -24,28 +24,24 @@
             </div>
 
             <div class="nx-tour-title">{{ currentStep.title }}</div>
-            @if (currentStep.description) {
-                <p class="nx-tour-description">{{ currentStep.description }}</p>
-            }
+            <p class="nx-tour-description" *ngIf="currentStep.description">{{ currentStep.description }}</p>
 
             <div class="nx-tour-dots">
-                @for (step of steps; track $index; let i = $index) {
-                    <span
-                        class="nx-tour-dot"
-                        [class.active]="i === currentIndex"
-                        (click)="goTo(i)">
-                    </span>
-                }
+                <span
+                    class="nx-tour-dot"
+                    *ngFor="let step of steps; trackBy: trackByIndex; let i = index"
+                    [class.active]="i === currentIndex"
+                    (click)="goTo(i)">
+                </span>
             </div>
 
             <div class="nx-tour-actions">
-                @if (currentIndex > 0) {
-                    <button type="button" class="nx-tour-back" (click)="back()">Back</button>
-                }
+                <button type="button" class="nx-tour-back" *ngIf="currentIndex > 0" (click)="back()">Back</button>
                 <button type="button" class="nx-tour-next" (click)="next()">{{ isLastStep ? 'Done' : 'Next' }}</button>
             </div>
         </div>
-    } @else {
+    </ng-container>
+    <ng-template #elseBlock1>
         <div class="nx-tour-backdrop" (click)="skip()"></div>
         <div
             class="nx-tour-callout"
@@ -56,5 +52,5 @@
             [style.left.px]="calloutLeft">
             <nx-pro-locked componentName="Tour"></nx-pro-locked>
         </div>
-    }
-}
+    </ng-template>
+</ng-container>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor } from '@angular/common';
 
 export interface NxResponsiveBreakpoint {
   id: string;
@@ -16,7 +17,7 @@ export const NX_DEFAULT_BREAKPOINTS: NxResponsiveBreakpoint[] = [
 @Component({
   selector: 'nx-responsive-preview',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './ui-responsive-preview.html',
   styleUrl: './ui-responsive-preview.scss',
 })
@@ -33,5 +34,9 @@ export class NxResponsivePreview {
   select(id: string): void {
     this.activeId = id;
     this.activeIdChange.emit(id);
+  }
+
+  trackByBreakpointId(index: number, bp: NxResponsiveBreakpoint): string {
+    return bp.id;
   }
 }

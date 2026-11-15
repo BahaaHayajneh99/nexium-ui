@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef, numberAttribute } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 @Component({
   selector: 'nx-time-picker',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgFor, NgIf, NxIcon],
   templateUrl: './ui-time-picker.html',
   styleUrl: './ui-time-picker.scss',
   providers: [
@@ -283,5 +284,17 @@ export class NxTimePicker implements ControlValueAccessor, Validator {
 
   registerOnValidatorChange(fn: () => void): void {
     this.onValidatorChangeFn = fn;
+  }
+
+  trackByHour(index: number, h: number): number {
+    return h;
+  }
+
+  trackByMinute(index: number, m: number): number {
+    return m;
+  }
+
+  trackBySecond(index: number, s: number): number {
+    return s;
   }
 }

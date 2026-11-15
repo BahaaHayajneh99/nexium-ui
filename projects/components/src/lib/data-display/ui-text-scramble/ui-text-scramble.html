@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <span class="nx-text-scramble">{{ displayText }}</span>
-} @else {
+<span class="nx-text-scramble" *ngIf="licensed(); else elseBlock1">{{ displayText }}</span>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Text Scramble"></nx-pro-locked>
-}
+</ng-template>

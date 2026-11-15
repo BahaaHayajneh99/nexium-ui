@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -71,7 +72,7 @@ const DEFAULT_BASE_STYLES = `
 @Component({
   selector: 'nx-html-preview',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf],
   templateUrl: './ui-html-preview.html',
   styleUrl: './ui-html-preview.scss',
 })

@@ -1,9 +1,6 @@
-@if (licensed()) {
-    <div class="nx-cron-builder">
+<div class="nx-cron-builder" *ngIf="licensed(); else elseBlock1">
         <div class="nx-cron-builder-presets">
-            @for (preset of presets; track preset.label) {
-                <button type="button" class="nx-cron-builder-preset" (click)="applyPreset(preset)">{{ preset.label }}</button>
-            }
+            <button type="button" class="nx-cron-builder-preset" (click)="applyPreset(preset)" *ngFor="let preset of presets; trackBy: trackByPresetLabel">{{ preset.label }}</button>
         </div>
 
         <div class="nx-cron-builder-fields">
@@ -32,6 +29,6 @@
         <code class="nx-cron-builder-expression">{{ expression }}</code>
         <p class="nx-cron-builder-description" [class.error]="!isValid">{{ description }}</p>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Cron Builder"></nx-pro-locked>
-}
+</ng-template>

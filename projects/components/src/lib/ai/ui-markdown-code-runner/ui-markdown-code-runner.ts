@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -45,7 +46,7 @@ function stringifyLogArg(arg: unknown): string {
 @Component({
   selector: 'nx-markdown-code-runner',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-markdown-code-runner.html',
   styleUrl: './ui-markdown-code-runner.scss',
 })
@@ -91,5 +92,13 @@ export class NxMarkdownCodeRunner {
       console.log = originalConsoleLog;
       state.ran = true;
     }
+  }
+
+  protected trackByBlockIndex(index: number): number {
+    return index;
+  }
+
+  protected trackByLineIndex(index: number): number {
+    return index;
   }
 }

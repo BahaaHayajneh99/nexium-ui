@@ -1,5 +1,5 @@
 import { booleanAttribute, Component, Input } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 export type NxBadgeVariant =
   | 'primary'
@@ -16,7 +16,7 @@ export type NxBadgeSize = 'small' | 'medium' | 'large';
 @Component({
   selector: 'nx-badge',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgIf],
   templateUrl: './ui-badge.html',
   styleUrl: './ui-badge.scss',
 })

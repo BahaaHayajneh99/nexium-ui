@@ -1,10 +1,11 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxMenu, NxMenuItem } from '../ui-menu';
 
 @Component({
   selector: 'nx-context-menu',
   standalone: true,
-  imports: [NxMenu],
+  imports: [NgIf, NxMenu],
   templateUrl: './ui-context-menu.html',
   styleUrl: './ui-context-menu.scss',
 })

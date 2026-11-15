@@ -1,8 +1,7 @@
 <div class="nx-menu" role="menu">
-    @for (item of items; track item.id) {
-        @if (item.divider) {
-            <div class="nx-menu-divider"></div>
-        } @else {
+    <ng-container *ngFor="let item of items; trackBy: trackByItemId">
+        <div *ngIf="item.divider; else elseBlock1" class="nx-menu-divider"></div>
+        <ng-template #elseBlock1>
             <button
                 type="button"
                 class="nx-menu-item"
@@ -10,11 +9,9 @@
                 [disabled]="item.disabled"
                 role="menuitem"
                 (click)="onSelect(item)">
-                @if (item.icon) {
-                    <nx-icon class="nx-menu-item-icon" [icon]="item.icon" variant="svg" [size]="16"></nx-icon>
-                }
+                <nx-icon *ngIf="item.icon" class="nx-menu-item-icon" [icon]="item.icon" variant="svg" [size]="16"></nx-icon>
                 <span>{{ item.label }}</span>
             </button>
-        }
-    }
+        </ng-template>
+    </ng-container>
 </div>

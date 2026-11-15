@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxMenu, NxMenuItem } from '../ui-menu';
 
 export type NxDropdownPosition = 'left' | 'right';
@@ -6,7 +7,7 @@ export type NxDropdownPosition = 'left' | 'right';
 @Component({
   selector: 'nx-dropdown-menu',
   standalone: true,
-  imports: [NxMenu],
+  imports: [NgIf, NxMenu],
   templateUrl: './ui-dropdown-menu.html',
   styleUrl: './ui-dropdown-menu.scss',
   host: {

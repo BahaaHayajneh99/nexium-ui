@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -20,7 +21,7 @@ export interface NxColumnManagerColumn {
 @Component({
   selector: 'nx-column-manager',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf, NgFor],
   templateUrl: './ui-column-manager.html',
   styleUrl: './ui-column-manager.scss',
 })
@@ -84,5 +85,9 @@ export class NxColumnManager {
   private emit(next: NxColumnManagerColumn[]): void {
     this.columns = next;
     this.columnsChange.emit(next);
+  }
+
+  trackByColumnField(index: number, column: NxColumnManagerColumn): string {
+    return column.field;
   }
 }

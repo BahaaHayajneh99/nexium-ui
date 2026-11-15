@@ -10,6 +10,7 @@ import {
   ViewChild,
   booleanAttribute,
 } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -17,7 +18,7 @@ const FOCUSABLE_SELECTOR =
 @Component({
   selector: 'nx-modal',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-modal.html',
   styleUrl: './ui-modal.scss',
 })

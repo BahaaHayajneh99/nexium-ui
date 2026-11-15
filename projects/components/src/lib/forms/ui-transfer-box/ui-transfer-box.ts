@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 
 export interface NxTransferItem {
   id: string;
@@ -15,7 +16,7 @@ export interface NxTransferItem {
 @Component({
   selector: 'nx-transfer-box',
   standalone: true,
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './ui-transfer-box.html',
   styleUrl: './ui-transfer-box.scss',
 })
@@ -128,6 +129,14 @@ export class NxTransferBox {
   private commitSelectedIds(next: string[]): void {
     this.selectedIdsSignal.set(next);
     this.selectedIdsChange.emit(next);
+  }
+
+  trackByAvailableItemId(index: number, item: NxTransferItem): string {
+    return item.id;
+  }
+
+  trackBySelectedItemId(index: number, item: NxTransferItem): string {
+    return item.id;
   }
 }
 

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxModelSelector, NxAiModel } from '../ui-model-selector/ui-model-selector';
 import { NxAiResponseViewer } from '../ui-ai-response-viewer/ui-ai-response-viewer';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -25,7 +26,7 @@ export interface NxModelPlaygroundRunParams {
 @Component({
   selector: 'nx-ai-model-playground',
   standalone: true,
-  imports: [NxModelSelector, NxAiResponseViewer, NxProLocked],
+  imports: [NgIf, NxModelSelector, NxAiResponseViewer, NxProLocked],
   templateUrl: './ui-ai-model-playground.html',
   styleUrl: './ui-ai-model-playground.scss',
 })

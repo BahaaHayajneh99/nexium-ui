@@ -1,7 +1,5 @@
 <div class="nx-combobox-wrapper">
-    @if (label) {
-        <label class="nx-combobox-label">{{ label }}@if (isRequired) {<span class="nx-combobox-required">*</span>}</label>
-    }
+    <label class="nx-combobox-label" *ngIf="label">{{ label }}<span class="nx-combobox-required" *ngIf="isRequired">*</span></label>
 
     <div class="nx-combobox-field">
         <div class="nx-combobox" [class.error]="!!displayError" [class.disabled]="disabled">
@@ -22,16 +20,15 @@
                 (blur)="onBlur()"
                 (keydown)="onKeydown($event)" />
 
-            @if (showClear && !!value) {
-                <button
-                    type="button"
-                    class="nx-combobox-clear"
-                    tabindex="-1"
-                    aria-label="Clear selection"
-                    (mousedown)="$event.preventDefault(); clear($event)">
-                    &times;
-                </button>
-            }
+            <button
+                type="button"
+                class="nx-combobox-clear"
+                tabindex="-1"
+                aria-label="Clear selection"
+                (mousedown)="$event.preventDefault(); clear($event)"
+                *ngIf="showClear && !!value">
+                &times;
+            </button>
 
             <button
                 type="button"
@@ -44,30 +41,23 @@
             </button>
         </div>
 
-        @if (open) {
-            <div class="nx-combobox-panel" role="listbox">
-                @if (filteredOptions.length === 0) {
-                    <div class="nx-combobox-empty">No matches</div>
-                }
-                @for (option of filteredOptions; track option.value; let i = $index) {
-                    <button
-                        type="button"
-                        class="nx-combobox-option"
-                        role="option"
-                        [class.active]="i === activeIndex"
-                        [class.selected]="option.value === value"
-                        [class.disabled]="option.disabled"
-                        [attr.aria-selected]="option.value === value"
-                        [disabled]="option.disabled"
-                        (mousedown)="$event.preventDefault(); selectOption(option)">
-                        {{ option.label }}
-                    </button>
-                }
-            </div>
-        }
+        <div class="nx-combobox-panel" role="listbox" *ngIf="open">
+            <div class="nx-combobox-empty" *ngIf="filteredOptions.length === 0">No matches</div>
+            <button
+                type="button"
+                class="nx-combobox-option"
+                role="option"
+                *ngFor="let option of filteredOptions; trackBy: trackByOptionValue; let i = index"
+                [class.active]="i === activeIndex"
+                [class.selected]="option.value === value"
+                [class.disabled]="option.disabled"
+                [attr.aria-selected]="option.value === value"
+                [disabled]="option.disabled"
+                (mousedown)="$event.preventDefault(); selectOption(option)">
+                {{ option.label }}
+            </button>
+        </div>
     </div>
 
-    @if (displayError) {
-        <span class="nx-combobox-error">{{ displayError }}</span>
-    }
+    <span class="nx-combobox-error" *ngIf="displayError">{{ displayError }}</span>
 </div>

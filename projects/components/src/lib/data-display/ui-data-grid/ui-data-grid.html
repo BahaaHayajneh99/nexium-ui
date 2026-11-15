@@ -13,42 +13,40 @@
         <table class="nx-data-grid-table">
             <thead>
                 <tr>
-                    @for (column of columns; track column.field) {
+                    <ng-container *ngFor="let column of columns; trackBy: trackByColumnField">
                         <th
                             [class.sortable]="column.sortable"
                             (click)="onHeaderClick(column)">
                             {{ column.header }}
-                            @if (column.sortable && sortIndicator(column.field)) {
-                                <span class="nx-data-grid-sort-icon">{{ sortIndicator(column.field) }}</span>
-                            }
+                            <span class="nx-data-grid-sort-icon" *ngIf="column.sortable && sortIndicator(column.field)">{{ sortIndicator(column.field) }}</span>
                         </th>
-                    }
+                    </ng-container>
                 </tr>
             </thead>
             <tbody>
-                @for (row of pagedRows; track $index) {
+                <ng-container *ngFor="let row of pagedRows; trackBy: trackByIndex">
                     <tr>
-                        @for (column of columns; track column.field) {
+                        <ng-container *ngFor="let column of columns; trackBy: trackByColumnField">
                             <td>{{ row[column.field] }}</td>
-                        }
+                        </ng-container>
                     </tr>
-                } @empty {
+                </ng-container>
+                <ng-container *ngIf="!pagedRows || pagedRows.length === 0">
                     <tr>
                         <td [attr.colspan]="columns.length" class="nx-data-grid-empty">No data available</td>
                     </tr>
-                }
+                </ng-container>
             </tbody>
         </table>
     </div>
 
-    @if (totalPages > 1) {
-        <div class="nx-data-grid-paginator">
+    <div class="nx-data-grid-paginator" *ngIf="totalPages > 1">
             <div class="nx-data-grid-paginator-info">
                 {{ sortedRows.length === 0 ? 0 : pageStart + 1 }}-{{ pageEnd }} of {{ sortedRows.length }}
             </div>
             <div class="nx-data-grid-pagination">
                 <button type="button" class="nx-data-grid-page-btn" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">‹</button>
-                @for (pageNum of pageNumbers; track pageNum) {
+                <ng-container *ngFor="let pageNum of pageNumbers; trackBy: trackByPageNum">
                     <button
                         type="button"
                         class="nx-data-grid-page-btn"
@@ -56,9 +54,8 @@
                         (click)="goToPage(pageNum)">
                         {{ pageNum }}
                     </button>
-                }
+                </ng-container>
                 <button type="button" class="nx-data-grid-page-btn" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">›</button>
             </div>
         </div>
-    }
 </div>

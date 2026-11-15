@@ -7,29 +7,28 @@
     [style.border-color]="color"
     [style.color]="variant === 'outline' ? color : computedTextColor">
 
-    @if (editable) {
-        <input
-            type="text"
-            class="nx-tag-input"
-            [style.color]="variant === 'outline' ? color : computedTextColor"
-            [value]="value"
-            [placeholder]="placeholder"
-            [disabled]="disabled"
-            (input)="onInput($event)"
-            (keydown.enter)="onEnter($event)">
-    } @else {
+    <input
+        type="text"
+        class="nx-tag-input"
+        *ngIf="editable; else elseBlock1"
+        [style.color]="variant === 'outline' ? color : computedTextColor"
+        [value]="value"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        (input)="onInput($event)"
+        (keydown.enter)="onEnter($event)">
+    <ng-template #elseBlock1>
         <ng-content></ng-content>
-    }
+    </ng-template>
 
-    @if (closable && !editable) {
-        <button
-            type="button"
-            class="nx-tag-close"
-            [disabled]="disabled"
-            aria-label="Remove tag"
-            (click)="onClose($event)">
-            &times;
-        </button>
-    }
+    <button
+        type="button"
+        class="nx-tag-close"
+        *ngIf="closable && !editable"
+        [disabled]="disabled"
+        aria-label="Remove tag"
+        (click)="onClose($event)">
+        &times;
+    </button>
 
 </span>

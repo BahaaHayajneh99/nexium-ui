@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -16,7 +17,7 @@ export interface NxMappingField {
 @Component({
   selector: 'nx-data-mapping-editor',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf, NgFor],
   templateUrl: './ui-data-mapping-editor.html',
   styleUrl: './ui-data-mapping-editor.scss',
 })
@@ -51,5 +52,9 @@ export class NxDataMappingEditor {
 
   get allRequiredMapped(): boolean {
     return this.requiredFields.length > 0 && this.mappedRequiredCount === this.requiredFields.length;
+  }
+
+  trackByFieldKey(index: number, field: NxMappingField): string {
+    return field.key;
   }
 }

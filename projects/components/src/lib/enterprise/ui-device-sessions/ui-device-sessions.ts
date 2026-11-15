@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -26,7 +27,7 @@ export interface NxDeviceSession {
 @Component({
   selector: 'nx-device-sessions',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-device-sessions.html',
   styleUrl: './ui-device-sessions.scss',
 })
@@ -40,6 +41,10 @@ export class NxDeviceSessions {
 
   get otherSessionsCount(): number {
     return this.sessions.filter((session) => !session.isCurrent).length;
+  }
+
+  trackBySessionId(index: number, session: NxDeviceSession): string | number {
+    return session.id;
   }
 
   iconFor(deviceType: NxDeviceSessionType): string {

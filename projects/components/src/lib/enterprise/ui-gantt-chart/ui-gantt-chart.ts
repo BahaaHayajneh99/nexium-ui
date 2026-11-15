@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, numberAttribute } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -28,7 +28,7 @@ function daysBetween(a: Date, b: Date): number {
 @Component({
   selector: 'nx-gantt-chart',
   standalone: true,
-  imports: [NxProLocked, DatePipe],
+  imports: [NgIf, NgFor, NxProLocked, DatePipe],
   templateUrl: './ui-gantt-chart.html',
   styleUrl: './ui-gantt-chart.scss',
 })
@@ -81,6 +81,18 @@ export class NxGanttChart {
       left: daysBetween(this.rangeStart, task.start) * this.pxPerDay,
       width: Math.max(this.pxPerDay, (daysBetween(task.start, task.end) + 1) * this.pxPerDay),
     }));
+  }
+
+  trackByRowId(index: number, row: NxGanttRow): string | number {
+    return row.task.id;
+  }
+
+  trackByTickLeft(index: number, tick: { date: Date; left: number }): number {
+    return tick.left;
+  }
+
+  trackByRowIdBody(index: number, row: NxGanttRow): string | number {
+    return row.task.id;
   }
 
   onBarPointerDown(row: NxGanttRow, mode: 'move' | 'resize', event: PointerEvent): void {

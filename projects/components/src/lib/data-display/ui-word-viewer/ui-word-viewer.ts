@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -33,7 +34,7 @@ interface NxWordRenderGroup {
 @Component({
   selector: 'nx-word-viewer',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, NxIcon, NxProLocked],
   templateUrl: './ui-word-viewer.html',
   styleUrl: './ui-word-viewer.scss',
 })
@@ -74,6 +75,10 @@ export class NxWordViewer {
     const text = this.blocks.map((b) => b.runs.map((r) => r.text).join('')).join(' ');
     return text.trim() ? text.trim().split(/\s+/).length : 0;
   });
+
+  trackByIndex(index: number): number {
+    return index;
+  }
 
   zoomIn(): void {
     this.zoom.update((z) => Math.min(150, z + 10));

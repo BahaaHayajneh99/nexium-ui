@@ -10,6 +10,7 @@ import {
   numberAttribute,
   signal,
 } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -25,7 +26,7 @@ export type NxMarqueeDirection = 'left' | 'right' | 'up' | 'down';
 @Component({
   selector: 'nx-marquee',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-marquee.html',
   styleUrl: './ui-marquee.scss',
 })

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output, booleanAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 export type NxDrawerSide = 'left' | 'right' | 'top' | 'bottom';
 
@@ -10,7 +11,7 @@ export type NxDrawerSide = 'left' | 'right' | 'top' | 'bottom';
 @Component({
   selector: 'nx-drawer',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-drawer.html',
   styleUrl: './ui-drawer.scss',
 })

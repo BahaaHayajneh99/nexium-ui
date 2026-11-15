@@ -1,110 +1,94 @@
-@if (licensed()) {
-<div class="nx-activity-feed">
-    @if (showFilters && (actors.length > 1 || hasCategories)) {
-        <div class="nx-activity-feed-filters">
+<div class="nx-activity-feed" *ngIf="licensed(); else elseBlock1">
+    <div class="nx-activity-feed-filters" *ngIf="showFilters && (actors.length > 1 || hasCategories)">
             <select class="nx-activity-feed-select" [ngModel]="actorFilter" (ngModelChange)="actorFilter = $event">
                 <option [value]="'all'">All people</option>
-                @for (actor of actors; track actor) {
+                <ng-container *ngFor="let actor of actors; trackBy: trackByActor">
                     <option [value]="actor">{{ actor }}</option>
-                }
+                </ng-container>
             </select>
 
-            @if (hasCategories) {
-                <select class="nx-activity-feed-select" [ngModel]="categoryFilter" (ngModelChange)="categoryFilter = $event">
+            <select class="nx-activity-feed-select" [ngModel]="categoryFilter" (ngModelChange)="categoryFilter = $event" *ngIf="hasCategories">
                     <option [value]="'all'">All types</option>
-                    @for (category of categories; track category) {
+                    <ng-container *ngFor="let category of categories; trackBy: trackByCategory">
                         <option [value]="category">{{ category }}</option>
-                    }
+                    </ng-container>
                 </select>
-            }
 
-            @if (hasActiveFilters) {
-                <button type="button" class="nx-activity-feed-reset" (click)="resetFilters()">Reset</button>
-            }
+            <button type="button" class="nx-activity-feed-reset" (click)="resetFilters()" *ngIf="hasActiveFilters">Reset</button>
         </div>
-    }
 
-    @for (group of groups; track group.label) {
-        @if (group.label) {
-            <div class="nx-activity-feed-day">{{ group.label }}</div>
-        }
+    <ng-container *ngFor="let group of groups; trackBy: trackByGroupLabel">
+        <div class="nx-activity-feed-day" *ngIf="group.label">{{ group.label }}</div>
 
-        @for (item of group.items; track item.id; let last = $last) {
+        <ng-container *ngFor="let item of group.items; trackBy: trackByItem; let last = last">
             <div class="nx-activity-feed-row" [class.nx-activity-feed-row-chained]="!last">
                 <div class="nx-activity-feed-avatar" [style.--nx-avatar-hue]="avatarHueFor(item.actorName)">
-                    @if (item.actorAvatarUrl) {
+                    <ng-container *ngIf="item.actorAvatarUrl; else elseBlock2">
                         <img [src]="item.actorAvatarUrl" [alt]="item.actorName" />
-                    } @else {
+                    </ng-container>
+                    <ng-template #elseBlock2>
                         <span>{{ initialFor(item.actorName) }}</span>
-                    }
+                    </ng-template>
                 </div>
 
                 <div class="nx-activity-feed-content">
                     <div class="nx-activity-feed-row-head">
                         <p class="nx-activity-feed-text">
                             <strong>{{ item.actorName }}</strong> {{ item.action }}
-                            @if (item.target) {
-                                <span class="nx-activity-feed-target">{{ item.target }}</span>
-                            }
-                            @if (item.category) {
-                                <span class="nx-activity-feed-category">{{ item.category }}</span>
-                            }
+                            <span class="nx-activity-feed-target" *ngIf="item.target">{{ item.target }}</span>
+                            <span class="nx-activity-feed-category" *ngIf="item.category">{{ item.category }}</span>
                         </p>
 
                         <div class="nx-activity-feed-actions">
-                            @for (action of actionsFor(item); track action.id) {
+                            <ng-container *ngFor="let action of actionsFor(item); trackBy: trackByActionId">
                                 <button
                                     type="button"
                                     class="nx-activity-feed-action"
                                     (click)="invokeAction(item, action)">
-                                    @if (action.icon) {
-                                        <nx-icon [icon]="action.icon" variant="svg" [size]="12"></nx-icon>
-                                    }
+                                    <nx-icon *ngIf="action.icon" [icon]="action.icon" variant="svg" [size]="12"></nx-icon>
                                     {{ action.label }}
                                 </button>
-                            }
+                            </ng-container>
 
-                            @if (item.metadata?.length) {
-                                <button
-                                    type="button"
-                                    class="nx-activity-feed-detail-toggle"
-                                    [class.open]="isExpanded(item)"
-                                    (click)="toggleExpand(item)"
-                                    [attr.aria-expanded]="isExpanded(item)"
-                                    [attr.aria-label]="isExpanded(item) ? 'Hide details' : 'Show details'">
-                                    <nx-icon icon="nx-chevron-down" variant="svg" [size]="12"></nx-icon>
-                                </button>
-                            }
+                            <button
+                                type="button"
+                                class="nx-activity-feed-detail-toggle"
+                                [class.open]="isExpanded(item)"
+                                (click)="toggleExpand(item)"
+                                [attr.aria-expanded]="isExpanded(item)"
+                                [attr.aria-label]="isExpanded(item) ? 'Hide details' : 'Show details'"
+                                *ngIf="item.metadata?.length">
+                                <nx-icon icon="nx-chevron-down" variant="svg" [size]="12"></nx-icon>
+                            </button>
                         </div>
                     </div>
 
                     <span class="nx-activity-feed-time">{{ item.timestamp | date: 'shortTime' }}</span>
 
-                    @if (item.metadata?.length && isExpanded(item)) {
-                        <dl class="nx-activity-feed-metadata">
-                            @for (entry of item.metadata; track entry.label) {
+                    <dl class="nx-activity-feed-metadata" *ngIf="item.metadata?.length && isExpanded(item)">
+                            <ng-container *ngFor="let entry of item.metadata; trackBy: trackByMetadataLabel">
                                 <div class="nx-activity-feed-metadata-row">
                                     <dt>{{ entry.label }}</dt>
                                     <dd>{{ entry.value }}</dd>
                                 </div>
-                            }
+                            </ng-container>
                         </dl>
-                    }
                 </div>
             </div>
-        }
-    }
+        </ng-container>
+    </ng-container>
 
-    @if (items.length === 0) {
+    <ng-container *ngIf="items.length === 0; else elseIfBlock1">
         <p class="nx-activity-feed-empty">No activity yet.</p>
-    } @else if (groups.length === 0) {
-        <p class="nx-activity-feed-empty">No activity matches these filters.</p>
-    }
+    </ng-container>
+    <ng-template #elseIfBlock1>
+        <ng-container *ngIf="groups.length === 0">
+            <p class="nx-activity-feed-empty">No activity matches these filters.</p>
+        </ng-container>
+    </ng-template>
 
-    @if (showLoadMore && items.length > 0) {
-        <button type="button" class="nx-activity-feed-load-more" (click)="loadMore.emit()">Load more</button>
-    }
+    <button type="button" class="nx-activity-feed-load-more" (click)="loadMore.emit()" *ngIf="showLoadMore && items.length > 0">Load more</button>
 </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Activity Feed"></nx-pro-locked>
-}
+</ng-template>

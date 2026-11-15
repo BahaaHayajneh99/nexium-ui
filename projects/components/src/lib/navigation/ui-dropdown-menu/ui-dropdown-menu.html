@@ -3,12 +3,8 @@
         <ng-content select="[nx-dropdown-trigger]"></ng-content>
     </div>
 
-    @if (open) {
-        <div class="nx-dropdown-panel" [class.right]="position === 'right'" (click)="onContentClick()">
-            @if (items.length) {
-                <nx-menu [items]="items" (itemSelect)="onSelect($event)"></nx-menu>
-            }
-            <ng-content select="[nx-dropdown-content]"></ng-content>
-        </div>
-    }
+    <div *ngIf="open" class="nx-dropdown-panel" [class.right]="position === 'right'" (click)="onContentClick()">
+        <nx-menu *ngIf="items.length" [items]="items" (itemSelect)="onSelect($event)"></nx-menu>
+        <ng-content select="[nx-dropdown-content]"></ng-content>
+    </div>
 </div>

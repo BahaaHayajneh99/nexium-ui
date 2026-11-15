@@ -1,32 +1,29 @@
-@if (licensed()) {
-    <div class="nx-sql-formatter">
-        <textarea
-            class="nx-sql-formatter-input"
-            placeholder="select * from orders where id = 1"
-            [value]="sqlText()"
-            (input)="onSqlChange($any($event.target).value)"></textarea>
+<div class="nx-sql-formatter" *ngIf="licensed(); else elseBlock1">
+    <textarea
+        class="nx-sql-formatter-input"
+        placeholder="select * from orders where id = 1"
+        [value]="sqlText()"
+        (input)="onSqlChange($any($event.target).value)"></textarea>
 
-        <div class="nx-sql-formatter-toolbar">
-            <button type="button" class="nx-sql-formatter-format" (click)="format()">
-                <nx-icon icon="nx-check" variant="svg" [size]="12"></nx-icon> Format
-            </button>
-        </div>
-
-        @if (formattedSql()) {
-            <div class="nx-sql-formatter-output-wrap">
-                <button
-                    type="button"
-                    class="nx-sql-formatter-copy"
-                    [nxCopyToClipboard]="formattedSql()"
-                    (nxCopied)="onCopied()"
-                    aria-label="Copy formatted SQL">
-                    <nx-icon [icon]="copied() ? 'nx-check' : 'nx-copy'" variant="svg" [size]="12"></nx-icon>
-                    {{ copied() ? 'Copied' : 'Copy' }}
-                </button>
-                <pre class="nx-sql-formatter-output"><code>{{ formattedSql() }}</code></pre>
-            </div>
-        }
+    <div class="nx-sql-formatter-toolbar">
+        <button type="button" class="nx-sql-formatter-format" (click)="format()">
+            <nx-icon icon="nx-check" variant="svg" [size]="12"></nx-icon> Format
+        </button>
     </div>
-} @else {
+
+    <div class="nx-sql-formatter-output-wrap" *ngIf="formattedSql()">
+        <button
+            type="button"
+            class="nx-sql-formatter-copy"
+            [nxCopyToClipboard]="formattedSql()"
+            (nxCopied)="onCopied()"
+            aria-label="Copy formatted SQL">
+            <nx-icon [icon]="copied() ? 'nx-check' : 'nx-copy'" variant="svg" [size]="12"></nx-icon>
+            {{ copied() ? 'Copied' : 'Copy' }}
+        </button>
+        <pre class="nx-sql-formatter-output"><code>{{ formattedSql() }}</code></pre>
+    </div>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="SQL Formatter"></nx-pro-locked>
-}
+</ng-template>

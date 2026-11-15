@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { axisTicks, formatNumber, niceMax, seriesColor } from '../chart-utils';
 import { NxScatterSeries } from '../chart-types';
 
@@ -16,7 +17,7 @@ interface ScatterPoint {
 @Component({
   selector: 'nx-scatter-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-scatter-chart.html',
   styleUrl: './ui-scatter-chart.scss',
 })
@@ -131,5 +132,17 @@ export class NxScatterChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackByTick(index: number, tick: number): number {
+    return tick;
+  }
+
+  trackByPointKey(index: number, point: ScatterPoint): string {
+    return `${point.seriesIndex}-${point.pointIndex}`;
+  }
+
+  trackBySeriesName(index: number, s: NxScatterSeries): string {
+    return s.name;
   }
 }

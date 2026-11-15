@@ -10,14 +10,13 @@
         <button *ngFor="let tab of tabs; let i=index" class="nx-tab-button" [class.active]="activeIndex === i"
             [disabled]="tab.disabled" (click)="selectTab(i)">
 
-            @if (tab.labelTemplate) {
+            <ng-container *ngIf="tab.labelTemplate; else elseBlock1">
                 <ng-container *ngTemplateOutlet="tab.labelTemplate.templateRef"></ng-container>
-            } @else {
-                @if (tab.icon) {
-                    <nx-icon class="nx-tab-icon" [icon]="tab.icon" variant="svg" [size]="16"></nx-icon>
-                }
+            </ng-container>
+            <ng-template #elseBlock1>
+                <nx-icon class="nx-tab-icon" [icon]="tab.icon" variant="svg" [size]="16" *ngIf="tab.icon"></nx-icon>
                 {{tab.label}}
-            }
+            </ng-template>
 
         </button>
 

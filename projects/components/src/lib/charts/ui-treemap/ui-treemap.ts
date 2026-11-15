@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber, seriesColor } from '../chart-utils';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -144,7 +145,7 @@ function readableTextColor(color: string): string {
 @Component({
   selector: 'nx-treemap',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf, NgFor],
   templateUrl: './ui-treemap.html',
   styleUrl: './ui-treemap.scss',
 })
@@ -203,5 +204,9 @@ export class NxTreemap {
 
   formatValue(value: number): string {
     return formatNumber(value);
+  }
+
+  trackByTile(index: number, tile: NxTreemapTile): string {
+    return tile.datum.label + '-' + tile.index;
   }
 }

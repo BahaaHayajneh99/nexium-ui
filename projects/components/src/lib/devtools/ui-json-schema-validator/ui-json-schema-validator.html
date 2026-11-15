@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-json-schema-validator">
+<div class="nx-json-schema-validator" *ngIf="licensed(); else elseBlock1">
         <div class="nx-json-schema-validator-panels">
             <div class="nx-json-schema-validator-panel">
                 <span class="nx-json-schema-validator-label">JSON Schema</span>
@@ -26,29 +25,29 @@
             </button>
         </div>
 
-        @if (parseError()) {
+        <ng-container *ngIf="parseError(); else elseIfBlock2">
             <div class="nx-json-schema-validator-result error">
                 <span class="nx-json-schema-validator-result-title">Parse error</span>
                 <p class="nx-json-schema-validator-parse-error">{{ parseError() }}</p>
             </div>
-        } @else if (result(); as r) {
-            @if (r.valid) {
-                <div class="nx-json-schema-validator-result success">
+        </ng-container>
+        <ng-template #elseIfBlock2>
+            <ng-container *ngIf="result() as r">
+                <div class="nx-json-schema-validator-result success" *ngIf="r.valid; else elseBlock3">
                     <nx-icon icon="nx-check-circle" variant="svg" [size]="14"></nx-icon>
                     <span class="nx-json-schema-validator-result-title">Valid - 0 errors</span>
                 </div>
-            } @else {
-                <div class="nx-json-schema-validator-result error">
-                    <span class="nx-json-schema-validator-result-title">{{ r.errors.length }} error(s)</span>
-                    <ul class="nx-json-schema-validator-error-list">
-                        @for (error of r.errors; track error) {
-                            <li>{{ error }}</li>
-                        }
-                    </ul>
-                </div>
-            }
-        }
+                <ng-template #elseBlock3>
+                    <div class="nx-json-schema-validator-result error">
+                        <span class="nx-json-schema-validator-result-title">{{ r.errors.length }} error(s)</span>
+                        <ul class="nx-json-schema-validator-error-list">
+                            <li *ngFor="let error of r.errors; trackBy: trackByError">{{ error }}</li>
+                        </ul>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </ng-template>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="JSON Schema Validator"></nx-pro-locked>
-}
+</ng-template>

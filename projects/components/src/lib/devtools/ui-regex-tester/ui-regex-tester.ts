@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -11,7 +12,7 @@ function escapeHtml(text: string): string {
 @Component({
   selector: 'nx-regex-tester',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-regex-tester.html',
   styleUrl: './ui-regex-tester.scss',
 })
@@ -64,5 +65,9 @@ export class NxRegexTester {
     }
     result += escapeHtml(text.slice(cursor));
     return this.sanitizer.bypassSecurityTrustHtml(result);
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 }

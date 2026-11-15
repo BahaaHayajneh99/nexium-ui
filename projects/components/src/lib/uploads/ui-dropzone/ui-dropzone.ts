@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, Output, booleanAttribute } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxFileSizePipe } from '../../pipes/nx-file-size.pipe';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -19,7 +20,7 @@ interface NxDropzonePreview {
 @Component({
   selector: 'nx-dropzone',
   standalone: true,
-  imports: [NxFileSizePipe, NxIcon, NxProLocked],
+  imports: [NgFor, NgIf, NxFileSizePipe, NxIcon, NxProLocked],
   templateUrl: './ui-dropzone.html',
   styleUrl: './ui-dropzone.scss',
 })
@@ -104,5 +105,9 @@ export class NxDropzone implements OnDestroy {
 
   ngOnDestroy(): void {
     this.revokeAll(this.previews);
+  }
+
+  trackByPreview(index: number, preview: NxDropzonePreview): string {
+    return preview.file.name + preview.file.size + index;
   }
 }

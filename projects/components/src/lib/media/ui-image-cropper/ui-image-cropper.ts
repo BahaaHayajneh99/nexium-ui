@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -43,7 +44,7 @@ const MIN_CROP_PX = 24;
 @Component({
   selector: 'nx-image-cropper',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NxIcon, NxProLocked, NgIf, NgFor],
   templateUrl: './ui-image-cropper.html',
   styleUrl: './ui-image-cropper.scss',
 })
@@ -91,6 +92,10 @@ export class NxImageCropper {
   readonly zoomLabel = computed(() => `${Math.round(this.zoom() * 100)}%`);
 
   private dragState: NxCropDragState | null = null;
+
+  trackByHandle(index: number, h: NxCropHandle): NxCropHandle {
+    return h;
+  }
 
   private applyReset(): void {
     this.rotation.set(0);

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, booleanAttribute, numberAttribute } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf, NgFor } from '@angular/common';
 
 export interface NxTableColumn {
   field: string;
@@ -31,7 +31,7 @@ export type NxTableSize = 'sm' | 'md' | 'lg';
 @Component({
   selector: 'nx-table',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgIf, NgFor],
   templateUrl: './ui-table.html',
   styleUrl: './ui-table.scss',
 })
@@ -139,6 +139,18 @@ export class NxTable implements OnChanges {
   trackByRow = (index: number, row: Record<string, unknown>): unknown => {
     return this.dataKey && row ? row[this.dataKey] : index;
   };
+
+  trackByColumnField(_index: number, col: NxTableColumn): string {
+    return col.field;
+  }
+
+  trackByOption(_index: number, opt: number): number {
+    return opt;
+  }
+
+  trackByPageNum(_index: number, pageNum: number): number {
+    return pageNum;
+  }
 
   // ---------- Sorting ----------
 

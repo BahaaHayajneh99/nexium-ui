@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, numberAttribute, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -14,7 +15,7 @@ import { nxProLicenseGranted } from '../../licensing/nx-license';
 @Component({
   selector: 'nx-file-input',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgFor, NgIf, NxIcon, NxProLocked],
   templateUrl: './ui-file-input.html',
   styleUrl: './ui-file-input.scss',
 })
@@ -123,5 +124,13 @@ export class NxFileInput {
       return `${(bytes / 1024).toFixed(1)} KB`;
     }
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+
+  trackByFile(index: number, file: File): File {
+    return file;
+  }
+
+  trackByError(index: number, error: string): string {
+    return error;
   }
 }

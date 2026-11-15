@@ -1,28 +1,27 @@
 <span class="nx-presence-indicator" [class.avatar-mode]="mode === 'avatar'">
 
-    @if (mode === 'avatar') {
-        <span class="nx-presence-indicator-avatar">
-            @if (hasAvatarInputs) {
-                <nx-avatar
-                    [src]="avatarUrl"
-                    [alt]="avatarAlt"
-                    [name]="avatarName"
-                    [size]="avatarSize"
-                    [shape]="avatarShape"
-                    [variant]="avatarVariant">
-                </nx-avatar>
-            } @else {
-                <ng-content></ng-content>
-            }
-            <span
-                class="nx-presence-indicator-dot overlay"
-                [class]="status"
-                [class.pulse]="pulse && status === 'online'"
-                [attr.aria-label]="displayLabel"
-                role="img">
-            </span>
+    <span class="nx-presence-indicator-avatar" *ngIf="mode === 'avatar'; else elseBlock2">
+        <nx-avatar
+            *ngIf="hasAvatarInputs; else elseBlock1"
+            [src]="avatarUrl"
+            [alt]="avatarAlt"
+            [name]="avatarName"
+            [size]="avatarSize"
+            [shape]="avatarShape"
+            [variant]="avatarVariant">
+        </nx-avatar>
+        <ng-template #elseBlock1>
+            <ng-content></ng-content>
+        </ng-template>
+        <span
+            class="nx-presence-indicator-dot overlay"
+            [class]="status"
+            [class.pulse]="pulse && status === 'online'"
+            [attr.aria-label]="displayLabel"
+            role="img">
         </span>
-    } @else {
+    </span>
+    <ng-template #elseBlock2>
         <span
             class="nx-presence-indicator-dot"
             [class]="status"
@@ -30,10 +29,8 @@
             [attr.aria-label]="displayLabel"
             role="img">
         </span>
-    }
+    </ng-template>
 
-    @if (showLabel) {
-        <span class="nx-presence-indicator-label">{{ displayLabel }}</span>
-    }
+    <span class="nx-presence-indicator-label" *ngIf="showLabel">{{ displayLabel }}</span>
 
 </span>

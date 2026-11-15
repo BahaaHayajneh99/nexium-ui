@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -29,7 +30,7 @@ export interface NxRoleEditorSaveEvent {
 @Component({
   selector: 'nx-role-editor',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-role-editor.html',
   styleUrl: './ui-role-editor.scss',
 })
@@ -158,5 +159,13 @@ export class NxRoleEditor {
   private emitGranted(next: Set<string>): void {
     this.grantedSignal.set(next);
     this.grantedPermissionsChange.emit(next);
+  }
+
+  trackByGroupLabel(index: number, group: NxRoleEditorPermissionGroup): string {
+    return group.label;
+  }
+
+  trackByPermissionKey(index: number, permission: NxRoleEditorPermission): string {
+    return permission.key;
   }
 }

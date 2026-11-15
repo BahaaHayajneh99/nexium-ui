@@ -50,7 +50,5 @@
         </nx-select>
     </div>
 
-    @if (displayError) {
-        <span class="nx-address-input-error">{{ displayError }}</span>
-    }
+    <span class="nx-address-input-error" *ngIf="displayError">{{ displayError }}</span>
 </div>

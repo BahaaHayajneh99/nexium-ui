@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -20,7 +21,7 @@ const ACTIVITY_THROTTLE_MS = 1000;
 @Component({
   selector: 'nx-session-timeout',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NxIcon, NxProLocked],
   templateUrl: './ui-session-timeout.html',
   styleUrl: './ui-session-timeout.scss',
 })

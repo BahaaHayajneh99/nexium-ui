@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxMenu, NxMenuItem } from '../../navigation/ui-menu';
 
 export type NxPopoverMenuPlacement =
@@ -21,7 +22,7 @@ export type NxPopoverMenuPlacement =
 @Component({
   selector: 'nx-popover-menu',
   standalone: true,
-  imports: [NxMenu],
+  imports: [NgIf, NxMenu],
   templateUrl: './ui-popover-menu.html',
   styleUrl: './ui-popover-menu.scss',
 })

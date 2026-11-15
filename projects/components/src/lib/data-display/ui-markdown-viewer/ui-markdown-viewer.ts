@@ -1,4 +1,5 @@
 import { Component, Input, ViewEncapsulation, computed, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -105,7 +106,7 @@ function markdownToHtml(source: string): string {
 @Component({
   selector: 'nx-markdown-viewer',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-markdown-viewer.html',
   styleUrl: './ui-markdown-viewer.scss',
   // The rendered markdown is plain HTML assigned via [innerHTML], not Angular-authored template

@@ -1,4 +1,5 @@
 import { Component, Input, booleanAttribute, numberAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 export type NxComparisonDirection = 'up' | 'down' | 'neutral';
 
@@ -6,7 +7,7 @@ export type NxComparisonDirection = 'up' | 'down' | 'neutral';
 @Component({
   selector: 'nx-comparison-card',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-comparison-card.html',
   styleUrl: './ui-comparison-card.scss',
 })

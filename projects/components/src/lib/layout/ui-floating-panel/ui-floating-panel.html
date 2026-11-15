@@ -1,37 +1,35 @@
-@if (licensed()) {
-    <div
-        class="nx-floating-panel"
-        [class.dragging]="dragging"
-        [style.left.px]="x()"
-        [style.top.px]="y()">
+<div
+    class="nx-floating-panel"
+    [class.dragging]="dragging"
+    [style.left.px]="x()"
+    [style.top.px]="y()"
+    *ngIf="licensed(); else elseBlock1">
 
-        <div class="nx-floating-panel-header" (pointerdown)="onHeaderPointerDown($event)">
-            <span class="nx-floating-panel-title">{{ title }}</span>
+    <div class="nx-floating-panel-header" (pointerdown)="onHeaderPointerDown($event)">
+        <span class="nx-floating-panel-title">{{ title }}</span>
 
-            <div class="nx-floating-panel-actions">
-                <button
-                    type="button"
-                    class="nx-floating-panel-action"
-                    [attr.aria-label]="isCollapsed() ? 'Expand' : 'Collapse'"
-                    (click)="toggleCollapsed()">
-                    <nx-icon [icon]="isCollapsed() ? 'nx-chevron-down' : 'nx-chevron-up'" variant="svg" [size]="12"></nx-icon>
-                </button>
-                <button
-                    type="button"
-                    class="nx-floating-panel-action nx-floating-panel-close"
-                    aria-label="Close"
-                    (click)="close()">
-                    <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
-                </button>
-            </div>
+        <div class="nx-floating-panel-actions">
+            <button
+                type="button"
+                class="nx-floating-panel-action"
+                [attr.aria-label]="isCollapsed() ? 'Expand' : 'Collapse'"
+                (click)="toggleCollapsed()">
+                <nx-icon [icon]="isCollapsed() ? 'nx-chevron-down' : 'nx-chevron-up'" variant="svg" [size]="12"></nx-icon>
+            </button>
+            <button
+                type="button"
+                class="nx-floating-panel-action nx-floating-panel-close"
+                aria-label="Close"
+                (click)="close()">
+                <nx-icon icon="nx-close" variant="svg" [size]="12"></nx-icon>
+            </button>
         </div>
-
-        @if (!isCollapsed()) {
-            <div class="nx-floating-panel-content">
-                <ng-content></ng-content>
-            </div>
-        }
     </div>
-} @else {
+
+    <div class="nx-floating-panel-content" *ngIf="!isCollapsed()">
+        <ng-content></ng-content>
+    </div>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Floating Panel"></nx-pro-locked>
-}
+</ng-template>

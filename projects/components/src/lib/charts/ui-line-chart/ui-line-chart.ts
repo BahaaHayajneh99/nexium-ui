@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { axisTicks, formatNumber, niceMax, seriesColor } from '../chart-utils';
 import { NxChartSeries } from '../chart-types';
 
 @Component({
   selector: 'nx-line-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-line-chart.html',
   styleUrl: './ui-line-chart.scss',
 })
@@ -111,5 +112,17 @@ export class NxLineChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackByTick(index: number, tick: number): number {
+    return tick;
+  }
+
+  trackBySeriesName(index: number, s: NxChartSeries): string {
+    return s.name;
+  }
+
+  trackByCategory(index: number, category: string): string {
+    return category;
   }
 }

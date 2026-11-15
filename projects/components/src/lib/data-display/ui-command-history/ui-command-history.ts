@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, numberAttribute } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -13,7 +14,7 @@ export interface NxCommandHistoryEntry {
 @Component({
   selector: 'nx-command-history',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-command-history.html',
   styleUrl: './ui-command-history.scss',
 })
@@ -40,5 +41,9 @@ export class NxCommandHistory {
       return;
     }
     this.restore.emit(entry);
+  }
+
+  trackByEntryId(index: number, entry: NxCommandHistoryEntry): string | number {
+    return entry.id;
   }
 }

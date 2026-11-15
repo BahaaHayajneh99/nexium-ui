@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef, numberAttribute } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'nx-rating',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './ui-rating.html',
   styleUrl: './ui-rating.scss',
   providers: [
@@ -77,5 +78,9 @@ export class NxRating implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  trackByStar(index: number, star: number): number {
+    return star;
   }
 }

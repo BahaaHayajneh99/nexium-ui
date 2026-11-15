@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 
 const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -66,7 +67,7 @@ function compareYmd(a: YMD, b: YMD): number {
 @Component({
   selector: 'nx-datepicker',
   standalone: true,
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './ui-datepicker.html',
   styleUrl: './ui-datepicker.scss',
   host: {
@@ -307,6 +308,18 @@ export class NxDatepicker implements ControlValueAccessor, Validator {
 
   registerOnValidatorChange(fn: () => void): void {
     this.onValidatorChangeFn = fn;
+  }
+
+  trackByDay(index: number, day: string): string {
+    return day;
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackByCellIso(index: number, cell: DayCell): string {
+    return cell.iso;
   }
 
   private emitValue(iso: string): void {

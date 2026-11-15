@@ -1,4 +1,5 @@
 import { Component, Input, booleanAttribute, numberAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -15,7 +16,7 @@ export type NxGradientBorderRadius = number | string;
 @Component({
   selector: 'nx-gradient-border',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-gradient-border.html',
   styleUrl: './ui-gradient-border.scss',
 })

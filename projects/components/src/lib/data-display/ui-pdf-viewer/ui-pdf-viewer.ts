@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -14,7 +15,7 @@ import { nxProLicenseGranted } from '../../licensing/nx-license';
 @Component({
   selector: 'nx-pdf-viewer',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NxIcon, NxProLocked],
   templateUrl: './ui-pdf-viewer.html',
   styleUrl: './ui-pdf-viewer.scss',
 })

@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-contrast-checker">
+<div class="nx-contrast-checker" *ngIf="licensed(); else elseBlock1">
         <div class="nx-contrast-inputs">
             <label class="nx-contrast-field">
                 <span>Foreground</span>
@@ -39,6 +38,6 @@
             </span>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Color Contrast Checker"></nx-pro-locked>
-}
+</ng-template>

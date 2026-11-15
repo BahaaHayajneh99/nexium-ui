@@ -1,4 +1,5 @@
 import { Component, Input, computed, numberAttribute, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber } from '../chart-utils';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -30,7 +31,7 @@ interface BoxGeometry {
 @Component({
   selector: 'nx-box-plot',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf, NgFor],
   templateUrl: './ui-box-plot.html',
   styleUrl: './ui-box-plot.scss',
 })
@@ -122,5 +123,17 @@ export class NxBoxPlot {
 
   formatTick(value: number): string {
     return formatNumber(value);
+  }
+
+  trackByTickValue(index: number, tick: { value: number; y: number }): number {
+    return tick.value;
+  }
+
+  trackByBoxLabel(index: number, box: BoxGeometry): string {
+    return box.label;
+  }
+
+  trackByOutlierValue(index: number, outlier: { x: number; y: number; value: number }): number {
+    return outlier.value;
   }
 }

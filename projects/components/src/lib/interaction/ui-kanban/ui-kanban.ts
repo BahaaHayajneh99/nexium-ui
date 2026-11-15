@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 import { NxAvatar } from '../../data-display/ui-avatar';
@@ -27,7 +28,7 @@ export interface NxKanbanCardMovedEvent {
 @Component({
   selector: 'nx-kanban',
   standalone: true,
-  imports: [NxProLocked, NxAvatar],
+  imports: [NgIf, NgFor, NxProLocked, NxAvatar],
   templateUrl: './ui-kanban.html',
   styleUrl: './ui-kanban.scss',
 })
@@ -105,5 +106,17 @@ export class NxKanban {
 
   visibleAssignees(card: NxKanbanCard): string[] {
     return (card.assignees ?? []).slice(0, 3);
+  }
+
+  trackByColumnId(index: number, column: NxKanbanColumn): string | number {
+    return column.id;
+  }
+
+  trackByCardId(index: number, card: NxKanbanCard): string | number {
+    return card.id;
+  }
+
+  trackByAssigneeId(index: number, id: string): string {
+    return id;
   }
 }

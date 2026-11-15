@@ -1,7 +1,7 @@
 <span class="nx-badge" [ngClass]="badgeClasses">
 
-    @if (!dot) {
+    <ng-container *ngIf="!dot">
         <ng-content></ng-content>
-    }
+    </ng-container>
 
 </span>

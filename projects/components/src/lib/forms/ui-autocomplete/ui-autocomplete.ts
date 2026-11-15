@@ -9,7 +9,7 @@ import {
   forwardRef,
   numberAttribute,
 } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 export interface NxAutocompleteOption {
@@ -30,7 +30,7 @@ interface NxAutocompleteRow {
 @Component({
   selector: 'nx-autocomplete',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgFor, NgIf],
   templateUrl: './ui-autocomplete.html',
   styleUrl: './ui-autocomplete.scss',
   providers: [
@@ -335,5 +335,13 @@ export class NxAutocomplete implements ControlValueAccessor, Validator {
 
   registerOnValidatorChange(fn: () => void): void {
     this.onValidatorChangeFn = fn;
+  }
+
+  trackByValue(index: number, val: any): any {
+    return val;
+  }
+
+  trackByVisibleRow(index: number, row: NxAutocompleteRow): any {
+    return row.option?.value || row.group;
   }
 }

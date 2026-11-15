@@ -1,5 +1,5 @@
 import { Component, ContentChild, Input, TemplateRef, numberAttribute, signal } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
+import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -16,7 +16,7 @@ export interface NxVirtualScrollRow<T> {
 @Component({
   selector: 'nx-virtual-scroll',
   standalone: true,
-  imports: [NgTemplateOutlet, NxProLocked],
+  imports: [NgIf, NgFor, NgTemplateOutlet, NxProLocked],
   templateUrl: './ui-virtual-scroll.html',
   styleUrl: './ui-virtual-scroll.scss',
 })
@@ -62,5 +62,9 @@ export class NxVirtualScroll<T> {
 
   onScroll(event: Event): void {
     this.scrollTop.set((event.target as HTMLElement).scrollTop);
+  }
+
+  trackByRowIndex(index: number, row: NxVirtualScrollRow<T>): number {
+    return row.index;
   }
 }

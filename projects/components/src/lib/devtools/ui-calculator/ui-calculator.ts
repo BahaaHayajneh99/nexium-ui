@@ -1,4 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -352,7 +353,7 @@ const KEY_OPERATORS: Record<string, string> = { '+': '+', '-': '−', '*': '×',
 @Component({
   selector: 'nx-calculator',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-calculator.html',
   styleUrl: './ui-calculator.scss',
 })
@@ -504,5 +505,17 @@ export class NxCalculator {
       this.error.set(null);
       event.preventDefault();
     }
+  }
+
+  trackByScientificButtonLabel(index: number, button: NxCalcButton): string {
+    return button.label;
+  }
+
+  trackByStandardButtonLabel(index: number, button: NxCalcButton): string {
+    return button.label;
+  }
+
+  trackByHistoryTimestamp(index: number, entry: NxCalcHistoryEntry): number {
+    return entry.timestamp;
   }
 }

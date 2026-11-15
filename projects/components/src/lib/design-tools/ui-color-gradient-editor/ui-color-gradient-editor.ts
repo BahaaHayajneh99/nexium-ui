@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, numberAttribute, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxColorGradient, NxGradientStop, NxGradientType } from '../ui-color-gradient';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -7,7 +8,7 @@ import { nxProLicenseGranted } from '../../licensing/nx-license';
 @Component({
   selector: 'nx-color-gradient-editor',
   standalone: true,
-  imports: [NxColorGradient, NxProLocked],
+  imports: [NgIf, NgFor, NxColorGradient, NxProLocked],
   templateUrl: './ui-color-gradient-editor.html',
   styleUrl: './ui-color-gradient-editor.scss',
 })
@@ -37,6 +38,10 @@ export class NxColorGradientEditor {
 
   select(index: number): void {
     this.selectedIndex.set(index);
+  }
+
+  trackByStopIndex(index: number, _stop: NxGradientStop): number {
+    return index;
   }
 
   setType(type: NxGradientType): void {

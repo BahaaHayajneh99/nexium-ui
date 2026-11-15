@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxIntegrationCard, NxIntegrationStatus } from '../ui-integration-card';
 import { NxSearch } from '../../forms/ui-search';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -25,7 +26,7 @@ export type NxIntegrationManagerFilter = 'all' | 'connected' | 'disconnected';
 @Component({
   selector: 'nx-integration-manager',
   standalone: true,
-  imports: [NxIntegrationCard, NxSearch, NxProLocked],
+  imports: [NgIf, NgFor, NxIntegrationCard, NxSearch, NxProLocked],
   templateUrl: './ui-integration-manager.html',
   styleUrl: './ui-integration-manager.scss',
 })
@@ -61,5 +62,13 @@ export class NxIntegrationManager {
         filter === 'all' || (filter === 'connected' ? integration.status === 'connected' : integration.status !== 'connected');
       return matchesSearch && matchesFilter;
     });
+  }
+
+  trackByOptionValue(index: number, option: { label: string; value: NxIntegrationManagerFilter }): NxIntegrationManagerFilter {
+    return option.value;
+  }
+
+  trackByIntegrationId(index: number, integration: NxIntegrationManagerItem): string | number {
+    return integration.id;
   }
 }

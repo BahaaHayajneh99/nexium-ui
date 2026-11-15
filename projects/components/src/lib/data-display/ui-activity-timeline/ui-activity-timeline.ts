@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 
 export interface NxActivityItem {
   id: string | number;
@@ -20,7 +21,7 @@ export interface NxActivityItem {
 @Component({
   selector: 'nx-activity-timeline',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-activity-timeline.html',
   styleUrl: './ui-activity-timeline.scss',
 })
@@ -29,5 +30,9 @@ export class NxActivityTimeline {
 
   initialFor(name: string): string {
     return name.trim().charAt(0).toUpperCase() || '?';
+  }
+
+  trackByItemId(index: number, item: NxActivityItem): string | number {
+    return item.id;
   }
 }

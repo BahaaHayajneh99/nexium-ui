@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 import { NxAvatar } from '../../data-display/ui-avatar';
@@ -37,7 +38,7 @@ const DEFAULT_CAPACITY = 1;
 @Component({
   selector: 'nx-resource-allocation-board',
   standalone: true,
-  imports: [NxProLocked, NxAvatar, NxIcon],
+  imports: [NgIf, NgFor, NxProLocked, NxAvatar, NxIcon],
   templateUrl: './ui-resource-allocation-board.html',
   styleUrl: './ui-resource-allocation-board.scss',
 })
@@ -75,5 +76,17 @@ export class NxResourceAllocationBoard {
 
   onCellClick(personId: string, slotId: string): void {
     this.cellClick.emit({ personId, slotId });
+  }
+
+  trackBySlotId(index: number, slot: NxAllocationSlot): string {
+    return slot.id;
+  }
+
+  trackByPersonId(index: number, person: NxAllocationPerson): string {
+    return person.id;
+  }
+
+  trackByAssignmentId(index: number, assignment: NxAllocationAssignment): string {
+    return assignment.id;
   }
 }

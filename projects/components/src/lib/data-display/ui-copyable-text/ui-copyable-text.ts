@@ -1,10 +1,11 @@
 import { Component, Input, booleanAttribute, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 /** An inline value (an API key, a command, an id, ...) with a one-click copy button. */
 @Component({
   selector: 'nx-copyable-text',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-copyable-text.html',
   styleUrl: './ui-copyable-text.scss',
 })

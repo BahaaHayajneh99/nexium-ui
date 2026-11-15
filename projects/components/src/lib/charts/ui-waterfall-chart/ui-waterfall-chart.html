@@ -4,11 +4,11 @@
         {{ showTable ? 'View as chart' : 'View as table' }}
     </button>
 
-    @if (!showTable) {
+    <ng-container *ngIf="!showTable; else elseBlock1">
         <div class="nx-chart-canvas">
             <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
 
-                @for (tick of yTicks; track tick) {
+                <ng-container *ngFor="let tick of yTicks; trackBy: trackByTick">
                     <line
                         class="nx-chart-grid"
                         [attr.x1]="52"
@@ -19,13 +19,11 @@
                     <text class="nx-chart-axis-label" text-anchor="end" [attr.x]="46" [attr.y]="tickY(tick) + 4">
                         {{ formatTick(tick) }}
                     </text>
-                }
+                </ng-container>
 
-                @if (hasNegativeDip) {
-                    <line class="nx-chart-baseline" [attr.x1]="52" [attr.x2]="600 - 16" [attr.y1]="tickY(0)" [attr.y2]="tickY(0)"></line>
-                }
+                <line *ngIf="hasNegativeDip" class="nx-chart-baseline" [attr.x1]="52" [attr.x2]="600 - 16" [attr.y1]="tickY(0)" [attr.y2]="tickY(0)"></line>
 
-                @for (connector of connectors; track connector.x1 + '-' + connector.y) {
+                <ng-container *ngFor="let connector of connectors; trackBy: trackByConnector">
                     <line
                         class="nx-chart-waterfall-connector"
                         [attr.x1]="connector.x1"
@@ -33,9 +31,9 @@
                         [attr.y1]="connector.y"
                         [attr.y2]="connector.y">
                     </line>
-                }
+                </ng-container>
 
-                @for (bar of bars; track bar.index) {
+                <ng-container *ngFor="let bar of bars; trackBy: trackByBarIndex">
                     <path
                         class="nx-chart-waterfall-bar"
                         [class.nx-chart-waterfall-bar-hovered]="hovered === bar"
@@ -53,41 +51,40 @@
                     <text class="nx-chart-waterfall-value" text-anchor="middle" [attr.x]="bar.x + bar.width / 2" [attr.y]="bar.labelY">
                         {{ bar.labelText }}
                     </text>
-                }
+                </ng-container>
 
-                @for (point of data; track point.label; let i = $index) {
+                <ng-container *ngFor="let point of data; trackBy: trackByPoint; let i = index">
                     <text class="nx-chart-axis-label" text-anchor="middle" [attr.x]="categoryLabelX(i)" [attr.y]="height - 12">
                         {{ point.label }}
                     </text>
-                }
+                </ng-container>
 
             </svg>
 
-            @if (hovered) {
-                <div class="nx-chart-tooltip" [style]="hoveredTooltipStyle">
-                    <div class="nx-chart-tooltip-category">{{ hovered.point.label }}</div>
-                    <div class="nx-chart-tooltip-row">
-                        <span class="nx-chart-tooltip-key" [style.background]="hovered.color"></span>
-                        <span class="nx-chart-tooltip-name">{{ hovered.kind === 'total' ? 'Total' : 'Change' }}</span>
-                        <strong class="nx-chart-tooltip-value">{{ hovered.labelText }}</strong>
-                    </div>
-                    <div class="nx-chart-tooltip-row">
-                        <span class="nx-chart-tooltip-name">Running total</span>
-                        <strong class="nx-chart-tooltip-value">{{ formatTick(hovered.runningTotalAfter) }}</strong>
-                    </div>
+            <div *ngIf="hovered" class="nx-chart-tooltip" [style]="hoveredTooltipStyle">
+                <div class="nx-chart-tooltip-category">{{ hovered.point.label }}</div>
+                <div class="nx-chart-tooltip-row">
+                    <span class="nx-chart-tooltip-key" [style.background]="hovered.color"></span>
+                    <span class="nx-chart-tooltip-name">{{ hovered.kind === 'total' ? 'Total' : 'Change' }}</span>
+                    <strong class="nx-chart-tooltip-value">{{ hovered.labelText }}</strong>
                 </div>
-            }
+                <div class="nx-chart-tooltip-row">
+                    <span class="nx-chart-tooltip-name">Running total</span>
+                    <strong class="nx-chart-tooltip-value">{{ formatTick(hovered.runningTotalAfter) }}</strong>
+                </div>
+            </div>
         </div>
 
         <div class="nx-chart-legend">
-            @for (item of legendItems; track item.kind) {
+            <ng-container *ngFor="let item of legendItems; trackBy: trackByLegendItem">
                 <div class="nx-chart-legend-item">
                     <span class="nx-chart-legend-swatch" [style.background]="item.color"></span>
                     {{ item.label }}
                 </div>
-            }
+            </ng-container>
         </div>
-    } @else {
+    </ng-container>
+    <ng-template #elseBlock1>
         <div class="nx-chart-table-wrap">
             <table class="nx-chart-table">
                 <thead>
@@ -98,16 +95,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (bar of bars; track bar.index) {
-                        <tr>
-                            <th scope="row">{{ bar.point.label }}</th>
-                            <td>{{ bar.labelText }}</td>
-                            <td>{{ formatTick(bar.runningTotalAfter) }}</td>
-                        </tr>
-                    }
+                    <tr *ngFor="let bar of bars; trackBy: trackByBarIndex">
+                        <th scope="row">{{ bar.point.label }}</th>
+                        <td>{{ bar.labelText }}</td>
+                        <td>{{ formatTick(bar.runningTotalAfter) }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-    }
+    </ng-template>
 
 </div>

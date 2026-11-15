@@ -1,9 +1,10 @@
 import { Component, ElementRef, Input } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'nx-mega-menu',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-mega-menu.html',
   styleUrl: './ui-mega-menu.scss',
   host: {

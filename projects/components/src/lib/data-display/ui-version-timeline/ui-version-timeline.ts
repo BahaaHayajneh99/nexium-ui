@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -13,7 +14,7 @@ export interface NxVersionTimelineEntry {
 @Component({
   selector: 'nx-version-timeline',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-version-timeline.html',
   styleUrl: './ui-version-timeline.scss',
 })
@@ -21,4 +22,8 @@ export class NxVersionTimeline {
   protected readonly licensed = nxProLicenseGranted();
 
   @Input() entries: NxVersionTimelineEntry[] = [];
+
+  trackByEntryId(_index: number, entry: NxVersionTimelineEntry): string | number {
+    return entry.id;
+  }
 }

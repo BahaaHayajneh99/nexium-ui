@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -20,7 +21,7 @@ export interface NxHttpRequestValue {
 @Component({
   selector: 'nx-request-builder',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-request-builder.html',
   styleUrl: './ui-request-builder.scss',
 })
@@ -66,5 +67,13 @@ export class NxRequestBuilder {
   private update(patch: Partial<NxHttpRequestValue>): void {
     this.value = { ...this.value, ...patch };
     this.valueChange.emit(this.value);
+  }
+
+  trackByMethod(index: number, method: NxHttpMethod): string {
+    return method;
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 }

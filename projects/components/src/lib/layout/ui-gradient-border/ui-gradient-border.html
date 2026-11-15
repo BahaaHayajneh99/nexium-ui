@@ -1,15 +1,15 @@
-@if (licensed()) {
-    <div
-        class="nx-gradient-border"
-        [class.nx-gradient-border-animated]="animated"
-        [style.border-radius]="radiusValue"
-        [style.--nx-gradient-border-width]="borderWidthValue"
-        [style.--nx-gradient-border-speed]="speedValue"
-        [style.--nx-gradient-border-colors]="colorStopsValue">
-        <div class="nx-gradient-border-content" [style.border-radius]="contentRadiusValue">
-            <ng-content></ng-content>
-        </div>
+<div
+    class="nx-gradient-border"
+    [class.nx-gradient-border-animated]="animated"
+    [style.border-radius]="radiusValue"
+    [style.--nx-gradient-border-width]="borderWidthValue"
+    [style.--nx-gradient-border-speed]="speedValue"
+    [style.--nx-gradient-border-colors]="colorStopsValue"
+    *ngIf="licensed(); else elseBlock1">
+    <div class="nx-gradient-border-content" [style.border-radius]="contentRadiusValue">
+        <ng-content></ng-content>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Gradient Border"></nx-pro-locked>
-}
+</ng-template>

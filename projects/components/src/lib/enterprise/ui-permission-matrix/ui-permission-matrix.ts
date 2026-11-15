@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -28,7 +29,7 @@ interface NxPermissionMatrixExport {
 @Component({
   selector: 'nx-permission-matrix',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-permission-matrix.html',
   styleUrl: './ui-permission-matrix.scss',
 })
@@ -186,6 +187,18 @@ export class NxPermissionMatrix {
 
   rolesExcept(role: string): string[] {
     return this.roles.filter((r) => r !== role);
+  }
+
+  trackByRole(index: number, role: string): string {
+    return role;
+  }
+
+  trackByGroupLabel(index: number, group: NxPermissionGroup): string {
+    return group.label;
+  }
+
+  trackByPermission(index: number, permission: string): string {
+    return permission;
   }
 
   setInheritance(role: string, from: string): void {

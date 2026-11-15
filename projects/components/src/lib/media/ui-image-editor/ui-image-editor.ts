@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild, computed, signal } from '@angular/core';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -79,7 +80,7 @@ function applyBrightnessContrast(data: Uint8ClampedArray, brightness: number, co
 @Component({
   selector: 'nx-image-editor',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NxIcon, NxProLocked, NgIf, NgFor, NgSwitch, NgSwitchCase],
   templateUrl: './ui-image-editor.html',
   styleUrl: './ui-image-editor.scss',
 })
@@ -157,6 +158,10 @@ export class NxImageEditor implements OnDestroy {
   private gesture: 'draw' | 'shape' | null = null;
   private lastDrawPoint: NxBasePoint | null = null;
   private shapeStart: NxBasePoint | null = null;
+
+  trackByHandle(index: number, h: NxCropHandle): NxCropHandle {
+    return h;
+  }
 
   ngOnDestroy(): void {
     this.gesture = null;

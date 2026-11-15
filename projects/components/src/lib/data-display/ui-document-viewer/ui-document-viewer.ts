@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxEmptyState } from '../ui-empty-state';
 import { NxWordViewer, NxWordBlock } from '../ui-word-viewer';
@@ -49,7 +50,7 @@ const TYPE_ICONS: Record<NxResolvedDocumentType, string> = {
 @Component({
   selector: 'nx-document-viewer',
   standalone: true,
-  imports: [NxIcon, NxEmptyState, NxWordViewer, NxExcelViewer, NxPdfViewer, NxMarkdownViewer, NxTextViewer, NxProLocked],
+  imports: [NgIf, NgSwitch, NgSwitchCase, NxIcon, NxEmptyState, NxWordViewer, NxExcelViewer, NxPdfViewer, NxMarkdownViewer, NxTextViewer, NxProLocked],
   templateUrl: './ui-document-viewer.html',
   styleUrl: './ui-document-viewer.scss',
 })

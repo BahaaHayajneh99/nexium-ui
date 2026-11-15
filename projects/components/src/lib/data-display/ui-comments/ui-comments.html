@@ -1,5 +1,4 @@
-@if (licensed()) {
-<div class="nx-comments">
+<div class="nx-comments" *ngIf="licensed(); else elseBlock1">
     <div class="nx-comments-composer">
         <textarea
             class="nx-comments-input"
@@ -18,11 +17,12 @@
     <ng-template #commentTpl let-comment let-parentId="parentId">
         <div class="nx-comment">
             <div class="nx-comment-avatar" [style.--nx-avatar-hue]="avatarHueFor(comment.authorName)">
-                @if (comment.authorAvatarUrl) {
+                <ng-container *ngIf="comment.authorAvatarUrl; else elseBlock2">
                     <img [src]="comment.authorAvatarUrl" [alt]="comment.authorName" />
-                } @else {
+                </ng-container>
+                <ng-template #elseBlock2>
                     <span>{{ initialFor(comment.authorName) }}</span>
-                }
+                </ng-template>
             </div>
 
             <div class="nx-comment-content">
@@ -31,7 +31,7 @@
                     <span class="nx-comment-time">{{ timeLabel(comment.timestamp) }}</span>
                 </div>
 
-                @if (isEditing(comment)) {
+                <ng-container *ngIf="isEditing(comment); else elseBlock3">
                     <div class="nx-comment-edit">
                         <textarea
                             class="nx-comments-input"
@@ -44,7 +44,8 @@
                             <button type="button" class="nx-comment-link" (click)="cancelEdit()">Cancel</button>
                         </div>
                     </div>
-                } @else {
+                </ng-container>
+                <ng-template #elseBlock3>
                     <p class="nx-comment-body">{{ comment.body }}</p>
 
                     <div class="nx-comment-actions">
@@ -53,7 +54,7 @@
                             Reply
                         </button>
 
-                        @if (isOwn(comment)) {
+                        <ng-container *ngIf="isOwn(comment)">
                             <button type="button" class="nx-comment-link" (click)="startEdit(comment)">
                                 <nx-icon icon="nx-edit" variant="svg" [size]="14"></nx-icon>
                                 Edit
@@ -62,12 +63,11 @@
                                 <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon>
                                 Delete
                             </button>
-                        }
+                        </ng-container>
                     </div>
-                }
+                </ng-template>
 
-                @if (isReplying(comment)) {
-                    <div class="nx-comments-composer nx-comments-reply-composer">
+                <div class="nx-comments-composer nx-comments-reply-composer" *ngIf="isReplying(comment)">
                         <textarea
                             class="nx-comments-input"
                             [placeholder]="replyPlaceholder"
@@ -81,29 +81,27 @@
                             Reply
                         </button>
                     </div>
-                }
 
-                @if (comment.replies?.length) {
-                    <div class="nx-comment-replies">
-                        @for (reply of comment.replies; track reply.id) {
+                <div class="nx-comment-replies" *ngIf="comment.replies?.length">
+                        <ng-container *ngFor="let reply of comment.replies; trackBy: trackByCommentId">
                             <ng-container
                                 *ngTemplateOutlet="commentTpl; context: { $implicit: reply, parentId: comment.id }">
                             </ng-container>
-                        }
+                        </ng-container>
                     </div>
-                }
             </div>
         </div>
     </ng-template>
 
     <div class="nx-comments-list">
-        @for (comment of comments; track comment.id) {
+        <ng-container *ngFor="let comment of comments; trackBy: trackByCommentId">
             <ng-container *ngTemplateOutlet="commentTpl; context: { $implicit: comment, parentId: null }"></ng-container>
-        } @empty {
+        </ng-container>
+        <ng-container *ngIf="!comments || comments.length === 0">
             <p class="nx-comments-empty">No comments yet - be the first to say something.</p>
-        }
+        </ng-container>
     </div>
 </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Comments"></nx-pro-locked>
-}
+</ng-template>

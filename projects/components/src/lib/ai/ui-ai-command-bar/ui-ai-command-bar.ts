@@ -11,6 +11,7 @@ import {
   booleanAttribute,
   signal,
 } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -37,7 +38,7 @@ type NxAiCommandBarMode = 'idle' | 'commands' | 'typing';
 @Component({
   selector: 'nx-ai-command-bar',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-ai-command-bar.html',
   styleUrl: './ui-ai-command-bar.scss',
 })
@@ -241,5 +242,17 @@ export class NxAiCommandBar implements OnChanges {
         el.scrollTop = el.scrollHeight;
       }
     });
+  }
+
+  protected trackByCommandAction(index: number, command: NxAiCommandBarCommand): string {
+    return command.action;
+  }
+
+  protected trackBySuggestion(index: number, suggestion: string): string {
+    return suggestion;
+  }
+
+  protected trackByHistoryEntry(index: number, entry: string): string {
+    return entry;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { axisTicks, formatNumber, niceMax, seriesColor } from '../chart-utils';
 import { NxBubbleSeries } from '../chart-types';
 
@@ -21,7 +22,7 @@ const MAX_RADIUS = 32;
 @Component({
   selector: 'nx-bubble-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-bubble-chart.html',
   styleUrl: './ui-bubble-chart.scss',
 })
@@ -150,5 +151,17 @@ export class NxBubbleChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackByTick(index: number, tick: number): number {
+    return tick;
+  }
+
+  trackByPoint(index: number, point: BubblePoint): string {
+    return point.seriesIndex + '-' + point.pointIndex;
+  }
+
+  trackBySeriesName(index: number, s: NxBubbleSeries): string {
+    return s.name;
   }
 }

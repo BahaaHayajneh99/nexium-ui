@@ -1,5 +1,5 @@
-@if (open) {
-    @if (licensed()) {
+<ng-container *ngIf="open">
+    <ng-container *ngIf="licensed(); else elseBlock1">
         <div class="nx-bottom-sheet-backdrop" (click)="onBackdropClick()"></div>
 
         <div
@@ -22,10 +22,11 @@
             </div>
 
         </div>
-    } @else {
+    </ng-container>
+    <ng-template #elseBlock1>
         <div class="nx-bottom-sheet-backdrop" (click)="onBackdropClick()"></div>
         <div class="nx-bottom-sheet-panel">
             <nx-pro-locked componentName="Bottom Sheet"></nx-pro-locked>
         </div>
-    }
-}
+    </ng-template>
+</ng-container>

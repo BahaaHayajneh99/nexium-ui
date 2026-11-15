@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -37,7 +38,7 @@ function contrastRatio(hexA: string, hexB: string): number {
 @Component({
   selector: 'nx-color-contrast-checker',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-color-contrast-checker.html',
   styleUrl: './ui-color-contrast-checker.scss',
 })

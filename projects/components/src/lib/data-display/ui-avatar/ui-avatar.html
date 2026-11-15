@@ -1,23 +1,25 @@
 <span class="nx-avatar" [ngClass]="avatarClasses">
 
-    @if (showImage) {
+    <ng-container *ngIf="showImage; else elseIfBlock1">
         <img
             class="nx-avatar-image"
             [src]="src"
             [alt]="alt || name"
             (error)="onImageError()">
-    } @else if (initials) {
-        <span class="nx-avatar-initials">
-            {{ initials }}
-        </span>
-    } @else {
-        <span class="nx-avatar-content" role="img" [attr.aria-label]="alt || name || 'Avatar'">
-            <ng-content></ng-content>
-        </span>
-    }
+    </ng-container>
+    <ng-template #elseIfBlock1>
+        <ng-container *ngIf="initials; else elseBlock1">
+            <span class="nx-avatar-initials">
+                {{ initials }}
+            </span>
+        </ng-container>
+        <ng-template #elseBlock1>
+            <span class="nx-avatar-content" role="img" [attr.aria-label]="alt || name || 'Avatar'">
+                <ng-content></ng-content>
+            </span>
+        </ng-template>
+    </ng-template>
 
-    @if (status) {
-        <span class="nx-avatar-status" [ngClass]="status"></span>
-    }
+    <span class="nx-avatar-status" [ngClass]="status" *ngIf="status"></span>
 
 </span>

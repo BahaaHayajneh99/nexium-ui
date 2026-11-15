@@ -1,22 +1,18 @@
-@if (licensed()) {
+<ng-container *ngIf="licensed(); else elseBlock1">
     <div class="nx-notification-inbox">
 
         <div class="nx-inbox-header">
             <div class="nx-inbox-title-row">
                 <span class="nx-inbox-title">Notifications</span>
-                @if (unreadCount() > 0) {
-                    <span class="nx-inbox-unread-badge">{{ unreadCount() > 99 ? '99+' : unreadCount() }}</span>
-                }
+                <span class="nx-inbox-unread-badge" *ngIf="unreadCount() > 0">{{ unreadCount() > 99 ? '99+' : unreadCount() }}</span>
             </div>
-            @if (unreadCount() > 0) {
-                <button type="button" class="nx-inbox-mark-all" (click)="onMarkAllRead()">Mark all read</button>
-            }
+            <button type="button" class="nx-inbox-mark-all" *ngIf="unreadCount() > 0" (click)="onMarkAllRead()">Mark all read</button>
         </div>
 
         <span class="nx-inbox-sr-only" role="status" aria-live="polite">
-            @if (unreadCount() > 0) {
+            <ng-container *ngIf="unreadCount() > 0">
                 {{ unreadCount() }} unread notification{{ unreadCount() === 1 ? '' : 's' }}
-            }
+            </ng-container>
         </span>
 
         <div class="nx-inbox-filters">
@@ -35,16 +31,12 @@
 
             <select class="nx-inbox-select" [ngModel]="categoryFilter()" (ngModelChange)="categoryFilter.set($event)">
                 <option value="all">All categories</option>
-                @for (category of categories(); track category) {
-                    <option [value]="category">{{ category }}</option>
-                }
+                <option *ngFor="let category of categories(); trackBy: trackByCategory" [value]="category">{{ category }}</option>
             </select>
 
             <select class="nx-inbox-select" [ngModel]="priorityFilter()" (ngModelChange)="priorityFilter.set($event)">
                 <option value="all">All priorities</option>
-                @for (priority of priorities; track priority) {
-                    <option [value]="priority">{{ priority }}</option>
-                }
+                <option *ngFor="let priority of priorities; trackBy: trackByPriority" [value]="priority">{{ priority }}</option>
             </select>
 
             <button type="button" class="nx-inbox-reset" (click)="resetFilters()">Reset</button>
@@ -57,68 +49,58 @@
             [disabled]="!hasMore || loading"
             (nxInfiniteScroll)="onLoadMore()">
 
-            @for (group of groups(); track group.label) {
-                <div class="nx-inbox-group">
-                    <div class="nx-inbox-date-header">{{ group.label }}</div>
+            <div class="nx-inbox-group" *ngFor="let group of groups(); trackBy: trackByGroupLabel">
+                <div class="nx-inbox-date-header">{{ group.label }}</div>
 
-                    @for (item of group.items; track item.id) {
-                        <div
-                            class="nx-inbox-item"
-                            [class.unread]="!item.read"
-                            [class.priority-urgent]="item.priority === 'urgent'"
-                            [class.priority-high]="item.priority === 'high'"
-                            (click)="onItemClick(item)">
+                <div
+                    class="nx-inbox-item"
+                    *ngFor="let item of group.items; trackBy: trackByNotificationId"
+                    [class.unread]="!item.read"
+                    [class.priority-urgent]="item.priority === 'urgent'"
+                    [class.priority-high]="item.priority === 'high'"
+                    (click)="onItemClick(item)">
 
+                    <button
+                        type="button"
+                        class="nx-inbox-read-toggle"
+                        (click)="onToggleRead($event, item)"
+                        [attr.aria-label]="item.read ? 'Mark as unread' : 'Mark as read'">
+                        <span class="nx-inbox-dot" [attr.data-priority]="item.priority"></span>
+                    </button>
+
+                    <div class="nx-inbox-body">
+                        <div class="nx-inbox-item-top">
+                            <span class="nx-inbox-item-title">{{ item.title }}</span>
+                            <span class="nx-inbox-priority-tag" [attr.data-priority]="item.priority">{{ item.priority }}</span>
+                        </div>
+
+                        <div class="nx-inbox-item-message">{{ item.message }}</div>
+
+                        <div class="nx-inbox-item-meta">
+                            <span class="nx-inbox-category">{{ item.category }}</span>
+                            <span class="nx-inbox-time">{{ item.timestamp | date: 'MMM d, h:mm a' }}</span>
+                        </div>
+
+                        <div class="nx-inbox-actions" *ngIf="item.actions?.length">
                             <button
                                 type="button"
-                                class="nx-inbox-read-toggle"
-                                (click)="onToggleRead($event, item)"
-                                [attr.aria-label]="item.read ? 'Mark as unread' : 'Mark as read'">
-                                <span class="nx-inbox-dot" [attr.data-priority]="item.priority"></span>
+                                class="nx-inbox-action"
+                                *ngFor="let action of item.actions; trackBy: trackByActionId"
+                                (click)="onAction($event, item, action)">
+                                <span class="nx-inbox-action-icon" *ngIf="action.icon">{{ action.icon }}</span>
+                                {{ action.label }}
                             </button>
-
-                            <div class="nx-inbox-body">
-                                <div class="nx-inbox-item-top">
-                                    <span class="nx-inbox-item-title">{{ item.title }}</span>
-                                    <span class="nx-inbox-priority-tag" [attr.data-priority]="item.priority">{{ item.priority }}</span>
-                                </div>
-
-                                <div class="nx-inbox-item-message">{{ item.message }}</div>
-
-                                <div class="nx-inbox-item-meta">
-                                    <span class="nx-inbox-category">{{ item.category }}</span>
-                                    <span class="nx-inbox-time">{{ item.timestamp | date: 'MMM d, h:mm a' }}</span>
-                                </div>
-
-                                @if (item.actions?.length) {
-                                    <div class="nx-inbox-actions">
-                                        @for (action of item.actions; track action.id) {
-                                            <button
-                                                type="button"
-                                                class="nx-inbox-action"
-                                                (click)="onAction($event, item, action)">
-                                                @if (action.icon) {
-                                                    <span class="nx-inbox-action-icon">{{ action.icon }}</span>
-                                                }
-                                                {{ action.label }}
-                                            </button>
-                                        }
-                                    </div>
-                                }
-                            </div>
                         </div>
-                    }
+                    </div>
                 </div>
-            } @empty {
-                <div class="nx-inbox-empty">{{ emptyMessage }}</div>
-            }
+            </div>
+            <div class="nx-inbox-empty" *ngIf="!groups() || groups().length === 0">{{ emptyMessage }}</div>
 
-            @if (loading) {
-                <div class="nx-inbox-loading">Loading more...</div>
-            }
+            <div class="nx-inbox-loading" *ngIf="loading">Loading more...</div>
         </div>
 
     </div>
-} @else {
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Notification Inbox"></nx-pro-locked>
-}
+</ng-template>

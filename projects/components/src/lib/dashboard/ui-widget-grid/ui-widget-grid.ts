@@ -1,5 +1,5 @@
 import { Component, ContentChild, ElementRef, EventEmitter, HostListener, Input, Output, TemplateRef, ViewChild, computed, signal } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
+import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -41,7 +41,7 @@ interface NxWidgetDragState {
 @Component({
   selector: 'nx-widget-grid',
   standalone: true,
-  imports: [NgTemplateOutlet, NxProLocked],
+  imports: [NgFor, NgIf, NgTemplateOutlet, NxProLocked],
   templateUrl: './ui-widget-grid.html',
   styleUrl: './ui-widget-grid.scss',
 })
@@ -80,6 +80,10 @@ export class NxWidgetGrid {
   private dragState: NxWidgetDragState | null = null;
 
   /** Public positioning helper - the CSS grid placement for one layout item. */
+  trackByItemId(index: number, item: NxWidgetLayoutItem): string {
+    return item.id;
+  }
+
   styleFor(item: NxWidgetLayoutItem): { gridColumn: string; gridRow: string } {
     return {
       gridColumn: `${item.x + 1} / span ${Math.max(1, item.w)}`,

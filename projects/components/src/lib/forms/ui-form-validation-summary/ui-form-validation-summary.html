@@ -1,19 +1,15 @@
-@if (errors.length) {
-    <div class="nx-form-validation-summary" role="alert">
-        <div class="nx-form-validation-summary-header">
-            <nx-icon class="nx-form-validation-summary-icon" icon="nx-alert-triangle" variant="svg" [size]="18"></nx-icon>
-            <span class="nx-form-validation-summary-title">{{ title }}</span>
-        </div>
-
-        <ul class="nx-form-validation-summary-list">
-            @for (error of errors; track error.field) {
-                <li>
-                    <button type="button" class="nx-form-validation-summary-row" (click)="onRowClick(error)">
-                        <span class="nx-form-validation-summary-label">{{ error.label }}:</span>
-                        <span class="nx-form-validation-summary-message">{{ error.message }}</span>
-                    </button>
-                </li>
-            }
-        </ul>
+<div class="nx-form-validation-summary" role="alert" *ngIf="errors.length">
+    <div class="nx-form-validation-summary-header">
+        <nx-icon class="nx-form-validation-summary-icon" icon="nx-alert-triangle" variant="svg" [size]="18"></nx-icon>
+        <span class="nx-form-validation-summary-title">{{ title }}</span>
     </div>
-}
+
+    <ul class="nx-form-validation-summary-list">
+        <li *ngFor="let error of errors; trackBy: trackByErrorField">
+            <button type="button" class="nx-form-validation-summary-row" (click)="onRowClick(error)">
+                <span class="nx-form-validation-summary-label">{{ error.label }}:</span>
+                <span class="nx-form-validation-summary-message">{{ error.message }}</span>
+            </button>
+        </li>
+    </ul>
+</div>

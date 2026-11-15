@@ -1,5 +1,5 @@
 import { AfterContentInit, booleanAttribute, Component, ContentChildren, Input, numberAttribute, OnDestroy, QueryList } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
+import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxCarouselSlideDirective } from './nx-carousel-slide';
 
@@ -12,7 +12,7 @@ export interface NxCarouselSlide {
 @Component({
   selector: 'nx-carousel',
   standalone: true,
-  imports: [NxIcon, NgTemplateOutlet],
+  imports: [NxIcon, NgTemplateOutlet, NgIf, NgFor],
   templateUrl: './ui-carousel.html',
   styleUrl: './ui-carousel.scss',
 })
@@ -36,6 +36,18 @@ export class NxCarousel implements AfterContentInit, OnDestroy {
 
   get indicatorIndexes(): number[] {
     return Array.from({ length: this.slideCount }, (_, i) => i);
+  }
+
+  trackBySlideIndex(index: number): number {
+    return index;
+  }
+
+  trackByContentSlideIndex(index: number): number {
+    return index;
+  }
+
+  trackByIndicatorIndex(index: number, i: number): number {
+    return i;
   }
 
   ngAfterContentInit(): void {

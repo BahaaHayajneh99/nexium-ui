@@ -2,22 +2,16 @@
     class="nx-autocomplete"
     [ngClass]="[variant, multiple ? 'multiple' : '', (invalid || !!displayError) ? 'invalid' : '', disabled ? 'disabled' : '']">
 
-    @if (label && !floatLabel) {
-        <label class="nx-autocomplete-label">{{ label }}@if (isRequired) {<span class="nx-autocomplete-required">*</span>}</label>
-    }
+    <label class="nx-autocomplete-label" *ngIf="label && !floatLabel">{{ label }}<span class="nx-autocomplete-required" *ngIf="isRequired">*</span></label>
 
     <div class="nx-autocomplete-input-wrapper" (click)="focusInput()">
 
-        @if (multiple && values.length) {
-            <ul class="nx-autocomplete-chips">
-                @for (val of values; track val) {
-                    <li class="nx-autocomplete-chip">
-                        {{ labelFor(val) }}
-                        <button type="button" class="nx-autocomplete-chip-remove" (mousedown)="removeChip(val, $event)">×</button>
-                    </li>
-                }
-            </ul>
-        }
+        <ul class="nx-autocomplete-chips" *ngIf="multiple && values.length">
+            <li class="nx-autocomplete-chip" *ngFor="let val of values; trackBy: trackByValue">
+                {{ labelFor(val) }}
+                <button type="button" class="nx-autocomplete-chip-remove" (mousedown)="removeChip(val, $event)">×</button>
+            </li>
+        </ul>
 
         <input
             #input
@@ -31,40 +25,28 @@
             (focus)="onFocus()"
             (blur)="onBlur()" />
 
-        @if (floatLabel && label) {
-            <label class="nx-autocomplete-float-label" [class.active]="focused || hasValue">{{ label }}@if (isRequired) {<span class="nx-autocomplete-required">*</span>}</label>
-        }
+        <label class="nx-autocomplete-float-label" [class.active]="focused || hasValue" *ngIf="floatLabel && label">{{ label }}<span class="nx-autocomplete-required" *ngIf="isRequired">*</span></label>
 
-        @if (showClear && hasValue && !disabled) {
-            <button type="button" class="nx-autocomplete-clear" (mousedown)="clear($event)">×</button>
-        }
+        <button type="button" class="nx-autocomplete-clear" (mousedown)="clear($event)" *ngIf="showClear && hasValue && !disabled">×</button>
 
     </div>
 
-    @if (displayError) {
-        <span class="nx-autocomplete-error">{{ displayError }}</span>
-    }
+    <span class="nx-autocomplete-error" *ngIf="displayError">{{ displayError }}</span>
 
-    @if (showList) {
-        <ul class="nx-autocomplete-list" [style.max-height.px]="virtualScroll ? scrollHeight : null" (scroll)="onListScroll($event)">
-            @if (rows.length) {
-                @if (virtualScroll) {
-                    <li class="nx-autocomplete-spacer" [style.height.px]="topSpacerHeight"></li>
-                }
-                @for (row of visibleRows; track row.option?.value || row.group) {
-                    @if (row.type === 'group') {
-                        <li class="nx-autocomplete-group-header">{{ row.group }}</li>
-                    } @else {
-                        <li class="nx-autocomplete-item" (mousedown)="selectOption(row.option!)">{{ row.option!.label }}</li>
-                    }
-                }
-                @if (virtualScroll) {
-                    <li class="nx-autocomplete-spacer" [style.height.px]="bottomSpacerHeight"></li>
-                }
-            } @else {
-                <li class="nx-autocomplete-empty">No results found</li>
-            }
-        </ul>
-    }
+    <ul class="nx-autocomplete-list" [style.max-height.px]="virtualScroll ? scrollHeight : null" (scroll)="onListScroll($event)" *ngIf="showList">
+        <ng-container *ngIf="rows.length; else elseBlock1">
+            <li class="nx-autocomplete-spacer" [style.height.px]="topSpacerHeight" *ngIf="virtualScroll"></li>
+            <ng-container *ngFor="let row of visibleRows; trackBy: trackByVisibleRow">
+                <li class="nx-autocomplete-group-header" *ngIf="row.type === 'group'; else nonGroupItemBlock1">{{ row.group }}</li>
+                <ng-template #nonGroupItemBlock1>
+                    <li class="nx-autocomplete-item" (mousedown)="selectOption(row.option!)">{{ row.option!.label }}</li>
+                </ng-template>
+            </ng-container>
+            <li class="nx-autocomplete-spacer" [style.height.px]="bottomSpacerHeight" *ngIf="virtualScroll"></li>
+        </ng-container>
+        <ng-template #elseBlock1>
+            <li class="nx-autocomplete-empty">No results found</li>
+        </ng-template>
+    </ul>
 
 </div>

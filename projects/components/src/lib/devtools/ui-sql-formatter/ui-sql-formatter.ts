@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxCopyToClipboard } from '../../directives/nx-copy-to-clipboard';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -130,7 +131,7 @@ export function formatSql(raw: string): string {
 @Component({
   selector: 'nx-sql-formatter',
   standalone: true,
-  imports: [NxIcon, NxCopyToClipboard, NxProLocked],
+  imports: [NgIf, NxIcon, NxCopyToClipboard, NxProLocked],
   templateUrl: './ui-sql-formatter.html',
   styleUrl: './ui-sql-formatter.scss',
 })

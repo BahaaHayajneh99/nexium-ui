@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 import { NxInput } from '../../forms/ui-input/ui-input';
@@ -19,7 +20,7 @@ export interface NxSavedView<T = unknown> {
 @Component({
   selector: 'nx-saved-views',
   standalone: true,
-  imports: [NxProLocked, NxInput],
+  imports: [NgIf, NgFor, NxProLocked, NxInput],
   templateUrl: './ui-saved-views.html',
   styleUrl: './ui-saved-views.scss',
 })
@@ -96,5 +97,9 @@ export class NxSavedViews<T = unknown> {
 
   activeViewName(): string {
     return this.views.find((view) => view.id === this.activeViewId)?.name ?? 'Select a view';
+  }
+
+  trackByViewId(index: number, view: NxSavedView<T>): string {
+    return view.id;
   }
 }

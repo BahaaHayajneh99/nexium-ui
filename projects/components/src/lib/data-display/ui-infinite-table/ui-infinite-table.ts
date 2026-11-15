@@ -10,6 +10,7 @@ import {
   booleanAttribute,
   numberAttribute,
 } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxSpinnerComponent } from '../ui-spinner';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -28,7 +29,7 @@ export interface NxInfiniteTableColumn {
 @Component({
   selector: 'nx-infinite-table',
   standalone: true,
-  imports: [NxSpinnerComponent, NxProLocked],
+  imports: [NgIf, NgFor, NxSpinnerComponent, NxProLocked],
   templateUrl: './ui-infinite-table.html',
   styleUrl: './ui-infinite-table.scss',
 })
@@ -74,5 +75,13 @@ export class NxInfiniteTable implements AfterViewInit, OnDestroy {
 
   cellValue(row: Record<string, unknown>, key: string): unknown {
     return row[key];
+  }
+
+  trackByColKey(index: number, col: NxInfiniteTableColumn): string {
+    return col.key;
+  }
+
+  trackByIndex(index: number, row: unknown): number {
+    return index;
   }
 }

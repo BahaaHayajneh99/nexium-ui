@@ -1,13 +1,13 @@
-@if (licensed()) {
-    <button
-        #button
-        type="button"
-        class="nx-magnetic-button"
-        [class.nx-magnetic-button-disabled]="disabled"
-        [disabled]="disabled"
-        [style.transform]="transformStyle">
-        <ng-content></ng-content>
-    </button>
-} @else {
+<button
+    #button
+    type="button"
+    class="nx-magnetic-button"
+    [class.nx-magnetic-button-disabled]="disabled"
+    [disabled]="disabled"
+    [style.transform]="transformStyle"
+    *ngIf="licensed(); else elseBlock1">
+    <ng-content></ng-content>
+</button>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Magnetic Button"></nx-pro-locked>
-}
+</ng-template>

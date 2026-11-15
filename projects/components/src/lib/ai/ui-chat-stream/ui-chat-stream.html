@@ -1,13 +1,11 @@
-@if (licensed()) {
-    <div class="nx-chat-stream" #scrollRef>
-        @for (message of messages; track $index; let i = $index) {
-            <div class="nx-chat-row" [class.nx-chat-row-user]="message.role === 'user'" [class.nx-chat-row-assistant]="message.role === 'assistant'">
-                <div class="nx-chat-bubble">{{ visibleContent(message, i) }}</div>
-            </div>
-        } @empty {
-            <div class="nx-chat-empty">No messages yet.</div>
-        }
-    </div>
-} @else {
+<div class="nx-chat-stream" #scrollRef *ngIf="licensed(); else elseBlock1">
+    <ng-container *ngFor="let message of messages; trackBy: trackByIndex; let i = index">
+        <div class="nx-chat-row" [class.nx-chat-row-user]="message.role === 'user'" [class.nx-chat-row-assistant]="message.role === 'assistant'">
+            <div class="nx-chat-bubble">{{ visibleContent(message, i) }}</div>
+        </div>
+    </ng-container>
+    <div class="nx-chat-empty" *ngIf="!messages || messages.length === 0">No messages yet.</div>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Chat Stream Viewer"></nx-pro-locked>
-}
+</ng-template>

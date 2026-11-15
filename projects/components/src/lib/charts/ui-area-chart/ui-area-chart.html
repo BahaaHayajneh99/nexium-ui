@@ -4,7 +4,7 @@
         {{ showTable ? 'View as chart' : 'View as table' }}
     </button>
 
-    @if (!showTable) {
+    <ng-container *ngIf="!showTable; else elseBlock1">
         <div class="nx-chart-canvas">
             <svg
                 #svgRef
@@ -14,18 +14,18 @@
                 (pointermove)="onPointerMove($event, $any(svgRef))"
                 (pointerleave)="onPointerLeave()">
 
-                @for (tick of yTicks; track tick) {
+                <ng-container *ngFor="let tick of yTicks; trackBy: trackByTick">
                     <line class="nx-chart-grid" [attr.x1]="44" [attr.x2]="600 - 16" [attr.y1]="tickY(tick)" [attr.y2]="tickY(tick)"></line>
                     <text class="nx-chart-axis-label" text-anchor="end" [attr.x]="38" [attr.y]="tickY(tick) + 4">
                         {{ formatTick(tick) }}
                     </text>
-                }
+                </ng-container>
 
-                @for (s of series; track s.name; let seriesIndex = $index) {
+                <ng-container *ngFor="let s of series; trackBy: trackBySeriesName; let seriesIndex = index">
                     <path class="nx-chart-area-fill" [attr.d]="areaPath(s)" [attr.fill]="seriesColorAt(s, seriesIndex)"></path>
-                }
+                </ng-container>
 
-                @if (hoveredIndex !== null) {
+                <ng-container *ngIf="hoveredIndex !== null">
                     <line
                         class="nx-chart-crosshair"
                         [attr.x1]="pointX(hoveredIndex)"
@@ -33,12 +33,12 @@
                         [attr.y1]="16"
                         [attr.y2]="height - 32">
                     </line>
-                }
+                </ng-container>
 
-                @for (s of series; track s.name; let seriesIndex = $index) {
+                <ng-container *ngFor="let s of series; trackBy: trackBySeriesName; let seriesIndex = index">
                     <path class="nx-chart-line" [attr.d]="linePath(s)" [attr.stroke]="seriesColorAt(s, seriesIndex)"></path>
 
-                    @if (hoveredIndex !== null) {
+                    <ng-container *ngIf="hoveredIndex !== null">
                         <circle
                             class="nx-chart-marker"
                             [attr.cx]="pointX(hoveredIndex)"
@@ -46,64 +46,65 @@
                             r="4"
                             [attr.fill]="seriesColorAt(s, seriesIndex)">
                         </circle>
-                    }
-                }
+                    </ng-container>
+                </ng-container>
 
-                @for (category of categories; track category; let i = $index) {
+                <ng-container *ngFor="let category of categories; trackBy: trackByCategory; let i = index">
                     <text class="nx-chart-axis-label" text-anchor="middle" [attr.x]="categoryLabelX(i)" [attr.y]="height - 12">
                         {{ category }}
                     </text>
-                }
+                </ng-container>
 
             </svg>
 
-            @if (hoveredIndex !== null) {
+            <ng-container *ngIf="hoveredIndex !== null">
                 <div class="nx-chart-tooltip" [style]="tooltipStyle">
                     <div class="nx-chart-tooltip-category">{{ categories[hoveredIndex] }}</div>
-                    @for (s of series; track s.name; let seriesIndex = $index) {
+                    <ng-container *ngFor="let s of series; trackBy: trackBySeriesName; let seriesIndex = index">
                         <div class="nx-chart-tooltip-row">
                             <span class="nx-chart-tooltip-key" [style.background]="seriesColorAt(s, seriesIndex)"></span>
                             <span class="nx-chart-tooltip-name">{{ s.name }}</span>
                             <strong class="nx-chart-tooltip-value">{{ formatTick(s.data[hoveredIndex] ?? 0) }}</strong>
                         </div>
-                    }
+                    </ng-container>
                 </div>
-            }
+            </ng-container>
         </div>
 
-        @if (hasLegend) {
+        <ng-container *ngIf="hasLegend">
             <div class="nx-chart-legend">
-                @for (s of series; track s.name; let i = $index) {
+                <ng-container *ngFor="let s of series; trackBy: trackBySeriesName; let i = index">
                     <div class="nx-chart-legend-item">
                         <span class="nx-chart-legend-key" [style.background]="seriesColorAt(s, i)"></span>
                         {{ s.name }}
                     </div>
-                }
+                </ng-container>
             </div>
-        }
-    } @else {
+        </ng-container>
+    </ng-container>
+    <ng-template #elseBlock1>
         <div class="nx-chart-table-wrap">
             <table class="nx-chart-table">
                 <thead>
                     <tr>
                         <th></th>
-                        @for (s of series; track s.name) {
+                        <ng-container *ngFor="let s of series; trackBy: trackBySeriesName">
                             <th>{{ s.name }}</th>
-                        }
+                        </ng-container>
                     </tr>
                 </thead>
                 <tbody>
-                    @for (category of categories; track category; let i = $index) {
+                    <ng-container *ngFor="let category of categories; trackBy: trackByCategory; let i = index">
                         <tr>
                             <th scope="row">{{ category }}</th>
-                            @for (s of series; track s.name) {
+                            <ng-container *ngFor="let s of series; trackBy: trackBySeriesName">
                                 <td>{{ formatTick(s.data[i] ?? 0) }}</td>
-                            }
+                            </ng-container>
                         </tr>
-                    }
+                    </ng-container>
                 </tbody>
             </table>
         </div>
-    }
+    </ng-template>
 
 </div>

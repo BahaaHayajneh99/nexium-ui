@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NgIf } from '@angular/common';
 import { NX_ICONS } from './nx-icons';
 
 export type NxIconVariant = 'svg' | 'icon';
@@ -7,6 +8,7 @@ export type NxIconVariant = 'svg' | 'icon';
 @Component({
   selector: 'nx-icon',
   standalone: true,
+  imports: [NgIf],
   templateUrl: './ui-icon.html',
   styleUrl: './ui-icon.scss',
 })

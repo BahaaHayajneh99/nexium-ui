@@ -1,4 +1,5 @@
 import { Component, Input, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -25,7 +26,7 @@ type NxLoginActivityStatusFilter = 'all' | 'success' | 'failed';
 @Component({
   selector: 'nx-login-activity',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-login-activity.html',
   styleUrl: './ui-login-activity.scss',
 })
@@ -49,6 +50,10 @@ export class NxLoginActivity {
         return true;
       })
       .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+  }
+
+  trackByEntryId(index: number, entry: NxLoginActivityEntry): string | number {
+    return entry.id;
   }
 
   formatTimestamp(iso: string): string {

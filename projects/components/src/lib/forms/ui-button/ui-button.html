@@ -1,13 +1,10 @@
 <button [ngClass]="buttonClasses" [disabled]="disabled || loading" [attr.aria-busy]="loading || null">
 
-    @if (loading) {
-        <span class="nx-button-spinner" aria-hidden="true"></span>
-    }
+    <span class="nx-button-spinner" aria-hidden="true" *ngIf="loading"></span>
 
-    @if (loading && loadingText) {
-        <span>{{ loadingText }}</span>
-    } @else {
+    <span *ngIf="loading && loadingText; else elseBlock1">{{ loadingText }}</span>
+    <ng-template #elseBlock1>
         <ng-content></ng-content>
-    }
+    </ng-template>
 
 </button>

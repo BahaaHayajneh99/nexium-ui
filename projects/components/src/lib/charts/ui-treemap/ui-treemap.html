@@ -1,24 +1,23 @@
-@if (licensed()) {
-    <div class="nx-treemap" [style.aspect-ratio]="aspectRatio">
-        @for (tile of tiles(); track tile.datum.label + '-' + tile.index) {
-            <div
-                class="nx-treemap-tile"
-                [style.left.%]="tile.leftPct"
-                [style.top.%]="tile.topPct"
-                [style.width.%]="tile.widthPct"
-                [style.height.%]="tile.heightPct"
-                [style.background]="tile.color"
-                [style.color]="tile.textColor"
-                tabindex="0"
-                role="button"
-                [attr.aria-label]="tile.datum.label + ': ' + formatValue(tile.datum.value)"
-                (click)="select(tile)"
-                (keydown.enter)="select(tile)">
-                <span class="nx-treemap-tile-label">{{ tile.datum.label }}</span>
-                <span class="nx-treemap-tile-value">{{ formatValue(tile.datum.value) }}</span>
-            </div>
-        }
-    </div>
-} @else {
+<div class="nx-treemap" [style.aspect-ratio]="aspectRatio" *ngIf="licensed(); else elseBlock1">
+    <ng-container *ngFor="let tile of tiles(); trackBy: trackByTile">
+        <div
+            class="nx-treemap-tile"
+            [style.left.%]="tile.leftPct"
+            [style.top.%]="tile.topPct"
+            [style.width.%]="tile.widthPct"
+            [style.height.%]="tile.heightPct"
+            [style.background]="tile.color"
+            [style.color]="tile.textColor"
+            tabindex="0"
+            role="button"
+            [attr.aria-label]="tile.datum.label + ': ' + formatValue(tile.datum.value)"
+            (click)="select(tile)"
+            (keydown.enter)="select(tile)">
+            <span class="nx-treemap-tile-label">{{ tile.datum.label }}</span>
+            <span class="nx-treemap-tile-value">{{ formatValue(tile.datum.value) }}</span>
+        </div>
+    </ng-container>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Treemap"></nx-pro-locked>
-}
+</ng-template>

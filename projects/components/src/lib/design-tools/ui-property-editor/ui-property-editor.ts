@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -26,7 +27,7 @@ export interface NxPropertyEditorChangeEvent {
 @Component({
   selector: 'nx-property-editor',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgFor, NgIf, NgSwitch, NgSwitchCase, NxProLocked],
   templateUrl: './ui-property-editor.html',
   styleUrl: './ui-property-editor.scss',
 })
@@ -38,6 +39,14 @@ export class NxPropertyEditor {
 
   @Output() valuesChange = new EventEmitter<Record<string, unknown>>();
   @Output() propertyChange = new EventEmitter<NxPropertyEditorChangeEvent>();
+
+  trackByPropKey(index: number, prop: NxPropertyDef): string {
+    return prop.key;
+  }
+
+  trackByOptionValue(index: number, option: NxPropertySelectOption): string {
+    return option.value;
+  }
 
   setValue(key: string, value: unknown): void {
     const next = { ...this.values, [key]: value };

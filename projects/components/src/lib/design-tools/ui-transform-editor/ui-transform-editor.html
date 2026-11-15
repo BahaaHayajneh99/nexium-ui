@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-transform-editor">
+<div class="nx-transform-editor" *ngIf="licensed(); else elseBlock1">
         <div class="nx-transform-editor-preview-wrap">
             <div class="nx-transform-editor-preview" [style.transform]="cssValue"></div>
         </div>
@@ -44,13 +43,11 @@
 
         <div class="nx-transform-editor-css-row">
             <code class="nx-transform-editor-css">{{ cssDeclaration }}</code>
-            @if (showCopyButton) {
-                <button type="button" class="nx-transform-editor-copy" (click)="copyCss()">
-                    {{ copied() ? 'Copied!' : 'Copy' }}
-                </button>
-            }
+            <button type="button" class="nx-transform-editor-copy" *ngIf="showCopyButton" (click)="copyCss()">
+                {{ copied() ? 'Copied!' : 'Copy' }}
+            </button>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Transform Editor"></nx-pro-locked>
-}
+</ng-template>

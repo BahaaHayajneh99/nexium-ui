@@ -3,48 +3,41 @@
         <thead>
             <tr>
                 <th class="nx-comparison-table-feature-head">{{ featureHeader }}</th>
-                @for (col of columns; track col.name) {
+                <ng-container *ngFor="let col of columns; trackBy: trackByColName">
                     <th class="nx-comparison-table-col-head" [class.highlighted]="col.highlighted">
-                        @if (col.badge) {
-                            <span class="nx-comparison-table-badge">{{ col.badge }}</span>
-                        }
+                        <span class="nx-comparison-table-badge" *ngIf="col.badge">{{ col.badge }}</span>
                         <span class="nx-comparison-table-col-name">{{ col.name }}</span>
-                        @if (col.description) {
-                            <span class="nx-comparison-table-col-description">{{ col.description }}</span>
-                        }
+                        <span class="nx-comparison-table-col-description" *ngIf="col.description">{{ col.description }}</span>
                     </th>
-                }
+                </ng-container>
             </tr>
         </thead>
         <tbody>
-            @for (section of displaySections; track trackBySectionIndex($index)) {
-                @if (section.title) {
-                    <tr class="nx-comparison-table-section-row">
-                        <td class="nx-comparison-table-section-title" [attr.colspan]="columns.length + 1">
-                            {{ section.title }}
-                        </td>
-                    </tr>
-                }
-                @for (row of section.rows; track row.label) {
+            <ng-container *ngFor="let section of displaySections; trackBy: trackBySectionIndex">
+                <tr class="nx-comparison-table-section-row" *ngIf="section.title">
+                    <td class="nx-comparison-table-section-title" [attr.colspan]="columns.length + 1">
+                        {{ section.title }}
+                    </td>
+                </tr>
+                <ng-container *ngFor="let row of section.rows; trackBy: trackByRowLabel">
                     <tr class="nx-comparison-table-row">
                         <td class="nx-comparison-table-feature-label">
                             <span>{{ row.label }}</span>
-                            @if (row.tooltip) {
-                                <nx-icon
-                                    icon="nx-help-circle"
-                                    variant="svg"
-                                    [size]="14"
-                                    class="nx-comparison-table-info-icon"
-                                    [nxTooltip]="row.tooltip">
-                                </nx-icon>
-                            }
+                            <nx-icon
+                                *ngIf="row.tooltip"
+                                icon="nx-help-circle"
+                                variant="svg"
+                                [size]="14"
+                                class="nx-comparison-table-info-icon"
+                                [nxTooltip]="row.tooltip">
+                            </nx-icon>
                         </td>
-                        @for (col of columns; track col.name; let colIndex = $index) {
+                        <ng-container *ngFor="let col of columns; trackBy: trackByColName; let colIndex = index">
                             <td class="nx-comparison-table-cell" [class.highlighted]="col.highlighted">
-                                @if (cellAt(row, colIndex); as cell) {
-                                    @switch (cell.type) {
-                                        @case ('boolean') {
-                                            @if (cell.value) {
+                                <ng-container *ngIf="cellAt(row, colIndex) as cell; else elseBlock1">
+                                    <ng-container [ngSwitch]="cell.type">
+                                        <ng-container *ngSwitchCase="'boolean'">
+                                            <ng-container *ngIf="cell.value; else elseIfBlock1">
                                                 <nx-icon
                                                     icon="nx-check"
                                                     variant="svg"
@@ -53,36 +46,41 @@
                                                     class="nx-comparison-table-bool-icon"
                                                     [nxTooltip]="cell.tooltip ?? ''">
                                                 </nx-icon>
-                                            } @else if (missingStyle === 'cross') {
-                                                <nx-icon
-                                                    icon="nx-close"
-                                                    variant="svg"
-                                                    [size]="18"
-                                                    color="var(--danger-color, #e74c3c)"
-                                                    class="nx-comparison-table-bool-icon"
-                                                    [nxTooltip]="cell.tooltip ?? ''">
-                                                </nx-icon>
-                                            } @else {
-                                                <span class="nx-comparison-table-dash" [nxTooltip]="cell.tooltip ?? ''">&#8212;</span>
-                                            }
-                                        }
-                                        @case ('text') {
+                                            </ng-container>
+                                            <ng-template #elseIfBlock1>
+                                                <ng-container *ngIf="missingStyle === 'cross'; else elseBlock2">
+                                                    <nx-icon
+                                                        icon="nx-close"
+                                                        variant="svg"
+                                                        [size]="18"
+                                                        color="var(--danger-color, #e74c3c)"
+                                                        class="nx-comparison-table-bool-icon"
+                                                        [nxTooltip]="cell.tooltip ?? ''">
+                                                    </nx-icon>
+                                                </ng-container>
+                                                <ng-template #elseBlock2>
+                                                    <span class="nx-comparison-table-dash" [nxTooltip]="cell.tooltip ?? ''">&#8212;</span>
+                                                </ng-template>
+                                            </ng-template>
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="'text'">
                                             <span
                                                 class="nx-comparison-table-text"
-                                                [class.emphasis]="cell.emphasis"
+                                                [class.emphasis]="$any(cell).emphasis"
                                                 [nxTooltip]="cell.tooltip ?? ''">
                                                 {{ cell.value }}
                                             </span>
-                                        }
-                                    }
-                                } @else {
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-template #elseBlock1>
                                     <span class="nx-comparison-table-dash">&#8212;</span>
-                                }
+                                </ng-template>
                             </td>
-                        }
+                        </ng-container>
                     </tr>
-                }
-            }
+                </ng-container>
+            </ng-container>
         </tbody>
     </table>
 </div>

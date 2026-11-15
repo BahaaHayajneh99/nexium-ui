@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber, seriesColor } from '../chart-utils';
 
 export interface NxPolarAreaDatum {
@@ -24,7 +25,7 @@ interface PolarWedge {
 @Component({
   selector: 'nx-polar-area-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-polar-area-chart.html',
   styleUrl: './ui-polar-area-chart.scss',
 })
@@ -129,5 +130,17 @@ export class NxPolarAreaChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackByGridRadius(index: number, radius: number): number {
+    return radius;
+  }
+
+  trackByGridLabel(index: number, grid: { radius: number; text: string }): number {
+    return grid.radius;
+  }
+
+  trackByWedgeLabel(index: number, wedge: PolarWedge): string {
+    return wedge.datum.label;
   }
 }

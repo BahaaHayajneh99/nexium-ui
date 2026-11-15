@@ -1,11 +1,12 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 export type NxDividerOrientation = 'horizontal' | 'vertical';
 
 @Component({
   selector: 'nx-divider',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-divider.html',
   styleUrl: './ui-divider.scss',
 })

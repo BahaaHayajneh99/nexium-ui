@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 
 /**
  * A free-text chip input: type and press Enter (or comma) to commit the current text as a
@@ -13,7 +14,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, computed
 @Component({
   selector: 'nx-tag-input',
   standalone: true,
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './ui-tag-input.html',
   styleUrl: './ui-tag-input.scss',
 })
@@ -122,5 +123,13 @@ export class NxTagInput {
   private commitValue(next: string[]): void {
     this.valueSignal.set(next);
     this.valueChange.emit(next);
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackBySuggestion(index: number, s: string): string {
+    return s;
   }
 }

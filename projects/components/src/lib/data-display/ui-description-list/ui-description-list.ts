@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor } from '@angular/common';
 
 export interface NxDescriptionItem {
   term: string;
@@ -11,7 +12,7 @@ export interface NxDescriptionItem {
 @Component({
   selector: 'nx-description-list',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './ui-description-list.html',
   styleUrl: './ui-description-list.scss',
 })
@@ -19,4 +20,8 @@ export class NxDescriptionList {
   @Input() items: NxDescriptionItem[] = [];
   @Input() columns = 1;
   @Input() bordered = true;
+
+  trackByTerm(index: number, item: NxDescriptionItem): string {
+    return item.term;
+  }
 }

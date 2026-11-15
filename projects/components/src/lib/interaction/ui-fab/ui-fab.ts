@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export type NxFabPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
@@ -17,7 +18,7 @@ export interface NxFabAction {
 @Component({
   selector: 'nx-fab',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgIf, NgFor, NxIcon],
   templateUrl: './ui-fab.html',
   styleUrl: './ui-fab.scss',
 })
@@ -46,5 +47,9 @@ export class NxFab {
   selectAction(action: NxFabAction): void {
     this.actionSelected.emit(action);
     this.open.set(false);
+  }
+
+  trackByActionLabel(index: number, action: NxFabAction): string {
+    return action.label;
   }
 }

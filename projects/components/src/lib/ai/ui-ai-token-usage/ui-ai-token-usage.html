@@ -4,43 +4,38 @@
             <span class="nx-tu-stat-value">{{ formatTokens(totalTokens()) }}</span>
             <span class="nx-tu-stat-label">total tokens</span>
         </div>
-        @if (hasCostData()) {
-            <div class="nx-tu-stat">
-                <span class="nx-tu-stat-value">{{ formatCost(totalCostUsd()) }}</span>
-                <span class="nx-tu-stat-label">estimated cost</span>
-            </div>
-        }
+        <div class="nx-tu-stat" *ngIf="hasCostData()">
+            <span class="nx-tu-stat-value">{{ formatCost(totalCostUsd()) }}</span>
+            <span class="nx-tu-stat-label">estimated cost</span>
+        </div>
     </div>
 
-    @if (monthlyLimit) {
-        <div class="nx-tu-limit">
-            <div class="nx-tu-limit-row">
-                <span>{{ formatTokens(totalTokens()) }} / {{ formatTokens(monthlyLimit) }} tokens this period</span>
-                <span>{{ percentOfLimit() | number: '1.0-0' }}%</span>
-            </div>
-            <div class="nx-token-bar-track">
-                <div class="nx-token-bar-fill" [class]="'nx-token-bar-' + limitState()" [style.width.%]="percentOfLimit()"></div>
-            </div>
+    <div class="nx-tu-limit" *ngIf="monthlyLimit">
+        <div class="nx-tu-limit-row">
+            <span>{{ formatTokens(totalTokens()) }} / {{ formatTokens(monthlyLimit) }} tokens this period</span>
+            <span>{{ percentOfLimit() | number: '1.0-0' }}%</span>
         </div>
-    }
+        <div class="nx-token-bar-track">
+            <div class="nx-token-bar-fill" [class]="'nx-token-bar-' + limitState()" [style.width.%]="percentOfLimit()"></div>
+        </div>
+    </div>
 
     <div class="nx-tu-section">
         <span class="nx-tu-section-title">Daily usage</span>
         <div class="nx-tu-bars">
-            @for (day of dailyUsage; track day.date) {
+            <ng-container *ngFor="let day of dailyUsage; trackBy: trackByDay">
                 <div class="nx-tu-bar-col" [title]="day.date + ': ' + formatTokens(day.tokens) + ' tokens'">
                     <div class="nx-tu-bar" [style.height.%]="barHeightPercent(day.tokens)"></div>
                 </div>
-            } @empty {
-                <div class="nx-tu-empty">No usage data yet.</div>
-            }
+            </ng-container>
+            <div class="nx-tu-empty" *ngIf="!dailyUsage || dailyUsage.length === 0">No usage data yet.</div>
         </div>
     </div>
 
     <div class="nx-tu-section">
         <span class="nx-tu-section-title">By model</span>
         <div class="nx-tu-model-list">
-            @for (model of byModelShare(); track model.model) {
+            <ng-container *ngFor="let model of byModelShare(); trackBy: trackByModelShare">
                 <div class="nx-tu-model-row">
                     <span class="nx-tu-model-name">{{ model.model }}</span>
                     <div class="nx-tu-model-bar-track">
@@ -48,9 +43,8 @@
                     </div>
                     <span class="nx-tu-model-value">{{ formatTokens(model.tokens) }} ({{ model.percent | number: '1.0-0' }}%)</span>
                 </div>
-            } @empty {
-                <div class="nx-tu-empty">No per-model data yet.</div>
-            }
+            </ng-container>
+            <div class="nx-tu-empty" *ngIf="!byModelShare() || byModelShare().length === 0">No per-model data yet.</div>
         </div>
     </div>
 </div>

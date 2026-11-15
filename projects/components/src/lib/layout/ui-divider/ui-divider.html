@@ -1,11 +1,11 @@
-@if (orientation === 'vertical') {
-    <span class="nx-divider nx-divider-vertical"></span>
-} @else if (label) {
-    <div class="nx-divider-labeled">
+<span class="nx-divider nx-divider-vertical" *ngIf="orientation === 'vertical'; else elseIfBlock1"></span>
+<ng-template #elseIfBlock1>
+    <div class="nx-divider-labeled" *ngIf="label; else elseBlock1">
         <span class="nx-divider nx-divider-line"></span>
         <span class="nx-divider-label">{{ label }}</span>
         <span class="nx-divider nx-divider-line"></span>
     </div>
-} @else {
-    <span class="nx-divider nx-divider-horizontal"></span>
-}
+    <ng-template #elseBlock1>
+        <span class="nx-divider nx-divider-horizontal"></span>
+    </ng-template>
+</ng-template>

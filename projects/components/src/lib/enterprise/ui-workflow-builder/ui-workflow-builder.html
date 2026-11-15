@@ -1,29 +1,23 @@
-@if (licensed()) {
-    <div class="nx-workflow-builder">
-        <div class="nx-workflow-builder-canvas">
-            <svg class="nx-workflow-builder-edges">
-                @for (edge of edges; track edge.id) {
-                    <path [attr.d]="edgePath(edge)" class="nx-workflow-builder-edge"></path>
-                }
-                @if (connectingPath) {
-                    <path [attr.d]="connectingPath" class="nx-workflow-builder-edge connecting"></path>
-                }
-            </svg>
+<div class="nx-workflow-builder" *ngIf="licensed(); else elseBlock1">
+    <div class="nx-workflow-builder-canvas">
+        <svg class="nx-workflow-builder-edges">
+            <path [attr.d]="edgePath(edge)" class="nx-workflow-builder-edge" *ngFor="let edge of edges; trackBy: trackByEdgeId"></path>
+            <path [attr.d]="connectingPath" class="nx-workflow-builder-edge connecting" *ngIf="connectingPath"></path>
+        </svg>
 
-            @for (node of nodes; track node.id) {
-                <div
-                    class="nx-workflow-builder-node"
-                    [style.left.px]="node.x"
-                    [style.top.px]="node.y"
-                    [style.width.px]="nodeWidth"
-                    [style.height.px]="nodeHeight"
-                    (pointerdown)="onNodePointerDown(node, $event)">
-                    <span class="nx-workflow-builder-node-label">{{ node.label }}</span>
-                    <span class="nx-workflow-builder-node-handle" (pointerdown)="onHandlePointerDown(node, $event)"></span>
-                </div>
-            }
+        <div
+            class="nx-workflow-builder-node"
+            [style.left.px]="node.x"
+            [style.top.px]="node.y"
+            [style.width.px]="nodeWidth"
+            [style.height.px]="nodeHeight"
+            (pointerdown)="onNodePointerDown(node, $event)"
+            *ngFor="let node of nodes; trackBy: trackByNodeId">
+            <span class="nx-workflow-builder-node-label">{{ node.label }}</span>
+            <span class="nx-workflow-builder-node-handle" (pointerdown)="onHandlePointerDown(node, $event)"></span>
         </div>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Workflow Builder"></nx-pro-locked>
-}
+</ng-template>

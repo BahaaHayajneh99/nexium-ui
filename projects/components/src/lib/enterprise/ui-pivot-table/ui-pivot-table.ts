@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -33,7 +34,7 @@ const EMPTY_KEY = '(blank)';
 @Component({
   selector: 'nx-pivot-table',
   standalone: true,
-  imports: [FormsModule, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxProLocked],
   templateUrl: './ui-pivot-table.html',
   styleUrl: './ui-pivot-table.scss',
 })
@@ -154,6 +155,14 @@ export class NxPivotTable {
     };
     walk(this.tree());
     this.collapsed.set(all);
+  }
+
+  trackByColumn(index: number, col: string): string {
+    return col;
+  }
+
+  trackByNodePath(index: number, node: NxPivotNode): string {
+    return node.path;
   }
 
   formatValue(value: number): string {

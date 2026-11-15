@@ -1,4 +1,5 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxStatistic, NxStatisticDeltaDirection } from '../../data-display/ui-statistic';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -17,7 +18,7 @@ export interface NxStatisticGroupItem {
 @Component({
   selector: 'nx-statistic-group',
   standalone: true,
-  imports: [NxStatistic, NxProLocked],
+  imports: [NgFor, NgIf, NxStatistic, NxProLocked],
   templateUrl: './ui-statistic-group.html',
   styleUrl: './ui-statistic-group.scss',
 })
@@ -25,4 +26,8 @@ export class NxStatisticGroup {
   protected readonly licensed = nxProLicenseGranted();
   @Input() items: NxStatisticGroupItem[] = [];
   @Input({ transform: booleanAttribute }) bordered = true;
+
+  trackByLabel(index: number, item: NxStatisticGroupItem): string {
+    return item.label;
+  }
 }

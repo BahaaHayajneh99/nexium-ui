@@ -10,6 +10,7 @@ import {
   numberAttribute,
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { NxPatternInput, nxPatternErrorMessage, resolveNxPattern } from '../shared/nx-validators';
 
 export interface NxMentionSuggestion {
@@ -20,7 +21,7 @@ export interface NxMentionSuggestion {
 @Component({
   selector: 'nx-mention',
   standalone: true,
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './ui-mention.html',
   styleUrl: './ui-mention.scss',
   host: {
@@ -186,6 +187,10 @@ export class NxMention implements ControlValueAccessor, Validator {
 
   registerOnValidatorChange(fn: () => void): void {
     this.onValidatorChangeFn = fn;
+  }
+
+  trackBySuggestionId(index: number, suggestion: NxMentionSuggestion): string | number {
+    return suggestion.id;
   }
 
   private updateMentionContext(cursor: number): void {

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 
 @Component({
   selector: 'nx-pagination',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgFor],
   templateUrl: './ui-pagination.html',
   styleUrl: './ui-pagination.scss',
 })
@@ -24,5 +24,9 @@ export class NxPagination {
     }
     this.currentPage = page;
     this.currentPageChange.emit(page);
+  }
+
+  trackByPage(index: number, page: number): number {
+    return page;
   }
 }

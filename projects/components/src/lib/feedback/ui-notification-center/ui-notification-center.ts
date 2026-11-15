@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 
 export interface NxNotificationItem {
   id: string | number;
@@ -11,7 +12,7 @@ export interface NxNotificationItem {
 @Component({
   selector: 'nx-notification-center',
   standalone: true,
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './ui-notification-center.html',
   styleUrl: './ui-notification-center.scss',
   host: {
@@ -42,6 +43,10 @@ export class NxNotificationCenter {
     if (!this.elementRef.nativeElement.contains(event.target as Node)) {
       this.open = false;
     }
+  }
+
+  trackByNotificationId(index: number, item: NxNotificationItem): string | number {
+    return item.id;
   }
 
   onItemClick(item: NxNotificationItem): void {

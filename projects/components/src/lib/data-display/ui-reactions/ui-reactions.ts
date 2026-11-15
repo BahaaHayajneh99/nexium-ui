@@ -1,4 +1,5 @@
 import { booleanAttribute, Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxEmoji } from '../ui-emoji';
 import { NxIcon } from '../ui-icon';
 import { NxTooltip } from '../../feedback/ui-tooltip';
@@ -55,7 +56,7 @@ export const NX_QUICK_REACTION_EMOJIS: string[] = [
 @Component({
   selector: 'nx-reactions',
   standalone: true,
-  imports: [NxEmoji, NxIcon, NxTooltip, NxClickOutside, NxProLocked],
+  imports: [NgIf, NgFor, NxEmoji, NxIcon, NxTooltip, NxClickOutside, NxProLocked],
   templateUrl: './ui-reactions.html',
   styleUrl: './ui-reactions.scss',
 })
@@ -130,5 +131,9 @@ export class NxReactions {
 
   trackByEmoji(_index: number, reaction: NxReaction): string {
     return reaction.emoji;
+  }
+
+  trackByEmojiValue(_index: number, emoji: string): string {
+    return emoji;
   }
 }

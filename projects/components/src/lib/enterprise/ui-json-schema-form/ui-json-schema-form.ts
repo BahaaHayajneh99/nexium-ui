@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, QueryList, SimpleChanges, ViewChildren, booleanAttribute, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { NxInput } from '../../forms/ui-input/ui-input';
 import { NxSelect, NxSelectOption } from '../../forms/ui-select/ui-select';
 import { NxCheckbox } from '../../forms/ui-checkbox/ui-checkbox';
@@ -82,7 +83,21 @@ interface NxValidatableControl {
 @Component({
   selector: 'nx-json-schema-form',
   standalone: true,
-  imports: [FormsModule, NxInput, NxSelect, NxCheckbox, NxTextarea, NxNumber, NxButton, NxProLocked],
+  imports: [
+    FormsModule,
+    NgFor,
+    NgIf,
+    NgSwitch,
+    NgSwitchCase,
+    NgSwitchDefault,
+    NxInput,
+    NxSelect,
+    NxCheckbox,
+    NxTextarea,
+    NxNumber,
+    NxButton,
+    NxProLocked,
+  ],
   templateUrl: './ui-json-schema-form.html',
   styleUrl: './ui-json-schema-form.scss',
 })
@@ -110,6 +125,10 @@ export class NxJSONSchemaForm implements OnChanges {
     if (changes['schema'] || changes['initialValue']) {
       this.rebuildValues();
     }
+  }
+
+  protected trackByKey(index: number, key: string): string {
+    return key;
   }
 
   protected field(key: string): NxJSONSchemaField {

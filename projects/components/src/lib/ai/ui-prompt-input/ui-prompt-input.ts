@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -14,7 +15,7 @@ const DEFAULT_MAX_HEIGHT = 200;
 @Component({
   selector: 'nx-prompt-input',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-prompt-input.html',
   styleUrl: './ui-prompt-input.scss',
 })
@@ -89,5 +90,9 @@ export class NxPromptInput {
   private resize(textarea: HTMLTextAreaElement): void {
     textarea.style.height = 'auto';
     textarea.style.height = `${Math.min(textarea.scrollHeight, this.maxHeight)}px`;
+  }
+
+  protected trackBySuggestion(index: number, suggestion: string): string {
+    return suggestion;
   }
 }

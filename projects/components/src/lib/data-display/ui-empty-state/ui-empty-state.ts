@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 
 @Component({
   selector: 'nx-empty-state',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgIf, NxIcon],
   templateUrl: './ui-empty-state.html',
   styleUrl: './ui-empty-state.scss',
 })

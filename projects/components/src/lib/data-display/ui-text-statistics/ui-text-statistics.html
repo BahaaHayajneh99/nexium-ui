@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-text-stats">
+<div class="nx-text-stats" *ngIf="licensed(); else elseBlock1">
         <div class="nx-text-stat">
             <span class="nx-text-stat-value">{{ words() }}</span>
             <span class="nx-text-stat-label">Words</span>
@@ -29,6 +28,6 @@
             <span class="nx-text-stat-label">Estimated reading time</span>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Text Statistics"></nx-pro-locked>
-}
+</ng-template>

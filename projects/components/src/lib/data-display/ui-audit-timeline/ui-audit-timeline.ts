@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 
 export type NxAuditSeverity = 'info' | 'warning' | 'critical';
 
@@ -22,10 +23,14 @@ export interface NxAuditEntry {
 @Component({
   selector: 'nx-audit-timeline',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-audit-timeline.html',
   styleUrl: './ui-audit-timeline.scss',
 })
 export class NxAuditTimeline {
   @Input() entries: NxAuditEntry[] = [];
+
+  trackByEntryId(index: number, entry: NxAuditEntry): string | number {
+    return entry.id;
+  }
 }

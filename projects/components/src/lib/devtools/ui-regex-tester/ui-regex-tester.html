@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-regex-tester">
+<div class="nx-regex-tester" *ngIf="licensed(); else elseBlock1">
     <div class="nx-regex-tester-pattern-row">
         <span class="nx-regex-tester-slash">/</span>
         <input
@@ -17,9 +16,7 @@
             (input)="flags.set($any($event.target).value)" />
     </div>
 
-    @if (error) {
-        <p class="nx-regex-tester-error">{{ error }}</p>
-    }
+    <p class="nx-regex-tester-error" *ngIf="error">{{ error }}</p>
 
     <textarea
         class="nx-regex-tester-input"
@@ -29,22 +26,16 @@
 
     <div class="nx-regex-tester-highlighted" [innerHTML]="highlightedText"></div>
 
-    @if (matches.length) {
-        <div class="nx-regex-tester-matches">
-            <span class="nx-regex-tester-matches-title">{{ matches.length }} match(es)</span>
-            @for (match of matches; track $index) {
-                <div class="nx-regex-tester-match-row">
-                    <code>{{ match[0] }}</code>
-                    @if (match.length > 1) {
-                        <span class="nx-regex-tester-groups">
-                            groups: {{ match.slice(1).join(', ') }}
-                        </span>
-                    }
-                </div>
-            }
+    <div class="nx-regex-tester-matches" *ngIf="matches.length">
+        <span class="nx-regex-tester-matches-title">{{ matches.length }} match(es)</span>
+        <div class="nx-regex-tester-match-row" *ngFor="let match of matches; trackBy: trackByIndex">
+            <code>{{ match[0] }}</code>
+            <span class="nx-regex-tester-groups" *ngIf="match.length > 1">
+                groups: {{ match.slice(1).join(', ') }}
+            </span>
         </div>
-    }
     </div>
-} @else {
+    </div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Regex Tester"></nx-pro-locked>
-}
+</ng-template>

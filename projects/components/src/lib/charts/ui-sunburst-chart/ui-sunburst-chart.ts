@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber, seriesColor } from '../chart-utils';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -63,7 +64,7 @@ function arcPath(innerR: number, outerR: number, start: number, end: number): st
 @Component({
   selector: 'nx-sunburst-chart',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf, NgFor],
   templateUrl: './ui-sunburst-chart.html',
   styleUrl: './ui-sunburst-chart.scss',
 })
@@ -134,5 +135,9 @@ export class NxSunburstChart {
 
   formatValue(value: number): string {
     return formatNumber(value);
+  }
+
+  trackByArcKey(index: number, arc: SunburstArc): string {
+    return arc.key;
   }
 }

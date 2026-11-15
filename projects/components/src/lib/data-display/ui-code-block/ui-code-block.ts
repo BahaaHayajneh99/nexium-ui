@@ -1,10 +1,11 @@
 import { Component, Input, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 /** A monospace code box with a language label and a copy button. Plain formatting only - bring your own syntax highlighter for coloring. */
 @Component({
   selector: 'nx-code-block',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-code-block.html',
   styleUrl: './ui-code-block.scss',
 })

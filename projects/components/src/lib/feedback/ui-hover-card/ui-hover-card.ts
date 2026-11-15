@@ -1,4 +1,5 @@
 import { Component, Input, numberAttribute, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 export type NxHoverCardPlacement = 'top' | 'bottom' | 'left' | 'right';
 
@@ -11,7 +12,7 @@ export type NxHoverCardPlacement = 'top' | 'bottom' | 'left' | 'right';
 @Component({
   selector: 'nx-hover-card',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-hover-card.html',
   styleUrl: './ui-hover-card.scss',
 })

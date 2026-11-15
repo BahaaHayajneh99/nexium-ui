@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -22,7 +23,7 @@ const REVEAL_CHARS_PER_TICK = 3;
 @Component({
   selector: 'nx-chat-stream',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-chat-stream.html',
   styleUrl: './ui-chat-stream.scss',
 })
@@ -109,5 +110,9 @@ export class NxChatStream implements OnChanges, OnDestroy {
         el.scrollTop = el.scrollHeight;
       }
     }, 0);
+  }
+
+  protected trackByIndex(index: number): number {
+    return index;
   }
 }

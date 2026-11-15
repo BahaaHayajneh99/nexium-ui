@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -15,7 +16,7 @@ export type NxIntegrationStatus = 'connected' | 'disconnected' | 'error';
 @Component({
   selector: 'nx-integration-card',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NxIcon, NxProLocked],
   templateUrl: './ui-integration-card.html',
   styleUrl: './ui-integration-card.scss',
 })

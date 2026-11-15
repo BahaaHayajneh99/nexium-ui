@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { axisTicks, formatNumber, niceMax, roundedTopRectPath, seriesColor } from '../chart-utils';
 import { NxMixedSeries } from '../chart-types';
 
@@ -17,7 +18,7 @@ interface MixedBarGeometry {
 @Component({
   selector: 'nx-mixed-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-mixed-chart.html',
   styleUrl: './ui-mixed-chart.scss',
 })
@@ -168,5 +169,21 @@ export class NxMixedChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackByTick(index: number, tick: number): number {
+    return tick;
+  }
+
+  trackByBarKey(index: number, bar: MixedBarGeometry): string {
+    return `${bar.categoryIndex}-${bar.seriesIndex}`;
+  }
+
+  trackBySeriesName(index: number, s: NxMixedSeries): string {
+    return s.name;
+  }
+
+  trackByCategory(index: number, category: string): string {
+    return category;
   }
 }

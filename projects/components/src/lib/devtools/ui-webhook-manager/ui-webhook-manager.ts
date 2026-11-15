@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -30,7 +31,7 @@ export interface NxWebhookEventOption {
 @Component({
   selector: 'nx-webhook-manager',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-webhook-manager.html',
   styleUrl: './ui-webhook-manager.scss',
 })
@@ -112,5 +113,17 @@ export class NxWebhookManager {
 
   eventLabel(value: string): string {
     return this.availableEvents.find((e) => e.value === value)?.label ?? value;
+  }
+
+  trackByEventValue(index: number, event: NxWebhookEventOption): string {
+    return event.value;
+  }
+
+  trackByWebhookId(index: number, webhook: NxWebhookEndpoint): string | number {
+    return webhook.id;
+  }
+
+  trackByWebhookEventName(index: number, event: string): string {
+    return event;
   }
 }

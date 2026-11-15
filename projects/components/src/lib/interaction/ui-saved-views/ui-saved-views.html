@@ -1,69 +1,62 @@
-@if (licensed()) {
-    <div class="nx-saved-views">
-        <button type="button" class="nx-saved-views-trigger" (click)="togglePanel()">
-            <span class="nx-saved-views-trigger-label">{{ activeViewName() }}</span>
-            <span class="nx-saved-views-trigger-caret">&#9662;</span>
-        </button>
+<div class="nx-saved-views" *ngIf="licensed(); else elseBlock1">
+    <button type="button" class="nx-saved-views-trigger" (click)="togglePanel()">
+        <span class="nx-saved-views-trigger-label">{{ activeViewName() }}</span>
+        <span class="nx-saved-views-trigger-caret">&#9662;</span>
+    </button>
 
-        @if (open()) {
-            <div class="nx-saved-views-panel">
-                <div class="nx-saved-views-list">
-                    @for (view of views; track view.id) {
-                        <div
-                            class="nx-saved-views-row"
-                            [class.active]="view.id === activeViewId"
-                            (click)="selectView(view)">
-                            @if (renamingId() === view.id) {
-                                <input
-                                    class="nx-saved-views-rename-input"
-                                    type="text"
-                                    autofocus
-                                    [value]="renameValue"
-                                    (click)="$event.stopPropagation()"
-                                    (input)="onRenameInput($event)"
-                                    (keydown.enter)="confirmRename(view.id)"
-                                    (blur)="confirmRename(view.id)" />
-                            } @else {
-                                <span class="nx-saved-views-row-name">
-                                    {{ view.name }}
-                                    @if (view.isDefault) {
-                                        <span class="nx-saved-views-default-tag">Default</span>
-                                    }
-                                </span>
-                                <div class="nx-saved-views-row-actions">
-                                    <button
-                                        type="button"
-                                        class="nx-saved-views-icon-btn"
-                                        aria-label="Rename view"
-                                        (click)="startRename(view, $event)">
-                                        &#9998;
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="nx-saved-views-icon-btn"
-                                        aria-label="Delete view"
-                                        (click)="deleteView(view.id, $event)">
-                                        &#10005;
-                                    </button>
-                                </div>
-                            }
-                        </div>
-                    } @empty {
-                        <div class="nx-saved-views-empty">No saved views yet.</div>
-                    }
-                </div>
-
-                <div class="nx-saved-views-save-row">
-                    <nx-input
-                        placeholder="Save current as..."
-                        [(value)]="newViewName"
-                        (keydown.enter)="saveCurrent()">
-                    </nx-input>
-                    <button type="button" class="nx-saved-views-save-btn" (click)="saveCurrent()">Save</button>
-                </div>
+    <div class="nx-saved-views-panel" *ngIf="open()">
+        <div class="nx-saved-views-list">
+            <div
+                class="nx-saved-views-row"
+                [class.active]="view.id === activeViewId"
+                (click)="selectView(view)"
+                *ngFor="let view of views; trackBy: trackByViewId">
+                <input
+                    class="nx-saved-views-rename-input"
+                    type="text"
+                    autofocus
+                    [value]="renameValue"
+                    (click)="$event.stopPropagation()"
+                    (input)="onRenameInput($event)"
+                    (keydown.enter)="confirmRename(view.id)"
+                    (blur)="confirmRename(view.id)"
+                    *ngIf="renamingId() === view.id; else elseBlock2" />
+                <ng-template #elseBlock2>
+                    <span class="nx-saved-views-row-name">
+                        {{ view.name }}
+                        <span class="nx-saved-views-default-tag" *ngIf="view.isDefault">Default</span>
+                    </span>
+                    <div class="nx-saved-views-row-actions">
+                        <button
+                            type="button"
+                            class="nx-saved-views-icon-btn"
+                            aria-label="Rename view"
+                            (click)="startRename(view, $event)">
+                            &#9998;
+                        </button>
+                        <button
+                            type="button"
+                            class="nx-saved-views-icon-btn"
+                            aria-label="Delete view"
+                            (click)="deleteView(view.id, $event)">
+                            &#10005;
+                        </button>
+                    </div>
+                </ng-template>
             </div>
-        }
+            <div class="nx-saved-views-empty" *ngIf="!views || views.length === 0">No saved views yet.</div>
+        </div>
+
+        <div class="nx-saved-views-save-row">
+            <nx-input
+                placeholder="Save current as..."
+                [(value)]="newViewName"
+                (keydown.enter)="saveCurrent()">
+            </nx-input>
+            <button type="button" class="nx-saved-views-save-btn" (click)="saveCurrent()">Save</button>
+        </div>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Saved Views"></nx-pro-locked>
-}
+</ng-template>

@@ -4,11 +4,11 @@
         {{ showTable ? 'View as chart' : 'View as table' }}
     </button>
 
-    @if (!showTable) {
+    <ng-container *ngIf="!showTable; else elseBlock1">
         <div class="nx-chart-canvas">
             <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
 
-                @for (bar of bars; track bar.stage.label) {
+                <ng-container *ngFor="let bar of bars; trackBy: trackByBarLabel">
                     <path
                         class="nx-chart-funnel-bar"
                         [class.nx-chart-funnel-bar-hovered]="hoveredIndex === bar.index"
@@ -29,11 +29,12 @@
                     <text class="nx-chart-funnel-value" [attr.x]="labelX" [attr.y]="bar.labelY + 12">
                         {{ formatValue(bar.stage.value) }} · {{ formatPercent(bar.percentOfFirst) }}
                     </text>
-                }
+                </ng-container>
 
             </svg>
         </div>
-    } @else {
+    </ng-container>
+    <ng-template #elseBlock1>
         <div class="nx-chart-table-wrap">
             <table class="nx-chart-table">
                 <thead>
@@ -44,16 +45,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (bar of bars; track bar.stage.label) {
+                    <ng-container *ngFor="let bar of bars; trackBy: trackByBarLabel">
                         <tr>
                             <th scope="row">{{ bar.stage.label }}</th>
                             <td>{{ formatValue(bar.stage.value) }}</td>
                             <td>{{ formatPercent(bar.percentOfFirst) }}</td>
                         </tr>
-                    }
+                    </ng-container>
                 </tbody>
             </table>
         </div>
-    }
+    </ng-template>
 
 </div>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export interface NxMenuItem {
@@ -14,7 +15,7 @@ export interface NxMenuItem {
 @Component({
   selector: 'nx-menu',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgIf, NgFor, NxIcon],
   templateUrl: './ui-menu.html',
   styleUrl: './ui-menu.scss',
   // Unencapsulated so consumers can reuse .nx-menu/.nx-menu-item/.nx-menu-item-icon
@@ -32,5 +33,9 @@ export class NxMenu {
       return;
     }
     this.itemSelect.emit(item);
+  }
+
+  trackByItemId(index: number, item: NxMenuItem): string | number {
+    return item.id;
   }
 }

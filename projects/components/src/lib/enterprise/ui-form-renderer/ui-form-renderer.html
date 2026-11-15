@@ -1,118 +1,106 @@
-@if (licensed()) {
-    <form class="nx-form-renderer" novalidate (ngSubmit)="handleSubmit()">
-        <h3 class="nx-form-renderer-title">{{ schema.title }}</h3>
+<form class="nx-form-renderer" *ngIf="licensed(); else elseBlock1" novalidate (ngSubmit)="handleSubmit()">
+    <h3 class="nx-form-renderer-title">{{ schema.title }}</h3>
 
-        <ng-template #fieldTpl let-field="field">
-            @if (isVisible(field.id)) {
-                @if (field.type === 'section') {
-                    <fieldset class="nx-form-renderer-section">
-                        <legend>{{ field.label }}</legend>
-                        @for (child of field.fields ?? []; track child.id) {
-                            <ng-container *ngTemplateOutlet="fieldTpl; context: { field: child }"></ng-container>
-                        }
-                    </fieldset>
-                } @else {
-                    <div class="nx-form-renderer-field">
-                        <label [for]="field.id">{{ field.label }}</label>
+    <ng-template #fieldTpl let-field="field">
+        <ng-container *ngIf="isVisible(field.id)">
+            <fieldset class="nx-form-renderer-section" *ngIf="field.type === 'section'; else elseBlock2">
+                <legend>{{ field.label }}</legend>
+                <ng-container *ngFor="let child of field.fields ?? []; trackBy: trackByChildId">
+                    <ng-container *ngTemplateOutlet="fieldTpl; context: { field: child }"></ng-container>
+                </ng-container>
+            </fieldset>
+            <ng-template #elseBlock2>
+                <div class="nx-form-renderer-field">
+                    <label [for]="field.id">{{ field.label }}</label>
 
-                        @switch (field.type) {
-                            @case ('textarea') {
-                                <textarea
-                                    [id]="field.id"
-                                    [name]="field.id"
-                                    class="nx-form-renderer-input"
-                                    [ngModel]="values()[field.id]"
-                                    (ngModelChange)="setValue(field.id, $event)"
-                                    (blur)="onBlur(field.id)"
-                                    [placeholder]="field.placeholder ?? ''"></textarea>
-                            }
-                            @case ('select') {
-                                <select
-                                    [id]="field.id"
-                                    [name]="field.id"
-                                    class="nx-form-renderer-input"
-                                    [ngModel]="values()[field.id]"
-                                    (ngModelChange)="setValue(field.id, $event)"
-                                    (blur)="onBlur(field.id)">
-                                    <option value="">-- Select --</option>
-                                    @for (opt of field.options ?? []; track opt.value) {
-                                        <option [value]="opt.value">{{ opt.label }}</option>
-                                    }
-                                </select>
-                            }
-                            @case ('checkbox') {
-                                <input
-                                    [id]="field.id"
-                                    [name]="field.id"
-                                    type="checkbox"
-                                    [ngModel]="values()[field.id]"
-                                    (ngModelChange)="setValue(field.id, $event)"
-                                    (blur)="onBlur(field.id)" />
-                            }
-                            @case ('radio') {
-                                <div class="nx-form-renderer-radio-group" [id]="field.id">
-                                    @for (opt of field.options ?? []; track opt.value) {
-                                        <label class="nx-form-renderer-radio-option">
-                                            <input
-                                                type="radio"
-                                                [name]="field.id"
-                                                [value]="opt.value"
-                                                [checked]="values()[field.id] === opt.value"
-                                                (change)="setValue(field.id, opt.value)"
-                                                (blur)="onBlur(field.id)" />
-                                            {{ opt.label }}
-                                        </label>
-                                    }
-                                </div>
-                            }
-                            @case ('date') {
-                                <input
-                                    [id]="field.id"
-                                    [name]="field.id"
-                                    type="date"
-                                    class="nx-form-renderer-input"
-                                    [ngModel]="values()[field.id]"
-                                    (ngModelChange)="setValue(field.id, $event)"
-                                    (blur)="onBlur(field.id)" />
-                            }
-                            @case ('number') {
-                                <input
-                                    [id]="field.id"
-                                    [name]="field.id"
-                                    type="number"
-                                    class="nx-form-renderer-input"
-                                    [ngModel]="values()[field.id]"
-                                    (ngModelChange)="setValue(field.id, $event)"
-                                    (blur)="onBlur(field.id)"
-                                    [placeholder]="field.placeholder ?? ''" />
-                            }
-                            @default {
-                                <input
-                                    [id]="field.id"
-                                    [name]="field.id"
-                                    [type]="field.type === 'email' ? 'email' : 'text'"
-                                    class="nx-form-renderer-input"
-                                    [ngModel]="values()[field.id]"
-                                    (ngModelChange)="setValue(field.id, $event)"
-                                    (blur)="onBlur(field.id)"
-                                    [placeholder]="field.placeholder ?? ''" />
-                            }
-                        }
+                    <ng-container [ngSwitch]="field.type">
+                        <textarea
+                            *ngSwitchCase="'textarea'"
+                            [id]="field.id"
+                            [name]="field.id"
+                            class="nx-form-renderer-input"
+                            [ngModel]="values()[field.id]"
+                            (ngModelChange)="setValue(field.id, $event)"
+                            (blur)="onBlur(field.id)"
+                            [placeholder]="field.placeholder ?? ''"></textarea>
+                        <select
+                            *ngSwitchCase="'select'"
+                            [id]="field.id"
+                            [name]="field.id"
+                            class="nx-form-renderer-input"
+                            [ngModel]="values()[field.id]"
+                            (ngModelChange)="setValue(field.id, $event)"
+                            (blur)="onBlur(field.id)">
+                            <option value="">-- Select --</option>
+                            <ng-container *ngFor="let opt of field.options ?? []; trackBy: trackBySelectOptionValue">
+                                <option [value]="opt.value">{{ opt.label }}</option>
+                            </ng-container>
+                        </select>
+                        <input
+                            *ngSwitchCase="'checkbox'"
+                            [id]="field.id"
+                            [name]="field.id"
+                            type="checkbox"
+                            [ngModel]="values()[field.id]"
+                            (ngModelChange)="setValue(field.id, $event)"
+                            (blur)="onBlur(field.id)" />
+                        <div *ngSwitchCase="'radio'" class="nx-form-renderer-radio-group" [id]="field.id">
+                            <ng-container *ngFor="let opt of field.options ?? []; trackBy: trackByRadioOptionValue">
+                                <label class="nx-form-renderer-radio-option">
+                                    <input
+                                        type="radio"
+                                        [name]="field.id"
+                                        [value]="opt.value"
+                                        [checked]="values()[field.id] === opt.value"
+                                        (change)="setValue(field.id, opt.value)"
+                                        (blur)="onBlur(field.id)" />
+                                    {{ opt.label }}
+                                </label>
+                            </ng-container>
+                        </div>
+                        <input
+                            *ngSwitchCase="'date'"
+                            [id]="field.id"
+                            [name]="field.id"
+                            type="date"
+                            class="nx-form-renderer-input"
+                            [ngModel]="values()[field.id]"
+                            (ngModelChange)="setValue(field.id, $event)"
+                            (blur)="onBlur(field.id)" />
+                        <input
+                            *ngSwitchCase="'number'"
+                            [id]="field.id"
+                            [name]="field.id"
+                            type="number"
+                            class="nx-form-renderer-input"
+                            [ngModel]="values()[field.id]"
+                            (ngModelChange)="setValue(field.id, $event)"
+                            (blur)="onBlur(field.id)"
+                            [placeholder]="field.placeholder ?? ''" />
+                        <input
+                            *ngSwitchDefault
+                            [id]="field.id"
+                            [name]="field.id"
+                            [type]="field.type === 'email' ? 'email' : 'text'"
+                            class="nx-form-renderer-input"
+                            [ngModel]="values()[field.id]"
+                            (ngModelChange)="setValue(field.id, $event)"
+                            (blur)="onBlur(field.id)"
+                            [placeholder]="field.placeholder ?? ''" />
+                    </ng-container>
 
-                        @if (fieldError(field.id); as err) {
-                            <div class="nx-form-renderer-error">{{ err }}</div>
-                        }
-                    </div>
-                }
-            }
-        </ng-template>
+                    <div class="nx-form-renderer-error" *ngIf="fieldError(field.id) as err">{{ err }}</div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </ng-template>
 
-        @for (field of schema.fields; track field.id) {
-            <ng-container *ngTemplateOutlet="fieldTpl; context: { field: field }"></ng-container>
-        }
+    <ng-container *ngFor="let field of schema.fields; trackBy: trackByFieldId">
+        <ng-container *ngTemplateOutlet="fieldTpl; context: { field: field }"></ng-container>
+    </ng-container>
 
-        <button type="submit" class="nx-form-renderer-submit">Submit</button>
-    </form>
-} @else {
+    <button type="submit" class="nx-form-renderer-submit">Submit</button>
+</form>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Form Renderer"></nx-pro-locked>
-}
+</ng-template>

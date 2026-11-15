@@ -1,4 +1,5 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
+import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 export type NxLayoutPreviewTemplate = 'sidebar-left' | 'sidebar-right' | 'header-content' | 'holy-grail' | 'blank';
 
@@ -6,7 +7,7 @@ export type NxLayoutPreviewTemplate = 'sidebar-left' | 'sidebar-right' | 'header
 @Component({
   selector: 'nx-layout-preview',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './ui-layout-preview.html',
   styleUrl: './ui-layout-preview.scss',
 })

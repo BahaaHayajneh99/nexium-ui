@@ -1,54 +1,46 @@
-@if (licensed()) {
-    <div class="nx-tree-select">
-        <button
-            type="button"
-            class="nx-tree-select-trigger"
-            [class.open]="open()"
-            [attr.aria-expanded]="open()"
-            (click)="toggleOpen()">
-            <span class="nx-tree-select-trigger-text" [class.placeholder]="!selectedLabels().length">
-                {{ triggerText() }}
-            </span>
-            <nx-icon class="nx-tree-select-chevron-icon" icon="nx-chevron-down" variant="svg" [size]="16"></nx-icon>
-        </button>
+<div class="nx-tree-select" *ngIf="licensed(); else elseBlock1">
+    <button
+        type="button"
+        class="nx-tree-select-trigger"
+        [class.open]="open()"
+        [attr.aria-expanded]="open()"
+        (click)="toggleOpen()">
+        <span class="nx-tree-select-trigger-text" [class.placeholder]="!selectedLabels().length">
+            {{ triggerText() }}
+        </span>
+        <nx-icon class="nx-tree-select-chevron-icon" icon="nx-chevron-down" variant="svg" [size]="16"></nx-icon>
+    </button>
 
-        @if (open()) {
-            <div class="nx-tree-select-panel">
-                @if (!flatNodes().length) {
-                    <div class="nx-tree-select-empty">No options</div>
-                }
-                @for (row of flatNodes(); track row.node.id) {
-                    <div class="nx-tree-select-row" [style.padding-left.px]="row.depth * 16 + 8">
-                        @if (row.hasChildren) {
-                            <button
-                                type="button"
-                                class="nx-tree-select-expand"
-                                [class.open]="isExpanded(row.node.id)"
-                                (click)="toggleExpand(row.node.id, $event)">
-                                <nx-icon icon="nx-chevron-right" variant="svg" [size]="14"></nx-icon>
-                            </button>
-                        } @else {
-                            <span class="nx-tree-select-expand-placeholder"></span>
-                        }
+    <div class="nx-tree-select-panel" *ngIf="open()">
+        <div class="nx-tree-select-empty" *ngIf="!flatNodes().length">No options</div>
+        <div class="nx-tree-select-row" *ngFor="let row of flatNodes(); trackBy: trackByNodeId" [style.padding-left.px]="row.depth * 16 + 8">
+            <button
+                type="button"
+                class="nx-tree-select-expand"
+                *ngIf="row.hasChildren; else elseBlock2"
+                [class.open]="isExpanded(row.node.id)"
+                (click)="toggleExpand(row.node.id, $event)">
+                <nx-icon icon="nx-chevron-right" variant="svg" [size]="14"></nx-icon>
+            </button>
+            <ng-template #elseBlock2>
+                <span class="nx-tree-select-expand-placeholder"></span>
+            </ng-template>
 
-                        @if (multiple) {
-                            <label class="nx-tree-select-checkbox-row">
-                                <input
-                                    type="checkbox"
-                                    [checked]="isSelected(row.node.id)"
-                                    (change)="toggleMultiple(row.node.id)">
-                                <span>{{ row.node.label }}</span>
-                            </label>
-                        } @else {
-                            <button type="button" class="nx-tree-select-option" (click)="selectSingle(row.node.id)">
-                                {{ row.node.label }}
-                            </button>
-                        }
-                    </div>
-                }
-            </div>
-        }
+            <label class="nx-tree-select-checkbox-row" *ngIf="multiple; else elseBlock3">
+                <input
+                    type="checkbox"
+                    [checked]="isSelected(row.node.id)"
+                    (change)="toggleMultiple(row.node.id)">
+                <span>{{ row.node.label }}</span>
+            </label>
+            <ng-template #elseBlock3>
+                <button type="button" class="nx-tree-select-option" (click)="selectSingle(row.node.id)">
+                    {{ row.node.label }}
+                </button>
+            </ng-template>
+        </div>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Tree Select"></nx-pro-locked>
-}
+</ng-template>

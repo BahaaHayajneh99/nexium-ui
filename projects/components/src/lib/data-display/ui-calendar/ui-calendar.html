@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-calendar">
+<div class="nx-calendar" *ngIf="licensed(); else elseBlock1">
         <div class="nx-calendar-toolbar">
             <div class="nx-calendar-nav">
                 <button type="button" class="nx-calendar-nav-btn" (click)="prev()" aria-label="Previous">
@@ -12,25 +11,25 @@
                 <span class="nx-calendar-label">{{ headerLabel() }}</span>
             </div>
             <div class="nx-calendar-view-switch">
-                @for (v of views; track v) {
+                <ng-container *ngFor="let v of views; trackBy: trackByView">
                     <button type="button" class="nx-calendar-view-btn" [class.active]="view === v" (click)="setView(v)">
                         {{ v }}
                     </button>
-                }
+                </ng-container>
             </div>
         </div>
 
-        @switch (view) {
-            @case ('month') {
+        <ng-container [ngSwitch]="view">
+            <ng-container *ngSwitchCase="'month'">
                 <div class="nx-calendar-month">
                     <div class="nx-calendar-month-header">
-                        @for (name of dayNames; track name) {
+                        <ng-container *ngFor="let name of dayNames; trackBy: trackByDayName">
                             <div class="nx-calendar-day-name">{{ name }}</div>
-                        }
+                        </ng-container>
                     </div>
-                    @for (week of monthWeeks(); track $index) {
+                    <ng-container *ngFor="let week of monthWeeks(); trackBy: trackByIndex">
                         <div class="nx-calendar-week">
-                            @for (day of week; track day.getTime()) {
+                            <ng-container *ngFor="let day of week; trackBy: trackByDayTime">
                                 <div
                                     class="nx-calendar-day"
                                     [class.outside]="!isCurrentMonth(day, current())"
@@ -38,7 +37,7 @@
                                     (click)="onDayClick(day)">
                                     <span class="nx-calendar-day-number">{{ day.getDate() }}</span>
                                     <div class="nx-calendar-day-events">
-                                        @for (event of eventsForDay(day).slice(0, 3); track event.id) {
+                                        <ng-container *ngFor="let event of eventsForDay(day).slice(0, 3); trackBy: trackByEventId">
                                             <button
                                                 type="button"
                                                 class="nx-calendar-event-pill"
@@ -46,39 +45,37 @@
                                                 (click)="onEventClick(event, $event)">
                                                 {{ event.title }}
                                             </button>
-                                        }
-                                        @if (eventsForDay(day).length > 3) {
-                                            <span class="nx-calendar-more">+{{ eventsForDay(day).length - 3 }} more</span>
-                                        }
+                                        </ng-container>
+                                        <span class="nx-calendar-more" *ngIf="eventsForDay(day).length > 3">+{{ eventsForDay(day).length - 3 }} more</span>
                                     </div>
                                 </div>
-                            }
+                            </ng-container>
                         </div>
-                    }
+                    </ng-container>
                 </div>
-            }
-            @case ('week') {
+            </ng-container>
+            <ng-container *ngSwitchCase="'week'">
                 <div class="nx-calendar-time-view">
                     <div class="nx-calendar-time-header">
                         <div class="nx-calendar-gutter"></div>
-                        @for (day of weekDaysList(); track day.getTime()) {
+                        <ng-container *ngFor="let day of weekDaysList(); trackBy: trackByDayTime">
                             <div class="nx-calendar-time-col-header" [class.today]="isToday(day)">
                                 {{ dayNames[day.getDay()] }} {{ day.getDate() }}
                             </div>
-                        }
+                        </ng-container>
                     </div>
                     <div class="nx-calendar-time-body">
                         <div class="nx-calendar-gutter">
-                            @for (hour of hours; track hour) {
+                            <ng-container *ngFor="let hour of hours; trackBy: trackByHour">
                                 <div class="nx-calendar-hour-label">{{ hour === 0 ? '12am' : hour < 12 ? hour + 'am' : hour === 12 ? '12pm' : (hour - 12) + 'pm' }}</div>
-                            }
+                            </ng-container>
                         </div>
-                        @for (day of weekDaysList(); track day.getTime()) {
+                        <ng-container *ngFor="let day of weekDaysList(); trackBy: trackByDayTime">
                             <div class="nx-calendar-time-col" (click)="onDayClick(day)">
-                                @for (hour of hours; track hour) {
+                                <ng-container *ngFor="let hour of hours; trackBy: trackByHour">
                                     <div class="nx-calendar-hour-row"></div>
-                                }
-                                @for (event of eventsForDay(day); track event.id) {
+                                </ng-container>
+                                <ng-container *ngFor="let event of eventsForDay(day); trackBy: trackByEventId">
                                     <button
                                         type="button"
                                         class="nx-calendar-time-event"
@@ -89,13 +86,13 @@
                                         <strong>{{ event.title }}</strong>
                                         <span>{{ eventTimeLabel(event) }}</span>
                                     </button>
-                                }
+                                </ng-container>
                             </div>
-                        }
+                        </ng-container>
                     </div>
                 </div>
-            }
-            @case ('day') {
+            </ng-container>
+            <ng-container *ngSwitchCase="'day'">
                 <div class="nx-calendar-time-view nx-calendar-day-view">
                     <div class="nx-calendar-time-header">
                         <div class="nx-calendar-gutter"></div>
@@ -103,15 +100,15 @@
                     </div>
                     <div class="nx-calendar-time-body">
                         <div class="nx-calendar-gutter">
-                            @for (hour of hours; track hour) {
+                            <ng-container *ngFor="let hour of hours; trackBy: trackByHour">
                                 <div class="nx-calendar-hour-label">{{ hour === 0 ? '12am' : hour < 12 ? hour + 'am' : hour === 12 ? '12pm' : (hour - 12) + 'pm' }}</div>
-                            }
+                            </ng-container>
                         </div>
                         <div class="nx-calendar-time-col" (click)="onDayClick(current())">
-                            @for (hour of hours; track hour) {
+                            <ng-container *ngFor="let hour of hours; trackBy: trackByHour">
                                 <div class="nx-calendar-hour-row"></div>
-                            }
-                            @for (event of eventsForDay(current()); track event.id) {
+                            </ng-container>
+                            <ng-container *ngFor="let event of eventsForDay(current()); trackBy: trackByEventId">
                                 <button
                                     type="button"
                                     class="nx-calendar-time-event"
@@ -122,21 +119,21 @@
                                     <strong>{{ event.title }}</strong>
                                     <span>{{ eventTimeLabel(event) }}</span>
                                 </button>
-                            }
+                            </ng-container>
                         </div>
                     </div>
                 </div>
-            }
-            @case ('year') {
+            </ng-container>
+            <ng-container *ngSwitchCase="'year'">
                 <div class="nx-calendar-year">
-                    @for (entry of yearMonths(); track $index) {
+                    <ng-container *ngFor="let entry of yearMonths(); trackBy: trackByIndex">
                         <div class="nx-calendar-mini-month">
                             <button type="button" class="nx-calendar-mini-month-title" (click)="jumpToMonth(entry.month)">
                                 {{ monthName(entry.month) }}
                             </button>
                             <div class="nx-calendar-mini-grid">
-                                @for (week of entry.weeks; track $index) {
-                                    @for (day of week; track day.getTime()) {
+                                <ng-container *ngFor="let week of entry.weeks; trackBy: trackByIndex">
+                                    <ng-container *ngFor="let day of week; trackBy: trackByDayTime">
                                         <button
                                             type="button"
                                             class="nx-calendar-mini-day"
@@ -144,19 +141,17 @@
                                             [class.today]="isToday(day)"
                                             (click)="jumpToMonth(day)">
                                             {{ day.getDate() }}
-                                            @if (hasEvents(day)) {
-                                                <span class="nx-calendar-mini-dot"></span>
-                                            }
+                                            <span class="nx-calendar-mini-dot" *ngIf="hasEvents(day)"></span>
                                         </button>
-                                    }
-                                }
+                                    </ng-container>
+                                </ng-container>
                             </div>
                         </div>
-                    }
+                    </ng-container>
                 </div>
-            }
-        }
+            </ng-container>
+        </ng-container>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Calendar"></nx-pro-locked>
-}
+</ng-template>

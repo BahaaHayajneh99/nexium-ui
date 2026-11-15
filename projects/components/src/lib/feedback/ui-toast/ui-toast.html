@@ -1,12 +1,8 @@
-@for (position of positions; track position) {
-    @if (toastsFor(position).length) {
-        <div class="nx-toast-container" [ngClass]="position" role="status" aria-live="polite" aria-atomic="false">
-            @for (toast of toastsFor(position); track toast.id) {
-                <div class="nx-toast" [ngClass]="toast.variant">
-                    <span>{{ toast.message }}</span>
-                    <button type="button" class="nx-toast-close" (click)="dismiss(toast.id)">×</button>
-                </div>
-            }
+<ng-container *ngFor="let position of positions; trackBy: trackByPosition">
+    <div class="nx-toast-container" *ngIf="toastsFor(position).length" [ngClass]="position" role="status" aria-live="polite" aria-atomic="false">
+        <div class="nx-toast" *ngFor="let toast of toastsFor(position); trackBy: trackByToastId" [ngClass]="toast.variant">
+            <span>{{ toast.message }}</span>
+            <button type="button" class="nx-toast-close" (click)="dismiss(toast.id)">×</button>
         </div>
-    }
-}
+    </div>
+</ng-container>

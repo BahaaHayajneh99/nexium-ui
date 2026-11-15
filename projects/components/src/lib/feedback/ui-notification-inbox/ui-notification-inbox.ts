@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output, booleanAttribute, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NxInfiniteScroll } from '../../interaction/nx-infinite-scroll';
@@ -52,7 +52,7 @@ const PRIORITY_RANK: Record<NxNotificationPriority, number> = { urgent: 0, high:
 @Component({
   selector: 'nx-notification-inbox',
   standalone: true,
-  imports: [FormsModule, DatePipe, NxInfiniteScroll, NxProLocked],
+  imports: [FormsModule, DatePipe, NgFor, NgIf, NxInfiniteScroll, NxProLocked],
   templateUrl: './ui-notification-inbox.html',
   styleUrl: './ui-notification-inbox.scss',
 })
@@ -134,6 +134,26 @@ export class NxNotificationInbox {
 
   priorityRank(priority: NxNotificationPriority): number {
     return PRIORITY_RANK[priority];
+  }
+
+  trackByCategory(index: number, category: string): string {
+    return category;
+  }
+
+  trackByPriority(index: number, priority: NxNotificationPriority): NxNotificationPriority {
+    return priority;
+  }
+
+  trackByGroupLabel(index: number, group: NxNotificationDateGroup): string {
+    return group.label;
+  }
+
+  trackByNotificationId(index: number, item: NxNotificationInboxItem): string | number {
+    return item.id;
+  }
+
+  trackByActionId(index: number, action: NxNotificationAction): string {
+    return action.id;
   }
 
   onItemClick(item: NxNotificationInboxItem): void {

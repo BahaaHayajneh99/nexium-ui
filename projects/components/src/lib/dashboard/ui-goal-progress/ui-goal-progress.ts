@@ -1,4 +1,5 @@
 import { Component, Input, numberAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 export type NxGoalProgressVariant = 'bar' | 'ring';
 
@@ -6,7 +7,7 @@ export type NxGoalProgressVariant = 'bar' | 'ring';
 @Component({
   selector: 'nx-goal-progress',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-goal-progress.html',
   styleUrl: './ui-goal-progress.scss',
 })

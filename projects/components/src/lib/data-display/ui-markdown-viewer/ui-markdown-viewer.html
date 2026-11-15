@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-markdown-viewer" [innerHTML]="renderedHtml()"></div>
-} @else {
+<div class="nx-markdown-viewer" *ngIf="licensed(); else elseBlock1" [innerHTML]="renderedHtml()"></div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Markdown Viewer"></nx-pro-locked>
-}
+</ng-template>

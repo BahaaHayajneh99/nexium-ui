@@ -1,27 +1,22 @@
-@if (licensed()) {
-    <div class="nx-chat">
+<div class="nx-chat" *ngIf="licensed(); else elseBlock1">
         <div class="nx-chat-messages">
-            @for (message of messages; track message.id; let last = $last) {
+            <ng-container *ngFor="let message of messages; trackBy: trackByMessageId; let last = last">
                 <div class="nx-chat-message" [class.user]="message.role === 'user'" [class.assistant]="message.role === 'assistant'">
                     <div class="nx-chat-bubble" [innerHTML]="renderContent(message.content)"></div>
                     <div class="nx-chat-message-actions">
                         <button type="button" class="nx-chat-action" (click)="copyMessage(message)">
                             {{ copiedId() === message.id ? 'Copied' : 'Copy' }}
                         </button>
-                        @if (last && message.role === 'assistant') {
-                            <button type="button" class="nx-chat-action" (click)="regenerate.emit(message)">Regenerate</button>
-                        }
+                        <button type="button" class="nx-chat-action" (click)="regenerate.emit(message)" *ngIf="last && message.role === 'assistant'">Regenerate</button>
                     </div>
                 </div>
-            }
+            </ng-container>
 
-            @if (typing) {
-                <div class="nx-chat-message assistant">
-                    <div class="nx-chat-bubble nx-chat-typing">
-                        <span></span><span></span><span></span>
-                    </div>
+            <div class="nx-chat-message assistant" *ngIf="typing">
+                <div class="nx-chat-bubble nx-chat-typing">
+                    <span></span><span></span><span></span>
                 </div>
-            }
+            </div>
         </div>
 
         <div class="nx-chat-composer">
@@ -37,6 +32,6 @@
             </button>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Chat"></nx-pro-locked>
-}
+</ng-template>

@@ -1,5 +1,5 @@
 import { booleanAttribute, Component, Input } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 export type NxButtonVariant =
   | 'primary'
   | 'secondary'
@@ -28,7 +28,7 @@ export type NxButtonSize = 'small' | 'medium' | 'large';
   selector: 'nx-button',
   standalone: true,
   templateUrl: './ui-button.html',
-  imports: [NgClass], 
+  imports: [NgClass, NgIf],
   styleUrl: './ui-button.scss',
 })
 export class NxButton {

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NgIf, NgFor } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -35,7 +36,7 @@ export function nxRenderChatMarkdown(source: string): string {
 @Component({
   selector: 'nx-chat',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-chat.html',
   styleUrl: './ui-chat.scss',
 })
@@ -81,5 +82,9 @@ export class NxChat {
     navigator.clipboard?.writeText(message.content);
     this.copiedId.set(message.id);
     setTimeout(() => this.copiedId.set(null), 1500);
+  }
+
+  trackByMessageId(index: number, message: NxChatMessage): string | number {
+    return message.id;
   }
 }

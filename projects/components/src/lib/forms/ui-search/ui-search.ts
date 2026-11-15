@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxPatternInput, nxPatternErrorMessage, resolveNxPattern } from '../shared/nx-validators';
 
@@ -14,7 +15,7 @@ interface NxSearchResult {
 @Component({
   selector: 'nx-search',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgFor, NgIf, NxIcon],
   templateUrl: './ui-search.html',
   styleUrl: './ui-search.scss',
   providers: [
@@ -183,5 +184,9 @@ export class NxSearch implements ControlValueAccessor, Validator {
 
   registerOnValidatorChange(fn: () => void): void {
     this.onValidatorChangeFn = fn;
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 }

@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-token-gen">
+<div class="nx-token-gen" *ngIf="licensed(); else elseBlock1">
         <div class="nx-token-gen-controls">
             <label class="nx-token-gen-color-label">
                 <input
@@ -25,7 +24,7 @@
         </div>
 
         <div class="nx-token-gen-scale">
-            @for (token of tokens(); track token.step) {
+            <ng-container *ngFor="let token of tokens(); trackBy: trackByTokenStep">
                 <button
                     type="button"
                     class="nx-token-gen-step"
@@ -35,20 +34,16 @@
                     (click)="copyHex(token)">
                     <span class="nx-token-gen-step-number">{{ token.step }}</span>
                     <span class="nx-token-gen-step-hex">{{ copiedStep() === token.step ? 'Copied!' : token.hex }}</span>
-                    @if (token.isBase) {
-                        <span class="nx-token-gen-base-badge">base</span>
-                    }
+                    <span class="nx-token-gen-base-badge" *ngIf="token.isBase">base</span>
                 </button>
-            }
+            </ng-container>
         </div>
 
-        @if (showExport()) {
-            <div class="nx-token-gen-export">
-                <pre class="nx-token-gen-export-code">{{ exportCss() }}</pre>
-                <button type="button" class="nx-token-gen-copy-btn" (click)="copyExport()">Copy</button>
-            </div>
-        }
+        <div class="nx-token-gen-export" *ngIf="showExport()">
+            <pre class="nx-token-gen-export-code">{{ exportCss() }}</pre>
+            <button type="button" class="nx-token-gen-copy-btn" (click)="copyExport()">Copy</button>
+        </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Color Token Generator"></nx-pro-locked>
-}
+</ng-template>

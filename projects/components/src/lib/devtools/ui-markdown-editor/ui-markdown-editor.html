@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-markdown-editor">
+<div class="nx-markdown-editor" *ngIf="licensed(); else elseBlock1">
         <div class="nx-markdown-editor-toolbar">
             <button type="button" class="nx-markdown-editor-tool bold" title="Bold" aria-label="Bold" (click)="applyBold()">B</button>
             <button type="button" class="nx-markdown-editor-tool italic" title="Italic" aria-label="Italic" (click)="applyItalic()">I</button>
@@ -25,6 +24,6 @@
             <div class="nx-markdown-editor-preview" [innerHTML]="renderedHtml()"></div>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Markdown Editor"></nx-pro-locked>
-}
+</ng-template>

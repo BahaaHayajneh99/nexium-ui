@@ -1,4 +1,5 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 export type NxStatusIndicatorVariant = 'success' | 'danger' | 'warning' | 'info' | 'neutral';
 
@@ -10,7 +11,7 @@ export type NxStatusIndicatorVariant = 'success' | 'danger' | 'warning' | 'info'
 @Component({
   selector: 'nx-status-indicator',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-status-indicator.html',
   styleUrl: './ui-status-indicator.scss',
 })

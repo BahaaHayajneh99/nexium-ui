@@ -1,37 +1,23 @@
 <div class="nx-sidebar-item" [class.collapsed]="collapsed">
 
-    @if (item.link && !hasChildren) {
-        <a class="nx-sidebar-link"
-           [routerLink]="item.link"
-           routerLinkActive="active"
-           [routerLinkActiveOptions]="{ exact: !!item.exact }">
-            @if (item.icon) {
-                <nx-icon class="nx-sidebar-icon" [icon]="item.icon" variant="svg" [size]="18"></nx-icon>
-            }
-            @if (!collapsed) {
-                <span class="nx-sidebar-label">{{ item.label }}</span>
-            }
-        </a>
-    } @else {
+    <a *ngIf="item.link && !hasChildren; else elseBlock1"
+       class="nx-sidebar-link"
+       [routerLink]="item.link"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: !!item.exact }">
+        <nx-icon *ngIf="item.icon" class="nx-sidebar-icon" [icon]="item.icon" variant="svg" [size]="18"></nx-icon>
+        <span *ngIf="!collapsed" class="nx-sidebar-label">{{ item.label }}</span>
+    </a>
+    <ng-template #elseBlock1>
         <button type="button" class="nx-sidebar-link nx-sidebar-toggle" (click)="toggle()">
-            @if (item.icon) {
-                <nx-icon class="nx-sidebar-icon" [icon]="item.icon" variant="svg" [size]="18"></nx-icon>
-            }
-            @if (!collapsed) {
-                <span class="nx-sidebar-label">{{ item.label }}</span>
-            }
-            @if (hasChildren && !collapsed) {
-                <nx-icon class="nx-sidebar-chevron" [class.expanded]="expanded" icon="nx-chevron-right" variant="svg" [size]="14"></nx-icon>
-            }
+            <nx-icon *ngIf="item.icon" class="nx-sidebar-icon" [icon]="item.icon" variant="svg" [size]="18"></nx-icon>
+            <span *ngIf="!collapsed" class="nx-sidebar-label">{{ item.label }}</span>
+            <nx-icon *ngIf="hasChildren && !collapsed" class="nx-sidebar-chevron" [class.expanded]="expanded" icon="nx-chevron-right" variant="svg" [size]="14"></nx-icon>
         </button>
-    }
+    </ng-template>
 
-    @if (hasChildren && (expanded || collapsed)) {
-        <div class="nx-sidebar-children">
-            @for (child of item.children; track child.label) {
-                <nx-sidebar-item [item]="child"></nx-sidebar-item>
-            }
-        </div>
-    }
+    <div *ngIf="hasChildren && (expanded || collapsed)" class="nx-sidebar-children">
+        <nx-sidebar-item *ngFor="let child of item.children; trackBy: trackByChildLabel" [item]="child"></nx-sidebar-item>
+    </div>
 
 </div>

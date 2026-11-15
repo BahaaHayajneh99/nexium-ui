@@ -1,4 +1,4 @@
-@if (licensed()) {
+<ng-container *ngIf="licensed(); else elseBlock1">
     <div class="nx-prompt-builder">
         <div class="nx-pb-library">
             <div class="nx-pb-library-header">
@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="nx-pb-library-list">
-                @for (template of templates; track template.id) {
+                <ng-container *ngFor="let template of templates; trackBy: trackByTemplateId">
                     <div class="nx-pb-library-item" [class.active]="template.id === activeTemplateId()">
                         <button type="button" class="nx-pb-library-item-name" (click)="loadTemplate(template)">
                             {{ template.name }}
@@ -18,9 +18,8 @@
                             <nx-icon icon="nx-trash" variant="svg" [size]="14"></nx-icon>
                         </button>
                     </div>
-                } @empty {
-                    <div class="nx-pb-library-empty">No saved templates yet.</div>
-                }
+                </ng-container>
+                <div class="nx-pb-library-empty" *ngIf="!templates || templates.length === 0">No saved templates yet.</div>
             </div>
         </div>
 
@@ -65,9 +64,9 @@
         <div class="nx-pb-preview">
             <span class="nx-pb-preview-title">Fill &amp; Preview</span>
 
-            @if (variables().length) {
+            <ng-container *ngIf="variables().length; else elseBlock2">
                 <div class="nx-pb-variables">
-                    @for (variable of variables(); track variable.name) {
+                    <ng-container *ngFor="let variable of variables(); trackBy: trackByVariableName">
                         <label class="nx-pb-field">
                             <span class="nx-pb-field-label">{{ '{{' + variable.name + '}}' }}</span>
                             <input
@@ -77,11 +76,12 @@
                                 [value]="fillValues()[variable.name] ?? ''"
                                 (input)="setFillValue(variable.name, $any($event.target).value)" />
                         </label>
-                    }
+                    </ng-container>
                 </div>
-            } @else {
+            </ng-container>
+            <ng-template #elseBlock2>
                 <div class="nx-pb-no-variables">No {{ '{{variables}}' }} detected yet - add some in the prompt above.</div>
-            }
+            </ng-template>
 
             <pre class="nx-pb-rendered">{{ renderedPrompt() }}</pre>
 
@@ -92,6 +92,7 @@
             </button>
         </div>
     </div>
-} @else {
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="AI Prompt Builder"></nx-pro-locked>
-}
+</ng-template>

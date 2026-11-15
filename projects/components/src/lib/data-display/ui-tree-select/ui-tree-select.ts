@@ -9,6 +9,7 @@ import {
   computed,
   signal,
 } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -35,7 +36,7 @@ interface NxTreeSelectFlatNode {
 @Component({
   selector: 'nx-tree-select',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-tree-select.html',
   styleUrl: './ui-tree-select.scss',
 })
@@ -133,6 +134,10 @@ export class NxTreeSelect {
     if (this.open() && !this.elementRef.nativeElement.contains(event.target as Node)) {
       this.open.set(false);
     }
+  }
+
+  trackByNodeId(_index: number, row: NxTreeSelectFlatNode): string {
+    return row.node.id;
   }
 
   toggleOpen(): void {

@@ -1,19 +1,17 @@
-@if (licensed()) {
-    <div class="nx-sortable-list">
-        @for (item of items; track item.id; let i = $index) {
-            <div
-                class="nx-sortable-list-item"
-                [class.drag-over]="dragOverIndex() === i"
-                draggable="true"
-                (dragstart)="onDragStart(i, $event)"
-                (dragover)="onDragOver(i, $event)"
-                (drop)="onDrop(i, $event)"
-                (dragend)="onDragEnd()">
-                <nx-icon icon="nx-menu" variant="svg" [size]="16" class="nx-sortable-list-grip"></nx-icon>
-                <span class="nx-sortable-list-label">{{ item.label }}</span>
-            </div>
-        }
+<div class="nx-sortable-list" *ngIf="licensed(); else elseBlock1">
+    <div
+        class="nx-sortable-list-item"
+        [class.drag-over]="dragOverIndex() === i"
+        draggable="true"
+        (dragstart)="onDragStart(i, $event)"
+        (dragover)="onDragOver(i, $event)"
+        (drop)="onDrop(i, $event)"
+        (dragend)="onDragEnd()"
+        *ngFor="let item of items; trackBy: trackByItemId; let i = index">
+        <nx-icon icon="nx-menu" variant="svg" [size]="16" class="nx-sortable-list-grip"></nx-icon>
+        <span class="nx-sortable-list-label">{{ item.label }}</span>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Sortable List"></nx-pro-locked>
-}
+</ng-template>

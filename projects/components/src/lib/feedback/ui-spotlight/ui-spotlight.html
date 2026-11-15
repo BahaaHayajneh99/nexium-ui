@@ -1,4 +1,4 @@
-@if (open && rect) {
+<ng-container *ngIf="open && rect">
     <div class="nx-spotlight-backdrop" (click)="onBackdropClick()"></div>
 
     <div
@@ -17,12 +17,8 @@
         [style.top.px]="calloutTop"
         [style.bottom.px]="calloutBottom"
         [style.left.px]="calloutLeft">
-        @if (title) {
-            <div class="nx-spotlight-title">{{ title }}</div>
-        }
-        @if (description) {
-            <p class="nx-spotlight-description">{{ description }}</p>
-        }
+        <div class="nx-spotlight-title" *ngIf="title">{{ title }}</div>
+        <p class="nx-spotlight-description" *ngIf="description">{{ description }}</p>
 
         <ng-content></ng-content>
 
@@ -30,4 +26,4 @@
             <button type="button" class="nx-spotlight-close" (click)="close()">Got it</button>
         </div>
     </div>
-}
+</ng-container>

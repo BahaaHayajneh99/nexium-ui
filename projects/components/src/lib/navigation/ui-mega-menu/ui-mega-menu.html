@@ -4,9 +4,7 @@
         <span class="nx-mega-menu-chevron" [class.open]="open">&#8250;</span>
     </button>
 
-    @if (open) {
-        <div class="nx-mega-menu-panel" (click)="close()">
-            <ng-content></ng-content>
-        </div>
-    }
+    <div *ngIf="open" class="nx-mega-menu-panel" (click)="close()">
+        <ng-content></ng-content>
+    </div>
 </div>

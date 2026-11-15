@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 const DEFAULT_CHARS_PER_TOKEN = 4;
 
@@ -14,7 +15,7 @@ const DEFAULT_CHARS_PER_TOKEN = 4;
 @Component({
   selector: 'nx-token-counter',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-token-counter.html',
   styleUrl: './ui-token-counter.scss',
 })

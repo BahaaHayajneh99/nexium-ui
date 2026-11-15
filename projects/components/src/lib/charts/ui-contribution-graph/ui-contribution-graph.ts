@@ -1,4 +1,5 @@
 import { Component, Input, computed, numberAttribute, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -70,7 +71,7 @@ function levelFor(count: number, maxCount: number): number {
 @Component({
   selector: 'nx-contribution-graph',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf, NgFor],
   templateUrl: './ui-contribution-graph.html',
   styleUrl: './ui-contribution-graph.scss',
 })
@@ -178,5 +179,17 @@ export class NxContributionGraph {
     }
     const noun = cell.count === 1 ? 'contribution' : 'contributions';
     return `${cell.date}: ${cell.count} ${noun}`;
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackByDayLabelRow(index: number, label: { row: number; text: string }): number {
+    return label.row;
+  }
+
+  trackByCellDate(index: number, cell: NxContributionCell): string {
+    return cell.date;
   }
 }

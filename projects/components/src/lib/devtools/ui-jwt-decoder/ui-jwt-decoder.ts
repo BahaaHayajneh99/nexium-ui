@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, computed, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -40,7 +41,7 @@ function formatDuration(totalSeconds: number): string {
 @Component({
   selector: 'nx-jwt-decoder',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NxIcon, NxProLocked],
   templateUrl: './ui-jwt-decoder.html',
   styleUrl: './ui-jwt-decoder.scss',
 })

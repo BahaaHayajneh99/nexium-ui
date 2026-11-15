@@ -1,15 +1,14 @@
-@if (licensed()) {
+<ng-container *ngIf="licensed(); else elseBlock1">
     <div class="nx-ai-chat">
         <div class="nx-ai-chat-header">
             <span class="nx-ai-chat-title">{{ title }}</span>
-            @if (models.length) {
-                <nx-model-selector
-                    class="nx-ai-chat-model-selector"
-                    [models]="models"
-                    [selectedId]="selectedModelId"
-                    (selectedIdChange)="onModelChange($event)">
-                </nx-model-selector>
-            }
+            <nx-model-selector
+                *ngIf="models.length"
+                class="nx-ai-chat-model-selector"
+                [models]="models"
+                [selectedId]="selectedModelId"
+                (selectedIdChange)="onModelChange($event)">
+            </nx-model-selector>
         </div>
 
         <nx-chat-stream class="nx-ai-chat-stream" [messages]="messages" [streaming]="streaming"></nx-chat-stream>
@@ -20,6 +19,7 @@
             (submit)="onSubmit($event)">
         </nx-prompt-input>
     </div>
-} @else {
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="AI Chat"></nx-pro-locked>
-}
+</ng-template>

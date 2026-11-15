@@ -1,12 +1,11 @@
 <div class="nx-skeleton-group">
-    @for (line of lines; track $index) {
-        <span
-            class="nx-skeleton"
-            [ngClass]="variant"
-            [class.animated]="animated"
-            [style.width]="width"
-            [style.height]="resolvedHeight"
-            [style.border-radius]="resolvedRadius">
-        </span>
-    }
+    <span
+        class="nx-skeleton"
+        *ngFor="let line of lines; trackBy: trackByIndex"
+        [ngClass]="variant"
+        [class.animated]="animated"
+        [style.width]="width"
+        [style.height]="resolvedHeight"
+        [style.border-radius]="resolvedRadius">
+    </span>
 </div>

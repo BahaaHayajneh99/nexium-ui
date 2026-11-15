@@ -1,30 +1,26 @@
-@if (licensed()) {
-    <div class="nx-json-editor" [class.disabled]="disabled" [class.invalid]="!!error()">
-        <div class="nx-json-editor-toolbar">
-            <span class="nx-json-editor-status">
-                @if (error()) {
-                    <span class="nx-json-editor-status-error">Invalid JSON</span>
-                } @else {
-                    <span class="nx-json-editor-status-ok">Valid</span>
-                }
-            </span>
-            <button type="button" class="nx-json-editor-format" [disabled]="disabled || !!error()" (click)="format()">
-                Format
-            </button>
-        </div>
-
-        <textarea
-            class="nx-json-editor-textarea"
-            spellcheck="false"
-            [placeholder]="placeholder"
-            [disabled]="disabled"
-            [value]="text()"
-            (input)="onInput($any($event.target).value)"></textarea>
-
-        @if (error()) {
-            <p class="nx-json-editor-error">{{ error() }}</p>
-        }
+<div class="nx-json-editor" [class.disabled]="disabled" [class.invalid]="!!error()" *ngIf="licensed(); else elseBlock1">
+    <div class="nx-json-editor-toolbar">
+        <span class="nx-json-editor-status">
+            <span class="nx-json-editor-status-error" *ngIf="error(); else elseBlock2">Invalid JSON</span>
+            <ng-template #elseBlock2>
+                <span class="nx-json-editor-status-ok">Valid</span>
+            </ng-template>
+        </span>
+        <button type="button" class="nx-json-editor-format" [disabled]="disabled || !!error()" (click)="format()">
+            Format
+        </button>
     </div>
-} @else {
+
+    <textarea
+        class="nx-json-editor-textarea"
+        spellcheck="false"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [value]="text()"
+        (input)="onInput($any($event.target).value)"></textarea>
+
+    <p class="nx-json-editor-error" *ngIf="error()">{{ error() }}</p>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="JSON Editor"></nx-pro-locked>
-}
+</ng-template>

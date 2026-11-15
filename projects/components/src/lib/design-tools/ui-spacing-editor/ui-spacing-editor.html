@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-spacing-editor">
+<div class="nx-spacing-editor" *ngIf="licensed(); else elseBlock1">
         <div class="nx-spacing-editor-ring margin">
             <span class="nx-spacing-editor-ring-label">margin</span>
             <input class="nx-spacing-editor-input top" type="number" min="0" [value]="value.margin.top" (input)="setMargin('top', $any($event.target).valueAsNumber)" />
@@ -18,6 +17,6 @@
             </div>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Spacing Editor"></nx-pro-locked>
-}
+</ng-template>

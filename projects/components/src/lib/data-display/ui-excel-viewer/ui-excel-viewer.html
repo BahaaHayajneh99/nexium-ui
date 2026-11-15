@@ -1,43 +1,42 @@
-@if (licensed()) {
-    <div class="nx-excel-viewer">
+<div class="nx-excel-viewer" *ngIf="licensed(); else elseBlock1">
         <div class="nx-excel-toolbar">
             <span class="nx-excel-title">{{ activeSheet()?.name }}</span>
             <button type="button" class="nx-excel-export" (click)="exportCSV()">Export CSV</button>
         </div>
 
         <div class="nx-excel-grid-wrapper">
-            @if (activeSheet(); as sheet) {
+            <ng-container *ngIf="activeSheet() as sheet">
                 <table class="nx-excel-grid">
                     <thead>
                         <tr>
                             <th class="nx-excel-corner"></th>
-                            @for (col of columnIndexes(); track col) {
+                            <ng-container *ngFor="let col of columnIndexes(); trackBy: trackByCol">
                                 <th>{{ colLetter(col) }}</th>
-                            }
+                            </ng-container>
                         </tr>
                     </thead>
                     <tbody>
-                        @for (row of sheet.rows; track $index) {
+                        <ng-container *ngFor="let row of sheet.rows; trackBy: trackByIndex; let rowIndex = index">
                             <tr>
-                                <th class="nx-excel-row-header">{{ $index + 1 }}</th>
-                                @for (col of columnIndexes(); track col) {
+                                <th class="nx-excel-row-header">{{ rowIndex + 1 }}</th>
+                                <ng-container *ngFor="let col of columnIndexes(); trackBy: trackByCol">
                                     <td>{{ cell(row, col) }}</td>
-                                }
+                                </ng-container>
                             </tr>
-                        }
+                        </ng-container>
                     </tbody>
                 </table>
-            }
+            </ng-container>
         </div>
 
         <div class="nx-excel-tabs">
-            @for (sheet of sheets; track $index) {
-                <button type="button" class="nx-excel-tab" [class.active]="activeIndex() === $index" (click)="selectSheet($index)">
+            <ng-container *ngFor="let sheet of sheets; trackBy: trackByIndex; let sheetIndex = index">
+                <button type="button" class="nx-excel-tab" [class.active]="activeIndex() === sheetIndex" (click)="selectSheet(sheetIndex)">
                     {{ sheet.name }}
                 </button>
-            }
+            </ng-container>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Excel Viewer"></nx-pro-locked>
-}
+</ng-template>

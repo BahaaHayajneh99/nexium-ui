@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -12,7 +13,7 @@ export interface NxThemeTokens {
 @Component({
   selector: 'nx-theme-editor',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgFor, NgIf, NxProLocked],
   templateUrl: './ui-theme-editor.html',
   styleUrl: './ui-theme-editor.scss',
 })
@@ -24,6 +25,10 @@ export class NxThemeEditor {
   @Output() valueChange = new EventEmitter<NxThemeTokens>();
 
   readonly fontOptions = ['Inter, sans-serif', 'Georgia, serif', 'JetBrains Mono, monospace', 'Arial, sans-serif'];
+
+  trackByFont(index: number, font: string): string {
+    return font;
+  }
 
   update(patch: Partial<NxThemeTokens>): void {
     this.value = { ...this.value, ...patch };

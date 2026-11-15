@@ -1,9 +1,7 @@
-@if (licensed()) {
-    @if (root) {
-        <div class="nx-org-chart">
-            <ng-container *ngTemplateOutlet="nodeTpl; context: { $implicit: root }"></ng-container>
-        </div>
-    }
+<ng-container *ngIf="licensed(); else elseBlock1">
+    <div class="nx-org-chart" *ngIf="root">
+        <ng-container *ngTemplateOutlet="nodeTpl; context: { $implicit: root }"></ng-container>
+    </div>
 
     <ng-template #nodeTpl let-node>
         <div class="nx-org-chart-node-wrapper" [class.has-children]="hasChildren(node) && isExpanded(node)">
@@ -16,33 +14,27 @@
 
                 <div class="nx-org-chart-node-info">
                     <span class="nx-org-chart-node-name">{{ node.name }}</span>
-                    @if (node.title) {
-                        <span class="nx-org-chart-node-title">{{ node.title }}</span>
-                    }
+                    <span class="nx-org-chart-node-title" *ngIf="node.title">{{ node.title }}</span>
                 </div>
 
-                @if (hasChildren(node)) {
-                    <button
-                        type="button"
-                        class="nx-org-chart-toggle"
-                        [attr.aria-label]="isExpanded(node) ? 'Collapse' : 'Expand'"
-                        (click)="toggle(node, $event)">
-                        <nx-icon [icon]="isExpanded(node) ? 'nx-chevron-up' : 'nx-chevron-down'" variant="svg" [size]="14"></nx-icon>
-                    </button>
-                }
+                <button
+                    type="button"
+                    class="nx-org-chart-toggle"
+                    *ngIf="hasChildren(node)"
+                    [attr.aria-label]="isExpanded(node) ? 'Collapse' : 'Expand'"
+                    (click)="toggle(node, $event)">
+                    <nx-icon [icon]="isExpanded(node) ? 'nx-chevron-up' : 'nx-chevron-down'" variant="svg" [size]="14"></nx-icon>
+                </button>
             </div>
 
-            @if (hasChildren(node) && isExpanded(node)) {
-                <div class="nx-org-chart-children" [class.multi]="(node.children?.length ?? 0) > 1">
-                    @for (child of node.children; track child.id) {
-                        <div class="nx-org-chart-child">
-                            <ng-container *ngTemplateOutlet="nodeTpl; context: { $implicit: child }"></ng-container>
-                        </div>
-                    }
+            <div class="nx-org-chart-children" *ngIf="hasChildren(node) && isExpanded(node)" [class.multi]="(node.children?.length ?? 0) > 1">
+                <div class="nx-org-chart-child" *ngFor="let child of node.children; trackBy: trackByChildId">
+                    <ng-container *ngTemplateOutlet="nodeTpl; context: { $implicit: child }"></ng-container>
                 </div>
-            }
+            </div>
         </div>
     </ng-template>
-} @else {
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Organization Chart"></nx-pro-locked>
-}
+</ng-template>

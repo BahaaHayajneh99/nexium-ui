@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export interface NxCommandBarItem {
@@ -16,7 +17,7 @@ export interface NxCommandBarGroup {
 @Component({
   selector: 'nx-command-bar',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgIf, NgFor, NxIcon],
   templateUrl: './ui-command-bar.html',
   styleUrl: './ui-command-bar.scss',
 })
@@ -30,5 +31,13 @@ export class NxCommandBar {
       return;
     }
     this.commandClick.emit(item.id);
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackByItemId(index: number, item: NxCommandBarItem): string | number {
+    return item.id;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -13,7 +14,7 @@ export interface NxTerminalLine {
 @Component({
   selector: 'nx-terminal',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-terminal.html',
   styleUrl: './ui-terminal.scss',
 })
@@ -35,5 +36,9 @@ export class NxTerminal {
     }
     this.command.emit(text);
     this.draft.set('');
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 }

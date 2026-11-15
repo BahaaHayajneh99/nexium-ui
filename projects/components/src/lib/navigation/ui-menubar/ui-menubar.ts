@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxMenu, NxMenuItem } from '../ui-menu';
 
 export interface NxMenubarItem {
@@ -9,7 +10,7 @@ export interface NxMenubarItem {
 @Component({
   selector: 'nx-menubar',
   standalone: true,
-  imports: [NxMenu],
+  imports: [NgIf, NgFor, NxMenu],
   templateUrl: './ui-menubar.html',
   styleUrl: './ui-menubar.scss',
   host: {
@@ -38,5 +39,9 @@ export class NxMenubar {
     if (!this.elementRef.nativeElement.contains(event.target as Node)) {
       this.openIndex = null;
     }
+  }
+
+  trackByMenuLabel(index: number, menu: NxMenubarItem): string {
+    return menu.label;
   }
 }

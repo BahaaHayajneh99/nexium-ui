@@ -7,6 +7,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { NgIf } from '@angular/common';
 import { NxInput } from '../ui-input';
 import { NxSelect, NxSelectOption } from '../ui-select';
 
@@ -50,7 +51,7 @@ const DEFAULT_COUNTRIES: NxSelectOption[] = [
 @Component({
   selector: 'nx-address-input',
   standalone: true,
-  imports: [NxInput, NxSelect],
+  imports: [NgIf, NxInput, NxSelect],
   templateUrl: './ui-address-input.html',
   styleUrl: './ui-address-input.scss',
   providers: [

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf, NgFor } from '@angular/common';
 
 export interface NxTimelineItem {
   title: string;
@@ -11,10 +11,14 @@ export interface NxTimelineItem {
 @Component({
   selector: 'nx-timeline',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgIf, NgFor],
   templateUrl: './ui-timeline.html',
   styleUrl: './ui-timeline.scss',
 })
 export class NxTimeline {
   @Input() items: NxTimelineItem[] = [];
+
+  trackByIndex(index: number): number {
+    return index;
+  }
 }

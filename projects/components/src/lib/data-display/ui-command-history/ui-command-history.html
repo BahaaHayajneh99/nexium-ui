@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-command-history">
+<div class="nx-command-history" *ngIf="licensed(); else elseBlock1">
         <div class="nx-command-history-toolbar">
             <button type="button" class="nx-command-history-btn" [disabled]="!canUndo" (click)="undo.emit()">
                 <nx-icon icon="nx-arrow-left" variant="svg" [size]="14"></nx-icon>
@@ -12,7 +11,7 @@
         </div>
 
         <ol class="nx-command-history-list">
-            @for (entry of entries; track entry.id; let i = $index) {
+            <ng-container *ngFor="let entry of entries; trackBy: trackByEntryId; let i = index">
                 <li
                     class="nx-command-history-item"
                     [class.current]="i === currentIndex"
@@ -21,9 +20,9 @@
                     <span class="nx-command-history-dot"></span>
                     <span class="nx-command-history-label">{{ entry.label }}</span>
                 </li>
-            }
+            </ng-container>
         </ol>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Command History"></nx-pro-locked>
-}
+</ng-template>

@@ -1,11 +1,12 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 export type NxStatisticDeltaDirection = 'up' | 'down' | 'neutral';
 
 @Component({
   selector: 'nx-statistic',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-statistic.html',
   styleUrl: './ui-statistic.scss',
 })

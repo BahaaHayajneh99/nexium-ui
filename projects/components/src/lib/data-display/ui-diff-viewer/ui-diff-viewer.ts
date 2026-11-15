@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -56,7 +57,7 @@ function computeLineDiff(oldLines: string[], newLines: string[]): NxDiffLine[] {
 @Component({
   selector: 'nx-diff-viewer',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-diff-viewer.html',
   styleUrl: './ui-diff-viewer.scss',
 })
@@ -68,5 +69,9 @@ export class NxDiffViewer {
 
   get diffLines(): NxDiffLine[] {
     return computeLineDiff(this.oldText.split('\n'), this.newText.split('\n'));
+  }
+
+  trackByIndex(index: number, line: NxDiffLine): number {
+    return index;
   }
 }

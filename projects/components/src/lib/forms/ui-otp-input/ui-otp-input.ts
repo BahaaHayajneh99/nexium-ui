@@ -11,13 +11,14 @@ import {
   numberAttribute,
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 
 export type NxOtpInputType = 'number' | 'text';
 
 @Component({
   selector: 'nx-otp-input',
   standalone: true,
-  imports: [],
+  imports: [NgFor, NgIf],
   templateUrl: './ui-otp-input.html',
   styleUrl: './ui-otp-input.scss',
   providers: [
@@ -152,5 +153,9 @@ export class NxOtpInput implements ControlValueAccessor, Validator {
 
   private focusCell(index: number): void {
     queueMicrotask(() => this.cells.get(index)?.nativeElement.focus());
+  }
+
+  trackByOtpIndex(i: number, index: number): number {
+    return index;
   }
 }

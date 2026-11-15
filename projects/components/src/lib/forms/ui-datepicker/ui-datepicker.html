@@ -1,7 +1,5 @@
 <div class="nx-datepicker-wrapper">
-    @if (label) {
-        <label class="nx-datepicker-label">{{ label }}@if (isRequired) {<span class="nx-datepicker-required">*</span>}</label>
-    }
+    <label class="nx-datepicker-label" *ngIf="label">{{ label }}<span class="nx-datepicker-required" *ngIf="isRequired">*</span></label>
 
     <div
         class="nx-datepicker-field"
@@ -11,72 +9,59 @@
         [attr.aria-required]="isRequired ? true : null"
         [attr.aria-invalid]="(invalid || !!displayError) ? true : null"
         (click)="toggle()">
-        @if (showIcon) {
-            <span class="nx-datepicker-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
-                    <path d="M3 9H21" stroke="currentColor" stroke-width="2"/>
-                    <path d="M8 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M16 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </span>
-        }
+        <span class="nx-datepicker-icon" *ngIf="showIcon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M3 9H21" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 3V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </span>
         <span class="nx-datepicker-value" [class.placeholder]="!displayText">
             {{ displayText || placeholder }}
         </span>
     </div>
 
-    @if (displayError) {
-        <span class="nx-datepicker-error">{{ displayError }}</span>
-    }
+    <span class="nx-datepicker-error" *ngIf="displayError">{{ displayError }}</span>
 
-    @if (open) {
-        <div class="nx-datepicker-panel">
+    <div class="nx-datepicker-panel" *ngIf="open">
 
-            <div class="nx-datepicker-nav">
-                <button type="button" class="nx-datepicker-nav-btn" (click)="prevMonth()" aria-label="Previous month">&#8249;</button>
-                <span class="nx-datepicker-nav-label">{{ viewLabel }}</span>
-                <button type="button" class="nx-datepicker-nav-btn" (click)="nextMonth()" aria-label="Next month">&#8250;</button>
-            </div>
-
-            <div class="nx-datepicker-weekdays">
-                @for (day of weekdayLabels; track day) {
-                    <span>{{ day }}</span>
-                }
-            </div>
-
-            @for (week of weeks; track $index) {
-                <div class="nx-datepicker-week">
-                    @for (cell of week; track cell.iso) {
-                        <button
-                            type="button"
-                            class="nx-datepicker-day"
-                            [class.outside]="!cell.inCurrentMonth"
-                            [class.today]="cell.isToday"
-                            [class.selected]="cell.isSelected"
-                            [class.range-start]="cell.isRangeStart"
-                            [class.range-end]="cell.isRangeEnd"
-                            [class.in-range]="cell.isInRange"
-                            [disabled]="cell.isDisabled"
-                            (click)="selectDay(cell)">
-                            {{ cell.label }}
-                        </button>
-                    }
-                </div>
-            }
-
-            @if (showTime) {
-                <div class="nx-datepicker-time">
-                    <label>Time</label>
-                    <input type="time" [value]="timeValue" (change)="onTimeChange($event)" />
-                </div>
-            }
-
-            <div class="nx-datepicker-footer">
-                <button type="button" class="nx-datepicker-footer-btn" (click)="selectToday()">Today</button>
-                <button type="button" class="nx-datepicker-footer-btn" (click)="clear()">Clear</button>
-            </div>
-
+        <div class="nx-datepicker-nav">
+            <button type="button" class="nx-datepicker-nav-btn" (click)="prevMonth()" aria-label="Previous month">&#8249;</button>
+            <span class="nx-datepicker-nav-label">{{ viewLabel }}</span>
+            <button type="button" class="nx-datepicker-nav-btn" (click)="nextMonth()" aria-label="Next month">&#8250;</button>
         </div>
-    }
+
+        <div class="nx-datepicker-weekdays">
+            <span *ngFor="let day of weekdayLabels; trackBy: trackByDay">{{ day }}</span>
+        </div>
+
+        <div class="nx-datepicker-week" *ngFor="let week of weeks; trackBy: trackByIndex">
+            <button
+                type="button"
+                class="nx-datepicker-day"
+                *ngFor="let cell of week; trackBy: trackByCellIso"
+                [class.outside]="!cell.inCurrentMonth"
+                [class.today]="cell.isToday"
+                [class.selected]="cell.isSelected"
+                [class.range-start]="cell.isRangeStart"
+                [class.range-end]="cell.isRangeEnd"
+                [class.in-range]="cell.isInRange"
+                [disabled]="cell.isDisabled"
+                (click)="selectDay(cell)">
+                {{ cell.label }}
+            </button>
+        </div>
+
+        <div class="nx-datepicker-time" *ngIf="showTime">
+            <label>Time</label>
+            <input type="time" [value]="timeValue" (change)="onTimeChange($event)" />
+        </div>
+
+        <div class="nx-datepicker-footer">
+            <button type="button" class="nx-datepicker-footer-btn" (click)="selectToday()">Today</button>
+            <button type="button" class="nx-datepicker-footer-btn" (click)="clear()">Clear</button>
+        </div>
+
+    </div>
 </div>

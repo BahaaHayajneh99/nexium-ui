@@ -1,4 +1,5 @@
 import { Component, Input, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxHttpStatus } from '../ui-http-status';
 import { NxJsonViewer } from '../../data-display/ui-json-viewer';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -16,7 +17,7 @@ export interface NxApiResponse {
 @Component({
   selector: 'nx-api-response-viewer',
   standalone: true,
-  imports: [NxHttpStatus, NxJsonViewer, NxProLocked],
+  imports: [NgIf, NgFor, NxHttpStatus, NxJsonViewer, NxProLocked],
   templateUrl: './ui-api-response-viewer.html',
   styleUrl: './ui-api-response-viewer.scss',
 })
@@ -33,5 +34,9 @@ export class NxApiResponseViewer {
 
   get bodyIsObject(): boolean {
     return typeof this.response.body === 'object' && this.response.body !== null;
+  }
+
+  trackByHeaderKey(index: number, entry: [string, string]): string {
+    return entry[0];
   }
 }

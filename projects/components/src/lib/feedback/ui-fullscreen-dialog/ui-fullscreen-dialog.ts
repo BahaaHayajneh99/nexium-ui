@@ -10,6 +10,7 @@ import {
   ViewChild,
   booleanAttribute,
 } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -24,7 +25,7 @@ const FOCUSABLE_SELECTOR =
 @Component({
   selector: 'nx-fullscreen-dialog',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-fullscreen-dialog.html',
   styleUrl: './ui-fullscreen-dialog.scss',
 })

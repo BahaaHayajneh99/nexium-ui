@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -41,7 +42,7 @@ function createId(): string {
 @Component({
   selector: 'nx-filter-builder',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-filter-builder.html',
   styleUrl: './ui-filter-builder.scss',
 })
@@ -80,5 +81,17 @@ export class NxFilterBuilder {
   private emit(next: NxFilterCondition[]): void {
     this.conditions = next;
     this.conditionsChange.emit(next);
+  }
+
+  trackByConditionId(index: number, condition: NxFilterCondition): string {
+    return condition.id;
+  }
+
+  trackByFieldId(index: number, field: NxFilterField): string {
+    return field.id;
+  }
+
+  trackByOperatorValue(index: number, operator: { value: NxFilterOperator; label: string }): NxFilterOperator {
+    return operator.value;
   }
 }

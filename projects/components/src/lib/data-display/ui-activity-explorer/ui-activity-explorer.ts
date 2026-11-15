@@ -1,5 +1,6 @@
 import { Component, Input, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -31,7 +32,7 @@ const ALL = 'all';
 @Component({
   selector: 'nx-activity-explorer',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-activity-explorer.html',
   styleUrl: './ui-activity-explorer.scss',
 })
@@ -118,5 +119,25 @@ export class NxActivityExplorer {
 
   private unique(values: string[]): string[] {
     return [...new Set(values)].sort((a, b) => a.localeCompare(b));
+  }
+
+  trackByUser(index: number, user: string): string {
+    return user;
+  }
+
+  trackByAction(index: number, action: string): string {
+    return action;
+  }
+
+  trackByEntity(index: number, entity: string): string {
+    return entity;
+  }
+
+  trackByDateLabel(index: number, group: NxActivityDateGroup): string {
+    return group.dateLabel;
+  }
+
+  trackByEventId(index: number, event: NxActivityEvent): string | number {
+    return event.id;
   }
 }

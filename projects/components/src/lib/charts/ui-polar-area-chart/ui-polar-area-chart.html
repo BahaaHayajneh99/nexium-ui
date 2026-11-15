@@ -4,18 +4,18 @@
         {{ showTable ? 'View as chart' : 'View as table' }}
     </button>
 
-    @if (!showTable) {
+    <ng-container *ngIf="!showTable; else elseBlock1">
         <div class="nx-chart-canvas nx-polar-canvas">
             <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
 
-                @for (radius of gridRadii; track radius) {
+                <ng-container *ngFor="let radius of gridRadii; trackBy: trackByGridRadius">
                     <circle class="nx-chart-grid nx-polar-grid-ring" cx="150" cy="150" [attr.r]="radius" fill="none"></circle>
-                }
-                @for (grid of gridLabels; track grid.radius) {
+                </ng-container>
+                <ng-container *ngFor="let grid of gridLabels; trackBy: trackByGridLabel">
                     <text class="nx-chart-axis-label" x="154" [attr.y]="150 - grid.radius + 10">{{ grid.text }}</text>
-                }
+                </ng-container>
 
-                @for (wedge of wedges; track wedge.datum.label) {
+                <ng-container *ngFor="let wedge of wedges; trackBy: trackByWedgeLabel">
                     <path
                         class="nx-chart-slice"
                         [class.nx-chart-slice-hovered]="hoveredIndex === wedge.index"
@@ -29,11 +29,11 @@
                         (focus)="onWedgeEnter(wedge.index)"
                         (blur)="onWedgeLeave()">
                     </path>
-                }
+                </ng-container>
 
             </svg>
 
-            @if (hoveredWedge) {
+            <ng-container *ngIf="hoveredWedge">
                 <div class="nx-chart-tooltip" [style]="tooltipStyle">
                     <div class="nx-chart-tooltip-row">
                         <span class="nx-chart-tooltip-key" [style.background]="hoveredWedge.color"></span>
@@ -41,20 +41,21 @@
                         <strong class="nx-chart-tooltip-value">{{ formatValue(hoveredWedge.datum.value) }}</strong>
                     </div>
                 </div>
-            }
+            </ng-container>
         </div>
 
-        @if (hasLegend) {
+        <ng-container *ngIf="hasLegend">
             <div class="nx-chart-legend">
-                @for (wedge of wedges; track wedge.datum.label) {
+                <ng-container *ngFor="let wedge of wedges; trackBy: trackByWedgeLabel">
                     <div class="nx-chart-legend-item">
                         <span class="nx-chart-legend-swatch" [style.background]="wedge.color"></span>
                         {{ wedge.datum.label }} ({{ formatValue(wedge.datum.value) }})
                     </div>
-                }
+                </ng-container>
             </div>
-        }
-    } @else {
+        </ng-container>
+    </ng-container>
+    <ng-template #elseBlock1>
         <div class="nx-chart-table-wrap">
             <table class="nx-chart-table">
                 <thead>
@@ -64,15 +65,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (wedge of wedges; track wedge.datum.label) {
+                    <ng-container *ngFor="let wedge of wedges; trackBy: trackByWedgeLabel">
                         <tr>
                             <th scope="row">{{ wedge.datum.label }}</th>
                             <td>{{ formatValue(wedge.datum.value) }}</td>
                         </tr>
-                    }
+                    </ng-container>
                 </tbody>
             </table>
         </div>
-    }
+    </ng-template>
 
 </div>

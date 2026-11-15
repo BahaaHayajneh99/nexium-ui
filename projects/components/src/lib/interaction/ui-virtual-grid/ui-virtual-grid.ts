@@ -1,4 +1,5 @@
 import { Component, Input, computed, numberAttribute, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -20,7 +21,7 @@ export interface NxVirtualGridCell {
 @Component({
   selector: 'nx-virtual-grid',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-virtual-grid.html',
   styleUrl: './ui-virtual-grid.scss',
 })
@@ -138,5 +139,9 @@ export class NxVirtualGrid {
     const target = event.target as HTMLElement;
     this.scrollTop.set(target.scrollTop);
     this.scrollLeft.set(target.scrollLeft);
+  }
+
+  trackByCellPosition(index: number, cell: NxVirtualGridCell): string {
+    return cell.row + '-' + cell.col;
   }
 }

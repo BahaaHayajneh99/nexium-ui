@@ -1,7 +1,7 @@
-@if (licensed()) {
+<ng-container *ngIf="licensed(); else elseBlock1">
     <ng-content></ng-content>
 
-    @if (!dismissed) {
+    <ng-container *ngIf="!dismissed">
         <button
             type="button"
             class="nx-coachmark-dot"
@@ -12,22 +12,18 @@
             <span class="nx-coachmark-dot-core"></span>
         </button>
 
-        @if (open()) {
-            <div
-                class="nx-coachmark-popover"
-                role="dialog"
-                [attr.aria-label]="title || 'Feature hint'"
-                [attr.data-placement]="placement">
-                @if (title) {
-                    <div class="nx-coachmark-popover-title">{{ title }}</div>
-                }
-                @if (description) {
-                    <p class="nx-coachmark-popover-description">{{ description }}</p>
-                }
-                <button type="button" class="nx-coachmark-popover-dismiss" (click)="dismiss()">Got it</button>
-            </div>
-        }
-    }
-} @else {
+        <div
+            class="nx-coachmark-popover"
+            *ngIf="open()"
+            role="dialog"
+            [attr.aria-label]="title || 'Feature hint'"
+            [attr.data-placement]="placement">
+            <div class="nx-coachmark-popover-title" *ngIf="title">{{ title }}</div>
+            <p class="nx-coachmark-popover-description" *ngIf="description">{{ description }}</p>
+            <button type="button" class="nx-coachmark-popover-dismiss" (click)="dismiss()">Got it</button>
+        </div>
+    </ng-container>
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Coachmark"></nx-pro-locked>
-}
+</ng-template>

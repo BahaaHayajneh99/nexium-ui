@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, computed, signal } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -81,7 +82,7 @@ const ALL_GROUPS = 'all';
 @Component({
   selector: 'nx-timeline-editor',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-timeline-editor.html',
   styleUrl: './ui-timeline-editor.scss',
 })
@@ -219,6 +220,22 @@ export class NxTimelineEditor {
     }
     return this.events.find((event) => event.id === id) ?? null;
   });
+
+  trackByGroupId(_index: number, group: NxTimelineEditorGroup): string {
+    return group.id;
+  }
+
+  trackByRowGroupId(_index: number, row: NxTimelineEditorRow): string {
+    return row.group.id;
+  }
+
+  trackByTickX(_index: number, tick: NxTimelineEditorTick): number {
+    return tick.x;
+  }
+
+  trackByEventId(_index: number, evt: NxTimelineEditorEvent): string {
+    return evt.id;
+  }
 
   zoomIn(): void {
     this.zoom.update((z) => Math.min(MAX_ZOOM, Number((z * ZOOM_FACTOR).toFixed(3))));

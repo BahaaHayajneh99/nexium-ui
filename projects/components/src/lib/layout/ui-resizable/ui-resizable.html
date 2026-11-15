@@ -1,34 +1,31 @@
-@if (licensed()) {
-    <div
-        class="nx-resizable"
-        [class.disabled]="disabled"
-        [class.resizing]="!!activeHandle"
-        [style.width.px]="width"
-        [style.height.px]="height">
+<div
+    class="nx-resizable"
+    [class.disabled]="disabled"
+    [class.resizing]="!!activeHandle"
+    [style.width.px]="width"
+    [style.height.px]="height"
+    *ngIf="licensed(); else elseBlock1">
 
-        <ng-content></ng-content>
+    <ng-content></ng-content>
 
-        @if (!disabled) {
-            @if (hasHandle('right')) {
-                <div
-                    class="nx-resizable-handle nx-resizable-handle-right"
-                    (pointerdown)="onHandlePointerDown('right', $event)">
-                </div>
-            }
-            @if (hasHandle('bottom')) {
-                <div
-                    class="nx-resizable-handle nx-resizable-handle-bottom"
-                    (pointerdown)="onHandlePointerDown('bottom', $event)">
-                </div>
-            }
-            @if (hasHandle('corner')) {
-                <div
-                    class="nx-resizable-handle nx-resizable-handle-corner"
-                    (pointerdown)="onHandlePointerDown('corner', $event)">
-                </div>
-            }
-        }
-    </div>
-} @else {
+    <ng-container *ngIf="!disabled">
+        <div
+            class="nx-resizable-handle nx-resizable-handle-right"
+            (pointerdown)="onHandlePointerDown('right', $event)"
+            *ngIf="hasHandle('right')">
+        </div>
+        <div
+            class="nx-resizable-handle nx-resizable-handle-bottom"
+            (pointerdown)="onHandlePointerDown('bottom', $event)"
+            *ngIf="hasHandle('bottom')">
+        </div>
+        <div
+            class="nx-resizable-handle nx-resizable-handle-corner"
+            (pointerdown)="onHandlePointerDown('corner', $event)"
+            *ngIf="hasHandle('corner')">
+        </div>
+    </ng-container>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Resizable"></nx-pro-locked>
-}
+</ng-template>

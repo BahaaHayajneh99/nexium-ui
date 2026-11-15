@@ -2,17 +2,11 @@
 
     <nx-icon class="nx-result-icon" [icon]="resolvedIcon" variant="svg" [size]="56"></nx-icon>
 
-    @if (title) {
-        <h3 class="nx-result-title">{{ title }}</h3>
-    }
+    <h3 class="nx-result-title" *ngIf="title">{{ title }}</h3>
 
-    @if (description) {
-        <p class="nx-result-description">{{ description }}</p>
-    }
+    <p class="nx-result-description" *ngIf="description">{{ description }}</p>
 
-    @if (actionLabel) {
-        <button type="button" class="nx-result-action" (click)="actionClick.emit()">{{ actionLabel }}</button>
-    }
+    <button type="button" class="nx-result-action" *ngIf="actionLabel" (click)="actionClick.emit()">{{ actionLabel }}</button>
 
     <ng-content></ng-content>
 

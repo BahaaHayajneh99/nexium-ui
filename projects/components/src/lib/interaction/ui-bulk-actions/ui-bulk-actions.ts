@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -30,7 +31,7 @@ export interface NxBulkAction {
 @Component({
   selector: 'nx-bulk-actions',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-bulk-actions.html',
   styleUrl: './ui-bulk-actions.scss',
 })
@@ -64,5 +65,9 @@ export class NxBulkActions {
 
   onClear(): void {
     this.clear.emit();
+  }
+
+  trackByActionKey(index: number, action: NxBulkAction): string {
+    return action.key;
   }
 }

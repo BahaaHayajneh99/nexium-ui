@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet, NgIf, NgFor } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -46,7 +46,7 @@ export interface NxCommentDeletedEvent {
 @Component({
   selector: 'nx-comments',
   standalone: true,
-  imports: [NgTemplateOutlet, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NgTemplateOutlet, NxIcon, NxProLocked],
   templateUrl: './ui-comments.html',
   styleUrl: './ui-comments.scss',
 })
@@ -174,5 +174,9 @@ export class NxComments {
 
   deleteComment(comment: NxComment, parentId: string | number | null): void {
     this.commentDeleted.emit({ id: comment.id, parentId });
+  }
+
+  trackByCommentId(index: number, comment: NxComment): string | number {
+    return comment.id;
   }
 }

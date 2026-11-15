@@ -4,23 +4,23 @@
         {{ showTable ? 'View as chart' : 'View as table' }}
     </button>
 
-    @if (!showTable) {
+    <ng-container *ngIf="!showTable; else elseBlock1">
         <div class="nx-chart-canvas">
             <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
 
-                @for (column of columns; track column; let i = $index) {
+                <ng-container *ngFor="let column of columns; trackBy: trackByColumn; let i = index">
                     <text class="nx-chart-axis-label" text-anchor="middle" [attr.x]="columnLabelX(i)" y="16">
                         {{ column }}
                     </text>
-                }
+                </ng-container>
 
-                @for (row of rows; track row; let i = $index) {
+                <ng-container *ngFor="let row of rows; trackBy: trackByRow; let i = index">
                     <text class="nx-chart-axis-label" text-anchor="end" x="88" [attr.y]="rowLabelY(i)">
                         {{ row }}
                     </text>
-                }
+                </ng-container>
 
-                @for (cell of cells; track cell.rowIndex + '-' + cell.columnIndex) {
+                <ng-container *ngFor="let cell of cells; trackBy: trackByCell">
                     <rect
                         class="nx-chart-heatmap-cell"
                         [class.nx-chart-heatmap-cell-hovered]="hovered === cell"
@@ -37,18 +37,16 @@
                         (focus)="onCellEnter(cell)"
                         (blur)="onCellLeave()">
                     </rect>
-                }
+                </ng-container>
 
             </svg>
 
-            @if (hovered) {
-                <div class="nx-chart-tooltip" [style]="tooltipStyle">
-                    <div class="nx-chart-tooltip-category">{{ rows[hovered.rowIndex] }} · {{ columns[hovered.columnIndex] }}</div>
-                    <div class="nx-chart-tooltip-row">
-                        <strong class="nx-chart-tooltip-value">{{ formatValue(hovered.value) }}</strong>
-                    </div>
+            <div class="nx-chart-tooltip" *ngIf="hovered" [style]="tooltipStyle">
+                <div class="nx-chart-tooltip-category">{{ rows[hovered.rowIndex] }} · {{ columns[hovered.columnIndex] }}</div>
+                <div class="nx-chart-tooltip-row">
+                    <strong class="nx-chart-tooltip-value">{{ formatValue(hovered.value) }}</strong>
                 </div>
-            }
+            </div>
         </div>
 
         <div class="nx-chart-heatmap-scale">
@@ -56,29 +54,30 @@
             <span class="nx-chart-heatmap-scale-bar"></span>
             <span>{{ formatValue(maxValue) }}</span>
         </div>
-    } @else {
+    </ng-container>
+    <ng-template #elseBlock1>
         <div class="nx-chart-table-wrap">
             <table class="nx-chart-table">
                 <thead>
                     <tr>
                         <th></th>
-                        @for (column of columns; track column) {
+                        <ng-container *ngFor="let column of columns; trackBy: trackByColumn">
                             <th>{{ column }}</th>
-                        }
+                        </ng-container>
                     </tr>
                 </thead>
                 <tbody>
-                    @for (row of rows; track row; let rowIndex = $index) {
+                    <ng-container *ngFor="let row of rows; trackBy: trackByRow; let rowIndex = index">
                         <tr>
                             <th scope="row">{{ row }}</th>
-                            @for (column of columns; track column; let columnIndex = $index) {
+                            <ng-container *ngFor="let column of columns; trackBy: trackByColumn; let columnIndex = index">
                                 <td>{{ formatValue(data[rowIndex]?.[columnIndex] ?? 0) }}</td>
-                            }
+                            </ng-container>
                         </tr>
-                    }
+                    </ng-container>
                 </tbody>
             </table>
         </div>
-    }
+    </ng-template>
 
 </div>

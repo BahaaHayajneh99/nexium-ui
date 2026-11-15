@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 
 export interface NxFilterChipOption {
   id: string | number;
@@ -14,7 +15,7 @@ export interface NxFilterChipOption {
 @Component({
   selector: 'nx-filter-chip-group',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-filter-chip-group.html',
   styleUrl: './ui-filter-chip-group.scss',
 })
@@ -39,5 +40,9 @@ export class NxFilterChipGroup {
   clearAll(): void {
     this.selectedIds = [];
     this.selectedIdsChange.emit(this.selectedIds);
+  }
+
+  trackByOptionId(index: number, option: NxFilterChipOption): string | number {
+    return option.id;
   }
 }

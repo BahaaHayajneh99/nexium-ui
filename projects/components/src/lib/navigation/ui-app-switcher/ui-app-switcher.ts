@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -18,7 +19,7 @@ export interface NxAppSwitcherItem {
 @Component({
   selector: 'nx-app-switcher',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-app-switcher.html',
   styleUrl: './ui-app-switcher.scss',
 })
@@ -45,6 +46,10 @@ export class NxAppSwitcher {
   selectApp(app: NxAppSwitcherItem): void {
     this.appSelected.emit(app);
     this.close();
+  }
+
+  trackByAppLabel(index: number, app: NxAppSwitcherItem): string {
+    return app.label;
   }
 
   @HostListener('document:click', ['$event'])

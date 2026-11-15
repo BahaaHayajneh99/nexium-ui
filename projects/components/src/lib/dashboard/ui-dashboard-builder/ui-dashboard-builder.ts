@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostListener, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxWidgetGrid, NxWidgetLayoutItem } from '../ui-widget-grid';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -34,7 +35,7 @@ function emptyLayout(name: string): NxDashboardLayout {
 @Component({
   selector: 'nx-dashboard-builder',
   standalone: true,
-  imports: [NxWidgetGrid, NxIcon, NxProLocked],
+  imports: [NgFor, NgIf, NxWidgetGrid, NxIcon, NxProLocked],
   templateUrl: './ui-dashboard-builder.html',
   styleUrl: './ui-dashboard-builder.scss',
 })
@@ -90,6 +91,14 @@ export class NxDashboardBuilder {
     else if (w < 960) this.effectiveColumns.set(4);
     else if (w < 1280) this.effectiveColumns.set(8);
     else this.effectiveColumns.set(12);
+  }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackByType(index: number, type: string): string {
+    return type;
   }
 
   selectDashboard(index: number): void {

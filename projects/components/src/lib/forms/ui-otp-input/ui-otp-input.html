@@ -1,22 +1,19 @@
 <div class="nx-otp-input" [class.invalid]="invalid || !!displayError" [class.disabled]="disabled">
-    @for (index of indexes; track index) {
-        <input
-            #cell
-            class="nx-otp-cell"
-            [type]="type === 'number' ? 'text' : 'text'"
-            [attr.inputmode]="type === 'number' ? 'numeric' : 'text'"
-            maxlength="1"
-            autocomplete="one-time-code"
-            [value]="digitAt(index)"
-            [disabled]="disabled"
-            [attr.aria-required]="isRequired ? true : null"
-            [attr.aria-invalid]="(invalid || !!displayError) ? true : null"
-            (input)="onInput(index, $event)"
-            (keydown)="onKeydown(index, $event)"
-            (paste)="onPaste($event)"
-            (blur)="onBlur()" />
-    }
+    <input
+        #cell
+        class="nx-otp-cell"
+        *ngFor="let index of indexes; trackBy: trackByOtpIndex"
+        [type]="type === 'number' ? 'text' : 'text'"
+        [attr.inputmode]="type === 'number' ? 'numeric' : 'text'"
+        maxlength="1"
+        autocomplete="one-time-code"
+        [value]="digitAt(index)"
+        [disabled]="disabled"
+        [attr.aria-required]="isRequired ? true : null"
+        [attr.aria-invalid]="(invalid || !!displayError) ? true : null"
+        (input)="onInput(index, $event)"
+        (keydown)="onKeydown(index, $event)"
+        (paste)="onPaste($event)"
+        (blur)="onBlur()" />
 </div>
-@if (displayError) {
-    <span class="nx-otp-error">{{ displayError }}</span>
-}
+<span class="nx-otp-error" *ngIf="displayError">{{ displayError }}</span>

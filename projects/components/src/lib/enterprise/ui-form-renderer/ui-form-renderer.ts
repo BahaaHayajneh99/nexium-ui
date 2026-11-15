@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgTemplateOutlet } from '@angular/common';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, NgTemplateOutlet } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 import {
@@ -24,7 +24,7 @@ import {
 @Component({
   selector: 'nx-form-renderer',
   standalone: true,
-  imports: [FormsModule, NgTemplateOutlet, NxProLocked],
+  imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, FormsModule, NgTemplateOutlet, NxProLocked],
   templateUrl: './ui-form-renderer.html',
   styleUrl: './ui-form-renderer.scss',
 })
@@ -73,6 +73,22 @@ export class NxFormRenderer {
 
   protected isVisible(fieldId: string): boolean {
     return this.visibilityMap().get(fieldId) ?? true;
+  }
+
+  protected trackByChildId(index: number, child: NxFormField): string {
+    return child.id;
+  }
+
+  protected trackBySelectOptionValue(index: number, opt: { label: string; value: string }): string {
+    return opt.value;
+  }
+
+  protected trackByRadioOptionValue(index: number, opt: { label: string; value: string }): string {
+    return opt.value;
+  }
+
+  protected trackByFieldId(index: number, field: NxFormField): string {
+    return field.id;
   }
 
   protected setValue(fieldId: string, value: unknown): void {

@@ -1,4 +1,5 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 import {
   NxAvatar,
   NxAvatarShape,
@@ -37,7 +38,7 @@ const NX_PRESENCE_DEFAULT_LABELS: Record<NxPresenceStatus, string> = {
 @Component({
   selector: 'nx-presence-indicator',
   standalone: true,
-  imports: [NxAvatar],
+  imports: [NgIf, NxAvatar],
   templateUrl: './ui-presence-indicator.html',
   styleUrl: './ui-presence-indicator.scss',
 })

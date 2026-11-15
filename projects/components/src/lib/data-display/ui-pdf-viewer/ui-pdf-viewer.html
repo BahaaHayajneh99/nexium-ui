@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-pdf-viewer">
+<div class="nx-pdf-viewer" *ngIf="licensed(); else elseBlock1">
         <div class="nx-pdf-toolbar">
             <span class="nx-pdf-title">{{ title }}</span>
             <div class="nx-pdf-actions">
@@ -29,6 +28,6 @@
             </iframe>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="PDF Viewer"></nx-pro-locked>
-}
+</ng-template>

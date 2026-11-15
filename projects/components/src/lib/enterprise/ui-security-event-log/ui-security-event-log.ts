@@ -1,4 +1,5 @@
 import { Component, Input, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -29,7 +30,7 @@ type NxSecurityEventSeverityFilter = 'all' | NxSecurityEventSeverity;
 @Component({
   selector: 'nx-security-event-log',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-security-event-log.html',
   styleUrl: './ui-security-event-log.scss',
 })
@@ -70,6 +71,10 @@ export class NxSecurityEventLog {
       default:
         return 'nx-info-circle';
     }
+  }
+
+  trackByEventId(index: number, event: NxSecurityEvent): string | number {
+    return event.id;
   }
 
   formatTimestamp(iso: string): string {

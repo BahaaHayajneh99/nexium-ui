@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -61,7 +62,7 @@ const BLOCK_ICONS: Record<NxEmailBlockType, string> = {
 @Component({
   selector: 'nx-email-template-builder',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, FormsModule, NxIcon, NxProLocked],
   templateUrl: './ui-email-template-builder.html',
   styleUrl: './ui-email-template-builder.scss',
 })
@@ -89,6 +90,14 @@ export class NxEmailTemplateBuilder {
   showExport = signal(false);
 
   readonly selectedBlock = computed(() => this.blocks.find((b) => b.id === this.selectedId()) ?? null);
+
+  trackByBlockType(index: number, type: NxEmailBlockType): NxEmailBlockType {
+    return type;
+  }
+
+  trackByBlockId(index: number, block: NxEmailBlock): string {
+    return block.id;
+  }
 
   addBlock(type: NxEmailBlockType): void {
     const block = createBlock(type);

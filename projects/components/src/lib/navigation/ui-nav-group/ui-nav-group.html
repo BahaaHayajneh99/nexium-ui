@@ -1,8 +1,6 @@
 <div class="nx-nav-group">
     <button type="button" class="nx-nav-group-header" (click)="toggle()">
-        @if (icon) {
-            <nx-icon [icon]="icon" variant="svg" [size]="16"></nx-icon>
-        }
+        <nx-icon *ngIf="icon" [icon]="icon" variant="svg" [size]="16"></nx-icon>
         <span class="nx-nav-group-label">{{ label }}</span>
         <nx-icon
             icon="nx-chevron-down"
@@ -12,9 +10,7 @@
             [class.open]="expanded()"></nx-icon>
     </button>
 
-    @if (expanded()) {
-        <div class="nx-nav-group-content">
-            <ng-content></ng-content>
-        </div>
-    }
+    <div *ngIf="expanded()" class="nx-nav-group-content">
+        <ng-content></ng-content>
+    </div>
 </div>

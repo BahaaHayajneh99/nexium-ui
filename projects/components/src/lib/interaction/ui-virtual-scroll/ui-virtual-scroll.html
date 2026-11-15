@@ -1,19 +1,16 @@
-@if (licensed()) {
-    <div class="nx-virtual-scroll-viewport" [style.height.px]="height" (scroll)="onScroll($event)">
-        <div class="nx-virtual-scroll-spacer" [style.height.px]="totalHeight">
-            <div class="nx-virtual-scroll-content" [style.transform]="'translateY(' + offsetY + 'px)'">
-                @for (row of visibleRows; track row.index) {
-                    <div class="nx-virtual-scroll-row" [style.height.px]="itemHeight">
-                        @if (itemTemplate) {
-                            <ng-container
-                                *ngTemplateOutlet="itemTemplate; context: { $implicit: row.item, index: row.index }">
-                            </ng-container>
-                        }
-                    </div>
-                }
+<div class="nx-virtual-scroll-viewport" [style.height.px]="height" (scroll)="onScroll($event)" *ngIf="licensed(); else elseBlock1">
+    <div class="nx-virtual-scroll-spacer" [style.height.px]="totalHeight">
+        <div class="nx-virtual-scroll-content" [style.transform]="'translateY(' + offsetY + 'px)'">
+            <div class="nx-virtual-scroll-row" [style.height.px]="itemHeight" *ngFor="let row of visibleRows; trackBy: trackByRowIndex">
+                <ng-container *ngIf="itemTemplate">
+                    <ng-container
+                        *ngTemplateOutlet="itemTemplate; context: { $implicit: row.item, index: row.index }">
+                    </ng-container>
+                </ng-container>
             </div>
         </div>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Virtual Scroll"></nx-pro-locked>
-}
+</ng-template>

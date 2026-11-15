@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 export type NxDeviceFrameKind = 'phone' | 'tablet' | 'browser';
 
@@ -6,7 +7,7 @@ export type NxDeviceFrameKind = 'phone' | 'tablet' | 'browser';
 @Component({
   selector: 'nx-device-frame',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './ui-device-frame.html',
   styleUrl: './ui-device-frame.scss',
 })

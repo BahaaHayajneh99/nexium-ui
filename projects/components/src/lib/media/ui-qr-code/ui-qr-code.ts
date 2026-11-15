@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { encodeQrCode, NxQrErrorCorrectionLevel } from './qr-encoder';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -12,7 +13,7 @@ import { nxProLicenseGranted } from '../../licensing/nx-license';
 @Component({
   selector: 'nx-qr-code',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf],
   templateUrl: './ui-qr-code.html',
   styleUrl: './ui-qr-code.scss',
 })

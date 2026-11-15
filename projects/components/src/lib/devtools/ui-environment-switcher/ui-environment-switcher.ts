@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor } from '@angular/common';
 
 export interface NxEnvironment {
   id: string;
@@ -10,7 +11,7 @@ export interface NxEnvironment {
 @Component({
   selector: 'nx-environment-switcher',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './ui-environment-switcher.html',
   styleUrl: './ui-environment-switcher.scss',
 })
@@ -23,5 +24,9 @@ export class NxEnvironmentSwitcher {
   select(id: string): void {
     this.activeId = id;
     this.activeIdChange.emit(id);
+  }
+
+  trackByEnvId(index: number, env: NxEnvironment): string {
+    return env.id;
   }
 }

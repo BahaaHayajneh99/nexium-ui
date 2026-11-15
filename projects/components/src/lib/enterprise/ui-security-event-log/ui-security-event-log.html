@@ -1,55 +1,45 @@
-@if (licensed()) {
-    <div class="nx-security-event-log">
-        <div class="nx-sel-filters">
-            <input
-                type="text"
-                class="nx-sel-search"
-                placeholder="Search label, IP, location..."
-                [value]="searchText()"
-                (input)="searchText.set($any($event.target).value)" />
+<div class="nx-security-event-log" *ngIf="licensed(); else elseBlock1">
+    <div class="nx-sel-filters">
+        <input
+            type="text"
+            class="nx-sel-search"
+            placeholder="Search label, IP, location..."
+            [value]="searchText()"
+            (input)="searchText.set($any($event.target).value)" />
 
-            <select
-                class="nx-sel-severity-filter"
-                [value]="severityFilter()"
-                (change)="severityFilter.set($any($event.target).value)">
-                <option value="all">All severities</option>
-                <option value="info">Info</option>
-                <option value="warning">Warning</option>
-                <option value="critical">Critical</option>
-            </select>
-        </div>
-
-        <div class="nx-sel-timeline">
-            @for (event of filteredEvents; track event.id; let last = $last) {
-                <div class="nx-sel-row" [class.last]="last">
-                    <div class="nx-sel-dot" [class]="'severity-' + event.severity">
-                        <nx-icon [icon]="iconFor(event.severity)" variant="svg" [size]="12"></nx-icon>
-                    </div>
-
-                    <div class="nx-sel-content">
-                        <div class="nx-sel-head">
-                            <strong class="nx-sel-label">{{ event.label }}</strong>
-                            <span class="nx-sel-badge" [class]="'severity-' + event.severity">{{ event.severity }}</span>
-                        </div>
-                        <div class="nx-sel-meta">
-                            <span class="nx-sel-time">{{ formatTimestamp(event.timestamp) }}</span>
-                            @if (event.ipAddress) {
-                                <span class="nx-sel-ip">{{ event.ipAddress }}</span>
-                            }
-                            @if (event.location) {
-                                <span class="nx-sel-location">{{ event.location }}</span>
-                            }
-                        </div>
-                        @if (event.userAgent) {
-                            <div class="nx-sel-agent">{{ event.userAgent }}</div>
-                        }
-                    </div>
-                </div>
-            } @empty {
-                <p class="nx-sel-empty">No security events match your filters.</p>
-            }
-        </div>
+        <select
+            class="nx-sel-severity-filter"
+            [value]="severityFilter()"
+            (change)="severityFilter.set($any($event.target).value)">
+            <option value="all">All severities</option>
+            <option value="info">Info</option>
+            <option value="warning">Warning</option>
+            <option value="critical">Critical</option>
+        </select>
     </div>
-} @else {
+
+    <div class="nx-sel-timeline">
+        <div class="nx-sel-row" [class.last]="last" *ngFor="let event of filteredEvents; trackBy: trackByEventId; let last = last">
+            <div class="nx-sel-dot" [class]="'severity-' + event.severity">
+                <nx-icon [icon]="iconFor(event.severity)" variant="svg" [size]="12"></nx-icon>
+            </div>
+
+            <div class="nx-sel-content">
+                <div class="nx-sel-head">
+                    <strong class="nx-sel-label">{{ event.label }}</strong>
+                    <span class="nx-sel-badge" [class]="'severity-' + event.severity">{{ event.severity }}</span>
+                </div>
+                <div class="nx-sel-meta">
+                    <span class="nx-sel-time">{{ formatTimestamp(event.timestamp) }}</span>
+                    <span class="nx-sel-ip" *ngIf="event.ipAddress">{{ event.ipAddress }}</span>
+                    <span class="nx-sel-location" *ngIf="event.location">{{ event.location }}</span>
+                </div>
+                <div class="nx-sel-agent" *ngIf="event.userAgent">{{ event.userAgent }}</div>
+            </div>
+        </div>
+        <p class="nx-sel-empty" *ngIf="!filteredEvents || filteredEvents.length === 0">No security events match your filters.</p>
+    </div>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Security Event Log"></nx-pro-locked>
-}
+</ng-template>

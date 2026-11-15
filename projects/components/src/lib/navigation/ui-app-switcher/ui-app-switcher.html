@@ -1,32 +1,26 @@
-@if (licensed()) {
-    <div class="nx-app-switcher">
-        <button
-            type="button"
-            class="nx-app-switcher-trigger"
-            [class.active]="open"
-            [attr.aria-label]="triggerLabel"
-            [attr.aria-expanded]="open"
-            (click)="toggle()">
-            <nx-icon icon="nx-grid" variant="svg" [size]="18"></nx-icon>
-        </button>
+<div *ngIf="licensed(); else elseBlock1" class="nx-app-switcher">
+    <button
+        type="button"
+        class="nx-app-switcher-trigger"
+        [class.active]="open"
+        [attr.aria-label]="triggerLabel"
+        [attr.aria-expanded]="open"
+        (click)="toggle()">
+        <nx-icon icon="nx-grid" variant="svg" [size]="18"></nx-icon>
+    </button>
 
-        @if (open) {
-            <div class="nx-app-switcher-panel" role="menu">
-                <div class="nx-app-switcher-grid">
-                    @for (app of apps; track app.label) {
-                        <button type="button" class="nx-app-switcher-tile" role="menuitem" (click)="selectApp(app)">
-                            <span class="nx-app-switcher-tile-icon">
-                                <nx-icon [icon]="app.icon" variant="svg" [size]="22"></nx-icon>
-                            </span>
-                            <span class="nx-app-switcher-tile-label">{{ app.label }}</span>
-                        </button>
-                    } @empty {
-                        <div class="nx-app-switcher-empty">No apps configured.</div>
-                    }
-                </div>
-            </div>
-        }
+    <div *ngIf="open" class="nx-app-switcher-panel" role="menu">
+        <div class="nx-app-switcher-grid">
+            <button *ngFor="let app of apps; trackBy: trackByAppLabel" type="button" class="nx-app-switcher-tile" role="menuitem" (click)="selectApp(app)">
+                <span class="nx-app-switcher-tile-icon">
+                    <nx-icon [icon]="app.icon" variant="svg" [size]="22"></nx-icon>
+                </span>
+                <span class="nx-app-switcher-tile-label">{{ app.label }}</span>
+            </button>
+            <div *ngIf="!apps || apps.length === 0" class="nx-app-switcher-empty">No apps configured.</div>
+        </div>
     </div>
-} @else {
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Application Switcher"></nx-pro-locked>
-}
+</ng-template>

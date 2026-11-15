@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export type NxConnectionState = 'online' | 'offline';
@@ -15,7 +16,7 @@ export type NxConnectionStatusDisplay = 'pill' | 'banner';
 @Component({
   selector: 'nx-connection-status',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgIf, NxIcon],
   templateUrl: './ui-connection-status.html',
   styleUrl: './ui-connection-status.scss',
 })

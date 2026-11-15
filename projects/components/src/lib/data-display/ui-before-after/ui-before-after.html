@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-before-after">
+<div class="nx-before-after" *ngIf="licensed(); else elseBlock1">
         <img class="nx-before-after-image after" [src]="afterSrc" [alt]="afterLabel" draggable="false" />
 
         <img
@@ -20,6 +19,6 @@
             <span class="nx-before-after-handle-grip"></span>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Before / After"></nx-pro-locked>
-}
+</ng-template>

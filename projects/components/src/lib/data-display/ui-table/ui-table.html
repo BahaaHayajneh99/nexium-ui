@@ -5,85 +5,69 @@
         [style.max-height]="scrollable ? scrollHeight : null">
         <table class="nx-table" [ngClass]="tableClasses">
             <colgroup>
-                @for (col of columns; track col.field) {
-                    <col [style.width]="colWidth(col)" />
-                }
+                <col *ngFor="let col of columns; trackBy: trackByColumnField" [style.width]="colWidth(col)" />
             </colgroup>
             <thead>
                 <tr>
-                    @for (col of columns; track col.field) {
-                        <th
-                            [class.frozen-left]="col.frozen === 'left'"
-                            [class.frozen-right]="col.frozen === 'right'"
-                            [style.left]="frozenLeftOffset(col)"
-                            [style.right]="frozenRightOffset(col)"
-                            [class.sortable]="col.sortable"
-                            [style.text-align]="col.align"
-                            (click)="onSort(col, $event)">
-                            <span class="nx-table-th-content">
-                                {{ col.header }}
-                                @if (col.sortable) {
-                                    <span
-                                        class="nx-table-sort-icon"
-                                        [class.asc]="sortOrderFor(col.field) === 1"
-                                        [class.desc]="sortOrderFor(col.field) === -1"></span>
-                                    @if (multiSortIndex(col.field) !== null) {
-                                        <span class="nx-table-sort-badge">{{ multiSortIndex(col.field) }}</span>
-                                    }
-                                }
-                            </span>
-                        </th>
-                    }
+                    <th
+                        *ngFor="let col of columns; trackBy: trackByColumnField"
+                        [class.frozen-left]="col.frozen === 'left'"
+                        [class.frozen-right]="col.frozen === 'right'"
+                        [style.left]="frozenLeftOffset(col)"
+                        [style.right]="frozenRightOffset(col)"
+                        [class.sortable]="col.sortable"
+                        [style.text-align]="col.align"
+                        (click)="onSort(col, $event)">
+                        <span class="nx-table-th-content">
+                            {{ col.header }}
+                            <ng-container *ngIf="col.sortable">
+                                <span
+                                    class="nx-table-sort-icon"
+                                    [class.asc]="sortOrderFor(col.field) === 1"
+                                    [class.desc]="sortOrderFor(col.field) === -1"></span>
+                                <span class="nx-table-sort-badge" *ngIf="multiSortIndex(col.field) !== null">{{ multiSortIndex(col.field) }}</span>
+                            </ng-container>
+                        </span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                @for (row of pageData; track trackByRow($index, row)) {
-                    <tr>
-                        @for (col of columns; track col.field) {
-                            <td
-                                [class.frozen-left]="col.frozen === 'left'"
-                                [class.frozen-right]="col.frozen === 'right'"
-                                [style.left]="frozenLeftOffset(col)"
-                                [style.right]="frozenRightOffset(col)"
-                                [style.text-align]="col.align">
-                                {{ row?.[col.field] }}
-                            </td>
-                        }
-                    </tr>
-                } @empty {
-                    <tr>
-                        <td [attr.colspan]="totalColSpan" class="nx-table-empty">No data available</td>
-                    </tr>
-                }
+                <tr *ngFor="let row of pageData; trackBy: trackByRow">
+                    <td
+                        *ngFor="let col of columns; trackBy: trackByColumnField"
+                        [class.frozen-left]="col.frozen === 'left'"
+                        [class.frozen-right]="col.frozen === 'right'"
+                        [style.left]="frozenLeftOffset(col)"
+                        [style.right]="frozenRightOffset(col)"
+                        [style.text-align]="col.align">
+                        {{ row?.[col.field] }}
+                    </td>
+                </tr>
+                <tr *ngIf="!pageData || pageData.length === 0">
+                    <td [attr.colspan]="totalColSpan" class="nx-table-empty">No data available</td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-    @if (paginator) {
-        <div class="nx-table-paginator">
-            <div class="nx-table-paginator-info">
-                {{ totalRecordsCount === 0 ? 0 : pageStart + 1 }}-{{ pageEnd }} of {{ totalRecordsCount }}
-            </div>
-            @if (rowsPerPageOptions.length) {
-                <select class="nx-table-rows-select" (change)="onRowsChange($event)">
-                    @for (opt of rowsPerPageOptions; track opt) {
-                        <option [value]="opt" [selected]="opt === rows">{{ opt }} / page</option>
-                    }
-                </select>
-            }
-            <div class="nx-pagination">
-                <button type="button" class="nx-pagination-btn" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">‹</button>
-                @for (pageNum of pageNumbers; track pageNum) {
-                    <button
-                        type="button"
-                        class="nx-pagination-btn"
-                        [class.active]="pageNum === currentPage"
-                        (click)="goToPage(pageNum)">
-                        {{ pageNum }}
-                    </button>
-                }
-                <button type="button" class="nx-pagination-btn" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">›</button>
-            </div>
+    <div class="nx-table-paginator" *ngIf="paginator">
+        <div class="nx-table-paginator-info">
+            {{ totalRecordsCount === 0 ? 0 : pageStart + 1 }}-{{ pageEnd }} of {{ totalRecordsCount }}
         </div>
-    }
+        <select class="nx-table-rows-select" *ngIf="rowsPerPageOptions.length" (change)="onRowsChange($event)">
+            <option *ngFor="let opt of rowsPerPageOptions; trackBy: trackByOption" [value]="opt" [selected]="opt === rows">{{ opt }} / page</option>
+        </select>
+        <div class="nx-pagination">
+            <button type="button" class="nx-pagination-btn" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">‹</button>
+            <button
+                type="button"
+                class="nx-pagination-btn"
+                *ngFor="let pageNum of pageNumbers; trackBy: trackByPageNum"
+                [class.active]="pageNum === currentPage"
+                (click)="goToPage(pageNum)">
+                {{ pageNum }}
+            </button>
+            <button type="button" class="nx-pagination-btn" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">›</button>
+        </div>
+    </div>
 </div>

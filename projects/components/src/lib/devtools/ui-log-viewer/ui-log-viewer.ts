@@ -1,4 +1,5 @@
 import { Component, Input, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -15,7 +16,7 @@ export interface NxLogEntry {
 @Component({
   selector: 'nx-log-viewer',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-log-viewer.html',
   styleUrl: './ui-log-viewer.scss',
 })
@@ -36,5 +37,9 @@ export class NxLogViewer {
       }
       return !search || entry.message.toLowerCase().includes(search);
     });
+  }
+
+  trackByEntryId(index: number, entry: NxLogEntry): string | number {
+    return entry.id;
   }
 }

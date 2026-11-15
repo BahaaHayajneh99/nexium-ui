@@ -16,6 +16,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -48,7 +49,7 @@ function escapeRegExp(text: string): string {
 @Component({
   selector: 'nx-formula-input',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgFor, NgIf, NxProLocked],
   templateUrl: './ui-formula-input.html',
   styleUrl: './ui-formula-input.scss',
   host: {
@@ -232,6 +233,14 @@ export class NxFormulaInput implements ControlValueAccessor, Validator {
 
   registerOnValidatorChange(fn: () => void): void {
     this.onValidatorChangeFn = fn;
+  }
+
+  trackByFieldName(index: number, field: NxFormulaField): string {
+    return field.name;
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 
   private updateFormulaContext(cursor: number): void {

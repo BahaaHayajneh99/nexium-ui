@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export type NxBannerVariant = 'info' | 'success' | 'warning' | 'danger';
@@ -19,7 +20,7 @@ const DEFAULT_ICONS: Record<NxBannerVariant, string> = {
 @Component({
   selector: 'nx-banner',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgIf, NxIcon],
   templateUrl: './ui-banner.html',
   styleUrl: './ui-banner.scss',
 })

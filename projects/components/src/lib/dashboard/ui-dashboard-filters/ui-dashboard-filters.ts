@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -24,7 +25,7 @@ export interface NxDashboardFilterState {
 @Component({
   selector: 'nx-dashboard-filters',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgFor, NgIf, NxProLocked],
   templateUrl: './ui-dashboard-filters.html',
   styleUrl: './ui-dashboard-filters.scss',
 })
@@ -42,6 +43,14 @@ export class NxDashboardFilters {
 
   /** Whether the current draft differs from what was last emitted - only meaningful in 'button' mode. */
   readonly dirty = signal(false);
+
+  trackByFilterKey(index: number, filter: NxDashboardExtraFilter): string {
+    return filter.key;
+  }
+
+  trackByOption(index: number, opt: string): string {
+    return opt;
+  }
 
   onDateFromChange(value: string): void {
     this.dateFrom.set(value);

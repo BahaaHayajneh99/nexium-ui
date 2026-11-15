@@ -6,13 +6,12 @@
     (focusout)="scheduleClose()">
     <ng-content select="[nx-hover-card-trigger]"></ng-content>
 
-    @if (open()) {
-        <div
-            class="nx-hover-card-panel"
-            [class]="'placement-' + placement"
-            (mouseenter)="scheduleOpen()"
-            (mouseleave)="scheduleClose()">
-            <ng-content></ng-content>
-        </div>
-    }
+    <div
+        class="nx-hover-card-panel"
+        *ngIf="open()"
+        [class]="'placement-' + placement"
+        (mouseenter)="scheduleOpen()"
+        (mouseleave)="scheduleClose()">
+        <ng-content></ng-content>
+    </div>
 </span>

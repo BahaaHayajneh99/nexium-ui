@@ -8,7 +8,7 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export type NxSplitButtonVariant = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
@@ -22,7 +22,7 @@ export interface NxSplitButtonAction {
 @Component({
   selector: 'nx-split-button',
   standalone: true,
-  imports: [NgClass, NxIcon],
+  imports: [NgClass, NgFor, NgIf, NxIcon],
   templateUrl: './ui-split-button.html',
   styleUrl: './ui-split-button.scss',
 })
@@ -101,5 +101,9 @@ export class NxSplitButton {
   @HostListener('keydown.escape')
   onEscape(): void {
     this.closeMenu();
+  }
+
+  trackByActionValue(index: number, action: NxSplitButtonAction): string {
+    return action.value;
   }
 }

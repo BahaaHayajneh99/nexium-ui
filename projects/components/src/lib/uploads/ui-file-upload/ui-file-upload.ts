@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxFileSizePipe } from '../../pipes/nx-file-size.pipe';
 
 @Component({
   selector: 'nx-file-upload',
   standalone: true,
-  imports: [NxFileSizePipe],
+  imports: [NgFor, NgIf, NxFileSizePipe],
   templateUrl: './ui-file-upload.html',
   styleUrl: './ui-file-upload.scss',
 })
@@ -60,5 +61,9 @@ export class NxFileUpload {
     const newFiles = Array.from(fileList);
     this.files = this.multiple ? [...this.files, ...newFiles] : newFiles;
     this.filesSelected.emit(this.files);
+  }
+
+  trackByFileName(index: number, file: File): string {
+    return file.name;
   }
 }

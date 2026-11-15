@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxNumber } from '../../forms/ui-number';
 import { NxSelect } from '../../forms/ui-select';
@@ -23,7 +24,7 @@ export interface NxQuickCreateField {
 @Component({
   selector: 'nx-quick-create',
   standalone: true,
-  imports: [FormsModule, NxIcon, NxNumber, NxSelect, NxProLocked],
+  imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault, FormsModule, NxIcon, NxNumber, NxSelect, NxProLocked],
   templateUrl: './ui-quick-create.html',
   styleUrl: './ui-quick-create.scss',
 })
@@ -96,5 +97,9 @@ export class NxQuickCreate {
       next[field.key] = field.type === 'number' ? null : '';
     }
     this.draft.set(next);
+  }
+
+  trackByFieldKey(index: number, field: NxQuickCreateField): string {
+    return field.key;
   }
 }

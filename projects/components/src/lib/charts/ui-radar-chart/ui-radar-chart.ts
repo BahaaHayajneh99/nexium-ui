@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { axisTicks, formatNumber, niceMax, seriesColor } from '../chart-utils';
 import { NxChartSeries } from '../chart-types';
 
@@ -14,7 +15,7 @@ interface RadarPoint {
 @Component({
   selector: 'nx-radar-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-radar-chart.html',
   styleUrl: './ui-radar-chart.scss',
 })
@@ -140,5 +141,21 @@ export class NxRadarChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackByLevel(index: number, level: number): number {
+    return level;
+  }
+
+  trackByCategory(index: number, category: string): string {
+    return category;
+  }
+
+  trackBySeriesName(index: number, s: NxChartSeries): string {
+    return s.name;
+  }
+
+  trackByAxisIndex(index: number, point: RadarPoint): number {
+    return point.axisIndex;
   }
 }

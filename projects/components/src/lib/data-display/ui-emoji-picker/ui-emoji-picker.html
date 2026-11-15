@@ -8,9 +8,8 @@
         </nx-search>
     </div>
 
-    @if (showCategories && !isSearching) {
-        <div class="nx-emoji-picker-tabs" role="tablist" aria-label="Emoji categories">
-            @for (tab of tabs; track tab) {
+    <div class="nx-emoji-picker-tabs" role="tablist" aria-label="Emoji categories" *ngIf="showCategories && !isSearching">
+            <ng-container *ngFor="let tab of tabs; trackBy: trackByTab">
                 <button
                     type="button"
                     class="nx-emoji-picker-tab"
@@ -20,13 +19,12 @@
                     (click)="selectCategory(tab)">
                     {{ tab }}
                 </button>
-            }
+            </ng-container>
         </div>
-    }
 
     <div class="nx-emoji-picker-grid" role="listbox" aria-label="Emoji">
-        @if (filteredNames.length) {
-            @for (name of filteredNames; track trackByName($index, name)) {
+        <ng-container *ngIf="filteredNames.length; else elseBlock1">
+            <ng-container *ngFor="let name of filteredNames; trackBy: trackByName">
                 <button
                     type="button"
                     class="nx-emoji-picker-cell"
@@ -36,15 +34,14 @@
                     (click)="selectEmoji(name)">
                     <nx-emoji [emoji]="name" [size]="emojiSize"></nx-emoji>
                 </button>
-            }
-        } @else {
+            </ng-container>
+        </ng-container>
+        <ng-template #elseBlock1>
             <div class="nx-emoji-picker-empty">
                 <nx-icon icon="nx-search" variant="svg" [size]="20"></nx-icon>
                 <p>{{ noResultsText }}</p>
-                @if (isSearching) {
-                    <p class="nx-emoji-picker-empty-hint">Try a different search term</p>
-                }
+                <p class="nx-emoji-picker-empty-hint" *ngIf="isSearching">Try a different search term</p>
             </div>
-        }
+        </ng-template>
     </div>
 </div>

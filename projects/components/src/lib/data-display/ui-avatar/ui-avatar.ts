@@ -1,5 +1,5 @@
 import { booleanAttribute, Component, Input } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 export type NxAvatarSize = 'small' | 'medium' | 'large' | 'xlarge';
 export type NxAvatarShape = 'circle' | 'square' | 'rounded';
@@ -17,7 +17,7 @@ export type NxAvatarStatus = 'online' | 'offline' | 'busy' | 'away';
 @Component({
   selector: 'nx-avatar',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgIf],
   templateUrl: './ui-avatar.html',
   styleUrl: './ui-avatar.scss',
 })

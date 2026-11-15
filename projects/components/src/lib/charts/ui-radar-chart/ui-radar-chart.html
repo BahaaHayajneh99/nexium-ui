@@ -4,15 +4,15 @@
         {{ showTable ? 'View as chart' : 'View as table' }}
     </button>
 
-    @if (!showTable) {
+    <ng-container *ngIf="!showTable; else elseBlock1">
         <div class="nx-chart-canvas nx-radar-canvas">
             <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" role="img">
 
-                @for (level of ringLevels; track level) {
+                <ng-container *ngFor="let level of ringLevels; trackBy: trackByLevel">
                     <path class="nx-chart-radar-ring" [attr.d]="ringPath(level)"></path>
-                }
+                </ng-container>
 
-                @for (category of categories; track category; let i = $index) {
+                <ng-container *ngFor="let category of categories; trackBy: trackByCategory; let i = index">
                     <line
                         class="nx-chart-radar-spoke"
                         x1="150" y1="150"
@@ -26,9 +26,9 @@
                         [attr.y]="labelPoint(i).y">
                         {{ category }}
                     </text>
-                }
+                </ng-container>
 
-                @for (s of series; track s.name; let seriesIndex = $index) {
+                <ng-container *ngFor="let s of series; trackBy: trackBySeriesName; let seriesIndex = index">
                     <path
                         class="nx-chart-radar-area"
                         [attr.d]="seriesPath(s)"
@@ -36,7 +36,7 @@
                         [attr.stroke]="seriesColorAt(s, seriesIndex)">
                     </path>
 
-                    @for (point of points(s, seriesIndex); track point.axisIndex) {
+                    <ng-container *ngFor="let point of points(s, seriesIndex); trackBy: trackByAxisIndex">
                         <circle
                             class="nx-chart-radar-point"
                             [class.nx-chart-radar-point-hovered]="hovered === point"
@@ -52,12 +52,12 @@
                             (focus)="onPointEnter(point)"
                             (blur)="onPointLeave()">
                         </circle>
-                    }
-                }
+                    </ng-container>
+                </ng-container>
 
             </svg>
 
-            @if (hovered) {
+            <ng-container *ngIf="hovered">
                 <div class="nx-chart-tooltip" [style]="tooltipStyle">
                     <div class="nx-chart-tooltip-category">{{ categories[hovered.axisIndex] }}</div>
                     <div class="nx-chart-tooltip-row">
@@ -66,42 +66,43 @@
                         <strong class="nx-chart-tooltip-value">{{ formatValue(hovered.value) }}</strong>
                     </div>
                 </div>
-            }
+            </ng-container>
         </div>
 
-        @if (hasLegend) {
+        <ng-container *ngIf="hasLegend">
             <div class="nx-chart-legend">
-                @for (s of series; track s.name; let i = $index) {
+                <ng-container *ngFor="let s of series; trackBy: trackBySeriesName; let i = index">
                     <div class="nx-chart-legend-item">
                         <span class="nx-chart-legend-swatch" [style.background]="seriesColorAt(s, i)"></span>
                         {{ s.name }}
                     </div>
-                }
+                </ng-container>
             </div>
-        }
-    } @else {
+        </ng-container>
+    </ng-container>
+    <ng-template #elseBlock1>
         <div class="nx-chart-table-wrap">
             <table class="nx-chart-table">
                 <thead>
                     <tr>
                         <th></th>
-                        @for (s of series; track s.name) {
+                        <ng-container *ngFor="let s of series; trackBy: trackBySeriesName">
                             <th>{{ s.name }}</th>
-                        }
+                        </ng-container>
                     </tr>
                 </thead>
                 <tbody>
-                    @for (category of categories; track category; let i = $index) {
+                    <ng-container *ngFor="let category of categories; trackBy: trackByCategory; let i = index">
                         <tr>
                             <th scope="row">{{ category }}</th>
-                            @for (s of series; track s.name) {
+                            <ng-container *ngFor="let s of series; trackBy: trackBySeriesName">
                                 <td>{{ formatTick(s.data[i] ?? 0) }}</td>
-                            }
+                            </ng-container>
                         </tr>
-                    }
+                    </ng-container>
                 </tbody>
             </table>
         </div>
-    }
+    </ng-template>
 
 </div>

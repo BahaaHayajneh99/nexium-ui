@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -32,7 +33,7 @@ interface NxTreeTableRow {
 @Component({
   selector: 'nx-tree-table',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-tree-table.html',
   styleUrl: './ui-tree-table.scss',
 })
@@ -69,6 +70,14 @@ export class NxTreeTable {
 
     walk(this.data, 0);
     return result;
+  }
+
+  trackByColumnField(_index: number, col: NxTreeTableColumn): string {
+    return col.field;
+  }
+
+  trackByRowNodeId(_index: number, row: NxTreeTableRow): string | number {
+    return row.node.id;
   }
 
   isExpanded(id: string | number): boolean {

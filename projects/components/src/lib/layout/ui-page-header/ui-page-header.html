@@ -6,9 +6,7 @@
     <div class="nx-page-header-main">
         <div class="nx-page-header-text">
             <h1 class="nx-page-header-title">{{ title }}</h1>
-            @if (description) {
-                <p class="nx-page-header-description">{{ description }}</p>
-            }
+            <p class="nx-page-header-description" *ngIf="description">{{ description }}</p>
         </div>
         <div class="nx-page-header-actions">
             <ng-content select="[nxPageHeaderActions]"></ng-content>

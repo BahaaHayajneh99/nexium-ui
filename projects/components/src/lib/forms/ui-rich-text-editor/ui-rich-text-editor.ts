@@ -16,7 +16,7 @@ import {
   signal,
 } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 
 interface ToolbarButton {
   label: string;
@@ -83,7 +83,7 @@ const MARKDOWN_SHORTCUTS: { pattern: RegExp; tag?: string; action?: 'bullet' | '
 @Component({
   selector: 'nx-rich-text-editor',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, NgFor, NgIf],
   templateUrl: './ui-rich-text-editor.html',
   styleUrl: './ui-rich-text-editor.scss',
   // The editable content (mentions, code blocks, tables, images) is inserted via execCommand/
@@ -499,6 +499,22 @@ export class NxRichTextEditor implements AfterViewInit, OnChanges, OnInit, OnDes
       this.syncValue();
     };
     reader.readAsDataURL(file);
+  }
+
+  trackByToolbarButton(index: number, button: ToolbarButton): string {
+    return button.command + (button.arg ?? '');
+  }
+
+  trackBySlashCommandId(index: number, cmd: NxSlashCommand): string {
+    return cmd.id;
+  }
+
+  trackByMentionName(index: number, name: string): string {
+    return name;
+  }
+
+  trackByEmoji(index: number, emoji: string): string {
+    return emoji;
   }
 
   private updatePopupPosition(): void {

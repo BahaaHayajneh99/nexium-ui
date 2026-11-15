@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxSpinnerComponent } from '../ui-spinner';
 
 export type NxLoadingStateSpinnerVariant =
@@ -20,7 +21,7 @@ export type NxLoadingStateSpinnerVariant =
 @Component({
   selector: 'nx-loading-state',
   standalone: true,
-  imports: [NxSpinnerComponent],
+  imports: [NgIf, NxSpinnerComponent],
   templateUrl: './ui-loading-state.html',
   styleUrl: './ui-loading-state.scss',
 })

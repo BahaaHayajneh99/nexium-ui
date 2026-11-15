@@ -1,4 +1,4 @@
-@if (licensed()) {
+<ng-container *ngIf="licensed(); else elseBlock1">
     <div class="nx-playground">
         <div class="nx-playground-controls">
             <label class="nx-pg-field">
@@ -57,16 +57,21 @@
             </button>
 
             <div class="nx-pg-response">
-                @if (isRunning) {
+                <ng-container *ngIf="isRunning; else elseIfBlock2">
                     <div class="nx-pg-running">Running against the selected model's simulated parameters...</div>
-                } @else if (response) {
-                    <nx-ai-response-viewer [content]="response"></nx-ai-response-viewer>
-                } @else {
-                    <div class="nx-pg-empty">Run the prompt to see a response here.</div>
-                }
+                </ng-container>
+                <ng-template #elseIfBlock2>
+                    <ng-container *ngIf="response; else elseBlock3">
+                        <nx-ai-response-viewer [content]="response"></nx-ai-response-viewer>
+                    </ng-container>
+                    <ng-template #elseBlock3>
+                        <div class="nx-pg-empty">Run the prompt to see a response here.</div>
+                    </ng-template>
+                </ng-template>
             </div>
         </div>
     </div>
-} @else {
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="AI Model Playground"></nx-pro-locked>
-}
+</ng-template>

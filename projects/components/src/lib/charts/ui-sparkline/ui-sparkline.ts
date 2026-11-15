@@ -1,10 +1,11 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { formatNumber } from '../chart-utils';
 
 @Component({
   selector: 'nx-sparkline',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './ui-sparkline.html',
   styleUrl: './ui-sparkline.scss',
 })

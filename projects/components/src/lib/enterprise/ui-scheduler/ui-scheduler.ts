@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, numberAttribute } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -30,7 +30,7 @@ function minutesSinceMidnight(date: Date): number {
 @Component({
   selector: 'nx-scheduler',
   standalone: true,
-  imports: [NxProLocked, DatePipe],
+  imports: [NgIf, NgFor, NxProLocked, DatePipe],
   templateUrl: './ui-scheduler.html',
   styleUrl: './ui-scheduler.scss',
 })
@@ -153,4 +153,16 @@ export class NxScheduler {
     }
     this.dragEventId = null;
   };
+
+  trackByIndex(index: number): number {
+    return index;
+  }
+
+  trackByHour(index: number, hour: number): number {
+    return hour;
+  }
+
+  trackByPositionedEventId(index: number, positioned: NxSchedulerPositionedEvent): string | number {
+    return positioned.event.id;
+  }
 }

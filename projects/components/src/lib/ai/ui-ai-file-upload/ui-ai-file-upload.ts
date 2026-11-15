@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, numberAttribute, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxFileSizePipe } from '../../pipes/nx-file-size.pipe';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -20,7 +21,7 @@ export interface NxAiFileAttachment {
 @Component({
   selector: 'nx-ai-file-upload',
   standalone: true,
-  imports: [NxIcon, NxFileSizePipe, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxFileSizePipe, NxProLocked],
   templateUrl: './ui-ai-file-upload.html',
   styleUrl: './ui-ai-file-upload.scss',
 })
@@ -107,5 +108,9 @@ export class NxAiFileUpload {
 
   private emitFiles(): void {
     this.filesChange.emit(this.attachments().map((attachment) => attachment.file));
+  }
+
+  protected trackByAttachment(index: number, attachment: NxAiFileAttachment): string {
+    return attachment.file.name + attachment.file.size + attachment.file.lastModified;
   }
 }

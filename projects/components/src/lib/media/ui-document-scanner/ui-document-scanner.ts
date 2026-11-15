@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild, computed, signal } from '@angular/core';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -46,7 +47,7 @@ function clampByte(value: number): number {
 @Component({
   selector: 'nx-document-scanner',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NxIcon, NxProLocked, NgIf, NgFor, NgSwitch, NgSwitchCase],
   templateUrl: './ui-document-scanner.html',
   styleUrl: './ui-document-scanner.scss',
 })
@@ -85,6 +86,10 @@ export class NxDocumentScanner implements AfterViewInit, OnDestroy {
     const maxY = Math.max(...pts.map((p) => p.y));
     return { x: minX * 100, y: minY * 100, w: (maxX - minX) * 100, h: (maxY - minY) * 100 };
   });
+
+  trackByCornerIndex(index: number): number {
+    return index;
+  }
 
   readonly croppedImage = signal<string | null>(null);
   readonly grayscale = signal(true);

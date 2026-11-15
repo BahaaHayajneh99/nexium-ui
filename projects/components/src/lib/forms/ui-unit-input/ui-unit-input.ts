@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -8,7 +9,7 @@ export type NxUnitPosition = 'prefix' | 'suffix';
 @Component({
   selector: 'nx-unit-input',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgFor, NgIf, NxProLocked],
   templateUrl: './ui-unit-input.html',
   styleUrl: './ui-unit-input.scss',
   providers: [
@@ -105,5 +106,9 @@ export class NxUnitInput implements ControlValueAccessor, Validator {
 
   registerOnValidatorChange(fn: () => void): void {
     this.onValidatorChangeFn = fn;
+  }
+
+  trackByUnit(index: number, u: string): string {
+    return u;
   }
 }

@@ -1,4 +1,4 @@
-@if (licensed()) {
+<ng-container *ngIf="licensed(); else elseBlock1">
     <div class="nx-ai-file-upload">
         <label
             class="nx-ai-file-upload-zone"
@@ -13,33 +13,30 @@
             <span class="nx-ai-file-upload-text">Attach files, or drag & drop here</span>
         </label>
 
-        @if (limitNoteVisible()) {
-            <div class="nx-ai-file-upload-note">You can attach up to {{ maxFiles }} files.</div>
-        }
+        <div class="nx-ai-file-upload-note" *ngIf="limitNoteVisible()">You can attach up to {{ maxFiles }} files.</div>
 
-        @if (attachments().length) {
-            <div class="nx-ai-file-upload-chips">
-                @for (attachment of attachments(); track attachment.file.name + attachment.file.size + attachment.file.lastModified; let i = $index) {
-                    <div class="nx-ai-file-upload-chip">
-                        <nx-icon class="nx-ai-file-upload-chip-icon" [icon]="iconFor(attachment.file)" variant="svg" [size]="14"></nx-icon>
+        <div class="nx-ai-file-upload-chips" *ngIf="attachments().length">
+            <ng-container *ngFor="let attachment of attachments(); trackBy: trackByAttachment; let i = index">
+                <div class="nx-ai-file-upload-chip">
+                    <nx-icon class="nx-ai-file-upload-chip-icon" [icon]="iconFor(attachment.file)" variant="svg" [size]="14"></nx-icon>
 
-                        <div class="nx-ai-file-upload-chip-meta">
-                            <span class="nx-ai-file-upload-chip-name">{{ attachment.file.name }}</span>
-                            <span class="nx-ai-file-upload-chip-sub">{{ attachment.file.size | nxFileSize }} &middot; ~{{ attachment.estimatedTokens }} tokens</span>
-                        </div>
-
-                        <button
-                            type="button"
-                            class="nx-ai-file-upload-chip-remove"
-                            aria-label="Remove file"
-                            (click)="removeFile(i)">
-                            <nx-icon icon="nx-close" variant="svg" [size]="11"></nx-icon>
-                        </button>
+                    <div class="nx-ai-file-upload-chip-meta">
+                        <span class="nx-ai-file-upload-chip-name">{{ attachment.file.name }}</span>
+                        <span class="nx-ai-file-upload-chip-sub">{{ attachment.file.size | nxFileSize }} &middot; ~{{ attachment.estimatedTokens }} tokens</span>
                     </div>
-                }
-            </div>
-        }
+
+                    <button
+                        type="button"
+                        class="nx-ai-file-upload-chip-remove"
+                        aria-label="Remove file"
+                        (click)="removeFile(i)">
+                        <nx-icon icon="nx-close" variant="svg" [size]="11"></nx-icon>
+                    </button>
+                </div>
+            </ng-container>
+        </div>
     </div>
-} @else {
+</ng-container>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="AI File Upload"></nx-pro-locked>
-}
+</ng-template>

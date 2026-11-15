@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -86,7 +87,7 @@ function hslToHex(h: number, s: number, l: number): string {
 @Component({
   selector: 'nx-color-token-generator',
   standalone: true,
-  imports: [FormsModule, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxProLocked],
   templateUrl: './ui-color-token-generator.html',
   styleUrl: './ui-color-token-generator.scss',
 })
@@ -138,6 +139,10 @@ export class NxColorTokenGenerator {
   setBaseColor(value: string): void {
     this.baseColor = value;
     this.baseColorChange.emit(value);
+  }
+
+  trackByTokenStep(_index: number, token: NxColorToken): number {
+    return token.step;
   }
 
   copyHex(token: NxColorToken): void {

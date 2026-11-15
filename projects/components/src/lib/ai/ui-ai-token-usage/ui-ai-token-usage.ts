@@ -1,5 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, NgFor, NgIf } from '@angular/common';
 
 export interface NxTokenUsageDay {
   date: string;
@@ -26,7 +26,7 @@ interface NxTokenUsageByModelShare extends NxTokenUsageByModel {
 @Component({
   selector: 'nx-ai-token-usage',
   standalone: true,
-  imports: [DecimalPipe],
+  imports: [NgIf, NgFor, DecimalPipe],
   templateUrl: './ui-ai-token-usage.html',
   styleUrl: './ui-ai-token-usage.scss',
 })
@@ -111,5 +111,13 @@ export class NxAiTokenUsage {
 
   formatTokens(value: number): string {
     return value >= 1000 ? `${(value / 1000).toFixed(1)}k` : `${value}`;
+  }
+
+  trackByDay(index: number, day: NxTokenUsageDay): string {
+    return day.date;
+  }
+
+  trackByModelShare(index: number, model: NxTokenUsageByModelShare): string {
+    return model.model;
   }
 }

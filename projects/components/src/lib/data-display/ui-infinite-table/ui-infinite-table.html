@@ -1,46 +1,47 @@
-@if (licensed()) {
-    <div class="nx-infinite-table-wrapper">
+<div class="nx-infinite-table-wrapper" *ngIf="licensed(); else elseBlock1">
         <div class="nx-infinite-table-scroll" #scrollBody [style.max-height.px]="maxHeight">
             <table class="nx-infinite-table">
                 <thead>
                     <tr>
-                        @for (col of columns; track col.key) {
+                        <ng-container *ngFor="let col of columns; trackBy: trackByColKey">
                             <th>{{ col.label }}</th>
-                        }
+                        </ng-container>
                     </tr>
                 </thead>
                 <tbody>
-                    @for (row of rows; track $index) {
+                    <ng-container *ngFor="let row of rows; trackBy: trackByIndex">
                         <tr class="nx-infinite-table-row">
-                            @for (col of columns; track col.key) {
+                            <ng-container *ngFor="let col of columns; trackBy: trackByColKey">
                                 <td>{{ cellValue(row, col.key) }}</td>
-                            }
+                            </ng-container>
                         </tr>
-                    } @empty {
+                    </ng-container>
+                    <ng-container *ngIf="!rows || rows.length === 0">
                         <tr class="nx-infinite-table-empty-row">
                             <td [attr.colspan]="columns.length">No data</td>
                         </tr>
-                    }
+                    </ng-container>
 
-                    @if (rows.length) {
-                        <tr class="nx-infinite-table-status-row">
-                            <td [attr.colspan]="columns.length">
-                                @if (loading) {
+                    <tr class="nx-infinite-table-status-row" *ngIf="rows.length">
+                        <td [attr.colspan]="columns.length">
+                                <ng-container *ngIf="loading; else elseIfBlock1">
                                     <div class="nx-infinite-table-loading">
                                         <nx-spinner size="small"></nx-spinner>
                                         <span>Loading more...</span>
                                     </div>
-                                } @else if (!hasMore) {
-                                    <div class="nx-infinite-table-end">No more results</div>
-                                }
+                                </ng-container>
+                                <ng-template #elseIfBlock1>
+                                    <ng-container *ngIf="!hasMore">
+                                        <div class="nx-infinite-table-end">No more results</div>
+                                    </ng-container>
+                                </ng-template>
                             </td>
-                        </tr>
-                    }
+                    </tr>
                 </tbody>
             </table>
             <div class="nx-infinite-table-sentinel" #sentinel></div>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Infinite Table"></nx-pro-locked>
-}
+</ng-template>

@@ -1,4 +1,5 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 import { NxTooltip } from '../../feedback/ui-tooltip';
 
@@ -66,7 +67,7 @@ export type NxComparisonTableMissingStyle = 'dash' | 'cross';
 @Component({
   selector: 'nx-comparison-table',
   standalone: true,
-  imports: [NxIcon, NxTooltip],
+  imports: [NgIf, NgFor, NgSwitch, NgSwitchCase, NxIcon, NxTooltip],
   templateUrl: './ui-comparison-table.html',
   styleUrl: './ui-comparison-table.scss',
 })
@@ -91,5 +92,13 @@ export class NxComparisonTable {
 
   trackBySectionIndex(index: number): number {
     return index;
+  }
+
+  trackByColName(index: number, col: NxComparisonTableColumn): string {
+    return col.name;
+  }
+
+  trackByRowLabel(index: number, row: NxComparisonTableRow): string {
+    return row.label;
   }
 }

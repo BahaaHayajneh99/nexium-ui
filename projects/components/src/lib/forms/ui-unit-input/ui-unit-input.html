@@ -1,58 +1,49 @@
-@if (licensed()) {
-    <div class="nx-unit-input-wrapper">
-        @if (label) {
-            <label class="nx-unit-input-label">{{ label }}@if (isRequired) {<span class="nx-unit-input-required">*</span>}</label>
-        }
+<div class="nx-unit-input-wrapper" *ngIf="licensed(); else elseBlock1">
+    <label class="nx-unit-input-label" *ngIf="label">{{ label }}<span class="nx-unit-input-required" *ngIf="isRequired">*</span></label>
 
-        <div class="nx-unit-input-field" [class.error]="!!displayError">
-            @if (unitPosition === 'prefix') {
-                @if (units.length > 1) {
-                    <select
-                        class="nx-unit-input-unit-select"
-                        [value]="effectiveUnit"
-                        [disabled]="disabled"
-                        (change)="onUnitSelect($event)">
-                        @for (u of units; track u) {
-                            <option [value]="u">{{ u }}</option>
-                        }
-                    </select>
-                } @else {
-                    <span class="nx-unit-input-affix">{{ effectiveUnit }}</span>
-                }
-            }
-
-            <input
-                type="number"
-                class="nx-unit-input-input"
-                [placeholder]="placeholder"
+    <div class="nx-unit-input-field" [class.error]="!!displayError">
+        <ng-container *ngIf="unitPosition === 'prefix'">
+            <select
+                class="nx-unit-input-unit-select"
+                *ngIf="units.length > 1; else elseBlock2"
+                [value]="effectiveUnit"
                 [disabled]="disabled"
-                [value]="value ?? ''"
-                [attr.aria-required]="isRequired ? true : null"
-                [attr.aria-invalid]="displayError ? true : null"
-                (input)="onValueInput($event)"
-                (blur)="onBlur()" />
+                (change)="onUnitSelect($event)">
+                <option *ngFor="let u of units; trackBy: trackByUnit" [value]="u">{{ u }}</option>
+            </select>
+            <ng-template #elseBlock2>
+                <span class="nx-unit-input-affix">{{ effectiveUnit }}</span>
+            </ng-template>
+        </ng-container>
 
-            @if (unitPosition === 'suffix') {
-                @if (units.length > 1) {
-                    <select
-                        class="nx-unit-input-unit-select"
-                        [value]="effectiveUnit"
-                        [disabled]="disabled"
-                        (change)="onUnitSelect($event)">
-                        @for (u of units; track u) {
-                            <option [value]="u">{{ u }}</option>
-                        }
-                    </select>
-                } @else {
-                    <span class="nx-unit-input-affix">{{ effectiveUnit }}</span>
-                }
-            }
-        </div>
+        <input
+            type="number"
+            class="nx-unit-input-input"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [value]="value ?? ''"
+            [attr.aria-required]="isRequired ? true : null"
+            [attr.aria-invalid]="displayError ? true : null"
+            (input)="onValueInput($event)"
+            (blur)="onBlur()" />
 
-        @if (displayError) {
-            <span class="nx-unit-input-error">{{ displayError }}</span>
-        }
+        <ng-container *ngIf="unitPosition === 'suffix'">
+            <select
+                class="nx-unit-input-unit-select"
+                *ngIf="units.length > 1; else elseBlock3"
+                [value]="effectiveUnit"
+                [disabled]="disabled"
+                (change)="onUnitSelect($event)">
+                <option *ngFor="let u of units; trackBy: trackByUnit" [value]="u">{{ u }}</option>
+            </select>
+            <ng-template #elseBlock3>
+                <span class="nx-unit-input-affix">{{ effectiveUnit }}</span>
+            </ng-template>
+        </ng-container>
     </div>
-} @else {
+
+    <span class="nx-unit-input-error" *ngIf="displayError">{{ displayError }}</span>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Unit Input"></nx-pro-locked>
-}
+</ng-template>

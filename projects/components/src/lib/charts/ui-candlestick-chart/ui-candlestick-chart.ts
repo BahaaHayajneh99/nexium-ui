@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber } from '../chart-utils';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -33,7 +34,7 @@ interface CandleGeometry {
 @Component({
   selector: 'nx-candlestick-chart',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf, NgFor],
   templateUrl: './ui-candlestick-chart.html',
   styleUrl: './ui-candlestick-chart.scss',
 })
@@ -145,5 +146,17 @@ export class NxCandlestickChart {
 
   formatTick(value: number): string {
     return formatNumber(value);
+  }
+
+  trackByTickValue(index: number, tick: { value: number; y: number }): number {
+    return tick.value;
+  }
+
+  trackByCandleKey(index: number, candle: CandleGeometry): string {
+    return candle.date + '-' + candle.index;
+  }
+
+  trackByCandleIndex(index: number, candle: CandleGeometry): number {
+    return candle.index;
   }
 }

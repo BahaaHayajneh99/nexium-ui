@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxAvatar, NxAvatarStatus } from '../ui-avatar';
 
 export type NxAvatarGroupSize = 'small' | 'medium' | 'large';
@@ -12,7 +13,7 @@ export interface NxAvatarGroupUser {
 @Component({
   selector: 'nx-avatar-group',
   standalone: true,
-  imports: [NxAvatar],
+  imports: [NgIf, NgFor, NxAvatar],
   templateUrl: './ui-avatar-group.html',
   styleUrl: './ui-avatar-group.scss',
 })
@@ -39,5 +40,9 @@ export class NxAvatarGroup {
 
   onOverflowClick(): void {
     this.overflowClick.emit();
+  }
+
+  trackByUserNameIndex(index: number, user: NxAvatarGroupUser): string {
+    return user.name + index;
   }
 }

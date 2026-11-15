@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxChatStream, NxChatStreamMessage } from '../ui-chat-stream/ui-chat-stream';
 import { NxPromptInput } from '../ui-prompt-input/ui-prompt-input';
 import { NxModelSelector, NxAiModel } from '../ui-model-selector/ui-model-selector';
@@ -16,7 +17,7 @@ import { nxProLicenseGranted } from '../../licensing/nx-license';
 @Component({
   selector: 'nx-ai-chat',
   standalone: true,
-  imports: [NxChatStream, NxPromptInput, NxModelSelector, NxProLocked],
+  imports: [NgIf, NxChatStream, NxPromptInput, NxModelSelector, NxProLocked],
   templateUrl: './ui-ai-chat.html',
   styleUrl: './ui-ai-chat.scss',
 })

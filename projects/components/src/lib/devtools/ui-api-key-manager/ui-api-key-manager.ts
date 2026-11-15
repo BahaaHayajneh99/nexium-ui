@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxCopyToClipboard } from '../../directives/nx-copy-to-clipboard/nx-copy-to-clipboard';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -26,7 +27,7 @@ export interface NxApiKey {
 @Component({
   selector: 'nx-api-key-manager',
   standalone: true,
-  imports: [NxIcon, NxCopyToClipboard, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxCopyToClipboard, NxProLocked],
   templateUrl: './ui-api-key-manager.html',
   styleUrl: './ui-api-key-manager.scss',
 })
@@ -74,5 +75,13 @@ export class NxApiKeyManager {
   formatDate(iso?: string): string {
     if (!iso) return 'Never used';
     return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  trackByKeyId(index: number, key: NxApiKey): string | number {
+    return key.id;
+  }
+
+  trackByScope(index: number, scope: string): string {
+    return scope;
   }
 }

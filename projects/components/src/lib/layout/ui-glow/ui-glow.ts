@@ -1,4 +1,5 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -27,7 +28,7 @@ const INTENSITY_PRESETS: Record<NxGlowIntensityPreset, NxGlowResolvedIntensity> 
 @Component({
   selector: 'nx-glow',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-glow.html',
   styleUrl: './ui-glow.scss',
 })

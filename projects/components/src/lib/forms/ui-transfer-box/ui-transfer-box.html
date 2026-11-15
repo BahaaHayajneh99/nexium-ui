@@ -11,14 +11,11 @@
             [value]="availableSearch()"
             (input)="onAvailableSearch($event)" />
         <div class="nx-transfer-list">
-            @for (item of filteredAvailable(); track item.id) {
-                <label class="nx-transfer-item">
-                    <input type="checkbox" [checked]="isAvailableChecked(item.id)" (change)="toggleAvailableCheck(item.id)" />
-                    <span>{{ item.label }}</span>
-                </label>
-            } @empty {
-                <div class="nx-transfer-empty">No items.</div>
-            }
+            <label class="nx-transfer-item" *ngFor="let item of filteredAvailable(); trackBy: trackByAvailableItemId">
+                <input type="checkbox" [checked]="isAvailableChecked(item.id)" (change)="toggleAvailableCheck(item.id)" />
+                <span>{{ item.label }}</span>
+            </label>
+            <div class="nx-transfer-empty" *ngIf="!filteredAvailable() || filteredAvailable().length === 0">No items.</div>
         </div>
     </div>
 
@@ -41,14 +38,11 @@
             [value]="selectedSearch()"
             (input)="onSelectedSearch($event)" />
         <div class="nx-transfer-list">
-            @for (item of filteredSelected(); track item.id) {
-                <label class="nx-transfer-item">
-                    <input type="checkbox" [checked]="isSelectedChecked(item.id)" (change)="toggleSelectedCheck(item.id)" />
-                    <span>{{ item.label }}</span>
-                </label>
-            } @empty {
-                <div class="nx-transfer-empty">No items.</div>
-            }
+            <label class="nx-transfer-item" *ngFor="let item of filteredSelected(); trackBy: trackBySelectedItemId">
+                <input type="checkbox" [checked]="isSelectedChecked(item.id)" (change)="toggleSelectedCheck(item.id)" />
+                <span>{{ item.label }}</span>
+            </label>
+            <div class="nx-transfer-empty" *ngIf="!filteredSelected() || filteredSelected().length === 0">No items.</div>
         </div>
     </div>
 </div>

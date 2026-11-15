@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NxAutofocus } from '../../directives/nx-autofocus';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -185,7 +186,7 @@ function normalizeRange(a: NxCellPos, b: NxCellPos): NxRange {
 @Component({
   selector: 'nx-spreadsheet',
   standalone: true,
-  imports: [FormsModule, NxAutofocus, NxProLocked],
+  imports: [NgIf, NgFor, FormsModule, NxAutofocus, NxProLocked],
   templateUrl: './ui-spreadsheet.html',
   styleUrl: './ui-spreadsheet.scss',
 })
@@ -740,5 +741,17 @@ export class NxSpreadsheet {
     link.download = `${filename}.csv`;
     link.click();
     URL.revokeObjectURL(url);
+  }
+
+  trackBySpanStartCol(index: number, span: { label: string; span: number; startCol: number }): number {
+    return span.startCol;
+  }
+
+  trackByCol(index: number, col: number): number {
+    return col;
+  }
+
+  trackByRow(index: number, row: number): number {
+    return row;
   }
 }

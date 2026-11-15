@@ -1,31 +1,29 @@
 <div class="nx-layout-preview" [class.selected]="selected">
     <div class="nx-layout-preview-diagram" [class]="template">
-        @switch (template) {
-            @case ('sidebar-left') {
+        <ng-container [ngSwitch]="template">
+            <ng-container *ngSwitchCase="'sidebar-left'">
                 <span class="nx-layout-preview-box sidebar"></span>
                 <span class="nx-layout-preview-box content"></span>
-            }
-            @case ('sidebar-right') {
+            </ng-container>
+            <ng-container *ngSwitchCase="'sidebar-right'">
                 <span class="nx-layout-preview-box content"></span>
                 <span class="nx-layout-preview-box sidebar"></span>
-            }
-            @case ('header-content') {
+            </ng-container>
+            <ng-container *ngSwitchCase="'header-content'">
                 <span class="nx-layout-preview-box header"></span>
                 <span class="nx-layout-preview-box content"></span>
-            }
-            @case ('holy-grail') {
+            </ng-container>
+            <ng-container *ngSwitchCase="'holy-grail'">
                 <span class="nx-layout-preview-box header"></span>
                 <span class="nx-layout-preview-box sidebar"></span>
                 <span class="nx-layout-preview-box content"></span>
                 <span class="nx-layout-preview-box aside"></span>
                 <span class="nx-layout-preview-box footer"></span>
-            }
-            @default {
+            </ng-container>
+            <ng-container *ngSwitchDefault>
                 <span class="nx-layout-preview-box content"></span>
-            }
-        }
+            </ng-container>
+        </ng-container>
     </div>
-    @if (label) {
-        <span class="nx-layout-preview-label">{{ label }}</span>
-    }
+    <span class="nx-layout-preview-label" *ngIf="label">{{ label }}</span>
 </div>

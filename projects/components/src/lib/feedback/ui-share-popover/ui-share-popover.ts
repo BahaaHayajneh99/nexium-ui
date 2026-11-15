@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxPopover } from '../ui-popover';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxCopyToClipboard } from '../../directives/nx-copy-to-clipboard';
@@ -53,7 +54,7 @@ const NX_SHARE_CHANNELS: NxShareChannelDef[] = [
 @Component({
   selector: 'nx-share-popover',
   standalone: true,
-  imports: [NxPopover, NxIcon, NxCopyToClipboard, NxProLocked],
+  imports: [NgFor, NgIf, NxPopover, NxIcon, NxCopyToClipboard, NxProLocked],
   templateUrl: './ui-share-popover.html',
   styleUrl: './ui-share-popover.scss',
 })
@@ -79,6 +80,10 @@ export class NxSharePopover {
 
   shareHref(channel: NxShareChannelDef): string {
     return channel.shareUrl(this.url, this.text);
+  }
+
+  trackByChannelKey(index: number, channel: NxShareChannelDef): NxShareChannel {
+    return channel.key;
   }
 
   onCopied(value: string): void {

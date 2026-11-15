@@ -3,15 +3,11 @@
         <ng-content select="[nx-popover-menu-trigger]"></ng-content>
     </div>
 
-    @if (open) {
-        <div class="nx-popover-menu-panel" [class]="'placement-' + resolvedPlacement">
-            <span class="nx-popover-menu-arrow"></span>
+    <div class="nx-popover-menu-panel" *ngIf="open" [class]="'placement-' + resolvedPlacement">
+        <span class="nx-popover-menu-arrow"></span>
 
-            @if (items.length > 0) {
-                <nx-menu [items]="items" (itemSelect)="onSelect($event)"></nx-menu>
-            }
+        <nx-menu *ngIf="items.length > 0" [items]="items" (itemSelect)="onSelect($event)"></nx-menu>
 
-            <ng-content></ng-content>
-        </div>
-    }
+        <ng-content></ng-content>
+    </div>
 </div>

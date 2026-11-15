@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-shadow-editor">
+<div class="nx-shadow-editor" *ngIf="licensed(); else elseBlock1">
         <div class="nx-shadow-editor-preview-wrap">
             <div class="nx-shadow-editor-preview" [style.box-shadow]="cssValue"></div>
         </div>
@@ -62,13 +61,11 @@
 
         <div class="nx-shadow-editor-css-row">
             <code class="nx-shadow-editor-css">{{ cssDeclaration }}</code>
-            @if (showCopyButton) {
-                <button type="button" class="nx-shadow-editor-copy" (click)="copyCss()">
-                    {{ copied() ? 'Copied!' : 'Copy' }}
-                </button>
-            }
+            <button type="button" class="nx-shadow-editor-copy" *ngIf="showCopyButton" (click)="copyCss()">
+                {{ copied() ? 'Copied!' : 'Copy' }}
+            </button>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Shadow Editor"></nx-pro-locked>
-}
+</ng-template>

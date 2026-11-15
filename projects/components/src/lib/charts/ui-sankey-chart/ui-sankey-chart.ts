@@ -1,4 +1,5 @@
 import { Component, Input, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber, seriesColor } from '../chart-utils';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -55,7 +56,7 @@ const EMPTY_LAYOUT: SankeyLayout = { nodes: [], links: [], maxLayer: 0 };
 @Component({
   selector: 'nx-sankey-chart',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NxProLocked, NgIf, NgFor],
   templateUrl: './ui-sankey-chart.html',
   styleUrl: './ui-sankey-chart.scss',
 })
@@ -245,5 +246,13 @@ export class NxSankeyChart {
 
   formatValue(value: number): string {
     return formatNumber(value);
+  }
+
+  trackByLinkKey(index: number, link: SankeyLinkLayout): string {
+    return link.key;
+  }
+
+  trackByNodeId(index: number, node: SankeyNodeLayout): string {
+    return node.id;
   }
 }

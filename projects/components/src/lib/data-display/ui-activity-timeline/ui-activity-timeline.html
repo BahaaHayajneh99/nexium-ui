@@ -1,23 +1,22 @@
 <div class="nx-activity-timeline">
-    @for (item of items; track item.id; let last = $last) {
+    <ng-container *ngFor="let item of items; trackBy: trackByItemId; let last = last">
         <div class="nx-activity-row" [class.last]="last">
             <div class="nx-activity-avatar">
-                @if (item.actorAvatarUrl) {
+                <ng-container *ngIf="item.actorAvatarUrl; else elseBlock1">
                     <img [src]="item.actorAvatarUrl" [alt]="item.actorName" />
-                } @else {
+                </ng-container>
+                <ng-template #elseBlock1>
                     <span>{{ initialFor(item.actorName) }}</span>
-                }
+                </ng-template>
             </div>
 
             <div class="nx-activity-content">
                 <p class="nx-activity-text">
                     <strong>{{ item.actorName }}</strong> {{ item.action }}
-                    @if (item.target) {
-                        <span class="nx-activity-target">{{ item.target }}</span>
-                    }
+                    <span class="nx-activity-target" *ngIf="item.target">{{ item.target }}</span>
                 </p>
                 <span class="nx-activity-time">{{ item.timestamp }}</span>
             </div>
         </div>
-    }
+    </ng-container>
 </div>

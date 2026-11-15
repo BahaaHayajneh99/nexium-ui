@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgIf, NgFor } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -21,7 +22,7 @@ interface NxJsonRow {
 @Component({
   selector: 'nx-json-viewer',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NgFor, NxProLocked],
   templateUrl: './ui-json-viewer.html',
   styleUrl: './ui-json-viewer.scss',
 })
@@ -36,6 +37,10 @@ export class NxJsonViewer {
     const rows: NxJsonRow[] = [];
     this.walk(this.value, '$', 0, null, rows);
     return rows;
+  }
+
+  trackByRowPath(_index: number, row: NxJsonRow): string {
+    return row.path;
   }
 
   isCollapsed(path: string): boolean {

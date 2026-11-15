@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -96,7 +97,7 @@ function validateNode(value: unknown, schema: NxJsonSchemaNode, path: string, er
 @Component({
   selector: 'nx-json-schema-validator',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-json-schema-validator.html',
   styleUrl: './ui-json-schema-validator.scss',
 })
@@ -152,5 +153,9 @@ export class NxJsonSchemaValidator implements OnInit {
     const outcome: NxJsonSchemaValidationResult = { valid: errors.length === 0, errors };
     this.result.set(outcome);
     this.validated.emit(outcome);
+  }
+
+  trackByError(index: number, error: string): string {
+    return error;
   }
 }

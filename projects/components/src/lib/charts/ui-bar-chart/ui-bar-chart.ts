@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { axisTicks, formatNumber, niceMax, roundedTopRectPath, seriesColor } from '../chart-utils';
 import { NxChartSeries } from '../chart-types';
 
@@ -17,7 +18,7 @@ interface BarGeometry {
 @Component({
   selector: 'nx-bar-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-bar-chart.html',
   styleUrl: './ui-bar-chart.scss',
 })
@@ -177,5 +178,21 @@ export class NxBarChart {
 
   swatchColor(s: NxChartSeries, index: number): string {
     return seriesColor(s.color, index);
+  }
+
+  trackByTick(index: number, tick: number): number {
+    return tick;
+  }
+
+  trackByBar(index: number, bar: BarGeometry): string {
+    return bar.categoryIndex + '-' + bar.seriesIndex;
+  }
+
+  trackByCategory(index: number, category: string): string {
+    return category;
+  }
+
+  trackBySeriesName(index: number, s: NxChartSeries): string {
+    return s.name;
   }
 }

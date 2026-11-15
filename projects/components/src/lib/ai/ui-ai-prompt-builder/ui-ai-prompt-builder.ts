@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxTokenCounter } from '../ui-token-counter/ui-token-counter';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -52,7 +53,7 @@ function generateId(): string {
 @Component({
   selector: 'nx-ai-prompt-builder',
   standalone: true,
-  imports: [NxTokenCounter, NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxTokenCounter, NxIcon, NxProLocked],
   templateUrl: './ui-ai-prompt-builder.html',
   styleUrl: './ui-ai-prompt-builder.scss',
 })
@@ -149,5 +150,13 @@ export class NxAiPromptBuilder {
 
   protected usePrompt(): void {
     this.promptGenerated.emit(this.renderedPrompt());
+  }
+
+  protected trackByTemplateId(index: number, template: NxPromptTemplate): string {
+    return template.id;
+  }
+
+  protected trackByVariableName(index: number, variable: NxPromptVariable): string {
+    return variable.name;
   }
 }

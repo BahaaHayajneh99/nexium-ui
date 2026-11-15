@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, signal } from '@angular/core';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 import { NxFileUpload } from '../../uploads/ui-file-upload';
@@ -40,7 +41,7 @@ const PREVIEW_ROW_COUNT = 5;
 @Component({
   selector: 'nx-data-import-wizard',
   standalone: true,
-  imports: [NxProLocked, NxFileUpload, NxStepper, NxIcon],
+  imports: [NxProLocked, NxFileUpload, NxStepper, NxIcon, NgIf, NgFor, NgSwitch, NgSwitchCase],
   templateUrl: './ui-data-import-wizard.html',
   styleUrl: './ui-data-import-wizard.scss',
 })
@@ -194,5 +195,17 @@ export class NxDataImportWizard {
     this.rows.set([]);
     this.mapping = {};
     this.parseError.set(null);
+  }
+
+  trackByFieldKey(index: number, field: NxImportField): string {
+    return field.key;
+  }
+
+  trackByHeader(index: number, header: string): string {
+    return header;
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxDropdownMenu } from '../ui-dropdown-menu';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
@@ -22,7 +23,7 @@ export interface NxVersionOption {
 @Component({
   selector: 'nx-version-selector',
   standalone: true,
-  imports: [NxIcon, NxDropdownMenu, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxDropdownMenu, NxProLocked],
   templateUrl: './ui-version-selector.html',
   styleUrl: './ui-version-selector.scss',
 })
@@ -49,5 +50,9 @@ export class NxVersionSelector {
   choose(option: NxVersionOption): void {
     this.selected = option.value;
     this.selectedChange.emit(option.value);
+  }
+
+  trackByVersionValue(index: number, version: NxVersionOption): string {
+    return version.value;
   }
 }

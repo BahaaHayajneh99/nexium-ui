@@ -1,28 +1,21 @@
-@if (licensed()) {
-    <div class="nx-terminal">
-        <div class="nx-terminal-output">
-            @for (line of lines; track $index) {
-                <div class="nx-terminal-line" [class]="line.type">
-                    @if (line.type === 'input') {
-                        <span class="nx-terminal-prompt">{{ prompt }}</span>
-                    }
-                    <span class="nx-terminal-text">{{ line.text }}</span>
-                </div>
-            }
+<div class="nx-terminal" *ngIf="licensed(); else elseBlock1">
+    <div class="nx-terminal-output">
+        <div class="nx-terminal-line" [class]="line.type" *ngFor="let line of lines; trackBy: trackByIndex">
+            <span class="nx-terminal-prompt" *ngIf="line.type === 'input'">{{ prompt }}</span>
+            <span class="nx-terminal-text">{{ line.text }}</span>
         </div>
-
-        @if (interactive) {
-            <div class="nx-terminal-input-row">
-                <span class="nx-terminal-prompt">{{ prompt }}</span>
-                <input
-                    type="text"
-                    class="nx-terminal-input"
-                    [value]="draft()"
-                    (input)="draft.set($any($event.target).value)"
-                    (keydown.enter)="onEnter()" />
-            </div>
-        }
     </div>
-} @else {
+
+    <div class="nx-terminal-input-row" *ngIf="interactive">
+        <span class="nx-terminal-prompt">{{ prompt }}</span>
+        <input
+            type="text"
+            class="nx-terminal-input"
+            [value]="draft()"
+            (input)="draft.set($any($event.target).value)"
+            (keydown.enter)="onEnter()" />
+    </div>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Terminal"></nx-pro-locked>
-}
+</ng-template>

@@ -7,14 +7,14 @@
     </div>
 
     <div class="nx-dashboard-widget-body">
-        @if (loading) {
-            <div class="nx-dashboard-widget-state">
-                <nx-spinner></nx-spinner>
-            </div>
-        } @else if (error) {
-            <div class="nx-dashboard-widget-state nx-dashboard-widget-error">{{ error }}</div>
-        } @else {
-            <ng-content></ng-content>
-        }
+        <div class="nx-dashboard-widget-state" *ngIf="loading; else elseIfBlock1">
+            <nx-spinner></nx-spinner>
+        </div>
+        <ng-template #elseIfBlock1>
+            <div class="nx-dashboard-widget-state nx-dashboard-widget-error" *ngIf="error; else elseBlock1">{{ error }}</div>
+            <ng-template #elseBlock1>
+                <ng-content></ng-content>
+            </ng-template>
+        </ng-template>
     </div>
 </div>

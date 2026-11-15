@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, booleanAttribute } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
@@ -14,7 +15,7 @@ export interface NxNavigationRailItem {
 @Component({
   selector: 'nx-navigation-rail',
   standalone: true,
-  imports: [NxIcon, NxProLocked],
+  imports: [NgIf, NgFor, NxIcon, NxProLocked],
   templateUrl: './ui-navigation-rail.html',
   styleUrl: './ui-navigation-rail.scss',
 })
@@ -30,5 +31,9 @@ export class NxNavigationRail {
   select(item: NxNavigationRailItem): void {
     this.active = item.id;
     this.activeChange.emit(item.id);
+  }
+
+  trackByItemId(index: number, item: NxNavigationRailItem): string | number {
+    return item.id;
   }
 }

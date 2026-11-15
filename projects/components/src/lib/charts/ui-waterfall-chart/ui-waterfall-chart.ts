@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { axisTicks, formatNumber, niceMax, roundedTopRectPath } from '../chart-utils';
 
 /** A single bar in an nx-waterfall-chart - either a floating delta or an absolute "total" that resets the baseline. */
@@ -38,7 +39,7 @@ interface WaterfallConnector {
 @Component({
   selector: 'nx-waterfall-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-waterfall-chart.html',
   styleUrl: './ui-waterfall-chart.scss',
 })
@@ -229,5 +230,25 @@ export class NxWaterfallChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackByTick(index: number, tick: number): number {
+    return tick;
+  }
+
+  trackByConnector(index: number, connector: WaterfallConnector): string {
+    return connector.x1 + '-' + connector.y;
+  }
+
+  trackByBarIndex(index: number, bar: WaterfallBar): number {
+    return bar.index;
+  }
+
+  trackByPoint(index: number, point: NxWaterfallPoint): string {
+    return point.label;
+  }
+
+  trackByLegendItem(index: number, item: { kind: WaterfallKind; label: string; color: string }): WaterfallKind {
+    return item.kind;
   }
 }

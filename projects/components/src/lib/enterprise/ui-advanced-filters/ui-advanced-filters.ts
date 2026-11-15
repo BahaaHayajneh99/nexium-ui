@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 import { NxFilterBuilder, NxFilterCondition, NxFilterField } from '../../interaction/ui-filter-builder';
@@ -29,7 +30,7 @@ export interface NxNumberOrDateRange {
 @Component({
   selector: 'nx-advanced-filters',
   standalone: true,
-  imports: [NxProLocked, NxFilterBuilder],
+  imports: [NxProLocked, NxFilterBuilder, NgIf, NgFor, NgSwitch, NgSwitchCase],
   templateUrl: './ui-advanced-filters.html',
   styleUrl: './ui-advanced-filters.scss',
 })
@@ -82,5 +83,13 @@ export class NxAdvancedFilters {
 
   private emit(): void {
     this.valuesChange.emit({ ...this.values(), _advanced: this.advancedConditions });
+  }
+
+  trackByFieldField(index: number, field: NxQuickFilterField): string {
+    return field.field;
+  }
+
+  trackByOption(index: number, opt: string): string {
+    return opt;
   }
 }

@@ -1,5 +1,5 @@
 <div class="nx-filter-chip-group" role="group">
-    @for (option of options; track option.id) {
+    <ng-container *ngFor="let option of options; trackBy: trackByOptionId">
         <button
             type="button"
             class="nx-filter-chip"
@@ -7,13 +7,9 @@
             [attr.aria-pressed]="isSelected(option.id)"
             (click)="toggle(option.id)">
             {{ option.label }}
-            @if (option.count !== undefined) {
-                <span class="nx-filter-chip-count">{{ option.count }}</span>
-            }
+            <span class="nx-filter-chip-count" *ngIf="option.count !== undefined">{{ option.count }}</span>
         </button>
-    }
+    </ng-container>
 
-    @if (selectedIds.length > 0) {
-        <button type="button" class="nx-filter-chip-clear" (click)="clearAll()">{{ clearLabel }}</button>
-    }
+    <button type="button" class="nx-filter-chip-clear" (click)="clearAll()" *ngIf="selectedIds.length > 0">{{ clearLabel }}</button>
 </div>

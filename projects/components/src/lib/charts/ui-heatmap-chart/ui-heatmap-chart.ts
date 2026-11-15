@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { formatNumber } from '../chart-utils';
 
 interface HeatmapCell {
@@ -15,7 +16,7 @@ interface HeatmapCell {
 @Component({
   selector: 'nx-heatmap-chart',
   standalone: true,
-  imports: [],
+  imports: [NgIf, NgFor],
   templateUrl: './ui-heatmap-chart.html',
   styleUrl: './ui-heatmap-chart.scss',
 })
@@ -133,5 +134,17 @@ export class NxHeatmapChart {
 
   toggleTable(): void {
     this.showTable = !this.showTable;
+  }
+
+  trackByColumn(index: number, column: string): string {
+    return column;
+  }
+
+  trackByRow(index: number, row: string): string {
+    return row;
+  }
+
+  trackByCell(index: number, cell: HeatmapCell): string {
+    return `${cell.rowIndex}-${cell.columnIndex}`;
   }
 }

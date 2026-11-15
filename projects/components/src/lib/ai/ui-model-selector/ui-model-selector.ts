@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
 import { NxIcon } from '../../data-display/ui-icon';
 
 export interface NxAiModel {
@@ -17,7 +18,7 @@ export interface NxAiModel {
 @Component({
   selector: 'nx-model-selector',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgIf, NgFor, NxIcon],
   templateUrl: './ui-model-selector.html',
   styleUrl: './ui-model-selector.scss',
 })
@@ -51,5 +52,9 @@ export class NxModelSelector {
     if (this.open && !this.elementRef.nativeElement.contains(event.target as Node)) {
       this.open = false;
     }
+  }
+
+  protected trackByModelId(index: number, model: NxAiModel): string {
+    return model.id;
   }
 }

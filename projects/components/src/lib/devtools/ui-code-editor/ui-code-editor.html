@@ -1,20 +1,15 @@
-@if (licensed()) {
-    <div class="nx-code-editor">
-        @if (showLineNumbers) {
-            <div class="nx-code-editor-gutter" #gutter>
-                @for (line of lines; track $index) {
-                    <span class="nx-code-editor-line-number">{{ $index + 1 }}</span>
-                }
-            </div>
-        }
-        <textarea
-            class="nx-code-editor-textarea"
-            spellcheck="false"
-            [disabled]="disabled"
-            [value]="code()"
-            (input)="onInput($any($event.target).value)"
-            (scroll)="onScroll($event)"></textarea>
+<div class="nx-code-editor" *ngIf="licensed(); else elseBlock1">
+    <div class="nx-code-editor-gutter" #gutter *ngIf="showLineNumbers">
+        <span class="nx-code-editor-line-number" *ngFor="let line of lines; trackBy: trackByIndex; let i = index">{{ i + 1 }}</span>
     </div>
-} @else {
+    <textarea
+        class="nx-code-editor-textarea"
+        spellcheck="false"
+        [disabled]="disabled"
+        [value]="code()"
+        (input)="onInput($any($event.target).value)"
+        (scroll)="onScroll($event)"></textarea>
+</div>
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Code Editor"></nx-pro-locked>
-}
+</ng-template>

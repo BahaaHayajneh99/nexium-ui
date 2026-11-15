@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, booleanAttribute, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxProLocked } from '../../licensing/ui-pro-locked/ui-pro-locked';
 import { nxProLicenseGranted } from '../../licensing/nx-license';
 
@@ -25,7 +26,7 @@ export type NxCoachmarkPlacement = 'top' | 'bottom' | 'left' | 'right';
 @Component({
   selector: 'nx-coachmark',
   standalone: true,
-  imports: [NxProLocked],
+  imports: [NgIf, NxProLocked],
   templateUrl: './ui-coachmark.html',
   styleUrl: './ui-coachmark.scss',
 })

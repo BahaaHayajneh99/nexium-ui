@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NxIcon } from '../ui-icon';
 
 export type NxResultStatus = 'success' | 'error' | 'warning' | 'info';
@@ -13,7 +14,7 @@ const DEFAULT_ICONS: Record<NxResultStatus, string> = {
 @Component({
   selector: 'nx-result',
   standalone: true,
-  imports: [NxIcon],
+  imports: [NgIf, NxIcon],
   templateUrl: './ui-result.html',
   styleUrl: './ui-result.scss',
 })

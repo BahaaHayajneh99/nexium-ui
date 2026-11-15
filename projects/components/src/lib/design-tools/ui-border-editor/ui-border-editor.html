@@ -1,5 +1,4 @@
-@if (licensed()) {
-    <div class="nx-border-editor">
+<div class="nx-border-editor" *ngIf="licensed(); else elseBlock1">
         <div class="nx-border-editor-preview-wrap">
             <div
                 class="nx-border-editor-preview"
@@ -85,6 +84,6 @@
             </div>
         </div>
     </div>
-} @else {
+<ng-template #elseBlock1>
     <nx-pro-locked componentName="Border Editor"></nx-pro-locked>
-}
+</ng-template>
