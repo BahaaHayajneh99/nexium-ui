@@ -189,13 +189,6 @@ a {
     border-top: 1px solid var(--shell-border);
     padding-top: 48px;
 
-    // Same reasoning as .home-hero above - drop the sidebar-width reservation on narrow screens.
-    @media (max-width: 1080px) {
-        width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
     @media (max-width: 900px) {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -225,9 +218,13 @@ a {
     margin: 0 auto;
     padding: 72px var(--nx-padding-right-content, 100px) 72px 0;
     scroll-margin-top: 80px;
+}
 
-    // Same reasoning as .home-hero above - drop the sidebar-width reservation on narrow screens.
-    @media (max-width: 1080px) {
+// Shared with .home-hero above - drop the sidebar-width reservation (there's no sidebar on this
+// page) on narrow screens, where it otherwise squeezes everything into a sliver.
+@media (max-width: 1080px) {
+    .home-stats,
+    .home-section {
         width: 100%;
         padding-left: 20px;
         padding-right: 20px;
@@ -271,6 +268,18 @@ a {
     }
 }
 
+.home-category-card,
+.home-template-card {
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    &:hover {
+        border-color: color-mix(in srgb, var(--shell-primary) 40%, transparent);
+        transform: translateY(-2px);
+    }
+}
+
 .home-category-card {
     display: block;
     padding: 22px;
@@ -280,7 +289,6 @@ a {
     transition: border-color .15s ease, transform .15s ease;
 
     nx-icon {
-        color: var(--shell-primary);
         margin-bottom: 12px;
     }
 
@@ -296,11 +304,6 @@ a {
         line-height: 1.5;
         color: var(--shell-text-secondary);
         margin: 0;
-    }
-
-    &:hover {
-        border-color: color-mix(in srgb, var(--shell-primary) 40%, transparent);
-        transform: translateY(-2px);
     }
 }
 
@@ -480,21 +483,12 @@ a {
     text-align: center;
     transition: border-color .15s ease, transform .15s ease;
 
-    nx-icon {
-        color: var(--shell-primary);
-    }
-
     p {
         margin: 0;
         font-size: 12px;
         font-weight: 400;
         line-height: 1.5;
         color: var(--shell-text-secondary);
-    }
-
-    &:hover {
-        border-color: color-mix(in srgb, var(--shell-primary) 40%, transparent);
-        transform: translateY(-2px);
     }
 }
 
@@ -659,35 +653,6 @@ a {
     }
 }
 
-.home-notification-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 10px 0;
-    border-top: 1px solid var(--shell-border);
-
-    &:first-of-type {
-        border-top: none;
-    }
-
-    nx-icon {
-        flex-shrink: 0;
-        margin-top: 2px;
-        color: var(--shell-primary);
-    }
-
-    p {
-        font-size: 13px;
-        margin: 0;
-        color: var(--shell-text);
-    }
-
-    span {
-        font-size: 11.5px;
-        color: var(--shell-text-secondary);
-    }
-}
-
 // Single wide card used by every non-"overview" kind in the template preview (metrics, list,
 // avatars, progress, toggles) - spans all 3 grid columns instead of sharing the row with others.
 .home-template-preview-card-wide {
@@ -702,6 +667,7 @@ a {
     border-bottom: 1px solid var(--shell-border);
 }
 
+.home-notification-row,
 .home-list-row,
 .home-avatar-row {
     display: flex;
@@ -728,6 +694,16 @@ a {
 
 .home-list-row {
     justify-content: space-between;
+}
+
+.home-notification-row {
+    align-items: flex-start;
+
+    nx-icon {
+        flex-shrink: 0;
+        margin-top: 2px;
+        color: var(--shell-primary);
+    }
 }
 
 .home-progress-row {
