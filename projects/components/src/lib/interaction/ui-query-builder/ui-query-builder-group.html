@@ -33,14 +33,14 @@
                     <select
                         class="nx-query-builder-select"
                         [value]="asRule(node).field"
-                        (change)="updateNode(i, { ...asRule(node), field: $any($event.target).value })">
+                        (change)="updateField(i, $any($event.target).value)">
                         <option [value]="field.id" *ngFor="let field of fields; trackBy: trackByFieldId">{{ field.label }}</option>
                     </select>
 
                     <select
                         class="nx-query-builder-select"
                         [value]="asRule(node).operator"
-                        (change)="updateNode(i, { ...asRule(node), operator: $any($event.target).value })">
+                        (change)="updateOperator(i, $any($event.target).value)">
                         <option [value]="operator.value" *ngFor="let operator of operators; trackBy: trackByOperatorValue">{{ operator.label }}</option>
                     </select>
 
@@ -49,7 +49,7 @@
                         class="nx-query-builder-input"
                         placeholder="Value"
                         [value]="asRule(node).value"
-                        (input)="updateNode(i, { ...asRule(node), value: $any($event.target).value })"
+                        (input)="updateValue(i, $any($event.target).value)"
                         *ngIf="needsValue(asRule(node).operator)" />
 
                     <button

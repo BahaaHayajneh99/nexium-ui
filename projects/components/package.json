@@ -1,6 +1,6 @@
 {
   "name": "nexium-ui",
-  "version": "0.1.11",
+  "version": "0.2.0",
   "description": "300+ ready-to-use standalone Angular UI components for building modern dashboards, admin panels, and enterprise applications - forms, data tables, charts, navigation, AI tools, and more. Tree-shakable, themeable via CSS variables, free and PRO tiers.",
   "keywords": [
     "angular",

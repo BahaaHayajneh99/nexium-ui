@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideNxTranslate } from '../../../../dist/core';
 import { provideNxLicense } from '../../../../dist/components';
 
@@ -25,7 +25,14 @@ const DOCS_SITE_LICENSE_TOKEN = 'nxui_pro_00168b899b10a75fcf9480172e30a386';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      // Lets the site-header's Components/Templates/Free vs PRO links (routerLink="/" with a
+      // fragment) scroll to the matching #id on the home page from ANY route, not just when
+      // already on "/" - previously those were plain href="#id" anchors, which only worked on
+      // the home page itself since they never actually navigated there.
+      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
+    ),
     provideNxLicense(DOCS_SITE_LICENSE_TOKEN),
     provideNxTranslate({
       defaultLang: 'en',

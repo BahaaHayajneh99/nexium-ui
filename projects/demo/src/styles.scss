@@ -1040,6 +1040,13 @@ body {
     align-items: center;
     gap: $spacing-sm;
     letter-spacing: normal;
+
+    // .main-section-code (the parent) scrolls horizontally as one box when the code is wider
+    // than it, which otherwise drags this toolbar - and the Copy button in it - off to the left
+    // right along with the code. Stuck to the scrollport's left edge instead, so Copy stays put.
+    position: sticky;
+    left: 0;
+    z-index: 1;
 }
 
 .main-section-code-copy {

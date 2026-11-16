@@ -1,13 +1,11 @@
 <div class="nav">
     <div class="nav-header">
-        <div class="nav-brand" routerLink="/">
+        <a class="nav-brand" routerLink="/">
             @for (char of commonService.appName.split(''); track $index) {
-                <span class="brand-letter" [class.brand-highlight]="char.toLowerCase() === 'n' || char.toLowerCase() === 'x'">
-                    {{ char }}
-                </span>
+                <span class="brand-letter" [class.brand-highlight]="char.toLowerCase() === 'n' || char.toLowerCase() === 'x'">{{ char }}</span>
             }
             <span class="brand-ui">UI</span>
-        </div>
+        </a>
 
         <div class="nav-toolbar">
             <button type="button" class="nav-search-trigger" (click)="openPalette()">
@@ -109,11 +107,12 @@
                 <nx-icon icon="nx-npm" variant="svg" [size]="14"></nx-icon>
             </a>
 
-        </div>
+            <a class="nav-social-link" href="https://github.com/BahaaHayajneh99/nexium-ui" target="_blank"
+                rel="noopener noreferrer" title="GitHub">
+                <nx-icon icon="nx-github" variant="svg" [size]="14"></nx-icon>
+            </a>
 
-        <p class="nav-footer-text">
-            &copy; {{ currentYaer }} {{ commonService.appName }}. All rights reserved.
-        </p>
+        </div>
 
         <p class="nav-footer-text">
             Version: {{ commonService.packageVersion }}

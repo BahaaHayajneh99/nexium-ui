@@ -11,6 +11,7 @@ import { ShowcaseProjects } from './showcase/showcase-projects/showcase-projects
 import { ShowcaseTeam } from './showcase/showcase-team/showcase-team';
 import { ShowcaseSettings } from './showcase/showcase-settings/showcase-settings';
 import { ShowcaseMarketing } from './showcase/showcase-marketing/showcase-marketing';
+import { Home } from './home/home';
 import { ShowcaseEcommerce } from './showcase/showcase-ecommerce/showcase-ecommerce';
 import { ShowcaseSupport } from './showcase/showcase-support/showcase-support';
 import { ShowcaseCrm } from './showcase/showcase-crm/showcase-crm';
@@ -608,7 +609,7 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'getting-started'
+        component: Home
     },
     {
         path: 'showcase-marketing',

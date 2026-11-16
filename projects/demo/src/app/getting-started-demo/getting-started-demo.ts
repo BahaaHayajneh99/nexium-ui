@@ -11,7 +11,9 @@ import { DemoSection } from '../shared/demo-section/demo-section';
 export class GettingStartedDemo {
   public commonService = inject(CommonService);
 
-  installCode = `npm install nexium-ui`;
+  installCode = `ng add nexium-ui`;
+
+  npmInstallCode = `npm install nexium-ui`;
 
   angularJsonStylesCode = `"architect": {
   "build": {

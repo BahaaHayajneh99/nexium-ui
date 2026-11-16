@@ -1,0 +1,24 @@
+<header class="site-header">
+    <div class="site-header-inner">
+        <a class="site-brand" routerLink="/">
+            <span class="brand-letter" *ngFor="let char of commonService.appName.split('')"
+                [class.brand-highlight]="char.toLowerCase() === 'n' || char.toLowerCase() === 'x'">{{ char }}</span>
+            <span class="brand-ui">UI</span>
+        </a>
+        <nav class="site-header-nav">
+            <a routerLink="/" fragment="categories">Components</a>
+            <a routerLink="/" fragment="templates">Templates</a>
+            <a routerLink="/" fragment="free-pro">Free vs PRO</a>
+        </nav>
+        <div class="site-header-actions">
+            <button type="button" class="site-header-theme-btn" (click)="theme.toggle()"
+                [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'">
+                <nx-icon [icon]="theme.theme() === 'dark' ? 'nx-sun' : 'nx-moon'" variant="svg" [size]="16"></nx-icon>
+            </button>
+            <a href="https://github.com/BahaaHayajneh99/nexium-ui" target="_blank" rel="noopener" class="site-header-link">
+                <nx-icon icon="nx-github" variant="svg" [size]="18"></nx-icon>
+            </a>
+            <a routerLink="/getting-started" class="site-btn site-btn-primary site-btn-sm">Get Started</a>
+        </div>
+    </div>
+</header>

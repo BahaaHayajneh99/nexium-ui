@@ -13,8 +13,16 @@
 
             <app-demo-section
                 header="Installation"
-                description="Install the package from npm."
+                description="Install with the Angular CLI's ng add - it adds the package and registers the NexiumUI stylesheet in your angular.json for you, so you can skip the Styles &amp; Theming step below."
                 [code]="installCode"
+                [codeLang]="'ts'"
+                [hasSampleClass]="false">
+            </app-demo-section>
+
+            <app-demo-section
+                header="&hellip;or Install with npm"
+                description="Prefer plain npm? Install the package yourself, then add the stylesheet with one of the methods below."
+                [code]="npmInstallCode"
                 [codeLang]="'ts'"
                 [hasSampleClass]="false">
             </app-demo-section>
