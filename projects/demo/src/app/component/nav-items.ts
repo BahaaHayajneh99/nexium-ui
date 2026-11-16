@@ -572,7 +572,7 @@ export const NAV_ITEMS: NxNavItem[] = [
   //       ],
   //     },
   //   ],
-  // },
+  // }, 
   { key: 'Showcase', label: 'Showcase', icon: 'nx-layout', path: '/showcase', isNew: true },
   //TODO: Uncomment this section when we have PRO templates available
   // {
