@@ -65,6 +65,18 @@ export class NxQueryBuilderGroup {
     this.groupChange.emit({ ...this.group, rules });
   }
 
+  updateField(index: number, value: string): void {
+    this.updateNode(index, { ...this.asRule(this.group.rules[index]), field: value });
+  }
+
+  updateOperator(index: number, value: string): void {
+    this.updateNode(index, { ...this.asRule(this.group.rules[index]), operator: value as NxFilterOperator });
+  }
+
+  updateValue(index: number, value: string): void {
+    this.updateNode(index, { ...this.asRule(this.group.rules[index]), value });
+  }
+
   removeNode(index: number): void {
     this.groupChange.emit({ ...this.group, rules: this.group.rules.filter((_, i) => i !== index) });
   }

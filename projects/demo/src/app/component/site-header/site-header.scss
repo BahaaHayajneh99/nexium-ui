@@ -1,0 +1,177 @@
+:host {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+}
+
+a {
+    text-decoration: none;
+}
+
+.site-header {
+    display: flex;
+    height: 90px;
+    border-bottom: 1px solid var(--shell-border);
+    background: var(--shell-overlay);
+    backdrop-filter: blur(10px);
+}
+
+.site-header-inner {
+    // Same max-width + centering as the home page's content sections (.home-hero, .home-section,
+    // .app-footer-inner), so the logo's left edge lines up exactly with where the hero text,
+    // section content, and footer all start - one shared container width down the whole page.
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: calc(100% - var(--nx-main-nav-width, 300px));
+    padding: 12px var(--nx-padding-right-content, 100px) 12px 0;
+
+    // Same reasoning as the home page sections (home.scss) - there's no sidebar on this page, so
+    // reserving 300px + 100px for it left almost nothing for the header on narrow screens.
+    @media (max-width: 1080px) {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.site-brand {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-size: 30px;
+    font-weight: var(--nx-font-weight-bold, 700);
+    line-height: 1;
+    letter-spacing: -1.5px;
+    color: var(--shell-text);
+}
+
+.brand-letter {
+    display: inline-block;
+    color: var(--shell-text);
+}
+
+.brand-highlight {
+    color: var(--shell-primary);
+    font-weight: 800;
+}
+
+.brand-ui {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 9px;
+
+    min-width: 34px;
+    height: 24px;
+    padding: 5px 7px;
+
+    border-radius: 7px;
+
+    background: var(--shell-primary);
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+
+    animation: siteBrandUiMove 4s ease-in-out infinite;
+}
+
+@keyframes siteBrandUiMove {
+
+    0%,
+    20% {
+        transform: translate(0, 0);
+    }
+
+    45%,
+    55% {
+        /* Move above the last letter */
+        transform: translate(-40px, -30px);
+    }
+
+    80%,
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.site-header-nav {
+    display: flex;
+    gap: 28px;
+    flex: 1;
+    justify-content: center;
+
+    a {
+        color: var(--shell-text-secondary);
+        font-size: 14px;
+        font-weight: 500;
+
+        &:hover {
+            color: var(--shell-text);
+        }
+    }
+
+    @media (max-width: 800px) {
+        display: none;
+    }
+}
+
+.site-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.site-header-theme-btn,
+.site-header-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--shell-border);
+    border-radius: var(--nx-radius-md, 8px);
+    background: var(--shell-bg);
+    color: var(--shell-text-muted);
+    cursor: pointer;
+    transition: all var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        border-color: var(--shell-primary);
+        color: var(--shell-primary);
+    }
+}
+
+.site-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: transform .15s ease, filter .15s ease;
+
+    &:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.08);
+    }
+}
+
+.site-btn-sm {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.site-btn-primary {
+    background: var(--shell-primary);
+    color: #fff;
+}

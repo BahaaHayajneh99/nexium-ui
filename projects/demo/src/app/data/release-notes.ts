@@ -14,6 +14,23 @@ export interface ReleaseNote {
 /** Single source of truth for the Changelog and What's New pages - add new entries to the top. */
 export const RELEASE_NOTES: ReleaseNote[] = [
   {
+    version: '0.2.0',
+    date: '16-11-2026',
+    changes: [
+      { type: 'feature', description: 'Added an interactive "A full template" preview to the home page - an icon sidebar where each icon swaps in a genuinely different self-contained panel (dashboard overview, analytics metrics, an order queue, customer/team avatar lists, an invoice list, project progress bars, a settings panel), built from NxAvatar, NxBadge, NxProgressBar, NxSwitch, NxBarChart and NxChip.' },
+      { type: 'feature', description: 'Added a dark/light theme toggle and the theme color customizer to the home page header - both were previously only available on docs pages.' },
+      { type: 'feature', description: 'Added "Supported Angular versions" and "Directives & pipes" sections to the home page, and syntax-highlighted its install/usage code samples with the same highlighter every docs page\'s code sample already uses.' },
+      { type: 'improvement', description: 'Reworked the home page\'s layout so the header, hero, every section, and the footer all share the same width and left-edge offset, instead of each drifting inward by a different amount depending on screen width.' },
+      { type: 'fix', description: 'Fixed the docs sidebar not spanning the full page height - it previously stopped short, leaving a gap before the footer - and removed the duplicate NexiumUI logo that was appearing in both the sidebar and the top header.' },
+      { type: 'fix', description: 'Fixed the home page being nearly unusable on narrow/mobile screens - several sections were reserving 300px+100px of width for a sidebar that doesn\'t exist on that page, squeezing all content into a sliver.' },
+      { type: 'fix', description: 'Fixed the Copy button on code samples scrolling out of view to the left whenever a long code line forced horizontal scrolling - it\'s now pinned to the left edge of the scroll area.' },
+      { type: 'fix', description: 'Replaced the dashboard hero preview\'s multi-column Kanban board, which needed more width than its card had and forced an awkward horizontal scrollbar, with a single-column task list.' },
+      { type: 'fix', description: 'Corrected the Angular Version Compatibility page, which listed a fictitious nexium-ui version per Angular release (e.g. "20.x -> v4.x") and omitted Angular 16/17 entirely - it now matches the real support matrix (0.2.0+ supports Angular 16-21).' },
+      { type: 'fix', description: 'Corrected the Roadmap page - dozens of items still listed as "Planned" (Query Builder, Kanban, App Shell, Code Block, Version Badge, Dashboard Builder, and more) had already shipped.' },
+      { type: 'fix', description: 'Corrected several outdated README links that pointed at the Getting Started/installation page instead of the site or section they actually described.' },
+    ],
+  },
+  {
     version: '0.1.9',
     date: '26-09-2026',
     changes: [

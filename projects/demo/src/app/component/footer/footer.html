@@ -1,0 +1,44 @@
+<footer class="app-footer">
+    <div class="app-footer-inner">
+
+        <div class="app-footer-brand">
+            <div class="app-footer-logo">
+                <span class="brand-letter" *ngFor="let char of commonService.appName.split('')"
+                    [class.brand-highlight]="char.toLowerCase() === 'n' || char.toLowerCase() === 'x'">{{ char }}</span>
+                <span class="brand-ui">UI</span>
+            </div>
+            <p class="app-footer-tagline">
+                300+ standalone Angular components - plus directives and pipes - for building modern dashboards,
+                admin panels and enterprise applications.
+            </p>
+            <div class="app-footer-socials">
+                <a class="app-footer-social" href="https://github.com/BahaaHayajneh99/nexium-ui" target="_blank" rel="noopener" aria-label="GitHub">
+                    <nx-icon icon="nx-github" variant="svg" [size]="18"></nx-icon>
+                </a>
+                <a class="app-footer-social" href="https://www.linkedin.com/in/bahaa-hayajneh-67466018b/?skipRedirect=true"
+                    target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <nx-icon icon="nx-linkedin" variant="svg" [size]="18"></nx-icon>
+                </a>
+                <a class="app-footer-social" href="https://www.npmjs.com/package/nexium-ui" target="_blank"
+                    rel="noopener noreferrer" aria-label="npm">
+                    <nx-icon icon="nx-npm" variant="svg" [size]="18"></nx-icon>
+                </a>
+            </div>
+        </div>
+
+        <div class="app-footer-column" *ngFor="let column of columns">
+            <h3>{{ column.heading }}</h3>
+            <ul>
+                <li *ngFor="let link of column.links">
+                    <a *ngIf="link.path" [routerLink]="link.path">{{ link.label }}</a>
+                    <a *ngIf="link.href" [href]="link.href" target="_blank" rel="noopener">{{ link.label }}</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="app-footer-bottom">
+        <span>&copy; {{ currentYear }} {{ commonService.appName }}. All rights reserved.</span>
+    </div>
+</footer>

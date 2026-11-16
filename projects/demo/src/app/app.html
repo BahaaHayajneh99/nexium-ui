@@ -14,8 +14,10 @@
 <nx-button variant="outline">
   Outline Button
 </nx-button> -->
-@if (isShowcaseRoute()) {
+@if (isShowcaseRoute() || isLandingRoute()) {
   <router-outlet></router-outlet>
+<app-footer></app-footer>
+
 } @else {
   <div class="main" [class.nav-open]="mobileNavOpen()">
     <div class="main-nav">
@@ -29,8 +31,10 @@
       <nx-icon icon="nx-menu" variant="svg" [size]="18"></nx-icon>
     </button>
   <router-outlet></router-outlet>
+
   </div>
   </div>
 
   <app-theme-customizer></app-theme-customizer>
 }
+

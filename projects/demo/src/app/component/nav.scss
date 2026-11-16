@@ -1,5 +1,7 @@
 .nav {
     position: sticky;
+    // Docs pages no longer have a global header above the sidebar - it's a full-height column
+    // starting at the very top of the viewport instead.
     top: 0;
 
     display: flex;
@@ -8,8 +10,8 @@
     height: 100vh;
     overflow: hidden;
 
-    background: var(--shell-surface);
-    border-right: 1px solid var(--shell-border);
+    // Background/border-right now live on the .main-nav wrapper (app.scss), which stretches to the
+    // full content height - this box only ever spans the viewport height while stuck.
     font-family: Inter, system-ui, sans-serif;
 
     .nav-item {
@@ -393,7 +395,9 @@
     font-weight: var(--nx-font-weight-bold, 700);
     line-height: 1;
     letter-spacing: -1.5px;
-    margin: var(--nx-font-size-md, 16px) 0;
+    color: var(--shell-text);
+    text-decoration: none;
+    padding-top: 12px;
 }
 
 .brand-letter {
@@ -426,10 +430,10 @@
     font-weight: 800;
     letter-spacing: 0.5px;
 
-    animation: uiMove 4s ease-in-out infinite;
+    animation: brandUiMove 4s ease-in-out infinite;
 }
 
-@keyframes uiMove {
+@keyframes brandUiMove {
 
     0%,
     20% {
@@ -447,3 +451,4 @@
         transform: translate(0, 0);
     }
 }
+

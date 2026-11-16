@@ -13,11 +13,17 @@ import { DemoSection } from '../shared/demo-section/demo-section';
 export class DeveloperAngularCompatibilityDemo {
   commonService = inject(CommonService);
 
+  // From the README's "Supported Angular versions" table: nexium-ui 0.2.0 and later supports
+  // every Angular version from 16 through 21 (0.1.9 and earlier only supported Angular 21.2+).
+  // There's no separate major-version lineage per Angular release - it's the same current
+  // package across all of them.
   versionMatrix = [
-    { version: '21.x', nexaUI: '✓ Latest', status: 'Recommended', notes: 'Full support, all features' },
-    { version: '20.x', nexaUI: '✓ v4.x', status: 'Supported', notes: 'Full support with latest library' },
-    { version: '19.x', nexaUI: '✓ v3.x', status: 'Supported', notes: 'Full support, some features limited' },
-    { version: '18.x', nexaUI: '✓ v2.x', status: 'Legacy', notes: 'Basic support, migration recommended' },
+    { version: '21.x', nexaUI: '0.2.0+', status: 'Recommended', notes: 'Latest Angular release, full support' },
+    { version: '20.x', nexaUI: '0.2.0+', status: 'Supported', notes: 'Full support' },
+    { version: '19.x', nexaUI: '0.2.0+', status: 'Supported', notes: 'Full support' },
+    { version: '18.x', nexaUI: '0.2.0+', status: 'Supported', notes: 'Full support' },
+    { version: '17.x', nexaUI: '0.2.0+', status: 'Supported', notes: 'Full support' },
+    { version: '16.x', nexaUI: '0.2.0+', status: 'Supported', notes: 'Full support' },
   ];
 
   nodeVersions = [
@@ -60,7 +66,7 @@ export class DeveloperAngularCompatibilityDemo {
       to: 'Angular 21.x',
       steps: [
         'Update Angular CLI and dependencies',
-        'Update NexaUI to latest version',
+        'Update nexium-ui to the latest version',
         'Review deprecated Angular features',
         'Update component imports if necessary',
         'Test application thoroughly',

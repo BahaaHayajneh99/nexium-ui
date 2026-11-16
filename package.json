@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:lib": "ng build components",
+    "validate:templates": "ng build components",
+    "validate": "npm run validate:templates && npm pack --dry-run ./dist/components"
   },
   "private": true,
   "packageManager": "npm@10.9.2",

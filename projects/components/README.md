@@ -29,7 +29,7 @@ with ready-to-use Angular components.
 ng add nexium-ui
 ```
 
-[Explore 300+ components](https://nexium-ui.vercel.app/getting-started) ·
+[Explore 300+ components](https://nexium-ui.vercel.app/) ·
 [View live showcase](https://nexium-ui.vercel.app/showcase/dashboard) ·
 [Browse on GitHub](https://github.com/BahaaHayajneh99/nexium-ui)
 
@@ -87,7 +87,7 @@ npm i nexium-ui
 
 | nexium-ui | Angular |
 | --- | --- |
-| 0.1.10 and later | 16, 17, 18, 19, 20, 21 |
+| 0.2.0 and later | 16, 17, 18, 19, 20, 21 |
 | 0.1.9 and earlier | 21.2+ only |
 
 ## Styles & Theming
@@ -663,7 +663,7 @@ or component.
 | Scroll Lock | `[nxScrollLock]` | Locks/restores page scrolling while a bound condition is true - handy for modals and drawers. |
 
 For full input/output reference and live examples, see the hosted demo at
-[nexium-ui.vercel.app](https://nexium-ui.vercel.app/getting-started), or run it locally with
+[nexium-ui.vercel.app](https://nexium-ui.vercel.app/), or run it locally with
 `ng serve demo` — either way it has a dedicated page per component.
 
 ### Pipes
@@ -1063,6 +1063,6 @@ but require a paid [license token](#pro--licensed-components) for production use
 
 ## Resources
 
-- [Live demo & documentation](https://nexium-ui.vercel.app/getting-started)
+- [Live demo & documentation](https://nexium-ui.vercel.app/)
 - [Get a PRO license](https://nexium-ui.vercel.app/pro-upgrade)
 - [Report an issue](https://github.com/BahaaHayajneh99/nexium-ui/issues)

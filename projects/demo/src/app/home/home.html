@@ -1,0 +1,373 @@
+<div class="home">
+
+    <app-site-header></app-site-header>
+
+    <section class="home-hero">
+        <div class="home-hero-glow"></div>
+
+        <div class="home-hero-text">
+            <span class="home-hero-eyebrow">Angular 16 &ndash; 21 &middot; Standalone components</span>
+            <h1 class="home-hero-title">
+                Stop assembling UI kits.<br />
+                Start shipping <span class="home-hero-accent">products</span>.
+            </h1>
+            <p class="home-hero-subtitle">
+                NexiumUI is a 300+ component Angular library - plus directives and pipes - built for real
+                applications: dashboards, admin panels, workflow tools, and full marketing sites, not just
+                buttons and cards. Free to start. PRO when your product gets serious.
+            </p>
+
+            <div class="home-hero-actions">
+                <a routerLink="/getting-started" class="home-btn home-btn-primary">
+                    Get Started
+                    <nx-icon icon="nx-arrow-right" variant="svg" [size]="16"></nx-icon>
+                </a>
+                <a routerLink="/showcase/dashboard" class="home-btn home-btn-secondary">View Live Showcase</a>
+            </div>
+
+            <div class="home-hero-badges">
+                <img alt="npm version" src="https://img.shields.io/npm/v/nexium-ui.svg" />
+                <img alt="npm downloads" src="https://img.shields.io/npm/dm/nexium-ui.svg" />
+                <img alt="License" src="https://img.shields.io/badge/license-Free%20%2B%20PRO-blue.svg" />
+            </div>
+        </div>
+
+        <div class="home-hero-preview">
+            <nx-card class="home-preview-card home-preview-stats">
+                <nx-card-content>
+                    <div class="home-stat-row">
+                        <nx-statistic label="Revenue" value="63,100" prefix="$" delta="+12.4%" direction="up"></nx-statistic>
+                        <nx-statistic label="Active Users" [value]="2481" delta="+3.6%" direction="up"></nx-statistic>
+                    </div>
+                    <nx-line-chart [categories]="previewMonths" [series]="previewSeries" [height]="120"></nx-line-chart>
+                </nx-card-content>
+            </nx-card>
+
+            <nx-card class="home-preview-card home-preview-tasks">
+                <nx-card-content>
+                    <nx-todo-list [items]="todoItems" [showAddInput]="false" label="Tasks"></nx-todo-list>
+                </nx-card-content>
+            </nx-card>
+
+            <nx-card class="home-preview-card home-preview-widgets">
+                <nx-card-content>
+                    <div class="home-widget-row">
+                        <span>Email notifications</span>
+                        <nx-switch [(checked)]="notificationsEnabled"></nx-switch>
+                    </div>
+                    <div class="home-widget-row">
+                        <span>Satisfaction</span>
+                        <nx-rating [value]="4" [readonly]="true"></nx-rating>
+                    </div>
+                    <div class="home-widget-row">
+                        <span>Storage used</span>
+                        <nx-badge variant="info">68%</nx-badge>
+                    </div>
+                    <nx-progress-bar [value]="68" variant="info" rounded></nx-progress-bar>
+                </nx-card-content>
+            </nx-card>
+        </div>
+    </section>
+
+        <section class="home-section">
+            <h2 class="home-section-title">A full template, not just a card</h2>
+            <p class="home-section-subtitle">
+                An icon sidebar, a profile card, a notification feed, and a chart - a self-contained preview you can
+                click through right here, without leaving the page.
+            </p>
+        
+            <div class="home-template-shell">
+                <nav class="home-template-shell-sidebar">
+                    <button type="button" class="home-template-shell-icon" *ngFor="let page of showcasePages"
+                        [class.active]="activeShowcasePage() === page" (click)="selectShowcasePage(page)"
+                        [attr.aria-label]="page.name" [title]="page.name">
+                        <nx-icon [icon]="page.icon" variant="svg" [size]="18"></nx-icon>
+                    </button>
+                </nav>
+        
+                <div class="home-template-preview">
+                    <nx-chip class="home-template-preview-active-chip" variant="primary" rounded>{{ activeShowcasePage().name
+                        }}</nx-chip>
+        
+                    @if (activeShowcasePage(); as page) {
+                    @switch (page.kind) {
+                    @case ('overview') {
+                    <nx-card class="home-template-preview-card home-profile-preview-card">
+                        <nx-card-content>
+                            <div class="home-profile-header">
+                                <nx-avatar [name]="page.profileName ?? ''" size="large" status="online"></nx-avatar>
+                                <div>
+                                    <h4>{{ page.profileName }}</h4>
+                                    <p>{{ page.profileRole }}</p>
+                                </div>
+                            </div>
+                            <div class="home-profile-stats">
+                                <div class="home-profile-stat">
+                                    <strong>{{ page.stat1?.value }}</strong>
+                                    <span>{{ page.stat1?.label }}</span>
+                                </div>
+                                <div class="home-profile-stat">
+                                    <strong>{{ page.stat2?.value }}</strong>
+                                    <span>{{ page.stat2?.label }}</span>
+                                </div>
+                            </div>
+                        </nx-card-content>
+                    </nx-card>
+        
+                    <nx-card class="home-template-preview-card">
+                        <nx-card-content>
+                            <h4 class="home-template-preview-heading">Notifications</h4>
+                            <div class="home-notification-row" *ngFor="let notification of page.notifications ?? []">
+                                <nx-icon [icon]="notification.icon" variant="svg" [size]="16"></nx-icon>
+                                <div>
+                                    <p>{{ notification.text }}</p>
+                                    <span>{{ notification.time }}</span>
+                                </div>
+                            </div>
+                        </nx-card-content>
+                    </nx-card>
+        
+                    <nx-card class="home-template-preview-card">
+                        <nx-card-content>
+                            <h4 class="home-template-preview-heading">{{ page.heading }}</h4>
+                            <nx-bar-chart [categories]="page.chartCategories ?? []" [series]="page.chartSeries ?? []"
+                                [height]="160"></nx-bar-chart>
+                        </nx-card-content>
+                    </nx-card>
+                    }
+        
+                    @case ('metrics') {
+                    <nx-card class="home-template-preview-card home-template-preview-card-wide">
+                        <nx-card-content>
+                            <h4 class="home-template-preview-heading">{{ page.heading }}</h4>
+                            <div class="home-metrics-row">
+                                <div class="home-profile-stat" *ngFor="let stat of page.metricStats ?? []">
+                                    <strong>{{ stat.value }}</strong>
+                                    <span>{{ stat.label }}</span>
+                                </div>
+                            </div>
+                            <nx-bar-chart [categories]="page.chartCategories ?? []" [series]="page.chartSeries ?? []"
+                                [height]="160"></nx-bar-chart>
+                        </nx-card-content>
+                    </nx-card>
+                    }
+        
+                    @case ('list') {
+                    <nx-card class="home-template-preview-card home-template-preview-card-wide">
+                        <nx-card-content>
+                            <h4 class="home-template-preview-heading">{{ page.heading }}</h4>
+                            <div class="home-list-row" *ngFor="let item of page.listItems ?? []">
+                                <div>
+                                    <p>{{ item.title }}</p>
+                                    <span>{{ item.subtitle }}</span>
+                                </div>
+                                <nx-badge [variant]="item.badgeVariant">{{ item.badgeText }}</nx-badge>
+                            </div>
+                        </nx-card-content>
+                    </nx-card>
+                    }
+        
+                    @case ('avatars') {
+                    <nx-card class="home-template-preview-card home-template-preview-card-wide">
+                        <nx-card-content>
+                            <h4 class="home-template-preview-heading">{{ page.heading }}</h4>
+                            <div class="home-avatar-row" *ngFor="let item of page.avatarItems ?? []">
+                                <nx-avatar [name]="item.name" [status]="item.status" size="small"></nx-avatar>
+                                <div>
+                                    <p>{{ item.name }}</p>
+                                    <span>{{ item.subtitle }}</span>
+                                </div>
+                            </div>
+                        </nx-card-content>
+                    </nx-card>
+                    }
+        
+                    @case ('progress') {
+                    <nx-card class="home-template-preview-card home-template-preview-card-wide">
+                        <nx-card-content>
+                            <h4 class="home-template-preview-heading">{{ page.heading }}</h4>
+                            <div class="home-progress-row" *ngFor="let item of page.progressItems ?? []">
+                                <div class="home-progress-row-label">
+                                    <span>{{ item.title }}</span>
+                                    <span>{{ item.value }}%</span>
+                                </div>
+                                <nx-progress-bar [value]="item.value" variant="info" rounded></nx-progress-bar>
+                            </div>
+                        </nx-card-content>
+                    </nx-card>
+                    }
+        
+                    @case ('toggles') {
+                    <nx-card class="home-template-preview-card home-template-preview-card-wide">
+                        <nx-card-content>
+                            <h4 class="home-template-preview-heading">{{ page.heading }}</h4>
+                            <div class="home-widget-row" *ngFor="let item of page.toggleItems ?? []">
+                                <span>{{ item.label }}</span>
+                                <nx-switch [checked]="item.checked"></nx-switch>
+                            </div>
+                        </nx-card-content>
+                    </nx-card>
+                    }
+                    }
+                    }
+                </div>
+            </div>
+        </section>
+
+    <section class="home-stats">
+        <div class="home-stat" *ngFor="let stat of stats">
+            <span class="home-stat-value">{{ stat.value }}</span>
+            <span class="home-stat-label">{{ stat.label }}</span>
+        </div>
+    </section>
+
+    <section class="home-section">
+        <h2 class="home-section-title">Why NexiumUI</h2>
+        <p class="home-section-subtitle">Built to disappear into a real Angular app, not to look good only in a demo.</p>
+
+        <div class="home-feature-grid">
+            <div class="home-feature-card" *ngFor="let feature of features">
+                <nx-icon [icon]="feature.icon" variant="svg" [size]="22"></nx-icon>
+                <h3>{{ feature.title }}</h3>
+                <p>{{ feature.description }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-section" id="categories">
+        <h2 class="home-section-title">Explore by category</h2>
+        <p class="home-section-subtitle">300+ components across every part of your application.</p>
+
+        <div class="home-category-grid">
+            <a class="home-category-card" *ngFor="let category of categories" [routerLink]="category.path">
+                <nx-icon [icon]="category.icon" variant="svg" [size]="22"></nx-icon>
+                <h3>{{ category.label }}</h3>
+                <p>{{ category.description }}</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="home-section home-code-section">
+        <div class="home-code-text">
+            <h2 class="home-section-title">Built for real Angular apps</h2>
+            <p class="home-section-subtitle">
+                Every component is standalone - import only what you use, no NgModule required.
+                Form components implement <code>ControlValueAccessor</code>, so <code>[(ngModel)]</code>
+                and reactive forms work without adapters.
+            </p>
+        </div>
+        <div class="home-code-cards">
+            <div class="home-code-block">
+                <div class="home-code-block-toolbar">
+                    <span class="home-code-block-language">bash</span>
+                    <button type="button" class="home-code-block-copy" (click)="copyCode('install')">
+                        {{ copiedCode() === 'install' ? 'Copied!' : 'Copy' }}
+                    </button>
+                </div>
+                <pre class="home-code-block-pre"><code [innerHTML]="highlightedInstallCode"></code></pre>
+            </div>
+
+            <div class="home-code-block">
+                <div class="home-code-block-toolbar">
+                    <span class="home-code-block-language">typescript</span>
+                    <button type="button" class="home-code-block-copy" (click)="copyCode('usage')">
+                        {{ copiedCode() === 'usage' ? 'Copied!' : 'Copy' }}
+                    </button>
+                </div>
+                <pre class="home-code-block-pre"><code [innerHTML]="highlightedUsageCode"></code></pre>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="home-section">
+        <h2 class="home-section-title">Directives &amp; pipes, not just components</h2>
+        <p class="home-section-subtitle">
+            Behavior-only primitives you attach to any element, native or component - no template of their own.
+            Plus a couple of everyday formatting pipes: <code>nxDateFormat</code> and <code>nxTruncate</code>.
+        </p>
+
+        <div class="home-feature-grid">
+            <div class="home-feature-card" *ngFor="let directive of directives">
+                <nx-icon [icon]="directive.icon" variant="svg" [size]="22"></nx-icon>
+                <h3>{{ directive.title }}</h3>
+                <p>{{ directive.description }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-section" id="free-pro">
+        <h2 class="home-section-title">Free &amp; PRO</h2>
+        <p class="home-section-subtitle">
+            Start with 150+ free components. Unlock the advanced, specialized ones with a PRO license when you need them.
+        </p>
+
+        <div class="home-tier-grid">
+            <div class="home-tier-card">
+                <span class="home-tier-label">Free</span>
+                <ul>
+                    <li>Core UI: cards, badges, tables, lists, trees</li>
+                    <li>All basic form inputs, autocomplete, datepicker</li>
+                    <li>12 chart types: line, bar, pie, area, radar&hellip;</li>
+                    <li>Navigation: menus, tabs, sidebar, breadcrumb</li>
+                    <li>Dashboard cards, metrics, leaderboards</li>
+                    <li>Dialogs, toasts, popovers, tooltips</li>
+                </ul>
+            </div>
+            <div class="home-tier-card home-tier-pro">
+                <span class="home-tier-label">PRO</span>
+                <ul>
+                    <li>Advanced Data Grid, Tree Table, Pivot Table</li>
+                    <li>Event Calendar, Formula Input, Signature Pad</li>
+                    <li>Candlestick, Sankey, Treemap, Gantt Chart</li>
+                    <li>Workflow Builder, Kanban Board, Scheduler</li>
+                    <li>Dashboard Builder, Widget Grid, Spreadsheet</li>
+                    <li>Form Builder, File Manager, AI Chat</li>
+                </ul>
+                <a routerLink="/pro-upgrade" class="home-btn home-btn-primary home-btn-sm">Get PRO License</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-section" id="templates">
+        <h2 class="home-section-title">See it in a real app</h2>
+        <p class="home-section-subtitle">
+            A full admin dashboard built entirely from NexiumUI components - browse every page live.
+        </p>
+
+        <div class="home-template-grid">
+            <a class="home-template-card" *ngFor="let page of showcasePages" [routerLink]="page.path">
+                <nx-icon [icon]="page.icon" variant="svg" [size]="20"></nx-icon>
+                <span>{{ page.name }}</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="home-section">
+        <h2 class="home-section-title">Supported Angular versions</h2>
+        <p class="home-section-subtitle">
+            nexium-ui 0.2.0 and later (the current release is {{ commonService.packageVersion }}) supports every
+            Angular version from 16 through 21. Earlier releases (0.1.9 and below) only support Angular 21.2+.
+        </p>
+
+        <div class="home-version-grid">
+            <span class="home-version-chip" *ngFor="let version of supportedAngularVersions">Angular {{ version }}</span>
+        </div>
+    </section>
+
+    <section class="home-bottom-cta">
+        <h2>Start building in seconds</h2>
+        <p>Every component has its own live demo page with usage examples and copy-paste code.</p>
+        <div class="home-hero-actions">
+            <a routerLink="/getting-started" class="home-btn home-btn-primary">
+                Get Started
+                <nx-icon icon="nx-arrow-right" variant="svg" [size]="16"></nx-icon>
+            </a>
+            <a routerLink="/pro-upgrade" class="home-btn home-btn-secondary">Get PRO License</a>
+        </div>
+    </section>
+
+    <app-theme-customizer></app-theme-customizer>
+
+</div>

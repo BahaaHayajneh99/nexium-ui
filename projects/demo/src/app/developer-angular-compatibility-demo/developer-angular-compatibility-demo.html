@@ -5,7 +5,7 @@
             <section class="main-section">
                 <h4 class="main-section-header">Angular Compatibility</h4>
                 <p class="main-section-description">
-                    NexaUI compatibility with Angular versions
+                    {{ commonService.appName }} compatibility with Angular versions
                 </p>
             </section>
 
@@ -17,7 +17,7 @@
                 <div class="version-matrix">
                     <div class="matrix-header">
                         <div class="col-version">Angular Version</div>
-                        <div class="col-nexaui">NexaUI Version</div>
+                        <div class="col-nexaui">{{ commonService.appName }} Version</div>
                         <div class="col-status">Status</div>
                         <div class="col-notes">Notes</div>
                     </div>
@@ -90,7 +90,7 @@
                 code=""
                 [hasSampleClass]="false">
                 <div class="alert-box">
-                    <strong>Note:</strong> Always test your application thoroughly after updating Angular or NexaUI versions.
+                    <strong>Note:</strong> Always test your application thoroughly after updating Angular or {{ commonService.appName }} versions.
                 </div>
             </app-demo-section>
 

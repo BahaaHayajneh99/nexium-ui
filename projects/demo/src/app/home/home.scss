@@ -1,0 +1,751 @@
+// Uses the same --shell-* theme variables as the rest of the site (ThemeService is injected in
+// home.ts so they resolve correctly on this route too), so the page follows the user's actual
+// current light/dark choice instead of forcing one regardless of their preference.
+:host {
+    display: block;
+}
+
+.home {
+    min-height: 100vh;
+    background: var(--shell-bg);
+    color: var(--shell-text);
+}
+
+a {
+    text-decoration: none;
+}
+
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: transform .15s ease, filter .15s ease;
+
+    &:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.08);
+    }
+}
+
+.home-btn-sm {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.home-btn-primary {
+    background: var(--shell-primary);
+    color: #fff;
+}
+
+.home-btn-secondary {
+    background: transparent;
+    color: var(--shell-text);
+    border: 1px solid var(--shell-border);
+}
+
+.home-hero {
+    position: relative;
+    overflow: hidden;
+    width: calc(100% - var(--nx-main-nav-width, 300px));
+    padding: 88px var(--nx-padding-right-content, 100px) 88px 0;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+
+    // Below this, the 300px sidebar-width reservation (there's no sidebar on this page - it's
+    // only there to line up with the header above) was eating almost the entire narrow viewport,
+    // squeezing everything into a sliver and forcing horizontal scroll. Drop it for a plain
+    // full-width, fixed-gutter layout instead.
+    @media (max-width: 1080px) {
+        width: 100%;
+        grid-template-columns: 1fr;
+        padding: 56px 20px 48px;
+    }
+}
+
+.home-hero-glow {
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 560px;
+    height: 560px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--shell-primary) 35%, transparent) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.home-hero-text {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+}
+
+.home-hero-eyebrow {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--shell-primary) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--shell-primary) 30%, transparent);
+    color: color-mix(in srgb, var(--shell-primary) 60%, white);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    margin-bottom: 22px;
+}
+
+.home-hero-title {
+    font-size: 50px;
+    line-height: 1.15;
+    font-weight: 800;
+    margin: 0 0 20px;
+    letter-spacing: -.01em;
+
+    @media (max-width: 960px) {
+        font-size: 36px;
+    }
+}
+
+.home-hero-accent {
+    background: linear-gradient(90deg, var(--shell-primary), color-mix(in srgb, var(--shell-primary) 70%, white));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.home-hero-subtitle {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--shell-text-secondary);
+    max-width: 480px;
+    margin: 0 0 32px;
+}
+
+.home-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.home-hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    img {
+        height: 20px;
+    }
+}
+
+.home-hero-preview {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+
+.home-preview-card {
+    border-radius: 14px;
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.home-stat-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.home-preview-tasks nx-todo-list {
+    display: block;
+}
+
+.home-widget-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 14px;
+    color: var(--shell-text-secondary);
+}
+
+.home-stats {
+    width: calc(100% - var(--nx-main-nav-width, 300px));
+    margin: 0 auto;
+    padding: 0 var(--nx-padding-right-content, 100px) 64px 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    border-top: 1px solid var(--shell-border);
+    padding-top: 48px;
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.home-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.home-stat-value {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--shell-text);
+}
+
+.home-stat-label {
+    font-size: 13px;
+    color: var(--shell-text-secondary);
+    margin-top: 4px;
+}
+
+.home-section {
+    width: calc(100% - var(--nx-main-nav-width, 300px));
+    margin: 0 auto;
+    padding: 72px var(--nx-padding-right-content, 100px) 72px 0;
+    scroll-margin-top: 80px;
+}
+
+// Shared with .home-hero above - drop the sidebar-width reservation (there's no sidebar on this
+// page) on narrow screens, where it otherwise squeezes everything into a sliver.
+@media (max-width: 1080px) {
+    .home-stats,
+    .home-section {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.home-section-title {
+    font-size: 30px;
+    font-weight: 800;
+    margin: 0 0 10px;
+    text-align: center;
+}
+
+.home-section-subtitle {
+    font-size: 15px;
+    color: var(--shell-text-secondary);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 44px;
+    line-height: 1.6;
+
+    code {
+        color: color-mix(in srgb, var(--shell-primary) 60%, white);
+        background: color-mix(in srgb, var(--shell-primary) 12%, transparent);
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+}
+
+.home-category-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+
+    @media (max-width: 960px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 640px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.home-category-card,
+.home-template-card {
+    nx-icon {
+        color: var(--shell-primary);
+    }
+
+    &:hover {
+        border-color: color-mix(in srgb, var(--shell-primary) 40%, transparent);
+        transform: translateY(-2px);
+    }
+}
+
+.home-category-card {
+    display: block;
+    padding: 22px;
+    border-radius: 12px;
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    transition: border-color .15s ease, transform .15s ease;
+
+    nx-icon {
+        margin-bottom: 12px;
+    }
+
+    h3 {
+        font-size: 15px;
+        font-weight: 700;
+        margin: 0 0 6px;
+        color: var(--shell-text);
+    }
+
+    p {
+        font-size: 12.5px;
+        line-height: 1.5;
+        color: var(--shell-text-secondary);
+        margin: 0;
+    }
+}
+
+.home-code-section {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 48px;
+    align-items: center;
+
+    .home-section-title,
+    .home-section-subtitle {
+        text-align: left;
+        margin-left: 0;
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.home-code-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+// Mirrors nx-code-block's own look (projects/components/.../ui-code-block.scss) - that component
+// renders its code as plain text by design (see its doc comment), so this re-does its chrome
+// around a highlightTs()-colored <code> instead, matching the syntax coloring used on every
+// docs page's demo-section code sample.
+.home-code-block {
+    border-radius: var(--nx-radius-md, 8px);
+    background-color: var(--shell-code-bg, #1e1e1e);
+    overflow: hidden;
+}
+
+.home-code-block-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.home-code-block-language {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #9aa5b1;
+}
+
+.home-code-block-copy {
+    margin-left: auto;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: var(--nx-radius-sm, 4px);
+    background: transparent;
+    color: #e6e6e6;
+    font-size: 12px;
+    padding: 2px 10px;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(255, 255, 255, .08);
+    }
+}
+
+.home-code-block-pre {
+    margin: 0;
+    padding: 16px;
+    overflow-x: auto;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e6e6e6;
+}
+
+.home-version-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.home-version-chip {
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.home-tier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    @media (max-width: 760px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.home-tier-card {
+    padding: 32px;
+    border-radius: 16px;
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    ul {
+        margin: 20px 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        padding: 9px 0;
+        border-top: 1px solid var(--shell-border);
+        font-size: 14px;
+        color: var(--shell-text-secondary);
+
+        &:first-child {
+            border-top: none;
+        }
+    }
+}
+
+.home-tier-label {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: var(--shell-surface-hover);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+}
+
+.home-tier-pro {
+    border-color: color-mix(in srgb, var(--shell-primary) 40%, transparent);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--shell-primary) 8%, transparent), var(--shell-surface) 40%);
+
+    .home-tier-label {
+        background: var(--shell-primary);
+        color: #fff;
+    }
+
+    .home-btn {
+        margin-top: 24px;
+    }
+}
+
+.home-template-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+
+    @media (max-width: 720px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.home-template-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 24px 12px;
+    border-radius: 12px;
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+    color: var(--shell-text);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    transition: border-color .15s ease, transform .15s ease;
+
+    p {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--shell-text-secondary);
+    }
+}
+
+.home-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    @media (max-width: 960px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.home-feature-card {
+    padding: 24px;
+    border-radius: 14px;
+    background: var(--shell-surface);
+    border: 1px solid var(--shell-border);
+
+    nx-icon {
+        color: var(--shell-primary);
+        margin-bottom: 14px;
+    }
+
+    h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0 0 8px;
+        color: var(--shell-text);
+    }
+
+    p {
+        font-size: 13.5px;
+        line-height: 1.6;
+        color: var(--shell-text-secondary);
+        margin: 0;
+    }
+}
+
+.home-template-shell {
+    display: flex;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--shell-border);
+    background: var(--shell-bg);
+
+    @media (max-width: 720px) {
+        flex-direction: column;
+    }
+}
+
+.home-template-shell-sidebar {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 10px;
+    background: var(--shell-surface);
+    border-right: 1px solid var(--shell-border);
+
+    @media (max-width: 720px) {
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid var(--shell-border);
+    }
+}
+
+.home-template-shell-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: var(--nx-radius-md, 8px);
+    background: transparent;
+    color: var(--shell-text-muted);
+    cursor: pointer;
+    transition: all var(--nx-transition-fast, .15s ease);
+
+    &:hover {
+        background: var(--shell-surface-hover);
+        color: var(--shell-primary);
+    }
+
+    &.active {
+        background: color-mix(in srgb, var(--shell-primary) 12%, transparent);
+        color: var(--shell-primary);
+    }
+}
+
+.home-template-preview-active-chip {
+    grid-column: 1 / -1;
+    width: fit-content;
+}
+
+.home-template-preview {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.home-template-preview-heading {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: var(--shell-text);
+}
+
+.home-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+
+    h4 {
+        font-size: 15px;
+        font-weight: 700;
+        margin: 0;
+        color: var(--shell-text);
+    }
+
+    p {
+        font-size: 13px;
+        margin: 2px 0 0;
+        color: var(--shell-text-secondary);
+    }
+}
+
+.home-profile-stats {
+    display: flex;
+    gap: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--shell-border);
+}
+
+.home-profile-stat {
+    display: flex;
+    flex-direction: column;
+
+    strong {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--shell-text);
+    }
+
+    span {
+        font-size: 12px;
+        color: var(--shell-text-secondary);
+    }
+}
+
+// Single wide card used by every non-"overview" kind in the template preview (metrics, list,
+// avatars, progress, toggles) - spans all 3 grid columns instead of sharing the row with others.
+.home-template-preview-card-wide {
+    grid-column: 1 / -1;
+}
+
+.home-metrics-row {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--shell-border);
+}
+
+.home-notification-row,
+.home-list-row,
+.home-avatar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid var(--shell-border);
+
+    &:first-of-type {
+        border-top: none;
+    }
+
+    p {
+        font-size: 13px;
+        margin: 0;
+        color: var(--shell-text);
+    }
+
+    span {
+        font-size: 11.5px;
+        color: var(--shell-text-secondary);
+    }
+}
+
+.home-list-row {
+    justify-content: space-between;
+}
+
+.home-notification-row {
+    align-items: flex-start;
+
+    nx-icon {
+        flex-shrink: 0;
+        margin-top: 2px;
+        color: var(--shell-primary);
+    }
+}
+
+.home-progress-row {
+    padding: 10px 0;
+
+    &:first-of-type {
+        padding-top: 0;
+    }
+}
+
+.home-progress-row-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 12.5px;
+    color: var(--shell-text-secondary);
+
+    span:last-child {
+        color: var(--shell-text);
+        font-weight: 600;
+    }
+}
+
+.home-bottom-cta {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 24px 24px 110px;
+    text-align: center;
+
+    h2 {
+        font-size: 32px;
+        font-weight: 800;
+        margin: 0 0 12px;
+    }
+
+    p {
+        font-size: 15px;
+        color: var(--shell-text-secondary);
+        margin: 0 0 28px;
+    }
+
+    .home-hero-actions {
+        justify-content: center;
+    }
+}

@@ -544,54 +544,55 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
     ],
   },
-  {
-    key: 'Blocks',
-    label: 'Blocks',
-    icon: 'nx-copy',
-    groups: [
-      {
-        links: [
-          { label: 'Hero Sections', path: '/blocks/hero-sections' },
-          { label: 'Headers', path: '/blocks/headers' },
-          { label: 'Footers', path: '/blocks/footers' },
-          { label: 'Pricing', path: '/blocks/pricing' },
-          { label: 'Feature Sections', path: '/blocks/feature-sections' },
-          { label: 'Testimonials', path: '/blocks/testimonials' },
-          { label: 'CTA Sections', path: '/blocks/cta-sections' },
-          { label: 'Login', path: '/blocks/login' },
-          { label: 'Register', path: '/blocks/register' },
-          { label: 'Contact', path: '/blocks/contact' },
-          { label: 'FAQ', path: '/blocks/faq' },
-          { label: 'About', path: '/blocks/about' },
-          { label: 'Team', path: '/blocks/team' },
-          { label: 'Newsletter', path: '/blocks/newsletter' },
-          { label: 'Blog', path: '/blocks/blog' },
-          { label: 'Dashboard', path: '/blocks/dashboard' },
-          { label: 'Statistics', path: '/blocks/statistics' },
-          { label: 'Landing Pages', path: '/blocks/landing-pages' },
-        ],
-      },
-    ],
-  },
+  // {
+  //   key: 'Blocks',
+  //   label: 'Blocks',
+  //   icon: 'nx-copy',
+  //   groups: [
+  //     {
+  //       links: [
+  //         { label: 'Hero Sections', path: '/blocks/hero-sections' },
+  //         { label: 'Headers', path: '/blocks/headers' },
+  //         { label: 'Footers', path: '/blocks/footers' },
+  //         { label: 'Pricing', path: '/blocks/pricing' },
+  //         { label: 'Feature Sections', path: '/blocks/feature-sections' },
+  //         { label: 'Testimonials', path: '/blocks/testimonials' },
+  //         { label: 'CTA Sections', path: '/blocks/cta-sections' },
+  //         { label: 'Login', path: '/blocks/login' },
+  //         { label: 'Register', path: '/blocks/register' },
+  //         { label: 'Contact', path: '/blocks/contact' },
+  //         { label: 'FAQ', path: '/blocks/faq' },
+  //         { label: 'About', path: '/blocks/about' },
+  //         { label: 'Team', path: '/blocks/team' },
+  //         { label: 'Newsletter', path: '/blocks/newsletter' },
+  //         { label: 'Blog', path: '/blocks/blog' },
+  //         { label: 'Dashboard', path: '/blocks/dashboard' },
+  //         { label: 'Statistics', path: '/blocks/statistics' },
+  //         { label: 'Landing Pages', path: '/blocks/landing-pages' },
+  //       ],
+  //     },
+  //   ],
+  // }, 
   { key: 'Showcase', label: 'Showcase', icon: 'nx-layout', path: '/showcase', isNew: true },
-  {
-    key: 'PRO Websites',
-    label: 'PRO Websites',
-    icon: 'nx-monitor',
-    groups: [
-      {
-        links: [
-          { label: 'E-Commerce Website', path: '/pro-templates/ecommerce-website', isPro: true, isNew: true },
-          { label: 'SaaS Website', path: '/pro-templates/saas-website', isPro: true, isNew: true },
-          { label: 'Real Estate Website', path: '/pro-templates/real-estate-website', isPro: true, isNew: true },
-          { label: 'Restaurant Website', path: '/pro-templates/restaurant-website', isPro: true, isNew: true },
-          { label: 'Portfolio Website', path: '/pro-templates/portfolio-website', isPro: true, isNew: true },
-          { label: 'Hotel Website', path: '/pro-templates/hotel-website', isPro: true, isNew: true },
-          { label: 'Course Website', path: '/pro-templates/course-website', isPro: true, isNew: true },
-        ],
-      },
-    ],
-  },
+  //TODO: Uncomment this section when we have PRO templates available
+  // {
+  //   key: 'PRO Websites',
+  //   label: 'PRO Websites',
+  //   icon: 'nx-monitor',
+  //   groups: [
+  //     {
+  //       links: [
+  //         { label: 'E-Commerce Website', path: '/pro-templates/ecommerce-website', isPro: true, isNew: true },
+  //         { label: 'SaaS Website', path: '/pro-templates/saas-website', isPro: true, isNew: true },
+  //         { label: 'Real Estate Website', path: '/pro-templates/real-estate-website', isPro: true, isNew: true },
+  //         { label: 'Restaurant Website', path: '/pro-templates/restaurant-website', isPro: true, isNew: true },
+  //         { label: 'Portfolio Website', path: '/pro-templates/portfolio-website', isPro: true, isNew: true },
+  //         { label: 'Hotel Website', path: '/pro-templates/hotel-website', isPro: true, isNew: true },
+  //         { label: 'Course Website', path: '/pro-templates/course-website', isPro: true, isNew: true },
+  //       ],
+  //     },
+  //   ],
+  // },
   { key: 'Get PRO License', label: 'Get PRO License', icon: 'nx-gift', path: '/pro-upgrade', isNew: true },
   { key: 'Using PRO', label: 'Using PRO', icon: 'nx-lock', path: '/getting-started/using-pro' },
   // { key: 'Dashboard Designer', label: 'Dashboard Designer', icon: 'nx-chart-bar', path: '/dashboard-designer', isNew: true },
@@ -685,22 +686,22 @@ export const NAV_ITEMS: NxNavItem[] = [
       },
     ],
   },
-  {
-    key: 'Testing',
-    label: 'Testing',
-    icon: 'nx-check-circle',
-    groups: [
-      {
-        links: [
-          { label: 'Unit Testing', path: '/testing/unit-testing' },
-          { label: 'Component Testing', path: '/testing/component-testing' },
-          { label: 'Accessibility Testing', path: '/testing/accessibility-testing' },
-          { label: 'Visual Testing', path: '/testing/visual-testing' },
-          { label: 'E2E Testing', path: '/testing/e2e-testing' },
-        ],
-      },
-    ],
-  },
+  // {
+  //   key: 'Testing',
+  //   label: 'Testing',
+  //   icon: 'nx-check-circle',
+  //   groups: [
+  //     {
+  //       links: [
+  //         { label: 'Unit Testing', path: '/testing/unit-testing' },
+  //         { label: 'Component Testing', path: '/testing/component-testing' },
+  //         { label: 'Accessibility Testing', path: '/testing/accessibility-testing' },
+  //         { label: 'Visual Testing', path: '/testing/visual-testing' },
+  //         { label: 'E2E Testing', path: '/testing/e2e-testing' },
+  //       ],
+  //     },
+  //   ],
+  // },
   {
     key: 'API Reference',
     label: 'API Reference',
